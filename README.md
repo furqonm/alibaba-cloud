@@ -13,7 +13,7 @@ _[DISCLAIMER] The links and materials provided here are for supplementary study 
 ### 2. Exam Guide
 - [Alibaba Cloud Professional Cloud Architect - Exam Syllabus](https://files.alicdn.com/tpsservice/df2332f781065b26f4df15fcaab7deeb.pdf)
 
-  > This is the official blueprint for the exam. Reviewing the five domains listed here is the best way to identify areas you need to focus on.
+  > This is the official blueprint for the exam. Reviewing domains listed here is the best way to identify areas you need to focus on.
 
 ### 3. Exam Readiness
 - [Alibaba Cloud Professional Cloud Architect - Sample Questions](https://files.alicdn.com/tpsservice/2a9fb9ae14166ff174b5f32b45cd51f8.pdf)
