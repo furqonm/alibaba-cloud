@@ -5,7 +5,7 @@ _[DISCLAIMER] The links and materials provided here are for supplementary study 
 ## Exam Preparation Materials
 ### 1. Course
 - [Alibaba Cloud Introduction](https://edu.alibabacloud.com/course/387/lesson/list)
-- [Alibaba Cloud Computing Fundamentals](https://edu.alibabacloud.com/course/353) **Paid**
+- [Cloud Architect (Professional) Exam Preparation Course](https://edu.alibabacloud.com/course/953) **Paid**
 - [Alibaba Cloud Professional (ACP) Cloud Architect [Course]](https://www.udemy.com/course/alibaba-cloud-certified-professional-acp-cloud-computing) **Paid**
 
     > Video materials to deepen your understanding of various Alibaba Cloud services and their features that might appear on the exam.
