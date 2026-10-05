@@ -15,10 +15,8 @@ _[DISCLAIMER] The links and materials provided here are for supplementary study 
     > Video rekaman kelas Alibaba Cloud ACA Cloud Computing.
 
 ### 2. Exam Guide
-- [ACA Cloud Computing Certification Exam Syllabus](https://files.alicdn.com/tpsservice/8e7be932b75616e9a64a5068b2eab167.pdf)
-- [ACP Cloud Computing Certification Exam Syllabus](https://files.alicdn.com/tpsservice/38d3b149948d4265f56307ce13083424.pdf)
-
-    > Membahas beberapa domain/section yang akan ditanyakan diujian ACA dan ACP Cloud Computing. Bisa dicek beberapa poin mana yang tidak dimengerti untuk dipelajari lebih lanjut.
+- [Alibaba Cloud Professional Cloud Architect: Exam Syllabus](https://files.alicdn.com/tpsservice/df2332f781065b26f4df15fcaab7deeb.pdf?spm=a3c0i.29870083.6470661220.2.46b16faepepaah&file=df2332f781065b26f4df15fcaab7deeb.pdf)
+  > This is the official blueprint for the exam. Reviewing the five domains listed here is the best way to identify areas you need to focus on.
 
 ### 3. Exam Readiness
 - [ACA Cloud Computing Certification Example Questions](https://files.alicdn.com/tpsservice/dfff1f4b098cd01af4bb8cd25255bb41.pdf)
