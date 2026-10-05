@@ -1,5 +1,5 @@
 # Preparation for Alibaba Cloud Architect (Professional)
-_[DISCLAIMER] _[DISCLAIMER] The links and materials provided here are for supplementary study purposes. These self-documented study resources do not represent official information from Alibaba Cloud, although some links and materials are from official Alibaba sources._
+_[DISCLAIMER] The links and materials provided here are for supplementary study purposes. These self-documented study resources do not represent official information from Alibaba Cloud, although some links and materials are from official Alibaba sources._
 
 ---
 ## Exam Preparation Materials
