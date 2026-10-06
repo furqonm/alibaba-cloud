@@ -17,7 +17,7 @@ _[DISCLAIMER] The links and materials provided here are for supplementary study 
 
 ### 3. Exam Readiness
 - [Alibaba Cloud Professional Cloud Architect - Sample Questions](https://files.alicdn.com/tpsservice/2a9fb9ae14166ff174b5f32b45cd51f8.pdf)
-- [Alibaba Cloud: Cloud Architect (Professional) - Free Sample Questions](https://forms.gle/kiYuexotBvhCjmoP8)
+- [Alibaba Cloud: Cloud Architect (Professional) - Free Sample Questions](https://forms.gle/vJc198gS9a1HHvv56)
 - [Examtopics: Alibaba ACP-Cloud1 Exam](https://www.examtopics.com/exams/alibaba/acp-cloud1/view/) **Paid**
 - [Examtopics: Alibaba CEA-C01 Actual Exam Questions](https://www.examtopics.com/exams/alibaba/cea-c01/view/) **Paid**
 
