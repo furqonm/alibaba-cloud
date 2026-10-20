@@ -33,7 +33,7 @@
         </select>
       </div>
       <div class="nav-buttons">
-        <span class="slide-counter" id="slideCounter">1/49</span>
+        <span class="slide-counter" id="slideCounter">1/50</span>
         <button class="btn-nav" id="prevBtn" title="Previous Slide (Left Arrow)">
           <span>⬅️</span> Previous
         </button>
@@ -765,7 +765,6 @@ systemctl enable --now nginx</pre>
       
       <div class="grid-2" style="align-items: center; gap: 2rem; margin-top: 1rem;">
         <div class="content-card highlight" style="padding: 1.5rem;">
-          <h3 style="margin-bottom: 0.75rem;">Intra-Zone Automated Migration Mechanics</h3>
           <p style="margin-bottom: 0.75rem;">ECS instances run on physical host machines called <strong>Node Controllers (NC)</strong>. When a physical hardware failure occurs:</p>
           <ul style="line-height: 1.6;">
             <li><strong>Physical Host Failure (NC1 Down):</strong> Hardware malfunction, power disruption, or CPU/motherboard failure causes NC1 to stop operating.</li>
@@ -892,7 +891,58 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 23: BASIC NETWORK ==================== -->
+    <!-- ==================== SLIDE 23: BENEFITS OF MARKETPLACE IMAGES ==================== -->
+    <section class="slide" data-category="Storage Options">
+      <div class="slide-category">Section 3: Storage Options</div>
+      <h2>Benefits of Marketplace Images</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 2rem;">
+        <div class="content-card highlight" style="padding: 1.35rem;">
+          <div class="table-wrapper">
+            <table class="slide-table" style="font-size: 0.84rem;">
+              <thead>
+                <tr>
+                  <th style="width: 50%;">Traditional OS Deployment</th>
+                  <th style="width: 50%;">Marketplace / Custom Image</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>6-Step Manual Workflow:</strong>
+                    <ol style="margin: 0.35rem 0 0 1rem; padding: 0; line-height: 1.45;">
+                      <li>Purchase ECS instance with bare OS</li>
+                      <li>Install web server (NGINX / Apache)</li>
+                      <li>Install runtime (PHP / Python / Node)</li>
+                      <li>Install database (MySQL / MariaDB)</li>
+                      <li>Install application (WordPress / CRM)</li>
+                      <li>Manual configuration &amp; debugging</li>
+                    </ol>
+                  </td>
+                  <td>
+                    <strong>2-Step Instant Turnkey:</strong>
+                    <ol style="margin: 0.35rem 0 0 1rem; padding: 0; line-height: 1.45;">
+                      <li>Select verified image with OS, runtimes, and application stack pre-installed</li>
+                      <li>Launch ECS instance with the chosen image — instantly ready for production</li>
+                    </ol>
+                    <div style="margin-top: 0.65rem; color: var(--primary); font-weight: 600; font-size: 0.8rem;">
+                      ✓ Zero configuration downtime<br>
+                      ✓ Vendor-tested compatibility
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+          <img src="assets/images/ecs-marketplace-image-stack.png" alt="Pre-packaged Software Stack on ECS Image" style="max-height: 320px; width: auto; max-width: 100%; object-fit: contain;">
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 24: BASIC NETWORK ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>Basic Network</h2>
@@ -920,50 +970,83 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 24: SECURITY GROUPS ==================== -->
+    <!-- ==================== SLIDE 25: ELASTIC NETWORK INTERFACES (ENI) ==================== -->
+    <section class="slide" data-category="Network & Security">
+      <div class="slide-category">Section 4: Network & Security</div>
+      <h2>Elastic Network Interfaces (ENI)</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <h3>Types of ENIs</h3>
+          <ul>
+            <li><strong>Primary ENI (<code class="inline-code">eth0</code>):</strong> Automatically created when the ECS instance launches. Bound to the primary private IP address in the instance's VSwitch. Cannot be detached from the instance.</li>
+            <li><strong>Secondary ENI:</strong> Can be created independently, dynamically attached, or detached from instances within the <strong>same Availability Zone</strong>.</li>
+            <li><strong>Trunking ENI:</strong> High-density interface configuration allowing container orchestration engines (ACK) to attach multiple virtual pod interfaces to a single physical ENI.</li>
+          </ul>
+        </div>
+        <div class="content-card highlight-blue">
+          <h3>Key Enterprise Use Cases</h3>
+          <ul>
+            <li><strong>Low-Cost Active/Standby Failover:</strong> If the primary firewall/proxy instance fails, the secondary ENI carrying private service IPs can be detached and instantly attached to a standby instance.</li>
+            <li><strong>Multi-Subnet Multi-Homing:</strong> An ECS instance can connect simultaneously to different VSwitches (e.g. management network on VSwitch-Mgmt and business traffic on VSwitch-App).</li>
+            <li><strong>High-Density Kubernetes Networking:</strong> Terway CNI plugin utilizes secondary ENIs and secondary IP addresses for native pod-to-pod networking.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout-amber" style="margin-top: 1rem;">
+        <strong>Constraint:</strong> The maximum number of Elastic Network Interfaces and secondary private IP addresses that can be attached to an ECS instance is strictly determined by its instance type specification and all attached ENIs must reside in the exact same Availability Zone as the host instance.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 26: SECURITY GROUPS ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>Security Groups</h2>
       
-      <div class="grid-2">
-        <div class="content-card highlight">
-          <ul>
-            <li><strong>Stateful Inspection:</strong> If an inbound connection is allowed by a rule, the corresponding outbound response packet is <strong>automatically permitted</strong>, regardless of outbound rules.</li>
-            <li><strong>Regional Scope:</strong> A Security Group is a regional resource within a VPC. It can secure ECS instances located in different Availability Zones within the same VPC.</li>
-            <li><strong>Multi-Group Binding:</strong> An ECS instance must belong to at least one security group and can belong to multiple groups simultaneously.</li>
-            <li><strong>Rule Evaluation:</strong> Evaluates Action (Accept/Drop), Protocol (TCP, UDP, ICMP, GRE, All), Port Range, and Priority (1 = highest, 100 = lowest).</li>
+      <div class="grid-2" style="align-items: center; gap: 2rem;">
+        <div class="content-card highlight" style="padding: 1.35rem;">
+          <p style="margin-bottom: 0.85rem; font-size: calc(0.92rem + var(--font-delta)); line-height: 1.5;">A <strong>Security Group</strong> functions as a software-defined, distributed stateful firewall operating at the Elastic Network Interface (ENI) layer to filter inbound and outbound traffic.</p>
+          
+          <ul style="line-height: 1.6;">
+            <li><strong>Stateful Inspection:</strong> If an inbound packet is allowed by an inbound rule, response traffic is <strong>automatically permitted outbound</strong> (and vice versa) regardless of outbound rules.</li>
+            <li><strong>Regional Scope within VPC:</strong> Security Groups are regional constructs in a VPC and can protect ECS instances across multiple Availability Zones in the same VPC.</li>
+            <li><strong>ENI &amp; Multi-Group Association:</strong> Each ENI must belong to at least one security group and can join multiple security groups simultaneously.</li>
+            <li><strong>Default Isolation Boundary:</strong> Instances associated with different security groups are completely isolated by default with zero inter-group network communication.</li>
           </ul>
         </div>
-        <div class="diagram-container clean" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-          <img src="assets/images/security-group-interconnect.svg" alt="Security Group Packet Filtering & Rule Evaluation Process" class="diagram-image" style="max-height: 200px; width: 100%; object-fit: contain;">
-          <div class="diagram-caption" style="margin-top: 0.5rem; font-weight: 500; color: #475569;">Security Group Evaluation Workflow</div>
-          <div class="callout callout-blue" style="width: 100%; margin-top: 0.65rem;">
-            <strong>Rule:</strong> Instances in different security groups are isolated by default unless explicitly permitted by an authorized rule.
-          </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;">
+          <img src="assets/images/security-group-interconnect.svg" alt="Security Group Evaluation Workflow" style="max-height: 260px; width: auto; max-width: 100%; object-fit: contain;">
         </div>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 25: SECURITY GROUP (CONT.) ==================== -->
+    <!-- ==================== SLIDE 27: SECURITY GROUP (CONT.) ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>Security Group (cont.)</h2>
       
       <div class="grid-2" style="align-items: center; gap: 2rem;">
         <div class="content-card highlight" style="padding: 1.35rem;">
-          <p style="margin-bottom: 0.85rem; font-size: calc(0.92rem + var(--font-delta)); line-height: 1.5;">A <strong>Security Group</strong> is a virtual stateful firewall. Security group rules either allow (Accept) or deny (Drop) traffic at the virtual network interface layer.</p>
+          <p style="margin-bottom: 0.85rem; font-size: calc(0.92rem + var(--font-delta)); line-height: 1.5;">Security group rules define granular network packet filtering policies. Traffic is evaluated based on specific rule parameters and authorized target objects:</p>
           
-          <h3 style="margin-bottom: 0.65rem;">Rule Configuration Parameters</h3>
-          <ul style="line-height: 1.55; margin-bottom: 0.85rem;">
-            <li><strong>Action / Policy:</strong> Whether to permit (<code>Accept</code>) or deny (<code>Drop</code>) the matching network traffic.</li>
-            <li><strong>Protocol:</strong> The transport protocol to inspect (<code>TCP</code>, <code>UDP</code>, <code>ICMP</code>, <code>GRE</code>, or <code>ALL</code>).</li>
-            <li><strong>Port Range:</strong> Destination port or port range the rule applies to (e.g., <code>80/80</code>, <code>443/443</code>, <code>22/22</code>, or <code>0/65535</code>).</li>
-            <li><strong>Priority:</strong> Rule evaluation order from <code>1</code> (highest) to <code>100</code> (lowest). When rules conflict, higher priority takes precedence.</li>
+          <ul style="line-height: 1.55;">
+            <li><strong>Rule Parameters:</strong>
+              <ul style="margin-top: 0.25rem; margin-bottom: 0.5rem;">
+                <li><code>Action</code>: <strong>Accept</strong> (permit packet) or <strong>Drop</strong> (silently discard).</li>
+                <li><code>Protocol</code>: Transport protocol (<strong>TCP</strong>, <strong>UDP</strong>, <strong>ICMP</strong>, <strong>GRE</strong>, or <strong>ALL</strong>).</li>
+                <li><code>Port Range</code>: Target port boundary (e.g., <code>80/80</code>, <code>443/443</code>, <code>22/22</code>, or <code>0/65535</code>).</li>
+                <li><code>Priority</code>: Evaluation order from <strong>1</strong> (highest) to <strong>100</strong> (lowest).</li>
+              </ul>
+            </li>
+            <li><strong>Authorization Objects:</strong>
+              <ul style="margin-top: 0.25rem;">
+                <li><strong>CIDR IP Blocks:</strong> Authorizes specific IP ranges (e.g., <code>100.100.0.0/16</code> or <code>0.0.0.0/0</code>).</li>
+                <li><strong>Security Group ID:</strong> Authorizes another security group (e.g., <code>sg-002</code>), granting mutual network trust to all member instances dynamically.</li>
+              </ul>
+            </li>
           </ul>
-
-          <div class="callout callout-blue" style="margin-top: 0.75rem;">
-            <strong>Authorization Objects:</strong> Traffic sources or destinations can be authorized using either an <strong>IP CIDR block</strong> (e.g., <code>100.100.0.0/16</code>) or another <strong>Security Group ID</strong> (e.g., <code>sg-002</code>), allowing instances across groups to communicate securely without maintaining individual IP lists.
-          </div>
         </div>
 
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;">
@@ -972,7 +1055,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 26: INTERNET CONNECTIVITY ==================== -->
+    <!-- ==================== SLIDE 28: INTERNET CONNECTIVITY ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>Internet Connectivity</h2>
@@ -1035,7 +1118,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 27: ECS HIGH AVAILABILITY AUTOMATED FAILOVER ==================== -->
+    <!-- ==================== SLIDE 29: ECS HIGH AVAILABILITY AUTOMATED FAILOVER ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>ECS High Availability & Automated Failover</h2>
@@ -1102,36 +1185,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 28: ELASTIC NETWORK INTERFACES (ENI) ==================== -->
-    <section class="slide" data-category="Network & Security">
-      <div class="slide-category">Section 4: Network & Security</div>
-      <h2>Elastic Network Interfaces (ENI)</h2>
-      
-      <div class="grid-2">
-        <div class="content-card highlight">
-          <h3>Types of ENIs</h3>
-          <ul>
-            <li><strong>Primary ENI (<code class="inline-code">eth0</code>):</strong> Automatically created when the ECS instance launches. Bound to the primary private IP address in the instance's VSwitch. Cannot be detached from the instance.</li>
-            <li><strong>Secondary ENI:</strong> Can be created independently, dynamically attached, or detached from instances within the <strong>same Availability Zone</strong>.</li>
-            <li><strong>Trunking ENI:</strong> High-density interface configuration allowing container orchestration engines (ACK) to attach multiple virtual pod interfaces to a single physical ENI.</li>
-          </ul>
-        </div>
-        <div class="content-card highlight-blue">
-          <h3>Key Enterprise Use Cases</h3>
-          <ul>
-            <li><strong>Low-Cost Active/Standby Failover:</strong> If the primary firewall/proxy instance fails, the secondary ENI carrying private service IPs can be detached and instantly attached to a standby instance.</li>
-            <li><strong>Multi-Subnet Multi-Homing:</strong> An ECS instance can connect simultaneously to different VSwitches (e.g. management network on VSwitch-Mgmt and business traffic on VSwitch-App).</li>
-            <li><strong>High-Density Kubernetes Networking:</strong> Terway CNI plugin utilizes secondary ENIs and secondary IP addresses for native pod-to-pod networking.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="callout callout-amber" style="margin-top: 1rem;">
-        <strong>Constraint:</strong> The maximum number of Elastic Network Interfaces and secondary private IP addresses that can be attached to an ECS instance is strictly determined by its instance type specification and all attached ENIs must reside in the exact same Availability Zone as the host instance.
-      </div>
-    </section>
-
-    <!-- ==================== SLIDE 29: THE SHARED RESPONSIBILITY MODEL IN CLOUD COMPUTING ==================== -->
+    <!-- ==================== SLIDE 30: THE SHARED RESPONSIBILITY MODEL IN CLOUD COMPUTING ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>The Shared Responsibility Model in Cloud Computing</h2>
@@ -1163,7 +1217,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 30: CONNECTING TO ECS ==================== -->
+    <!-- ==================== SLIDE 31: CONNECTING TO ECS ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>Connecting to ECS</h2>
@@ -1196,7 +1250,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 31: ALIBABA CLOUD WORKBENCH ==================== -->
+    <!-- ==================== SLIDE 32: ALIBABA CLOUD WORKBENCH ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>Alibaba Cloud Workbench</h2>
@@ -1234,7 +1288,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 32: VNC MANAGEMENT TERMINAL ==================== -->
+    <!-- ==================== SLIDE 33: VNC MANAGEMENT TERMINAL ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>VNC Management Terminal</h2>
@@ -1308,7 +1362,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 33: CLOUD ASSISTANT ==================== -->
+    <!-- ==================== SLIDE 34: CLOUD ASSISTANT ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>Cloud Assistant</h2>
@@ -1336,7 +1390,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 34: SESSION MANAGER ==================== -->
+    <!-- ==================== SLIDE 35: SESSION MANAGER ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>Session Manager</h2>
@@ -1371,7 +1425,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 35: HOW TO RUN CONTAINER APPLICATION ==================== -->
+    <!-- ==================== SLIDE 36: HOW TO RUN CONTAINER APPLICATION ==================== -->
     <section class="slide" data-category="Container">
       <div class="slide-category">Section 6: Container</div>
       <h2>How to Run Container Application</h2>
@@ -1430,7 +1484,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 36: CONTAINER SERVICE FOR KUBERNETES (ACK) ARCHITECTURE ==================== -->
+    <!-- ==================== SLIDE 37: CONTAINER SERVICE FOR KUBERNETES (ACK) ARCHITECTURE ==================== -->
     <section class="slide" data-category="Container">
       <div class="slide-category">Section 6: Container</div>
       <h2>Container Service for Kubernetes (ACK) Architecture</h2>
@@ -1447,7 +1501,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 37: PAY-AS-YOU-GO (PAYG) ==================== -->
+    <!-- ==================== SLIDE 38: PAY-AS-YOU-GO (PAYG) ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Pay-As-You-Go (PAYG)</h2>
@@ -1477,7 +1531,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 38: SUBSCRIPTION ==================== -->
+    <!-- ==================== SLIDE 39: SUBSCRIPTION ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Subscription</h2>
@@ -1506,7 +1560,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 39: SPOT INSTANCES ==================== -->
+    <!-- ==================== SLIDE 40: SPOT INSTANCES ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Spot Instances</h2>
@@ -1536,7 +1590,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 40: RESERVED INSTANCES (RI) ==================== -->
+    <!-- ==================== SLIDE 41: RESERVED INSTANCES (RI) ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Reserved Instances (RI)</h2>
@@ -1566,7 +1620,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 41: SAVINGS PLANS ==================== -->
+    <!-- ==================== SLIDE 42: SAVINGS PLANS ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Savings Plans</h2>
@@ -1599,7 +1653,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 42: ECS RESOURCE SCOPING ARCHITECTURAL BOUNDARIES ==================== -->
+    <!-- ==================== SLIDE 43: ECS RESOURCE SCOPING ARCHITECTURAL BOUNDARIES ==================== -->
     <section class="slide" data-category="Summary">
       <div class="slide-category">Cloud Architect Recap</div>
       <h2>ECS Resource Scoping & Architectural Boundaries</h2>
@@ -1659,7 +1713,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 43: PRACTICE SCENARIO 1: CROSS-ZONE DISASTER RECOVERY ==================== -->
+    <!-- ==================== SLIDE 44: PRACTICE SCENARIO 1: CROSS-ZONE DISASTER RECOVERY ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 1</div>
       <h2>Practice Scenario 1: Cross-Zone Disaster Recovery</h2>
@@ -1690,7 +1744,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 44: SCENARIO 1: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
+    <!-- ==================== SLIDE 45: SCENARIO 1: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 1</div>
       <h2>Scenario 1: Solution & Architectural Analysis</h2>
@@ -1742,7 +1796,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 45: PRACTICE SCENARIO 2: FLASH SALE IO HANDLING ==================== -->
+    <!-- ==================== SLIDE 46: PRACTICE SCENARIO 2: FLASH SALE IO HANDLING ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 2</div>
       <h2>Practice Scenario 2: Flash Sale I/O Handling</h2>
@@ -1773,7 +1827,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 46: SCENARIO 2: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
+    <!-- ==================== SLIDE 47: SCENARIO 2: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 2</div>
       <h2>Scenario 2: Solution & Architectural Analysis</h2>
@@ -1825,7 +1879,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 47: PRACTICE SCENARIO 3: HIGH-DENSITY MICRO-SEGMENTATION ==================== -->
+    <!-- ==================== SLIDE 48: PRACTICE SCENARIO 3: HIGH-DENSITY MICRO-SEGMENTATION ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 3</div>
       <h2>Practice Scenario 3: High-Density Micro-segmentation</h2>
@@ -1856,7 +1910,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 48: SCENARIO 3: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
+    <!-- ==================== SLIDE 49: SCENARIO 3: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 3</div>
       <h2>Scenario 3: Solution & Architectural Analysis</h2>
@@ -1908,7 +1962,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 49: MODULE 02: ELASTIC COMPUTE SERVICE (ECS) ==================== -->
+    <!-- ==================== SLIDE 50: MODULE 02: ELASTIC COMPUTE SERVICE (ECS) ==================== -->
     <section class="slide title-slide" data-category="Summary">
       <div class="slide-category">Module Complete</div>
       <h1 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Module 02: Elastic Compute Service (ECS)</h1>
