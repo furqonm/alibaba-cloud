@@ -1024,10 +1024,6 @@
           </div>
         </div>
       </div>
-
-      <div class="callout callout-green" style="margin-top: 0.85rem;">
-        <div>Transition to Layer 2: Once network perimeter access is granted, all packets traversing the wire are cryptographically shielded via SSL/TLS 1.3 (Slide 31).</div>
-      </div>
     </section>
 
     <!-- ==================== SLIDE 31: IN-TRANSIT ENCRYPTION ==================== -->
@@ -1059,10 +1055,6 @@
             </ul>
           </div>
         </div>
-      </div>
-
-      <div class="callout callout-green" style="margin-top: 0.85rem;">
-        <div>Transition to Layer 3: While in-transit data is protected across the wire, database blocks written to physical storage are protected by Transparent Data Encryption (Slide 32).</div>
       </div>
     </section>
 
@@ -1096,10 +1088,6 @@
           </div>
         </div>
       </div>
-
-      <div class="callout callout-green" style="margin-top: 0.85rem;">
-        <div>Transition to Layer 4: Even with encrypted storage, enterprise environments require fine-grained identity control and data masking for users accessing the database (Slide 33).</div>
-      </div>
     </section>
 
     <!-- ==================== SLIDE 33: ACCESS CONTROL & DMS ==================== -->
@@ -1131,10 +1119,6 @@
             </ul>
           </div>
         </div>
-      </div>
-
-      <div class="callout callout-green" style="margin-top: 0.85rem;">
-        <div>Transition to Layer 5: Beyond access governance, production systems require real-time SQL auditing, telemetry alarms, and autonomic AI optimization (Slide 34).</div>
       </div>
     </section>
 
@@ -1173,10 +1157,6 @@
             <li><strong>Automated Health Diagnostics:</strong> Generates daily health inspection reports identifying sub-optimal database parameter configurations.</li>
           </ul>
         </div>
-      </div>
-
-      <div class="callout callout-green" style="margin-top: 0.85rem;">
-        <div>Architectural Synthesis: The 5-tier security defense mesh delivers comprehensive protection across the entire database lifecycle, satisfying enterprise compliance and operational resilience.</div>
       </div>
     </section>
 
@@ -1440,32 +1420,64 @@
     <!-- ==================== SLIDE 44: PRICING MODEL ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 9: Pricing Model</div>
-      <h2>RDS Pricing Architecture &amp; Cost Dimensions</h2>
+      <h2>RDS, PolarDB &amp; DTS Pricing Architecture</h2>
       
-      <div class="grid-2" style="margin-top: 0.5rem; gap: 1.25rem;">
-        <div class="content-card highlight-orange" style="padding: 1rem 1.35rem;">
-          <h3 style="font-size: calc(1.02rem + var(--font-delta)); margin-bottom: 0.45rem; color: #c2410c;">Billing Methods &amp; Procurement Models</h3>
-          <ul style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.45rem;">
-            <li><strong>Subscription (Prepaid):</strong> 1-month to 5-year commitments providing <strong>30% to 50% cost savings</strong> over Pay-As-You-Go. Ideal for core, 24/7 business-critical production databases with predictable workloads.</li>
-            <li><strong>Pay-As-You-Go (Postpaid):</strong> Second-level / hourly billing with zero upfront commitment. Elastic resources can be scaled or released instantly; recommended for dev/test, dynamic environments, and temporary batch processing.</li>
-            <li><strong>RDS Serverless (RCU Dynamic Units):</strong> Compute capacity autoscales up and down based on actual traffic demand. Billed per RDS Capacity Unit (RCU) per second, scaling down to min-RCU or pausing during idle periods.</li>
-            <li><strong>Storage Capacity Units (SCU):</strong> Pre-purchased storage packages that automatically offset cloud disk storage consumption across RDS, PolarDB, and ECS instances.</li>
+      <div class="content-grid-2x2" style="margin-top: 0.35rem; gap: 0.85rem;">
+        <div class="content-card highlight" style="padding: 0.85rem 1.15rem;">
+          <h3 style="color: #c2410c; font-weight: 700; margin: 0 0 0.35rem 0; font-size: calc(0.92rem + var(--font-delta)); display: flex; justify-content: space-between; align-items: center;">
+            <span>ApsaraDB RDS Pricing</span>
+            <span class="badge badge-orange" style="font-size: 0.70rem;">Compute + Disk</span>
+          </h3>
+          <ul style="font-size: calc(0.80rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.3rem;">
+            <li><strong>Procurement Modes:</strong> Subscription (Prepaid 1-mo to 5-yr, 30%–50% savings), Pay-As-You-Go (hourly/second-level), and RDS Serverless (RCU dynamic compute units).</li>
+            <li><strong>Architecture Editions:</strong> Cost scales by edition: Basic (single-node, lowest TCO), High-Availability (dual-node active-standby), and Enterprise (3-node Paxos).</li>
+            <li><strong>Storage Provisioning:</strong> Local SSD, Cloud Disk, and ESSD (PL0–PL3 / AutoPL) billed per allocated GB/month; storage fees persist even if instance compute is stopped.</li>
+            <li><strong>Read Replicas &amp; Proxy:</strong> Each Read-Only replica is billed as an independent compute instance; Dedicated DB Proxy is billed per proxy capacity unit.</li>
           </ul>
         </div>
 
-        <div class="content-card highlight-blue" style="padding: 1rem 1.35rem;">
-          <h3 style="font-size: calc(1.02rem + var(--font-delta)); margin-bottom: 0.45rem; color: #1e40af;">Core Cost Vectors &amp; Architecture Dimensions</h3>
-          <ul style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.45rem;">
-            <li><strong>Compute Specification (vCPU &amp; RAM):</strong> Governed by the database edition (Basic single-node, High-Availability dual-node, Enterprise triple-node) and hardware category (General-Purpose vs. Dedicated Host).</li>
-            <li><strong>Storage Tier &amp; Capacity (GB/Month):</strong> Billed continuously per allocated GB. Options include Local SSD, Standard Cloud Disk, and ESSD (PL0–PL3 / AutoPL). Storage charges continue even when instance compute is stopped.</li>
-            <li><strong>Read Replicas &amp; Database Proxy:</strong> Each provisioned Read-Only replica is billed as an independent compute instance. Dedicated DB Proxy nodes are billed based on allocated proxy capacity units.</li>
-            <li><strong>Backup Storage &amp; Data Egress:</strong> Free backup quota included (typically 50%–200% of data disk size); excess snapshot storage billed per GB. Same-VPC data transfer is <strong>100% FREE</strong>; public internet egress is billed per GB.</li>
+        <div class="content-card highlight-blue" style="padding: 0.85rem 1.15rem;">
+          <h3 style="color: #1e40af; font-weight: 700; margin: 0 0 0.35rem 0; font-size: calc(0.92rem + var(--font-delta)); display: flex; justify-content: space-between; align-items: center;">
+            <span>PolarDB Cloud-Native Pricing</span>
+            <span class="badge badge-blue" style="font-size: 0.70rem;">Decoupled Model</span>
+          </h3>
+          <ul style="font-size: calc(0.80rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.3rem;">
+            <li><strong>Compute-Storage Decoupling:</strong> Compute nodes and PolarStore distributed storage are decoupled and billed independently, preventing over-provisioning waste.</li>
+            <li><strong>Compute Nodes (Primary &amp; RO):</strong> Primary node and up to 15 read-only nodes billed via Subscription, Pay-As-You-Go, or Serverless (PCUs scaling in seconds).</li>
+            <li><strong>Shared Storage (PolarStore):</strong> Billed strictly on <strong>actual data volume consumed</strong> (no pre-allocation); all RO nodes share storage with <strong>zero duplicate disk fees</strong>.</li>
+            <li><strong>PolarProxy Included:</strong> Built-in enterprise cluster proxy with automatic read/write splitting and transaction routing is included natively with no extra proxy fee.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-purple" style="padding: 0.85rem 1.15rem;">
+          <h3 style="color: #7e22ce; font-weight: 700; margin: 0 0 0.35rem 0; font-size: calc(0.92rem + var(--font-delta)); display: flex; justify-content: space-between; align-items: center;">
+            <span>Data Transmission Service (DTS)</span>
+            <span class="badge badge-purple" style="font-size: 0.70rem;">Migration &amp; Sync</span>
+          </h3>
+          <ul style="font-size: calc(0.80rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.3rem;">
+            <li><strong>Free Inbound Migration:</strong> Schema migration, full historical data migration, and incremental sync to RDS/PolarDB targets are <strong>100% FREE</strong> for standard migrations.</li>
+            <li><strong>Continuous Synchronization:</strong> Multi-region or bi-directional sync tasks billed by sync performance specification (Micro to Extra-Large) via Subscription or Pay-As-You-Go.</li>
+            <li><strong>Change Tracking (CDC):</strong> Real-time change data capture instances for downstream stream processing (Kafka, Flink, AnalyticDB) billed per tracking specification.</li>
+            <li><strong>Data Transfer Channels:</strong> Same-VPC private migration traffic is completely free; public internet or cross-region traffic incurs standard DTS transfer fees.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green" style="padding: 0.85rem 1.15rem;">
+          <h3 style="color: #15803d; font-weight: 700; margin: 0 0 0.35rem 0; font-size: calc(0.92rem + var(--font-delta)); display: flex; justify-content: space-between; align-items: center;">
+            <span>Other Associated Costs &amp; SCU</span>
+            <span class="badge badge-green" style="font-size: 0.70rem;">Ancillary Dimensions</span>
+          </h3>
+          <ul style="font-size: calc(0.80rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.3rem;">
+            <li><strong>Backup &amp; Snapshot Storage:</strong> Free backup quota included (typically 50%–200% of data disk size); excess snapshot retention billed per GB/month on OSS backend.</li>
+            <li><strong>Data Transfer &amp; Egress:</strong> Intranet traffic inside the same VPC is <strong>100% FREE</strong>; cross-region data transfer via CEN and public internet egress billed per GB.</li>
+            <li><strong>DAS &amp; SQL Audit Logging:</strong> Basic database autonomy features are free; enterprise SQL audit log retention and ingestion billed via Simple Log Service (SLS).</li>
+            <li><strong>Storage Capacity Units (SCU):</strong> Pre-purchased universal storage vouchers that automatically offset storage costs across RDS, PolarDB, and ECS by up to 40%.</li>
           </ul>
         </div>
       </div>
 
-      <div class="callout callout-green" style="margin-top: 0.75rem; padding: 0.55rem 1rem; font-size: calc(0.81rem + var(--font-delta));">
-        <strong>💡 Enterprise Cost Architecture Rule:</strong> Stopping a Pay-As-You-Go RDS instance halts compute billing, but <em>storage disk and snapshot retention fees continue to accrue</em> because allocated storage volume remains provisioned on Pangu distributed storage.
+      <div class="callout callout-green" style="margin-top: 0.65rem; padding: 0.5rem 1rem; font-size: calc(0.81rem + var(--font-delta));">
+        <strong>💡 Multi-Product Cost Optimization Rule:</strong> Stopping a Pay-As-You-Go instance halts compute billing, but <em>storage disk fees continue to accrue</em>. Combine <strong>Subscription compute</strong> with <strong>Storage Capacity Units (SCU)</strong> for predictable discounts; leverage <strong>Free DTS Migration</strong> for zero-license onboarding; and adopt <strong>PolarDB shared storage</strong> when scaling multiple read replicas to eliminate multiplied storage costs.
       </div>
     </section>
 
