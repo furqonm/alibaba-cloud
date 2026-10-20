@@ -89,6 +89,10 @@ The courseware repository is organized into isolated functional tiers to prevent
    - Every rule, layout constraint, pedagogical pattern, typography standard, and verification protocol defined in this Architectural North Star applies universally, unconditionally, and without exception to **all modules** (Modules 01 through 09).
    - No module or slide deck may deviate from these established standards.
 
+7. **Strict No-Backup Policy (Git-Driven Version Control)**:
+   - **Never create backup files or backup directories** (such as *.bak, *.old, *.orig, *_backup, or /backup/ folders) when creating, editing, or refactoring files.
+   - All historical snapshots, rollbacks, and file revisions are managed strictly and natively through **Git version control**. Creating manual backup files creates repository clutter and is strictly prohibited.
+
 ---
 
 ## 2. Standard Module Slide Anatomy & Progression
@@ -515,6 +519,7 @@ When an AI assistant is prompted in future years to update the courseware agains
    - **Slide Typography Scaling (+2pt)**: All slide text, titles, cards, lists, callouts, and quiz elements are scaled up by +2pt via CSS property `--font-delta: 2pt`. The top header navigation (`.presentation-header`) and summary slides (`.slide[data-category="Summary"]`) remain strictly exempted (`--font-delta: 0pt`) to prevent header distortion and prevent dense summary comparison tables from overflowing.
    - **Numbered Sequential Procedures (No Double Bullet/Number Formatting)**: Multi-step architectural procedures and execution workflows must be formatted as `<ol class="step-list">`. Strictly prohibit combining bullet points with manual numbers (e.g., `<ul><li><strong>1. ...</strong></li></ul>`). Numbering must be handled exclusively by the ordered list marker to ensure clean typography and prevent duplicate bullet dots and numbers appearing simultaneously.
    - **Unconfined & Borderless Images (No Bounding Boxes or Cages)**: All architecture diagrams, topology schemas, and screenshots must be borderless and shadowless (`tidak boleh ada pengekang atau box yang terlihat`). Never confine images in card boxes with borders or background panels. Allow images to expand generously (`max-height: 400px–480px` in two-column grids; `200px–280px` with stacked text) while strictly keeping the slide within viewport bounds without vertical scroll.
+    - **Strict No-Backup Policy**: Never create backup files or backup directories (e.g., *.bak, *.old, *.orig, *_backup/). All version tracking, experimentation, and rollbacks must rely exclusively on Git history.
 3. **Template Preservation**:
    - Always preserve the unified CSS theme in `assets/css/style.css` and the deck engine in `assets/js/presentation.js`.
    - Maintain the responsive container design (`min(88vh, 800px)` with `.slide.active`).
