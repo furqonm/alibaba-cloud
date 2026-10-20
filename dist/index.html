@@ -1014,7 +1014,6 @@ systemctl enable --now nginx</pre>
       
       <div class="grid-2" style="align-items: center; gap: 2rem;">
         <div class="content-card highlight">
-          <h3 style="margin-bottom: 0.6rem;">Decoupled Public IPv4 Networking</h3>
           <p style="margin-bottom: 0.75rem; line-height: 1.55;">An <strong>Elastic IP Address (EIP)</strong> is an independent static public IPv4 resource allocated in a specific region, decoupled from compute instance lifecycles:</p>
           <ul style="line-height: 1.6;">
             <li><strong>Independent Lifecycle:</strong> Allocated, billed, and retained separately from ECS instances. Detaching an EIP preserves the public IP address permanently in your account.</li>
@@ -1032,63 +1031,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 28: SECURITY GROUPS ==================== -->
-    <section class="slide" data-category="Network & Security">
-      <div class="slide-category">Section 4: Network & Security</div>
-      <h2>Security Groups</h2>
-      
-      <div class="grid-2" style="align-items: center; gap: 2rem;">
-        <div class="content-card highlight" style="padding: 1.35rem;">
-          <p style="margin-bottom: 0.85rem; font-size: calc(0.92rem + var(--font-delta)); line-height: 1.5;">A <strong>Security Group</strong> functions as a software-defined, distributed stateful firewall operating at the Elastic Network Interface (ENI) layer to filter inbound and outbound traffic.</p>
-          
-          <ul style="line-height: 1.6;">
-            <li><strong>Stateful Inspection:</strong> If an inbound packet is allowed by an inbound rule, response traffic is <strong>automatically permitted outbound</strong> (and vice versa) regardless of outbound rules.</li>
-            <li><strong>Regional Scope within VPC:</strong> Security Groups are regional constructs in a VPC and can protect ECS instances across multiple Availability Zones in the same VPC.</li>
-            <li><strong>ENI &amp; Multi-Group Association:</strong> Each ENI must belong to at least one security group and can join multiple security groups simultaneously.</li>
-            <li><strong>Default Isolation Boundary:</strong> Instances associated with different security groups are completely isolated by default with zero inter-group network communication.</li>
-          </ul>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;">
-          <img src="assets/images/security-group-interconnect.svg" alt="Security Group Evaluation Workflow" style="max-height: 260px; width: auto; max-width: 100%; object-fit: contain;">
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== SLIDE 29: SECURITY GROUP (CONT.) ==================== -->
-    <section class="slide" data-category="Network & Security">
-      <div class="slide-category">Section 4: Network & Security</div>
-      <h2>Security Group (cont.)</h2>
-      
-      <div class="grid-2" style="align-items: center; gap: 2rem;">
-        <div class="content-card highlight" style="padding: 1.35rem;">
-          <p style="margin-bottom: 0.85rem; font-size: calc(0.92rem + var(--font-delta)); line-height: 1.5;">Security group rules define granular network packet filtering policies. Traffic is evaluated based on specific rule parameters and authorized target objects:</p>
-          
-          <ul style="line-height: 1.55;">
-            <li><strong>Rule Parameters:</strong>
-              <ul style="margin-top: 0.25rem; margin-bottom: 0.5rem;">
-                <li><code>Action</code>: <strong>Accept</strong> (permit packet) or <strong>Drop</strong> (silently discard).</li>
-                <li><code>Protocol</code>: Transport protocol (<strong>TCP</strong>, <strong>UDP</strong>, <strong>ICMP</strong>, <strong>GRE</strong>, or <strong>ALL</strong>).</li>
-                <li><code>Port Range</code>: Target port boundary (e.g., <code>80/80</code>, <code>443/443</code>, <code>22/22</code>, or <code>0/65535</code>).</li>
-                <li><code>Priority</code>: Evaluation order from <strong>1</strong> (highest) to <strong>100</strong> (lowest).</li>
-              </ul>
-            </li>
-            <li><strong>Authorization Objects:</strong>
-              <ul style="margin-top: 0.25rem;">
-                <li><strong>CIDR IP Blocks:</strong> Authorizes specific IP ranges (e.g., <code>100.100.0.0/16</code> or <code>0.0.0.0/0</code>).</li>
-                <li><strong>Security Group ID:</strong> Authorizes another security group (e.g., <code>sg-002</code>), granting mutual network trust to all member instances dynamically.</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;">
-          <img src="assets/images/ecs-security-group-rules.png" alt="Security Group Rule Evaluation with CIDR and Group Authorization" style="max-height: 380px; width: auto; max-width: 100%; object-fit: contain;">
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== SLIDE 30: INTERNET CONNECTIVITY ==================== -->
+    <!-- ==================== SLIDE 28: INTERNET CONNECTIVITY ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>Internet Connectivity</h2>
@@ -1148,6 +1091,62 @@ systemctl enable --now nginx</pre>
             </tr>
           </tbody>
         </table>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 29: SECURITY GROUPS ==================== -->
+    <section class="slide" data-category="Network & Security">
+      <div class="slide-category">Section 4: Network & Security</div>
+      <h2>Security Groups</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 2rem;">
+        <div class="content-card highlight" style="padding: 1.35rem;">
+          <p style="margin-bottom: 0.85rem; font-size: calc(0.92rem + var(--font-delta)); line-height: 1.5;">A <strong>Security Group</strong> functions as a software-defined, distributed stateful firewall operating at the Elastic Network Interface (ENI) layer to filter inbound and outbound traffic.</p>
+          
+          <ul style="line-height: 1.6;">
+            <li><strong>Stateful Inspection:</strong> If an inbound packet is allowed by an inbound rule, response traffic is <strong>automatically permitted outbound</strong> (and vice versa) regardless of outbound rules.</li>
+            <li><strong>Regional Scope within VPC:</strong> Security Groups are regional constructs in a VPC and can protect ECS instances across multiple Availability Zones in the same VPC.</li>
+            <li><strong>ENI &amp; Multi-Group Association:</strong> Each ENI must belong to at least one security group and can join multiple security groups simultaneously.</li>
+            <li><strong>Default Isolation Boundary:</strong> Instances associated with different security groups are completely isolated by default with zero inter-group network communication.</li>
+          </ul>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;">
+          <img src="assets/images/security-group-interconnect.svg" alt="Security Group Evaluation Workflow" style="max-height: 260px; width: auto; max-width: 100%; object-fit: contain;">
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 30: SECURITY GROUP (CONT.) ==================== -->
+    <section class="slide" data-category="Network & Security">
+      <div class="slide-category">Section 4: Network & Security</div>
+      <h2>Security Group (cont.)</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 2rem;">
+        <div class="content-card highlight" style="padding: 1.35rem;">
+          <p style="margin-bottom: 0.85rem; font-size: calc(0.92rem + var(--font-delta)); line-height: 1.5;">Security group rules define granular network packet filtering policies. Traffic is evaluated based on specific rule parameters and authorized target objects:</p>
+          
+          <ul style="line-height: 1.55;">
+            <li><strong>Rule Parameters:</strong>
+              <ul style="margin-top: 0.25rem; margin-bottom: 0.5rem;">
+                <li><code>Action</code>: <strong>Accept</strong> (permit packet) or <strong>Drop</strong> (silently discard).</li>
+                <li><code>Protocol</code>: Transport protocol (<strong>TCP</strong>, <strong>UDP</strong>, <strong>ICMP</strong>, <strong>GRE</strong>, or <strong>ALL</strong>).</li>
+                <li><code>Port Range</code>: Target port boundary (e.g., <code>80/80</code>, <code>443/443</code>, <code>22/22</code>, or <code>0/65535</code>).</li>
+                <li><code>Priority</code>: Evaluation order from <strong>1</strong> (highest) to <strong>100</strong> (lowest).</li>
+              </ul>
+            </li>
+            <li><strong>Authorization Objects:</strong>
+              <ul style="margin-top: 0.25rem;">
+                <li><strong>CIDR IP Blocks:</strong> Authorizes specific IP ranges (e.g., <code>100.100.0.0/16</code> or <code>0.0.0.0/0</code>).</li>
+                <li><strong>Security Group ID:</strong> Authorizes another security group (e.g., <code>sg-002</code>), granting mutual network trust to all member instances dynamically.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;">
+          <img src="assets/images/ecs-security-group-rules.png" alt="Security Group Rule Evaluation with CIDR and Group Authorization" style="max-height: 380px; width: auto; max-width: 100%; object-fit: contain;">
+        </div>
       </div>
     </section>
 
