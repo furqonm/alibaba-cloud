@@ -4,6 +4,12 @@ This document serves as the official **Architectural North Star & Standard Templ
 
 All subsequent modules (`03_VPC`, `04_SLB`, `05_OSS`, `06_RDS`, `07_AutoScaling`, `08_CDN`, `09_Security Products`) **must strictly adhere** to this specification.
 
+> [!IMPORTANT]
+> **Authoritative Active Project Workspace**:
+> The sole, official, and active workspace for this project is:
+> `D:\OneDrive - Trainocate\Documents\GitHub\alibaba-cloud` (`https://github.com/furqonm/alibaba-cloud.git`).
+> The legacy directory `alibaba-presentation` is completely deprecated, obsolete, and strictly forgotten. It must NEVER be referenced, modified, or included in any workflows, scripts, or operational procedures.
+
 ---
 
 ## Expected Project Architecture & Directory Structure
@@ -367,7 +373,7 @@ Every module concludes with 3 real-world architect scenario challenges:
 To ensure that presentations can be uploaded and hosted on web servers, GitHub Pages, or cloud storage buckets (e.g., Alibaba Cloud OSS static website hosting) without accidental leakage of Python scripts, raw PDFs, or virtual environments, the project strictly isolates deliverables from tooling:
 
 ```text
-alibaba-presentation/
+alibaba-cloud/
 ├── dist/                      # 🌐 DEPLOYABLE WEB PRESENTATION (All HTML & Web Assets)
 │   ├── index.html             # Current primary slide deck (self-contained)
 │   ├── module-02-ecs.html     # Direct module entry
