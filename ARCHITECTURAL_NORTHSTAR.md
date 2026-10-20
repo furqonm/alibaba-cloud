@@ -2,7 +2,7 @@
 
 This document serves as the official **Architectural North Star & Standard Template Specification** for developing interactive, web-based HTML presentations for the Trainocate **Alibaba Cloud Professional: Cloud Architect** course track.
 
-All subsequent modules (`03_VPC`, `04_SLB`, `05_OSS`, `06_RDS`, `07_AutoScaling`, `08_CDN`, `09_Security Products`) **must strictly adhere** to this specification.
+All modules across the entire curriculum (`01_Overview`, `02_ECS`, `03_VPC`, `04_SLB`, `05_OSS`, `06_RDS`, `07_AutoScaling`, `08_CDN`, `09_Security Products`, and any future modules) **must strictly adhere to all guidelines, rules, and specifications in this Architectural North Star without exception**.
 
 > [!IMPORTANT]
 > **Authoritative Active Project Workspace**:
@@ -97,6 +97,9 @@ To host this presentation online (e.g., Netlify, Cloudflare Pages, GitHub Pages,
      git commit -m "Descriptive summary of prompt changes"
      git push origin main
      ```
+6. **Universal Application Across All Modules (Zero Exceptions)**:
+   - Every rule, layout constraint, pedagogical pattern, typography standard, and verification protocol defined in this Architectural North Star applies universally, unconditionally, and without exception to **all modules** (Modules 01 through 09).
+   - No module or slide deck may deviate from these established standards.
 
 ---
 
@@ -247,11 +250,18 @@ Every module HTML deck must follow this standardized sequence:
   - Every major section should feature an architectural SVG or cropped diagram.
   - SVGs **must** have an explicit responsive `viewBox` (e.g., `viewBox="0 0 794 504"`).
   - Cropping: If a diagram from the PDF has Chinese text, decorative slide frames, or unwanted header banners, crop or clean it to retain only the technical topology without enclosing slide borders.
-- **Content Cards**: Use standard CSS semantic card classes:
-  - `.content-card.highlight` (Orange accent)
-  - `.content-card.highlight-blue` (Sky blue accent)
-  - `.content-card.highlight-green` (Emerald accent)
-  - `.content-card.highlight-purple` (Purple accent)
+- **Content Cards & Explanation Box Standards**:
+  - Use standard CSS semantic card classes:
+    - `.content-card.highlight` (Orange accent)
+    - `.content-card.highlight-blue` (Sky blue accent)
+    - `.content-card.highlight-green` (Emerald accent)
+    - `.content-card.highlight-purple` (Purple accent)
+  - **Sub-Title Usage Strictly Restricted to Comparisons**:
+    - Do **NOT** insert sub-titles (`<h3>` or sub-headers) inside an explanation box/card unless the slide explicitly presents a side-by-side or direct technical comparison (e.g., *Manual Snapshot vs. Automated Backup*, *Single-Zone vs. Multi-Zone*, *Self-Managed on ECS vs. ApsaraDB RDS*).
+    - For general explanations or single-topic cards, eliminate redundant sub-titles and consolidate the explanation into a single, clean box with direct sentences or bullet points without unnecessary headings.
+  - **Restricted Use of Colored Badge Labels on Sub-Titles**:
+    - Do **NOT** decorate sub-titles with colored badge/pill labels (such as `<span class="badge ...">`) unless the label indicates a strictly vital, critical distinction (e.g., high-risk physical hazard, critical compliance threshold).
+    - Headings inside cards must default to clean, unadorned dark text (`color: #000000;` or `var(--text-main)`). Strictly avoid visual clutter caused by unnecessary badge labels.
 - **Callout Banners & Single-Sentence Rules**:
   - `.callout.callout-blue` (Architectural Value / Note)
   - `.callout.callout-green` (Updated standard / Best Practice)
@@ -474,35 +484,7 @@ The top header (`.presentation-header`, fixed height 64px) serves as the unified
 
 ---
 
-## 5. Topic Modernization Matrix (2022 Materials vs 2026 Standards)
-
-When preparing or updating modules from `materials/`, verify and apply these modern standards:
-
-| Module / Topic | Deprecated / Outdated Concept in 2022 PDF | Modern Official Standard (2025/2026) |
-|---|---|---|
-| **02 ECS** | Legacy Standard SSD (`cloud_ssd`) | Phased out for modern generations; replaced by **ESSD AutoPL** (`cloud_auto`, bursting up to 1,000,000 IOPS and 4,000 MB/s decoupled from disk capacity) and **ESSD Entry** (`cloud_essd_entry`). |
-| **02 ECS** | X-Dragon 1st/2nd Gen & legacy CPUs | **CIPU (Cloud Infrastructure Processing Unit)** offloading virtualization overhead (0% host CPU tax); 8th Gen Intel Sapphire/Emerald Rapids (`g8i`), AMD Genoa (`g8a`), and Alibaba ARM **Yitian 710** silicon (`g8y`). |
-| **02 ECS** | Basic Security Groups only (6,000 IP limit, interconnected by default) | **Advanced / Enterprise Security Groups** supporting up to **65,536 private IPs per VPC** with **default internal isolation** for hyper-scale Kubernetes (ACK). Never mix Basic and Enterprise groups on the same instance/ENI. |
-| **02 ECS** | Plaintext IMDSv1 metadata access | Hardened **IMDSv2** session-token authentication (`PUT /latest/api/token` with `X-aliyun-ecs-metadata-token-ttl-seconds`) mitigating SSRF vulnerabilities. |
-| **02 ECS** | Reserved Instances (RI) as sole commitment model | **Savings Plans** (General-Purpose cross-region/family and ECS Compute targeted) providing modern spend commitment optimization. |
-| **02 ECS** | Legacy "Preemptible Instances" terminology | **Spot Instances** offering up to 90% cost savings with 5-minute interruption notice, spot fleet diversification, and multi-spec pools. |
-| **02 ECS** | Standalone VM virtualization only | **Container Application Hosting**: **Elastic Container Instance (ECI)** (serverless container instances with zero node maintenance) and **Container Service for Kubernetes (ACK)** (enterprise managed Kubernetes orchestration). |
-| **02 ECS** | Classic Network coexistence & local RAID | Pure VPC software-defined network; block storage backed by **Apsara Pangu** distributed triplicate storage (99.9999999% durability). |
-| **03 VPC** | Classic Network / ClassicLink coexistence | Classic Network completely retired; pure VPC CIDR design (`/8`, `/12`, `/16`, IPv6). |
-| **03 VPC** | VPC Peering as primary multi-VPC architecture | **Cloud Enterprise Network (CEN)** with **Transit Router (TR)** enterprise transit hubs. |
-| **03 VPC** | Basic VPN Gateway IPSec only | Dual-tunnel IPsec-VPN with BGP dynamic routing & SSL-VPN client access. |
-| **04 SLB** | "Classic SLB" (CLB) for all Layer 4/7 workloads | **Application Load Balancer (ALB)** for Layer 7 HTTP/HTTPS/QUIC; **Network Load Balancer (NLB)** for ultra-low latency Layer 4 (100M+ connections); CLB maintained for legacy only. |
-| **04 SLB** | Single-zone load balancing models | Multi-zone primary/secondary cross-zone automatic failover. |
-| **05 OSS** | Basic Standard / IA storage classes only | Standard, IA, Archive, Cold Archive, and **Deep Cold Archive** with automated lifecycle tiering. |
-| **05 OSS** | Manual bucket permission ACLs | Resource Access Management (RAM) bucket policies, KMS envelope encryption, and Cross-Region Replication (CRR). |
-| **06 RDS** | Traditional Master-Slave standalone RDS | **PolarDB** cloud-native relational database (compute-storage separation, PolarFileSystem, 1 primary + 15 read replicas sharing storage with zero replication lag). |
-| **07 Auto Scaling** | Manual scaling based solely on CPU metrics | Dynamic target tracking, predictive scaling (machine learning models), ALB multi-target-group integration, and lifecycle hooks. |
-| **08 CDN** | Standard static CDN acceleration | **DCDN (Dynamic Route for CDN)** with WebSocket acceleration, edge computing (EdgeRoutine), and full SSL termination. |
-| **09 Security** | Standalone Anti-DDoS and basic firewall | Comprehensive security mesh: **Security Center** (threat detection), **Cloud Firewall** (boundary inspection), **WAF 3.0**, and **Anti-DDoS Pro/Premium**. |
-
----
-
-## 6. Development Execution Workflow for Remaining Modules
+## 5. Development Execution Workflow for Remaining Modules
 
 When instructed to generate a new module, execute in this strict order:
 
@@ -525,7 +507,7 @@ When instructed to generate a new module, execute in this strict order:
 
 ---
 
-## 7. Annual Curriculum Maintenance Protocol for AI Agents
+## 6. Annual Curriculum Maintenance Protocol for AI Agents
 
 When an AI assistant is prompted in future years to update the courseware against newly released Alibaba Cloud services, it **must remain anchored to this Architectural North Star**:
 
