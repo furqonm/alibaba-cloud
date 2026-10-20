@@ -927,7 +927,6 @@ systemctl enable --now nginx</pre>
       
       <div class="grid-2">
         <div class="content-card highlight">
-          <h3>Key Characteristics</h3>
           <ul>
             <li><strong>Stateful Inspection:</strong> If an inbound connection is allowed by a rule, the corresponding outbound response packet is <strong>automatically permitted</strong>, regardless of outbound rules.</li>
             <li><strong>Regional Scope:</strong> A Security Group is a regional resource within a VPC. It can secure ECS instances located in different Availability Zones within the same VPC.</li>
@@ -945,49 +944,30 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 25: BASIC VS ADVANCED (ENTERPRISE) SECURITY GROUPS ==================== -->
+    <!-- ==================== SLIDE 25: SECURITY GROUP (CONT.) ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
-      <h2>Basic vs Advanced (Enterprise) Security Groups</h2>
+      <h2>Security Group (cont.)</h2>
       
-      <div class="table-wrapper">
-        <table class="slide-table">
-          <thead>
-            <tr>
-              <th>Dimension / Feature</th>
-              <th>Basic Security Group (<code class="inline-code">normal</code>)</th>
-              <th>Advanced / Enterprise Security Group (<code class="inline-code">enterprise</code>)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Private IP Capacity</strong></td>
-              <td>Up to <strong>6,000 private IP addresses</strong> per VPC.</td>
-              <td>Up to <strong>65,536 private IP addresses</strong> per VPC.</td>
-            </tr>
-            <tr>
-              <td><strong>Intra-Group Connectivity</strong></td>
-              <td><strong>Interconnected by default:</strong> Instances in the same basic group can communicate freely (configurable).</td>
-              <td><strong>Isolated by default:</strong> Instances in the same group cannot communicate unless explicitly permitted by rules.</td>
-            </tr>
-            <tr>
-              <td><strong>Group ID Referencing</strong></td>
-              <td><strong>Supported:</strong> Rules can authorize another basic security group ID as the source/destination.</td>
-              <td><strong>Not Supported:</strong> Rules must specify explicit IP addresses or CIDR blocks.</td>
-            </tr>
-            <tr>
-              <td><strong>Target Workloads</strong></td>
-              <td>Standard multi-tier applications, small-to-medium enterprise architectures.</td>
-              <td>Massive Kubernetes (ACK) clusters, microservices, hyper-scale cloud-native environments.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <div class="grid-2" style="align-items: center; gap: 2rem;">
+        <div class="content-card highlight" style="padding: 1.35rem;">
+          <p style="margin-bottom: 0.85rem; font-size: calc(0.92rem + var(--font-delta)); line-height: 1.5;">A <strong>Security Group</strong> is a virtual stateful firewall. Security group rules either allow (Accept) or deny (Drop) traffic at the virtual network interface layer.</p>
+          
+          <h3 style="margin-bottom: 0.65rem;">Rule Configuration Parameters</h3>
+          <ul style="line-height: 1.55; margin-bottom: 0.85rem;">
+            <li><strong>Action / Policy:</strong> Whether to permit (<code>Accept</code>) or deny (<code>Drop</code>) the matching network traffic.</li>
+            <li><strong>Protocol:</strong> The transport protocol to inspect (<code>TCP</code>, <code>UDP</code>, <code>ICMP</code>, <code>GRE</code>, or <code>ALL</code>).</li>
+            <li><strong>Port Range:</strong> Destination port or port range the rule applies to (e.g., <code>80/80</code>, <code>443/443</code>, <code>22/22</code>, or <code>0/65535</code>).</li>
+            <li><strong>Priority:</strong> Rule evaluation order from <code>1</code> (highest) to <code>100</code> (lowest). When rules conflict, higher priority takes precedence.</li>
+          </ul>
 
-      <div class="callout callout-amber" style="margin-top: 1rem;">
-        <div>
-          <span class="badge badge-exam">Strict Architecture Constraint</span><br>
-          <strong>Security group types cannot be mixed on the same resource.</strong> When associating an ECS instance or Elastic Network Interface (ENI) with multiple security groups, <strong>all associated groups must be of the same type</strong> (all Basic or all Enterprise).
+          <div class="callout callout-blue" style="margin-top: 0.75rem;">
+            <strong>Authorization Objects:</strong> Traffic sources or destinations can be authorized using either an <strong>IP CIDR block</strong> (e.g., <code>100.100.0.0/16</code>) or another <strong>Security Group ID</strong> (e.g., <code>sg-002</code>), allowing instances across groups to communicate securely without maintaining individual IP lists.
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;">
+          <img src="assets/images/ecs-security-group-rules.png" alt="Security Group Rule Evaluation with CIDR and Group Authorization" style="max-height: 380px; width: auto; max-width: 100%; object-fit: contain;">
         </div>
       </div>
     </section>
