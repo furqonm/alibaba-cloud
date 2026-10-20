@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Module 07: Auto Scaling (ESS) | Alibaba Cloud Professional</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    :root {
+      --font-delta: 2pt;
+    }
+    .presentation-header {
+      --font-delta: 0pt;
+    }
+    .slide[data-category="Summary"] {
+      --font-delta: 0pt;
+    }
+  </style>
 </head>
 <body>
 
@@ -14,7 +25,7 @@
       <span class="brand-badge">Alibaba Cloud</span>
       <div class="course-info">
         <span class="course-title">Alibaba Cloud Professional: Cloud Architect</span>
-        <span class="module-title">Module 07: Auto Scaling Deep Dive</span>
+        <span class="module-title">Module 07: Auto Scaling (ESS)</span>
       </div>
     </div>
     <div class="header-right">
@@ -33,7 +44,7 @@
         </select>
       </div>
       <div class="nav-buttons">
-        <span class="slide-counter" id="slideCounter">1/40</span>
+        <span class="slide-counter" id="slideCounter">1/45</span>
         <button class="btn-nav" id="prevBtn" title="Previous Slide (Left Arrow)">
           <span>⬅️</span> Previous
         </button>
@@ -53,7 +64,7 @@
     <!-- ==================== SLIDE 1: CLEAN TITLE ==================== -->
     <section class="slide active title-slide" data-category="Course Intro">
       <h1>Module 07: Auto Scaling (ESS)</h1>
-    </section>
+    </section>
     <!-- ==================== SLIDE 2: AGENDA LIST ==================== -->
     <section class="slide" data-category="Outline">
       <div class="slide-category">Module Structure</div>
@@ -61,14 +72,14 @@
       
       <ol class="agenda-grid">
         <li class="agenda-item">Auto Scaling Concept &amp; Architecture</li>
-        <li class="agenda-item">Scaling Groups &amp; Capacity Design</li>
-        <li class="agenda-item">Scaling Configurations &amp; Blueprints</li>
-        <li class="agenda-item">Scaling Rules &amp; Trigger Mechanisms</li>
-        <li class="agenda-item">Lifecycle Management &amp; Cooldown</li>
-        <li class="agenda-item">Cloud-Native Integrations</li>
-        <li class="agenda-item">Pricing Model &amp; Cost Optimization</li>
+        <li class="agenda-item">Scaling Group &amp; Capacity Design</li>
+        <li class="agenda-item">Scaling Configuration &amp; Templates</li>
+        <li class="agenda-item">Scaling Rules &amp; Capacity Bounds</li>
+        <li class="agenda-item">Trigger Mechanisms &amp; Scheduling</li>
+        <li class="agenda-item">Lifecycle Hooks &amp; Event Notifications</li>
+        <li class="agenda-item">Cloud-Native Scaling &amp; Cost Optimization</li>
       </ol>
-    </section>
+    </section>
     <!-- ==================== SLIDE 3: SERVICE INTRODUCTION ==================== -->
     <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
       <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
@@ -80,10 +91,10 @@
         </div>
         <div class="service-intro-text">
           <p class="service-lead">
-            <strong>Auto Scaling (Elastic Scaling Service - ESS)</strong> is a fully managed cloud service that automatically adjusts compute capacity to match fluctuating business demands and policies.
+            <strong>Auto Scaling (Elastic Scaling Service - ESS)</strong> is a fully managed cloud service that automatically adjusts elastic compute capacity to match fluctuating business demands and management policies.
           </p>
           <p class="service-desc">
-            Compared to traditional static infrastructure requiring expensive over-provisioning for peak traffic, Auto Scaling dynamically creates, configures, and terminates ECS instances or serverless ECI containers in real time. It seamlessly synchronizes with Server Load Balancers (SLB/ALB) and ApsaraDB RDS whitelists, eliminating manual operational bottlenecks while maximizing cost efficiency.
+            Compared to traditional physical servers requiring expensive over-provisioning for peak traffic, Auto Scaling dynamically launches, configures, and releases compute resources in real time. It seamlessly synchronizes with Server Load Balancer (SLB) instances and ApsaraDB RDS access whitelists, eliminating manual operational bottlenecks while maximizing cost efficiency.
           </p>
         </div>
       </div>
@@ -91,7 +102,7 @@
       <div class="service-pillars-grid">
         <div class="service-pillar-card">
           <h4>⚡ Elastic Scale-Out</h4>
-          <p>Instantly provisions additional compute resources during traffic surges to maintain consistent application SLAs.</p>
+          <p>Automatically provisions compute resources during traffic surges to maintain consistent application SLAs.</p>
         </div>
         <div class="service-pillar-card">
           <h4>📉 Elastic Scale-In</h4>
@@ -107,1317 +118,1035 @@
         </div>
         <div class="service-pillar-card">
           <h4>🔄 Zero-Touch Ecosystem</h4>
-          <p>Automatically registers instances with SLB/ALB backend groups and manages private IP whitelists on RDS databases.</p>
+          <p>Automatically registers instances with SLB backend groups and manages private IP whitelists on RDS databases.</p>
         </div>
       </div>
-    </section>
-    <!-- ==================== SLIDE 4: THE ELASTIC SCALING IMPERATIVE ==================== -->
+    </section>
+    <!-- ==================== SLIDE 4: THE ELASTICITY IMPERATIVE ==================== -->
     <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
       <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
-      <h2>The Elastic Scaling Imperative</h2>
+      <h2>The Elasticity Imperative</h2>
       
       <div class="grid-2">
         <div class="content-card highlight-purple">
-          <h3>The Fixed Capacity Dilemma</h3>
-          <p>Traditional enterprise datacenters rely on fixed static hardware sizing, resulting in two fundamental operational failures:</p>
+          <p>Traditional enterprise datacenters rely on static hardware sizing, resulting in two fundamental operational dilemmas:</p>
           <ul>
-            <li><strong>Severe Idle Waste (Trough Hours):</strong> Sizing infrastructure for peak loads (e.g. 100 servers) means 70-80% of capacity sits idle during night and weekend troughs, burning unnecessary budget.</li>
-            <li><strong>Catastrophic Outages (Traffic Surges):</strong> Unpredicted demand spikes (flash sales, viral marketing, DDoS) overwhelm static compute capacity, causing high latency, packet drops, and complete system crashes.</li>
-            <li><strong>Slow Manual Provisioning:</strong> Manually acquiring, racking, imaging, and configuring servers takes days to weeks—far too slow for modern digital business.</li>
+            <li><strong>Severe Idle Waste (Trough Hours):</strong> Sizing infrastructure for peak loads (e.g. 100 servers) means 70% to 80% of capacity sits idle during night and weekend troughs, wasting budget.</li>
+            <li><strong>Service Outages (Surge Hours):</strong> Unpredicted demand spikes (flash sales, viral marketing, live broadcasts) overwhelm fixed compute capacity, causing high latency, packet loss, and downtime.</li>
+            <li><strong>Slow Manual Provisioning:</strong> Manually acquiring, racking, imaging, and configuring physical hardware takes days to weeks—far too slow for modern digital business.</li>
           </ul>
         </div>
 
         <div class="content-card highlight-green">
-          <h3>The Auto Scaling Solution: Dynamic Curve Alignment</h3>
-          <p>Auto Scaling dynamically mirrors your actual real-time business demand curve:</p>
-          <ul>
-            <li><strong>Right-Sized Capacity:</strong> Compute resources automatically expand when traffic grows and contract when traffic subsides.</li>
-            <li><strong>High Availability Assurance:</strong> Ensures that application performance and response latency remain within contractual SLA thresholds.</li>
-            <li><strong>Massive Cost Reduction:</strong> Eliminates continuous over-provisioning costs; organizations only pay for compute units actually utilized during demand windows.</li>
-            <li><strong>Operational Freedom:</strong> Automates full lifecycle provisioning, health recovery, load balancer attachment, and network isolation.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="callout callout-blue" style="margin-top: 0.75rem;">
-        <div>
-          <span class="badge badge-exam">Architectural Principle</span> Elasticity is the defining characteristic of cloud computing. Auto Scaling transforms compute capacity from a fixed capital expense (CapEx) into a fluid, automated operational capability (OpEx) that scales with business growth.
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 5: CORE SCALING MODES ==================== -->
-    <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
-      <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
-      <h2>Core Scaling Modes</h2>
-      
-      <div class="grid-3">
-        <div class="content-card highlight">
-          <h3>1. Elastic Scale-Out</h3>
-          <p>Automatically expands compute capacity during peak load:</p>
-          <ul>
-            <li><strong>Triggered By:</strong> CloudMonitor alarms (e.g. CPU &gt; 80%), scheduled timers, or target tracking policies.</li>
-            <li><strong>Actions:</strong> Provisions new ECS instances or serverless ECI pods based on the active Scaling Configuration.</li>
-            <li><strong>Integration:</strong> Automatically adds new instances to SLB backend server groups and injects private IPs into RDS security whitelists.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-blue">
-          <h3>2. Elastic Scale-In</h3>
-          <p>Automatically reduces compute capacity during off-peak periods:</p>
-          <ul>
-            <li><strong>Triggered By:</strong> Low utilization metrics (e.g. CPU &lt; 25%) or scheduled cron expiration.</li>
-            <li><strong>Actions:</strong> Safely drains traffic, removes instances from SLB/RDS, and either terminates (Release Mode) or stops them (Shutdown Mode).</li>
-            <li><strong>Cost Impact:</strong> Immediately stops hourly/per-second billing on surplus instances.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-green">
-          <h3>3. Elastic Self-Healing</h3>
-          <p>Autonomous unhealthy instance replacement:</p>
-          <ul>
-            <li><strong>Detection:</strong> Regularly inspects ECS running state and SLB health check results across the cluster.</li>
-            <li><strong>Remediation:</strong> When an instance fails (hardware fault, OS lockup, or SLB unhealthy status), Auto Scaling automatically removes and replaces it.</li>
-            <li><strong>Zero Human Intervention:</strong> Restores healthy cluster capacity without waking up on-call engineers.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="callout callout-green" style="margin-top: 0.75rem;">
-        <div>
-          <span class="badge badge-updated">Autonomous Health Verification</span> Auto Scaling checks instance status every few minutes. If an instance enters a non-Running state or fails SLB health checks, it is flagged as unhealthy and replaced according to group policy.
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 6: THE AUTO SCALING TRIAD ==================== -->
-    <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
-      <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
-      <h2>The Auto Scaling Triad</h2>
-      
-      <div class="diagram-container clean" style="padding: 0.5rem; margin: 0.25rem 0 0.5rem 0;">
-        <img src="assets/images/auto-scaling-architecture-overview.svg" alt="Auto Scaling Architecture Overview" class="diagram-image" style="max-height: 230px; width: auto;">
-      </div>
-
-      <div class="grid-3" style="margin-top: 0.5rem;">
-        <div class="content-card highlight">
-          <h3>1. Scaling Group</h3>
-          <p>The container and boundary manager:</p>
-          <ul>
-            <li>Defines capacity limits: <strong>MinSize</strong>, <strong>MaxSize</strong>, and <strong>Desired Capacity</strong>.</li>
-            <li>Binds to specific VPC VSwitches across multi-AZ fault domains.</li>
-            <li>Maintains associated SLB load balancers and RDS database instances.</li>
-            <li>Defines default cooldown time and instance removal policies.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-blue">
-          <h3>2. Scaling Configuration</h3>
-          <p>The resource blueprint &amp; specification:</p>
-          <ul>
-            <li>Specifies ECS instance types (or multi-type lists), CPU/RAM ratios, and generation.</li>
-            <li>Defines system image (Custom Image or Public OS) and storage disk tiers (ESSD).</li>
-            <li>Assigns Security Groups, SSH Key Pairs, RAM Roles, and Cloud-init User Data.</li>
-            <li>A Scaling Group can store up to 10 configurations, with 1 active configuration.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-green">
-          <h3>3. Scaling Rules</h3>
-          <p>The operational action triggers:</p>
-          <ul>
-            <li>Defines specific scaling steps: e.g., <em>Add 2 instances</em>, <em>Remove 1 instance</em>, or <em>Adjust to 10 instances</em>.</li>
-            <li>Supports Simple Rules, Target Tracking Rules, Step Scaling, and Predictive Rules.</li>
-            <li>Executed via Scheduled Tasks, CloudMonitor Alarm Tasks, or direct OpenAPI calls.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 7: SCALING ACTIVITY ATOMICITY ==================== -->
-    <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
-      <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
-      <h2>Scaling Activity Lifecycle &amp; Atomicity</h2>
-      
-      <div class="grid-2">
-        <div class="content-card highlight-purple">
-          <h3>Activity Execution Principles</h3>
-          <p>Whenever a scaling rule or trigger fires, a <strong>Scaling Activity</strong> is generated to add or remove instances:</p>
-          <ul>
-            <li><strong>Single Activity Concurrency:</strong> A Scaling Group can execute only <strong>ONE scaling activity at a time</strong>. Concurrent trigger requests are rejected or queued.</li>
-            <li><strong>Non-Interruptible Execution:</strong> Once a scaling activity starts, it cannot be aborted mid-flight. If a rule to add 10 instances is executing, it must complete before any other activity can run.</li>
-            <li><strong>Boundary Clamping:</strong> Scaling activities strictly respect group limits. If a rule requests <code>Add 5</code>, but current capacity is 8 and <code>MaxSize=10</code>, Auto Scaling automatically adjusts the activity to create only <strong>2 instances</strong>.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-blue">
-          <h3>Rollback &amp; Instance Integrity Rule</h3>
-          <p>How Auto Scaling handles partial provisioning failures during scale-out:</p>
-          <ul>
-            <li><strong>Instance Integrity Over Activity Integrity:</strong> If an activity attempts to add 10 instances, but 1 instance fails to join the SLB backend, the system <strong>rolls back the failed instance only</strong>, not the entire activity. The 9 successfully attached instances remain active in service.</li>
-            <li><strong>Cost Responsibility:</strong> Because Auto Scaling provisions ECS instances via standard RAM APIs on your behalf, any provisioned instance that ran before rollback will incur standard usage billing for its active minutes.</li>
-            <li><strong>Inventory Retry:</strong> If multi-instance types are configured, Auto Scaling automatically attempts fallback types before failing the activity.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="callout callout-amber" style="margin-top: 0.75rem;">
-        <div>
-          <span class="badge badge-exam">Strict Architectural Constraint</span> Because only one scaling activity can execute at any time, avoid configuring overlapping scheduled tasks with identical start times. Set distinct launch expiration windows so tasks can wait for active scaling activities to release the group lock.
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 8: SCALING GROUP ANATOMY & BOUNDARIES ==================== -->
-    <section class="slide" data-category="Scaling Groups &amp; Capacity Design">
-      <div class="slide-category">Section 2: Scaling Groups &amp; Capacity Design</div>
-      <h2>Scaling Group Anatomy &amp; Boundaries</h2>
-      
-      <div class="grid-2">
-        <div class="content-card highlight">
-          <h3>Core Capacity Parameters</h3>
-          <div class="table-wrapper">
-            <table class="slide-table">
-              <thead>
-                <tr>
-                  <th>Parameter</th>
-                  <th>Architectural Role</th>
-                  <th>Behavior &amp; Constraints</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>MinSize</strong></td>
-                  <td>Minimum Instance Floor</td>
-                  <td>The minimum number of instances always maintained in the group. If total instances drop below MinSize, Auto Scaling immediately creates instances to reach it.</td>
-                </tr>
-                <tr>
-                  <td><strong>MaxSize</strong></td>
-                  <td>Maximum Instance Ceiling</td>
-                  <td>The absolute upper capacity limit. Scaling activities will clamp and never exceed this ceiling, preventing runaway cloud costs.</td>
-                </tr>
-                <tr>
-                  <td><strong>Desired Capacity</strong></td>
-                  <td>Expected Operating Level</td>
-                  <td>Maintains a specific target number of healthy instances between MinSize and MaxSize without requiring rule triggers.</td>
-                </tr>
-                <tr>
-                  <td><strong>Total Capacity</strong></td>
-                  <td>Live Running Count</td>
-                  <td>The current sum of auto-created and manually attached instances currently in the group.</td>
-                </tr>
-              </tbody>
-            </table>
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
+            <img src="assets/images/auto-scaling-elastic-patterns.svg" alt="Dynamic Demand Curve Alignment" style="max-height: 200px; width: auto; max-width: 100%; object-fit: contain;">
           </div>
-        </div>
-
-        <div class="content-card highlight-blue">
-          <h3>Initialization &amp; Dynamic Capacity Rules</h3>
-          <p>Key operational behaviors when configuring scaling group capacity:</p>
+          <p>Auto Scaling dynamically aligns compute resources with real-time business curves:</p>
           <ul>
-            <li><strong>Auto-Creation on Enable:</strong> If an active scaling group has <code>MinSize = 2</code>, but current total capacity is 0, Auto Scaling immediately triggers an activity upon enabling to provision 2 Pay-As-You-Go instances.</li>
-            <li><strong>Equal Min &amp; Max (Fixed Size):</strong> Setting <code>MinSize = MaxSize = N</code> creates a fixed-size cluster with <strong>self-healing</strong>. If any instance fails, Auto Scaling automatically replaces it to keep capacity exactly at N.</li>
-            <li><strong>Dynamic Adjustment:</strong> Modifying MinSize or MaxSize on an active group instantly triggers scaling activities to align the current capacity with the new boundary constraints.</li>
+            <li><strong>Automated Right-Sizing:</strong> Compute capacity expands automatically when traffic surges and contracts when demand subsides.</li>
+            <li><strong>Architectural Principle:</strong> Elasticity transforms compute capacity from a fixed capital expense (CapEx) into a fluid, automated operational capability (OpEx) that scales with business growth.</li>
           </ul>
         </div>
       </div>
-    </section>
-    <!-- ==================== SLIDE 9: SCALING GROUP LIFECYCLE STATES ==================== -->
-    <section class="slide" data-category="Scaling Groups &amp; Capacity Design">
-      <div class="slide-category">Section 2: Scaling Groups &amp; Capacity Design</div>
+    </section>
+    <!-- ==================== SLIDE 5: ELASTIC SCALE-OUT MECHANICS ==================== -->
+    <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
+      <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
+      <h2>Elastic Scale-Out</h2>
+      
+      <div class="grid-2">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+          <img src="assets/images/auto-scaling-scale-out.png" alt="Auto Scaling Scale Out Architecture" style="max-height: 420px; width: auto; max-width: 100%; object-fit: contain;">
+        </div>
+
+        <div class="content-card highlight">
+          <p>Elastic scale-out adds additional computing resources to the pool during peak traffic periods:</p>
+          <ol class="step-list">
+            <li><strong>Surge Trigger Detection:</strong> CloudMonitor alarms (e.g., average CPU &ge; 70%), scheduled timers, or target tracking policies trigger a scaling activity.</li>
+            <li><strong>Automated VM Provisioning:</strong> Auto Scaling provisions new ECS instances across multi-zone vSwitches according to the active Scaling Configuration.</li>
+            <li><strong>Load Balancer Registration:</strong> Automatically attaches newly created instances to associated Server Load Balancer (SLB) backend server groups.</li>
+            <li><strong>Database Whitelist Synchronization:</strong> Automatically injects the private IP addresses of the new instances into associated ApsaraDB RDS security whitelists.</li>
+          </ol>
+          <ul style="margin-top: 0.5rem;">
+            <li><strong>High Availability Principle:</strong> Scale-out operations ensure user response latency and application throughput remain strictly within contractual SLA limits.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 6: ELASTIC SCALE-IN MECHANICS ==================== -->
+    <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
+      <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
+      <h2>Elastic Scale-In</h2>
+      
+      <div class="grid-2">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+          <img src="assets/images/auto-scaling-scale-in.png" alt="Auto Scaling Scale In Architecture" style="max-height: 420px; width: auto; max-width: 100%; object-fit: contain;">
+        </div>
+
+        <div class="content-card highlight-blue">
+          <p>Elastic scale-in releases surplus ECS instances when business demand decreases:</p>
+          <ol class="step-list">
+            <li><strong>Low Demand Detection:</strong> CloudMonitor detects low resource utilization (e.g., average CPU &lt; 25% for 3 consecutive periods) or a scheduled window concludes.</li>
+            <li><strong>Traffic Deregistration:</strong> Auto Scaling removes selected instances from Server Load Balancer (SLB) backend groups, initiating connection draining to finish in-flight requests.</li>
+            <li><strong>Security Pruning:</strong> Automatically removes instance private IP addresses from ApsaraDB RDS security whitelists, preventing stale network access.</li>
+            <li><strong>Instance Termination or Stopping:</strong> Instances are either released (Release Mode) or stopped (Shutdown and Reclaim Mode) based on group configuration.</li>
+          </ol>
+          <ul style="margin-top: 0.5rem;">
+            <li><strong>Cost Optimization Rule:</strong> Releasing or stopping surplus instances immediately halts computing fees, eliminating idle budget waste during off-peak hours.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 7: ELASTIC SELF-HEALING ARCHITECTURE ==================== -->
+    <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
+      <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
+      <h2>Elastic Self-Healing</h2>
+      
+      <div class="grid-2">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+          <img src="assets/images/auto-scaling-self-healing.png" alt="Auto Scaling Self Healing Architecture" style="max-height: 420px; width: auto; max-width: 100%; object-fit: contain;">
+        </div>
+
+        <div class="content-card highlight-green">
+          <p>Elastic self-healing continuously monitors instance health and autonomously restores cluster capacity:</p>
+          <ol class="step-list">
+            <li><strong>Continuous Health Inspection:</strong> Auto Scaling regularly inspects the operating state of all ECS instances in the scaling group and checks SLB health check statuses.</li>
+            <li><strong>Unhealthy State Detection:</strong> If an instance enters an abnormal state (OS crash, hardware failure, or SLB health check failure), Auto Scaling flags it as unhealthy.</li>
+            <li><strong>Autonomous Removal &amp; Release:</strong> The failed instance is automatically detached from the SLB backend, removed from the RDS whitelist, and terminated.</li>
+            <li><strong>Replacement Provisioning:</strong> Auto Scaling automatically provisions a healthy new instance using the active Scaling Configuration to restore total capacity.</li>
+          </ol>
+          <ul style="margin-top: 0.5rem;">
+            <li><strong>Autonomous SLA Guarantee:</strong> Eliminates human intervention and on-call night emergency responses by healing faulty infrastructure automatically in minutes.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 8: ARCHITECTURAL ECOSYSTEM OVERVIEW ==================== -->
+    <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
+      <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
+      <h2>Auto Scaling Architecture Ecosystem</h2>
+      
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
+        <img src="assets/images/auto-scaling-architecture-overview.svg" alt="Auto Scaling Architectural Ecosystem" style="max-height: 250px; width: auto; max-width: 100%; object-fit: contain;">
+      </div>
+
+      <div class="grid-3">
+        <div class="content-card highlight-blue">
+          <h4>1. Telemetry &amp; Trigger Layer</h4>
+          <p>CloudMonitor alarms, scheduled cron tasks, target tracking algorithms, and OpenAPI triggers deliver scaling events to the ESS core.</p>
+        </div>
+
+        <div class="content-card highlight">
+          <h4>2. Management &amp; Policy Core</h4>
+          <p>Auto Scaling evaluates rules, manages cooldown windows, enforces capacity bounds (Min/Max), and coordinates atomic activities.</p>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h4>3. Target Cloud Ecosystem</h4>
+          <p>Automates provisioning across multi-AZ ECS/ECI, attaches backends to SLB/ALB, and syncs private IP whitelists on RDS databases.</p>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 9: SCALING GROUP FUNDAMENTALS ==================== -->
+    <section class="slide" data-category="Scaling Group &amp; Capacity Design">
+      <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
+      <h2>Scaling Group Fundamentals</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <p>A <strong>Scaling Group</strong> is a logical collection of ECS instances deployed for a common application role or service tier:</p>
+          <ul>
+            <li><strong>Boundary Container:</strong> Encapsulates Scaling Configurations, Scaling Rules, Scaling Activities, and lifecycle policies.</li>
+            <li><strong>Associated Infrastructure:</strong> Bound to a specific VPC, multi-zone vSwitches, SLB instances, and RDS database instances.</li>
+            <li><strong>Capacity Bounds:</strong>
+              <ul>
+                <li><strong>MinSize (Minimum Capacity):</strong> The floor. Auto Scaling guarantees instance count never drops below this threshold.</li>
+                <li><strong>MaxSize (Maximum Capacity):</strong> The ceiling. Auto Scaling guarantees instance count never exceeds this threshold.</li>
+                <li><strong>Desired Capacity (Target):</strong> The expected baseline number of running instances maintained by the group.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-purple">
+          <p>Core Operational Constraints:</p>
+          <ul>
+            <li><strong>Cascading Deletion:</strong> Deleting a Scaling Group automatically deletes its Scaling Configurations, Scaling Rules, and Scaling Activities.</li>
+            <li><strong>Preserved External Assets:</strong> Deleting a Scaling Group does NOT delete associated SLB instances, RDS databases, or CloudMonitor alarm tasks.</li>
+            <li><strong>Independent Trigger Tasks:</strong> Scheduled Tasks and CloudMonitor alarms exist independently of the Scaling Group and can be rebound to other groups.</li>
+            <li><strong>Capacity Enforcement:</strong> If MinSize is set to 2 during creation, Auto Scaling immediately creates 2 Pay-As-You-Go instances upon enabling the group.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 10: MULTI-ZONE VSWITCH ARCHITECTURE ==================== -->
+    <section class="slide" data-category="Scaling Group &amp; Capacity Design">
+      <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
+      <h2>Multi-Zone vSwitch Architecture</h2>
+      
+      <div class="grid-2">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+          <img src="assets/images/auto-scaling-multizone-allocation.svg" alt="Multi-Zone vSwitch Allocation Architecture" style="max-height: 420px; width: auto; max-width: 100%; object-fit: contain;">
+        </div>
+
+        <div class="content-card highlight-blue">
+          <p>To eliminate single-point-of-failure (SPOF) risks, a Scaling Group can span multiple vSwitches across different Availability Zones (AZs):</p>
+          <ol class="step-list">
+            <li><strong>Priority Strategy:</strong> Provisions instances in the first priority vSwitch (Zone A). If Zone A runs out of inventory or IP addresses, Auto Scaling automatically fails over to the next configured vSwitch (Zone B).</li>
+            <li><strong>Balanced Strategy (High Availability):</strong> Evenly distributes ECS instances across all configured vSwitches (Zone A, Zone B, Zone C) to maximize fault tolerance. If one zone experiences a physical outage, remaining zones sustain service traffic.</li>
+            <li><strong>Cost-Optimized Strategy:</strong> Prioritizes vSwitches and instance families that offer lowest compute cost or highest spot inventory availability.</li>
+          </ol>
+          <ul style="margin-top: 0.5rem;">
+            <li><strong>High Availability Rule:</strong> Production scaling groups should always bind at least 2 or 3 vSwitches across distinct Availability Zones.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 11: SCALING GROUP LIFECYCLE STATES ==================== -->
+    <section class="slide" data-category="Scaling Group &amp; Capacity Design">
+      <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
       <h2>Scaling Group Lifecycle States</h2>
       
       <div class="grid-3">
         <div class="content-card highlight-green">
-          <h3>1. Active State</h3>
-          <p>The scaling group is fully operational and healthy:</p>
+          <h4>1. Active State</h4>
+          <p>The operational state of a Scaling Group:</p>
           <ul>
-            <li>Monitors capacity and responds to CloudMonitor alarms, scheduled tasks, and scaling rules.</li>
-            <li>Executes scaling activities to maintain capacity within <code>[MinSize, MaxSize]</code>.</li>
-            <li>Performs periodic health checks and replaces unhealthy instances.</li>
-            <li>Can only be activated when an <strong>active Scaling Configuration</strong> or Launch Template is assigned.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-amber">
-          <h3>2. Inactive State</h3>
-          <p>The scaling group is temporarily paused/disabled:</p>
-          <ul>
-            <li>All scaling rules, alarm triggers, and scheduled tasks are <strong>rejected</strong>.</li>
-            <li>No new scaling activities will be executed.</li>
-            <li>Existing ECS instances remain running in their current state (billing continues).</li>
-            <li>Can only be disabled when <strong>no scaling activity is actively executing</strong>.</li>
+            <li>Requires at least one <strong>Active Scaling Configuration</strong>.</li>
+            <li>Accepts and executes scaling rules, scheduled tasks, and alarm tasks.</li>
+            <li>Maintains total instance count between MinSize and MaxSize.</li>
+            <li>Performs periodic self-healing health check replacements.</li>
           </ul>
         </div>
 
         <div class="content-card highlight-purple">
-          <h3>3. Deleting State</h3>
-          <p>The group is undergoing teardown and deletion:</p>
+          <h4>2. Inactive State</h4>
+          <p>The paused management state:</p>
           <ul>
-            <li><strong>Cascading Deletion:</strong> Deleting a scaling group permanently deletes its Scaling Configurations, Scaling Rules, and Scaling Activities.</li>
-            <li><strong>Preserved Assets:</strong> Deleting a scaling group <strong>DOES NOT delete</strong> associated SLB load balancers, RDS databases, or CloudMonitor alarm rules.</li>
-            <li><strong>ForceDelete Mode:</strong> Auto-releases all auto-created instances while detaching manual instances.</li>
+            <li>Reject all automated scaling rule executions and trigger tasks.</li>
+            <li>Existing ECS instances remain running and serving traffic.</li>
+            <li>Allows administrative modifications to configurations and rules.</li>
+            <li>Can be re-enabled once an active scaling configuration is ready.</li>
           </ul>
         </div>
-      </div>
 
-      <div class="callout callout-blue" style="margin-top: 0.75rem;">
-        <div>
-          <span class="badge badge-exam">Maintenance Best Practice</span> Disable the scaling group (Inactive State) before executing planned database schema migrations or core application upgrades. This prevents Auto Scaling from spinning up outdated instances while deployment is in progress.
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 10: MULTI-ZONE HIGH AVAILABILITY ==================== -->
-    <section class="slide" data-category="Scaling Groups &amp; Capacity Design">
-      <div class="slide-category">Section 2: Scaling Groups &amp; Capacity Design</div>
-      <h2>Multi-Zone High Availability</h2>
-      
-      <div class="diagram-container clean" style="padding: 0.5rem; margin: 0.25rem 0 0.5rem 0;">
-        <img src="assets/images/auto-scaling-multizone-allocation.svg" alt="Multi-Zone High Availability Allocation Policies" class="diagram-image" style="max-height: 220px; width: auto;">
-      </div>
-
-      <div class="grid-2" style="margin-top: 0.5rem;">
         <div class="content-card highlight">
-          <h3>Multi-VSwitch Architecture</h3>
-          <p>Auto Scaling groups reside within a single Region, but can span <strong>multiple VSwitches across distinct Availability Zones (AZs)</strong>:</p>
+          <h4>3. Deleting State</h4>
+          <p>The termination teardown state:</p>
           <ul>
-            <li><strong>Zone-Level Fault Domain Isolation:</strong> If a physical datacenter event affects Zone A, workloads continue uninterrupted across Zones B and C.</li>
-            <li><strong>Single VPC CIDR:</strong> All VSwitches belong to the same parent VPC, enabling seamless private intranet routing between all scaled instances.</li>
-            <li><strong>Subnet Quota Safeguard:</strong> Spreading across multiple VSwitches prevents IP address exhaustion within any individual CIDR block.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-blue">
-          <h3>Cross-Zone Inventory Resilience</h3>
-          <p>How multi-zone configuration protects against resource stock-outs:</p>
-          <ul>
-            <li><strong>Inventory Hedging:</strong> Cloud instance families can temporarily run out of stock in a single zone during massive regional flash events.</li>
-            <li><strong>Automatic Zone Failover:</strong> By binding multiple VSwitches in different zones, Auto Scaling automatically provisions capacity in alternate zones when the primary zone is depleted.</li>
-            <li><strong>SLB Multi-AZ Synergy:</strong> Fronting the multi-zone scaling group with a Multi-AZ SLB/ALB guarantees complete end-to-end disaster recovery.</li>
+            <li>Triggered via console or DeleteScalingGroup API.</li>
+            <li>Rejects all incoming scaling requests and activity triggers.</li>
+            <li>Terminates all automatically launched ECS instances.</li>
+            <li>Removes associated configurations, rules, and activity logs.</li>
           </ul>
         </div>
       </div>
-    </section>
-    <!-- ==================== SLIDE 11: MULTI-ZONE ALLOCATION POLICIES ==================== -->
-    <section class="slide" data-category="Scaling Groups &amp; Capacity Design">
-      <div class="slide-category">Section 2: Scaling Groups &amp; Capacity Design</div>
-      <h2>Multi-Zone Allocation Policies</h2>
-      
-      <div class="table-wrapper">
-        <table class="slide-table">
-          <thead>
-            <tr>
-              <th>Allocation Policy</th>
-              <th>Scale-Out Mechanism</th>
-              <th>Scale-In Mechanism</th>
-              <th>Recommended Enterprise Workload</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Priority Policy</strong><br><span class="badge badge-updated">Strict Sequential</span></td>
-              <td>Provisions 100% of instances in the first configured VSwitch (Zone A). Only fails over to Priority 2 (Zone B) if Zone A runs out of inventory or IP quota.</td>
-              <td>Removes instances in reverse priority order: releases instances in Zone C first, then Zone B, and lastly Zone A.</td>
-              <td>Latency-sensitive workloads that benefit from co-locating instances within a single physical datacenter to minimize intra-cluster network latency.</td>
-            </tr>
-            <tr>
-              <td><strong>Balanced Distribution</strong><br><span class="badge badge-exam">Equalized Spread</span></td>
-              <td>Evenly distributes instances across all configured VSwitches/Zones. If 9 instances are requested across 3 zones, exactly 3 instances are created per zone.</td>
-              <td>Selects instances from the zone with the highest current instance count to rebalance and maintain equal proportion across all zones.</td>
-              <td>Mission-critical production web applications, e-commerce storefronts, and microservices requiring maximum multi-zone fault isolation.</td>
-            </tr>
-            <tr>
-              <td><strong>Cost-Optimized Policy</strong><br><span class="badge badge-updated">Spot &amp; Price Focused</span></td>
-              <td>Evaluates real-time hourly spot pricing and inventory availability across all zones, provisioning in the lowest-cost zone first.</td>
-              <td>Removes the highest-cost instances first to optimize ongoing cloud spend.</td>
-              <td>Fault-tolerant big data batch processing, rendering farms, and offline machine learning training clusters.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
 
-      <div class="callout callout-green" style="margin-top: 0.75rem;">
-        <div>
-          <span class="badge badge-updated">Architectural Recommendation</span> For standard enterprise production, always select <strong>Balanced Distribution</strong> across at least 3 availability zones. This ensures that an unexpected outage in any single zone will never affect more than 33% of your active serving fleet.
-        </div>
+      <div class="content-card highlight-blue" style="margin-top: 0.75rem;">
+        <p><strong>State Transition Constraint:</strong> A Scaling Group can only transition to <code>Inactive</code> when no Scaling Activity is currently in progress. Administrative updates (modifying Min/Max size, attaching SLB) can be performed in either Active or Inactive state.</p>
       </div>
-    </section>
-    <!-- ==================== SLIDE 12: INSTANCE RECLAIM MODES ==================== -->
-    <section class="slide" data-category="Scaling Groups &amp; Capacity Design">
-      <div class="slide-category">Section 2: Scaling Groups &amp; Capacity Design</div>
-      <h2>Instance Reclaim Modes: Release vs. Shutdown</h2>
+    </section>
+    <!-- ==================== SLIDE 12: CREATION & IMMUTABLE ATTRIBUTES ==================== -->
+    <section class="slide" data-category="Scaling Group &amp; Capacity Design">
+      <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
+      <h2>Creation &amp; Immutable Attributes</h2>
       
       <div class="grid-2">
         <div class="content-card highlight">
-          <h3>1. Release Mode (Default)</h3>
-          <p>Instances are completely terminated and destroyed during scale-in:</p>
+          <h4>Mandatory Creation Parameters</h4>
+          <p>When provisioning a new Scaling Group, administrators define:</p>
           <ul>
-            <li><strong>Zero Ongoing Billing:</strong> All compute (vCPU, RAM), local disks, and system disks are deleted. Absolutely no ongoing compute charges are incurred.</li>
-            <li><strong>Stateless Architecture:</strong> Designed strictly for stateless application tiers where application code and dependencies are baked into custom images or pulled on boot.</li>
-            <li><strong>Startup Duration:</strong> When scaling out again, new instances must undergo cold OS provisioning, cloud-init scripts, and disk initialization (~2-5 minutes).</li>
-            <li><strong>Best For:</strong> Highly variable, bursty web traffic and non-urgent scale-outs where cost minimization is top priority.</li>
+            <li><strong>Scaling Group Name:</strong> Unique identifier within the region.</li>
+            <li><strong>MinSize &amp; MaxSize:</strong> Baseline floor and ceiling capacity limits.</li>
+            <li><strong>Default Cooldown Time:</strong> Lockout duration in seconds (default: 300s).</li>
+            <li><strong>Removal Policy:</strong> Rule governing which instances are evicted during scale-in.</li>
+            <li><strong>Network Configuration:</strong> Target VPC and multi-zone vSwitches.</li>
+            <li><strong>Load Balancer &amp; Database:</strong> Associated SLB instances and RDS databases.</li>
           </ul>
         </div>
 
-        <div class="content-card highlight-blue">
-          <h3>2. Shutdown &amp; Reclaim Mode (Recycle)</h3>
-          <p>Instances are stopped rather than destroyed during scale-in:</p>
+        <div class="content-card highlight-purple">
+          <h4>Mutable vs. Immutable Attributes</h4>
+          <p>Understanding architectural boundaries after group creation:</p>
           <ul>
-            <li><strong>Stopped State:</strong> Instances transition to Stopped status. Compute vCPU and RAM billing stops under No-Fee Stopped mode (if qualified).</li>
-            <li><strong>Retained Disks &amp; IPs:</strong> System disks, data disks, and private IP addresses are retained (storage disk fees continue to apply).</li>
-            <li><strong>Rapid Warm Start:</strong> Scaling out merely boots existing stopped instances, cutting spin-up time down to <strong>30-60 seconds</strong> (bypassing disk provisioning and cloud-init).</li>
-            <li><strong>Best For:</strong> Heavy application stacks with long initial startup times (e.g., massive Java JVM warms or large game servers) requiring rapid surge response.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="callout callout-amber" style="margin-top: 0.75rem;">
-        <div>
-          <span class="badge badge-exam">Billing Note</span> In Shutdown &amp; Reclaim Mode, while compute vCPU and RAM billing ceases under Stopped mode, <strong>Cloud Disk storage fees continue to accrue</strong> for all stopped disks. Use Release Mode for maximum cost elimination on purely stateless workloads.
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 13: AUTO-CREATED VS MANUAL INSTANCES ==================== -->
-    <section class="slide" data-category="Scaling Groups &amp; Capacity Design">
-      <div class="slide-category">Section 2: Scaling Groups &amp; Capacity Design</div>
-      <h2>Auto-Created vs. Manually Attached Instances</h2>
-      
-      <div class="table-wrapper">
-        <table class="slide-table">
-          <thead>
-            <tr>
-              <th>Lifecycle Dimension</th>
-              <th>Auto-Created Instances</th>
-              <th>Manually Attached Instances</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Creation Mechanism</strong></td>
-              <td>Provisioned automatically by Auto Scaling activities based on the active Scaling Configuration.</td>
-              <td>Created independently by administrators via ECS Console/CLI, then manually added into the Scaling Group.</td>
-            </tr>
-            <tr>
-              <td><strong>Configuration Association</strong></td>
-              <td>Strictly governed by the active Scaling Configuration / Launch Template.</td>
-              <td>Independent of the Scaling Configuration; can use different instance types, images, or specs.</td>
-            </tr>
-            <tr>
-              <td><strong>Billing Type</strong></td>
-              <td>Pay-As-You-Go or Spot Instances only.</td>
-              <td>Can be Subscription, Pay-As-You-Go, or Preemptible (Spot) instances.</td>
-            </tr>
-            <tr>
-              <td><strong>Scale-In Removal Behavior</strong></td>
-              <td>Terminated/released (Release Mode) or stopped (Shutdown Mode) according to group policy.</td>
-              <td><strong>Detached only!</strong> Manually attached instances are NEVER terminated or stopped by Auto Scaling upon scale-in.</td>
-            </tr>
-            <tr>
-              <td><strong>SLB &amp; RDS Management</strong></td>
-              <td>Automatically registered and deregistered with SLB and RDS whitelists.</td>
-              <td>Automatically registered to SLB and RDS upon joining group, and deregistered upon detachment.</td>
-            </tr>
-            <tr>
-              <td><strong>Removal Priority</strong></td>
-              <td>Removed based on group removal policy (e.g. OldestInstance or OldestScalingConfiguration).</td>
-              <td>Removed first or last depending on configured policy, but always preserved in running state.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="callout callout-green" style="margin-top: 0.75rem;">
-        <div>
-          <span class="badge badge-updated">Safety Guarantee</span> You can safely attach existing production ECS instances (such as primary application nodes or Subscription instances) to a scaling group. Auto Scaling will never delete or shut down manually attached instances during scale-in activities.
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 14: SCALING CONFIGURATION OVERVIEW ==================== -->
-    <section class="slide" data-category="Scaling Configurations &amp; Blueprints">
-      <div class="slide-category">Section 3: Scaling Configurations &amp; Blueprints</div>
-      <h2>Scaling Configurations &amp; Blueprints</h2>
-      
-      <div class="grid-2">
-        <div class="content-card highlight">
-          <h3>What is a Scaling Configuration?</h3>
-          <p>A Scaling Configuration acts as the golden master template for all automatically provisioned ECS instances:</p>
-          <ul>
-            <li><strong>Compute Specification:</strong> Instance family and size (e.g. <code>ecs.g8i.xlarge</code>) or multi-type fallbacks.</li>
-            <li><strong>Operating System Image:</strong> Public image (Alibaba Cloud Linux, Ubuntu) or verified enterprise Custom Image with pre-installed software.</li>
-            <li><strong>Storage Architecture:</strong> System disk type (ESSD AutoPL, PL0-PL3), disk capacity, and optional data disk mounts.</li>
-            <li><strong>Security Credentials:</strong> Security Groups, SSH Key Pairs, and RAM Roles for secure metadata credential retrieval.</li>
-            <li><strong>Bootstrapping User Data:</strong> Cloud-init scripts executed on boot to configure software and register agents.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-blue">
-          <h3>Configuration Lifecycle &amp; State Machine</h3>
-          <p>Managing configurations within a Scaling Group:</p>
-          <ul>
-            <li><strong>Active vs. Inactive:</strong> A Scaling Group can store up to <strong>10 Scaling Configurations</strong>, but exactly <strong>ONE configuration can be Active</strong> at any time.</li>
-            <li><strong>Immutable Versioning:</strong> A Scaling Configuration cannot be modified once created. To change specifications, create a new configuration and set it to Active.</li>
-            <li><strong>Deletion Constraints:</strong>
+            <li><strong>Strict Immutable Attributes:</strong>
               <ul>
-                <li>An <strong>Active</strong> Scaling Configuration cannot be deleted.</li>
-                <li>A configuration cannot be deleted if active instances created by it still exist in the group.</li>
+                <li><strong>Region:</strong> Cannot be moved across regions once created.</li>
+                <li><strong>Network Type:</strong> VPC network type cannot be switched to Classic.</li>
+                <li><strong>Primary VPC ID:</strong> Cannot be rebound to a different VPC.</li>
+              </ul>
+            </li>
+            <li><strong>Dynamically Mutable Attributes:</strong>
+              <ul>
+                <li>MinSize, MaxSize, and Desired Capacity.</li>
+                <li>Default Cooldown period and Removal Policies.</li>
+                <li>Associated SLB instances and RDS database instances.</li>
+                <li>Associated vSwitches within the same VPC.</li>
               </ul>
             </li>
           </ul>
         </div>
       </div>
-
-      <div class="callout callout-blue" style="margin-top: 0.75rem;">
-        <div>
-          <span class="badge badge-exam">Best Practice</span> For modern enterprise deployments, use **ECS Launch Templates** instead of legacy Scaling Configurations. Launch Templates provide native multi-version management and allow seamless parameter sharing between Auto Scaling, ACK, and manual ECS provisioning.
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 15: LAUNCH TEMPLATES INTEGRATION ==================== -->
-    <section class="slide" data-category="Scaling Configurations &amp; Blueprints">
-      <div class="slide-category">Section 3: Scaling Configurations &amp; Blueprints</div>
-      <h2>Launch Templates Integration</h2>
+    </section>
+    <!-- ==================== SLIDE 13: ENABLE, DISABLE & REBALANCING ==================== -->
+    <section class="slide" data-category="Scaling Group &amp; Capacity Design">
+      <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
+      <h2>Enable, Disable &amp; Capacity Rebalancing</h2>
       
       <div class="grid-2">
-        <div class="content-card highlight-purple">
-          <h3>Why Use Launch Templates?</h3>
-          <p>Alibaba Cloud ECS Launch Templates decouple configuration definitions from individual services:</p>
-          <ul>
-            <li><strong>Unified Template Library:</strong> Share identical instance configurations across Auto Scaling, Container Service for Kubernetes (ACK), and manual provisioning.</li>
-            <li><strong>Built-in Version Control:</strong> Maintain multiple numbered versions (e.g. Version 1, Version 2) with change logs. Auto Scaling can bind to a <strong>specific version</strong> or track the dynamic <strong>Default Version</strong>.</li>
-            <li><strong>Template Overrides:</strong> Specify custom parameters on top of standard template definitions without re-authoring the base template.</li>
-          </ul>
+        <div class="content-card highlight-green">
+          <h4>Enable Operation</h4>
+          <p>Transitioning from Inactive to Active state:</p>
+          <ol class="step-list">
+            <li><strong>Configuration Validation:</strong> The group must have exactly one Active Scaling Configuration before enabling can proceed.</li>
+            <li><strong>MinSize Fulfillment:</strong> If current capacity is below MinSize, Auto Scaling immediately provisions Pay-As-You-Go instances until MinSize is satisfied.</li>
+            <li><strong>Ecosystem Synchronization:</strong> Registers instances with SLB and updates RDS access whitelists.</li>
+          </ol>
         </div>
 
-        <div class="content-card highlight-green">
-          <h3>Zero-Downtime Blue-Green Fleet Rotation</h3>
-          <p>Seamless application deployment workflow using Launch Template versions:</p>
-          <ol class="feature-list">
-            <li><strong>Step 1:</strong> Build new application release and capture a new Custom Image (e.g. <code>v2.4.0</code>).</li>
-            <li><strong>Step 2:</strong> Create a new version of the ECS Launch Template referencing the updated Image ID.</li>
-            <li><strong>Step 3:</strong> Update the Auto Scaling group to point to the new Launch Template version.</li>
-            <li><strong>Step 4:</strong> Auto Scaling smoothly rotates the fleet: as instances scale out, they automatically boot the new version, while old instances are gracefully retired via scale-in.</li>
+        <div class="content-card highlight-purple">
+          <h4>Disable Operation</h4>
+          <p>Transitioning from Active to Inactive state:</p>
+          <ol class="step-list">
+            <li><strong>Activity Lock:</strong> A group can only be disabled when NO scaling activity is currently executing.</li>
+            <li><strong>Preserve Running Capacity:</strong> Disabling does NOT terminate instances; existing VMs continue running and serving traffic.</li>
+            <li><strong>Task Suspension:</strong> Rejects all incoming alarms and scheduled triggers until re-enabled.</li>
           </ol>
         </div>
       </div>
 
-      <div class="callout callout-green" style="margin-top: 0.75rem;">
-        <div>
-          <span class="badge badge-updated">Cloud-Native Standard</span> Launch Templates eliminate the legacy 10-configuration limit per scaling group and allow centralizing security, storage, and networking governance across organizational teams.
-        </div>
+      <div class="content-card highlight" style="margin-top: 0.75rem;">
+        <p><strong>Capacity Rebalancing Rule:</strong> When modifying MinSize or MaxSize on an active group, Auto Scaling automatically evaluates total capacity. If current capacity &lt; new MinSize, instances are automatically added. If current capacity &gt; new MaxSize, instances are automatically removed until the boundary is reached.</p>
       </div>
-    </section>
-    <!-- ==================== SLIDE 16: MULTI-INSTANCE TYPE CONFIGURATION ==================== -->
-    <section class="slide" data-category="Scaling Configurations &amp; Blueprints">
-      <div class="slide-category">Section 3: Scaling Configurations &amp; Blueprints</div>
-      <h2>Multi-Instance Type Configuration</h2>
+    </section>
+    <!-- ==================== SLIDE 14: REMOVAL POLICIES & RECLAIM MODES ==================== -->
+    <section class="slide" data-category="Scaling Group &amp; Capacity Design">
+      <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
+      <h2>Removal Policies &amp; Reclaim Modes</h2>
       
       <div class="grid-2">
         <div class="content-card highlight">
-          <h3>The Stock-Out Problem (Single Type Risk)</h3>
-          <p>Relying on a single ECS instance type in a scaling configuration creates a single point of failure:</p>
+          <h4>Instance Removal Policies</h4>
+          <p>Determines which instances are selected for eviction during scale-in:</p>
           <ul>
-            <li>During massive regional flash events (e.g., 11.11 Global Shopping Festival), popular instance sizes (like <code>ecs.c8i.2xlarge</code>) can temporarily run out of datacenter stock.</li>
-            <li>If only one type is specified, the entire scaling activity fails, leaving your application under-provisioned and vulnerable to traffic overload.</li>
+            <li><strong>OldestInstance:</strong> Removes the earliest automatically created instances first. Ideal for continuous rolling deployment of newer software builds.</li>
+            <li><strong>NewestInstance:</strong> Removes the most recently created instances first. Preserves long-running warm nodes and cache state.</li>
+            <li><strong>OldestScalingConfiguration:</strong> Prioritizes instances created by older scaling configurations, ensuring the cluster converges on modern configurations.</li>
           </ul>
         </div>
 
         <div class="content-card highlight-blue">
-          <h3>Configuring Multi-Instance Type Fallback Pools</h3>
-          <p>Auto Scaling allows specifying <strong>up to 10 instance types</strong> in a prioritized list:</p>
+          <h4>Reclaim Modes</h4>
+          <p>Controls whether evicted instances are destroyed or preserved:</p>
           <ul>
-            <li><strong>Automatic Sequential Fallback:</strong> If Type 1 is out of inventory, Auto Scaling immediately attempts Type 2, Type 3, etc., ensuring 100% scale-out success.</li>
-            <li><strong>Cross-Architecture Hedging:</strong> Mix Intel, AMD, and ARM Yitian instances with equivalent vCPU-to-memory ratios:
-              <ul>
-                <li>Priority 1: <code>ecs.g8i.2xlarge</code> (Intel Sapphire Rapids, 8 vCPU / 32 GiB)</li>
-                <li>Priority 2: <code>ecs.g8a.2xlarge</code> (AMD Genoa, 8 vCPU / 32 GiB)</li>
-                <li>Priority 3: <code>ecs.g8y.2xlarge</code> (Alibaba Yitian 710 ARM, 8 vCPU / 32 GiB)</li>
-                <li>Priority 4: <code>ecs.g7.2xlarge</code> (Previous Generation Fallback)</li>
-              </ul>
-            </li>
+            <li><strong>Release Mode (Default):</strong> Permanently deletes and releases ECS instances, immediately terminating all compute and storage charges.</li>
+            <li><strong>Shutdown and Reclaim Mode:</strong> Stops instances without deleting them. Stopped instances can qualify for No-Fee When Stopped, allowing rapid warm restart without image provisioning overhead.</li>
+            <li><strong>Manual Instance Preservation:</strong> When a manually attached ECS instance is removed from a group, it is detached from SLB/RDS but NEVER stopped or released.</li>
           </ul>
         </div>
       </div>
-
-      <div class="callout callout-blue" style="margin-top: 0.75rem;">
-        <div>
-          <span class="badge badge-exam">High Availability Rule</span> In production environments, never configure a Scaling Configuration with only one instance type. Always specify at least 3 to 5 equivalent instance families to guarantee inventory availability during regional spikes.
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 17: SPOT INSTANCES IN AUTO SCALING ==================== -->
-    <section class="slide" data-category="Scaling Configurations &amp; Blueprints">
-      <div class="slide-category">Section 3: Scaling Configurations &amp; Blueprints</div>
-      <h2>Preemptible (Spot) Instances &amp; Mixed Pools</h2>
-      
-      <div class="grid-2">
-        <div class="content-card highlight-orange">
-          <h3>Preemptible (Spot) Instance Mechanics</h3>
-          <p>Harness excess Alibaba Cloud datacenter capacity at up to <strong>90% discount</strong> compared to Pay-As-You-Go rates:</p>
-          <ul>
-            <li><strong>Market-Driven Pricing:</strong> Price fluctuates in real time based on datacenter supply and demand.</li>
-            <li><strong>Reclaim Notice:</strong> If market price exceeds your bid or capacity is needed for full-price customers, instances receive a <strong>5-minute eviction warning</strong>.</li>
-            <li><strong>Spot Strategy in Auto Scaling:</strong>
-              <ul>
-                <li><em>No Spot Protection:</em> Follows real-time market prices without duration guarantee.</li>
-                <li><em>1-Hour Protection Period:</em> Guarantees non-interruption for the initial 60 minutes.</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-green">
-          <h3>Mixed On-Demand &amp; Spot Allocation Pools</h3>
-          <p>Auto Scaling combines reliability and extreme cost reduction in a single group:</p>
-          <ul>
-            <li><strong>Base Capacity (On-Demand):</strong> Maintain a fixed baseline (e.g. 5 Pay-As-You-Go instances) to ensure core services never drop below safe limits.</li>
-            <li><strong>Surge Capacity (Spot Instances):</strong> Any capacity above the baseline is fulfilled with Spot instances for peak loads.</li>
-            <li><strong>Capacity-Optimized Spot Allocation:</strong> Auto Scaling analyzes price trends and historical interruption rates across multiple instance types, picking the spot types least likely to be reclaimed.</li>
-            <li><strong>Auto-Replacement on Eviction:</strong> When a spot instance is evicted, Auto Scaling immediately spins up a replacement instance automatically.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="callout callout-green" style="margin-top: 0.75rem;">
-        <div>
-          <span class="badge badge-updated">Enterprise Architecture Pattern</span> Stateless web frontends, API gateways, and asynchronous queue workers achieve 70%+ infrastructure cost savings by pairing a 20% On-Demand baseline with an 80% Spot burst pool.
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 18: SCALING RULE TYPES OVERVIEW ==================== -->
-    <section class="slide" data-category="Scaling Rules &amp; Trigger Mechanisms">
-      <div class="slide-category">Section 4: Scaling Rules &amp; Trigger Mechanisms</div>
-      <h2>Scaling Rule Types</h2>
-      
-      <div class="diagram-container clean" style="padding: 0.5rem; margin: 0.25rem 0 0.5rem 0;">
-        <img src="assets/images/auto-scaling-elastic-patterns.svg" alt="Auto Scaling Operational Patterns" class="diagram-image" style="max-height: 220px; width: auto;">
-      </div>
-
-      <div class="table-wrapper" style="margin-top: 0.5rem;">
-        <table class="slide-table">
-          <thead>
-            <tr>
-              <th>Rule Type</th>
-              <th>Operational Logic</th>
-              <th>Evaluation Method</th>
-              <th>Best Use Case</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Simple Scaling Rule</strong></td>
-              <td>Executes a fixed action: Add N, Remove N, or Set Total to N.</td>
-              <td>Executed directly by scheduled tasks or manual API invocation.</td>
-              <td>Predictable scheduled spikes (daily start-of-day traffic, weekly marketing emails).</td>
-            </tr>
-            <tr>
-              <td><strong>Step Scaling Rule</strong></td>
-              <td>Applies tiered responses based on the magnitude of the metric breach (e.g. CPU 70-80% add 2; CPU &gt;80% add 6).</td>
-              <td>CloudMonitor alarm multi-step metric breach evaluations.</td>
-              <td>Rapidly accelerating surges where larger capacity boosts are required for severe overloads.</td>
-            </tr>
-            <tr>
-              <td><strong>Target Tracking Rule</strong></td>
-              <td>Continuously adjusts capacity to keep a specific metric at a defined target value (e.g. Average CPU = 50%).</td>
-              <td>Auto-calculates required instance adjustments like a thermostat.</td>
-              <td>Standard microservice clusters with smooth, continuous traffic fluctuations.</td>
-            </tr>
-            <tr>
-              <td><strong>Predictive Scaling Rule</strong></td>
-              <td>Uses machine learning algorithms to forecast demand 24-48 hours ahead based on historical CloudMonitor curves.</td>
-              <td>Generates predictive scaling plans and pre-warms capacity before the surge arrives.</td>
-              <td>Large enterprise applications with slow cold-boot times (5-10 mins) and repetitive weekly traffic cycles.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 19: SIMPLE SCALING & STEP SCALING ==================== -->
-    <section class="slide" data-category="Scaling Rules &amp; Trigger Mechanisms">
-      <div class="slide-category">Section 4: Scaling Rules &amp; Trigger Mechanisms</div>
-      <h2>Simple Scaling &amp; Step Scaling Rules</h2>
-      
-      <div class="grid-2">
-        <div class="content-card highlight">
-          <h3>Simple Scaling Rules</h3>
-          <p>The fundamental building block of scaling actions:</p>
-          <ul>
-            <li><strong>Adjustment Types:</strong>
-              <ul>
-                <li><em>Quantity Adjustment:</em> <code>Add 2</code> or <code>Remove 1</code> instance.</li>
-                <li><em>Percentage Adjustment:</em> <code>Add 30%</code> of current capacity (rounds to nearest integer).</li>
-                <li><em>Total Capacity Adjustment:</em> <code>Adjust to 10</code> instances directly.</li>
-              </ul>
-            </li>
-            <li><strong>Boundary Enforcement:</strong> If <code>Total = 4</code> and rule says <code>Remove 5</code> with <code>MinSize = 2</code>, Auto Scaling removes only 2 instances.</li>
-            <li><strong>Cooldown Enforced:</strong> If triggered by an alarm, the scaling group enters cooldown immediately after the activity completes.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-blue">
-          <h3>Step Scaling Rules (Proportional Response)</h3>
-          <p>Dynamically scales based on the severity of load breach:</p>
-          <div class="table-wrapper">
-            <table class="slide-table">
-              <thead>
-                <tr>
-                  <th>Metric Condition (CPU)</th>
-                  <th>Scaling Action</th>
-                  <th>Resulting Behavior</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><code>70% &le; CPU &lt; 80%</code></td>
-                  <td>Add 2 Instances</td>
-                  <td>Moderate growth response</td>
-                </tr>
-                <tr>
-                  <td><code>80% &le; CPU &lt; 90%</code></td>
-                  <td>Add 5 Instances</td>
-                  <td>Aggressive scale-out</td>
-                </tr>
-                <tr>
-                  <td><code>CPU &ge; 90%</code></td>
-                  <td>Add 10 Instances</td>
-                  <td>Emergency burst rescue</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p style="font-size: 0.85rem; margin-top: 0.5rem; color: var(--text-secondary);">
-            <strong>Zero Cooldown Blocking on Step Ups:</strong> If metric load continues rising into a higher step tier, step scaling can add additional capacity immediately without waiting for cooldown!
-          </p>
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 20: TARGET TRACKING SCALING RULES ==================== -->
-    <section class="slide" data-category="Scaling Rules &amp; Trigger Mechanisms">
-      <div class="slide-category">Section 4: Scaling Rules &amp; Trigger Mechanisms</div>
-      <h2>Target Tracking Scaling Rules</h2>
-      
-      <div class="grid-2">
-        <div class="content-card highlight-green">
-          <h3>How Target Tracking Works</h3>
-          <p>Operates like a self-regulating building thermostat:</p>
-          <ul>
-            <li>Instead of defining manual thresholds (<em>"If CPU &gt; 80% add 2"</em>), you define a desired steady-state target metric: e.g., <strong>Maintain Average CPU at 50%</strong>.</li>
-            <li>Auto Scaling automatically monitors the metric and continuously calculates the exact mathematical number of instances required:
-              <pre class="code-block" style="margin: 0.5rem 0;">Target Capacity = Current Capacity &times; (Current Metric Value / Target Value)</pre>
-            </li>
-            <li>Automatically generates paired <strong>scale-out</strong> and <strong>scale-in</strong> alarms behind the scenes.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight">
-          <h3>Supported Target Metrics &amp; Best Practices</h3>
-          <p>Pre-defined metrics optimized for target tracking:</p>
-          <ul>
-            <li><strong>CpuUtilization:</strong> Average CPU usage across the cluster (ideal target: 40% to 60%).</li>
-            <li><strong>IntranetIn / IntranetOut:</strong> Average inbound or outbound network traffic per instance.</li>
-            <li><strong>ClassicLoadBalancerQps:</strong> Average queries per second (QPS) distributed by SLB to each backend ECS instance.</li>
-          </ul>
-          <div class="callout callout-blue" style="margin-top: 0.5rem;">
-            <div>
-              <span class="badge badge-updated">Conservative Scale-In</span> Target tracking scales out aggressively to preserve performance, but scales in conservatively to prevent capacity flapping during temporary metric dips.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 21: PREDICTIVE SCALING RULES ==================== -->
-    <section class="slide" data-category="Scaling Rules &amp; Trigger Mechanisms">
-      <div class="slide-category">Section 4: Scaling Rules &amp; Trigger Mechanisms</div>
-      <h2>Predictive Scaling Rules (AI &amp; Machine Learning)</h2>
+    </section>
+    <!-- ==================== SLIDE 15: DELETION MECHANICS & SCOPE ==================== -->
+    <section class="slide" data-category="Scaling Group &amp; Capacity Design">
+      <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
+      <h2>Deletion Mechanics &amp; Scope</h2>
       
       <div class="grid-2">
         <div class="content-card highlight-purple">
-          <h3>The VM Boot Latency Challenge</h3>
-          <p>Why reactive metric alarms fall short for heavy enterprise applications:</p>
-          <ul>
-            <li>Standard ECS instances take <strong>2 to 5 minutes</strong> to boot the OS, initialize JVMs, warm caches, and join SLB backends.</li>
-            <li>During sudden viral surges, reactive CloudMonitor alarms trigger <em>after</em> CPU hits 80%. By the time new VMs are ready 5 minutes later, users have already suffered timeouts and dropped connections.</li>
-          </ul>
+          <h4>ForceDelete Execution</h4>
+          <p>Deleting a Scaling Group via the console or OpenAPI:</p>
+          <ol class="step-list">
+            <li><strong>Teardown Initiation:</strong> Group enters <code>Deleting</code> state and halts all incoming scaling requests.</li>
+            <li><strong>Traffic Deregistration:</strong> Automatically detaches all instances from associated SLB backends and removes IPs from RDS whitelists.</li>
+            <li><strong>Instance Termination:</strong> In <code>ForceDelete</code> mode, Auto Scaling automatically terminates all automatically launched ECS instances.</li>
+            <li><strong>Manual Instance Detachment:</strong> Manually added instances are safely detached and remain untouched in the user account.</li>
+          </ol>
         </div>
 
         <div class="content-card highlight-green">
-          <h3>Proactive Pre-Warming via Deep Learning</h3>
-          <p>Predictive scaling utilizes Alibaba Cloud machine learning algorithms to eliminate cold-start delays:</p>
+          <h4>Resource Deletion Scope</h4>
+          <p>Understanding which assets are removed vs. preserved:</p>
           <ul>
-            <li><strong>Historical Pattern Recognition:</strong> Analyzes minimum 24 hours (ideally several weeks) of CloudMonitor telemetry to identify repetitive daily and weekly business cycles.</li>
-            <li><strong>Forecast Horizon:</strong> Generates automated scaling predictions for the next 48 hours, updating the prediction model every 24 hours.</li>
-            <li><strong>Pre-Warming Buffer:</strong> Automatically provisions instances <strong>15 to 30 minutes BEFORE the anticipated traffic spike arrives</strong>, ensuring servers are 100% warmed and healthy when traffic hits.</li>
-            <li><strong>Safety Fallback:</strong> Operates alongside reactive dynamic alarms: if an unpredicted sudden surge exceeds the ML prediction, dynamic alarms instantly scale out extra capacity.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="callout callout-green" style="margin-top: 0.75rem;">
-        <div>
-          <span class="badge badge-updated">Enterprise Architecture Pattern</span> Combine **Predictive Scaling** (to pre-warm capacity for expected peak hours) with **Target Tracking** (to absorb unexpected real-time spikes). This dual-layer strategy delivers the ultimate combination of SLA stability and cost control.
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 22: EVENT-TRIGGERED ALARM TASKS ==================== -->
-    <section class="slide" data-category="Scaling Rules &amp; Trigger Mechanisms">
-      <div class="slide-category">Section 4: Scaling Rules &amp; Trigger Mechanisms</div>
-      <h2>Event-Triggered Alarm Tasks (CloudMonitor)</h2>
-      
-      <div class="grid-2">
-        <div class="content-card highlight">
-          <h3>CloudMonitor Integration Architecture</h3>
-          <p>Event-triggered tasks bridge real-time infrastructure telemetry with Auto Scaling actions:</p>
-          <ul>
-            <li>CloudMonitor agents collect system performance metrics across all ECS instances in the scaling group.</li>
-            <li>Aggregated statistics (Average, Maximum, Minimum) are computed across the cluster over specified evaluation windows (e.g. 1 min, 5 min).</li>
-            <li>When the metric breaches the configured threshold for <strong>N consecutive evaluation periods</strong> (e.g. 3 periods), CloudMonitor invokes the Auto Scaling API to execute the assigned Scaling Rule.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-blue">
-          <h3>Key Supported Metrics</h3>
-          <div class="table-wrapper">
-            <table class="slide-table">
-              <thead>
-                <tr>
-                  <th>Metric Name</th>
-                  <th>Measurement Unit</th>
-                  <th>Common Threshold Trigger</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>CPU Utilization</strong></td>
-                  <td>Percentage (%)</td>
-                  <td>Scale-Out: &ge; 75% | Scale-In: &le; 25%</td>
-                </tr>
-                <tr>
-                  <td><strong>Memory Utilization</strong></td>
-                  <td>Percentage (%)</td>
-                  <td>Scale-Out: &ge; 80% | Scale-In: &le; 30%</td>
-                </tr>
-                <tr>
-                  <td><strong>Intranet In / Out</strong></td>
-                  <td>Bytes / sec (Bps)</td>
-                  <td>Detects high network streaming or batch data ingestion</td>
-                </tr>
-                <tr>
-                  <td><strong>System Disk Read / Write</strong></td>
-                  <td>IOPS / Bps</td>
-                  <td>Detects disk I/O bottlenecks and log queue backups</td>
-                </tr>
-                <tr>
-                  <td><strong>TCP Connection Count</strong></td>
-                  <td>Established connections</td>
-                  <td>Detects massive concurrent user connection surges</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <div class="callout callout-amber" style="margin-top: 0.75rem;">
-        <div>
-          <span class="badge badge-exam">Cooldown Rule</span> <strong>During the cooldown period, CloudMonitor alarm requests are REJECTED</strong> by the Scaling Group. This deliberate lockout prevents runaway over-scaling while newly created instances are still booting.
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 23: SCHEDULED & RECURRING TASKS ==================== -->
-    <section class="slide" data-category="Scaling Rules &amp; Trigger Mechanisms">
-      <div class="slide-category">Section 4: Scaling Rules &amp; Trigger Mechanisms</div>
-      <h2>Scheduled &amp; Recurring Tasks</h2>
-      
-      <div class="grid-2">
-        <div class="content-card highlight">
-          <h3>Scheduled Task Parameters</h3>
-          <p>Executes a scaling rule at a predetermined date, time, or recurrence interval:</p>
-          <ul>
-            <li><strong>One-Time Execution:</strong> Triggers at an exact future timestamp (e.g., <code>2026-11-11 00:00:00</code> for a midnight product launch).</li>
-            <li><strong>Recurring Schedules:</strong> Uses standard cron expressions (e.g. <code>0 0 8 * * ?</code> to scale up at 08:00 every morning).</li>
-            <li><strong>Launch Expiration Time:</strong> The maximum time window (in seconds, up to 21,600s / 6 hours) that a scheduled task will wait and retry if the group is currently busy executing another activity. If the window expires, the task is abandoned.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-green">
-          <h3>Execution Conflict &amp; Priority Rules</h3>
-          <p>How Auto Scaling resolves scheduled task conflicts:</p>
-          <ul>
-            <li><strong>Bypasses Cooldown Period:</strong> Unlike CloudMonitor alarms, <strong>Scheduled Tasks execute immediately without waiting for cooldown time to expire</strong>!</li>
-            <li><strong>One Activity at a Time:</strong> If a scheduled task arrives while another scaling activity is running, it retries continuously within its Launch Expiration Time window.</li>
-            <li><strong>Simultaneous Task Resolution:</strong>
+            <li><strong>Permanently Deleted:</strong>
               <ul>
-                <li>If multiple tasks are scheduled at <em>similar</em> times, the earliest scheduled task triggers first. Subsequent tasks retry within their expiration windows.</li>
-                <li>If multiple tasks are scheduled at the <em>exact same minute</em>, the system executes the <strong>latest scheduled task</strong> created.</li>
+                <li>The Scaling Group container itself.</li>
+                <li>All internal Scaling Configurations and Scaling Rules.</li>
+                <li>All Scaling Activities and execution history logs.</li>
+              </ul>
+            </li>
+            <li><strong>Preserved &amp; Untouched:</strong>
+              <ul>
+                <li>Associated Server Load Balancer (SLB) instances.</li>
+                <li>Associated ApsaraDB RDS database instances.</li>
+                <li>Independent Scheduled Tasks and CloudMonitor alarms.</li>
+                <li>Virtual Private Cloud (VPC) and vSwitches.</li>
               </ul>
             </li>
           </ul>
         </div>
       </div>
-
-      <div class="callout callout-blue" style="margin-top: 0.75rem;">
-        <div>
-          <span class="badge badge-exam">Architectural Comparison</span> CloudMonitor Alarms are <strong>reactive</strong> and subject to cooldown locks. Scheduled Tasks are <strong>proactive</strong> and completely bypass cooldown locks.
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 24: THE COOLDOWN PERIOD ==================== -->
-    <section class="slide" data-category="Lifecycle Management &amp; Cooldown">
-      <div class="slide-category">Section 5: Lifecycle Management &amp; Cooldown</div>
-      <h2>The Cooldown Period (Anti-Flapping Mechanism)</h2>
+    </section>
+    <!-- ==================== SLIDE 16: SCALING CONFIGURATION FUNDAMENTALS ==================== -->
+    <section class="slide" data-category="Scaling Configuration &amp; Templates">
+      <div class="slide-category">Section 3: Scaling Configuration &amp; Templates</div>
+      <h2>Scaling Configuration Fundamentals</h2>
       
       <div class="grid-2">
-        <div class="content-card highlight-purple">
-          <h3>The Purpose of Cooldown Time</h3>
-          <p>The cooldown period is a mandatory stabilization window following any successful scaling activity:</p>
+        <div class="content-card highlight">
+          <p>A <strong>Scaling Configuration</strong> serves as the technical blueprint defining the hardware and software specifications of ECS instances provisioned by Auto Scaling:</p>
           <ul>
-            <li><strong>Why It Is Critical:</strong> When new ECS instances are added, they require several minutes to complete OS booting, initialize application runtimes, and warm up caches. During this window, cluster CPU utilization remains temporarily high.</li>
-            <li><strong>Preventing Flapping (Thrashing):</strong> Without a cooldown lock, CloudMonitor would continuously fire alarms every minute, adding 20 or 50 unnecessary instances before the first batch could even begin serving traffic.</li>
-            <li><strong>Default Cooldown:</strong> Configurable at the Scaling Group level (default: <strong>300 seconds / 5 minutes</strong>). Can also be overridden on individual scaling rules.</li>
+            <li><strong>Compute Specification:</strong> Instance Type / Family (e.g. <code>ecs.g7.xlarge</code>, 4 vCPU, 16 GiB memory).</li>
+            <li><strong>Operating System Image:</strong> Public image, Custom image (golden AMI), or Alibaba Cloud Marketplace image.</li>
+            <li><strong>Storage Tiers:</strong> System disk category (ESSD PL0–PL3) and capacity; optional data disk attachments.</li>
+            <li><strong>Network &amp; Security:</strong> Security Group IDs, public IPv6 dual-stack, or EIP bandwidth allocations.</li>
+            <li><strong>Credentials &amp; Access:</strong> SSH Key Pair, password, or RAM Role for instance authentication.</li>
+            <li><strong>User Data Script:</strong> Cloud-init shell script for automated boot-time software initialization and package updates.</li>
           </ul>
         </div>
 
         <div class="content-card highlight-blue">
-          <h3>Cooldown Behavior &amp; Task Selective Lockout</h3>
-          <div class="table-wrapper">
-            <table class="slide-table">
-              <thead>
-                <tr>
-                  <th>Trigger / Task Type</th>
-                  <th>Behavior During Cooldown</th>
-                  <th>Architectural Reason</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>CloudMonitor Alarm Tasks</strong></td>
-                  <td><span class="badge badge-exam" style="background:#fee2e2; color:#dc2626; border-color:#fca5a5;">REJECTED</span></td>
-                  <td>Blocks reactive metrics while new instances are warming up and stabilizing load.</td>
-                </tr>
-                <tr>
-                  <td><strong>Scheduled Tasks</strong></td>
-                  <td><span class="badge badge-updated">EXECUTED</span></td>
-                  <td>Deterministic business schedules take precedence; scheduled tasks bypass cooldown.</td>
-                </tr>
-                <tr>
-                  <td><strong>Manual API Execution</strong></td>
-                  <td><span class="badge badge-updated">EXECUTED</span></td>
-                  <td>Direct human operator intent overrides automated stabilization locks.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p style="font-size: 0.85rem; margin-top: 0.5rem; color: var(--text-secondary);">
-            <strong>Timer Start Point:</strong> Cooldown time begins strictly <em>after</em> the last ECS instance has finished being added/removed and attached to the SLB/RDS instances.
-          </p>
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 25: LIFECYCLE HOOKS ARCHITECTURE ==================== -->
-    <section class="slide" data-category="Lifecycle Management &amp; Cooldown">
-      <div class="slide-category">Section 5: Lifecycle Management &amp; Cooldown</div>
-      <h2>Lifecycle Hooks Architecture</h2>
-      
-      <div class="diagram-container clean" style="padding: 0.5rem; margin: 0.25rem 0 0.5rem 0;">
-        <img src="assets/images/auto-scaling-lifecycle-hook.svg" alt="Auto Scaling Lifecycle Hook Architecture" class="diagram-image" style="max-height: 220px; width: auto;">
-      </div>
-
-      <div class="grid-2" style="margin-top: 0.5rem;">
-        <div class="content-card highlight">
-          <h3>Scale-Out Hook: <code>PENDING_ADD</code></h3>
-          <p>Suspends the instance after OS boot before joining SLB traffic:</p>
+          <p>Architectural Best Practices:</p>
           <ul>
-            <li>Instance is created, IP allocated, and OS booted, but held in <code>PENDING_ADD</code>.</li>
-            <li><strong>Use Cases:</strong> Download latest application code, run database migrations, execute security posture scans, and pre-load in-memory caches.</li>
-            <li><strong>Action:</strong> Only after the hook completes does the instance transition to <code>IN_SERVICE</code> and accept incoming SLB client requests.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-blue">
-          <h3>Scale-In Hook: <code>PENDING_REMOVE</code></h3>
-          <p>Suspends instance termination during scale-in:</p>
-          <ul>
-            <li>Instance is removed from SLB traffic, but held alive in <code>PENDING_REMOVE</code>.</li>
-            <li><strong>Use Cases:</strong> Complete in-flight transactions (connection draining), flush local application buffers, and upload access logs/crash dumps to OSS buckets.</li>
-            <li><strong>Action:</strong> Only after the hook completes is the ECS instance actually released or stopped, guaranteeing <strong>zero data loss</strong>.</li>
+            <li><strong>Pre-Baked Custom Images:</strong> Package application binaries, dependencies, and system configurations directly into a golden image to minimize boot-up time during scale-out events.</li>
+            <li><strong>Instance RAM Roles:</strong> Assign an instance RAM role in the scaling configuration rather than embedding hardcoded AccessKey credentials in User Data scripts.</li>
+            <li><strong>ESSD Storage Tiering:</strong> Choose ESSD AutoPL or PL1 system disks to ensure sufficient IOPS during application startup without storage throughput bottlenecks.</li>
           </ul>
         </div>
       </div>
-    </section>
-    <!-- ==================== SLIDE 26: LIFECYCLE HOOK OPERATIONS ==================== -->
-    <section class="slide" data-category="Lifecycle Management &amp; Cooldown">
-      <div class="slide-category">Section 5: Lifecycle Management &amp; Cooldown</div>
-      <h2>Lifecycle Hook Operations &amp; Heartbeats</h2>
-      
-      <div class="grid-2">
-        <div class="content-card highlight-purple">
-          <h3>Hook State Machine Parameters</h3>
-          <div class="table-wrapper">
-            <table class="slide-table">
-              <thead>
-                <tr>
-                  <th>Parameter</th>
-                  <th>Value Range</th>
-                  <th>Operational Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Default Timeout</strong></td>
-                  <td>30 to 21,600 sec (up to 6 hrs)</td>
-                  <td>The duration Auto Scaling suspends the instance waiting for external task completion.</td>
-                </tr>
-                <tr>
-                  <td><strong>Heartbeat Extension</strong></td>
-                  <td><code>RecordLifecycleActionHeartbeat</code></td>
-                  <td>If a custom bootstrapping job requires more time, invoke this API to reset and extend the timeout clock.</td>
-                </tr>
-                <tr>
-                  <td><strong>Default Result (Timeout)</strong></td>
-                  <td><code>CONTINUE</code> or <code>ABANDON</code></td>
-                  <td>The fallback action executed if the timeout expires before an explicit completion signal is received.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="content-card highlight-green">
-          <h3>Timeout Action Decision Matrix</h3>
-          <p>Choosing the correct fallback outcome when tasks exceed timeout:</p>
-          <ul>
-            <li><strong>Scale-Out (PENDING_ADD):</strong>
-              <ul>
-                <li><code>CONTINUE</code>: Forcefully brings the instance into service and attaches it to SLB (risk: uninitialized code serves traffic).</li>
-                <li><code>ABANDON</code> (Recommended): Aborts and releases the failed instance, then rolls back or attempts to spin up a fresh one.</li>
-              </ul>
-            </li>
-            <li><strong>Scale-In (PENDING_REMOVE):</strong>
-              <ul>
-                <li><code>CONTINUE</code> (Recommended): Proceeds with instance termination/release.</li>
-                <li><code>ABANDON</code>: Stops scale-in, detaches the instance from group, but leaves the VM running.</li>
-              </ul>
-            </li>
-            <li><strong>Explicit Signal:</strong> Once your script finishes, always call <code>CompleteLifecycleAction</code> immediately to avoid waiting for the full timeout.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 27: INSTANCE REMOVAL POLICIES ==================== -->
-    <section class="slide" data-category="Lifecycle Management &amp; Cooldown">
-      <div class="slide-category">Section 5: Lifecycle Management &amp; Cooldown</div>
-      <h2>Instance Removal Policies</h2>
-      
-      <div class="table-wrapper">
-        <table class="slide-table">
-          <thead>
-            <tr>
-              <th>Removal Policy</th>
-              <th>Selection Criteria</th>
-              <th>Architectural Impact</th>
-              <th>Ideal Scenario</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>OldestInstance</strong><br><span class="badge badge-updated">FIFO (First-In, First-Out)</span></td>
-              <td>Selects the auto-created instance with the earliest creation timestamp.</td>
-              <td>Gradually rotates out older servers, preventing software state accumulation, memory leaks, and disk fragmentation.</td>
-              <td>Default enterprise web clusters, long-running microservices, and general production workloads.</td>
-            </tr>
-            <tr>
-              <td><strong>NewestInstance</strong><br><span class="badge badge-updated">LIFO (Last-In, First-Out)</span></td>
-              <td>Selects the most recently created auto-created instance in the group.</td>
-              <td>Protects established, pre-warmed servers with active connection pools and established caches.</td>
-              <td>Workloads where newly spawned instances are purely temporary surge absorbers and older nodes are warm.</td>
-            </tr>
-            <tr>
-              <td><strong>OldestScalingConfiguration</strong><br><span class="badge badge-exam">Fleet Modernization</span></td>
-              <td>Selects instances created by the oldest, outdated Scaling Configuration first.</td>
-              <td>Automatically purges legacy configuration instances from the group during natural scale-in events.</td>
-              <td>Active blue-green rollouts and automated progressive fleet upgrades after releasing new image versions.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="callout callout-green" style="margin-top: 0.75rem;">
-        <div>
-          <span class="badge badge-updated">Multi-Zone Balancing Precedence</span> In multi-zone scaling groups using Balanced Distribution, Auto Scaling first selects the availability zone with the most instances, and **then** applies the configured removal policy (e.g., OldestInstance) within that specific zone.
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 28: SERVER LOAD BALANCER INTEGRATION ==================== -->
-    <section class="slide" data-category="Cloud-Native Integrations">
-      <div class="slide-category">Section 6: Cloud-Native Integrations</div>
-      <h2>Server Load Balancer (SLB/ALB) Auto-Configuration</h2>
-      
-      <div class="grid-2">
-        <div class="content-card highlight">
-          <h3>Automated Registration Workflow</h3>
-          <p>Seamless traffic distribution across dynamic instance pools:</p>
-          <ul>
-            <li><strong>Zero Manual Binding:</strong> When an ECS instance is created by Auto Scaling, it is automatically attached to the backend server groups or VServer groups of all associated SLB/ALB instances.</li>
-            <li><strong>Port &amp; Weight Assignment:</strong> Uses the backend listening ports and default forwarding weights (e.g. weight=50) configured in the scaling group.</li>
-            <li><strong>Health Verification:</strong> Load balancers begin probing instance health; traffic is routed only after the instance reports passing health checks.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-blue">
-          <h3>Graceful Scale-In &amp; Connection Draining</h3>
-          <p>How Auto Scaling terminates instances without dropping active client sessions:</p>
-          <ul>
-            <li><strong>Automatic Deregistration:</strong> When scale-in begins, Auto Scaling immediately removes the target instance from the SLB backend pool.</li>
-            <li><strong>Zero New Connections:</strong> SLB stops directing any new client requests to the departing instance.</li>
-            <li><strong>Connection Draining Window:</strong> Existing in-flight HTTP connections are given a configurable grace period (e.g. 60-300 seconds) to finish cleanly.</li>
-            <li><strong>Safe Destruction:</strong> Only after active sessions drain and lifecycle hooks complete is the ECS instance actually destroyed.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="callout callout-blue" style="margin-top: 0.75rem;">
-        <div>
-          <span class="badge badge-exam">High Availability Architecture</span> You can associate multiple SLB instances (e.g. an external public-facing ALB for web clients and an internal private SLB for microservice RPC) with a single scaling group simultaneously.
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 29: APSARADB RDS WHITELIST INTEGRATION ==================== -->
-    <section class="slide" data-category="Cloud-Native Integrations">
-      <div class="slide-category">Section 6: Cloud-Native Integrations</div>
-      <h2>ApsaraDB RDS Whitelist Auto-Configuration</h2>
-      
-      <div class="grid-2">
-        <div class="content-card highlight-green">
-          <h3>The Dynamic IP Security Problem</h3>
-          <p>Managing database firewalls in an auto-scaled environment:</p>
-          <ul>
-            <li>ApsaraDB RDS enforces strict IP whitelisting: only explicitly authorized private IP addresses can open database connections.</li>
-            <li>Because Auto Scaling dynamically provisions and terminates instances with changing private IPs, manual whitelist updates are impossible. Opening the database to <code>0.0.0.0/0</code> violates security compliance.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight">
-          <h3>Automated Security Group Whitelisting</h3>
-          <p>How Auto Scaling automates zero-trust database security:</p>
-          <ul>
-            <li><strong>Scale-Out Injection:</strong> When a new instance boots, Auto Scaling queries its private IP (e.g. <code>172.16.1.45</code>) and automatically injects it into the security whitelist of all associated RDS instances.</li>
-            <li><strong>Immediate Database Access:</strong> Application servers can establish connection pools and begin querying RDS tables without permission errors.</li>
-            <li><strong>Scale-In Pruning:</strong> When an instance is removed or destroyed, its private IP is <strong>immediately purged from the RDS whitelist</strong>, preventing security holes or unauthorized reuse.</li>
-            <li><strong>Security Group Binding (Best Practice):</strong> Alternatively, bind the ECS Security Group directly to the RDS whitelist for instant zero-configuration authorization.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="callout callout-green" style="margin-top: 0.75rem;">
-        <div>
-          <span class="badge badge-updated">Enterprise Security Compliance</span> Automated RDS whitelisting ensures that even with dozens of dynamic scaling events per day, your database remains 100% shielded against unauthorized internal network access.
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 30: SERVERLESS HYBRID SCALING WITH ECI ==================== -->
-    <section class="slide" data-category="Cloud-Native Integrations">
-      <div class="slide-category">Section 6: Cloud-Native Integrations</div>
-      <h2>Serverless Hybrid Scaling with ECI</h2>
-      
-      <div class="diagram-container clean" style="padding: 0.5rem; margin: 0.25rem 0 0.5rem 0;">
-        <img src="assets/images/auto-scaling-hybrid-ecs-eci.svg" alt="Hybrid Auto Scaling ECS and ECI Architecture" class="diagram-image" style="max-height: 220px; width: auto;">
-      </div>
-
-      <div class="grid-2" style="margin-top: 0.5rem;">
-        <div class="content-card highlight">
-          <h3>Why Combine ECS and ECI?</h3>
-          <p>The optimal blend of cost efficiency and instant elasticity:</p>
-          <ul>
-            <li><strong>ECS Baseline (Cost Efficiency):</strong> Run your predictable, 24/7 baseline capacity on ECS instances covered by Subscriptions or Reserved Instances for lowest unit compute pricing.</li>
-            <li><strong>ECI Surge (Instant Elasticity):</strong> When sudden massive spikes exceed ECS capacity, offload surge containers directly to <strong>Elastic Container Instance (ECI)</strong> without provisioning underlying VMs.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-orange">
-          <h3>ECI Serverless Benefits in Auto Scaling</h3>
-          <p>Unmatched responsiveness during sudden traffic spikes:</p>
-          <ul>
-            <li><strong>Sub-Second Provisioning:</strong> ECI spins up container pods in seconds, completely bypassing the 2-5 minute OS boot overhead of traditional VMs.</li>
-            <li><strong>Per-Second Billing:</strong> Pay strictly for the exact CPU and memory consumed during the spike duration, scaling down to zero when traffic subsides.</li>
-            <li><strong>Unified SLB Routing:</strong> ALB and SLB distribute traffic across both ECS backend nodes and ECI serverless pods within the same backend group.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 31: BILLING MODEL ==================== -->
-    <section class="slide" data-category="Pricing Model &amp; Cost Optimization">
-      <div class="slide-category">Section 7: Pricing Model &amp; Cost Optimization</div>
-      <h2>Auto Scaling Service Billing Model</h2>
-      
-      <div class="grid-2">
-        <div class="content-card highlight-green">
-          <h3>The Auto Scaling Service is 100% Free</h3>
-          <p>Alibaba Cloud provides the Auto Scaling orchestration control plane free of charge:</p>
-          <ul>
-            <li><strong>Zero Control Plane Fees:</strong> No setup fees, no monthly subscription fees, and no per-scaling-activity charges.</li>
-            <li><strong>Unlimited Scaling Groups:</strong> Create scaling groups, scaling configurations, scheduled tasks, and lifecycle hooks at zero management cost.</li>
-            <li><strong>Free CloudMonitor Integration:</strong> Standard system metric collection and alarm evaluations are included with cloud operations.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight">
-          <h3>Billable Underlying Cloud Resources</h3>
-          <p>You are charged strictly for the infrastructure resources provisioned by the service:</p>
-          <div class="table-wrapper">
-            <table class="slide-table">
-              <thead>
-                <tr>
-                  <th>Resource Component</th>
-                  <th>Billing Model</th>
-                  <th>Cost Optimization Advice</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>ECS Compute (vCPU/RAM)</strong></td>
-                  <td>Pay-As-You-Go / Spot</td>
-                  <td>Leverage Preemptible (Spot) instances for surge tiers to achieve up to 90% savings.</td>
-                </tr>
-                <tr>
-                  <td><strong>Cloud Disks</strong></td>
-                  <td>PAYG hourly / GB</td>
-                  <td>Use Release Mode to delete disks on scale-in; or ESSD AutoPL for dynamic performance tiering.</td>
-                </tr>
-                <tr>
-                  <td><strong>Public Bandwidth &amp; EIPs</strong></td>
-                  <td>Pay-by-traffic / Bandwidth</td>
-                  <td>Keep scaled ECS instances on private VSwitches behind an SLB to eliminate individual EIP fees.</td>
-                </tr>
-                <tr>
-                  <td><strong>SLB / ALB Load Balancers</strong></td>
-                  <td>Capacity Units (LCU)</td>
-                  <td>Share load balancers across multiple scaling groups to optimize listener utilization.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 32: ENTERPRISE COST OPTIMIZATION ==================== -->
-    <section class="slide" data-category="Pricing Model &amp; Cost Optimization">
-      <div class="slide-category">Section 7: Pricing Model &amp; Cost Optimization</div>
-      <h2>Enterprise Cost Optimization Strategies</h2>
+    </section>
+    <!-- ==================== SLIDE 17: CONFIGURATION LIFECYCLE & MANAGEMENT ==================== -->
+    <section class="slide" data-category="Scaling Configuration &amp; Templates">
+      <div class="slide-category">Section 3: Scaling Configuration &amp; Templates</div>
+      <h2>Configuration Lifecycle &amp; Management</h2>
       
       <div class="grid-3">
-        <div class="content-card highlight">
-          <h3>1. 3-Tier Compute Sizing</h3>
-          <p>The golden architecture for enterprise cloud budgeting:</p>
+        <div class="content-card highlight-green">
+          <h4>Active Configuration</h4>
+          <p>The single operational blueprint:</p>
           <ul>
-            <li><strong>Tier 1 (Base - 40%):</strong> Covered by 1-3 year Reserved Instances (RI) or Savings Plans (60% discount).</li>
-            <li><strong>Tier 2 (Predictable - 30%):</strong> Standard Pay-As-You-Go instances scaled via scheduled rules.</li>
-            <li><strong>Tier 3 (Burst - 30%):</strong> Preemptible (Spot) instances or serverless ECI for traffic peaks (90% discount).</li>
+            <li>A Scaling Group can have <strong>only ONE Active Scaling Configuration</strong> at any given time.</li>
+            <li>All newly triggered scale-out activities use this active configuration to launch instances.</li>
+            <li>Cannot be deleted while marked as Active.</li>
           </ul>
         </div>
 
-        <div class="content-card highlight-blue">
-          <h3>2. Reclaim Mode Governance</h3>
-          <p>Aligning reclaim behavior with workload types:</p>
+        <div class="content-card highlight-purple">
+          <h4>Inactive Configurations</h4>
+          <p>Alternative blueprints:</p>
           <ul>
-            <li><strong>Stateless Web Frontends:</strong> Use <strong>Release Mode</strong> to completely destroy VMs on scale-in, eliminating 100% of idle compute and disk costs.</li>
-            <li><strong>Heavy State/Cache Nodes:</strong> Use <strong>Shutdown &amp; Reclaim Mode</strong> under No-Fee Stopped status to retain warm disks for rapid 30-second restart.</li>
+            <li>A Scaling Group can store up to <strong>10 Scaling Configurations</strong> simultaneously.</li>
+            <li>Allows staging newer instance generations or updated software images without downtime.</li>
+            <li>Can be switched to Active instantly with zero service disruption.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight">
+          <h4>Deletion Rules</h4>
+          <p>Strict safety constraints:</p>
+          <ul>
+            <li>Active configurations cannot be deleted directly; must switch to another configuration first.</li>
+            <li>A configuration cannot be deleted if running instances created by that configuration still exist in the group.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-card highlight-blue" style="margin-top: 0.75rem;">
+        <p><strong>Immutable Modification Principle:</strong> Once created, individual attributes of a Scaling Configuration cannot be edited in place. To update instance specs or image IDs, administrators create a new Scaling Configuration and set it as Active.</p>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 18: MULTI-FAMILY SPECIFICATIONS & SPOT POOLING ==================== -->
+    <section class="slide" data-category="Scaling Configuration &amp; Templates">
+      <div class="slide-category">Section 3: Scaling Configuration &amp; Templates</div>
+      <h2>Multi-Family Specifications &amp; Spot Pooling</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <h4>Multi-Instance Type Configuration</h4>
+          <p>Preventing inventory stockouts in high-density regions:</p>
+          <ul>
+            <li>Administrators can configure up to <strong>10 instance types</strong> in priority order within a single scaling configuration.</li>
+            <li>During scale-out, Auto Scaling attempts to provision the first priority instance family (e.g. <code>ecs.c7.large</code>).</li>
+            <li>If inventory is exhausted in that zone, it seamlessly falls back to subsequent configured families (e.g. <code>ecs.c6.large</code>, <code>ecs.g7.large</code>).</li>
           </ul>
         </div>
 
         <div class="content-card highlight-green">
-          <h3>3. Metric Tuning &amp; Damping</h3>
-          <p>Preventing wasteful over-allocation:</p>
+          <h4>Spot Instance Diversification</h4>
+          <p>Maximizing compute capacity at fraction of cost:</p>
           <ul>
-            <li>Calibrate cooldown times to match real application startup times (avoiding double-scaling).</li>
-            <li>Use <strong>Target Tracking</strong> with conservative scale-in thresholds to avoid unnecessary compute churn.</li>
-            <li>Enable <strong>Predictive Scaling</strong> to pre-warm capacity without needing oversized initial baselines.</li>
+            <li>Combine Pay-As-You-Go with Spot instances to achieve up to <strong>80% to 90% cost savings</strong>.</li>
+            <li>Configure Spot allocation strategy: <em>Cost-Optimized</em> (selects lowest price) or <em>Capacity-Optimized</em> (selects lowest eviction probability).</li>
+            <li><strong>Automated On-Demand Fallback:</strong> If Spot instances are unavailable or reclaimed, Auto Scaling automatically provisions Pay-As-You-Go instances to preserve capacity.</li>
           </ul>
         </div>
       </div>
+    </section>
+    <!-- ==================== SLIDE 19: ECS LAUNCH TEMPLATES INTEGRATION ==================== -->
+    <section class="slide" data-category="Scaling Configuration &amp; Templates">
+      <div class="slide-category">Section 3: Scaling Configuration &amp; Templates</div>
+      <h2>ECS Launch Templates Integration</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight-blue">
+          <h4>Decoupled Launch Templates</h4>
+          <p>Modern cloud architecture replaces static scaling configurations with global <strong>ECS Launch Templates</strong>:</p>
+          <ul>
+            <li><strong>Reusable Blueprints:</strong> A single Launch Template can be shared across multiple Scaling Groups, E-MapReduce clusters, and manual ECS provisioning.</li>
+            <li><strong>Unified Governance:</strong> Centralizes instance specification governance, AMI updates, and security compliance.</li>
+            <li><strong>Multi-Version Management:</strong> Launch Templates maintain full version history (<code>Version 1</code>, <code>Version 2</code>, <code>Version 3</code>).</li>
+          </ul>
+        </div>
 
-      <div class="callout callout-green" style="margin-top: 0.75rem;">
-        <div>
-          <span class="badge badge-updated">Cost Benchmark</span> Implementing the 3-Tier Compute architecture with Auto Scaling consistently reduces total compute expenditures by **45% to 65%** compared to traditional static provisioning.
+        <div class="content-card highlight-purple">
+          <h4>Version Binding in Auto Scaling</h4>
+          <p>Flexible version binding options for Scaling Groups:</p>
+          <ul>
+            <li><strong>Specific Version Pinning:</strong> Pin the Scaling Group to a tested version (e.g. <code>Version 2</code>) to guarantee operational consistency across deployments.</li>
+            <li><strong>Default Version Tracking:</strong> Automatically tracks the template's designated Default Version, enabling instant canary rollouts.</li>
+            <li><strong>Latest Version Tracking:</strong> Automatically adopts the latest published template version whenever a new scale-out activity occurs.</li>
+          </ul>
         </div>
       </div>
-    </section>
-    <!-- ==================== SLIDE 33: ARCHITECT RECAP ==================== -->
-    <section class="slide" data-category="Summary">
-      <div class="slide-category">Cloud Architect Recap</div>
-      <h2>Auto Scaling Resource Scoping &amp; Boundaries</h2>
+    </section>
+    <!-- ==================== SLIDE 20: SCALING RULES FUNDAMENTALS ==================== -->
+    <section class="slide" data-category="Scaling Rules &amp; Capacity Bounds">
+      <div class="slide-category">Section 4: Scaling Rules &amp; Capacity Bounds</div>
+      <h2>Scaling Rules Fundamentals</h2>
       
-      <div class="table-wrapper">
-        <table class="slide-table">
-          <thead>
-            <tr>
-              <th>Architectural Domain</th>
-              <th>Scope &amp; Boundary Limit</th>
-              <th>Architectural Mandate &amp; Best Practice</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Geographic Scope</strong></td>
-              <td>Single Region / Multi-AZ</td>
-              <td>A Scaling Group cannot span multiple regions. To build cross-region disaster recovery, create independent scaling groups per region and route traffic via Global Traffic Manager (GTM).</td>
-            </tr>
-            <tr>
-              <td><strong>Network Boundary</strong></td>
-              <td>Single VPC</td>
-              <td>All VSwitches in a Scaling Group must belong to the same VPC. Bind multiple VSwitches across distinct AZs using Balanced Distribution.</td>
-            </tr>
-            <tr>
-              <td><strong>Configuration Capacity</strong></td>
-              <td>Max 10 Configurations per Group</td>
-              <td>Only 1 configuration is active at a time. Use ECS Launch Templates for unlimited versioning and cross-service standardization.</td>
-            </tr>
-            <tr>
-              <td><strong>Scaling Activity Concurrency</strong></td>
-              <td>Strictly 1 Activity at a time</td>
-              <td>Scaling activities are atomic and non-interruptible. Set distinct launch expiration times on overlapping scheduled tasks.</td>
-            </tr>
-            <tr>
-              <td><strong>Cooldown Lockout</strong></td>
-              <td>Blocks CloudMonitor Alarms Only</td>
-              <td>Default 300s. Prevents flapping while instances boot. Scheduled tasks and manual API calls bypass the cooldown period.</td>
-            </tr>
-            <tr>
-              <td><strong>Instance Reclaim Safety</strong></td>
-              <td>Manual Instances are Protected</td>
-              <td>Auto-created instances are terminated or stopped upon scale-in. Manually added instances are strictly detached, never destroyed.</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <p>A <strong>Scaling Rule</strong> defines the specific quantitative action executed when a scaling event is triggered:</p>
+          <ul>
+            <li><strong>Action Types:</strong>
+              <ul>
+                <li><strong>Add $N$ Instances:</strong> Increases capacity by a fixed count (e.g., <code>Add 2 instances</code>).</li>
+                <li><strong>Remove $N$ Instances:</strong> Decreases capacity by a fixed count (e.g., <code>Remove 1 instance</code>).</li>
+                <li><strong>Adjust to $N$ Instances:</strong> Sets absolute total capacity to a specific number (e.g., <code>Adjust to 10 instances</code>).</li>
+                <li><strong>Percentage Scaling:</strong> Adjusts capacity by a percentage of current total (e.g., <code>Add 25%</code>).</li>
+              </ul>
+            </li>
+            <li><strong>Rule Types:</strong> Simple Scaling Rule, Target Tracking Scaling Rule, and Step Scaling Rule.</li>
+            <li><strong>Cooldown Parameter:</strong> Optional rule-specific cooldown time that overrides the group's default cooldown.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <p>Rule Execution Behavior:</p>
+          <ul>
+            <li><strong>Direct Execution:</strong> Manually triggering a scaling rule executes immediately without waiting for cooldown expiration.</li>
+            <li><strong>Alarm Association:</strong> Rules are linked to CloudMonitor alert tasks or scheduled tasks to automate execution.</li>
+            <li><strong>Activity Generation:</strong> Every successful rule execution generates a tracked <strong>Scaling Activity</strong> recording instance IDs, timings, and outcomes.</li>
+          </ul>
+        </div>
       </div>
-    </section>
-    <!-- ==================== SLIDE 34: PRACTICE SCENARIO 1 (QUESTION) ==================== -->
+    </section>
+    <!-- ==================== SLIDE 21: STRICT BOUNDARY CLAMPING ==================== -->
+    <section class="slide" data-category="Scaling Rules &amp; Capacity Bounds">
+      <div class="slide-category">Section 4: Scaling Rules &amp; Capacity Bounds</div>
+      <h2>Strict Boundary Clamping</h2>
+      
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
+        <img src="assets/images/auto-scaling-rules-adjustment.png" alt="Scaling Rule Boundary Clamping Diagram" style="max-height: 250px; width: auto; max-width: 100%; object-fit: contain;">
+      </div>
+
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <h4>MaxSize Ceiling Clamping</h4>
+          <p>Scaling rules can never breach the group's upper boundary:</p>
+          <ul>
+            <li><strong>Scenario:</strong> Scaling Group MaxSize = 3, Total Capacity = 2. A rule triggers to "Add 3 instances".</li>
+            <li><strong>Outcome:</strong> Auto Scaling clamps the request and adds <strong>only 1 instance</strong>, bringing total capacity exactly to MaxSize (3).</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-purple">
+          <h4>MinSize Floor Clamping</h4>
+          <p>Scaling rules can never breach the group's lower boundary:</p>
+          <ul>
+            <li><strong>Scenario:</strong> Scaling Group MinSize = 2, Total Capacity = 3. A rule triggers to "Remove 5 instances".</li>
+            <li><strong>Outcome:</strong> Auto Scaling clamps the request and removes <strong>only 1 instance</strong>, preserving the MinSize baseline (2).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 22: TARGET TRACKING SCALING ==================== -->
+    <section class="slide" data-category="Scaling Rules &amp; Capacity Bounds">
+      <div class="slide-category">Section 4: Scaling Rules &amp; Capacity Bounds</div>
+      <h2>Target Tracking Scaling</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight-green">
+          <h4>Autonomous Capacity Calculation</h4>
+          <p>Target Tracking eliminates the need for manual metric thresholds and complex step rules:</p>
+          <ul>
+            <li><strong>Set a Target Metric:</strong> The administrator specifies a desired target value (e.g. maintain <em>Average CPU Utilization at 50%</em>).</li>
+            <li><strong>Continuous Closed-Loop Control:</strong> Auto Scaling continuously monitors telemetry and automatically calculates the exact number of instances to add or remove to keep the metric near target.</li>
+            <li><strong>Proportional Response:</strong> Automatically handles small drifts with minor adjustments and large traffic surges with massive instant scale-out.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <h4>Supported Predefined Metrics</h4>
+          <p>Built-in CloudMonitor telemetry integrations:</p>
+          <ul>
+            <li><strong>CpuUtilization:</strong> Average CPU usage across all instances in the group (e.g., target: 60%).</li>
+            <li><strong>ClassicInternetRx:</strong> Average inbound network traffic rate per instance.</li>
+            <li><strong>ClassicInternetTx:</strong> Average outbound network traffic rate per instance.</li>
+            <li><strong>IntranetRx / IntranetTx:</strong> Internal VPC intranet traffic flows.</li>
+            <li><strong>SLB Request Count:</strong> Number of incoming HTTP/HTTPS requests per target server.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 23: STEP SCALING RULES ==================== -->
+    <section class="slide" data-category="Scaling Rules &amp; Capacity Bounds">
+      <div class="slide-category">Section 4: Scaling Rules &amp; Capacity Bounds</div>
+      <h2>Step Scaling Rules</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <h4>Graduated Threshold Architecture</h4>
+          <p>Step Scaling provides tiered responses based on the severity of a metric alarm breach:</p>
+          <ul>
+            <li>Different scaling adjustments are applied depending on how far the metric exceeds the alarm threshold.</li>
+            <li>Provides aggressive instant capacity expansion during massive surges while preventing over-scaling during modest traffic bumps.</li>
+            <li>Continues responding to changing metric values even during active execution steps.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-purple">
+          <h4>Concrete Step Scaling Example</h4>
+          <p>Baseline alarm configured at CPU Utilization &gt; 60%:</p>
+          <ul>
+            <li><strong>Step 1 (60% to 70% CPU):</strong> Add 1 instance (gentle drift mitigation).</li>
+            <li><strong>Step 2 (70% to 85% CPU):</strong> Add 4 instances (moderate load surge).</li>
+            <li><strong>Step 3 (&gt; 85% CPU):</strong> Add 10 instances (emergency flash sale spike).</li>
+          </ul>
+          <p><strong>Warm-Up Optimization:</strong> Instances launched via step scaling observe an instance warm-up timer before their metrics are included in cluster averages.</p>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 24: TRIGGER ARCHITECTURE OVERVIEW ==================== -->
+    <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
+      <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
+      <h2>Auto Scaling Operational Usage Workflow</h2>
+      
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
+        <img src="assets/images/auto-scaling-usage-workflow.png" alt="Auto Scaling 6-Step Operational Usage Workflow" style="max-height: 140px; width: auto; max-width: 100%; object-fit: contain;">
+      </div>
+
+      <div class="content-card highlight">
+        <p>The standard 6-step lifecycle for deploying and automating Auto Scaling:</p>
+        <ol class="step-list">
+          <li><strong>Create Scaling Group:</strong> Configure MinSize, MaxSize, default cooldown, VPC network, SLB, and RDS instances.</li>
+          <li><strong>Create Scaling Configuration:</strong> Define ECS instance attributes such as Image ID, instance family, and security groups.</li>
+          <li><strong>Enable Scaling Group:</strong> Activate the scaling group with the scaling configuration created in Step 2.</li>
+          <li><strong>Create Scaling Rules:</strong> Define specific scaling actions, such as adding or removing $N$ instances.</li>
+          <li><strong>Create Scheduled Tasks:</strong> Trigger scaling rules at specific planned times (e.g. scale up at 12:00 AM daily).</li>
+          <li><strong>Create Alarm Tasks:</strong> Configure CloudMonitor rules to dynamically scale based on real-time metrics (e.g. CPU &ge; 80%).</li>
+        </ol>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 25: DIRECT EXECUTION & MANUAL OPERATIONS ==================== -->
+    <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
+      <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
+      <h2>Direct Execution &amp; Manual Operations</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight-blue">
+          <h4>Direct Rule Execution</h4>
+          <p>Manual administrative triggers via console or API:</p>
+          <ul>
+            <li>Can be executed whenever the group is in <code>Active</code> state and no activity is currently running.</li>
+            <li><strong>Cooldown Bypass:</strong> Direct manual execution bypasses the cool-down time and executes immediately.</li>
+            <li>Respects Min/Max boundaries: If added instances would exceed MaxSize, the operation is clamped to MaxSize.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-purple">
+          <h4>Attaching &amp; Detaching Running Instances</h4>
+          <p>Integrating pre-existing ECS instances:</p>
+          <ul>
+            <li><strong>Adding Existing Instances:</strong> Existing instances in the same VPC/region can be attached to the group. The operation fails immediately if adding them exceeds MaxSize.</li>
+            <li><strong>Configuration Independence:</strong> Manually attached instances are NOT tied to the active Scaling Configuration.</li>
+            <li><strong>Detaching Instances:</strong> Detached instances are removed from SLB/RDS, but are NEVER stopped or deleted.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 26: SCHEDULED TASKS & RECURRING CRON ==================== -->
+    <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
+      <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
+      <h2>Scheduled Tasks &amp; Recurring Cron</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <h4>Scheduled Task Architecture</h4>
+          <p>Predictable traffic scheduling for planned events:</p>
+          <ul>
+            <li>Create up to <strong>20 scheduled tasks</strong> per scaling group.</li>
+            <li>Triggers a specific Scaling Rule at a designated launch time (e.g. 13:00 every weekday).</li>
+            <li>Supports flexible recurrence patterns: Daily, Weekly, Monthly, or standard Cron expressions.</li>
+            <li><strong>Cooldown Bypass:</strong> Scheduled tasks can execute immediately without waiting for cool-down expiration.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h4>Launch Expiration Window</h4>
+          <p>Preventing task abandonment during busy activities:</p>
+          <ul>
+            <li><strong>Launch Expiration Time:</strong> Configurable retry window (default: 600s, up to 86,400s).</li>
+            <li>If a scheduled task triggers while the group is busy executing another activity, the task retries automatically within the expiration window.</li>
+            <li>Once the active activity completes and the group becomes idle, the scheduled task executes immediately.</li>
+            <li>If the window expires before execution, the task is safely abandoned.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 27: SCHEDULED TASK CONCURRENCY RESOLUTION ==================== -->
+    <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
+      <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
+      <h2>Scheduled Task Concurrency Resolution</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight-purple">
+          <h4>Concurrency Execution Rules</h4>
+          <p>Strict order resolution when multiple scheduled tasks conflict:</p>
+          <ul>
+            <li><strong>Single Activity Invariant:</strong> A Scaling Group can execute only ONE Scaling Activity at a time. Simultaneous activities are strictly prohibited.</li>
+            <li><strong>Earliest Task Priority:</strong> If multiple tasks trigger at overlapping times, the earliest scheduled task triggers its activity first. Remaining tasks retry within their Launch Expiration Times.</li>
+            <li><strong>Simultaneous Conflict Resolution:</strong> If multiple tasks are scheduled at the exact same second, Auto Scaling executes the <strong>latest created task</strong> and abandons earlier conflicting tasks.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <h4>Conflict Flow Resolution</h4>
+          <ol class="step-list">
+            <li><strong>Task 1 Triggers (10:00:00):</strong> Scaling Activity 1 starts adding 5 instances (takes 180s).</li>
+            <li><strong>Task 2 Triggers (10:01:00):</strong> Blocked because Activity 1 is active; enters Launch Expiration retry loop.</li>
+            <li><strong>Activity 1 Completes (10:03:00):</strong> Task 2 successfully executes its rule within its expiration window.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 28: CLOUDMONITOR METRIC ALARM TASKS ==================== -->
+    <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
+      <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
+      <h2>CloudMonitor Metric Alarm Tasks</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <h4>Telemetry Alarm Architecture</h4>
+          <p>Dynamic scaling triggered by real-time infrastructure metrics:</p>
+          <ul>
+            <li>Monitors telemetry streams collected by the CloudMonitor agent on each ECS instance.</li>
+            <li><strong>Statistical Functions:</strong> Evaluates Average, Maximum, or Minimum across all instances in the Scaling Group.</li>
+            <li><strong>Evaluation Periods:</strong> Configures continuous evaluation periods (e.g. 3 consecutive checks of 1 minute) to filter out transient metric spikes.</li>
+            <li><strong>Comparison Operators:</strong> Triggers linked Scaling Rules when metric &ge; or &le; threshold.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h4>Core Telemetry Metrics</h4>
+          <p>Key metrics used in enterprise scaling alarms:</p>
+          <ul>
+            <li><strong>CpuUtilization:</strong> Processor load (scale-out at &ge; 75%, scale-in at &le; 25%).</li>
+            <li><strong>MemoryUtilization:</strong> Memory saturation for caching tiers.</li>
+            <li><strong>IntranetIn / IntranetOut:</strong> Internal bandwidth flows across application tiers.</li>
+            <li><strong>TcpConnection:</strong> Active socket counts on web application servers.</li>
+            <li><strong>SystemDiskReadBps / WriteBps:</strong> Storage I/O throughput bottlenecks.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 29: COOL-DOWN PERIOD ARCHITECTURE ==================== -->
+    <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
+      <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
+      <h2>Cool-Down Period Architecture</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight-purple">
+          <h4>The Cool-Down Mechanics</h4>
+          <p>Preventing flapping and over-provisioning cycles:</p>
+          <ul>
+            <li><strong>Lockout Window:</strong> A configurable period (default: 300 seconds, 0–86,400s) during which the scaling group stabilizes.</li>
+            <li><strong>Start Timestamp:</strong> The cool-down timer begins immediately after the last ECS instance is successfully added or removed by a Scaling Activity.</li>
+            <li><strong>Purpose:</strong> Allows newly launched instances to complete OS boot-up, start application services, warm up memory caches, and absorb traffic before metrics are re-evaluated.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight">
+          <h4>The Asymmetric Lockout Rule</h4>
+          <p>Crucial distinction between trigger types during cooldown:</p>
+          <ul>
+            <li><strong>REJECTED During Cooldown:</strong> Scaling activities requested by <strong>CloudMonitor alarm tasks are strictly rejected</strong> to prevent runaway over-scaling.</li>
+            <li><strong>ALLOWED During Cooldown:</strong> <strong>Manually executed scaling rules</strong> and <strong>Scheduled Tasks</strong> bypass cooldown and execute immediately.</li>
+            <li><strong>Architectural Value:</strong> Ensures operational emergency overrides can always execute while preventing autonomous telemetry feedback loops.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 30: ACTIVITY ATOMICITY & ROLLBACK INTEGRITY ==================== -->
+    <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
+      <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
+      <h2>Scaling Activity Atomicity &amp; Rollback Integrity</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight-blue">
+          <h4>Atomicity &amp; Non-Interruptible Invariant</h4>
+          <p>Scaling Activity execution characteristics:</p>
+          <ul>
+            <li><strong>Single Activity Execution:</strong> Only one scaling activity can execute in a Scaling Group at any point in time.</li>
+            <li><strong>Non-Interruptible:</strong> Once initiated, an activity cannot be paused, stopped, or forcibly aborted. For example, if adding 20 instances, it cannot be terminated halfway after creating 5.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-purple">
+          <h4>Instance-Level Rollback Integrity</h4>
+          <p>How Auto Scaling handles partial operational failures:</p>
+          <ul>
+            <li><strong>System Rollback Target:</strong> When an activity fails to complete (e.g. 20 instances created, but 1 fails to attach to SLB), the system maintains <strong>instance integrity, NOT activity integrity</strong>.</li>
+            <li><strong>Targeted Release:</strong> The system releases only the failed instance; successfully configured instances remain active in the group.</li>
+            <li><strong>Billing Implication:</strong> Because Auto Scaling provisions instances via the ECS API, rolled-back instances incur standard Pay-As-You-Go charges for the brief period they ran.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 31: LIFECYCLE HOOKS ARCHITECTURE ==================== -->
+    <section class="slide" data-category="Lifecycle Hooks &amp; Event Notifications">
+      <div class="slide-category">Section 6: Lifecycle Hooks &amp; Event Notifications</div>
+      <h2>Lifecycle Hooks Architecture</h2>
+      
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
+        <img src="assets/images/auto-scaling-lifecycle-hooks.png" alt="Auto Scaling Lifecycle Hooks Architecture" style="max-height: 250px; width: auto; max-width: 100%; object-fit: contain;">
+      </div>
+
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <h4>PENDING_ADD (Scale-Out Hook)</h4>
+          <p>Suspends newly launched instances before traffic arrives:</p>
+          <ul>
+            <li>Instance is created, disks attached, and IP assigned.</li>
+            <li>Hook suspends the instance in <code>PENDING:WAIT</code> state before it is added to SLB backends or RDS whitelists.</li>
+            <li>Enables custom package installation, schema initialization, and cache pre-warming via Cloud Assistant.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <h4>PENDING_REMOVE (Scale-In Hook)</h4>
+          <p>Suspends instances during scale-in before VM destruction:</p>
+          <ul>
+            <li>Instance is removed from SLB backends; traffic drains safely.</li>
+            <li>Hook suspends the instance in <code>PENDING:WAIT</code> state before deletion.</li>
+            <li>Allows uploading local log files to OSS, saving memory states, and finishing background queue tasks with zero loss.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 32: HOOK EXECUTION FLOW & HEARTBEATS ==================== -->
+    <section class="slide" data-category="Lifecycle Hooks &amp; Event Notifications">
+      <div class="slide-category">Section 6: Lifecycle Hooks &amp; Event Notifications</div>
+      <h2>Lifecycle Hook Pipeline &amp; Heartbeats</h2>
+      
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
+        <img src="assets/images/auto-scaling-lifecycle-hook.svg" alt="Lifecycle Hook State Machine" style="max-height: 220px; width: auto; max-width: 100%; object-fit: contain;">
+      </div>
+
+      <div class="grid-3">
+        <div class="content-card highlight">
+          <h4>1. Timeout Window</h4>
+          <p>Configurable timeout (30 to 21,600s, default 600s). If script finishes early, it sends <code>CompleteLifecycleAction</code> immediately.</p>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <h4>2. Heartbeat Extension</h4>
+          <p>Long operations can invoke <code>RecordLifecycleAction</code> to extend the timeout, resetting the countdown clock.</p>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h4>3. Hook Outcomes</h4>
+          <p><code>CONTINUE</code> proceeds to IN_SERVICE or termination. <code>ABANDON</code> aborts scale-out, releasing the instance cleanly.</p>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 33: GRACEFUL SCALE-IN EVACUATION ==================== -->
+    <section class="slide" data-category="Lifecycle Hooks &amp; Event Notifications">
+      <div class="slide-category">Section 6: Lifecycle Hooks &amp; Event Notifications</div>
+      <h2>Graceful Scale-In Evacuation</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight-purple">
+          <h4>The In-Flight Data Loss Dilemma</h4>
+          <p>Abruptly terminating web servers during scale-in causes sever customer-facing errors:</p>
+          <ul>
+            <li>Active HTTP sessions and long-polling connections are severed mid-transaction, generating HTTP 502/504 errors.</li>
+            <li>Local application transaction logs stored on ephemeral system disks are destroyed before being archived to central storage.</li>
+            <li>Asynchronous queue workers processing payment or report jobs are terminated without completing state checkpoints.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h4>The 4-Step Graceful Evacuation Architecture</h4>
+          <ol class="step-list">
+            <li><strong>SLB Connection Draining:</strong> Instance weight is set to 0. SLB stops routing new connections while allowing existing requests up to 300 seconds to complete cleanly.</li>
+            <li><strong>Trigger PENDING_REMOVE Hook:</strong> Auto Scaling suspends VM deletion and triggers a Cloud Assistant notification.</li>
+            <li><strong>Automated Log &amp; Queue Flushing:</strong> Local shell scripts upload application logs to Object Storage Service (OSS) and finish pending jobs.</li>
+            <li><strong>Signal CompleteLifecycleAction:</strong> Cloud Assistant signals Auto Scaling to release the VM with zero customer impact.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 34: EVENT NOTIFICATIONS VIA MNS & CLOUDMONITOR ==================== -->
+    <section class="slide" data-category="Lifecycle Hooks &amp; Event Notifications">
+      <div class="slide-category">Section 6: Lifecycle Hooks &amp; Event Notifications</div>
+      <h2>Event Notifications via MNS &amp; CloudMonitor</h2>
+      
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
+        <img src="assets/images/auto-scaling-event-notifications.png" alt="Auto Scaling Event Notifications Architecture" style="max-height: 250px; width: auto; max-width: 100%; object-fit: contain;">
+      </div>
+
+      <div class="grid-2">
+        <div class="content-card highlight-blue">
+          <h4>Notification Types</h4>
+          <p>Real-time event streams emitted by Auto Scaling:</p>
+          <ul>
+            <li><code>AUTOSCALING:SCALE_OUT_SUCCESS</code> / <code>FAILED</code></li>
+            <li><code>AUTOSCALING:SCALE_IN_SUCCESS</code> / <code>FAILED</code></li>
+            <li><code>AUTOSCALING:SCALE_REJECT</code> (rejected during cooldown or max size)</li>
+            <li><code>AUTOSCALING:LIFECYCLE_ACTION_TIMEOUT</code></li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-purple">
+          <h4>Downstream Delivery Channels</h4>
+          <p>Automating modern DevOps workflows:</p>
+          <ul>
+            <li><strong>Message Service (MNS):</strong> Delivers JSON payloads to MNS topics and queues for asynchronous event-driven consumption.</li>
+            <li><strong>Function Compute (FC):</strong> Directly triggers serverless functions to perform automated infrastructure tasks upon scaling events.</li>
+            <li><strong>Webhooks &amp; ChatOps:</strong> Dispatches real-time alerts to DingTalk, Slack, or enterprise PagerDuty webhooks.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 35: SERVERLESS CONTAINER BURSTS WITH ECI ==================== -->
+    <section class="slide" data-category="Cloud-Native Scaling &amp; Cost Optimization">
+      <div class="slide-category">Section 7: Cloud-Native Scaling &amp; Cost Optimization</div>
+      <h2>Serverless Container Bursts with ECI</h2>
+      
+      <div class="grid-2">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+          <img src="assets/images/auto-scaling-hybrid-ecs-eci.svg" alt="Hybrid ECS and Serverless ECI Container Scaling" style="max-height: 420px; width: auto; max-width: 100%; object-fit: contain;">
+        </div>
+
+        <div class="content-card highlight-green">
+          <p>Modern cloud architecture combines ECS virtual machines with <strong>Elastic Container Instance (ECI)</strong> for hybrid scaling:</p>
+          <ul>
+            <li><strong>Baseline Capacity on ECS:</strong> Run steady-state base traffic on Reserved/Subscription ECS instances for maximum predictable cost efficiency.</li>
+            <li><strong>Instant Burst to ECI:</strong> During sudden extreme surges, Auto Scaling provisions serverless ECI container pods in <strong>under 10 seconds</strong> without waiting for full VM boot times.</li>
+            <li><strong>Zero Server Management:</strong> ECI pods run serverless sandboxes without underlying host OS management or cluster capacity constraints.</li>
+            <li><strong>Kubernetes Integration:</strong> Seamlessly coordinates with Container Service for Kubernetes (ACK) via virtual-kubelet to absorb traffic bursts.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 36: PREDICTIVE SCALING & AI FORECASTING ==================== -->
+    <section class="slide" data-category="Cloud-Native Scaling &amp; Cost Optimization">
+      <div class="slide-category">Section 7: Cloud-Native Scaling &amp; Cost Optimization</div>
+      <h2>Predictive Scaling &amp; AI Forecasting</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight-purple">
+          <h4>The Cold-Start Latency Challenge</h4>
+          <p>Traditional reactive scaling responds only AFTER metrics breach alarms:</p>
+          <ul>
+            <li>Metric evaluation takes 1 to 3 minutes; VM provisioning, OS boot, and application startup require an additional 3 to 5 minutes.</li>
+            <li>During this 5–8 minute cold-start window, user requests experience elevated latency, degraded performance, or timeouts.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <h4>AI-Driven Predictive Forecasting</h4>
+          <p>Auto Scaling incorporates machine learning time-series models:</p>
+          <ul>
+            <li><strong>Historical Pattern Analysis:</strong> Analyzes metric history (CPU, memory, traffic) over the past 24 hours to 14 days to identify recurring cyclical patterns.</li>
+            <li><strong>24-Hour Horizon Plan:</strong> Generates predictive scaling schedules 24 hours in advance, forecasting required capacity for every hour.</li>
+            <li><strong>Proactive Capacity Warming:</strong> Provisions and warms instances minutes BEFORE demand actually surges, completely eliminating reactive cold-start latency.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 37: ZERO-TOUCH SECURITY & WHITELISTING ==================== -->
+    <section class="slide" data-category="Cloud-Native Scaling &amp; Cost Optimization">
+      <div class="slide-category">Section 7: Cloud-Native Scaling &amp; Cost Optimization</div>
+      <h2>Zero-Touch Security &amp; Whitelisting</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <h4>SLB Backend Auto-Binding</h4>
+          <p>Automating traffic ingestion security:</p>
+          <ul>
+            <li>Automatically registers newly launched instances into default or VServer backend groups of associated SLB/ALB instances.</li>
+            <li>Inherits health check settings and listener forwarding rules automatically.</li>
+            <li>Supports weighted traffic distribution and graceful connection draining during scale-in.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h4>ApsaraDB RDS Auto-Whitelisting</h4>
+          <p>Eliminating manual database security overhead:</p>
+          <ul>
+            <li>Automatically appends the VPC private IP address of each new instance to the security IP whitelist of associated RDS databases.</li>
+            <li>Applications immediately establish database connections upon boot without connection rejection errors.</li>
+            <li><strong>Automatic Pruning:</strong> Removes terminated instance IPs immediately during scale-in, preventing unauthorized reuse or IP leakage.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 38: PRICING & COST EFFICIENCY ==================== -->
+    <section class="slide" data-category="Cloud-Native Scaling &amp; Cost Optimization">
+      <div class="slide-category">Section 7: Cloud-Native Scaling &amp; Cost Optimization</div>
+      <h2>Auto Scaling Pricing &amp; Cost Optimization</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight-green">
+          <h4>100% Free Service Orchestration</h4>
+          <p>Auto Scaling management capabilities are completely free of charge:</p>
+          <ul>
+            <li>Zero subscription fees for Scaling Groups, Configurations, Rules, or Activities.</li>
+            <li>Zero fees for CloudMonitor integration or health check inspection.</li>
+            <li><strong>Billed Only for Underlying Compute:</strong> You pay exclusively for standard ECS instances, ECI container pods, cloud disks, and network bandwidth actually provisioned.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight">
+          <h4>The 3-Tier Enterprise Cost Optimization Model</h4>
+          <ol class="step-list">
+            <li><strong>Baseline Capacity (Savings Plans):</strong> Cover minimum predictable baseline instances with Savings Plans or Reserved Instances (up to 50–70% savings).</li>
+            <li><strong>Dynamic Daytime Surges (Pay-As-You-Go):</strong> Scale variable daytime demand using standard Pay-As-You-Go compute, paying per-second only when running.</li>
+            <li><strong>Fault-Tolerant Batch Bursts (Spot Instances):</strong> Use Spot instances for non-critical, queue-based, or container workloads (up to 80–90% savings).</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 39: SCENARIO 1 QUESTION ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 1</div>
-      <h2>Practice Scenario 1: Flash Sale Flapping &amp; Cooldown Optimization</h2>
+      <h2>Practice Scenario 1: E-Commerce Flash Sale Architecture</h2>
       
       <div class="quiz-single-card">
         <div class="quiz-single-question">
           <span class="quiz-number">Question 1</span>
-          <span>
-            An enterprise e-commerce platform runs a flash sale campaign where traffic spikes 5x within a 10-minute window. During the previous sale, CloudMonitor detected average CPU exceeding 80% and triggered a dynamic scale-out rule to add 5 instances. However, because the Java application required 4 minutes to boot and warm its connection pool, CPU remained above 80%. CloudMonitor continuously fired alarms every minute, ultimately creating 35 surplus instances and causing severe budget overruns and cluster thrashing. Which architectural design prevents this flapping behavior while guaranteeing fast capacity expansion?
-          </span>
+          <span>An enterprise e-commerce platform experiences sudden 5x traffic surges during midnight flash sales. The application tier connects to an ApsaraDB RDS MySQL database and sits behind a Server Load Balancer (SLB). Which Auto Scaling architecture ensures immediate capacity expansion, zero in-flight request drops, and seamless database connectivity with zero manual operational intervention?</span>
         </div>
         <ul class="quiz-single-options">
-          <li class="quiz-single-option">
-            <span class="quiz-single-letter">A</span>
-            <span>Decrease the CloudMonitor alarm threshold from 80% to 50% and reduce the evaluation period to 10 seconds.</span>
-          </li>
-          <li class="quiz-single-option">
-            <span class="quiz-single-letter">B</span>
-            <span>Configure the scaling group default cooldown period to 300 seconds (matching instance warm-up time), and implement a Scale-Out Lifecycle Hook (<code>PENDING_ADD</code>) with Target Tracking scaling to stabilize metric evaluation.</span>
-          </li>
-          <li class="quiz-single-option">
-            <span class="quiz-single-letter">C</span>
-            <span>Change the scaling group removal policy to NewestInstance (LIFO) and disable all SLB health checking.</span>
-          </li>
-          <li class="quiz-single-option">
-            <span class="quiz-single-letter">D</span>
-            <span>Convert all Pay-As-You-Go instances into Preemptible (Spot) instances with a fixed bid price.</span>
-          </li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Configure a single static scaling rule set to Add 50 instances, manually whitelist the subnet CIDR in RDS, and disable SLB health checks during peak sale windows.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Deploy a multi-zone Scaling Group associated with the SLB and RDS instance, utilize Target Tracking on CPU and Request Count, and enable SLB Connection Draining with automated RDS whitelisting.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Create a scheduled task set to launch instances across a single availability zone 1 minute before the sale with a 0-second cooldown period and Shutdown Reclaim mode.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Deploy an Auto Scaling group with a single large instance configuration and rely exclusively on vertical instance specification upgrades during peak traffic events.</span></li>
         </ul>
       </div>
-    </section>
-    <!-- ==================== SLIDE 35: SCENARIO 1 SOLUTION & ANALYSIS ==================== -->
+    </section>
+    <!-- ==================== SLIDE 40: SCENARIO 1 SOLUTION ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 1</div>
       <h2>Scenario 1: Solution &amp; Architectural Analysis</h2>
@@ -1425,66 +1154,56 @@
       <div class="analysis-main-card">
         <div>
           <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: B</span>
-          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Configure Cooldown to match warm-up time &amp; use Lifecycle Hooks with Target Tracking</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Multi-Zone Scaling Group + Target Tracking + SLB Connection Draining + RDS Auto-Whitelisting</span>
         </div>
         <span class="badge badge-updated">Validated Architecture</span>
       </div>
 
       <div class="analysis-options-grid">
+        <!-- ALWAYS Option A first -->
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option A is Incorrect</span></div>
-          <div class="analysis-item-body">Lowering the threshold to 50% and shortening evaluation to 10 seconds severely accelerates premature alarms, worsening thrashing and triggering even more unnecessary scaling activities.</div>
+          <div class="analysis-item-body">Static addition of 50 instances causes severe over-provisioning waste, manual whitelisting introduces operational delays and human error, and disabling SLB health checks breaks high availability routing.</div>
         </div>
 
+        <!-- ALWAYS Option B second -->
         <div class="analysis-item correct">
           <div class="analysis-item-header correct"><span>✔ Option B is Correct</span></div>
-          <div class="analysis-item-body">Setting the cooldown period to 300s ensures CloudMonitor alarms are locked out while new instances initialize. The <code>PENDING_ADD</code> hook holds instances until JVM caches are warm before routing SLB traffic, eliminating flapping.</div>
+          <div class="analysis-item-body">Target Tracking dynamically aligns capacity with traffic surges, multi-zone vSwitches eliminate single-zone inventory risks, SLB connection draining protects in-flight transactions during scale-in, and RDS auto-whitelisting guarantees instant database connectivity.</div>
         </div>
 
+        <!-- ALWAYS Option C third -->
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option C is Incorrect</span></div>
-          <div class="analysis-item-body">Removal policy governs scale-in, not scale-out. Disabling SLB health checks causes traffic to be routed to booting, unready instances, producing HTTP 502/504 errors for end users.</div>
+          <div class="analysis-item-body">Single-zone deployment introduces severe single-point-of-failure risks and inventory bottlenecks, while a 0-second cooldown causes continuous metric instability and rapid instance flapping.</div>
         </div>
 
+        <!-- ALWAYS Option D fourth -->
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option D is Incorrect</span></div>
-          <div class="analysis-item-body">Spot instances alter pricing and introduce eviction risk; they do not solve metric evaluation timing, cold boot latency, or alarm over-triggering during rapid flash sales.</div>
+          <div class="analysis-item-body">Auto Scaling scales horizontally by adding/removing instances rather than upgrading instance specifications vertically in place; vertical resizing incurs downtime and cannot scale dynamically across multiple zones.</div>
         </div>
       </div>
-    </section>
-    <!-- ==================== SLIDE 36: PRACTICE SCENARIO 2 (QUESTION) ==================== -->
+    </section>
+    <!-- ==================== SLIDE 41: SCENARIO 2 QUESTION ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 2</div>
-      <h2>Practice Scenario 2: Multi-Zone High Availability &amp; Spot Stock-Out</h2>
+      <h2>Practice Scenario 2: Batch Processing with Spot Diversification</h2>
       
       <div class="quiz-single-card">
         <div class="quiz-single-question">
           <span class="quiz-number">Question 2</span>
-          <span>
-            A financial analytics firm deploys an Auto Scaling group to process massive daily batch computing workloads at the lowest possible cost. They configure a single Availability Zone (Zone A) with Preemptible (Spot) instances of type <code>ecs.c8i.2xlarge</code>. During a major cloud region compute surge, Alibaba Cloud reclaims the spot instances, and Zone A runs completely out of stock for that specific family. The scaling activities fail repeatedly, halting critical daily reports. How must the cloud architect re-design the auto scaling architecture to guarantee execution resilience?
-          </span>
+          <span>A financial research company runs nightly containerized quantitative modeling tasks. The workload can tolerate interruptions if interrupted jobs can be retried automatically. Management mandates slashing compute costs by at least 70% while guaranteeing that tasks finish before morning business hours even if spot instance capacity becomes unavailable. Which Auto Scaling design best satisfies these requirements?</span>
         </div>
         <ul class="quiz-single-options">
-          <li class="quiz-single-option">
-            <span class="quiz-single-letter">A</span>
-            <span>Configure the scaling group to disable ECS instance rollbacks upon scaling activity failure.</span>
-          </li>
-          <li class="quiz-single-option">
-            <span class="quiz-single-letter">B</span>
-            <span>Switch the scaling group to a different region and configure CEN Transit Router to tunnel traffic back.</span>
-          </li>
-          <li class="quiz-single-option">
-            <span class="quiz-single-letter">C</span>
-            <span>Bind multiple VSwitches across Zones A, B, and C with Balanced Distribution, and specify up to 10 equivalent instance families (Intel, AMD, ARM) in the Scaling Configuration with a mixed On-Demand/Spot allocation pool.</span>
-          </li>
-          <li class="quiz-single-option">
-            <span class="quiz-single-letter">D</span>
-            <span>Increase the MinSize of the scaling group to 100 instances in Zone A using exclusively Subscription billing.</span>
-          </li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Provision dedicated ECS hosts under Subscription billing and configure a manual scaling rule to turn on instances at night.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Deploy an Auto Scaling group configured exclusively with a single spot instance family in one availability zone without any fallback configuration.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Configure a Scaling Configuration with multi-instance Spot pooling across multiple compute families, and configure automatic fallback to Pay-As-You-Go instances if spot inventory is exhausted.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Use a static Pay-As-You-Go ECS cluster and write custom external cron scripts to delete VMs whenever hourly spot prices fluctuate.</span></li>
         </ul>
       </div>
-    </section>
-    <!-- ==================== SLIDE 37: SCENARIO 2 SOLUTION & ANALYSIS ==================== -->
+    </section>
+    <!-- ==================== SLIDE 42: SCENARIO 2 SOLUTION ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 2</div>
       <h2>Scenario 2: Solution &amp; Architectural Analysis</h2>
@@ -1492,101 +1211,95 @@
       <div class="analysis-main-card">
         <div>
           <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: C</span>
-          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Multi-Zone VSwitches + Multi-Instance Types (up to 10) + Mixed On-Demand/Spot Pool</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Multi-Instance Spot Pooling with Automated Pay-As-You-Go Fallback</span>
         </div>
         <span class="badge badge-updated">Validated Architecture</span>
       </div>
 
       <div class="analysis-options-grid">
+        <!-- ALWAYS Option A first -->
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option A is Incorrect</span></div>
-          <div class="analysis-item-body">Instance rollback is an automated platform safety feature that cleans up unattached failed instances. Disabling rollback (even if possible) does not resolve underlying physical inventory exhaustion.</div>
+          <div class="analysis-item-body">Subscription dedicated hosts require continuous 24/7 long-term commitments, resulting in massive wasted capital for workloads that run exclusively overnight.</div>
         </div>
 
+        <!-- ALWAYS Option B second -->
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option B is Incorrect</span></div>
-          <div class="analysis-item-body">Scaling groups are strictly scoped to a single region; moving to another region adds inter-region data transfer latency, CEN transit costs, and complex routing overhead instead of solving local multi-zone design.</div>
+          <div class="analysis-item-body">Relying on a single spot instance family in a single zone exposes the batch job to complete failure and missed morning deadlines if market capacity for that specific instance type is reclaimed.</div>
         </div>
 
+        <!-- ALWAYS Option C third -->
         <div class="analysis-item correct">
           <div class="analysis-item-header correct"><span>✔ Option C is Correct</span></div>
-          <div class="analysis-item-body">Multi-zone VSwitches provide fault-domain failover across datacenters. Specifying up to 10 instance types across Intel, AMD, and ARM prevents stock-out bottlenecks, while an On-Demand base guarantees core capacity.</div>
+          <div class="analysis-item-body">Multi-instance spot pooling across multiple instance types captures 80–90% cost savings while minimizing eviction probability, and automatic Pay-As-You-Go fallback guarantees tasks complete on schedule even during market capacity shortages.</div>
         </div>
 
+        <!-- ALWAYS Option D fourth -->
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option D is Incorrect</span></div>
-          <div class="analysis-item-body">Locking 100 instances into Subscription billing in a single zone completely defeats the elasticity goal, introduces massive fixed idle costs, and fails if Zone A experiences physical facility degradation.</div>
+          <div class="analysis-item-body">Custom external cron scripts managing raw Pay-As-You-Go instances require complex manual maintenance and do not benefit from native Auto Scaling health recovery or spot capacity bidding.</div>
         </div>
       </div>
-    </section>
-    <!-- ==================== SLIDE 38: PRACTICE SCENARIO 3 (QUESTION) ==================== -->
+    </section>
+    <!-- ==================== SLIDE 43: SCENARIO 3 QUESTION ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 3</div>
-      <h2>Practice Scenario 3: Graceful Termination &amp; Zero Data Loss</h2>
+      <h2>Practice Scenario 3: Zero-Downtime State Evacuation with Hooks</h2>
       
       <div class="quiz-single-card">
         <div class="quiz-single-question">
           <span class="quiz-number">Question 3</span>
-          <span>
-            A real-time multiplayer gaming backend utilizes Auto Scaling to scale in ECS instances when player traffic drops late at night. However, players frequently report that ongoing matches are abruptly severed mid-game with connection resets. Additionally, application debug and audit logs stored on local instance system disks are permanently lost when Auto Scaling destroys instances upon scale-in. How can the cloud architect guarantee zero disruption to active gameplay and 100% log preservation during automated scale-in events?
-          </span>
+          <span>A payment processing application running on an Auto Scaling group must scale in during low-volume night hours. However, each ECS instance holds active in-flight checkout transactions and transaction audit logs stored on local disks that must be preserved to maintain financial regulatory compliance. Which mechanism guarantees zero transaction failures and prevents log loss during scale-in events?</span>
         </div>
         <ul class="quiz-single-options">
-          <li class="quiz-single-option">
-            <span class="quiz-single-letter">A</span>
-            <span>Switch the instance reclaim mode from Release Mode to Shutdown and Reclaim Mode, and set MinSize equal to MaxSize.</span>
-          </li>
-          <li class="quiz-single-option">
-            <span class="quiz-single-letter">B</span>
-            <span>Implement a Scale-In Lifecycle Hook (<code>PENDING_REMOVE</code>), enable SLB connection draining, and run a script to upload local logs to OSS before sending <code>CompleteLifecycleAction</code>.</span>
-          </li>
-          <li class="quiz-single-option">
-            <span class="quiz-single-letter">C</span>
-            <span>Create a scheduled task to disable the scaling group before midnight and manually restart servers the next morning.</span>
-          </li>
-          <li class="quiz-single-option">
-            <span class="quiz-single-letter">D</span>
-            <span>Configure the scaling group removal policy to OldestScalingConfiguration and disable CloudMonitor alarms.</span>
-          </li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Configure a Lifecycle Hook for PENDING_REMOVE with a sufficient timeout, invoke Cloud Assistant to flush transactions and upload logs to OSS, and call CompleteLifecycleAction to proceed.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Set the Scaling Group Reclaim Mode to Release Mode and decrease the Default Cooldown period to 0 seconds so instances terminate immediately before logs can grow.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Disable Auto Scaling and manually log into each server via SSH to copy log files whenever scale-in is required.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Configure CloudMonitor to send an SMS alert to system administrators whenever a scale-in activity begins so they can manually stop the application service.</span></li>
         </ul>
       </div>
-    </section>
-    <!-- ==================== SLIDE 39: SCENARIO 3 SOLUTION & ANALYSIS ==================== -->
+    </section>
+    <!-- ==================== SLIDE 44: SCENARIO 3 SOLUTION ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 3</div>
       <h2>Scenario 3: Solution &amp; Architectural Analysis</h2>
       
       <div class="analysis-main-card">
         <div>
-          <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: B</span>
-          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Scale-In Hook (PENDING_REMOVE) + Connection Draining + Automated OSS Log Shipping</span>
+          <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: A</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Lifecycle Hook PENDING_REMOVE + Cloud Assistant State Evacuation + OSS Upload</span>
         </div>
         <span class="badge badge-updated">Validated Architecture</span>
       </div>
 
       <div class="analysis-options-grid">
-        <div class="analysis-item incorrect">
-          <div class="analysis-item-header incorrect"><span>✖ Option A is Incorrect</span></div>
-          <div class="analysis-item-body">Setting MinSize equal to MaxSize disables scaling altogether, eliminating cost efficiency. Shutdown mode preserves disks but does not solve graceful active connection termination for live gamers.</div>
-        </div>
-
+        <!-- ALWAYS Option A first -->
         <div class="analysis-item correct">
-          <div class="analysis-item-header correct"><span>✔ Option B is Correct</span></div>
-          <div class="analysis-item-body">The <code>PENDING_REMOVE</code> hook suspends VM termination. SLB connection draining allows active game matches to finish naturally without dropouts, and custom scripts upload logs to OSS before confirming completion.</div>
+          <div class="analysis-item-header correct"><span>✔ Option A is Correct</span></div>
+          <div class="analysis-item-body">The PENDING_REMOVE lifecycle hook pauses instance destruction while SLB connection draining completes active HTTP sessions; Cloud Assistant safely archives transaction logs to OSS and signals completion with zero transaction loss.</div>
         </div>
 
+        <!-- ALWAYS Option B second -->
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect"><span>✖ Option B is Incorrect</span></div>
+          <div class="analysis-item-body">Immediate release without hooks abruptly terminates running checkout sessions, generating HTTP 502/504 errors and permanently destroying un-archived audit logs on the local system disk.</div>
+        </div>
+
+        <!-- ALWAYS Option C third -->
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option C is Incorrect</span></div>
-          <div class="analysis-item-body">Disabling the scaling group manually defeats automation, requires nocturnal human operations, and leaves unutilized servers running at full cost all night long.</div>
+          <div class="analysis-item-body">Disabling Auto Scaling defeats the entire purpose of elastic cloud operations, and manual SSH administration cannot keep pace with dynamic traffic swings.</div>
         </div>
 
+        <!-- ALWAYS Option D fourth -->
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option D is Incorrect</span></div>
-          <div class="analysis-item-body">OldestScalingConfiguration merely alters which instance is selected for removal; it provides zero connection draining grace period and cannot prevent abrupt game disconnects or disk data loss.</div>
+          <div class="analysis-item-body">SMS alerts are asynchronous notifications and cannot pause or intercept the automated scale-in activity, meaning instances would terminate long before human operators could respond.</div>
         </div>
       </div>
-    </section>
-    <!-- ==================== SLIDE 40: MODULE COMPLETE ==================== -->
+    </section>
+    <!-- ==================== SLIDE 45: MODULE COMPLETE ==================== -->
     <section class="slide title-slide" data-category="Summary">
       <div class="slide-category">Module Complete</div>
       <h1 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Module 07: Auto Scaling (ESS)</h1>
@@ -1594,16 +1307,11 @@
         <div>
           <span class="badge badge-updated">Up Next</span><br>
           <strong>Module 08: Content Delivery Network (CDN)</strong>
-          <div style="margin-top: 0.75rem;">
-            <a href="module-06-rds.html" class="btn-nav" style="display: inline-flex; align-items: center; text-decoration: none; padding: 0.45rem 1rem; font-size: 0.9rem; margin-right: 0.5rem;">⬅️ Back to Module 06</a>
-            <a href="module-08-cdn.html" class="btn-nav primary" style="display: inline-flex; align-items: center; text-decoration: none; padding: 0.45rem 1rem; font-size: 0.9rem;">Proceed to Module 08 (CDN) ➡️</a>
-          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Presentation Engine Script -->
   <script src="assets/js/presentation.js"></script>
 </body>
-</html>
+</html>
