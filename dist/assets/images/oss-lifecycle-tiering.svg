@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 380" width="100%" height="auto">
+  <defs>
+    <filter id="shadow-pipe" x="-3%" y="-3%" width="106%" height="106%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.08" />
+    </filter>
+    <marker id="arrow-pipe" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284C7" />
+    </marker>
+  </defs>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+    <!-- Timeline Axis -->
+    <line x1="60" y1="200" x2="800" y2="200" stroke="#94A3B8" stroke-width="3" stroke-dasharray="6 4" />
+
+    <!-- Tier 1: Standard -->
+    <g filter="url(#shadow-pipe)" transform="translate(50, 60)">
+      <rect x="0" y="0" width="130" height="220" rx="8" fill="#FFFFFF" stroke="#EA580C" stroke-width="2" />
+      <rect x="0" y="0" width="130" height="32" rx="8" fill="#FFEDD5" />
+      <text x="65" y="21" fill="#C2410C" font-size="12" font-weight="800" text-anchor="middle">Standard</text>
+      <text x="65" y="55" fill="#0F172A" font-size="10" font-weight="700" text-anchor="middle">Active Ingestion</text>
+      <text x="65" y="75" fill="#475569" font-size="9" text-anchor="middle">Day 0 to 30</text>
+      <line x1="15" y1="90" x2="115" y2="90" stroke="#E2E8F0" stroke-width="1" />
+      <text x="15" y="110" fill="#334155" font-size="9">• Real-time read</text>
+      <text x="15" y="128" fill="#334155" font-size="9">• Zero retrieval fee</text>
+      <text x="15" y="146" fill="#334155" font-size="9">• No min duration</text>
+      <text x="15" y="164" fill="#334155" font-size="9">• 99.99% SLA</text>
+      <rect x="15" y="185" width="100" height="22" rx="4" fill="#FEF3C7" />
+      <text x="65" y="200" fill="#92400E" font-size="9" font-weight="700" text-anchor="middle">Web &amp; Media</text>
+    </g>
+
+    <!-- Transition 1 -->
+    <path d="M 180 170 L 210 170" stroke="#0284C7" stroke-width="2.5" marker-end="url(#arrow-pipe)" />
+    <rect x="180" y="135" width="30" height="18" rx="3" fill="#E0F2FE" />
+    <text x="195" y="148" fill="#0369A1" font-size="8.5" font-weight="700" text-anchor="middle">30d</text>
+
+    <!-- Tier 2: Infrequent Access (Warm) -->
+    <g filter="url(#shadow-pipe)" transform="translate(210, 60)">
+      <rect x="0" y="0" width="130" height="220" rx="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="2" />
+      <rect x="0" y="0" width="130" height="32" rx="8" fill="#E0F2FE" />
+      <text x="65" y="21" fill="#0369A1" font-size="12" font-weight="800" text-anchor="middle">Infrequent Access</text>
+      <text x="65" y="55" fill="#0F172A" font-size="10" font-weight="700" text-anchor="middle">Warm Data</text>
+      <text x="65" y="75" fill="#475569" font-size="9" text-anchor="middle">Day 30 to 60</text>
+      <line x1="15" y1="90" x2="115" y2="90" stroke="#E2E8F0" stroke-width="1" />
+      <text x="15" y="110" fill="#334155" font-size="9">• Real-time read</text>
+      <text x="15" y="128" fill="#334155" font-size="9">• Retrieval fee applies</text>
+      <text x="15" y="146" fill="#334155" font-size="9">• 30d min duration</text>
+      <text x="15" y="164" fill="#334155" font-size="9">• Min size: 64 KB</text>
+      <rect x="15" y="185" width="100" height="22" rx="4" fill="#E0F2FE" />
+      <text x="65" y="200" fill="#0369A1" font-size="9" font-weight="700" text-anchor="middle">Monthly Reports</text>
+    </g>
+
+    <!-- Transition 2 -->
+    <path d="M 340 170 L 370 170" stroke="#0284C7" stroke-width="2.5" marker-end="url(#arrow-pipe)" />
+    <rect x="340" y="135" width="30" height="18" rx="3" fill="#E0F2FE" />
+    <text x="355" y="148" fill="#0369A1" font-size="8.5" font-weight="700" text-anchor="middle">60d</text>
+
+    <!-- Tier 3: Archive -->
+    <g filter="url(#shadow-pipe)" transform="translate(370, 60)">
+      <rect x="0" y="0" width="130" height="220" rx="8" fill="#FFFFFF" stroke="#059669" stroke-width="2" />
+      <rect x="0" y="0" width="130" height="32" rx="8" fill="#D1FAE5" />
+      <text x="65" y="21" fill="#065F46" font-size="12" font-weight="800" text-anchor="middle">Archive</text>
+      <text x="65" y="55" fill="#0F172A" font-size="10" font-weight="700" text-anchor="middle">Long-Term Storage</text>
+      <text x="65" y="75" fill="#475569" font-size="9" text-anchor="middle">Day 60 to 180</text>
+      <line x1="15" y1="90" x2="115" y2="90" stroke="#E2E8F0" stroke-width="1" />
+      <text x="15" y="110" fill="#334155" font-size="9">• ~1 min restore</text>
+      <text x="15" y="128" fill="#334155" font-size="9">• Direct read opt-in</text>
+      <text x="15" y="146" fill="#334155" font-size="9">• 60d min duration</text>
+      <text x="15" y="164" fill="#334155" font-size="9">• Min size: 64 KB</text>
+      <rect x="15" y="185" width="100" height="22" rx="4" fill="#D1FAE5" />
+      <text x="65" y="200" fill="#065F46" font-size="9" font-weight="700" text-anchor="middle">Audit Logs</text>
+    </g>
+
+    <!-- Transition 3 -->
+    <path d="M 500 170 L 530 170" stroke="#0284C7" stroke-width="2.5" marker-end="url(#arrow-pipe)" />
+    <rect x="500" y="135" width="30" height="18" rx="3" fill="#E0F2FE" />
+    <text x="515" y="148" fill="#0369A1" font-size="8.5" font-weight="700" text-anchor="middle">180d</text>
+
+    <!-- Tier 4: Cold Archive -->
+    <g filter="url(#shadow-pipe)" transform="translate(530, 60)">
+      <rect x="0" y="0" width="130" height="220" rx="8" fill="#FFFFFF" stroke="#475569" stroke-width="2" />
+      <rect x="0" y="0" width="130" height="32" rx="8" fill="#E2E8F0" />
+      <text x="65" y="21" fill="#1E293B" font-size="12" font-weight="800" text-anchor="middle">Cold Archive</text>
+      <text x="65" y="55" fill="#0F172A" font-size="10" font-weight="700" text-anchor="middle">Frozen Data</text>
+      <text x="65" y="75" fill="#475569" font-size="9" text-anchor="middle">Day 180 to 365</text>
+      <line x1="15" y1="90" x2="115" y2="90" stroke="#E2E8F0" stroke-width="1" />
+      <text x="15" y="110" fill="#334155" font-size="9">• Restore: 1h - 5h</text>
+      <text x="15" y="128" fill="#334155" font-size="9">• 180d min duration</text>
+      <text x="15" y="146" fill="#334155" font-size="9">• Deep cost cut</text>
+      <text x="15" y="164" fill="#334155" font-size="9">• Min size: 64 KB</text>
+      <rect x="15" y="185" width="100" height="22" rx="4" fill="#E2E8F0" />
+      <text x="65" y="200" fill="#334155" font-size="9" font-weight="700" text-anchor="middle">Historical CCTV</text>
+    </g>
+
+    <!-- Transition 4 -->
+    <path d="M 660 170 L 690 170" stroke="#0284C7" stroke-width="2.5" marker-end="url(#arrow-pipe)" />
+    <rect x="660" y="135" width="30" height="18" rx="3" fill="#E0F2FE" />
+    <text x="675" y="148" fill="#0369A1" font-size="8.5" font-weight="700" text-anchor="middle">365d</text>
+
+    <!-- Tier 5: Deep Cold Archive / Expire -->
+    <g filter="url(#shadow-pipe)" transform="translate(690, 60)">
+      <rect x="0" y="0" width="130" height="220" rx="8" fill="#FFFFFF" stroke="#6D28D9" stroke-width="2" />
+      <rect x="0" y="0" width="130" height="32" rx="8" fill="#EDE9FE" />
+      <text x="65" y="21" fill="#5B21B6" font-size="12" font-weight="800" text-anchor="middle">Deep Cold Archive</text>
+      <text x="65" y="55" fill="#0F172A" font-size="10" font-weight="700" text-anchor="middle">Glacier Archive</text>
+      <text x="65" y="75" fill="#475569" font-size="9" text-anchor="middle">Multi-Year / WORM</text>
+      <line x1="15" y1="90" x2="115" y2="90" stroke="#E2E8F0" stroke-width="1" />
+      <text x="15" y="110" fill="#334155" font-size="9">• Restore: 12h - 48h</text>
+      <text x="15" y="128" fill="#334155" font-size="9">• Cheapest storage</text>
+      <text x="15" y="146" fill="#334155" font-size="9">• 180d min duration</text>
+      <text x="15" y="164" fill="#334155" font-size="9">• Tape-like pricing</text>
+      <rect x="15" y="185" width="100" height="22" rx="4" fill="#EDE9FE" />
+      <text x="65" y="200" fill="#5B21B6" font-size="9" font-weight="700" text-anchor="middle">Legal Records</text>
+    </g>
+
+    <!-- Bottom Legend -->
+    <rect x="140" y="315" width="580" height="38" rx="6" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1" />
+    <text x="430" y="338" fill="#334155" font-size="11" font-weight="600" text-anchor="middle">
+      Storage Cost Decreases ➔ | Retrieval Time &amp; Durations Increase ➔ | Automatic Lifecycle Transitions via JSON Rules
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 500" width="100%" height="100%">
+  <defs>
+    <marker id="arrow-udp" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0284c7"/>
+    </marker>
+    <marker id="arrow-icmp" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#dc2626"/>
+    </marker>
+    <filter id="shadow-udp" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  <rect width="620" height="500" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Left: SLB Service Node -->
+  <g transform="translate(70, 30)" filter="url(#shadow-udp)">
+    <rect width="120" height="75" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="2"/>
+    <rect x="0" y="0" width="120" height="24" rx="8" fill="#0284c7"/>
+    <rect x="0" y="16" width="120" height="8" fill="#0284c7"/>
+    <text x="60" y="16" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="11" font-weight="700">SLB Service</text>
+    <circle cx="60" cy="50" r="14" fill="#e0f2fe"/>
+    <circle cx="60" cy="45" r="3" fill="#0284c7"/>
+    <circle cx="53" cy="54" r="3" fill="#0284c7"/>
+    <circle cx="67" cy="54" r="3" fill="#0284c7"/>
+    <path d="M 60 45 L 53 54 M 60 45 L 67 54" stroke="#0284c7" stroke-width="1.5"/>
+  </g>
+
+  <!-- Right: Backend ECS Node -->
+  <g transform="translate(430, 30)" filter="url(#shadow-udp)">
+    <rect width="120" height="75" rx="8" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+    <rect x="0" y="0" width="120" height="24" rx="8" fill="#059669"/>
+    <rect x="0" y="16" width="120" height="8" fill="#059669"/>
+    <text x="60" y="16" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="11" font-weight="700">Backend ECS</text>
+    <rect x="46" y="38" width="28" height="24" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+    <line x1="50" y1="45" x2="70" y2="45" stroke="#059669" stroke-width="1.5"/>
+    <line x1="50" y1="52" x2="70" y2="52" stroke="#059669" stroke-width="1.5"/>
+    <circle cx="52" cy="45" r="1" fill="#059669"/>
+    <circle cx="52" cy="52" r="1" fill="#059669"/>
+  </g>
+
+  <!-- Lifelines -->
+  <line x1="130" y1="105" x2="130" y2="465" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="490" y1="105" x2="490" y2="465" stroke="#94a3b8" stroke-width="2"/>
+
+  <!-- Step 1: UDP Probing Message -->
+  <g transform="translate(0, 145)">
+    <line x1="130" y1="0" x2="480" y2="25" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrow-udp)"/>
+    <rect x="220" y="-4" width="180" height="26" rx="6" fill="#e0f2fe" stroke="#7dd3fc" stroke-width="1"/>
+    <text x="310" y="13" text-anchor="middle" fill="#0369a1" font-family="monospace" font-size="11" font-weight="700">UDP Probing Packet</text>
+  </g>
+
+  <!-- Response Timeout Dimension Bracket (Placed cleanly on far left) -->
+  <g transform="translate(45, 145)">
+    <line x1="0" y1="0" x2="12" y2="0" stroke="#64748b" stroke-width="1.5"/>
+    <line x1="6" y1="0" x2="6" y2="250" stroke="#64748b" stroke-width="1.5"/>
+    <line x1="0" y1="250" x2="12" y2="250" stroke="#64748b" stroke-width="1.5"/>
+    <text x="-4" y="125" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="9" font-weight="700" transform="rotate(-90 -4 125)">Response Timeout Window</text>
+  </g>
+
+  <!-- Scenario A: ICMP Port Unreachable returned (Failure Path) -->
+  <g transform="translate(0, 235)">
+    <line x1="490" y1="0" x2="140" y2="35" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="5,4" marker-end="url(#arrow-icmp)"/>
+    <rect x="200" y="2" width="220" height="28" rx="6" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.5"/>
+    <circle cx="216" cy="16" r="7" fill="#dc2626"/>
+    <text x="216" y="19" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="9" font-weight="800">✖</text>
+    <text x="320" y="20" text-anchor="middle" fill="#991b1b" font-family="monospace" font-size="11" font-weight="700">ICMP Port Unreachable</text>
+
+    <!-- Failure Indicator on SLB Line -->
+    <g transform="translate(68, 22)">
+      <rect width="90" height="26" rx="13" fill="#fee2e2" stroke="#fca5a5" stroke-width="1.5"/>
+      <circle cx="14" cy="13" r="6" fill="#ef4444"/>
+      <path d="M 11 10 L 17 16 M 17 10 L 11 16" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+      <text x="52" y="17" text-anchor="middle" fill="#991b1b" font-family="system-ui, sans-serif" font-size="9.5" font-weight="700">UNHEALTHY</text>
+    </g>
+  </g>
+
+  <!-- Scenario B: Timeout expires with NO ICMP error (Success Path) -->
+  <g transform="translate(0, 395)">
+    <line x1="130" y1="0" x2="490" y2="0" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3,3"/>
+    
+    <!-- Healthy Indicator on SLB Line -->
+    <g transform="translate(72, -13)">
+      <rect width="85" height="26" rx="13" fill="#dcfce7" stroke="#86efac" stroke-width="1.5"/>
+      <circle cx="14" cy="13" r="6" fill="#10b981"/>
+      <path d="M 11 13 L 13 15 L 17 11" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+      <text x="50" y="17" text-anchor="middle" fill="#166534" font-family="system-ui, sans-serif" font-size="9.5" font-weight="700">HEALTHY</text>
+    </g>
+
+    <rect x="215" y="-14" width="190" height="26" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+    <text x="310" y="3" text-anchor="middle" fill="#15803d" font-family="system-ui, sans-serif" font-size="10.5" font-weight="600">No ICMP Error Received</text>
+  </g>
+</svg>

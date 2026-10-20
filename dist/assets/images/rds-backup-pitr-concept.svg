@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 310" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-3%" y="-5%" width="106%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.07"/>
+    </filter>
+    <marker id="arrow-blue" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <polygon points="0 0.5, 6 3.5, 0 6.5" fill="#0284c7"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <polygon points="0 0.5, 6 3.5, 0 6.5" fill="#059669"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <polygon points="0 0.5, 6 3.5, 0 6.5" fill="#d97706"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <polygon points="0 0.5, 6 3.5, 0 6.5" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <!-- ==================== TOP CARD: BACKUP & TIMELINE ==================== -->
+  <g transform="translate(15, 12)">
+    <rect width="930" height="150" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect width="930" height="34" rx="10" fill="#f8fafc"/>
+    <rect y="24" width="930" height="10" fill="#f8fafc"/>
+    <line x1="0" y1="34" x2="930" y2="34" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="20" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">
+      Dual-Stream Backup Timeline (Snapshots + Continuous Binlogs in OSS)
+    </text>
+    <rect x="795" y="8" width="120" height="18" rx="9" fill="#e0f2fe"/>
+    <text x="855" y="21" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" fill="#0284c7">
+      Timeline View
+    </text>
+
+    <!-- Horizontal Timeline Axis -->
+    <line x1="40" y1="92" x2="890" y2="92" stroke="#94a3b8" stroke-width="2.5"/>
+    <polygon points="890 88, 902 92, 890 96" fill="#94a3b8"/>
+
+    <!-- Time Markers -->
+    <text x="70" y="112" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="600" fill="#64748b">00:00</text>
+    <line x1="70" y1="88" x2="70" y2="96" stroke="#94a3b8" stroke-width="1.5"/>
+
+    <text x="180" y="112" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" fill="#0284c7">02:00 AM</text>
+    <line x1="180" y1="86" x2="180" y2="98" stroke="#0284c7" stroke-width="2.5"/>
+
+    <text x="370" y="112" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="600" fill="#64748b">06:00 AM</text>
+    <line x1="370" y1="88" x2="370" y2="96" stroke="#94a3b8" stroke-width="1.5"/>
+
+    <text x="560" y="112" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="600" fill="#64748b">10:00 AM</text>
+    <line x1="560" y1="88" x2="560" y2="96" stroke="#94a3b8" stroke-width="1.5"/>
+
+    <!-- Base Snapshot Marker (02:00 AM) -->
+    <g transform="translate(180, 52)">
+      <rect x="-65" y="-12" width="130" height="26" rx="5" fill="#0284c7"/>
+      <text x="0" y="5" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" fill="#ffffff">
+        📸 Full Snapshot
+      </text>
+      <line x1="0" y1="14" x2="0" y2="34" stroke="#0284c7" stroke-width="2"/>
+      <circle cx="0" cy="40" r="4.5" fill="#0284c7"/>
+    </g>
+
+    <!-- Continuous Binlog Stream Ribbon (02:00 -> 14:22:15) -->
+    <rect x="184" y="80" width="560" height="12" rx="3" fill="#10b981" opacity="0.9"/>
+    <text x="464" y="73" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" fill="#047857">
+      Continuous Transaction Logs (Binlog Stream archived to OSS every 5-30 mins) ➔➔
+    </text>
+
+    <!-- Disaster Event Marker (14:22:16) -->
+    <g transform="translate(790, 52)">
+      <rect x="-55" y="-12" width="110" height="26" rx="5" fill="#fee2e2" stroke="#dc2626" stroke-width="1.2"/>
+      <text x="0" y="5" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="800" fill="#dc2626">
+        ⚠️ 14:22:16 DROP
+      </text>
+      <line x1="0" y1="14" x2="0" y2="34" stroke="#dc2626" stroke-width="2"/>
+      <circle cx="0" cy="40" r="4.5" fill="#dc2626"/>
+    </g>
+
+    <!-- Target PITR Marker (14:22:15) -->
+    <g transform="translate(744, 52)">
+      <rect x="-62" y="-12" width="124" height="26" rx="5" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+      <text x="0" y="5" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="800" fill="#b45309">
+        🎯 Target: 14:22:15
+      </text>
+      <line x1="0" y1="14" x2="0" y2="34" stroke="#d97706" stroke-width="2"/>
+      <circle cx="0" cy="40" r="4.5" fill="#d97706"/>
+    </g>
+
+    <text x="744" y="138" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="700" fill="#b45309">
+      Recovery Target (T - 1s)
+    </text>
+  </g>
+
+  <!-- ==================== BOTTOM CARD: PITR RECONSTRUCTION FLOW ==================== -->
+  <g transform="translate(15, 172)">
+    <rect width="930" height="126" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect width="930" height="32" rx="10" fill="#f8fafc"/>
+    <rect y="22" width="930" height="10" fill="#f8fafc"/>
+    <line x1="0" y1="32" x2="930" y2="32" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="20" y="21" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="700" fill="#0f172a">
+      Point-in-Time Recovery (PITR) Execution Engine
+    </text>
+    <rect x="785" y="7" width="130" height="18" rx="9" fill="#dcfce7"/>
+    <text x="850" y="20" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" fill="#15803d">
+      Precision: Exact Second
+    </text>
+
+    <!-- Step 1: Base Mount -->
+    <g transform="translate(30, 48)">
+      <rect width="255" height="66" rx="7" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.4"/>
+      <text x="14" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="800" fill="#0284c7">
+        Step 1: Mount Base Snapshot
+      </text>
+      <text x="14" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="500" fill="#334155">
+        Provisions baseline storage from 02:00
+      </text>
+      <text x="14" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" fill="#0369a1">
+        snapshot archived in OSS (Coarse base)
+      </text>
+    </g>
+
+    <!-- Arrow 1 -> 2 -->
+    <line x1="295" y1="81" x2="330" y2="81" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrow-blue)"/>
+
+    <!-- Step 2: Binlog Replay -->
+    <g transform="translate(340, 48)">
+      <rect width="275" height="66" rx="7" fill="#fefce8" stroke="#ca8a04" stroke-width="1.4"/>
+      <text x="14" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="800" fill="#a16207">
+        Step 2: Roll-Forward Binlogs
+      </text>
+      <text x="14" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="500" fill="#334155">
+        Replays transaction logs from 02:00
+      </text>
+      <text x="14" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" fill="#b45309">
+        up to exact second: 14:22:15 (T - 1s)
+      </text>
+    </g>
+
+    <!-- Arrow 2 -> 3 -->
+    <line x1="625" y1="81" x2="660" y2="81" stroke="#059669" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+
+    <!-- Step 3: Result -->
+    <g transform="translate(670, 48)">
+      <rect width="230" height="66" rx="7" fill="#ecfdf5" stroke="#10b981" stroke-width="1.4"/>
+      <text x="14" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="800" fill="#047857">
+        Step 3: Restored State
+      </text>
+      <text x="14" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="500" fill="#334155">
+        Database 100% consistent
+      </text>
+      <text x="14" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" fill="#059669">
+        Zero Data Loss (RPO ≈ 0s)
+      </text>
+    </g>
+  </g>
+</svg>

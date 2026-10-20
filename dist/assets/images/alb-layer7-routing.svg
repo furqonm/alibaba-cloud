@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 440" width="100%" height="100%">
+  <rect x="15" y="15" width="850" height="410" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="440" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#1e293b">Application Load Balancer (ALB): Layer 7 Intelligent Routing Engine</text>
+
+  <!-- Left: Inbound Request Structure -->
+  <g transform="translate(35, 75)">
+    <rect width="250" height="325" rx="12" fill="#fff7ed" stroke="#FF6A00" stroke-width="1.5"/>
+    <rect x="12" y="12" width="226" height="32" rx="6" fill="#FF6A00"/>
+    <text x="125" y="33" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Inbound Request Conditions</text>
+
+    <g transform="translate(15, 60)" font-family="system-ui, sans-serif" font-size="11">
+      <rect width="220" height="32" rx="4" fill="#ffffff" stroke="#fed7aa"/>
+      <text x="10" y="20" font-weight="700" fill="#c2410c">Domain Name:</text>
+      <text x="95" y="20" font-family="monospace" font-size="10" fill="#334155">api.shop.com / img.shop.com</text>
+
+      <rect y="40" width="220" height="32" rx="4" fill="#ffffff" stroke="#fed7aa"/>
+      <text x="10" y="60" font-weight="700" fill="#c2410c">URL Path:</text>
+      <text x="75" y="60" font-family="monospace" font-size="10" fill="#334155">/order/* /user/* /cart/*</text>
+
+      <rect y="80" width="220" height="32" rx="4" fill="#ffffff" stroke="#fed7aa"/>
+      <text x="10" y="100" font-weight="700" fill="#c2410c">HTTP Header:</text>
+      <text x="90" y="100" font-family="monospace" font-size="10" fill="#334155">X-User-Tier: Premium</text>
+
+      <rect y="120" width="220" height="32" rx="4" fill="#ffffff" stroke="#fed7aa"/>
+      <text x="10" y="140" font-weight="700" fill="#c2410c">Query String:</text>
+      <text x="90" y="140" font-family="monospace" font-size="10" fill="#334155">?version=v2&amp;canary=true</text>
+
+      <rect y="160" width="220" height="32" rx="4" fill="#ffffff" stroke="#fed7aa"/>
+      <text x="10" y="180" font-weight="700" fill="#c2410c">HTTP Method:</text>
+      <text x="95" y="180" font-family="monospace" font-size="10" fill="#334155">GET, POST, PUT, DELETE</text>
+
+      <rect y="200" width="220" height="32" rx="4" fill="#ffffff" stroke="#fed7aa"/>
+      <text x="10" y="220" font-weight="700" fill="#c2410c">Cookie / Source IP:</text>
+      <text x="115" y="220" font-family="monospace" font-size="10" fill="#334155">client_cid / CIDR Block</text>
+    </g>
+  </g>
+
+  <!-- Middle: ALB Rule Engine Actions -->
+  <g transform="translate(315, 75)">
+    <rect width="250" height="325" rx="12" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5"/>
+    <rect x="12" y="12" width="226" height="32" rx="6" fill="#0284c7"/>
+    <text x="125" y="33" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Dynamic Traffic Actions</text>
+
+    <g transform="translate(15, 60)">
+      <!-- Action 1: Forward -->
+      <rect width="220" height="50" rx="6" fill="#ffffff" stroke="#bae6fd"/>
+      <text x="10" y="20" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0369a1">1. Forward to Server Groups</text>
+      <text x="10" y="38" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">Weighted split: 90% Prod / 10% Canary</text>
+
+      <!-- Action 2: Redirect -->
+      <rect y="60" width="220" height="50" rx="6" fill="#ffffff" stroke="#bae6fd"/>
+      <text x="10" y="80" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0369a1">2. HTTP to HTTPS Redirect</text>
+      <text x="10" y="98" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">Automated 301 Permanent Redirect</text>
+
+      <!-- Action 3: Rewrite -->
+      <rect y="120" width="220" height="50" rx="6" fill="#ffffff" stroke="#bae6fd"/>
+      <text x="10" y="140" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0369a1">3. URL Path Rewrite</text>
+      <text x="10" y="158" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">Rewrite /v1/old -&gt; /v2/new in-flight</text>
+
+      <!-- Action 4: Fixed Response -->
+      <rect y="180" width="220" height="50" rx="6" fill="#ffffff" stroke="#bae6fd"/>
+      <text x="10" y="200" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0369a1">4. Fixed Response (Mock/Block)</text>
+      <text x="10" y="218" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">Direct 403 Forbidden or JSON payload</text>
+    </g>
+  </g>
+
+  <!-- Right: Destination Target Groups -->
+  <g transform="translate(595, 75)">
+    <rect width="250" height="325" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+    <rect x="12" y="12" width="226" height="32" rx="6" fill="#1e293b"/>
+    <text x="125" y="33" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Routed Backend Targets</text>
+
+    <g transform="translate(15, 60)">
+      <rect width="220" height="50" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+      <text x="10" y="22" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e293b">Target A: Prod Order Cluster</text>
+      <text x="10" y="38" font-family="system-ui, sans-serif" font-size="10" fill="#059669">ECS Fleet • Weight: 90</text>
+
+      <rect y="60" width="220" height="50" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+      <text x="10" y="82" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e293b">Target B: Canary Cluster</text>
+      <text x="10" y="98" font-family="system-ui, sans-serif" font-size="10" fill="#d97706">ECI Serverless Pods • Weight: 10</text>
+
+      <rect y="120" width="220" height="50" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+      <text x="10" y="142" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e293b">Target C: Media Service</text>
+      <text x="10" y="158" font-family="system-ui, sans-serif" font-size="10" fill="#0284c7">Function Compute (FC) Triggers</text>
+
+      <rect y="180" width="220" height="50" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+      <text x="10" y="202" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e293b">Traffic Mirror: Audit Cluster</text>
+      <text x="10" y="218" font-family="system-ui, sans-serif" font-size="10" fill="#7c3aed">Shadow testing without client impact</text>
+    </g>
+  </g>
+</svg>

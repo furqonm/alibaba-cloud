@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 440" width="100%" height="100%">
+  <rect x="15" y="15" width="850" height="410" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="440" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#1e293b">Gateway Load Balancer (GWLB): Transparent Security Appliance Chaining</text>
+
+  <!-- Left: Consumer VPC -->
+  <g transform="translate(35, 75)">
+    <rect width="230" height="325" rx="12" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5"/>
+    <rect x="12" y="12" width="206" height="35" rx="6" fill="#0284c7"/>
+    <text x="115" y="35" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Workload VPC (Consumer)</text>
+
+    <g transform="translate(15, 65)">
+      <rect width="200" height="70" rx="6" fill="#ffffff" stroke="#bae6fd"/>
+      <text x="15" y="25" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0369a1">Application Workload</text>
+      <text x="15" y="44" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">ECS / Container Microservices</text>
+      <text x="15" y="58" font-family="monospace" font-size="9" fill="#0284c7">IP: 10.0.1.100</text>
+
+      <rect y="85" width="200" height="85" rx="6" fill="#ffffff" stroke="#bae6fd"/>
+      <text x="15" y="108" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0369a1">GWLB Endpoint (GWLBe)</text>
+      <text x="15" y="126" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">VPC Route Table Next-Hop</text>
+      <text x="15" y="142" font-family="system-ui, sans-serif" font-size="10" fill="#16a34a">Transparent traffic diversion</text>
+      <text x="15" y="158" font-family="system-ui, sans-serif" font-size="9" fill="#64748b">Zero client proxy configuration</text>
+    </g>
+  </g>
+
+  <!-- Middle: GWLB Engine -->
+  <g transform="translate(295, 75)">
+    <rect width="270" height="325" rx="12" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+    <rect x="15" y="12" width="240" height="35" rx="6" fill="#8b5cf6"/>
+    <text x="135" y="35" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Gateway Load Balancer (GWLB)</text>
+
+    <g transform="translate(20, 65)">
+      <rect width="230" height="80" rx="6" fill="#ffffff" stroke="#ddd6fe"/>
+      <text x="15" y="24" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#6d28d9">GENEVE Encapsulation</text>
+      <text x="15" y="42" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• Preserves original Layer 3 IP headers</text>
+      <text x="15" y="58" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• UDP Port 6081 tunneling</text>
+      <text x="15" y="74" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• 2-way symmetric flow stickiness</text>
+
+      <rect y="95" width="230" height="80" rx="6" fill="#ffffff" stroke="#ddd6fe"/>
+      <text x="15" y="119" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#6d28d9">Health Monitoring &amp; Scale</text>
+      <text x="15" y="137" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• Continuous appliance probing</text>
+      <text x="15" y="153" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• Auto-eviction of faulty firewalls</text>
+      <text x="15" y="169" font-family="system-ui, sans-serif" font-size="10" fill="#16a34a">• Scale firewall fleet dynamically</text>
+    </g>
+  </g>
+
+  <!-- Right: Security Appliance Farm -->
+  <g transform="translate(595, 75)">
+    <rect width="250" height="325" rx="12" fill="#fff7ed" stroke="#FF6A00" stroke-width="1.5"/>
+    <rect x="12" y="12" width="226" height="35" rx="6" fill="#FF6A00"/>
+    <text x="125" y="35" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Security VPC (Appliances)</text>
+
+    <g transform="translate(15, 65)">
+      <rect width="220" height="55" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+      <text x="12" y="24" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#c2410c">🔥 Next-Gen Firewall 1</text>
+      <text x="12" y="42" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">Palo Alto / Fortinet / CheckPoint</text>
+
+      <rect y="65" width="220" height="55" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+      <text x="12" y="89" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#c2410c">🔥 Next-Gen Firewall 2</text>
+      <text x="12" y="107" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">Deep packet inspection &amp; IPS</text>
+
+      <rect y="130" width="220" height="55" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+      <text x="12" y="154" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#c2410c">🔥 Next-Gen Firewall N</text>
+      <text x="12" y="172" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">Auto-scaled firewall instance pool</text>
+    </g>
+  </g>
+</svg>

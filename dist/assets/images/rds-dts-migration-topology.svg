@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 460" width="100%" height="100%">
+  <defs>
+    <filter id="shadow-dts" x="-5%" y="-5%" width="110%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <marker id="m-dts" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <polygon points="0 1, 8 4, 0 7" fill="#0284c7"/>
+    </marker>
+  </defs>
+
+  <!-- Source Database (Left) -->
+  <g transform="translate(50, 60)">
+    <rect width="220" height="340" rx="10" fill="#ffffff" stroke="#94a3b8" stroke-width="2" filter="url(#shadow-dts)"/>
+    <rect x="0" y="0" width="220" height="42" rx="10" fill="#64748b"/>
+    <rect x="0" y="32" width="220" height="10" fill="#64748b"/>
+    <text x="110" y="26" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#ffffff">Source Database</text>
+    <text x="110" y="68" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="28">🗄️</text>
+
+    <text x="20" y="105" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#1e293b">Supported Environments:</text>
+    <rect x="15" y="115" width="190" height="210" rx="6" fill="#f8fafc"/>
+    <text x="25" y="138" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155">• On-Premises Data Center</text>
+    <text x="25" y="158" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155">• Self-Managed DB on ECS</text>
+    <text x="25" y="178" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155">• Third-Party Cloud DB</text>
+    <text x="25" y="198" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155">• Another RDS Instance</text>
+
+    <rect x="25" y="225" width="170" height="85" rx="4" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="110" y="245" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#475569">Connection Methods</text>
+    <text x="110" y="265" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="500" fill="#64748b">• Public IP / Internet</text>
+    <text x="110" y="282" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="500" fill="#64748b">• VPN / Express Connect</text>
+    <text x="110" y="299" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="500" fill="#64748b">• CEN Cloud Enterprise Network</text>
+  </g>
+
+  <!-- DTS Transmission Engine (Center) -->
+  <g transform="translate(320, 40)">
+    <rect width="320" height="380" rx="12" fill="#f0f9ff" stroke="#0284c7" stroke-width="2" filter="url(#shadow-dts)"/>
+    <rect x="0" y="0" width="320" height="46" rx="12" fill="#0284c7"/>
+    <rect x="0" y="36" width="320" height="10" fill="#0284c7"/>
+    <text x="160" y="28" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#ffffff">Data Transmission Service (DTS)</text>
+
+    <!-- Phase 1 -->
+    <rect x="20" y="60" width="280" height="90" rx="6" fill="#ffffff" stroke="#93c5fd" stroke-width="1.2"/>
+    <text x="35" y="82" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#0369a1">Phase 1: Schema Migration</text>
+    <text x="35" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="500" fill="#475569">• Migrates DDL object definitions</text>
+    <text x="35" y="120" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="500" fill="#475569">• Tables, Views, Triggers, Stored Procedures</text>
+    <text x="35" y="138" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#0284c7">Duration: Seconds to Minutes</text>
+
+    <!-- Phase 2 -->
+    <rect x="20" y="160" width="280" height="90" rx="6" fill="#ffffff" stroke="#93c5fd" stroke-width="1.2"/>
+    <text x="35" y="182" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#0369a1">Phase 2: Full Data Migration</text>
+    <text x="35" y="202" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="500" fill="#475569">• Copies all existing historical row data</text>
+    <text x="35" y="220" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="500" fill="#475569">• Multi-threaded chunk extraction</text>
+    <text x="35" y="238" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#0284c7">Consistent Snapshot Point Established</text>
+
+    <!-- Phase 3 -->
+    <rect x="20" y="260" width="280" height="95" rx="6" fill="#ffffff" stroke="#10b981" stroke-width="1.5"/>
+    <text x="35" y="282" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#15803d">Phase 3: Incremental Real-Time Sync</text>
+    <text x="35" y="302" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="500" fill="#475569">• Continuous change-log parsing (Binlog / WAL)</text>
+    <text x="35" y="320" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="500" fill="#475569">• Sub-second replication latency</text>
+    <text x="35" y="338" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#15803d">Zero Application Downtime Cutover</text>
+  </g>
+
+  <!-- Connectors -->
+  <path d="M 270 230 L 320 230" fill="none" stroke="#0284c7" stroke-width="2.5" marker-end="url(#m-dts)"/>
+  <path d="M 640 230 L 690 230" fill="none" stroke="#0284c7" stroke-width="2.5" marker-end="url(#m-dts)"/>
+
+  <!-- Target Database (Right) -->
+  <g transform="translate(690, 60)">
+    <rect width="220" height="340" rx="10" fill="#ffffff" stroke="#10b981" stroke-width="2" filter="url(#shadow-dts)"/>
+    <rect x="0" y="0" width="220" height="42" rx="10" fill="#10b981"/>
+    <rect x="0" y="32" width="220" height="10" fill="#10b981"/>
+    <text x="110" y="26" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#ffffff">Target ApsaraDB for RDS</text>
+    <text x="110" y="68" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="28">🚀</text>
+
+    <text x="20" y="105" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#15803d">Target Cloud Benefits:</text>
+    <rect x="15" y="115" width="190" height="210" rx="6" fill="#f0fdf4"/>
+    <text x="25" y="138" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#166534">• Managed High Availability</text>
+    <text x="25" y="158" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#166534">• Auto Backup &amp; PITR</text>
+    <text x="25" y="178" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#166534">• Read/Write Splitting Proxy</text>
+    <text x="25" y="198" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#166534">• Enterprise Security Perimeter</text>
+
+    <rect x="25" y="225" width="170" height="85" rx="4" fill="#dcfce7" stroke="#bbf7d0" stroke-width="1"/>
+    <text x="110" y="245" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#166534">Cutover Procedure</text>
+    <text x="110" y="265" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="500" fill="#15803d">1. Wait for Latency → 0s</text>
+    <text x="110" y="282" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="500" fill="#15803d">2. Set Source Read-Only</text>
+    <text x="110" y="299" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#166534">3. Switchover App Endpoints</text>
+  </g>
+</svg>

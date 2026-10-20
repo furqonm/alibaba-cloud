@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 380" width="100%" height="auto">
+  <defs>
+    <filter id="shadow-sec" x="-3%" y="-3%" width="106%" height="106%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.08" />
+    </filter>
+  </defs>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+    <!-- Perimeter 1: Identity & Authentication -->
+    <g filter="url(#shadow-sec)">
+      <rect x="20" y="30" width="250" height="320" rx="10" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5" />
+      <rect x="20" y="30" width="250" height="38" rx="10" fill="#E0F2FE" />
+      <text x="145" y="54" fill="#0369A1" font-size="12" font-weight="800" text-anchor="middle">1. Identity &amp; Auth (RAM/STS)</text>
+      
+      <g transform="translate(35, 85)" font-size="10.5" fill="#334155">
+        <text x="0" y="0" font-weight="700" fill="#0284C7">RAM Policy</text>
+        <text x="0" y="18">Attach to users, groups, or roles</text>
+        <text x="0" y="36">Controls action across accounts</text>
+
+        <line x1="0" y1="52" x2="220" y2="52" stroke="#E2E8F0" stroke-width="1" />
+
+        <text x="0" y="72" font-weight="700" fill="#0284C7">Security Token Service (STS)</text>
+        <text x="0" y="90">Issues short-lived temp tokens</text>
+        <text x="0" y="108">Configurable TTL (15m to 36h)</text>
+
+        <line x1="0" y1="124" x2="220" y2="124" stroke="#E2E8F0" stroke-width="1" />
+
+        <text x="0" y="144" font-weight="700" fill="#0284C7">Signed URLs</text>
+        <text x="0" y="162">Signature embedded in URL params</text>
+        <text x="0" y="180">Strict time-limited direct access</text>
+        <text x="0" y="198">Bypasses app server bottleneck</text>
+      </g>
+    </g>
+
+    <!-- Perimeter 2: Access Control & Network Boundary -->
+    <g filter="url(#shadow-sec)">
+      <rect x="295" y="30" width="270" height="320" rx="10" fill="#FFFFFF" stroke="#059669" stroke-width="1.5" />
+      <rect x="295" y="30" width="270" height="38" rx="10" fill="#D1FAE5" />
+      <text x="430" y="54" fill="#065F46" font-size="12" font-weight="800" text-anchor="middle">2. Bucket Policies &amp; Boundary</text>
+      
+      <g transform="translate(310, 85)" font-size="10.5" fill="#334155">
+        <text x="0" y="0" font-weight="700" fill="#059669">Bucket Policy</text>
+        <text x="0" y="18">JSON policy attached to bucket</text>
+        <text x="0" y="36">Cross-account direct delegation</text>
+
+        <line x1="0" y1="52" x2="240" y2="52" stroke="#E2E8F0" stroke-width="1" />
+
+        <text x="0" y="72" font-weight="700" fill="#059669">Network Ingress Restrictions</text>
+        <text x="0" y="90">Enforce TLS/HTTPS only (Deny HTTP)</text>
+        <text x="0" y="108">Corporate Public IP Whitelisting</text>
+
+        <line x1="0" y1="124" x2="240" y2="124" stroke="#E2E8F0" stroke-width="1" />
+
+        <text x="0" y="144" font-weight="700" fill="#059669">VPC Endpoints &amp; PrivateLink</text>
+        <text x="0" y="162">Confines traffic within private SDN</text>
+        <text x="0" y="180">Policy condition: acs:SourceVpc</text>
+        <text x="0" y="198">Blocks internet routes entirely</text>
+      </g>
+    </g>
+
+    <!-- Perimeter 3: Encryption & Immutability -->
+    <g filter="url(#shadow-sec)">
+      <rect x="590" y="30" width="250" height="320" rx="10" fill="#FFFFFF" stroke="#EA580C" stroke-width="1.5" />
+      <rect x="590" y="30" width="250" height="38" rx="10" fill="#FFEDD5" />
+      <text x="715" y="54" fill="#C2410C" font-size="12" font-weight="800" text-anchor="middle">3. Encryption &amp; WORM</text>
+      
+      <g transform="translate(605, 85)" font-size="10.5" fill="#334155">
+        <text x="0" y="0" font-weight="700" fill="#EA580C">WORM (Bucket Lock)</text>
+        <text x="0" y="18">Write Once Read Many compliance</text>
+        <text x="0" y="36">Retention: 1 day to 70 years</text>
+        <text x="0" y="54">Root account CANNOT delete/alter</text>
+
+        <line x1="0" y1="70" x2="220" y2="70" stroke="#E2E8F0" stroke-width="1" />
+
+        <text x="0" y="90" font-weight="700" fill="#EA580C">Server-Side Encryption (SSE)</text>
+        <text x="0" y="108">• SSE-OSS: Zero-overhead AES-256</text>
+        <text x="0" y="126">• SSE-KMS: Customer Master Keys (BYOK)</text>
+        <text x="0" y="144">• Envelope encryption &amp; audit trails</text>
+
+        <line x1="0" y1="160" x2="220" y2="160" stroke="#E2E8F0" stroke-width="1" />
+
+        <text x="0" y="180" font-weight="700" fill="#EA580C">Client-Side Encryption</text>
+        <text x="0" y="198">Encrypted before transmission</text>
+      </g>
+    </g>
+  </g>
+</svg>

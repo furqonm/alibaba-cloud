@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 03: Virtual Private Cloud (VPC) | Alibaba Cloud Professional</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header class="presentation-header">
+    <div class="brand-wrapper">
+      <span class="brand-badge">Alibaba Cloud</span>
+      <div class="course-info">
+        <span class="course-title">Alibaba Cloud Professional: Cloud Architect</span>
+        <span class="module-title">Module 03: Virtual Private Cloud (VPC) Deep Dive</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="section-indicator" id="sectionIndicator">Overview</span>
+      <div class="module-switcher-wrapper">
+        <select class="module-select" id="moduleSelect" onchange="if(this.value) window.location.href=this.value;">
+          <option value="module-01-overview.html">Module 01: Overview</option>
+          <option value="module-02-ecs.html">Module 02: ECS</option>
+          <option value="module-03-vpc.html" selected>Module 03: VPC</option>
+          <option value="module-04-slb.html">Module 04: SLB</option>
+          <option value="module-05-oss.html">Module 05: OSS</option>
+          <option value="module-06-rds.html">Module 06: RDS</option>
+          <option value="module-07-auto-scaling.html">Module 07: Auto Scaling</option>
+          <option value="module-08-cdn.html">Module 08: CDN</option>
+          <option value="module-09-security.html">Module 09: Security</option>
+        </select>
+      </div>
+      <div class="nav-buttons">
+        <span class="slide-counter" id="slideCounter">1/41</span>
+        <button class="btn-nav" id="prevBtn" title="Previous Slide (Left Arrow)">
+          <span>⬅️</span> Previous
+        </button>
+        <button class="btn-nav primary" id="nextBtn" title="Next Slide (Right Arrow / Space)">
+          Next <span>➡️</span>
+        </button>
+        <button class="btn-nav" id="fullscreenBtn" title="Toggle Fullscreen (F)">
+          <span>⛶</span> Fullscreen
+        </button>
+      </div>
+    </div>
+    <div class="slide-progress-bar" id="progressBar"></div>
+  </header>
+
+  <!-- Presentation Deck Container -->
+  <main class="deck-container">
+
+    <!-- ==================== SLIDE 1: CLEAN TITLE ==================== -->
+    <section class="slide active title-slide" data-category="Course Intro">
+      <h1>Module 03: Virtual Private Cloud (VPC)</h1>
+    </section>
+
+    <!-- ==================== SLIDE 2: AGENDA LIST ==================== -->
+    <section class="slide" data-category="Outline">
+      <div class="slide-category">Module Structure</div>
+      <h2>Agenda & Learning Objectives</h2>
+      
+      <ol class="agenda-grid">
+        <li class="agenda-item">VPC Concept &amp; Architecture</li>
+        <li class="agenda-item">Subnet Planning</li>
+        <li class="agenda-item">Routing</li>
+        <li class="agenda-item">Network Security</li>
+        <li class="agenda-item">Enterprise Connectivity</li>
+        <li class="agenda-item">Advanced Features</li>
+        <li class="agenda-item">Pricing Model</li>
+      </ol>
+    </section>
+
+    <!-- ==================== SLIDE 3: WHY DO WE NEED ISOLATION ==================== -->
+    <section class="slide" data-category="VPC Concept &amp; Architecture">
+      <div class="slide-category">Section 1: VPC Concept &amp; Architecture</div>
+      <h2>Why Do We Need Isolation?</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-top: 0.5rem;">
+        <img src="assets/images/restaurant-partition-analogy.svg" alt="Physical Partitioning in a Fast-Food Restaurant" class="architecture-diagram" style="max-height: 520px; width: 100%; height: auto; object-fit: contain;">
+        <div class="diagram-caption" style="margin-top: 0.75rem;">Physical Partitioning in a Fast-Food Restaurant</div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 4: PUBLIC VS PRIVATE SUBNETS ==================== -->
+    <section class="slide" data-category="VPC Concept &amp; Architecture">
+      <div class="slide-category">Section 1: VPC Concept &amp; Architecture</div>
+      <h2>Public vs. Private Subnets</h2>
+      
+      <div class="grid-2" style="margin-top: 1rem; align-items: stretch;">
+        <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 0.75rem;">
+          <img src="assets/images/basic-network-isolation-topology.svg" alt="Fundamental Architecture: Two-Tier Subnet Isolation Pattern" class="diagram-image" style="max-height: 400px; width: 100%; object-fit: contain;">
+          <div class="diagram-caption">Fundamental Architecture: Two-Tier Subnet Isolation Pattern</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem; justify-content: center;">
+          <div class="content-card highlight-blue">
+            <h3>Network Partitioning</h3>
+            <ul>
+              <li><strong>Network Router:</strong> Directs traffic between the external internet and internal subnets based on defined routing tables.</li>
+              <li><strong>Public Subnet (The Cashier):</strong> Houses customer-facing services (Web Servers, API Gateways, Reverse Proxies) with public IP routing.</li>
+              <li><strong>Private Subnet (The Kitchen):</strong> Houses core databases and application business logic with <em>zero direct internet route</em>.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-green">
+            <h3>Core Architectural Advantages</h3>
+            <ul>
+              <li><strong>Zero Direct Public Exposure:</strong> Backend databases cannot be scanned or targeted by external internet attackers.</li>
+              <li><strong>Controlled Inter-Subnet Flow:</strong> Only authorized application proxies in the public subnet can query the database over internal private routes.</li>
+              <li><strong>Defense-in-Depth:</strong> Even if a public-facing web server is compromised, the internal subnet firewall and boundary prevent lateral movement to core data stores.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 5: WHAT IS A VPC ==================== -->
+    <section class="slide" data-category="VPC Concept &amp; Architecture">
+      <div class="slide-category">Section 1: VPC Concept &amp; Architecture</div>
+      <h2>What is a Virtual Private Cloud (VPC)?</h2>
+      
+      <div class="service-intro-banner">
+        <div class="service-icon-wrapper">
+          <img src="assets/images/vpc-service-icon.svg" alt="Alibaba Cloud VPC Icon" class="service-icon">
+        </div>
+        <div class="service-intro-text">
+          <p class="service-lead">
+            A <strong>Virtual Private Cloud (VPC)</strong> is an isolated private network built on Alibaba Cloud.
+          </p>
+          <p class="service-desc">
+            You can think of a VPC as your own customized private network environment in the cloud. It allows you to select your own private IP address ranges (CIDR blocks), subdivide networks into subnets across zones, and define custom security rules. Each VPC is logically independent and completely isolated from other tenants.
+          </p>
+        </div>
+      </div>
+
+      <div class="service-pillars-grid">
+        <div class="service-pillar-card">
+          <h4>🔒 Private & Isolated</h4>
+          <p>Complete logical isolation at the network layer prevents unauthorized access between VPCs.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>📐 Custom Address Space</h4>
+          <p>Full control over private IP address planning (CIDR blocks) without conflicting with existing networks.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>🛡️ Controllable Security</h4>
+          <p>Implement defense-in-depth traffic filtering using Security Groups and Network ACLs.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>⚡ High Availability</h4>
+          <p>Deploy vSwitches across multiple Availability Zones to ensure uninterrupted multi-zone redundancy.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>🔗 Hybrid Interconnection</h4>
+          <p>Connect seamlessly to on-premises data centers or other VPCs via VPN, Express Connect, or CEN.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 6: VPC CORE COMPONENTS ==================== -->
+    <section class="slide" data-category="VPC Concept &amp; Architecture">
+      <div class="slide-category">Section 1: VPC Concept &amp; Architecture</div>
+      <h2>VPC Architectural Components</h2>
+      
+      <div class="grid-2">
+        <div>
+          <div class="content-card highlight">
+            <ul>
+              <li><strong>VPC (Regional Scope):</strong> The top-level software-defined network boundary tied to a single Alibaba Cloud Region. Defines the master IP address block.</li>
+              <li><strong>vRouter (Virtual Router):</strong> The central routing hub connecting all subnets within the VPC and serving as the default gateway to external networks. Each VPC has exactly one logical vRouter.</li>
+              <li><strong>vSwitch (Virtual Switch):</strong> A subnet dividing the VPC CIDR block, physically anchored inside a <strong>single Availability Zone</strong>.</li>
+              <li><strong>Route Tables:</strong> Directs traffic forwarding based on destination CIDR blocks and designated next-hop targets.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="diagram-container">
+          <img src="assets/images/vpc-architecture.png" alt="VPC Architecture Diagram" class="diagram-image" style="max-height: 250px;">
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 7: UNDERLYING TECHNOLOGY ==================== -->
+    <section class="slide" data-category="VPC Concept &amp; Architecture">
+      <div class="slide-category">Section 1: VPC Concept &amp; Architecture</div>
+      <h2>Underlying Technology</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <p>Alibaba Cloud VPC relies on <strong>Virtual Extensible LAN (VXLAN)</strong>, an industry-standard network virtualization tunneling protocol:</p>
+          <ul>
+            <li><strong>MAC-in-UDP Encapsulation:</strong> Encapsulates Layer 2 virtual Ethernet frames generated by virtual machines into standard Layer 3 physical UDP packets.</li>
+            <li><strong>24-bit Tunnel ID (VNI):</strong> Provides up to <strong>16,777,216 (16 million)</strong> unique virtual network identifiers, surpassing the legacy 4,096 VLAN limitation.</li>
+            <li><strong>Underlay Independence:</strong> Tenant virtual networks (Overlay) operate seamlessly over physical datacenter spine-leaf fabrics (Underlay) without altering physical switch configurations.</li>
+            <li><strong>Strict Isolation Rule:</strong> Compute instances can only communicate directly over the private network if their traffic carries the <strong>exact same 24-bit VXLAN Tunnel ID</strong>.</li>
+          </ul>
+        </div>
+
+        <div class="diagram-container clean">
+          <img src="assets/images/vxlan-encapsulation.png" alt="VXLAN Packet Encapsulation Diagram" class="diagram-image" style="max-height: 220px; width: 100%; object-fit: contain;">
+          <div class="diagram-caption">VXLAN Packet Encapsulation: Outer Physical Transport enclosing Inner Tenant Virtual Frame</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 8: UNDERLYING TECHNOLOGY (CONT.) ==================== -->
+    <section class="slide" data-category="VPC Concept &amp; Architecture">
+      <div class="slide-category">Section 1: VPC Concept &amp; Architecture</div>
+      <h2>Underlying Technology (cont.)</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+        <img src="assets/images/vpc-vxlan-topology.png" alt="Underlying Technology (cont.): VXLAN Isolation" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
+      </div>
+
+      <div class="callout callout-amber" style="margin-top: 0.75rem;">
+        <div>
+          <span class="badge badge-exam">Architectural Principle</span> All cross-tenant communication is physically impossible at the hardware level unless explicitly authorized via gateway routing (CEN, Peering, or public endpoints).
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== SLIDE 9: IP ADDRESS PLANNING ==================== -->
+    <section class="slide" data-category="Subnet Planning">
+      <div class="slide-category">Section 2: Subnet Planning</div>
+      <h2>IPv4 Address Planning</h2>
+      
+      <div class="table-wrapper">
+        <table class="slide-table">
+          <thead>
+            <tr>
+              <th>RFC 1918 CIDR Block</th>
+              <th>Supported Prefix Range</th>
+              <th>Total IP Capacity</th>
+              <th>Recommended Enterprise Workload</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>10.0.0.0/8</code></td>
+              <td><code>/8</code> to <code>/24</code></td>
+              <td>16,777,216 addresses</td>
+              <td>Large-scale enterprise environments, hyper-scale Kubernetes (ACK) clusters, multi-tier microservices.</td>
+            </tr>
+            <tr>
+              <td><code>172.16.0.0/12</code></td>
+              <td><code>/12</code> to <code>/24</code></td>
+              <td>1,048,576 addresses</td>
+              <td>Medium to large enterprises, standard production VPCs, regional core data backends.</td>
+            </tr>
+            <tr>
+              <td><code>192.168.0.0/16</code></td>
+              <td><code>/16</code> to <code>/24</code></td>
+              <td>65,536 addresses</td>
+              <td>Departmental networks, branch offices, development/testing isolated sandboxes.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid-2" style="margin-top: 1rem;">
+        <div class="content-card highlight-green">
+          <h3>Non-Overlapping Subnets</h3>
+          <p>When designing VPCs destined for hybrid interconnectivity (via CEN, Express Connect, or VPN), <strong>ensure that the VPC CIDR block never overlaps</strong> with your on-premises datacenters or peer VPCs. Route propagation fails on overlapping CIDRs!</p>
+        </div>
+        <div class="content-card highlight-blue">
+          <h3>Subnet Mask Constraints</h3>
+          <p>Alibaba Cloud VPC primary IPv4 CIDR blocks must have a subnet mask between <strong>/8 and /24</strong>. Subnet masks wider than /8 (e.g. /7) or narrower than /24 (e.g. /25) are not supported as primary VPC CIDR blocks.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 10: SECONDARY CIDR & IPV6 ==================== -->
+    <section class="slide" data-category="Subnet Planning">
+      <div class="slide-category">Section 2: Subnet Planning</div>
+      <h2>Secondary CIDR Blocks & IPv6 Dual-Stack</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <h3>Secondary IPv4 CIDR Blocks</h3>
+          <p>If an existing VPC runs out of private IP capacity due to rapid business growth or container pod density:</p>
+          <ul>
+            <li><strong>Zero Workload Disruption:</strong> Attach up to <strong>3 secondary IPv4 CIDR blocks</strong> to an existing VPC without stopping instances or rebuilding routing.</li>
+            <li><strong>Flexible Allocation:</strong> Can be standard RFC 1918 blocks (e.g. adding <code>172.16.0.0/12</code> to a <code>10.0.0.0/8</code> VPC) or custom user CIDRs.</li>
+            <li><strong>Dedicated vSwitches:</strong> Create new vSwitches bound to the secondary CIDR to host high-density container fleets.</li>
+          </ul>
+        </div>
+        <div class="content-card highlight-blue">
+          <h3>IPv6 Dual-Stack Architecture</h3>
+          <p>Native modern IPv6 addressing for global internet compliance and direct device addressability:</p>
+          <ul>
+            <li><strong>Automatic /56 Allocation:</strong> Alibaba Cloud automatically allocates a globally unique <code>/56</code> IPv6 CIDR block when IPv6 is enabled on a VPC.</li>
+            <li><strong>/64 Subnet Slicing:</strong> Subdivide the VPC IPv6 block into <code>/64</code> subnets assigned to individual vSwitches.</li>
+            <li><strong>IPv6 Gateway:</strong> Provides granular internet egress and ingress control for IPv6 traffic with configurable bandwidth packages.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout-green" style="margin-top: 1rem;">
+        <strong>Cloud-Native Use Case:</strong> Alibaba Cloud Container Service for Kubernetes (ACK) utilizes Secondary CIDRs to dedicate distinct address pools for cluster nodes and Kubernetes pods via the Terway CNI plugin.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 11: MULTI-ZONE VSWITCH ARCHITECTURE ==================== -->
+    <section class="slide" data-category="Subnet Planning">
+      <div class="slide-category">Section 2: Subnet Planning</div>
+      <h2>Multi-Zone vSwitch Architecture</h2>
+      
+      <div class="grid-2" style="grid-template-columns: 1fr 1.35fr; gap: 1.25rem; align-items: stretch;">
+        <div class="content-card highlight">
+          <ul>
+            <li><strong>Strict Zonal Anchor:</strong> A vSwitch resides inside <strong>exactly one Availability Zone</strong>. A vSwitch can never span across multiple physical zones.</li>
+            <li><strong>Subnet Mask Range:</strong> A vSwitch mask must be between <strong>/16 and /29</strong>, and its CIDR block must be a strict subset of the VPC's primary or secondary CIDR blocks.</li>
+            <li><strong>Intra-VPC Routing:</strong> By default, all vSwitches inside the same VPC can communicate with each other over high-speed backbone private links with zero routing configuration required.</li>
+            <li><strong>System Quotas:</strong> Each VPC supports up to 24 vSwitches by default (expandable via quota application).</li>
+          </ul>
+        </div>
+        <div class="diagram-container clean" style="margin-top: 0; justify-content: center; height: 100%; padding: 0.75rem;">
+          <img src="assets/images/vswitch-multizone-topology.png" alt="Multi-Zone vSwitch Subnet Architecture" class="diagram-image" style="max-height: 380px; width: 100%; object-fit: contain;">
+          
+        </div>
+      </div>
+
+      <div class="callout callout-amber" style="margin-top: 0.75rem;">
+        <div>
+          <span class="badge badge-exam">Strict Architecture Constraint</span> Once a vSwitch is created, its <strong>Zone and CIDR block cannot be modified</strong>. Sizing your subnets appropriately during the architectural design phase is critical!
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 12: RESERVED IP ADDRESSES ==================== -->
+    <section class="slide" data-category="Subnet Planning">
+      <div class="slide-category">Section 2: Subnet Planning</div>
+      <h2>System-Reserved IP Addresses</h2>
+      
+      <div class="content-card highlight" style="margin-bottom: 1rem;">
+        <div class="table-wrapper">
+          <table class="slide-table">
+            <thead>
+              <tr>
+                <th>Reserved IP</th>
+                <th>Position</th>
+                <th>System Role & Function</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>x.x.1.0</code></td>
+                <td>First IP (Network ID)</td>
+                <td><strong>Network Identifier:</strong> Identifies the subnet boundary in standard IP routing.</td>
+              </tr>
+              <tr>
+                <td><code>x.x.1.1</code></td>
+                <td>Second IP (.1)</td>
+                <td><strong>Default Gateway:</strong> Assigned to the virtual router interface (vRouter) inside the vSwitch.</td>
+              </tr>
+              <tr>
+                <td><code>x.x.1.2</code></td>
+                <td>Third IP (.2)</td>
+                <td><strong>DNS / DHCP Service:</strong> Reserved by Alibaba Cloud to deliver internal DNS and DHCP services.</td>
+              </tr>
+              <tr>
+                <td><code>x.x.1.3</code></td>
+                <td>Fourth IP (.3)</td>
+                <td><strong>Cloud Infrastructure Service:</strong> Reserved for internal cloud management and SDN fabric operations.</td>
+              </tr>
+              <tr>
+                <td><code>x.x.1.255</code></td>
+                <td>Last IP (Broadcast)</td>
+                <td><strong>Broadcast Address:</strong> Standard broadcast address of the CIDR block.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="content-card highlight-blue">
+        <h3>Host Capacity Calculation Formula</h3>
+        <p style="font-size: calc(1.05rem + var(--font-delta)); line-height: 1.6;">
+          For any vSwitch subnet with prefix length <em>P</em>, total usable host IP addresses are calculated as:
+          <br>
+          <strong style="font-size: calc(1.25rem + var(--font-delta)); color: #0284c7;">Usable Host IPs = 2<sup>(32 − P)</sup> − 5</strong>
+        </p>
+        <p style="margin-top: 0.5rem; color: var(--text-secondary);">
+          <em>Example:</em> A <code>/24</code> vSwitch has 256 total IP addresses. Subtracting the 5 system-reserved IPs leaves exactly <strong>251 usable IP addresses</strong> for ECS instances, RDS databases, and Server Load Balancers.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 13: SYSTEM ROUTE TABLES ==================== -->
+    <section class="slide" data-category="Routing">
+      <div class="slide-category">Section 3: Routing</div>
+      <h2>System Route Table</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight">
+          
+          <ul>
+            <li><strong>Automated Provisioning:</strong> Created automatically when the VPC is created. Bound to all vSwitches by default.</li>
+            <li><strong>Permanent Existence:</strong> The System Route Table <strong>cannot be deleted</strong>, ensuring the VPC always retains a functional baseline forwarding plane.</li>
+            <li><strong>Default Local Route:</strong> Contains an uneditable system entry pointing the entire VPC CIDR block to next-hop <code>Local</code>.</li>
+            <li><strong>Zero-Configuration Intranet:</strong> Default <code>Local</code> route entries allow ECS instances across different vSwitches and zones within the VPC to communicate freely without manual routing configuration.</li>
+            <li><strong>Extensibility:</strong> Custom route entries (e.g. <code>0.0.0.0/0</code> pointing to a NAT Gateway or VPN) can be added to the System Route Table.</li>
+          </ul>
+        </div>
+        <div class="content-card highlight-blue">
+          <h3>Sample Route Table Entries</h3>
+          <div class="table-wrapper">
+            <table class="slide-table">
+              <thead>
+                <tr>
+                  <th>Destination CIDR</th>
+                  <th>Next Hop Type</th>
+                  <th>Route Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>10.0.0.0/8</code></td>
+                  <td><code>Local</code></td>
+                  <td>System (Non-editable)</td>
+                </tr>
+                <tr>
+                  <td><code>100.64.0.0/10</code></td>
+                  <td><code>Local</code></td>
+                  <td>System (Alibaba Cloud Services)</td>
+                </tr>
+                <tr>
+                  <td><code>0.0.0.0/0</code></td>
+                  <td><code>NAT Gateway</code></td>
+                  <td>Custom (Internet Egress)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 14: CUSTOM ROUTE TABLES ==================== -->
+    <section class="slide" data-category="Routing">
+      <div class="slide-category">Section 3: Routing</div>
+      <h2>Custom Route Tables</h2>
+      
+      <div class="grid-2" style="grid-template-columns: 1fr 1.35fr; gap: 1.25rem; align-items: stretch;">
+        <div class="content-card highlight">
+          <p>By default, all vSwitches share the System Route Table. Associating a <strong>Custom Route Table</strong> with a specific vSwitch overrides system routing for that subnet:</p>
+          <ul>
+            <li><strong>DMZ / Public Subnet:</strong> Associated with a custom route table pointing <code>0.0.0.0/0</code> to an Internet NAT Gateway or secondary firewall ENI.</li>
+            <li><strong>Private Backend Subnet:</strong> Associated with a route table containing no internet route, isolating microservices from external exposure.</li>
+            <li><strong>Database Subnet:</strong> Locked down with only local intra-VPC routes, blocking direct outbound connections.</li>
+            <li><strong>Binding Rule:</strong> A vSwitch can be associated with exactly one Route Table at any given time (either the System Route Table or a single Custom Route Table).</li>
+          </ul>
+        </div>
+        <div class="diagram-container clean" style="margin-top: 0; justify-content: center; height: 100%; padding: 0.75rem;">
+          <img src="assets/images/custom-route-table-topology.jpg" alt="Custom Route Table Traffic Steering Topology" class="diagram-image" style="max-height: 380px; width: 100%; object-fit: contain;">
+          
+        </div>
+      </div>
+
+      <div class="callout callout-blue" style="margin-top: 0.75rem;">
+        <strong>Supported Next-Hop Types:</strong> Custom routes can forward traffic to ECS Instances (Primary/Secondary ENIs for virtual firewalls & proxies), NAT Gateways (outbound egress), VPN Gateways (IPsec tunnels), Virtual Border Routers (VBR for leased lines), and Cloud Enterprise Network (CEN/Transit Router).
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 15: GATEWAY ROUTE TABLES ==================== -->
+    <section class="slide" data-category="Routing">
+      <div class="slide-category">Section 3: Routing</div>
+      <h2>Gateway Route Tables</h2>
+      
+      <div class="grid-2" style="align-items: center;">
+        <div class="diagram-container clean" style="display: flex; justify-content: center; align-items: center;">
+          <img src="assets/images/gateway-route-table.svg" alt="Gateway Route Table Ingress Routing Topology" class="diagram-image" style="max-height: 420px; width: 100%; object-fit: contain;">
+        </div>
+        <div class="content-card highlight-green">
+          <h3>In-Line Inspection Workflow</h3>
+          <ol style="margin-top: 0.5rem; padding-left: 1.25rem; line-height: 1.7; color: var(--text-secondary);">
+            <li><strong>Traffic Ingress:</strong> Internet request arrives at the VPC boundary via the IPv4 Gateway.</li>
+            <li><strong>Gateway Route Match:</strong> Gateway Route Table intercepts traffic and forwards destination CIDRs to the Firewall ECS instance ENI.</li>
+            <li><strong>Threat Inspection:</strong> The firewall inspects, decrypts, and sanitizes the packets.</li>
+            <li><strong>Internal Forwarding:</strong> The firewall forwards approved packets to the backend application vSwitch.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 16: DEFENSE-IN-DEPTH ==================== -->
+    <section class="slide" data-category="Network Security">
+      <div class="slide-category">Section 4: Network Security</div>
+      <h2>Defense-in-Depth Network Security</h2>
+      
+      <div class="diagram-container clean" style="padding: 0.5rem; margin: 0.5rem 0;">
+        <img src="assets/images/network-defense-in-depth.svg" alt="Network Defense in Depth Architecture" class="diagram-image" style="max-height: 240px; width: 100%;">
+      </div>
+
+      <div class="grid-3" style="margin-top: 0.5rem;">
+        <div class="content-card highlight">
+          <h3>1. Subnet Perimeter</h3>
+          <p><strong>Network ACLs:</strong> Stateless virtual firewalls at the vSwitch boundary controlling traffic entering and leaving entire subnets.</p>
+        </div>
+        <div class="content-card highlight-blue">
+          <h3>2. Interface Perimeter</h3>
+          <p><strong>Security Groups:</strong> Stateful virtual firewalls bound to Elastic Network Interfaces (ENIs) securing individual ECS instances.</p>
+        </div>
+        <div class="content-card highlight-green">
+          <h3>3. Database Perimeter</h3>
+          <p><strong>IP Whitelists:</strong> Database-level IP access control filtering connections to PolarDB and ApsaraDB for RDS clusters.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 17: NETWORK ACLS ==================== -->
+    <section class="slide" data-category="Network Security">
+      <div class="slide-category">Section 4: Network Security</div>
+      <h2>Network ACLs</h2>
+      
+      <div class="grid-2" style="grid-template-columns: 1fr 1.7fr; gap: 1.25rem; align-items: stretch;">
+        <div class="content-card highlight">
+          <h3>Stateless Packet Filtering</h3>
+          <ul>
+            <li><strong>vSwitch Boundary:</strong> Associated directly with one or more vSwitches, acting as the subnet-level shield.</li>
+            <li><strong>Strictly Stateless:</strong> Inbound and outbound traffic are evaluated completely independently! Each packet is filtered without session state tracking.</li>
+            <li><strong>Ephemeral Port Requirement:</strong> If inbound port 443 is allowed, you <strong>must configure an explicit outbound rule</strong> for client ephemeral return ports (1024–65535).</li>
+            <li><strong>Rule Priority:</strong> Evaluated sequentially from highest priority (1) to lowest (32,766). Once a packet matches a rule, evaluation halts immediately (first match wins).</li>
+            <li><strong>Default Deny Action:</strong> If no user-defined rules match a packet, the default rule automatically blocks all incoming and outgoing traffic.</li>
+          </ul>
+        </div>
+        <div class="diagram-container clean" style="margin-top: 0; justify-content: center; height: 100%; padding: 0.5rem;">
+          <img src="assets/images/nacl-architecture.jpg" alt="Network ACL Architecture and Rule Matching" class="diagram-image" style="max-height: 450px; width: 100%; object-fit: contain;">
+        </div>
+      </div>
+
+      <div class="callout callout-amber" style="margin-top: 0.75rem;">
+        <div>
+          <span class="badge badge-exam">Strict Architecture Constraint</span> Because Network ACLs are stateless, forgetting to configure outbound ephemeral return rules (ports 1024–65535) will cause established TCP connections (such as HTTPS web requests) to stall and time out!
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 18: SECURITY GROUPS ==================== -->
+    <section class="slide" data-category="Network Security">
+      <div class="slide-category">Section 4: Network Security</div>
+      <h2>Security Groups</h2>
+      
+      <div class="grid-2" style="grid-template-columns: 1fr 1.55fr; gap: 1.25rem; align-items: stretch;">
+        <div class="content-card highlight">
+          <h3>Stateful Packet Inspection</h3>
+          <ul>
+            <li><strong>ENI Association:</strong> Attached directly to Elastic Network Interfaces (ENIs). Each instance/ENI can belong to up to 5 security groups.</li>
+            <li><strong>Stateful Tracking:</strong> If an inbound connection is permitted by an ingress rule, the corresponding outbound response packet is <strong>automatically permitted</strong>, regardless of outbound rules.</li>
+            <li><strong>Bidirectional Return Flow:</strong> Similarly, outbound requests initiated by the instance automatically permit inbound response packets.</li>
+            <li><strong>Precedence Rule:</strong> Evaluated in priority order (1 = highest). If rules conflict at the same priority, <strong>Drop takes precedence over Accept</strong>.</li>
+            <li><strong>Default Outbound:</strong> By default, all outbound traffic from an instance is allowed, while inbound is blocked unless explicitly permitted.</li>
+          </ul>
+        </div>
+        <div class="diagram-container clean" style="margin-top: 0; justify-content: center; height: 100%; padding: 0.75rem;">
+          <img src="assets/images/sg-architecture.svg" alt="Security Group Stateful Ingress Rule and ENI Architecture" class="diagram-image" style="max-height: 460px; width: 100%; object-fit: contain;">
+          
+        </div>
+      </div>
+
+      <div class="callout callout-green" style="margin-top: 0.75rem;">
+        <strong>Stateful Session Management:</strong> Security Groups track TCP/UDP session states in kernel conntrack tables, ensuring return traffic flows seamlessly without configuring manual egress return rules.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 19: BASIC VS ENTERPRISE SECURITY GROUPS ==================== -->
+    <section class="slide" data-category="Network Security">
+      <div class="slide-category">Section 4: Network Security</div>
+      <h2>Basic vs Enterprise Security Groups</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <h3>Basic Security Groups</h3>
+          <ul>
+            <li><strong>Scale Capacity:</strong> Supports up to 2,000 instances and 6,000 private IP addresses per VPC.</li>
+            <li><strong>Default Intra-Group Policy:</strong> Instances within the same basic group are <strong>interconnected by default</strong> (all intranet ports open between members).</li>
+            <li><strong>Group ID Referencing:</strong> Supports referencing another Security Group ID (<code>sg-xxxx</code>) as the source/destination authorization object in security rules.</li>
+            <li><strong>Target Workloads:</strong> Standard multi-tier web applications, monolithic architectures, and traditional enterprise server topologies.</li>
+          </ul>
+        </div>
+        <div class="content-card highlight-green">
+          <h3>Enterprise Security Groups</h3>
+          <ul>
+            <li><strong>Hyper-Scale Capacity:</strong> Supports up to <strong>65,536 private IP addresses per VPC</strong> (optimized for high-density container fabrics).</li>
+            <li><strong>Zero-Trust Intra-Group Isolation:</strong> Instances within the same group are <strong>isolated by default</strong> (zero mutual intranet traffic unless explicitly allowed).</li>
+            <li><strong>CIDR-Only Rules:</strong> Rules must specify IP CIDR blocks or prefix lists (Group ID referencing is not supported).</li>
+            <li><strong>Strict Type Mixing Constraint:</strong> All security groups associated with an instance or ENI must be of the exact same type (cannot mix Basic and Enterprise on one interface).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout-green" style="margin-top: 1rem;">
+        <strong>Cloud Architect Rule:</strong> Standardize on Enterprise Security Groups for hyper-scale Container Service for Kubernetes (ACK) clusters, microservices meshes, and zero-trust enterprise environments to avoid IP scaling ceilings and enforce strict lateral isolation.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 20: NACL VS SG COMPARISON ==================== -->
+    <section class="slide" data-category="Network Security">
+      <div class="slide-category">Section 4: Network Security</div>
+      <h2>Network ACL vs Security Group</h2>
+      
+      <div class="table-wrapper">
+        <table class="slide-table">
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Network ACL (Outer Shield)</th>
+              <th>Security Group (Inner Shield)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Operating Level</strong></td>
+              <td><strong>Subnet Level:</strong> Bound to entire vSwitches.</td>
+              <td><strong>Interface Level:</strong> Bound to ENIs / compute instances.</td>
+            </tr>
+            <tr>
+              <td><strong>Inspection Mode</strong></td>
+              <td><strong>Stateless:</strong> Inbound and outbound evaluated independently.</td>
+              <td><strong>Stateful:</strong> Return traffic automatically permitted.</td>
+            </tr>
+            <tr>
+              <td><strong>Rule Evaluation</strong></td>
+              <td><strong>Strict Order:</strong> Evaluated by priority (1 to 32,766). First match wins.</td>
+              <td><strong>Aggregate Evaluation:</strong> Drop overrides Accept at same priority.</td>
+            </tr>
+            <tr>
+              <td><strong>Supported Actions</strong></td>
+              <td>Accept and Drop.</td>
+              <td>Accept and Drop.</td>
+            </tr>
+            <tr>
+              <td><strong>Default Action</strong></td>
+              <td>Denies all traffic if no rules exist.</td>
+              <td>Denies all inbound traffic; allows all outbound by default.</td>
+            </tr>
+            <tr>
+              <td><strong>Association Ratio</strong></td>
+              <td>1 vSwitch can be bound to <strong>only 1 Network ACL</strong>.</td>
+              <td>1 ENI can be bound to <strong>up to 5 Security Groups</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Target Referencing</strong></td>
+              <td>Supports IP addresses and CIDR blocks only.</td>
+              <td>Supports IP/CIDRs and Security Group IDs (Basic mode only).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-blue" style="margin-top: 1rem;">
+        <strong>Complementary Defense:</strong> Network ACLs filter coarse, broad subnet-level threats (e.g. blocking known malicious botnet CIDRs), while Security Groups provide granular port and protocol controls tailored to specific application workloads.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 21: INTERNET CONNECTIVITY ==================== -->
+    <section class="slide" data-category="Enterprise Connectivity">
+      <div class="slide-category">Section 5: Enterprise Connectivity</div>
+      <h2>Internet Ingress & Egress</h2>
+      
+      <div class="grid-3">
+        <div class="content-card highlight">
+          <div style="margin-bottom: 0.6rem;">
+            <img src="assets/images/eip-icon.png" alt="Elastic IP (EIP) Icon" style="width: 44px; height: 44px; object-fit: contain; display: block;">
+          </div>
+          <h3>Elastic IP (EIP)</h3>
+          <ul>
+            <li><strong>Independent Lifecycle:</strong> Detach from one instance and reattach to another without changing external DNS.</li>
+            <li><strong>Flexible Targets:</strong> Bind to ECS instances, secondary ENIs, internal SLB, or NAT Gateways.</li>
+            <li><strong>Shared Bandwidth:</strong> Aggregate multiple EIPs under an Internet Shared Bandwidth package to cut transit costs.</li>
+          </ul>
+        </div>
+        <div class="content-card highlight-blue">
+          <div style="margin-bottom: 0.6rem;">
+            <img src="assets/images/nat-gateway-icon.png" alt="Source NAT (SNAT) Icon" style="width: 44px; height: 44px; object-fit: contain; display: block;">
+          </div>
+          <h3>Source NAT (SNAT)</h3>
+          <ul>
+            <li><strong>Source NAT:</strong> Allows hundreds of private ECS instances without public IPs to access the internet (software updates, API calls).</li>
+            <li><strong>Address Masking:</strong> Hides internal private IP addresses behind shared public EIPs.</li>
+            <li><strong>High Concurrency:</strong> Up to 1 million concurrent sessions per gateway.</li>
+          </ul>
+        </div>
+        <div class="content-card highlight-green">
+          <div style="margin-bottom: 0.6rem;">
+            <img src="assets/images/nat-gateway-icon.png" alt="Destination NAT (DNAT) Icon" style="width: 44px; height: 44px; object-fit: contain; display: block;">
+          </div>
+          <h3>Destination NAT (DNAT)</h3>
+          <ul>
+            <li><strong>Destination NAT:</strong> Exposes internal private ECS ports to public internet users.</li>
+            <li><strong>Port Translation:</strong> Map public port 80/443 to internal custom ports (e.g. port 8080).</li>
+            <li><strong>High Reliability:</strong> Multi-zone disaster recovery with zero single points of failure.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout-green" style="margin-top: 1.25rem;">
+        <strong>Architect Best Practice:</strong> Never assign public IPs directly to backend application or database instances. Keep instances strictly private within their vSwitches and route outbound traffic through an Internet NAT Gateway.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 22: CLOUD ENTERPRISE NETWORK ==================== -->
+    <section class="slide" data-category="Enterprise Connectivity">
+      <div class="slide-category">Section 5: Enterprise Connectivity</div>
+      <h2>Cloud Enterprise Network (CEN)</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight">
+          
+          <ul>
+            <li><strong>Legacy Mesh Peering Limitations:</strong> Point-to-point VPC Peering requires <em>N*(N-1)/2</em> individual peering connections, non-transitive routing, and manual route synchronization. Connecting 10 VPCs required 45 peering links!</li>
+            <li><strong>CEN Enterprise Architecture:</strong> A centralized global transit fabric connecting VPCs, VBRs, and VPNs in an automated hub-and-spoke model.</li>
+            <li><strong>Transitive Routing:</strong> Supports seamless transitive routing across all attached network instances.</li>
+            <li><strong>Automated Route Propagation:</strong> Route entries are automatically advertised and synchronized across the enterprise backbone.</li>
+          </ul>
+        </div>
+        <div class="diagram-container clean" style="margin-top: 0; justify-content: center; height: 100%;">
+          <img src="assets/images/cen-global-interconnect.jpg" alt="Alibaba Cloud CEN Global Interconnect Architecture" class="diagram-image" style="max-height: 380px; width: 100%; object-fit: contain;">
+          <div class="diagram-caption">Multi-Region Backbone Topology</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 23: TRANSIT ROUTER ARCHITECTURE ==================== -->
+    <section class="slide" data-category="Enterprise Connectivity">
+      <div class="slide-category">Section 5: Enterprise Connectivity</div>
+      <h2>Transit Router (TR)</h2>
+      
+      <div class="diagram-container clean" style="padding: 0.5rem; margin: 0.5rem 0;">
+        <img src="assets/images/cen-transit-router.svg" alt="CEN Transit Router Hub and Spoke Architecture" class="diagram-image" style="max-height: 220px; width: 100%;">
+      </div>
+
+      <div class="grid-3" style="margin-top: 0.5rem;">
+        <div class="content-card highlight">
+          <h3>Route Table Associations</h3>
+          <p>Every network attachment (VPC, VBR, VPN) binds to a specific Transit Router route table, defining the routing policy for inbound traffic from that attachment.</p>
+        </div>
+        <div class="content-card highlight-blue">
+          <h3>Route Propagations</h3>
+          <p>Attachments automatically publish their CIDR blocks into designated TR route tables, eliminating the need to manually update static routing tables across VPCs.</p>
+        </div>
+        <div class="content-card highlight-green">
+          <h3>Centralized DMZ Egress</h3>
+          <p>Route all internet-bound and external traffic from multiple branch VPCs through a centralized Shared Services Firewall VPC for unified security filtering.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 24: IPSEC-VPN (SITE-TO-SITE) ==================== -->
+    <section class="slide" data-category="Enterprise Connectivity">
+      <div class="slide-category">Section 5: Enterprise Connectivity</div>
+      <h2>IPsec-VPN (Site-to-Site)</h2>
+      
+      <div class="diagram-container clean" style="margin-top: 0; padding: 0.75rem; margin-bottom: 0.75rem;">
+        <img src="assets/images/vpn-ipsec-topology.svg" alt="IPsec-VPN Dual-Tunnel Site-to-Site Topology" class="diagram-image" style="max-height: 250px; width: 100%; object-fit: contain;">
+        <div class="diagram-caption">Dual-Tunnel IPsec-VPN: Active-Standby Encrypted Tunnel between On-Premises IDC and VPC</div>
+      </div>
+
+      <div class="content-card highlight" style="margin-top: 0.5rem;">
+        
+        <ul>
+          <li><strong>Active-Active Dual Tunnels:</strong> Each VPN Gateway deploys two independent IPsec tunnels terminating on separate gateway instances across availability zones for 99.99% SLA.</li>
+          <li><strong>BGP Dynamic Routing:</strong> Supports dynamic Border Gateway Protocol (BGP) routing for automated sub-second route failover and health monitoring (DPD).</li>
+          <li><strong>ECMP Load Balancing:</strong> Supports Equal-Cost Multi-Path (ECMP) routing to double effective throughput across both tunnels simultaneously.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 25: SSL-VPN (CLIENT-TO-SITE) ==================== -->
+    <section class="slide" data-category="Enterprise Connectivity">
+      <div class="slide-category">Section 5: Enterprise Connectivity</div>
+      <h2>SSL-VPN (Client-to-Site)</h2>
+      
+      <div class="diagram-container clean" style="margin-top: 0; padding: 0.75rem; margin-bottom: 0.75rem;">
+        <img src="assets/images/vpn-ssl-architecture.svg" alt="SSL-VPN Client-to-Site Architecture" class="diagram-image" style="max-height: 250px; width: 100%; object-fit: contain;">
+        <div class="diagram-caption">SSL-VPN Architecture: Encrypted Client-to-Site Remote Access to Internal VPC Resources</div>
+      </div>
+
+      <div class="content-card highlight" style="margin-top: 0.5rem;">
+        
+        <ul>
+          <li><strong>Client-Initiated Dial-Up:</strong> Remote engineers connect laptops directly to the private VPC using OpenVPN-compliant client software (Windows, macOS, Linux, Android, iOS).</li>
+          <li><strong>Zero Public IP Requirement:</strong> Clients connect over standard dynamic Internet connections (home broadband, mobile hotspots) without requiring static public IPs.</li>
+          <li><strong>Private Intranet Access:</strong> Enables direct access to ECS private IPs without exposing management ports (SSH 22, RDP 3389) to the public Internet.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 26: EXPRESS CONNECT ==================== -->
+    <section class="slide" data-category="Enterprise Connectivity">
+      <div class="slide-category">Section 5: Enterprise Connectivity</div>
+      <h2>Express Connect</h2>
+      
+      <div class="grid-2" style="grid-template-columns: 1fr 1.6fr; gap: 1.25rem; align-items: stretch;">
+        <div class="content-card highlight">
+          <ul>
+            <li><strong>Physical Fiber:</strong> Dedicated, unshared telecommunication circuit connecting on-premises IDCs to Alibaba Cloud Access Points.</li>
+            <li><strong>Deterministic Performance:</strong> Zero internet jitter, zero packet loss, and stable sub-millisecond network latency.</li>
+            <li><strong>High Bandwidth Quotas:</strong> Port speeds ranging from 1 Gbps to 100 Gbps to handle massive database replication and big data transfers.</li>
+            <li><strong>Enterprise Compliance:</strong> Complies with strict financial and healthcare regulations prohibiting transmission of sensitive data over the public Internet.</li>
+          </ul>
+        </div>
+        <div class="diagram-container clean" style="margin-top: 0; justify-content: center; height: 100%; padding: 0.75rem;">
+          <img src="assets/images/express-connect-topology.svg" alt="Express Connect Physical Circuit and VBR Topology" class="diagram-image" style="max-height: 380px; width: 100%; object-fit: contain;">
+          <div class="diagram-caption">Express Connect: Physical Leased Line to VBR and Transit Router Interconnect</div>
+        </div>
+      </div>
+
+      <div class="callout callout-blue" style="margin-top: 0.75rem;">
+        <strong>Virtual Border Router (VBR):</strong> Bridges the physical leased line with virtual cloud networks, acting as the Layer 3 termination router on Alibaba Cloud.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 27: PUBLIC DNS ==================== -->
+    <section class="slide" data-category="Advanced Features">
+      <div class="slide-category">Section 6: Advanced Features</div>
+      <h2>Alibaba Cloud Public DNS</h2>
+      
+      <div class="grid-2" style="grid-template-columns: 1fr 1.35fr; gap: 1.25rem; align-items: stretch;">
+        <div class="content-card highlight">
+          <ul>
+            <li><strong>Global BGP Anycast Fabric:</strong> Deployed across global Anycast scrubbing nodes, delivering ultra-low-latency recursive and authoritative resolution worldwide.</li>
+            <li><strong>Intelligent Line-Based Routing:</strong> Directs visitors to the optimal server IP based on geographic location (country/province/city) and carrier network (China Telecom, Unicom, Mobile, International).</li>
+            <li><strong>Enterprise Security & DNSSEC:</strong> Protects domain records with cryptographic DNSSEC signatures and built-in multi-gigabit anti-DDoS mitigation against volumetric attacks.</li>
+            <li><strong>High-Frequency Record Updates:</strong> Supports sub-second TTL propagation, rich resource record types (A, AAAA, CNAME, TXT, MX, CAA, SRV), and automated API management.</li>
+          </ul>
+        </div>
+        <div class="diagram-container clean" style="margin-top: 0; justify-content: center; height: 100%; padding: 0.75rem;">
+          <img src="assets/images/public-dns-architecture.png" alt="Alibaba Cloud Public DNS Architecture" class="diagram-image" style="max-height: 380px; width: 100%; object-fit: contain;">
+          <div class="diagram-caption">Public Authoritative DNS: Global Anycast Resolution and Traffic Scheduling Architecture</div>
+        </div>
+      </div>
+
+      <div class="callout callout-green" style="margin-top: 0.75rem;">
+        <strong>Architectural Role:</strong> Public DNS provides authoritative name resolution for internet-facing workloads, directing worldwide users to public cloud endpoints including Server Load Balancers (SLB), EIPs, and CDN edges.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 28: DNS PRIVATEZONE ==================== -->
+    <section class="slide" data-category="Advanced Features">
+      <div class="slide-category">Section 6: Advanced Features</div>
+      <h2>DNS PrivateZone</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight">
+          
+          <p>A fully managed private DNS resolution service operating strictly within your authorized VPC environments:</p>
+          <ul>
+            <li><strong>Custom Private TLDs:</strong> Author custom private domains (e.g. <code>api.prod.corp</code>, <code>db.internal.local</code>) completely hidden from public DNS queries.</li>
+            <li><strong>Zero Public Exposure:</strong> DNS query traffic never leaves Alibaba Cloud's private datacenter network, preventing DNS poisoning and interception.</li>
+            <li><strong>Automated Split-Horizon DNS:</strong> Resolve the exact same domain name to private internal IPs when queried from inside VPCs, while public users resolve to public load balancer IPs.</li>
+          </ul>
+        </div>
+        <div class="content-card highlight-blue">
+          <h3>Multi-VPC & Hybrid Forwarding</h3>
+          <ul>
+            <li><strong>Cross-VPC Sharing:</strong> Bind a single PrivateZone to dozens of VPCs across multiple accounts within the same region or globally.</li>
+            <li><strong>Outbound Endpoint Forwarding:</strong> Forward private cloud DNS requests for on-premises domains (e.g. <code>*.corp.internal</code>) over VPN/Express Connect to on-premises DNS servers.</li>
+            <li><strong>Inbound Endpoints:</strong> Allow on-premises datacenter servers to query and resolve Alibaba Cloud PrivateZone records.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout-green" style="margin-top: 1rem;">
+        <strong>Microservices Benefit:</strong> Eliminates hardcoded private IP addresses in application configuration files. If an ECS or database instance IP changes, updating the PrivateZone record instantly updates service discovery.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 29: GLOBAL TRAFFIC MANAGER ==================== -->
+    <section class="slide" data-category="Advanced Features">
+      <div class="slide-category">Section 6: Advanced Features</div>
+      <h2>Global Traffic Manager (GTM)</h2>
+      
+      <div class="grid-2" style="grid-template-columns: 1fr 1.35fr; gap: 1.25rem; align-items: stretch;">
+        <div class="content-card highlight">
+          
+          <ul>
+            <li><strong>DNS-Level Traffic Director:</strong> Directs traffic at the DNS layer using CNAME access domains, steering clients directly to the optimal healthy endpoint without proxy or bandwidth bottlenecks.</li>
+            <li><strong>Proactive Health Probing:</strong> Continuously monitors application service availability across regions using ping, TCP port, and HTTP/HTTPS synthetic probes.</li>
+            <li><strong>Automated Disaster Recovery:</strong> Automatically isolates faulty instances or degraded datacenters, shifting traffic to standby IP pools with sub-minute convergence (RTO &lt; 60s).</li>
+            <li><strong>Hybrid & Multi-Cloud Native:</strong> Schedules and load-balances traffic across Alibaba Cloud instances, third-party clouds (AWS, Azure), and on-premises IDCs simultaneously.</li>
+          </ul>
+        </div>
+        <div class="diagram-container clean" style="margin-top: 0; justify-content: center; height: 100%; padding: 0.75rem;">
+          <img src="assets/images/gtm-architecture.png" alt="Alibaba Cloud Global Traffic Manager Architecture" class="diagram-image" style="max-height: 380px; width: 100%; object-fit: contain;">
+          <div class="diagram-caption">Global Traffic Manager: Multi-Region Active-Active Traffic Scheduling and Health Failover</div>
+        </div>
+      </div>
+
+      <div class="callout callout-blue" style="margin-top: 0.75rem;">
+        <strong>Architectural Difference:</strong> Server Load Balancer (SLB) balances traffic at Layer 4/7 within a single region, while Global Traffic Manager (GTM) operates at the DNS layer to steer traffic across multiple regions, hybrid clouds, and on-premises IDCs.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 30: DHCP OPTIONS SETS ==================== -->
+    <section class="slide" data-category="Advanced Features">
+      <div class="slide-category">Section 6: Advanced Features</div>
+      <h2>DHCP Options Sets</h2>
+      
+      <div class="grid-2" style="grid-template-columns: 1fr 1.25fr; gap: 1.25rem; align-items: stretch;">
+        <div class="content-card highlight">
+          
+          <p>By default, newly provisioned ECS instances receive Alibaba Cloud's default internal DNS servers (<code>100.100.2.136</code> / <code>100.100.2.138</code>). <strong>DHCP Options Sets</strong> allow overriding this behavior:</p>
+          <ul>
+            <li><strong>Domain Name Suffix:</strong> Configure a default search domain suffix (e.g. <code>mysite.com</code>) automatically populated into <code>/etc/resolv.conf</code> on Linux or network adapter settings on Windows.</li>
+            <li><strong>Custom DNS Servers:</strong> Specify up to <strong>4 custom DNS server IP addresses</strong> (e.g. on-premises Active Directory domain controllers).</li>
+            <li><strong>Multi-VPC Association:</strong> Associate a single DHCP options set with up to <strong>10 VPCs</strong> within the same region.</li>
+            <li><strong>Reboot Persistence:</strong> Settings are refreshed automatically via internal DHCP leases and persist across instance reboots.</li>
+          </ul>
+        </div>
+        <div class="diagram-container clean" style="margin-top: 0; justify-content: center; height: 100%; padding: 0.75rem;">
+          <img src="assets/images/dhcp-options-topology.jpg" alt="DHCP Options Sets Architecture and Domain/DNS Assignment" class="diagram-image" style="max-height: 380px; width: 100%; object-fit: contain;">
+          <div class="diagram-caption">DHCP Options Sets: Custom Domain Name and DNS Server Distribution across VPC Instances</div>
+        </div>
+      </div>
+
+      <div class="callout callout-blue" style="margin-top: 0.75rem;">
+        <strong>Architect Value:</strong> Streamlines enterprise IT automation by standardizing DNS resolution hierarchies across hybrid and multi-account cloud environments without custom configuration scripts.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 31: VPC FLOW LOGS ==================== -->
+    <section class="slide" data-category="Advanced Features">
+      <div class="slide-category">Section 6: Advanced Features</div>
+      <h2>VPC Flow Logs</h2>
+      
+      <div class="grid-2" style="grid-template-columns: 1fr 1.35fr; gap: 1.25rem; align-items: stretch;">
+        <div class="content-card highlight">
+          
+          <p>Captures metadata of IP traffic entering and leaving network interfaces across your VPC infrastructure:</p>
+          <ul>
+            <li><strong>Flexible Capture Scope:</strong> Enable at the VPC level, entire vSwitch, or specific Elastic Network Interfaces (ENIs).</li>
+            <li><strong>Comprehensive 5-Tuple Data:</strong> Captures Source IP, Destination IP, Source Port, Destination Port, Protocol, Action (ACCEPT / REJECT), byte count, and packet count.</li>
+            <li><strong>Simple Log Service (SLS) Integration:</strong> Real-time streaming into SLS for indexation, querying, automated alerting, and long-term compliance archiving.</li>
+            <li><strong>Troubleshooting & Security Auditing:</strong> Instantly identify whether dropped packets were blocked by a stateless Network ACL or stateful Security Group.</li>
+          </ul>
+        </div>
+        <div class="diagram-container clean" style="margin-top: 0; justify-content: center; height: 100%; padding: 0.75rem;">
+          <img src="assets/images/vpc-flow-logs-architecture.svg" alt="VPC Flow Logs Telemetry Collection and SLS Ingestion Architecture" class="diagram-image" style="max-height: 380px; width: 100%; object-fit: contain;">
+          <div class="diagram-caption">VPC Flow Logs: Packet Telemetry Collection across VPC/vSwitch ENIs and Streaming to SLS</div>
+        </div>
+      </div>
+
+      <div class="callout callout-green" style="margin-top: 0.75rem;">
+        <strong>Operational Standard:</strong> Enable VPC Flow Logs across all production VPCs with a filter set to capture <code>REJECT</code> traffic, instantly alerting security operations to potential port scans and unauthorized connection attempts.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 32: TRAFFIC MIRRORING ==================== -->
+    <section class="slide" data-category="Advanced Features">
+      <div class="slide-category">Section 6: Advanced Features</div>
+      <h2>Traffic Mirroring</h2>
+      
+      <div class="grid-2" style="grid-template-columns: 1fr 1.35fr; gap: 1.25rem; align-items: stretch;">
+        <div class="content-card highlight">
+          
+          <p>Duplicates real-time network packets from virtual interfaces without disrupting active production services:</p>
+          <ul>
+            <li><strong>Zero Compute Impact:</strong> Traffic cloning occurs at the virtualized hypervisor layer with zero CPU or throughput performance overhead on source ECS instances.</li>
+            <li><strong>Granular Filter Rules:</strong> Selectively mirror specific inbound or outbound packets using 5-tuple rule criteria (e.g. mirror only traffic destined for ports 80/443).</li>
+            <li><strong>Flexible Mirror Destinations:</strong> Forwards cloned packets directly to an internal-facing Classic Load Balancer (CLB), Gateway Load Balancer endpoint (GWLBe), or secondary ENI of an Intrusion Detection System (IDS/IPS).</li>
+            <li><strong>Forensics & Compliance:</strong> Essential for PCI-DSS compliance, forensic malware behavioral analysis, network protocol troubleshooting, and zero-impact auditing.</li>
+          </ul>
+        </div>
+        <div class="diagram-container clean" style="margin-top: 0; justify-content: center; height: 100%; padding: 0.75rem;">
+          <img src="assets/images/traffic-mirroring-architecture.svg" alt="Traffic Mirroring Architecture and Cloned Packet Flow" class="diagram-image" style="max-height: 380px; width: 100%; object-fit: contain;">
+          <div class="diagram-caption">Traffic Mirroring: Hypervisor-Level Packet Duplication to Inspection Appliances and CLB Targets</div>
+        </div>
+      </div>
+
+      <div class="callout callout-blue" style="margin-top: 0.75rem;">
+        <strong>Out-of-Band Threat Analysis:</strong> Traffic Mirroring enables out-of-band security inspection and real-time protocol analysis without injecting inline latency or exposing production workloads to inline appliance failures.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 33: NETWORKING PRICING ==================== -->
+    <section class="slide" data-category="Pricing Model">
+      <div class="slide-category">Section 7: Pricing Model</div>
+      <h2>Networking Pricing</h2>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-top: 0.5rem;">
+        <!-- Card 1: Core VPC & Security -->
+        <div class="content-card highlight" style="padding: 1rem 1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+            <h3 style="margin: 0; font-size: 1.02rem;">1. Core VPC &amp; Security (Free Baseline)</h3>
+            <span class="badge badge-updated" style="font-size: 0.7rem;">Zero Cost</span>
+          </div>
+          <ul style="margin-top: 0.35rem; padding-left: 1.15rem; line-height: 1.45; font-size: 0.85rem;">
+            <li><strong>VPC, vSwitches &amp; Route Tables:</strong> <strong>100% Free</strong>. No creation, instance, or management fees.</li>
+            <li><strong>Security Groups &amp; Network ACLs:</strong> <strong>100% Free</strong> built-in stateful and stateless firewall engines.</li>
+            <li><strong>Intra-Zone Data Transfer:</strong> Free for all communication within the same Availability Zone.</li>
+            <li><strong>Inter-Zone Transfer:</strong> Minor per-GB data transfer fee when crossing AZs in the same region.</li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Public Ingress & Egress Gateways -->
+        <div class="content-card highlight-blue" style="padding: 1rem 1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+            <h3 style="margin: 0; font-size: 1.02rem;">2. Public Gateways &amp; Elastic IP</h3>
+            <span class="badge badge-blue" style="font-size: 0.7rem;">Public Edge</span>
+          </div>
+          <ul style="margin-top: 0.35rem; padding-left: 1.15rem; line-height: 1.45; font-size: 0.85rem;">
+            <li><strong>Elastic IP (EIP):</strong> Free allocation fee while bound to an active resource; hourly idle fee if unbound. Outbound bandwidth billed by traffic (GB) or fixed bandwidth (Mbps).</li>
+            <li><strong>Internet NAT Gateway:</strong> Hourly instance fee + Capacity Units (CU for connection handling and data processing) + attached EIP public bandwidth.</li>
+            <li><strong>Common Bandwidth Package (CBWP):</strong> Pools multiple EIPs to save 30%–50% on egress.</li>
+          </ul>
+        </div>
+
+        <!-- Card 3: Enterprise Transit & Hybrid Cloud -->
+        <div class="content-card highlight-green" style="padding: 1rem 1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+            <h3 style="margin: 0; font-size: 1.02rem;">3. Enterprise Transit &amp; Hybrid Connect</h3>
+            <span class="badge badge-updated" style="font-size: 0.7rem;">Interconnect</span>
+          </div>
+          <ul style="margin-top: 0.35rem; padding-left: 1.15rem; line-height: 1.45; font-size: 0.85rem;">
+            <li><strong>Transit Router (TR / CEN):</strong> Hourly attachment fee per connection (VPC / VBR / VPN) + per-GB data processing fee + cross-region enterprise bandwidth (CDT).</li>
+            <li><strong>VPN Gateway:</strong> Hourly or monthly gateway specification fee + outbound public data.</li>
+            <li><strong>Express Connect:</strong> Dedicated physical port fee (1G / 10G / 100G) + outbound data transfer.</li>
+          </ul>
+        </div>
+
+        <!-- Card 4: DNS, Traffic Management & Telemetry -->
+        <div class="content-card highlight-purple" style="padding: 1rem 1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+            <h3 style="margin: 0; font-size: 1.02rem;">4. DNS, Traffic Management &amp; Telemetry</h3>
+            <span class="badge badge-purple" style="font-size: 0.7rem;">Operations</span>
+          </div>
+          <ul style="margin-top: 0.35rem; padding-left: 1.15rem; line-height: 1.45; font-size: 0.85rem;">
+            <li><strong>DNS PrivateZone:</strong> Zone management fee (per zone/month) + DNS query resolution fee (per million queries).</li>
+            <li><strong>Global Traffic Manager (GTM):</strong> Monthly instance fee (Standard / Ultimate) + health checks.</li>
+            <li><strong>VPC Flow Logs &amp; Traffic Mirroring:</strong> Zero feature license fee; pay only for Simple Log Service (SLS) log storage/indexing or target mirror destination instances.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout-green" style="margin-top: 0.75rem;">
+        <div>
+          <span class="badge badge-updated">Architectural Cost Summary</span> Core software-defined network constructs (VPC, vSwitch, Route Tables, Security Groups, Network ACLs) incur <strong>zero cost</strong>. Network expenditures are strictly driven by data movement (public egress, cross-AZ, cross-region) and managed gateway processing (NAT GW, Transit Router, VPN).
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 34: TRAFFIC VS. BANDWIDTH COST ==================== -->
+    <section class="slide" data-category="Pricing Model">
+      <div class="slide-category">Section 7: Pricing Model</div>
+      <h2>Traffic vs. Bandwidth Cost</h2>
+      
+      <div class="two-column-layout">
+        <div class="column-left">
+          <div class="content-card highlight">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <h3 style="margin: 0;">Pay-by-Traffic (Outbound Data Transfer)</h3>
+              <span class="badge badge-updated">Spiky &amp; Unpredictable</span>
+            </div>
+            <ul>
+              <li><strong>Billing Metric:</strong> Billed strictly on actual public outbound (egress) data transfer per Gigabyte (GB). Inbound (ingress) data transfer is <strong>100% free</strong>.</li>
+              <li><strong>Provisioned Peak Cap:</strong> You configure a maximum bandwidth limit (e.g., 1 to 200 Mbps) to safeguard against DDoS attacks or runaway surges, but pay only for bytes sent.</li>
+              <li><strong>Billing Formula:</strong> <code>Total Cost = Outbound Data Volume (GB) &times; Unit Price/GB</code>.</li>
+              <li><strong>Workload Profile:</strong> Ideal for unpredictable, intermittent, or bursty traffic patterns with low baseline utilization (e.g., enterprise portals, web APIs, dev/test).</li>
+              <li><strong>Discounts:</strong> Lower costs by purchasing prepaid <strong>Data Transfer Plans</strong> or leveraging <strong>Cloud Data Transfer (CDT)</strong> free monthly allowances.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="column-right">
+          <div class="content-card highlight-blue">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <h3 style="margin: 0;">Pay-by-Bandwidth (Fixed Peak Throughput)</h3>
+              <span class="badge badge-blue">Continuous &amp; Predictable</span>
+            </div>
+            <ul>
+              <li><strong>Billing Metric:</strong> Billed based on the fixed allocated peak bandwidth capacity (in Mbps) per unit of time (hourly Pay-As-You-Go or Subscription term).</li>
+              <li><strong>Unlimited Egress Volume:</strong> Transmit unlimited data volume within the allocated bandwidth pipe without any per-GB data transfer charges.</li>
+              <li><strong>Tiered Stepped Pricing:</strong> Stepped pricing structure with a lower baseline price for <strong>1–5 Mbps</strong>, and a higher stepped tier per Mbps for bandwidth exceeding <strong>5 Mbps</strong>.</li>
+              <li><strong>Workload Profile:</strong> Ideal for continuous, 24/7 high-volume streaming, live broadcasts, software distribution repositories, and database replication.</li>
+              <li><strong>Bandwidth Sharing:</strong> Pool and smooth bandwidth across multiple instances using a <strong>Common Bandwidth Package (CBWP)</strong>.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-green" style="margin-top: 0.85rem;">
+        <div>
+          <span class="badge badge-updated">Architectural Decision Rule</span> If average bandwidth utilization exceeds <strong>~20% to 30%</strong> of peak capacity continuously, <strong>Pay-by-Bandwidth</strong> is more economical than Pay-by-Traffic. If utilization is low, intermittent, or spiky, <strong>Pay-by-Traffic</strong> avoids paying for idle reserved capacity. Intranet traffic within the same Availability Zone is always <strong>100% free</strong>.
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 35: PRACTICE SCENARIO 3 ==================== -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Interactive Quiz • Scenario 1</div>
+      <h2>Practice Scenario 1: Multi-VPC Transit Architecture</h2>
+      
+      <div class="quiz-single-card">
+        <div class="quiz-single-question">
+          <span class="quiz-number">Question 1</span>
+          <span>An enterprise has deployed 12 branch VPCs across two Alibaba Cloud regions (Singapore and Jakarta). All branch VPCs must communicate with a centralized Shared Services VPC hosting authentication and monitoring tools. Additionally, corporate policy dictates that adding a new branch VPC in the future must not require manual route table modifications in existing VPCs. Which architecture satisfies these requirements with minimum operational overhead?</span>
+        </div>
+        <ul class="quiz-single-options">
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">A</span>
+            <span>Configure point-to-point VPC Peering connections between each branch VPC and the Shared Services VPC.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">B</span>
+            <span>Deploy Cloud Enterprise Network (CEN) with regional Transit Routers (TR) and enable route propagation for all attached VPCs.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">C</span>
+            <span>Establish single-tunnel IPsec-VPN connections between every branch VPC and the Shared Services VPC.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">D</span>
+            <span>Deploy multiple Internet NAT Gateways in each branch VPC and configure port-forwarding DNAT rules.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 36: SCENARIO 3 SOLUTION ==================== -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Quiz Solution • Scenario 1</div>
+      <h2>Scenario 1: Solution & Architectural Analysis</h2>
+      
+      <div class="analysis-main-card">
+        <div>
+          <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: B</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Deploy CEN with regional Transit Routers and automated route propagation.</span>
+        </div>
+        <span class="badge badge-updated">Validated Architecture</span>
+      </div>
+
+      <div class="analysis-options-grid">
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option A is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Operational overhead and lack of transitivity.</strong> VPC Peering requires point-to-point mesh links, does not support transitive routing between regions seamlessly, and requires updating route tables manually every time a new VPC is created.
+          </div>
+        </div>
+
+        <div class="analysis-item correct">
+          <div class="analysis-item-header correct">
+            <span>✔ Option B is Correct</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Scalable enterprise transit hub.</strong> CEN with Transit Router (TR) provides a centralized hub-and-spoke transit network. When a new VPC is attached and route propagation is enabled, its CIDR block is automatically advertised across the entire CEN fabric with zero manual route updates.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option C is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Single point of failure and management nightmare.</strong> Single-tunnel IPsec-VPN traverses the public Internet, lacks bandwidth guarantees, suffers higher latency, and introduces severe maintenance complexity compared to CEN.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option D is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Exposes internal traffic to public Internet.</strong> NAT Gateway DNAT is designed for inbound public internet access, exposing private authentication and monitoring services to public IP endpoints, which violates corporate private security standards.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 37: QUIZ QUESTION 2 ==================== -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Interactive Quiz • Scenario 2</div>
+      <h2>Practice Scenario 2: Stateless Network ACL Troubleshooting</h2>
+      
+      <div class="quiz-single-card">
+        <div class="quiz-single-question">
+          <span class="quiz-number">Question 2</span>
+          <span>A network security engineer associates a Network ACL with an application vSwitch hosting web servers. The Network ACL contains a single Inbound Rule permitting TCP traffic on destination port 443 (HTTPS) from source 0.0.0.0/0. The associated Security Group permits inbound TCP 443 and all outbound traffic. However, external clients report that HTTPS connections to the web servers immediately hang and time out. What is the root cause?</span>
+        </div>
+        <ul class="quiz-single-options">
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">A</span>
+            <span>Security Groups do not evaluate traffic when Network ACLs are associated with a vSwitch.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">B</span>
+            <span>The Network ACL requires an outbound rule permitting destination port 443 back to the client.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">C</span>
+            <span>Network ACLs are stateless; an outbound rule permitting ephemeral ports (1024–65535) is required for response packets.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">D</span>
+            <span>The vSwitch must be converted to an IPv6 dual-stack subnet to support Network ACL stateful return flows.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 38: QUIZ ANSWER 2 ==================== -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Quiz Solution • Scenario 2</div>
+      <h2>Scenario 2: Solution & Architectural Analysis</h2>
+      
+      <div class="analysis-main-card">
+        <div>
+          <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: C</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Network ACLs are stateless and require explicit outbound ephemeral port rules (1024–65535).</span>
+        </div>
+        <span class="badge badge-updated">Validated Architecture</span>
+      </div>
+
+      <div class="analysis-options-grid">
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option A is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Both layers always evaluate traffic.</strong> Network ACLs and Security Groups operate concurrently in a defense-in-depth model. A packet must pass the Network ACL <em>and</em> the Security Group to reach the instance.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option B is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Wrong port destination.</strong> Client devices initiate connections from high-numbered ephemeral source ports (e.g. port 52341). When the web server replies, the destination port is the client's ephemeral port, not port 443.
+          </div>
+        </div>
+
+        <div class="analysis-item correct">
+          <div class="analysis-item-header correct">
+            <span>✔ Option C is Correct</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Stateless evaluation requirement.</strong> Unlike stateful Security Groups, Network ACLs do not automatically track session state. While inbound SYN packets enter on port 443, outbound SYN-ACK responses destined for client ephemeral ports (1024–65535) are dropped by the ACL's default deny rule.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option D is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Irrelevant protocol stack.</strong> Network ACL statefulness is not influenced by IPv6. Network ACLs remain strictly stateless across both IPv4 and IPv6 protocols.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 39: QUIZ QUESTION 3 ==================== -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Interactive Quiz • Scenario 3</div>
+      <h2>Practice Scenario 3: High-Availability Hybrid Cloud Failover</h2>
+      
+      <div class="quiz-single-card">
+        <div class="quiz-single-question">
+          <span class="quiz-number">Question 3</span>
+          <span>A banking financial enterprise connects its primary on-premises mainframe datacenter to an Alibaba Cloud VPC via a 10 Gbps Express Connect dedicated leased line terminating on a Virtual Border Router (VBR). Company business continuity policy requires an automated disaster recovery backup connection over the public Internet that achieves sub-second failover if the physical fiber circuit is severed. Which hybrid architecture fulfills this mandate?</span>
+        </div>
+        <ul class="quiz-single-options">
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">A</span>
+            <span>Deploy an additional single-tunnel IPsec-VPN and configure manual route switching scripts via OpenAPI.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">B</span>
+            <span>Provision an Internet NAT Gateway and configure port-forwarding DNAT rules to the on-premises firewall IP.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">C</span>
+            <span>Configure a secondary Express Connect circuit from the exact same physical carrier entering the same datacenter duct.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">D</span>
+            <span>Deploy a Dual-Tunnel IPsec-VPN Gateway connected to CEN with dynamic BGP routing and BFD enabled alongside the VBR.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 40: QUIZ ANSWER 3 ==================== -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Quiz Solution • Scenario 3</div>
+      <h2>Scenario 3: Solution & Architectural Analysis</h2>
+      
+      <div class="analysis-main-card">
+        <div>
+          <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: D</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Dual-Tunnel IPsec-VPN with BGP and BFD failover connected to CEN Transit Router.</span>
+        </div>
+        <span class="badge badge-updated">Validated Architecture</span>
+      </div>
+
+      <div class="analysis-options-grid">
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option A is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Slow failover and single point of failure.</strong> Single-tunnel VPN does not meet 99.99% availability SLAs, and manual scripting fails the sub-second automated failover mandate during unexpected fiber sever events.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option B is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Not a private hybrid connection.</strong> Internet NAT Gateway provides public internet ingress/egress and cannot establish private, encrypted site-to-site connectivity with an on-premises enterprise datacenter.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option C is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Shared physical risk.</strong> Using the same carrier and cable duct creates a common point of physical failure. If a construction backhoe severs the duct, both circuits fail simultaneously.
+          </div>
+        </div>
+
+        <div class="analysis-item correct">
+          <div class="analysis-item-header correct">
+            <span>✔ Option D is Correct</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Resilient dynamic hybrid failover.</strong> Attaching both the VBR and the Dual-Tunnel IPsec-VPN to a CEN Transit Router with BGP routing and Bidirectional Forwarding Detection (BFD) enables sub-second link failure detection and automated traffic rerouting.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 41: MODULE SUMMARY & NEXT STEPS ==================== -->
+    <section class="slide title-slide" data-category="Summary">
+      <div class="slide-category">Module Complete</div>
+      <h1 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Module 03: Virtual Private Cloud (VPC)</h1>
+      <div class="callout callout-green" style="max-width: 580px; margin: 0 auto; text-align: left;">
+        <div>
+          <span class="badge badge-updated">Up Next</span><br>
+          <strong>Module 04: Server Load Balancer (SLB)</strong>
+          <div style="margin-top: 0.75rem;">
+            <a href="module-02-ecs.html" class="btn-nav" style="display: inline-flex; align-items: center; text-decoration: none; padding: 0.45rem 1rem; font-size: 0.9rem; margin-right: 0.5rem;">⬅️ Back to Module 02</a>
+            <a href="module-04-slb.html" class="btn-nav primary" style="display: inline-flex; align-items: center; text-decoration: none; padding: 0.45rem 1rem; font-size: 0.9rem;">Proceed to Module 04 (SLB) ➡️</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+
+  <script src="assets/js/presentation.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 380" width="100%" height="auto">
+  <defs>
+    <filter id="shadow-pr" x="-3%" y="-3%" width="106%" height="106%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.08" />
+    </filter>
+  </defs>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+    <!-- Center Hub: OSS Billing -->
+    <rect x="330" y="130" width="200" height="80" rx="12" fill="#1E293B" stroke="#0F172A" stroke-width="2" />
+    <text x="430" y="165" fill="#FFFFFF" font-size="14" font-weight="800" text-anchor="middle">OSS Billing Model</text>
+    <text x="430" y="185" fill="#94A3B8" font-size="10" text-anchor="middle">4 Independent Dimensions</text>
+
+    <!-- Quadrant 1: Storage Capacity (Top-Left) -->
+    <g filter="url(#shadow-pr)">
+      <rect x="30" y="20" width="260" height="135" rx="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5" />
+      <rect x="30" y="20" width="260" height="30" rx="8" fill="#E0F2FE" />
+      <text x="160" y="40" fill="#0369A1" font-size="11" font-weight="700" text-anchor="middle">1. Storage Capacity (GB / Month)</text>
+      <g transform="translate(45, 66)" font-size="10" fill="#334155">
+        <text x="0" y="0">• Standard: Base hot storage rate</text>
+        <text x="0" y="18">• Infrequent Access: ~40% discount</text>
+        <text x="0" y="36">• Archive: ~75% discount</text>
+        <text x="0" y="54">• Cold Archive / Deep Cold: Up to 90% discount</text>
+        <text x="0" y="72" font-weight="700" fill="#0369A1">✔ Offsettable via Storage Capacity Units (SCU)</text>
+      </g>
+    </g>
+
+    <!-- Quadrant 2: Network Egress (Top-Right) -->
+    <g filter="url(#shadow-pr)">
+      <rect x="570" y="20" width="260" height="135" rx="8" fill="#FFFFFF" stroke="#059669" stroke-width="1.5" />
+      <rect x="570" y="20" width="260" height="30" rx="8" fill="#D1FAE5" />
+      <text x="700" y="40" fill="#065F46" font-size="11" font-weight="700" text-anchor="middle">2. Network Egress Traffic (GB)</text>
+      <g transform="translate(585, 66)" font-size="10" fill="#334155">
+        <text x="0" y="0">• Inbound Traffic: 100% FREE</text>
+        <text x="0" y="18">• Same-Region VPC / Intranet: 100% FREE</text>
+        <text x="0" y="36">• Public Internet Outbound: Standard Pay-per-GB</text>
+        <text x="0" y="54">• CDN Origin-Pull: ~50% cheaper than public egress</text>
+        <text x="0" y="72" font-weight="700" fill="#065F46">✔ Cross-Region Replication charges cross-reg egress</text>
+      </g>
+    </g>
+
+    <!-- Quadrant 3: API Operations (Bottom-Left) -->
+    <g filter="url(#shadow-pr)">
+      <rect x="30" y="215" width="260" height="135" rx="8" fill="#FFFFFF" stroke="#D97706" stroke-width="1.5" />
+      <rect x="30" y="215" width="260" height="30" rx="8" fill="#FEF3C7" />
+      <text x="160" y="235" fill="#92400E" font-size="11" font-weight="700" text-anchor="middle">3. API Request Counts (Per 10,000)</text>
+      <g transform="translate(45, 261)" font-size="10" fill="#334155">
+        <text x="0" y="0">• Type 1 (Write/Modify): PUT, POST, CopyObject</text>
+        <text x="0" y="18">• Type 2 (Read/Query): GET, HEAD, ListObjects</text>
+        <text x="0" y="36">• Billed per 10,000 successful requests</text>
+        <text x="0" y="54">• Micro-fractional pricing per transaction</text>
+        <text x="0" y="72" font-weight="700" fill="#92400E">✔ High QPS applications benefit from CDN caching</text>
+      </g>
+    </g>
+
+    <!-- Quadrant 4: Data Retrieval (Bottom-Right) -->
+    <g filter="url(#shadow-pr)">
+      <rect x="570" y="215" width="260" height="135" rx="8" fill="#FFFFFF" stroke="#EA580C" stroke-width="1.5" />
+      <rect x="570" y="215" width="260" height="30" rx="8" fill="#FFEDD5" />
+      <text x="700" y="235" fill="#C2410C" font-size="11" font-weight="700" text-anchor="middle">4. Data Retrieval Fees (GB Read)</text>
+      <g transform="translate(585, 261)" font-size="10" fill="#334155">
+        <text x="0" y="0">• Standard Tier: Zero retrieval fee</text>
+        <text x="0" y="18">• IA / Archive / Cold: Billed per GB read/restored</text>
+        <text x="0" y="36">• Expedited vs Standard vs Bulk restore tiers</text>
+        <text x="0" y="54">• Early deletion fee if deleted before min duration</text>
+        <text x="0" y="72" font-weight="700" fill="#C2410C">✔ Golden Rule: Match storage tier to data warmth</text>
+      </g>
+    </g>
+
+    <!-- Connector Lines -->
+    <line x1="290" y1="87" x2="330" y2="150" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3" />
+    <line x1="570" y1="87" x2="530" y2="150" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3" />
+    <line x1="290" y1="282" x2="330" y2="190" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3" />
+    <line x1="570" y1="282" x2="530" y2="190" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3" />
+  </g>
+</svg>

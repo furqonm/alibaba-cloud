@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+  <!-- Alibaba Cloud Security Services Official Shield & Defense Icon -->
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6A00"/>
+      <stop offset="100%" stop-color="#E55D00"/>
+    </linearGradient>
+  </defs>
+  <!-- Main Defense Shield Outline -->
+  <path d="M512 85 L840 220 C840 560 690 810 512 935 C334 810 184 560 184 220 Z" fill="none" stroke="url(#shieldGrad)" stroke-width="54" stroke-linejoin="round"/>
+  <!-- Inner Shield Core -->
+  <path d="M512 210 L740 305 C740 560 635 745 512 830 C389 745 284 560 284 305 Z" fill="#FFF7ED" stroke="#FF6A00" stroke-width="24" stroke-linejoin="round"/>
+  <!-- Central Lock / Cyber Protection Symbol -->
+  <rect x="424" y="470" width="176" height="150" rx="28" fill="#FF6A00"/>
+  <path d="M454 470 L454 395 C454 363 480 337 512 337 C544 337 570 363 570 395 L570 470" fill="none" stroke="#FF6A00" stroke-width="36" stroke-linecap="round"/>
+  <!-- Keyhole detail -->
+  <circle cx="512" cy="530" r="18" fill="#FFFFFF"/>
+  <polygon points="506,535 518,535 515,575 509,575" fill="#FFFFFF"/>
+</svg>

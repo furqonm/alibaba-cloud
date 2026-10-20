@@ -1,0 +1,7 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+  <path d="M512 64C282.24 64 96 135.68 96 224v576c0 88.32 186.24 160 416 160s416-71.68 416-160V224c0-88.32-186.24-160-416-160z m0 72c189.44 0 344 54.4 344 88s-154.56 88-344 88-344-54.4-344-88 154.56-88 344-88z m0 240c189.44 0 344 54.4 344 88s-154.56 88-344 88-344-54.4-344-88 154.56-88 344-88z m0 240c189.44 0 344 54.4 344 88s-154.56 88-344 88-344-54.4-344-88 154.56-88 344-88z" fill="#FF6A00"/>
+  <circle cx="512" cy="224" r="32" fill="#FFFFFF"/>
+  <path d="M472 432 h80 v40 h-80 z M472 672 h80 v40 h-80 z" fill="#FFFFFF"/>
+</svg>

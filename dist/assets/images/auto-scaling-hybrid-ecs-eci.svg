@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" width="100%" height="auto">
+  <defs>
+    <filter id="hy-shd" x="-3%" y="-3%" width="106%" height="106%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+    <!-- Canvas frame -->
+    <rect x="10" y="10" width="940" height="380" rx="12" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5" />
+
+    <!-- Title Bar -->
+    <text x="30" y="38" fill="#0F172A" font-size="14" font-weight="700">Hybrid Auto Scaling Architecture: ECS Dedicated Baseline + ECI Serverless Burst</text>
+    <text x="930" y="38" fill="#64748B" font-size="11" font-weight="500" text-anchor="end">Cost-Optimized Baseline &bull; Sub-Second Elastic Surge</text>
+
+    <!-- Top Ingress: SLB / ALB -->
+    <g filter="url(#hy-shd)">
+      <rect x="30" y="60" width="900" height="55" rx="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5" />
+      <rect x="30" y="60" width="900" height="22" rx="8" fill="#0284C7" />
+      <rect x="30" y="74" width="900" height="8" fill="#0284C7" />
+      <text x="50" y="75" fill="#FFFFFF" font-size="11" font-weight="700">Application Load Balancer (ALB) / SLB Ingress Layer</text>
+      <text x="50" y="102" fill="#0369A1" font-size="11" font-weight="600">Unified Virtual Server Group Routing Across Heterogeneous Compute Nodes</text>
+    </g>
+
+    <!-- Bottom Left: ECS Base Tier (Reserved/Subscription) -->
+    <g filter="url(#hy-shd)">
+      <rect x="30" y="135" width="435" height="235" rx="8" fill="#FFFFFF" stroke="#059669" stroke-width="1.5" />
+      <rect x="30" y="135" width="435" height="26" rx="8" fill="#059669" />
+      <rect x="30" y="153" width="435" height="8" fill="#059669" />
+      <text x="45" y="152" fill="#FFFFFF" font-size="12" font-weight="700">Tier 1: ECS Baseline Instances (Predictable Load)</text>
+
+      <rect x="45" y="175" width="405" height="48" rx="6" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1" />
+      <text x="60" y="195" fill="#047857" font-size="11" font-weight="700">Baseline Capacity: 24/7 Steady-State Traffic</text>
+      <text x="60" y="210" fill="#64748B" font-size="9">Purchased via Subscription or Reserved Instances (RI) for 40-60% cost savings.</text>
+
+      <text x="45" y="245" fill="#0F172A" font-size="10" font-weight="700">Architectural Characteristics:</text>
+      <text x="45" y="262" fill="#334155" font-size="9">&bull; MinSize = 4 instances, always kept alive in Scaling Group.</text>
+      <text x="45" y="278" fill="#334155" font-size="9">&bull; Full OS customization, kernel extensions, and local SSD storage.</text>
+      <text x="45" y="294" fill="#334155" font-size="9">&bull; Pre-warmed caches and established database connection pools.</text>
+
+      <rect x="45" y="315" width="405" height="42" rx="5" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1" />
+      <text x="247" y="332" fill="#15803D" font-size="10" font-weight="700" text-anchor="middle">Guaranteed Compute Floor &bull; Maximum Unit Cost Efficiency</text>
+      <text x="247" y="346" fill="#166534" font-size="8" text-anchor="middle">Handles steady everyday traffic with fixed low monthly budget</text>
+    </g>
+
+    <!-- Bottom Right: ECI Serverless Burst Tier -->
+    <g filter="url(#hy-shd)">
+      <rect x="495" y="135" width="435" height="235" rx="8" fill="#FFFFFF" stroke="#FF6A00" stroke-width="1.5" />
+      <rect x="495" y="135" width="435" height="26" rx="8" fill="#FF6A00" />
+      <rect x="495" y="153" width="435" height="8" fill="#FF6A00" />
+      <text x="510" y="152" fill="#FFFFFF" font-size="12" font-weight="700">Tier 2: ECI Serverless Container Burst (Traffic Surges)</text>
+
+      <rect x="510" y="175" width="405" height="48" rx="6" fill="#FFF7ED" stroke="#FED7AA" stroke-width="1" />
+      <text x="525" y="195" fill="#C2410C" font-size="11" font-weight="700">Burst Capacity: Sudden Spikes &amp; Flash Sales</text>
+      <text x="525" y="210" fill="#64748B" font-size="9">Elastic Container Instance (ECI) provisioned in seconds without VM startup tax.</text>
+
+      <text x="510" y="245" fill="#0F172A" font-size="10" font-weight="700">Architectural Characteristics:</text>
+      <text x="510" y="262" fill="#334155" font-size="9">&bull; Zero idle cost: Scales down to 0 ECI pods when traffic subsides.</text>
+      <text x="510" y="278" fill="#334155" font-size="9">&bull; Per-second billing: Pay strictly for CPU &amp; RAM consumed during spike.</text>
+      <text x="510" y="294" fill="#334155" font-size="9">&bull; Directly shares the same VPC VSwitch and SLB backend server group.</text>
+
+      <rect x="510" y="315" width="405" height="42" rx="5" fill="#FFF7ED" stroke="#FDBA74" stroke-width="1" />
+      <text x="712" y="332" fill="#C2410C" font-size="10" font-weight="700" text-anchor="middle">Instant 0-to-100 Elasticity &bull; Eliminates Over-Provisioning</text>
+      <text x="712" y="346" fill="#9A3412" font-size="8" text-anchor="middle">Absorbs sudden surges seamlessly without waiting 5+ minutes for OS boot</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 480" width="100%" height="auto">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="clientGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+    <linearGradient id="serverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6a00" />
+      <stop offset="100%" stop-color="#e55b00" />
+    </linearGradient>
+    <linearGradient id="agentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7" />
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#ea580c" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981" />
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#8b5cf6" />
+    </marker>
+
+    <!-- Card Shadow -->
+    <filter id="card-shadow" x="-3%" y="-2%" width="106%" height="106%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.06" />
+    </filter>
+  </defs>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <!-- Container Background -->
+    <rect x="5" y="5" width="490" height="470" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" />
+
+    <!-- 3 Actor Top Headers -->
+    <!-- 1. Client -->
+    <g filter="url(#card-shadow)">
+      <rect x="25" y="22" width="120" height="52" rx="8" fill="url(#clientGrad)" />
+      <text x="85" y="44" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">Client</text>
+      <text x="85" y="60" text-anchor="middle" font-size="10" font-weight="500" fill="#e0f2fe">Browser / CLI</text>
+    </g>
+
+    <!-- 2. Cloud Assistant Server -->
+    <g filter="url(#card-shadow)">
+      <rect x="185" y="22" width="130" height="52" rx="8" fill="url(#serverGrad)" />
+      <text x="250" y="44" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">Cloud Assistant</text>
+      <text x="250" y="60" text-anchor="middle" font-size="10" font-weight="500" fill="#ffedd5">Control Server</text>
+    </g>
+
+    <!-- 3. ECS Agent -->
+    <g filter="url(#card-shadow)">
+      <rect x="355" y="22" width="120" height="52" rx="8" fill="url(#agentGrad)" />
+      <text x="415" y="44" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">ECS Instance</text>
+      <text x="415" y="60" text-anchor="middle" font-size="10" font-weight="500" fill="#d1fae5">Assistant Agent</text>
+    </g>
+
+    <!-- Lifelines -->
+    <line x1="85" y1="74" x2="85" y2="445" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,4" />
+    <line x1="250" y1="74" x2="250" y2="445" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,4" />
+    <line x1="415" y1="74" x2="415" y2="445" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,4" />
+
+    <!-- Active State Rectangles on Lifelines -->
+    <rect x="80" y="95" width="10" height="330" rx="3" fill="#e0f2fe" stroke="#38bdf8" stroke-width="1" />
+    <rect x="245" y="95" width="10" height="330" rx="3" fill="#ffedd5" stroke="#fb923c" stroke-width="1" />
+    <rect x="410" y="130" width="10" height="295" rx="3" fill="#dcfce7" stroke="#4ade80" stroke-width="1" />
+
+    <!-- ==================== PHASE 1: HANDSHAKE ==================== -->
+    <g>
+      <!-- Step A: Client -> Server -->
+      <line x1="90" y1="110" x2="242" y2="110" stroke="#0284c7" stroke-width="1.8" marker-end="url(#arrow-blue)" />
+      <rect x="110" y="96" width="112" height="18" rx="4" fill="#ffffff" stroke="#bae6fd" stroke-width="1" />
+      <text x="166" y="109" text-anchor="middle" font-size="9.5" font-weight="600" fill="#0369a1">Session Request</text>
+
+      <!-- Step B: Server -> Agent -->
+      <line x1="255" y1="135" x2="407" y2="135" stroke="#ea580c" stroke-width="1.8" marker-end="url(#arrow-orange)" />
+      <rect x="275" y="121" width="112" height="18" rx="4" fill="#ffffff" stroke="#fed7aa" stroke-width="1" />
+      <text x="331" y="134" text-anchor="middle" font-size="9.5" font-weight="600" fill="#c2410c">Session Handshake</text>
+
+      <!-- Step C: Server -> Client (WS Token) -->
+      <line x1="245" y1="165" x2="93" y2="165" stroke="#0284c7" stroke-width="1.8" stroke-dasharray="3,3" marker-end="url(#arrow-blue)" />
+      <rect x="110" y="151" width="112" height="18" rx="4" fill="#ffffff" stroke="#bae6fd" stroke-width="1" />
+      <text x="166" y="164" text-anchor="middle" font-size="9.5" font-weight="600" fill="#0369a1">WebSocket Token</text>
+    </g>
+
+    <!-- ==================== PHASE 2: WEBSOCKET TUNNEL ==================== -->
+    <!-- Tunnel Shaded Area -->
+    <rect x="65" y="190" width="370" height="46" rx="6" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.2" stroke-dasharray="4,2" />
+    <text x="250" y="206" text-anchor="middle" font-size="10.5" font-weight="700" fill="#6d28d9">Secure WebSocket Tunnel (WSS / TCP 443)</text>
+    
+    <!-- Bidirectional Tunnel Stream -->
+    <line x1="90" y1="220" x2="242" y2="220" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrow-purple)" marker-start="url(#arrow-purple)" />
+    <line x1="255" y1="220" x2="407" y2="220" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrow-purple)" marker-start="url(#arrow-purple)" />
+
+    <!-- ==================== PHASE 3: INTERACTIVE STREAM ==================== -->
+    <g>
+      <!-- Command Stream: Client -> Server -> Agent -->
+      <line x1="90" y1="260" x2="242" y2="260" stroke="#0284c7" stroke-width="2" marker-end="url(#arrow-blue)" />
+      <line x1="255" y1="260" x2="407" y2="260" stroke="#0284c7" stroke-width="2" marker-end="url(#arrow-blue)" />
+      <rect x="180" y="248" width="140" height="20" rx="4" fill="#eff6ff" stroke="#93c5fd" stroke-width="1" />
+      <text x="250" y="262" text-anchor="middle" font-size="10" font-weight="700" fill="#1d4ed8">Interactive Input / Keystrokes</text>
+
+      <!-- Terminal Output Stream: Agent -> Server -> Client -->
+      <line x1="410" y1="300" x2="258" y2="300" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+      <line x1="245" y1="300" x2="93" y2="300" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+      <rect x="175" y="288" width="150" height="20" rx="4" fill="#ecfdf5" stroke="#86efac" stroke-width="1" />
+      <text x="250" y="302" text-anchor="middle" font-size="10" font-weight="700" fill="#047857">Live Terminal Output Stream</text>
+
+      <!-- Command Stream 2 (Subsequent command) -->
+      <line x1="90" y1="335" x2="407" y2="335" stroke="#0284c7" stroke-width="1.8" marker-end="url(#arrow-blue)" />
+      <rect x="185" y="324" width="130" height="18" rx="4" fill="#ffffff" stroke="#bae6fd" stroke-width="1" />
+      <text x="250" y="337" text-anchor="middle" font-size="9.5" font-weight="600" fill="#0284c7">Continuous Shell Stream</text>
+
+      <!-- Output Stream 2 -->
+      <line x1="410" y1="365" x2="93" y2="365" stroke="#10b981" stroke-width="1.8" marker-end="url(#arrow-green)" />
+      <rect x="185" y="354" width="130" height="18" rx="4" fill="#ffffff" stroke="#a7f3d0" stroke-width="1" />
+      <text x="250" y="367" text-anchor="middle" font-size="9.5" font-weight="600" fill="#059669">Real-Time Data Echo</text>
+    </g>
+
+    <!-- Bottom Audit Indicator -->
+    <g>
+      <rect x="100" y="405" width="300" height="28" rx="14" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1" />
+      <text x="250" y="423" text-anchor="middle" font-size="10" font-weight="600" fill="#475569">🔒 Governed by RAM &amp; Audited in ActionTrail / OSS</text>
+    </g>
+  </g>
+</svg>

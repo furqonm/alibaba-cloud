@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 380" width="100%" height="auto">
+  <defs>
+    <filter id="shadow-card" x="-3%" y="-3%" width="106%" height="106%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.08" />
+    </filter>
+  </defs>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+    <!-- Block Storage Card -->
+    <g filter="url(#shadow-card)">
+      <rect x="20" y="20" width="255" height="340" rx="10" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5" />
+      <rect x="20" y="20" width="255" height="42" rx="10" fill="#E0F2FE" />
+      <rect x="20" y="50" width="255" height="12" fill="#E0F2FE" />
+      <text x="147.5" y="46" fill="#0369A1" font-size="14" font-weight="700" text-anchor="middle">Block Storage (EBS / Disks)</text>
+      
+      <!-- Visual Illustration: Raw Sectors / Disk Blocks -->
+      <g transform="translate(48, 78)">
+        <rect x="0" y="0" width="45" height="45" rx="4" fill="#0284C7" opacity="0.9" />
+        <text x="22.5" y="27" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">512B</text>
+        <rect x="55" y="0" width="45" height="45" rx="4" fill="#0284C7" opacity="0.9" />
+        <text x="77.5" y="27" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">4KB</text>
+        <rect x="110" y="0" width="45" height="45" rx="4" fill="#0284C7" opacity="0.9" />
+        <text x="132.5" y="27" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">Blocks</text>
+        <rect x="165" y="0" width="34" height="45" rx="4" fill="#0284C7" opacity="0.5" />
+      </g>
+      
+      <!-- Characteristics -->
+      <g transform="translate(35, 145)" font-size="11" fill="#334155" line-height="1.5">
+        <text x="0" y="0" font-weight="700" fill="#0369A1">Access Protocol: SCSI / NVMe</text>
+        <text x="0" y="24">✔ Ultra-low sub-millisecond latency</text>
+        <text x="0" y="46">✔ Formatted with OS filesystem (ext4/NTFS)</text>
+        <text x="0" y="68">✔ Bound to a single ECS instance in same AZ</text>
+        <text x="0" y="90">✖ Not directly accessible over HTTP/Web</text>
+        <text x="0" y="112">✖ Fixed volume sizing (expandable with risk)</text>
+        <text x="0" y="134" font-weight="700" fill="#0F172A">Primary Use: OS Disks, OLTP Databases</text>
+      </g>
+    </g>
+
+    <!-- File Storage Card -->
+    <g filter="url(#shadow-card)">
+      <rect x="302" y="20" width="255" height="340" rx="10" fill="#FFFFFF" stroke="#059669" stroke-width="1.5" />
+      <rect x="302" y="20" width="255" height="42" rx="10" fill="#D1FAE5" />
+      <rect x="302" y="50" width="255" height="12" fill="#D1FAE5" />
+      <text x="429.5" y="46" fill="#065F46" font-size="14" font-weight="700" text-anchor="middle">File Storage (NAS / CPFS)</text>
+      
+      <!-- Visual Illustration: Directory Tree -->
+      <g transform="translate(345, 78)">
+        <rect x="0" y="0" width="170" height="20" rx="3" fill="#059669" opacity="0.2" />
+        <text x="10" y="14" fill="#065F46" font-size="10" font-weight="700">/root/shared/finance/</text>
+        <rect x="15" y="26" width="70" height="18" rx="3" fill="#D1FAE5" stroke="#059669" stroke-width="1" />
+        <text x="50" y="38" fill="#065F46" font-size="9" text-anchor="middle">doc_01.pdf</text>
+        <rect x="95" y="26" width="70" height="18" rx="3" fill="#D1FAE5" stroke="#059669" stroke-width="1" />
+        <text x="130" y="38" fill="#065F46" font-size="9" text-anchor="middle">doc_02.pdf</text>
+      </g>
+      
+      <!-- Characteristics -->
+      <g transform="translate(317, 145)" font-size="11" fill="#334155" line-height="1.5">
+        <text x="0" y="0" font-weight="700" fill="#065F46">Access Protocol: NFS / SMB / POSIX</text>
+        <text x="0" y="24">✔ Shared concurrent mount across 1,000s of ECS</text>
+        <text x="0" y="46">✔ Hierarchical directory tree with file locks</text>
+        <text x="0" y="68">✔ Standard POSIX OS file operations</text>
+        <text x="0" y="90">✖ Latency higher than block storage (1-5ms)</text>
+        <text x="0" y="112">✖ Directory locks limit massive concurrency</text>
+        <text x="0" y="134" font-weight="700" fill="#0F172A">Primary Use: Web Clusters, Content CMS</text>
+      </g>
+    </g>
+
+    <!-- Object Storage Card -->
+    <g filter="url(#shadow-card)">
+      <rect x="585" y="20" width="255" height="340" rx="10" fill="#FFFFFF" stroke="#EA580C" stroke-width="2" />
+      <rect x="585" y="20" width="255" height="42" rx="10" fill="#FFEDD5" />
+      <rect x="585" y="50" width="255" height="12" fill="#FFEDD5" />
+      <text x="712.5" y="46" fill="#C2410C" font-size="14" font-weight="800" text-anchor="middle">Object Storage (OSS)</text>
+      
+      <!-- Visual Illustration: Bucket + Key + Object -->
+      <g transform="translate(620, 78)">
+        <rect x="0" y="0" width="185" height="45" rx="5" fill="#FF6A00" opacity="0.9" />
+        <text x="92.5" y="18" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">Bucket + Unique Key</text>
+        <text x="92.5" y="34" fill="#FEF3C7" font-size="9" text-anchor="middle">[ Data Payload + Metadata ]</text>
+      </g>
+      
+      <!-- Characteristics -->
+      <g transform="translate(600, 145)" font-size="11" fill="#334155" line-height="1.5">
+        <text x="0" y="0" font-weight="700" fill="#C2410C">Access Protocol: RESTful HTTP/HTTPS</text>
+        <text x="0" y="24">✔ Virtually unlimited capacity (Exabyte scale)</text>
+        <text x="0" y="46">✔ Flat namespace, no directory locks</text>
+        <text x="0" y="68">✔ Accessible from anywhere globally via URL</text>
+        <text x="0" y="90">✔ Rich custom metadata &amp; automated lifecycle</text>
+        <text x="0" y="112">✔ 99.9999999999% (12 nines) durability</text>
+        <text x="0" y="134" font-weight="700" fill="#0F172A">Primary Use: Media, Data Lakes, Backups</text>
+      </g>
+    </g>
+  </g>
+</svg>

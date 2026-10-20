@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 650 210" width="650" height="210">
+  <defs>
+    <style>
+      .text-title { font-family: PingFangSC-Regular, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #252525; }
+      .text-category { font-family: PingFangSC-Regular, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 13px; font-weight: bold; fill: #1366ec; text-anchor: middle; }
+      .text-inst { font-family: PingFangSC-Regular, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #252525; text-anchor: middle; }
+      .text-sub { font-family: PingFangSC-Regular, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 10.5px; fill: #252525; text-anchor: middle; }
+      .text-bar { font-family: PingFangSC-Regular, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: bold; fill: #252525; text-anchor: middle; }
+    </style>
+  </defs>
+  <g transform="translate(0.5,0.5)">
+    <!-- Clean Outer Boundary Box -->
+    <rect x="1" y="1" width="648" height="208" rx="8" ry="8" fill="#ffffff" stroke="#d9d9d9" pointer-events="none" />
+    <!-- Sub-category 1: Premium Local SSDs -->
+    <text x="162" y="26" class="text-category">Premium Local SSDs</text>
+    
+    <!-- Instance 1 Card -->
+    <rect x="12" y="38" width="144" height="110" rx="6" ry="6" fill="#fcfcfd" stroke="#d9d9d9" />
+    <path d="M 79.66 68.63 L 75.28 61.51 L 77.66 57.63 L 73.80 57.63 L 69.42 50.50 L 73.80 43.37 L 82.47 43.37 L 84.00 45.85 L 85.52 43.37 L 94.19 43.37 L 98.57 50.50 L 94.19 57.63 L 90.33 57.63 L 92.71 61.51 L 88.33 68.63 L 79.66 68.63 Z M 86.57 54.84 L 84.00 50.64 L 81.42 54.84 L 86.57 54.84 Z" fill="#1366ec" stroke="none" />
+    <text x="84" y="78" class="text-inst">RDS Instance 1</text>
+        <g>
+      <rect x="27.0" y="96.0" width="26" height="24" rx="2" ry="2" fill="#ffffff" stroke="#252525" stroke-width="1.2" />
+      <path d="M 27.0 101.0 L 53.0 101.0 M 33.0 96.0 L 33.0 120.0 M 40.0 96.0 L 40.0 120.0 M 47.0 96.0 L 47.0 120.0" fill="none" stroke="#252525" stroke-width="1" />
+      <text x="40.0" y="134.0" class="text-sub">Memory</text>
+    </g>
+        <g>
+      <path d="M 72.0 100.5 C 72.0 96.5 96.0 96.5 96.0 100.5 L 96.0 115.5 C 96.0 119.5 72.0 119.5 72.0 115.5 Z" fill="#ffffff" stroke="#252525" stroke-width="1.2" />
+      <path d="M 72.0 100.5 C 72.0 104.5 96.0 104.5 96.0 100.5 M 72.0 105.5 C 72.0 109.5 96.0 109.5 96.0 105.5 M 72.0 110.5 C 72.0 114.5 96.0 114.5 96.0 110.5" fill="none" stroke="#252525" stroke-width="1" />
+      <text x="84.0" y="134.0" class="text-sub">Storage</text>
+    </g>
+        <g>
+      <rect x="116.0" y="96.0" width="24" height="24" rx="2" ry="2" fill="#ffffff" stroke="#64748b" stroke-width="1.2" />
+      <rect x="119.5" y="99.5" width="17" height="17" rx="1" ry="1" fill="#cbd5e1" stroke="none" />
+      <text x="128.0" y="134.0" class="text-sub">CPU</text>
+    </g>
+    <rect x="12" y="156" width="144" height="34" rx="4" ry="4" fill="#f0fdf4" stroke="#86efac" />
+    <text x="84" y="177" class="text-sub" fill="#166534" font-weight="bold">100% Dedicated</text>
+
+    <!-- Instance 2 Card -->
+    <rect x="168" y="38" width="144" height="110" rx="6" ry="6" fill="#fcfcfd" stroke="#d9d9d9" />
+    <path d="M 235.66 68.63 L 231.28 61.51 L 233.66 57.63 L 229.80 57.63 L 225.42 50.50 L 229.80 43.37 L 238.47 43.37 L 240.00 45.85 L 241.52 43.37 L 250.19 43.37 L 254.57 50.50 L 250.19 57.63 L 246.33 57.63 L 248.71 61.51 L 244.33 68.63 L 235.66 68.63 Z M 242.57 54.84 L 240.00 50.64 L 237.42 54.84 L 242.57 54.84 Z" fill="#1366ec" stroke="none" />
+    <text x="240" y="78" class="text-inst">RDS Instance 2</text>
+        <g>
+      <rect x="183.0" y="96.0" width="26" height="24" rx="2" ry="2" fill="#ffffff" stroke="#252525" stroke-width="1.2" />
+      <path d="M 183.0 101.0 L 209.0 101.0 M 189.0 96.0 L 189.0 120.0 M 196.0 96.0 L 196.0 120.0 M 203.0 96.0 L 203.0 120.0" fill="none" stroke="#252525" stroke-width="1" />
+      <text x="196.0" y="134.0" class="text-sub">Memory</text>
+    </g>
+        <g>
+      <path d="M 228.0 100.5 C 228.0 96.5 252.0 96.5 252.0 100.5 L 252.0 115.5 C 252.0 119.5 228.0 119.5 228.0 115.5 Z" fill="#ffffff" stroke="#252525" stroke-width="1.2" />
+      <path d="M 228.0 100.5 C 228.0 104.5 252.0 104.5 252.0 100.5 M 228.0 105.5 C 228.0 109.5 252.0 109.5 252.0 105.5 M 228.0 110.5 C 228.0 114.5 252.0 114.5 252.0 110.5" fill="none" stroke="#252525" stroke-width="1" />
+      <text x="240.0" y="134.0" class="text-sub">Storage</text>
+    </g>
+        <g>
+      <rect x="272.0" y="96.0" width="24" height="24" rx="2" ry="2" fill="#ffffff" stroke="#64748b" stroke-width="1.2" />
+      <rect x="275.5" y="99.5" width="17" height="17" rx="1" ry="1" fill="#cbd5e1" stroke="none" />
+      <text x="284.0" y="134.0" class="text-sub">CPU</text>
+    </g>
+    <rect x="168" y="156" width="144" height="34" rx="4" ry="4" fill="#f0fdf4" stroke="#86efac" />
+    <text x="240" y="177" class="text-sub" fill="#166534" font-weight="bold">100% Dedicated</text>
+
+    <!-- Center Divider Line -->
+    <path d="M 325 15 L 325 195" fill="none" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="4,4" />
+
+    <!-- Sub-category 2: Cloud Disks -->
+    <text x="488" y="26" class="text-category">Cloud Disks</text>
+
+    <!-- Instance 1 Card -->
+    <rect x="338" y="38" width="144" height="110" rx="6" ry="6" fill="#fcfcfd" stroke="#d9d9d9" />
+    <path d="M 405.66 68.63 L 401.28 61.51 L 403.66 57.63 L 399.80 57.63 L 395.42 50.50 L 399.80 43.37 L 408.47 43.37 L 410.00 45.85 L 411.52 43.37 L 420.19 43.37 L 424.57 50.50 L 420.19 57.63 L 416.33 57.63 L 418.71 61.51 L 414.33 68.63 L 405.66 68.63 Z M 412.57 54.84 L 410.00 50.64 L 407.42 54.84 L 412.57 54.84 Z" fill="#1366ec" stroke="none" />
+    <text x="410" y="78" class="text-inst">RDS Instance 1</text>
+        <g>
+      <rect x="353.0" y="96.0" width="26" height="24" rx="2" ry="2" fill="#ffffff" stroke="#252525" stroke-width="1.2" />
+      <path d="M 353.0 101.0 L 379.0 101.0 M 359.0 96.0 L 359.0 120.0 M 366.0 96.0 L 366.0 120.0 M 373.0 96.0 L 373.0 120.0" fill="none" stroke="#252525" stroke-width="1" />
+      <text x="366.0" y="134.0" class="text-sub">Memory</text>
+    </g>
+        <g>
+      <path d="M 398.0 100.5 C 398.0 96.5 422.0 96.5 422.0 100.5 L 422.0 115.5 C 422.0 119.5 398.0 119.5 398.0 115.5 Z" fill="#ffffff" stroke="#252525" stroke-width="1.2" />
+      <path d="M 398.0 100.5 C 398.0 104.5 422.0 104.5 422.0 100.5 M 398.0 105.5 C 398.0 109.5 422.0 109.5 422.0 105.5 M 398.0 110.5 C 398.0 114.5 422.0 114.5 422.0 110.5" fill="none" stroke="#252525" stroke-width="1" />
+      <text x="410.0" y="134.0" class="text-sub">Storage</text>
+    </g>
+        <g>
+      <rect x="442.0" y="96.0" width="24" height="24" rx="2" ry="2" fill="#ffffff" stroke="#64748b" stroke-width="1.2" />
+      <rect x="445.5" y="99.5" width="17" height="17" rx="1" ry="1" fill="#cbd5e1" stroke="none" />
+      <text x="454.0" y="134.0" class="text-sub">CPU</text>
+    </g>
+    <rect x="338" y="156" width="144" height="34" rx="4" ry="4" fill="#f0fdf4" stroke="#86efac" />
+    <text x="410" y="177" class="text-sub" fill="#166534" font-weight="bold">100% Dedicated</text>
+
+    <!-- Instance 2 Card -->
+    <rect x="494" y="38" width="144" height="110" rx="6" ry="6" fill="#fcfcfd" stroke="#d9d9d9" />
+    <path d="M 561.66 68.63 L 557.28 61.51 L 559.66 57.63 L 555.80 57.63 L 551.42 50.50 L 555.80 43.37 L 564.47 43.37 L 566.00 45.85 L 567.52 43.37 L 576.19 43.37 L 580.57 50.50 L 576.19 57.63 L 572.33 57.63 L 574.71 61.51 L 570.33 68.63 L 561.66 68.63 Z M 568.57 54.84 L 566.00 50.64 L 563.42 54.84 L 568.57 54.84 Z" fill="#1366ec" stroke="none" />
+    <text x="566" y="78" class="text-inst">RDS Instance 2</text>
+        <g>
+      <rect x="509.0" y="96.0" width="26" height="24" rx="2" ry="2" fill="#ffffff" stroke="#252525" stroke-width="1.2" />
+      <path d="M 509.0 101.0 L 535.0 101.0 M 515.0 96.0 L 515.0 120.0 M 522.0 96.0 L 522.0 120.0 M 529.0 96.0 L 529.0 120.0" fill="none" stroke="#252525" stroke-width="1" />
+      <text x="522.0" y="134.0" class="text-sub">Memory</text>
+    </g>
+        <g>
+      <path d="M 554.0 100.5 C 554.0 96.5 578.0 96.5 578.0 100.5 L 578.0 115.5 C 578.0 119.5 554.0 119.5 554.0 115.5 Z" fill="#ffffff" stroke="#252525" stroke-width="1.2" />
+      <path d="M 554.0 100.5 C 554.0 104.5 578.0 104.5 578.0 100.5 M 554.0 105.5 C 554.0 109.5 578.0 109.5 578.0 105.5 M 554.0 110.5 C 554.0 114.5 578.0 114.5 578.0 110.5" fill="none" stroke="#252525" stroke-width="1" />
+      <text x="566.0" y="134.0" class="text-sub">Storage</text>
+    </g>
+        <g>
+      <rect x="598.0" y="96.0" width="24" height="24" rx="2" ry="2" fill="#ffffff" stroke="#64748b" stroke-width="1.2" />
+      <rect x="601.5" y="99.5" width="17" height="17" rx="1" ry="1" fill="#cbd5e1" stroke="none" />
+      <text x="610.0" y="134.0" class="text-sub">CPU</text>
+    </g>
+    <rect x="494" y="156" width="144" height="34" rx="4" ry="4" fill="#f0fdf4" stroke="#86efac" />
+    <text x="566" y="177" class="text-sub" fill="#166534" font-weight="bold">100% Dedicated</text>
+  </g>
+</svg>

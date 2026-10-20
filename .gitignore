@@ -1,0 +1,11 @@
+# Ignore everything by default
+*
+
+# Whitelist root essential files
+!.gitignore
+!README.md
+!ARCHITECTURAL_NORTHSTAR.md
+
+# Whitelist dist directory and all its contents
+!dist/
+!dist/**

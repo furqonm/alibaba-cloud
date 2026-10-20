@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 330" width="100%" height="100%">
+  <defs>
+    <marker id="arr-gray" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748b"/>
+    </marker>
+    <marker id="arr-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#16a34a"/>
+    </marker>
+    <marker id="arr-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#dc2626"/>
+    </marker>
+    <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="920" height="330" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- ==================== STEP 1: CLIENT REQUEST ==================== -->
+  <g transform="translate(18, 100)" filter="url(#card-shadow)">
+    <rect width="138" height="74" rx="8" fill="#fff7ed" stroke="#f97316" stroke-width="1.8"/>
+    <text x="69" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#9a3412">Client Request</text>
+    <text x="69" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#c2410c">SSH (Port 22)</text>
+  </g>
+
+  <!-- Arrow 1 -> 2 -->
+  <line x1="156" y1="137" x2="186" y2="137" stroke="#64748b" stroke-width="2" marker-end="url(#arr-gray)"/>
+
+  <!-- ==================== STEP 2: SECURITY GROUP LOOKUP ==================== -->
+  <g transform="translate(190, 100)" filter="url(#card-shadow)">
+    <rect width="145" height="74" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.8"/>
+    <text x="72" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#1e293b">Security Group</text>
+    <text x="72" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#475569">Rule Lookup</text>
+  </g>
+
+  <!-- Arrow 2 -> 3 -->
+  <line x1="335" y1="137" x2="365" y2="137" stroke="#64748b" stroke-width="2" marker-end="url(#arr-gray)"/>
+
+  <!-- ==================== STEP 3: RULE EVALUATION CRITERIA ==================== -->
+  <g transform="translate(368, 16)">
+    <!-- Outer Dashed Card -->
+    <rect width="170" height="298" rx="10" fill="#fff7ed" stroke="#f97316" stroke-width="1.8" stroke-dasharray="6,4"/>
+    <text x="85" y="24" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#c2410c">Rule Match Criteria</text>
+
+    <!-- 5 Criteria Pills -->
+    <!-- Pill 1: Direction -->
+    <g transform="translate(12, 34)">
+      <rect width="146" height="44" rx="6" fill="#ffffff" stroke="#fed7aa" stroke-width="1.4"/>
+      <text x="73" y="19" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b">Direction</text>
+      <text x="73" y="35" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#1e293b">Inbound</text>
+    </g>
+
+    <!-- Pill 2: Protocol -->
+    <g transform="translate(12, 86)">
+      <rect width="146" height="44" rx="6" fill="#ffffff" stroke="#fed7aa" stroke-width="1.4"/>
+      <text x="73" y="19" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b">Protocol</text>
+      <text x="73" y="35" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#1e293b">TCP / SSH</text>
+    </g>
+
+    <!-- Pill 3: Source IP -->
+    <g transform="translate(12, 138)">
+      <rect width="146" height="44" rx="6" fill="#ffffff" stroke="#fed7aa" stroke-width="1.4"/>
+      <text x="73" y="19" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b">Source IP / CIDR</text>
+      <text x="73" y="35" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#1e293b">Client IP</text>
+    </g>
+
+    <!-- Pill 4: Port Range -->
+    <g transform="translate(12, 190)">
+      <rect width="146" height="44" rx="6" fill="#ffffff" stroke="#fed7aa" stroke-width="1.4"/>
+      <text x="73" y="19" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b">Port Range</text>
+      <text x="73" y="35" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#1e293b">Port 22</text>
+    </g>
+
+    <!-- Pill 5: Action -->
+    <g transform="translate(12, 242)">
+      <rect width="146" height="44" rx="6" fill="#ffffff" stroke="#fed7aa" stroke-width="1.4"/>
+      <text x="73" y="19" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b">Action Decision</text>
+      <text x="73" y="35" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#1e293b">Accept / Drop</text>
+    </g>
+  </g>
+
+  <!-- Arrow 3 -> 4 -->
+  <line x1="538" y1="137" x2="568" y2="137" stroke="#64748b" stroke-width="2" marker-end="url(#arr-gray)"/>
+
+  <!-- ==================== STEP 4: DECISION DIAMOND ==================== -->
+  <g transform="translate(572, 82)">
+    <polygon points="85,0 170,55 85,110 0,55" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+    <text x="85" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13.5" font-weight="800" fill="#0f172a">Priority Rule</text>
+    <text x="85" y="68" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13.5" font-weight="800" fill="#0f172a">Match?</text>
+  </g>
+
+  <!-- ==================== BRANCH YES -> CONNECTED ==================== -->
+  <g transform="translate(742, 137)">
+    <line x1="0" y1="0" x2="32" y2="0" stroke="#16a34a" stroke-width="2.2" marker-end="url(#arr-green)"/>
+    <text x="16" y="-8" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#16a34a">Yes</text>
+  </g>
+
+  <g transform="translate(778, 100)" filter="url(#card-shadow)">
+    <rect width="124" height="74" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+    <text x="62" y="34" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="800" fill="#065f46">Connected</text>
+    <text x="62" y="53" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#047857">Traffic Allowed</text>
+  </g>
+
+  <!-- ==================== BRANCH NO -> DROP ==================== -->
+  <g transform="translate(657, 192)">
+    <line x1="0" y1="0" x2="0" y2="38" stroke="#dc2626" stroke-width="2.2" marker-end="url(#arr-red)"/>
+    <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#dc2626">No</text>
+  </g>
+
+  <g transform="translate(562, 234)" filter="url(#card-shadow)">
+    <rect width="190" height="74" rx="8" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+    <text x="95" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#991b1b">Drop Packet</text>
+    <text x="95" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#b91c1c">Silent Drop (No Response)</text>
+  </g>
+</svg>

@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" width="100%" height="auto">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- Region 1 Boundary -->
+  <rect x="15" y="15" width="510" height="290" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="35" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="12" font-weight="bold" fill="#334155">Region 1: Singapore (ap-southeast-1)</text>
+
+  <!-- Region 2 Boundary -->
+  <rect x="555" y="15" width="230" height="290" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="575" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="12" font-weight="bold" fill="#334155">Region 2: Jakarta (ap-southeast-5)</text>
+
+  <!-- Central Transit Router (TR) Region 1 -->
+  <rect x="195" y="115" width="150" height="90" rx="10" fill="#ff6a00" filter="url(#shadow)"/>
+  <text x="270" y="145" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="13" font-weight="800" fill="#ffffff">Transit Router (TR)</text>
+  <text x="270" y="165" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="10.5" font-weight="bold" fill="#ffedd5">CEN Enterprise Hub</text>
+  <text x="270" y="185" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="9" fill="#fed7aa">Route Tables &amp; Propagation</text>
+
+  <!-- Central Transit Router (TR) Region 2 -->
+  <rect x="595" y="115" width="150" height="90" rx="10" fill="#ff6a00" filter="url(#shadow)"/>
+  <text x="670" y="145" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="13" font-weight="800" fill="#ffffff">Transit Router (TR)</text>
+  <text x="670" y="165" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="10.5" font-weight="bold" fill="#ffedd5">CEN Enterprise Hub</text>
+  <text x="670" y="185" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="9" fill="#fed7aa">Jakarta Transit</text>
+
+  <!-- Cross-Region TR Peering Link -->
+  <path d="M 345 160 L 595 160" stroke="#ff6a00" stroke-width="3" stroke-dasharray="5,3"/>
+  <rect x="420" y="142" width="100" height="24" rx="4" fill="#ffffff" stroke="#ff6a00" stroke-width="1.5"/>
+  <text x="470" y="158" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="9.5" font-weight="bold" fill="#ea580c">Global Backbone</text>
+
+  <!-- Spoke 1: Production VPC (Top Left) -->
+  <rect x="35" y="55" width="125" height="65" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="1.5"/>
+  <text x="97" y="80" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="11" font-weight="bold" fill="#0369a1">Production VPC</text>
+  <text x="97" y="98" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="9.5" fill="#64748b">10.1.0.0/16</text>
+  <path d="M 160 87 L 210 115" stroke="#0284c7" stroke-width="2"/>
+
+  <!-- Spoke 2: Shared Services / Firewall VPC (Top Right of Reg 1) -->
+  <rect x="380" y="55" width="125" height="65" rx="8" fill="#ffffff" stroke="#059669" stroke-width="1.5"/>
+  <text x="442" y="80" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="11" font-weight="bold" fill="#047857">Firewall / DMZ VPC</text>
+  <text x="442" y="98" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="9.5" fill="#64748b">10.2.0.0/16</text>
+  <path d="M 380 87 L 330 115" stroke="#059669" stroke-width="2"/>
+
+  <!-- Spoke 3: Virtual Border Router (VBR) / Express Connect (Bottom Left) -->
+  <rect x="35" y="200" width="125" height="65" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="97" y="223" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="11" font-weight="bold" fill="#6d28d9">VBR (Leased Line)</text>
+  <text x="97" y="240" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="9.5" fill="#7c3aed">Express Connect</text>
+  <text x="97" y="254" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="8.5" fill="#94a3b8">On-Premises IDC</text>
+  <path d="M 160 232 L 210 205" stroke="#7c3aed" stroke-width="2"/>
+
+  <!-- Spoke 4: Dual-Tunnel IPsec-VPN Gateway (Bottom Center) -->
+  <rect x="380" y="200" width="125" height="65" rx="8" fill="#ffffff" stroke="#d97706" stroke-width="1.5"/>
+  <text x="442" y="223" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="11" font-weight="bold" fill="#b45309">IPsec-VPN Gateway</text>
+  <text x="442" y="240" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="9.5" fill="#d97706">Dual-Tunnel BGP</text>
+  <text x="442" y="254" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="8.5" fill="#94a3b8">Branch Office</text>
+  <path d="M 380 232 L 330 205" stroke="#d97706" stroke-width="2"/>
+
+  <!-- Region 2 VPC Spoke -->
+  <rect x="607" y="230" width="125" height="55" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="1.5"/>
+  <text x="670" y="253" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="11" font-weight="bold" fill="#0369a1">Disaster Recovery VPC</text>
+  <text x="670" y="271" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="9.5" fill="#64748b">172.16.0.0/16</text>
+  <path d="M 670 205 L 670 230" stroke="#0284c7" stroke-width="2"/>
+</svg>

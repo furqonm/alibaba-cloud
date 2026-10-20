@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="1000" height="600">
+  <defs>
+    <filter id="vpc-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- ==================== OUTER: REGION (DASHED BORDER) ==================== -->
+  <rect x="8" y="8" width="984" height="540" rx="16" fill="#ffffff" stroke="#334155" stroke-width="2" stroke-dasharray="8,6"/>
+  <text x="500" y="582" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="800" fill="#0f172a">Region</text>
+
+  <!-- ==================== INNER: VPC SOLID BOX ==================== -->
+  <g transform="translate(45, 35)">
+    <!-- VPC Boundary -->
+    <path d="M 0 0 L 820 0 L 910 60 L 910 480 L 0 480 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+
+    <!-- VPC Icon & Label (Top Left) -->
+    <g transform="translate(30, 20)">
+      <!-- Official VPC Cloud Icon -->
+      <g transform="scale(0.08) translate(0, -100)">
+        <path d="M418.816 339.456l29.696-11.776c6.144 17.92 11.776 29.696 17.92 41.472h11.776c35.328 0 58.88 29.696 58.88 58.88v6.144c47.104 17.92 144.896 50.176 153.6 53.248 11.776-23.552 35.328-41.472 65.024-41.472h6.144c5.12-25.6 11.264-51.2 17.92-76.8H737.28c0-6.144-47.104-177.152-229.888-177.152H465.92C371.2 209.92 318.464 250.88 294.912 292.352 342.016 327.68 389.12 363.008 436.224 386.56c-5.632-17.408-11.776-29.184-17.408-47.104z m-6.144-105.984c6.144 17.92 11.776 29.696 17.92 47.104l-29.696 11.776-17.92-53.248 29.696-5.632z m247.808 424.448h11.776c17.92-29.696 29.696-53.248 41.472-82.432-17.92-11.776-29.696-35.328-29.696-58.88-10.24-2.56-112.128-35.328-165.376-53.248-6.144 17.92-23.552 23.552-41.472 23.552-35.328 0-58.88-29.696-58.88-58.88v-11.776c-47.104-29.696-88.576-58.88-135.68-94.208C265.216 374.784 271.36 416.256 271.36 421.888c0 0-194.56 11.776-224.256 153.6-35.328 177.152 153.6 241.664 218.112 241.664h283.136c29.696-23.552 53.248-53.248 70.656-82.432 0-6.144-6.144-17.92-6.144-29.696 0.512-29.184 24.064-47.104 47.616-47.104z m-118.272-88.576c-11.776-11.776-23.552-29.696-29.696-41.472l23.552-17.92c6.144 11.776 17.92 29.696 29.696 41.472l-23.552 17.92z m29.696 41.472l23.552-17.92c11.776 11.776 17.92 29.696 29.696 41.472l-23.552 17.92c-11.776-12.288-23.552-24.064-29.696-41.472z m407.04-53.248c-41.472 0-100.352-6.144-159.232-11.776-11.776 23.552-35.328 41.472-65.024 41.472h-6.144c-11.776 29.696-29.696 58.88-41.472 88.576 6.144 6.144 11.776 17.92 11.776 29.696 0 29.696-23.552 47.104-47.104 47.104H660.48c-17.92 23.552-35.328 41.472-53.248 65.024h141.312c6.144 0 153.088 0 224.256-135.68 6.144-41.984 11.776-82.944 6.144-124.416zM737.28 811.008l-35.328-35.328 23.552-23.552 35.328 35.328-23.552 23.552z m235.52-282.624c-17.92-76.8-76.8-135.68-165.376-153.088-6.144 23.552-11.776 53.248-17.92 82.432 17.92 11.776 29.696 29.696 35.328 58.88 59.392 5.632 107.008 11.776 147.968 11.776z" fill="#FF6A00"/>
+      </g>
+      <!-- Label Card -->
+      <g transform="translate(0, 68)" filter="url(#vpc-shadow)">
+        <rect width="100" height="34" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+        <text x="50" y="23" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="800" fill="#1e293b">VPC</text>
+      </g>
+    </g>
+
+    <!-- VRouter Icon & Label (Top Center) -->
+    <g transform="translate(430, 20)">
+      <!-- VRouter Circular Icon -->
+      <circle cx="50" cy="30" r="30" fill="#ff6a00"/>
+      <!-- 4 Outward Diagonal Arrows -->
+      <!-- NE -->
+      <path d="M 54 26 L 68 12 M 60 12 L 68 12 L 68 20" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <!-- NW -->
+      <path d="M 46 26 L 32 12 M 40 12 L 32 12 L 32 20" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <!-- SE -->
+      <path d="M 54 34 L 68 48 M 60 48 L 68 48 L 68 40" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <!-- SW -->
+      <path d="M 46 34 L 32 48 M 40 48 L 32 48 L 32 40" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+      <!-- Label Card -->
+      <g transform="translate(-10, 68)" filter="url(#vpc-shadow)">
+        <rect width="120" height="34" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+        <text x="60" y="23" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="800" fill="#1e293b">VRouter</text>
+      </g>
+    </g>
+
+    <!-- Connecting line between VPC and VRouter -->
+    <line x1="120" y1="45" x2="420" y2="45" stroke="#cbd5e1" stroke-width="2"/>
+    <line x1="500" y1="45" x2="820" y2="45" stroke="#cbd5e1" stroke-width="2"/>
+
+    <!-- ==================== SECURITY GROUP RED BOX ==================== -->
+    <g transform="translate(30, 140)">
+      <rect width="840" height="260" rx="14" fill="none" stroke="#ef4444" stroke-width="2"/>
+      <text x="420" y="246" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="800" fill="#dc2626">Security Group</text>
+    </g>
+
+    <!-- ==================== ZONE A (LEFT BLUE DASHED) ==================== -->
+    <g transform="translate(55, 125)">
+      <rect width="260" height="310" rx="16" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="6,4"/>
+      <text x="130" y="335" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="800" fill="#1d4ed8">Zone A</text>
+
+      <!-- VSwitch Card -->
+      <g transform="translate(25, 30)">
+        <rect width="210" height="230" rx="12" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+        <text x="105" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="800" fill="#1e40af">VSwitch</text>
+
+        <!-- 4 ECS Servers Grid -->
+        <!-- Server 1 -->
+        <g transform="translate(30, 55)">
+          <rect width="65" height="15" rx="3" fill="#ff6a00"/>
+          <circle cx="12" cy="7.5" r="2.5" fill="#ffffff"/>
+          <rect y="18" width="65" height="15" rx="3" fill="#ff6a00"/>
+          <circle cx="12" cy="25.5" r="2.5" fill="#ffffff"/>
+          <rect y="36" width="65" height="15" rx="3" fill="#ff6a00"/>
+          <circle cx="12" cy="43.5" r="2.5" fill="#ffffff"/>
+        </g>
+        <!-- Server 2 -->
+        <g transform="translate(115, 55)">
+          <rect width="65" height="15" rx="3" fill="#ff6a00"/>
+          <circle cx="12" cy="7.5" r="2.5" fill="#ffffff"/>
+          <rect y="18" width="65" height="15" rx="3" fill="#ff6a00"/>
+          <circle cx="12" cy="25.5" r="2.5" fill="#ffffff"/>
+          <rect y="36" width="65" height="15" rx="3" fill="#ff6a00"/>
+          <circle cx="12" cy="43.5" r="2.5" fill="#ffffff"/>
+        </g>
+        <!-- Server 3 -->
+        <g transform="translate(30, 120)">
+          <rect width="65" height="15" rx="3" fill="#ff6a00"/>
+          <circle cx="12" cy="7.5" r="2.5" fill="#ffffff"/>
+          <rect y="18" width="65" height="15" rx="3" fill="#ff6a00"/>
+          <circle cx="12" cy="25.5" r="2.5" fill="#ffffff"/>
+          <rect y="36" width="65" height="15" rx="3" fill="#ff6a00"/>
+          <circle cx="12" cy="43.5" r="2.5" fill="#ffffff"/>
+        </g>
+        <!-- Server 4 -->
+        <g transform="translate(115, 120)">
+          <rect width="65" height="15" rx="3" fill="#ff6a00"/>
+          <circle cx="12" cy="7.5" r="2.5" fill="#ffffff"/>
+          <rect y="18" width="65" height="15" rx="3" fill="#ff6a00"/>
+          <circle cx="12" cy="25.5" r="2.5" fill="#ffffff"/>
+          <rect y="36" width="65" height="15" rx="3" fill="#ff6a00"/>
+          <circle cx="12" cy="43.5" r="2.5" fill="#ffffff"/>
+        </g>
+
+        <!-- ECS Label -->
+        <text x="105" y="205" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="800" fill="#c2410c">ECS Fleet</text>
+      </g>
+    </g>
+
+    <!-- ==================== ZONE B (RIGHT BLUE DASHED) ==================== -->
+    <g transform="translate(560, 125)">
+      <rect width="295" height="310" rx="16" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="6,4"/>
+      <text x="147" y="335" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="800" fill="#1d4ed8">Zone B</text>
+
+      <!-- 4 VSwitch Cards -->
+      <g transform="translate(25, 30)">
+        <!-- VSwitch 1 -->
+        <rect x="0" y="0" width="115" height="74" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+        <text x="57" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#1e40af">VSwitch 1</text>
+
+        <!-- VSwitch 2 -->
+        <rect x="130" y="0" width="115" height="74" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+        <text x="187" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#1e40af">VSwitch 2</text>
+
+        <!-- VSwitch 3 -->
+        <rect x="0" y="95" width="115" height="74" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+        <text x="57" y="139" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#1e40af">VSwitch 3</text>
+
+        <!-- VSwitch 4 -->
+        <rect x="130" y="95" width="115" height="74" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+        <text x="187" y="139" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#1e40af">VSwitch 4</text>
+      </g>
+    </g>
+  </g>
+</svg>

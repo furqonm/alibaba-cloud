@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 380" width="100%" height="auto">
+  <defs>
+    <filter id="shadow-arch" x="-3%" y="-3%" width="106%" height="106%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.08" />
+    </filter>
+    <marker id="arr-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#EA580C" />
+    </marker>
+  </defs>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+    <!-- Outer Region Boundary -->
+    <rect x="15" y="15" width="830" height="350" rx="12" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.5" />
+    <rect x="25" y="25" width="220" height="26" rx="5" fill="#334155" />
+    <text x="135" y="42" fill="#FFFFFF" font-size="11" font-weight="700" text-anchor="middle">Alibaba Cloud Region (e.g. ap-southeast-1)</text>
+
+    <!-- Bucket Container -->
+    <g filter="url(#shadow-arch)">
+      <rect x="35" y="65" width="790" height="280" rx="10" fill="#FFFFFF" stroke="#EA580C" stroke-width="2" />
+      <rect x="35" y="65" width="790" height="38" rx="10" fill="#FFEDD5" />
+      <rect x="35" y="90" width="790" height="13" fill="#FFEDD5" />
+      <text x="60" y="90" fill="#9A3412" font-size="14" font-weight="800">OSS Bucket: enterprise-media-prod (Globally Unique Namespace)</text>
+      <text x="790" y="90" fill="#C2410C" font-size="11" font-weight="600" text-anchor="end">Endpoint: enterprise-media-prod.oss-ap-southeast-1.aliyuncs.com</text>
+    </g>
+
+    <!-- Object 1 -->
+    <g filter="url(#shadow-arch)">
+      <rect x="55" y="125" width="230" height="200" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" />
+      <rect x="55" y="125" width="230" height="30" rx="8" fill="#E2E8F0" />
+      <rect x="55" y="145" width="230" height="10" fill="#E2E8F0" />
+      <text x="170" y="145" fill="#1E293B" font-size="11" font-weight="700" text-anchor="middle">Key: images/hero-banner.jpg</text>
+      
+      <!-- Key breakdown -->
+      <g transform="translate(70, 168)" font-size="10" fill="#475569">
+        <text x="0" y="0" font-weight="700" fill="#0284C7">Data Payload: 2.4 MB (JPEG Binary)</text>
+        <text x="0" y="20" font-weight="700" fill="#059669">System Metadata:</text>
+        <text x="10" y="36">• Content-Type: image/jpeg</text>
+        <text x="10" y="52">• ETag: "a1b2c3d4e5f67890..."</text>
+        <text x="10" y="68">• Storage-Class: Standard</text>
+        <text x="0" y="88" font-weight="700" fill="#D97706">User Metadata:</text>
+        <text x="10" y="104">• x-oss-meta-author: CreativeTeam</text>
+        <text x="10" y="120">• x-oss-meta-env: Production</text>
+      </g>
+    </g>
+
+    <!-- Object 2 -->
+    <g filter="url(#shadow-arch)">
+      <rect x="315" y="125" width="230" height="200" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" />
+      <rect x="315" y="125" width="230" height="30" rx="8" fill="#E2E8F0" />
+      <rect x="315" y="145" width="230" height="10" fill="#E2E8F0" />
+      <text x="430" y="145" fill="#1E293B" font-size="11" font-weight="700" text-anchor="middle">Key: videos/2026/keynote.mp4</text>
+      
+      <g transform="translate(330, 168)" font-size="10" fill="#475569">
+        <text x="0" y="0" font-weight="700" fill="#0284C7">Data Payload: 18.5 GB (Multipart)</text>
+        <text x="0" y="20" font-weight="700" fill="#059669">System Metadata:</text>
+        <text x="10" y="36">• Content-Type: video/mp4</text>
+        <text x="10" y="52">• ETag: "89def456123abc..."</text>
+        <text x="10" y="68">• Storage-Class: Infrequent Access</text>
+        <text x="0" y="88" font-weight="700" fill="#D97706">User Metadata:</text>
+        <text x="10" y="104">• x-oss-meta-resolution: 4K</text>
+        <text x="10" y="120">• x-oss-meta-retention: 3Years</text>
+      </g>
+    </g>
+
+    <!-- Object 3 -->
+    <g filter="url(#shadow-arch)">
+      <rect x="575" y="125" width="230" height="200" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" />
+      <rect x="575" y="125" width="230" height="30" rx="8" fill="#E2E8F0" />
+      <rect x="575" y="145" width="230" height="10" fill="#E2E8F0" />
+      <text x="690" y="145" fill="#1E293B" font-size="11" font-weight="700" text-anchor="middle">Key: archives/gl_2025.tar.gz</text>
+      
+      <g transform="translate(590, 168)" font-size="10" fill="#475569">
+        <text x="0" y="0" font-weight="700" fill="#0284C7">Data Payload: 420 GB (Compressed)</text>
+        <text x="0" y="20" font-weight="700" fill="#059669">System Metadata:</text>
+        <text x="10" y="36">• Content-Type: application/gzip</text>
+        <text x="10" y="52">• ETag: "c4567890abcdef..."</text>
+        <text x="10" y="68">• Storage-Class: Cold Archive</text>
+        <text x="0" y="88" font-weight="700" fill="#D97706">WORM / Compliance:</text>
+        <text x="10" y="104">• x-oss-retention-period: 7 Years</text>
+        <text x="10" y="120">• SSE-KMS: Enabled (BYOK)</text>
+      </g>
+    </g>
+  </g>
+</svg>

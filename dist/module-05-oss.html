@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 05: Object Storage Service (OSS) | Alibaba Cloud Professional</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header class="presentation-header">
+    <div class="brand-wrapper">
+      <span class="brand-badge">Alibaba Cloud</span>
+      <div class="course-info">
+        <span class="course-title">Alibaba Cloud Professional: Cloud Architect</span>
+        <span class="module-title">Module 05: Object Storage Service (OSS) Deep Dive</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="section-indicator" id="sectionIndicator">Overview</span>
+      <div class="module-switcher-wrapper">
+        <select class="module-select" id="moduleSelect" onchange="if(this.value) window.location.href=this.value;">
+          <option value="module-01-overview.html">Module 01: Overview</option>
+          <option value="module-02-ecs.html">Module 02: ECS</option>
+          <option value="module-03-vpc.html">Module 03: VPC</option>
+          <option value="module-04-slb.html">Module 04: SLB</option>
+          <option value="module-05-oss.html" selected>Module 05: OSS</option>
+          <option value="module-06-rds.html">Module 06: RDS</option>
+          <option value="module-07-auto-scaling.html">Module 07: Auto Scaling</option>
+          <option value="module-08-cdn.html">Module 08: CDN</option>
+          <option value="module-09-security.html">Module 09: Security</option>
+        </select>
+      </div>
+      <div class="nav-buttons">
+        <span class="slide-counter" id="slideCounter">1/46</span>
+        <button class="btn-nav" id="prevBtn" title="Previous Slide (Left Arrow)">
+          <span>⬅️</span> Previous
+        </button>
+        <button class="btn-nav primary" id="nextBtn" title="Next Slide (Right Arrow / Space)">
+          Next <span>➡️</span>
+        </button>
+        <button class="btn-nav" id="fullscreenBtn" title="Toggle Fullscreen (F)">
+          <span>⛶</span> Fullscreen
+        </button>
+      </div>
+    </div>
+    <div class="slide-progress-bar" id="progressBar"></div>
+  </header>
+
+  <!-- Presentation Deck Container -->
+  <main class="deck-container">
+
+    <!-- ==================== SLIDE 1: CLEAN TITLE ==================== -->
+    <section class="slide active title-slide" data-category="Course Intro">
+      <h1>Module 05: Object Storage Service (OSS)</h1>
+    </section>
+
+    <!-- ==================== SLIDE 2: AGENDA LIST ==================== -->
+    <section class="slide" data-category="Outline">
+      <div class="slide-category">Module Structure</div>
+      <h2>Agenda &amp; Learning Objectives</h2>
+      
+      <ol class="agenda-grid">
+        <li class="agenda-item">OSS Concept &amp; Architecture</li>
+        <li class="agenda-item">Storage Classes &amp; Lifecycle</li>
+        <li class="agenda-item">Data Operations &amp; Access</li>
+        <li class="agenda-item">Security &amp; Data Protection</li>
+        <li class="agenda-item">Advanced Features</li>
+        <li class="agenda-item">Pricing Model</li>
+      </ol>
+    </section>
+
+    <!-- ==================== SLIDE 3: TRADITIONAL STORAGE SERVER: PAIN POINTS ==================== -->
+    <section class="slide" data-category="OSS Concept &amp; Architecture">
+      <div class="slide-category">Section 1: OSS Concept &amp; Architecture</div>
+      <h2>Traditional Storage Server: Pain Points</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-top: 0.5rem;">
+        <img src="assets/images/oss-traditional-storage-pain-points.svg" alt="Traditional Storage Server: Pain Points" class="architecture-diagram" style="max-height: 380px; width: 100%; height: auto; object-fit: contain;">
+        <div class="callout callout-blue" style="margin-top: 0.85rem; width: 100%; max-width: 960px;">
+          <div>
+            <span class="badge badge-exam">Notes</span>
+            Managing traditional storage clusters involves heavy operational overhead: continuous capacity forecasting, complex RAID/SAN disk array maintenance, intricate backup &amp; disaster recovery procedures, physical security hardening, and escalating CapEx/OpEx costs as data scales.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 4: DIFFERENT TYPES OF STORAGE ==================== -->
+    <section class="slide" data-category="OSS Concept &amp; Architecture">
+      <div class="slide-category">Section 1: OSS Concept &amp; Architecture</div>
+      <h2>Different Types of Storage</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-top: 0.5rem;">
+        <img src="assets/images/oss-storage-types-traditional-cloud.png" alt="Different types of storage: Traditional vs Cloud Storage" class="architecture-diagram" style="max-height: 480px; width: 100%; height: auto; object-fit: contain;">
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 5: STORAGE PARADIGMS ==================== -->
+    <section class="slide" data-category="OSS Concept &amp; Architecture">
+      <div class="slide-category">Section 1: OSS Concept &amp; Architecture</div>
+      <h2>Different Types of Storage (cont.)</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-top: 0.5rem;">
+        <img src="assets/images/storage-types-comparison.svg" alt="Block vs File vs Object Storage Architecture" class="architecture-diagram" style="max-height: 480px; width: 100%; height: auto; object-fit: contain;">
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 6: SERVICE INTRODUCTION ==================== -->
+    <section class="slide" data-category="OSS Concept &amp; Architecture">
+      <div class="slide-category">Section 1: OSS Concept &amp; Architecture</div>
+      <h2>Object Storage Service (OSS)</h2>
+      
+      <div class="service-intro-banner">
+        <div class="service-icon-wrapper">
+          <img src="assets/images/oss-service-icon.svg" alt="Alibaba Cloud OSS Icon" class="service-icon">
+        </div>
+        <div class="service-intro-text">
+          <p class="service-lead">
+            <strong>Alibaba Cloud Object Storage Service (OSS)</strong> is a massive, secure, cost-effective, and highly reliable cloud storage service.
+          </p>
+          <p class="service-desc">
+            OSS enables organizations to store, process, and retrieve any amount of unstructured data from anywhere on the internet. By decoupling storage from physical servers, OSS frees enterprises from capacity planning, disk arrays, and hardware lifecycles while delivering industry-leading durability.
+          </p>
+        </div>
+      </div>
+
+      <div class="service-pillars-grid">
+        <div class="service-pillar-card">
+          <h4>🌐 Massive Scale</h4>
+          <p>Virtually unlimited storage capacity with no individual bucket size limits, handling petabytes effortlessly.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>🛡️ 12 Nines Durability</h4>
+          <p>99.9999999999% data reliability powered by multi-copy Pangu triplicate replication across fault domains.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>🔒 Enterprise Security</h4>
+          <p>Defense-in-depth protection via RAM, Bucket Policies, WORM compliance, and SSE-KMS hardware encryption.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>⚡ High Availability</h4>
+          <p>Up to 99.995% SLA with Multi-Zone redundant storage (ZRS) and cross-region automated replication.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>🔗 Cloud Ecosystem</h4>
+          <p>Native integration with Big Data (MaxCompute, EMR), CDN edge delivery, and Serverless Function Compute.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 7: THE ANATOMY OF OSS DATA STORAGE ==================== -->
+    <section class="slide" data-category="OSS Concept &amp; Architecture">
+      <div class="slide-category">Section 1: OSS Concept &amp; Architecture</div>
+      <h2>The Anatomy of OSS Data Storage</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <ul style="display: flex; flex-direction: column; gap: 0.75rem; line-height: 1.6; margin: 0; padding-left: 1.2rem;">
+            <li><strong>Bucket:</strong> The top-level logical container for objects. Bucket names are <strong>globally unique</strong> across all Alibaba Cloud accounts worldwide and cannot be altered after creation. Anchored to a specific region.</li>
+            <li><strong>Object:</strong> The fundamental data entity stored in OSS. Maximum size varies from 5 GB (simple upload) up to <strong>48.8 TB</strong> (multipart upload).</li>
+            <li><strong>Key:</strong> The complete name that uniquely identifies an object within a bucket (e.g. <code>photos/2026/banner.jpg</code>, max 1,024 bytes UTF-8).</li>
+            <li><strong>Metadata:</strong> Key-value pairs describing object properties, including standard HTTP headers (Content-Type, Cache-Control) and custom user metadata (<code>x-oss-meta-*</code>).</li>
+          </ul>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <img src="assets/images/oss-bucket-object-cloud.svg" alt="OSS Bucket and Object Architecture Diagram" style="max-height: 330px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
+          <div class="diagram-caption" style="margin-top: 0.5rem;">Global Namespace, Bucket Container, and Object Metadata Model</div>
+        </div>
+      </div>
+    </section>
+
+        <!-- ==================== SLIDE 8: LOGICAL DATA STRUCTURE ==================== -->
+    <section class="slide" data-category="OSS Concept &amp; Architecture">
+      <div class="slide-category">Section 1: OSS Concept &amp; Architecture</div>
+      <h2>Logical Data Structure &amp; Hierarchy</h2>
+      
+      <div class="grid-2" style="margin-top: 0.75rem; align-items: center;">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; width: 100%;">
+          <img src="assets/images/oss-data-structure-hierarchy.png" alt="OSS Logical Data Structure Hierarchy" style="max-height: 440px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
+        </div>
+
+        <div class="content-card highlight-blue" style="padding: 1.5rem 1.75rem;">
+          <ul style="display: flex; flex-direction: column; gap: 0.75rem; line-height: 1.65; margin: 0; padding-left: 1.2rem;">
+            <li><strong>No Physical Folders:</strong> OSS stores objects in a flat key-value namespace. Physical directories and folders do not exist.</li>
+            <li><strong>Virtual Directory Simulation:</strong> Forward slashes (<code>/</code>) in keys simulate directory paths (e.g. <code>folder/file.jpg</code>) for easy navigation.</li>
+            <li><strong>High Concurrency &amp; Scale:</strong> Eliminates directory locking and inode limits, allowing massive scale and high-concurrency access.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 9: STORAGE CLASSES SPECTRUM ==================== -->
+    <section class="slide" data-category="Storage Classes &amp; Lifecycle">
+      <div class="slide-category">Section 2: Storage Classes &amp; Lifecycle</div>
+      <h2>Storage Classes Spectrum</h2>
+      
+      <div class="service-pillars-grid">
+        <div class="service-pillar-card">
+          <h4>🔥 Standard</h4>
+          <p>High throughput, real-time access. Ideal for active web assets, mobile apps, streaming media, and gaming.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>🌤️ Infrequent Access</h4>
+          <p>Lower storage cost for warm data accessed 1-2 times/month. Real-time access with small retrieval fee.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>❄️ Archive</h4>
+          <p>Low storage cost for data accessed 1-2 times/year. Restores in ~1 minute or via Archive Direct Read.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>🧊 Cold Archive</h4>
+          <p>Ultra-low cost for long-term retention. 3 restore modes (Expedited &lt;1h, Standard 2-5h, Bulk 5-11h).</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>🏔️ Deep Cold Archive</h4>
+          <p>Cheapest cloud storage tier (tape replacement). Restore time 12-48 hours. Built for multi-year compliance.</p>
+        </div>
+      </div>
+
+      <div class="callout callout-green" style="margin-top: 1rem;">
+        <div>
+          <span class="badge badge-updated">Notes</span>
+          Matching data access frequency with the appropriate storage tier can reduce storage costs by up to <strong>80%</strong> compared to retaining all data in Standard tier.
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 10: STORAGE CLASSES MATRIX ==================== -->
+    <section class="slide" data-category="Storage Classes &amp; Lifecycle">
+      <div class="slide-category">Section 2: Storage Classes &amp; Lifecycle</div>
+      <h2>Storage Classes Comparison</h2>
+      
+      <div class="table-wrapper">
+        <table class="slide-table">
+          <thead>
+            <tr>
+              <th>Storage Class</th>
+              <th>Data Durability</th>
+              <th>Availability (SLA)</th>
+              <th>Min. Duration</th>
+              <th>Min. Billable Size</th>
+              <th>Data Retrieval Fee</th>
+              <th>Data Access Latency</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Standard</strong></td>
+              <td>99.999999999% (LRS)<br>99.9999999999% (ZRS)</td>
+              <td>99.99% (LRS)<br>99.995% (ZRS)</td>
+              <td>None</td>
+              <td>None</td>
+              <td>Free</td>
+              <td>Real-time (Milliseconds)</td>
+            </tr>
+            <tr>
+              <td><strong>Infrequent Access</strong></td>
+              <td>99.999999999% (LRS)<br>99.9999999999% (ZRS)</td>
+              <td>99.90% (LRS)<br>99.95% (ZRS)</td>
+              <td>30 days</td>
+              <td>64 KB</td>
+              <td>Per GB read</td>
+              <td>Real-time (Milliseconds)</td>
+            </tr>
+            <tr>
+              <td><strong>Archive</strong></td>
+              <td>99.999999999% (LRS)</td>
+              <td>99.90%</td>
+              <td>60 days</td>
+              <td>64 KB</td>
+              <td>Per GB read</td>
+              <td>~1 minute (or Direct Read)</td>
+            </tr>
+            <tr>
+              <td><strong>Cold Archive</strong></td>
+              <td>99.999999999% (LRS)</td>
+              <td>99.90%</td>
+              <td>180 days</td>
+              <td>64 KB</td>
+              <td>Per GB read</td>
+              <td>Expedited: &lt;1h | Std: 2-5h | Bulk: 5-11h</td>
+            </tr>
+            <tr>
+              <td><strong>Deep Cold Archive</strong></td>
+              <td>99.999999999% (LRS)</td>
+              <td>99.90%</td>
+              <td>180 days</td>
+              <td>64 KB</td>
+              <td>Per GB read</td>
+              <td>Standard: 12h | Bulk: 24-48h</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 11: LIFECYCLE MANAGEMENT ==================== -->
+    <section class="slide" data-category="Storage Classes &amp; Lifecycle">
+      <div class="slide-category">Section 2: Storage Classes &amp; Lifecycle</div>
+      <h2>Automated Lifecycle Policies</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-top: 0.5rem;">
+        <img src="assets/images/oss-lifecycle-tiering.svg" alt="OSS Lifecycle Tiering Transition Diagram" class="architecture-diagram" style="max-height: 480px; width: 100%; height: auto; object-fit: contain;">
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 12: LRS VS ZRS ==================== -->
+    <section class="slide" data-category="Storage Classes &amp; Lifecycle">
+      <div class="slide-category">Section 2: Storage Classes &amp; Lifecycle</div>
+      <h2>Redundancy Models</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight-blue">
+          <h3>Locally Redundant Storage (LRS)</h3>
+          <ul>
+            <li><strong>Single Availability Zone Scope:</strong> Stores object replicas across multiple independent storage devices and racks within a <strong>single Availability Zone (AZ)</strong>.</li>
+            <li><strong>Durability Rating:</strong> Provides <strong>99.999999999% (11 nines)</strong> data durability against hardware faults, disk corruptions, and single-rack failures.</li>
+            <li><strong>Service Availability SLA:</strong> 99.99% operational availability.</li>
+            <li><strong>Cost Efficiency:</strong> Lowest baseline price per gigabyte; optimal for general-purpose workloads, non-critical data, or when application-layer replication already exists.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Zone-Redundant Storage (ZRS)</h3>
+          <ul>
+            <li><strong>Multi-Zone Active Redundancy:</strong> Replicates data across <strong>three distinct Availability Zones</strong> within the same region.</li>
+            <li><strong>Extreme Durability Rating:</strong> Delivers <strong>99.9999999999% (12 nines)</strong> data durability.</li>
+            <li><strong>Enterprise Availability SLA:</strong> <strong>99.995%</strong> service availability.</li>
+            <li><strong>Datacenter-Level Disaster Resilience:</strong> Guarantees business continuity and uninterrupted reads/writes even during a complete catastrophic power outage or failure of an entire Availability Zone.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 13: OSS NAMING CONVENTION ==================== -->
+    <section class="slide" data-category="Data Operations &amp; Access">
+      <div class="slide-category">Section 3: Data Operations &amp; Access</div>
+      <h2>OSS Naming Convention</h2>
+      
+      <p class="subtitle" style="margin-bottom: 1.25rem;">
+        A <strong>key</strong> is an object's unique identifier. Every object in a bucket has exactly one key, and the combination of <strong>Bucket Name</strong> and <strong>Object Key</strong> uniquely identifies each object across Alibaba Cloud globally.
+      </p>
+
+      <!-- URI Structure Display (Mirip format halaman 12 PDF) -->
+      <div style="background: #0f172a; border-radius: 10px; padding: 1.25rem 1.75rem; margin-bottom: 1.5rem; font-family: 'Consolas', 'Courier New', monospace; font-size: calc(1.2rem + var(--font-delta)); display: flex; justify-content: center; align-items: center; box-shadow: var(--shadow-sm); border: 1px solid #1e293b; overflow-x: auto;">
+        <span style="color: #4ade80; font-weight: 700;">https://</span><span style="color: #fb923c; font-weight: 700;">images-bucket</span><span style="color: #38bdf8; font-weight: 700;">.oss-ap-southeast-1.aliyuncs.com</span><span style="color: #f87171; font-weight: 700;">/algorithm.jpg</span>
+      </div>
+
+      <!-- 4-Part URL Component Breakdown -->
+      <div class="grid-4" style="gap: 1rem;">
+        <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-top: 3px solid #22c55e; border-radius: 8px; padding: 1.1rem 1.25rem;">
+          <div style="color: #166534; font-weight: 700; font-size: calc(0.92rem + var(--font-delta)); margin-bottom: 0.3rem;">Protocol</div>
+          <div style="color: #15803d; font-family: monospace; font-weight: 700; font-size: calc(0.88rem + var(--font-delta));">https://</div>
+          <div style="color: #475569; font-size: calc(0.82rem + var(--font-delta)); margin-top: 0.35rem; line-height: 1.45;">Standard secure REST / HTTPS transmission protocol.</div>
+        </div>
+
+        <div style="background: #fff7ed; border: 1px solid #fed7aa; border-top: 3px solid #f97316; border-radius: 8px; padding: 1.1rem 1.25rem;">
+          <div style="color: #9a3412; font-weight: 700; font-size: calc(0.92rem + var(--font-delta)); margin-bottom: 0.3rem;">Bucket Name</div>
+          <div style="color: #ea580c; font-family: monospace; font-weight: 700; font-size: calc(0.88rem + var(--font-delta));">images-bucket</div>
+          <div style="color: #475569; font-size: calc(0.82rem + var(--font-delta)); margin-top: 0.35rem; line-height: 1.45;">Globally unique top-level container for all objects.</div>
+        </div>
+
+        <div style="background: #f0f9ff; border: 1px solid #bae6fd; border-top: 3px solid #0284c7; border-radius: 8px; padding: 1.1rem 1.25rem;">
+          <div style="color: #075985; font-weight: 700; font-size: calc(0.92rem + var(--font-delta)); margin-bottom: 0.3rem;">Bucket Endpoint</div>
+          <div style="color: #0284c7; font-family: monospace; font-weight: 700; font-size: calc(0.82rem + var(--font-delta)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title=".oss-ap-southeast-1.aliyuncs.com">.oss-ap-southeast-1...</div>
+          <div style="color: #475569; font-size: calc(0.82rem + var(--font-delta)); margin-top: 0.35rem; line-height: 1.45;">Regional access domain (public internet or VPC).</div>
+        </div>
+
+        <div style="background: #fef2f2; border: 1px solid #fecaca; border-top: 3px solid #ef4444; border-radius: 8px; padding: 1.1rem 1.25rem;">
+          <div style="color: #991b1b; font-weight: 700; font-size: calc(0.92rem + var(--font-delta)); margin-bottom: 0.3rem;">Object Name (Key)</div>
+          <div style="color: #dc2626; font-family: monospace; font-weight: 700; font-size: calc(0.88rem + var(--font-delta));">/algorithm.jpg</div>
+          <div style="color: #475569; font-size: calc(0.82rem + var(--font-delta)); margin-top: 0.35rem; line-height: 1.45;">Unique path &amp; file identifier within the bucket.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 14: OSS NAMING CONVENTION (CONT.) ==================== -->
+    <section class="slide" data-category="Data Operations &amp; Access">
+      <div class="slide-category">Section 3: Data Operations &amp; Access</div>
+      <h2>OSS Naming Convention (cont.)</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <h3>Key Construction Best Practices</h3>
+          <ul>
+            <li><strong>Key Naming Rules:</strong> UTF-8 encoded characters, maximum length <strong>1,024 bytes</strong>. Cannot start with forward slash (<code>/</code>) or backslash (<code>\</code>).</li>
+            <li><strong>Hierarchical Simulation:</strong> Using slashes enables virtual directory folder navigation (e.g. <code>app/logs/2026/04/trace.log</code>).</li>
+            <li><strong>Partition Distribution Principle:</strong> For hyper-throughput write workloads (&gt;5,000 QPS), avoid strictly sequential keys (e.g. <code>2026-04-17-001.jpg</code>). Sequential keys hash to adjacent Pangu partitions, creating localized bottlenecks.</li>
+            <li><strong>Entropy Prefixes:</strong> Prepend a randomized hash or MD5 substring to distribute write IOPS across multiple storage partitions evenly (e.g. <code>a7b9-2026-04-17-001.jpg</code>).</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <h3>API Listing &amp; Traversal Patterns</h3>
+          <ul>
+            <li><strong>Prefix Queries:</strong> Retrieve all objects matching a root pattern (e.g., <code>prefix=videos/2026/</code>) without scanning unrelated bucket partitions.</li>
+            <li><strong>Delimiter Filtering:</strong> Setting <code>delimiter=/</code> collapses sub-keys into <code>CommonPrefixes</code>, returning virtual directory listings in a single lightweight API call.</li>
+            <li><strong>Continuation Tokens:</strong> Paginate large buckets containing millions of objects using <code>max-keys=1000</code> and cursor tokens.</li>
+            <li><strong>Object Tagging:</strong> Attach up to 10 key-value tags per object (e.g. <code>dept=rnd</code>, <code>confidential=true</code>) for fine-grained lifecycle triggers and ABAC access policies.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 15: UPLOAD MODES ==================== -->
+    <section class="slide" data-category="Data Operations &amp; Access">
+      <div class="slide-category">Section 3: Data Operations &amp; Access</div>
+      <h2>Upload Modes</h2>
+      
+      <div class="grid-3">
+        <div class="content-card highlight">
+          <h3>1. Simple PutObject</h3>
+          <ul>
+            <li><strong>Operational Model:</strong> Single synchronous HTTP <code>PUT</code> request.</li>
+            <li><strong>Capacity Limit:</strong> Supports files up to <strong>5 GB</strong> in size.</li>
+            <li><strong>Best Suited For:</strong> Small web assets, images, configuration files, and mobile user uploads.</li>
+            <li><strong>Network Consideration:</strong> If an upload drops midway, the entire payload must be resent from byte zero.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <h3>2. AppendObject</h3>
+          <ul>
+            <li><strong>Operational Model:</strong> Sequentially appends content to the end of an existing object.</li>
+            <li><strong>Capacity Limit:</strong> Cumulative file size up to <strong>5 GB</strong>.</li>
+            <li><strong>Best Suited For:</strong> Real-time streaming server logs, IoT sensor data, and video stream dumps.</li>
+            <li><strong>Architecture Constraint:</strong> Appendable objects cannot be converted into Normal objects or altered out-of-order.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>3. Multipart Upload</h3>
+          <ul>
+            <li><strong>Operational Model:</strong> Splits large files into discrete parts uploaded concurrently.</li>
+            <li><strong>Capacity Limit:</strong> Supports massive files up to <strong>48.8 TB</strong> (10,000 parts).</li>
+            <li><strong>Best Suited For:</strong> Database backups, 4K/8K video archives, genomic datasets, and big data dumps.</li>
+            <li><strong>Enterprise Reliability:</strong> Network dropouts only require re-uploading the specific failed part.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 16: MULTIPART UPLOAD ==================== -->
+    <section class="slide" data-category="Data Operations &amp; Access">
+      <div class="slide-category">Section 3: Data Operations &amp; Access</div>
+      <h2>Multipart Upload Architecture</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-top: 0.5rem;">
+        <img src="assets/images/oss-multipart-upload.svg" alt="OSS Multipart Upload Architecture Workflow" class="architecture-diagram" style="max-height: 480px; width: 100%; height: auto; object-fit: contain;">
+        <div class="diagram-caption" style="margin-top: 0.75rem;">Enterprise Multipart Workflow: Initiate ➔ Parallel Part Uploads ➔ Complete &amp; Verification</div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 17: OBJECT VERSIONING ==================== -->
+    <section class="slide" data-category="Data Operations &amp; Access">
+      <div class="slide-category">Section 3: Data Operations &amp; Access</div>
+      <h2>Object Versioning</h2>
+      
+      <!-- Object Versioning Diagram (Center - Enlarged) -->
+      <div class="architecture-diagram-wrapper" style="display: flex; justify-content: center; align-items: center; margin: 0.2rem 0 0.6rem; min-height: 0;">
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 960px;">
+          <img src="assets/images/oss-object-versioning.png" alt="OSS Object Versioning Workflow and Architecture" style="max-height: 220px; width: 100%; max-width: 920px; height: auto; object-fit: contain; border: none; box-shadow: none;">
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 0; gap: 1rem;">
+        <div class="content-card highlight-blue" style="padding: 0.85rem 1.15rem;">
+          <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem;">Versioning Mechanics &amp; Recovery</h3>
+          <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem;">
+            <li><strong>Version Stacking:</strong> When overwriting an object with the same key, OSS generates a unique <strong>Version ID</strong>. The latest write becomes the <strong>Current Version</strong> (orange), while prior files remain as <strong>Previous Versions</strong> (blue).</li>
+            <li><strong>Delete Marker Protection:</strong> A standard <code>DELETE</code> request inserts a <em>Delete Marker</em> rather than removing the file. All historical versions remain intact and can be restored by deleting the marker.</li>
+            <li><strong>Permanent Purging:</strong> Truly deleting an object requires an explicit request specifying the exact <code>versionId</code> to eliminate the targeted iteration.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green" style="padding: 0.85rem 1.15rem;">
+          <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem;">Governance &amp; Cost Control</h3>
+          <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem;">
+            <li><strong>Lifecycle Automation:</strong> Configure lifecycle policies to transition non-current versions to Infrequent Access or Archive tiers, and expire them after N days to prevent storage sprawl.</li>
+            <li><strong>CRR Prerequisite:</strong> Object Versioning must be activated on both source and target buckets before establishing Cross-Region Replication (CRR).</li>
+            <li><strong>State Immutability:</strong> Once versioning is enabled on a bucket, it cannot be disabled; it can only be transitioned to <strong>Suspended</strong> state.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 18: CRR ==================== -->
+    <section class="slide" data-category="Data Operations &amp; Access">
+      <div class="slide-category">Section 3: Data Operations &amp; Access</div>
+      <h2>Cross-Region Replication (CRR)</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-blue" style="padding: 1rem 1.25rem;">
+            <h3 style="font-size: calc(1rem + var(--font-delta)); margin-bottom: 0.45rem;">Cross-Region Replication (CRR)</h3>
+            <ul style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.4rem;">
+              <li><strong>Asynchronous Synchronization:</strong> Automatically and reliably syncs newly created, overwritten, and deleted objects from a source bucket to a target bucket across regions.</li>
+              <li><strong>Geo-Disaster Recovery &amp; Latency:</strong> Meets strict compliance mandates for cross-border disaster recovery while serving global users from the nearest regional endpoint.</li>
+              <li><strong>Prerequisites &amp; Security:</strong> Requires <strong>Object Versioning</strong> enabled on both buckets; seamlessly supports SSE-KMS encrypted replication and historical data sync.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-green" style="padding: 1rem 1.25rem;">
+            <h3 style="font-size: calc(1rem + var(--font-delta)); margin-bottom: 0.45rem;">Replication Time Control (RTC)</h3>
+            <ul style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.4rem;">
+              <li><strong>SLA-Backed Speed Guarantee:</strong> Enterprise performance guarantee replicating <strong>99.99%</strong> of uploaded data within seconds, satisfying mission-critical RPO and RTO demands.</li>
+              <li><strong>Real-Time Telemetry:</strong> Integrates with CloudMonitor to track replication latency, backlog tasks, and cross-region outbound bandwidth with live alerts.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; width: 100%;">
+          <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+            <img src="assets/images/oss-crr-rtc-architecture.png" alt="OSS Cross-Region Replication (CRR) with Replication Time Control (RTC) Architecture" style="max-height: 420px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
+            <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">Replication Between Source and Destination Buckets</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 19: BACK-TO-ORIGIN MIRRORING ==================== -->
+    <section class="slide" data-category="Data Operations &amp; Access">
+      <div class="slide-category">Section 3: Data Operations &amp; Access</div>
+      <h2>Back-to-Origin: Mirroring</h2>
+      
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0.35rem 0 0.5rem; width: 100%;">
+        <img src="assets/images/oss-back-to-origin-mirroring.png" alt="OSS Back to Origin - Mirroring Architecture" style="max-height: 200px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
+        <div class="diagram-caption" style="margin-top: 0.4rem;">Lazy-Fetch Ingestion: Automatic Retrieval and Caching upon Missing Objects (404)</div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 0.75rem;">
+        <div class="content-card highlight-blue">
+          <h3>Mirroring Execution Workflow</h3>
+          <ol class="step-list">
+            <li><strong>Client Requests Object:</strong> The client issues an HTTP <code>GET</code> or <code>HEAD</code> request to the OSS bucket for a specific object key.</li>
+            <li><strong>404 Trigger &amp; Origin Fetch:</strong> If the object is absent from OSS, OSS intercepts the 404 condition and autonomously requests the file from the configured <strong>Source Site</strong>.</li>
+            <li><strong>Write &amp; Cache in OSS:</strong> OSS writes the returned payload directly into the bucket as a persistent object, preserving original headers and metadata.</li>
+            <li><strong>Stream to Client:</strong> OSS simultaneously delivers the data stream to the client. All subsequent requests are served directly from OSS with zero origin load.</li>
+          </ol>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Architectural Benefits &amp; Use Cases</h3>
+          <ul>
+            <li><strong>Zero-Downtime Data Migration:</strong> Migrate active enterprise services from on-premises NAS/SAN or AWS S3 without pre-copying petabytes or scheduling maintenance windows.</li>
+            <li><strong>On-Demand "Hot Data" Ingestion:</strong> Only files actively requested by end-users are ingested and stored in OSS, eliminating migration costs for cold/stale historical data.</li>
+            <li><strong>Origin Offloading:</strong> Once mirrored, high-concurrency read traffic is absorbed by Alibaba Cloud OSS's global distributed network instead of the origin server.</li>
+            <li><strong>Granular Rule Matching:</strong> Supports scoping mirror rules by <strong>object prefix</strong> (e.g. <code>/images/</code>) and configuring custom HTTP header pass-through.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 20: BACK-TO-ORIGIN REDIRECTION ==================== -->
+    <section class="slide" data-category="Data Operations &amp; Access">
+      <div class="slide-category">Section 3: Data Operations &amp; Access</div>
+      <h2>Back-to-Origin: Redirection</h2>
+      
+      <div class="grid-2" style="margin-top: 0.75rem; align-items: center;">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; width: 100%;">
+          <img src="assets/images/oss-back-to-origin-redirection.png" alt="OSS Back to Origin - Redirection Architecture" style="max-height: 400px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
+          <div class="diagram-caption" style="margin-top: 0.6rem;">HTTP 301/302 Redirect Handshake: Forwarding Traffic Without Storing in OSS</div>
+        </div>
+
+        <div>
+          <div class="content-card highlight-blue" style="margin-bottom: 0.75rem;">
+            <h3>Redirection Execution Workflow</h3>
+            <ol class="step-list">
+              <li><strong>Request for Resource:</strong> The client sends an HTTP request to the OSS bucket for a specific resource path.</li>
+              <li><strong>Return Redirect Location:</strong> OSS evaluates redirection rules and responds to the client with an HTTP 301/302 status code and the target Origin URL in the Location header.</li>
+              <li><strong>Follow Redirect to Origin:</strong> The client receives the 3xx response and automatically directs its request to the <strong>Source Site</strong>.</li>
+              <li><strong>Direct Origin Response:</strong> The source site delivers the requested content directly to the client. <b>OSS DOESN'T store the object.</b></li>
+            </ol>
+          </div>
+
+          <div class="content-card highlight-green">
+            <h3>Architectural Comparison &amp; Decision Guide</h3>
+            <ul>
+              <li><strong>Zero OSS Storage Consumption:</strong> Ideal for dynamic, personalized, or non-cacheable resources where storing duplicates in OSS is unnecessary or wasteful.</li>
+              <li><strong>Legacy URL &amp; Domain Rewriting:</strong> Seamlessly route deprecated path conventions, restructured folders, or old domain references to new backend services.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 21: ACCESS CONTROL ==================== -->
+    <section class="slide" data-category="Security &amp; Data Protection">
+      <div class="slide-category">Section 4: Security &amp; Data Protection</div>
+      <h2>Multi-Layer Access Control</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-top: 0.5rem;">
+        <img src="assets/images/oss-security-model.svg" alt="OSS Multi-Layer Security Architecture" class="architecture-diagram" style="max-height: 480px; width: 100%; height: auto; object-fit: contain;">
+        <div class="diagram-caption" style="margin-top: 0.75rem;">Defense-in-Depth: Identity Policies ➔ Bucket Policies &amp; PrivateLink ➔ Encryption &amp; WORM</div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 22: RAM POLICY ==================== -->
+    <section class="slide" data-category="Security &amp; Data Protection">
+      <div class="slide-category">Section 4: Security &amp; Data Protection</div>
+      <h2>RAM Policy</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight-blue">
+          <h3 style="font-size: calc(1rem + var(--font-delta)); margin-bottom: 0.45rem;">Identity-Based Authorization</h3>
+          <p style="font-size: calc(0.85rem + var(--font-delta)); line-height: 1.5; margin-bottom: 0.75rem; color: #475569;">
+            RAM Policies are permission policies attached directly to RAM identities (Users, Groups, or Roles) to govern what actions they can perform on Alibaba Cloud resources:
+          </p>
+          <ul style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.45rem;">
+            <li><strong>Identity Attachment:</strong> Applied to RAM users or roles; defines the maximum permissions granted to the identity across all services.</li>
+            <li><strong>No Principal Field:</strong> Does <em>not</em> define a <code>Principal</code> element because the identity to which it is attached is inherently the principal.</li>
+            <li><strong>Centralized IAM Governance:</strong> Ideal for enforcing least privilege for internal developers, applications, and ECS instance RAM roles.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight">
+          <p style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.45; margin-bottom: 0.5rem; color: #475569;">
+            Grants permission to list objects and read files from <code>company-bucket</code>:
+          </p>
+          <pre style="background: #1e293b; color: #f8fafc; padding: 0.75rem 1rem; border-radius: 6px; font-size: 0.78rem; line-height: 1.4; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; margin: 0;">
+{
+  "Version": "1",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "oss:ListObjects",
+        "oss:GetObject"
+      ],
+      "Resource": [
+        "acs:oss:*:*:company-bucket",
+        "acs:oss:*:*:company-bucket/*"
+      ]
+    }
+  ]
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 23: BUCKET POLICY ==================== -->
+    <section class="slide" data-category="Security &amp; Data Protection">
+      <div class="slide-category">Section 4: Security &amp; Data Protection</div>
+      <h2>Bucket Policy</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight-green">
+          <h3 style="font-size: calc(1rem + var(--font-delta)); margin-bottom: 0.45rem;">Resource-Based Authorization</h3>
+          <p style="font-size: calc(0.85rem + var(--font-delta)); line-height: 1.5; margin-bottom: 0.75rem; color: #475569;">
+            Bucket Policies are configured directly on an OSS bucket to control which principals can access the bucket and under what specific conditions:
+          </p>
+          <ul style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.45rem;">
+            <li><strong>Bucket-Level Attachment:</strong> Managed directly on the target bucket; grants access without modifying central RAM policies.</li>
+            <li><strong>Mandatory Principal Field:</strong> <em>Must</em> specify the <code>Principal</code> (e.g. another Alibaba Cloud account, RAM user ARN, or <code>*</code>).</li>
+            <li><strong>Cross-Account &amp; Conditional Sharing:</strong> Enables secure cross-account data sharing and condition-based enforcement (IP whitelists, HTTPS, VPC).</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight">
+          <p style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.45; margin-bottom: 0.5rem; color: #475569;">
+            Allows an external account to read objects only from a specific IP subnet:
+          </p>
+          <pre style="background: #1e293b; color: #f8fafc; padding: 0.75rem 1rem; border-radius: 6px; font-size: 0.78rem; line-height: 1.4; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; margin: 0;">
+{
+  "Version": "1",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "oss:GetObject"
+      ],
+      "Principal": [
+        "acs:ram::123456789012****:root"
+      ],
+      "Resource": [
+        "acs:oss:*:*:company-bucket/*"
+      ],
+      "Condition": {
+        "IpAddress": {
+          "acs:SourceIp": "192.168.1.0/24"
+        }
+      }
+    }
+  ]
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 24: WRITE ONCE, READ MANY (WORM) ==================== -->
+    <section class="slide" data-category="Security &amp; Data Protection">
+      <div class="slide-category">Section 4: Security &amp; Data Protection</div>
+      <h2>Write Once, Read Many (WORM)</h2>
+      
+      <div class="grid-2" style="margin-top: 0.75rem; align-items: center;">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; width: 100%;">
+          <img src="assets/images/oss-worm-bucket-lock.png" alt="WORM Compliance Retention Policy Architecture" style="max-height: 440px; width: auto; max-width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
+        </div>
+
+        <div class="content-card highlight-blue" style="padding: 1.25rem 1.5rem;">
+          <ul style="display: flex; flex-direction: column; gap: 0.65rem; line-height: 1.55; margin: 0; padding-left: 1.2rem;">
+            <li><strong>Immutable Retention:</strong> Objects cannot be deleted, overwritten, or modified by <strong>any entity</strong>—including RAM Administrators and the <strong>Alibaba Cloud Account Root user</strong>—during the retention period (1 day to 70 years).</li>
+            <li><strong>InProgress State:</strong> Provides a <strong>24-hour verification window</strong> upon policy creation. The bucket lock can still be tested or canceled during this time.</li>
+            <li><strong>Locked State:</strong> Once locked, the policy becomes <strong>permanent and irreversible</strong>. The retention period can only be extended, never shortened.</li>
+            <li><strong>Tamper-Proof Protection:</strong> Guarantees append-only storage, protecting data against ransomware, malicious insiders, and accidental deletion.</li>
+            <li><strong>Regulatory Compliance:</strong> Fully complies with strict SEC Rule 17a-4(f), FINRA Rule 4511, and CFTC 17 CFR 1.31 mandates.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 25: SERVER-SIDE PROXY UPLOAD ==================== -->
+    <section class="slide" data-category="Security &amp; Data Protection">
+      <div class="slide-category">Section 4: Security &amp; Data Protection</div>
+      <h2>Server-Side Proxy Upload Bottlenecks</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
+        <div class="architecture-diagram-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="width: 100%; display: flex; justify-content: center;">
+            <img src="assets/images/oss-proxy-vs-direct-upload.svg" alt="Server-Side Proxy Upload vs Direct Client Upload Architecture" style="max-height: 440px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
+          </div>
+          <div class="diagram-caption" style="margin-top: 0.5rem; text-align: center;">Server-Side Proxying vs. Direct Client Ingestion</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight" style="padding: 1rem 1.25rem;">
+            <h3 style="font-size: calc(1rem + var(--font-delta)); margin-bottom: 0.45rem;">The Proxy Upload Problem</h3>
+            <p style="font-size: calc(0.85rem + var(--font-delta)); line-height: 1.45; margin-bottom: 0.5rem; color: #475569;">
+              Traditionally, web and mobile clients upload files to an intermediate application server, which then proxies them to OSS:
+            </p>
+            <ul style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem;">
+              <li><strong>Double Bandwidth Consumption:</strong> Every byte travels twice (Client ➔ App Server ➔ OSS), doubling network latency and outbound transfer costs.</li>
+              <li><strong>Application Server Exhaustion:</strong> Web servers waste critical CPU, RAM buffers, and worker threads holding connections for slow client uploads.</li>
+              <li><strong>Scalability Bottleneck:</strong> Concurrent large file uploads (videos, high-res images) exhaust server capacity, creating a single point of failure.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-blue" style="padding: 1rem 1.25rem;">
+            <h3 style="font-size: calc(1rem + var(--font-delta)); margin-bottom: 0.45rem;">The Solution: Direct Client Upload</h3>
+            <p style="font-size: calc(0.85rem + var(--font-delta)); line-height: 1.45; margin-bottom: 0.5rem; color: #475569;">
+              Clients bypass the application server entirely, uploading payloads straight to OSS:
+            </p>
+            <ul style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem;">
+              <li><strong>Zero Server Data Load:</strong> Massive files stream directly into Alibaba Cloud's distributed Pangu storage tier without touching application memory.</li>
+              <li><strong>The Authorization Challenge:</strong> How can untrusted clients upload directly to private, unexposed buckets without embedding long-term AccessKey credentials in client code?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 26: DIRECT CLIENT UPLOAD WITH SIGNED URLS ==================== -->
+    <section class="slide" data-category="Security &amp; Data Protection">
+      <div class="slide-category">Section 4: Security &amp; Data Protection</div>
+      <h2>Direct Client Upload with "Signed URLs"</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight-blue">
+          <h3 style="font-size: calc(1rem + var(--font-delta)); margin-bottom: 0.45rem;">Resolving the Upload Dilemma</h3>
+          <p style="font-size: calc(0.85rem + var(--font-delta)); line-height: 1.45; margin-bottom: 0.65rem; color: #475569;">
+            Building directly on the Direct Client Upload architecture, Pre-Signed URLs provide secure, time-limited delegated authorization without exposing long-term credentials:
+          </p>
+          <ul style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.45rem;">
+            <li><strong>Step 1: Obtain Authorization:</strong> The client authenticates with the application server (e.g. JWT/session) and requests an upload permit for a designated object key.</li>
+            <li><strong>Step 2: Signature Generation:</strong> The application backend uses its internal RAM credentials to generate a pre-signed URL embedding an HMAC-SHA1 signature and expiry window.</li>
+            <li><strong>Step 3: Direct Streaming to OSS:</strong> The client issues an HTTP <code>PUT</code> or <code>POST</code> request directly to the OSS endpoint using the signed URL, completely bypassing the app server.</li>
+            <li><strong>Strict Expiry Enforcement:</strong> The URL terminates automatically after its duration (e.g. 15 mins). Subsequent requests receive <code>HTTP 403 Forbidden</code>.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight" style="padding: 1rem 1.25rem;">
+          <h3 style="font-size: calc(1rem + var(--font-delta)); margin-bottom: 0.35rem;">Example Signed URL (Direct HTTP PUT / GET)</h3>
+          
+          <!-- Concrete Pre-Signed URL Example -->
+          <div style="background: #1e293b; border-radius: 6px; padding: 0.45rem 0.65rem; margin-bottom: 0.55rem; border: 1px solid #334155;">
+            <code style="font-size: calc(0.72rem + var(--font-delta)); line-height: 1.35; color: #38bdf8; word-break: break-all; display: block; font-family: 'Consolas', 'Courier New', monospace;">
+              https://my-bucket.oss-ap-southeast-5.aliyuncs.com/uploads/contract.pdf?<span style="color: #f59e0b;">OSSAccessKeyId</span>=LTAI5t7example99&amp;<span style="color: #10b981;">Expires</span>=1776412800&amp;<span style="color: #ec4899;">Signature</span>=vR3q9fN5%2BexampleWv7%3D
+            </code>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="slide-table" style="font-size: calc(0.8rem + var(--font-delta));">
+              <thead>
+                <tr>
+                  <th style="padding: 0.35rem 0.6rem;">URL Parameter</th>
+                  <th style="padding: 0.35rem 0.6rem;">Architectural Function</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding: 0.3rem 0.6rem;"><code>OSSAccessKeyId</code></td>
+                  <td style="padding: 0.3rem 0.6rem;">Identifies the backend RAM user or STS temporary credential granting permission.</td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.3rem 0.6rem;"><code>Expires</code></td>
+                  <td style="padding: 0.3rem 0.6rem;">Unix epoch timestamp establishing the exact second authorization terminates.</td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.3rem 0.6rem;"><code>Signature</code></td>
+                  <td style="padding: 0.3rem 0.6rem;">HMAC cryptographic digest calculated over HTTP method, URI, and expiration.</td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.3rem 0.6rem;"><code>security-token</code></td>
+                  <td style="padding: 0.3rem 0.6rem;">Included when generated via Security Token Service (STS) temporary credentials.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout callout-green" style="margin-top: 0.55rem; padding: 0.45rem 0.75rem; font-size: calc(0.78rem + var(--font-delta));">
+            <div>
+              <strong>Key Benefit:</strong> Solves server-side proxy bottleneck with zero server compute overhead, enterprise credential security, and unlimited ingestion throughput.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 27: SERVER SIDE ENCRYPTION ==================== -->
+    <section class="slide" data-category="Security &amp; Data Protection">
+      <div class="slide-category">Section 4: Security &amp; Data Protection</div>
+      <h2>Server-Side Encryption (SSE)</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.25rem; margin-top: 0.5rem;">
+        <!-- Left Column: Concise Explanation -->
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div class="content-card highlight" style="padding: 1rem 1.2rem;">
+            <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem; color: #1e40af;">SSE-OSS (Native AES-256)</h3>
+            <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.3rem;">
+              <li><strong>Zero Overhead:</strong> Automatic encryption at rest using standard <strong>AES-256</strong> before writing data to underlying Pangu storage devices.</li>
+              <li><strong>Fully Managed:</strong> Cryptographic keys are managed, rotated, and secured by Alibaba Cloud with zero additional cost.</li>
+              <li><strong>Transparent Decryption:</strong> Stored objects are automatically decrypted on-the-fly upon authorized access with zero application code changes.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-green" style="padding: 1rem 1.2rem;">
+            <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem; color: #065f46;">SSE-KMS (Envelope Encryption &amp; BYOK)</h3>
+            <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.3rem;">
+              <li><strong>Envelope Encryption:</strong> Customer Master Keys (CMKs) protect random unique Data Encryption Keys (DEKs) generated per object.</li>
+              <li><strong>Hardware HSM &amp; BYOK:</strong> Import proprietary enterprise keys into dedicated <strong>FIPS 140-2 Level 3 HSMs</strong> for sovereign control.</li>
+              <li><strong>Instant Revocation:</strong> Revoking KMS key access instantly disables data reads; every cryptographic operation is audited in <strong>ActionTrail</strong>.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right Column: Re-drawn SSE-KMS Diagram -->
+        <div style="display: flex; justify-content: center; align-items: center; height: 100%; width: 100%;">
+          <img src="assets/images/oss-server-side-encryption-kms.svg" alt="OSS SSE-KMS Envelope Encryption with BYOK Support" style="max-height: 460px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 28: SERVICE PRIVATE ACCESS TOPOLOGY ==================== -->
+    <section class="slide" data-category="Security &amp; Data Protection">
+      <div class="slide-category">Section 4: Security &amp; Data Protection</div>
+      <h2>Service Private Access</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 1.25rem; margin-top: 0.5rem;">
+        <!-- Left Column: Topology Architectural Narrative -->
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div class="content-card highlight-green" style="padding: 1rem 1.2rem;">
+            <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem; color: #065f46;">PrivateLink Interface Endpoints</h3>
+            <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.3rem;">
+              <li>Allocate Elastic Network Interfaces (ENIs) with private IP addresses directly within your Consumer VPC in your region.</li>
+              <li><strong>Multi-Zone High Availability:</strong> Deployed across redundant availability zones (<strong>Zone G</strong> and <strong>Zone H</strong>) with automated cross-zone health checks and failover.</li>
+              <li><strong>Direct Private Backbone Routing:</strong> An <strong>Endpoint Connection</strong> tunnels traffic privately to Alibaba Cloud managed services (OSS, PAI, Model Studio) without touching the public internet.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight" style="padding: 1rem 1.2rem;">
+            <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem; color: #1e40af;">Security &amp; Network Isolation Advantages</h3>
+            <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.3rem;">
+              <li><strong>Layer 4 Security Groups:</strong> Unlike classic gateway endpoints, Interface Endpoints allow binding <strong>VPC Security Groups</strong> directly to ENIs to enforce strict IP and port firewalls.</li>
+              <li><strong>No IP Address Conflicts:</strong> Uses private IPs from your own VPC subnet CIDR blocks, preventing routing collisions in enterprise hybrid cloud environments.</li>
+              <li><strong>Zero NAT / Internet Exposure:</strong> Confidential workloads remain strictly inside private subnets without requiring Elastic IPs or NAT Gateways.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right Column: Service Private Access Topology Diagram -->
+        <div style="display: flex; justify-content: center; align-items: center; height: 100%; width: 100%;">
+          <img src="assets/images/oss-service-private-access.svg" alt="Service Private Access Topology in Region Jakarta" style="max-height: 450px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 29: VPC BOUNDARY ==================== -->
+    <section class="slide" data-category="Security &amp; Data Protection">
+      <div class="slide-category">Section 4: Security &amp; Data Protection</div>
+      <h2>VPC Boundary</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight-green">
+          <h3>Defense-in-Depth: From Network to Policy</h3>
+          <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.4rem;">
+            <li><strong>Continuous Private Routing:</strong> Having established PrivateLink Interface Endpoints or regional Internal Endpoints (e.g. <code>oss-ap-southeast-1-internal.aliyuncs.com</code>), all application traffic flows through high-speed internal SDN fabric.</li>
+            <li><strong>Zero Egress Bandwidth Cost:</strong> All data transferred between ECS instances and OSS buckets located within the <strong>same region</strong> (e.g., Jakarta) is <strong>100% FREE</strong> with no data egress charges.</li>
+            <li><strong>The Security Gap:</strong> Network endpoints secure the outbound path, but standard OSS buckets remain accessible from public endpoints unless explicitly locked down at the resource layer.</li>
+            <li><strong>Total Perimeter Lockdown:</strong> Combine VPC private routing with resource-based policies to mandate that only verified internal VPC requests are permitted.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight">
+          <h3>Enforcing Network Boundaries via Bucket Policy</h3>
+          <p style="font-size: calc(0.82rem + var(--font-delta)); margin-bottom: 0.4rem;">Attach a resource-based Bucket Policy that explicitly <strong>DENIES</strong> all requests originating outside your designated VPC perimeter, regardless of IAM permissions:</p>
+          <pre style="background: #1e293b; color: #f8fafc; padding: 0.75rem; border-radius: 6px; font-size: 0.78rem; line-height: 1.4; overflow-x: auto;">
+{
+  "Effect": "Deny",
+  "Principal": "*",
+  "Action": "oss:*",
+  "Resource": "acs:oss:*:*:my-bucket/*",
+  "Condition": {
+    "StringNotEquals": {
+      "acs:SourceVpc": "vpc-t4n8example92"
+    }
+  }
+}</pre>
+          <p style="font-size: calc(0.78rem + var(--font-delta)); color: #64748b; margin-top: 0.35rem; margin-bottom: 0;">
+            <em>Even if valid AccessKey credentials are leaked externally, requests originating from the public internet or unauthorized VPCs are blocked instantly by the OSS API Gateway.</em>
+          </p>
+        </div>
+      </div>
+    </section>
+
+<!-- ==================== SLIDE 30: STATIC WEBSITE HOSTING ==================== -->
+    <section class="slide" data-category="Advanced Features">
+      <div class="slide-category">Section 5: Advanced Features</div>
+      <h2>Static Website Hosting</h2>
+      
+      <!-- Console Static Website Hosting Configuration (Top Center) -->
+      <div class="architecture-diagram-wrapper" style="display: flex; justify-content: center; align-items: center; margin: 0.2rem 0 0.75rem; min-height: 0;">
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+          <img src="assets/images/oss-static-website-hosting.png" alt="OSS Static Website Hosting Console Configuration" style="max-height: 170px; width: auto; max-width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 0; gap: 1rem;">
+        <div class="content-card highlight-blue" style="padding: 1rem 1.25rem;">
+          <h3 style="font-size: calc(1rem + var(--font-delta)); margin-bottom: 0.45rem;">Why Use Static Website Hosting?</h3>
+          <ul style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.4rem;">
+            <li><strong>Zero Server Management:</strong> Completely eliminates OS patching, kernel upgrades, and web server software (Nginx/Apache) maintenance. No ECS or container runtime required.</li>
+            <li><strong>Effortless Auto-Scaling:</strong> Handles massive viral traffic surges and sudden visitor spikes natively without configuring Server Load Balancers (SLB) or scaling groups.</li>
+            <li><strong>Substantial Cost Efficiency:</strong> Removes continuous 24/7 compute billing; you pay strictly for the actual storage volume stored and network bandwidth transferred.</li>
+            <li><strong>Eliminated Attack Surface:</strong> Pure client-side static assets eliminate backend code execution risks, SQL injections, and exposed server ports.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green" style="padding: 1rem 1.25rem;">
+          <h3 style="font-size: calc(1rem + var(--font-delta)); margin-bottom: 0.45rem;">Key Capabilities</h3>
+          <ul style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.4rem;">
+            <li><strong>Index &amp; 404 Routing:</strong> Automatic root document resolution (<code>index.html</code>) and custom 404 redirection—essential for modern React, Vue, &amp; Angular SPA routers.</li>
+            <li><strong>Custom Domain (CNAME):</strong> Easily bind your company's custom domain (e.g. <code>www.mycompany.com</code>) directly to the bucket endpoint with zero friction.</li>
+            <li><strong>Free Automated SSL/TLS:</strong> One-click automated HTTPS certificate issuance, provisioning, and automatic renewal via Alibaba Cloud SSL Certificates Service.</li>
+            <li><strong>CDN Edge Acceleration:</strong> Seamlessly pair with <strong>Alibaba Cloud CDN</strong> (2,800+ global edge nodes) for sub-second latency and lower outbound traffic costs.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 31: TRANSFER ACCELERATION ==================== -->
+    <section class="slide" data-category="Advanced Features">
+      <div class="slide-category">Section 5: Advanced Features</div>
+      <h2>OSS Transfer Acceleration</h2>
+      
+      <!-- Transfer Acceleration Global Backbone Architecture Diagram -->
+      <div class="architecture-diagram-wrapper" style="display: flex; justify-content: center; align-items: center; margin: 0.15rem 0 0.55rem; min-height: 0;">
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 960px;">
+          <img src="assets/images/oss-transfer-acceleration-architecture.jpg" alt="Alibaba Cloud OSS Transfer Acceleration Global Network Architecture" style="max-height: 225px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 0; gap: 1rem;">
+        <div class="content-card highlight-green" style="padding: 0.85rem 1.15rem;">
+          <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem; color: #065f46;">Multi-Region Edge Ingestion &amp; Global Backbone</h3>
+          <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem;">
+            <li><strong>Optimized Local Ingestion:</strong> Clients across distributed regions connect to the nearest <strong>Accelerated Endpoint</strong> via intelligent BGP routing, minimizing public internet hops.</li>
+            <li><strong>Private Global Backbone:</strong> Traffic entering the endpoint is backhauled across Alibaba Cloud's dedicated private fiber network directly to the destination bucket in Region B.</li>
+            <li><strong>Latency &amp; Throughput Optimization:</strong> Deep protocol stack tuning and dynamic path selection eliminate internet congestion, yielding <strong>50% to 300% faster</strong> transfers.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue" style="padding: 0.85rem 1.15rem;">
+          <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem; color: #1e40af;">Seamless Endpoint Switching &amp; Enterprise Security</h3>
+          <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem;">
+            <li><strong>Dedicated Acceleration Domain:</strong> Enable acceleration with zero code refactoring by simply switching the endpoint from <code>*.aliyuncs.com</code> to <code>*.oss-accelerate.aliyuncs.com</code>.</li>
+            <li><strong>End-to-End Encryption:</strong> Strict TLS/HTTPS session encryption is enforced across the entire path from client devices to the final storage cluster.</li>
+            <li><strong>Cross-Border Operations:</strong> Crucial for global asset synchronization, international mobile app uploads, and distributed media distribution.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 32: IMAGE PROCESSING (IMG) ==================== -->
+    <section class="slide" data-category="Advanced Features">
+      <div class="slide-category">Section 5: Advanced Features</div>
+      <h2>Image Processing (IMG)</h2>
+      
+      <!-- Image Processing Architecture Workflow Diagram -->
+      <div class="architecture-diagram-wrapper" style="display: flex; justify-content: center; align-items: center; margin: 0.2rem 0 0.65rem; min-height: 0;">
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 960px;">
+          <img src="assets/images/oss-image-processing-workflow.png" alt="OSS Image Processing Workflow: Upload Master Image, Process On-Demand, and Download New Image" style="max-height: 240px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
+          
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 0; gap: 1rem;">
+        <div class="content-card highlight-blue" style="padding: 0.85rem 1.15rem;">
+          <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem;">Serverless Media Processing Engine</h3>
+          <p style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; margin: 0; color: #475569;">
+            Alibaba Cloud OSS Image Processing (IMG) is a fully managed, serverless media processing engine built directly into OSS storage. By uploading a single high-resolution master image, applications can dynamically process and transform media on-the-fly via simple RESTful APIs without provisioning, scaling, or managing dedicated media rendering server clusters.
+          </p>
+        </div>
+
+        <div class="content-card highlight-green" style="padding: 0.85rem 1.15rem;">
+          <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem;">Core Transformation Capabilities</h3>
+          <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem;">
+            <li><strong>Dynamic Format Transcoding:</strong> Convert heavy JPEG and PNG assets to modern <strong>WebP</strong> format on-the-fly, reducing bandwidth payload sizes by 30% to 50% without quality loss.</li>
+            <li><strong>Scaling, Cropping &amp; Rotation:</strong> Dynamically resize images to target pixel dimensions, smart crop to aspect ratios, and rotate 0°–360° seamlessly.</li>
+            <li><strong>Dynamic Watermarking &amp; Effects:</strong> Overlay real-time text or image watermarks with customized opacity and coordinates, sharpen blurry elements, and adjust contrast.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 33: IMAGE PROCESSING ACCESS METHODS ==================== -->
+    <section class="slide" data-category="Advanced Features">
+      <div class="slide-category">Section 5: Advanced Features</div>
+      <h2>IMG Access Methods: Parameter vs. Style Mode</h2>
+      
+      <!-- Access Method Architecture Diagram from Page 38 -->
+      <div class="architecture-diagram-wrapper" style="display: flex; justify-content: center; align-items: center; margin: 0.2rem 0 0.65rem; min-height: 0;">
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 980px;">
+          <img src="assets/images/oss-img-access-methods.png" alt="OSS Image Processing Access Methods: Parameter Mode vs Style Mode Architecture" style="max-height: 200px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
+          <div class="diagram-caption" style="margin-top: 0.35rem;">URL Structure: [Bucket].[Endpoint]/[Object]?x-oss-process=[Parameter | Style]</div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 0; gap: 1rem;">
+        <div class="content-card highlight-blue" style="padding: 0.85rem 1.15rem;">
+          <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem; color: #1e40af;">Parameter Mode (Direct RESTful Rule)</h3>
+          <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem;">
+            <li><strong>Inline Invocation:</strong> Pass processing commands directly in the query string (e.g. <code>?x-oss-process=image/resize,w_300,h_200,m_fill</code>).</li>
+            <li><strong>Multi-Action Chaining:</strong> Chain sequential operations using forward slashes (e.g. <code>.../resize,w_400/watermark,text_.../format,webp</code>).</li>
+            <li><strong>Maximum Client Flexibility:</strong> Ideal for rapid prototyping, agile frontends, and dynamic client-specified rendering layouts.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green" style="padding: 0.85rem 1.15rem;">
+          <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem; color: #065f46;">Style Mode (Pre-Packaged Aliases)</h3>
+          <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem;">
+            <li><strong>Pre-Configured Presets:</strong> Bundle complex multi-step rules into concise named style aliases in the OSS console (e.g. <code>?x-oss-process=style/thumb-grid</code>).</li>
+            <li><strong>Cleaner URLs &amp; Encapsulation:</strong> Conceals internal image manipulation parameters, protecting proprietary dimensions from client inspection.</li>
+            <li><strong>Centralized Fleet Updates:</strong> Update style dimensions or watermark logic globally in the console with zero client application redeployments.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 34: EVENT DRIVEN ARCHITECTURE ==================== -->
+    <section class="slide" data-category="Advanced Features">
+      <div class="slide-category">Section 5: Advanced Features</div>
+      <h2>Event-Driven Serverless Integration</h2>
+      
+      <!-- Event-Driven Function Compute Architecture Diagram -->
+      <div class="architecture-diagram-wrapper" style="display: flex; justify-content: center; align-items: center; margin: 0.15rem 0 0.55rem; min-height: 0;">
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 820px;">
+          <img src="assets/images/oss-fc-event-driven.png" alt="OSS Event-Driven Trigger with Function Compute Decompression Workflow" style="max-height: 190px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 0; gap: 1rem;">
+        <div class="content-card highlight-blue" style="padding: 0.85rem 1.15rem;">
+          <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem; color: #1e40af;">Event-Driven Execution Mechanism</h3>
+          <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem;">
+            <li><strong>Automated Triggering:</strong> Uploading an object (PUT/POST, e.g. a <code>.zip</code> archive) instantly dispatches an asynchronous event notification to <strong>Function Compute (FC)</strong>.</li>
+            <li><strong>Zero Server Management:</strong> Compute instances spin up on-demand in milliseconds to execute processing logic without maintaining 24/7 dedicated worker VMs.</li>
+            <li><strong>Granular Event Filters:</strong> Target specific storage events (e.g. <code>oss:ObjectCreated:*</code>) with customizable folder prefix and file extension suffix filters.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green" style="padding: 0.85rem 1.15rem;">
+          <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem; color: #065f46;">Automated In-Memory Decompression &amp; Pipelines</h3>
+          <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem;">
+            <li><strong>Streamlined Extraction:</strong> The FC function automatically decompresses the package in-memory and writes individual extracted files back to the destination OSS bucket.</li>
+            <li><strong>Elastic Scalability:</strong> Seamlessly processes massive concurrent package uploads by autoscaling FC instances during sudden traffic surges.</li>
+            <li><strong>Enterprise Workflows:</strong> Extends naturally to automated media transcoding, real-time malware scanning, and ETL ingestion pipelines.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 35: OSS MONITORING WITH CLOUDMONITOR ==================== -->
+    <section class="slide" data-category="Advanced Features">
+      <div class="slide-category">Section 5: Advanced Features</div>
+      <h2>OSS Monitoring with CloudMonitor</h2>
+      
+      <!-- CloudMonitor Dashboard Screenshot (Top Center - Enlarged) -->
+      <div class="architecture-diagram-wrapper" style="display: flex; justify-content: center; align-items: center; margin: 0.15rem 0 0.55rem; min-height: 0;">
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+          <img src="assets/images/oss-cloudmonitor-dashboard.png" alt="Alibaba Cloud CloudMonitor Dashboard for OSS" style="max-height: 280px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 0; gap: 1rem;">
+        <div class="content-card highlight-blue" style="padding: 0.75rem 1.15rem;">
+          <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.4rem;">Real-Time Metrics &amp; Capacity Tracking</h3>
+          <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.3rem;">
+            <li><strong>Storage &amp; Objects:</strong> Live storage utilization (GB), object count, and tier breakdown (Standard, IA, Archive).</li>
+            <li><strong>Request Traffic:</strong> Real-time PUT/GET frequencies and traffic flow (Internet, Intranet VPC, CDN, and Cross-Region sync).</li>
+            <li><strong>Service Availability:</strong> Continuous tracking of availability percentages and SLA compliance.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green" style="padding: 0.75rem 1.15rem;">
+          <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.4rem;">Proactive Diagnostics &amp; Custom Alarms</h3>
+          <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.3rem;">
+            <li><strong>Client Errors (4xx):</strong> Isolate HTTP 403 Forbidden (RAM authorization), 404 missing objects, and client timeouts.</li>
+            <li><strong>Server Errors (5xx):</strong> Immediate tracking of server exceptions, API rate throttling, and backend health.</li>
+            <li><strong>Automated Alarms:</strong> Custom metric thresholds with instant notification via SMS, Email, DingTalk, and Function Compute.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 36: OSS LOG MANAGEMENT ==================== -->
+    <section class="slide" data-category="Advanced Features">
+      <div class="slide-category">Section 5: Advanced Features</div>
+      <h2>OSS Log Management</h2>
+      
+      <!-- Log Architecture & Console Workflow Diagram from Page 19 -->
+      <div class="architecture-diagram-wrapper" style="display: flex; justify-content: center; align-items: center; margin: 0.15rem 0 0.45rem; min-height: 0;">
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 1040px;">
+          <img src="assets/images/oss-manage-logs.png" alt="OSS Log Management: Access Log Configuration and SLS Real-time Log Analysis" style="max-height: 335px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 0; gap: 0.85rem;">
+        <div class="content-card highlight-orange" style="padding: 0.55rem 0.95rem;">
+          <h3 style="font-size: calc(0.92rem + var(--font-delta)); margin-bottom: 0.25rem; color: #c2410c;">Bucket Access Logging (Access Log)</h3>
+          <ul style="font-size: calc(0.80rem + var(--font-delta)); line-height: 1.35; margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.25rem;">
+            <li><strong>Target Bucket Storage:</strong> Automatically delivers hourly raw access logs to a designated destination bucket.</li>
+            <li><strong>Zero Performance Impact:</strong> Asynchronous log generation ensures zero read/write request latency overhead.</li>
+            <li><strong>Comprehensive Audit:</strong> Records client IP, HTTP status, request payload size, and caller RAM identity.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue" style="padding: 0.55rem 0.95rem;">
+          <h3 style="font-size: calc(0.92rem + var(--font-delta)); margin-bottom: 0.25rem; color: #1e40af;">Real-Time Log Analysis (SLS)</h3>
+          <ul style="font-size: calc(0.80rem + var(--font-delta)); line-height: 1.35; margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.25rem;">
+            <li><strong>Sub-Second Ingestion:</strong> Streams access logs in real time directly into Log Service (<code>oss-log-store</code>).</li>
+            <li><strong>Instant SQL Analytics:</strong> Execute interactive SQL queries to isolate 4xx/5xx spikes, malicious IPs, or traffic spikes.</li>
+            <li><strong>Pre-Built Dashboards:</strong> Instant visualization of access trends, top downloaded objects, and client distribution.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ==================== SLIDE 37: PRICING ARCHITECTURE ==================== -->
+    <section class="slide" data-category="Pricing Model">
+      <div class="slide-category">Section 6: Pricing Model</div>
+      <h2>OSS Pricing Architecture</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-top: 0.5rem;">
+        <img src="assets/images/oss-pricing-dimensions.svg" alt="OSS Pricing Architecture 4 Cost Dimensions" class="architecture-diagram" style="max-height: 480px; width: 100%; height: auto; object-fit: contain;">
+        <div class="diagram-caption" style="margin-top: 0.75rem;">Four Core Cost Vectors: Storage Capacity, Network Egress, API Requests, and Data Retrieval</div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 38: STORAGE VS RETRIEVAL COSTS ==================== -->
+    <section class="slide" data-category="Pricing Model">
+      <div class="slide-category">Section 6: Pricing Model</div>
+      <h2>Storage Tier vs. Retrieval Cost</h2>
+      
+      <div class="table-wrapper">
+        <table class="slide-table">
+          <thead>
+            <tr>
+              <th>Storage Class</th>
+              <th>Relative Storage Cost</th>
+              <th>Data Retrieval Cost</th>
+              <th>Min. Storage Duration Penalty</th>
+              <th>Recommended Access Pattern</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Standard</strong></td>
+              <td>Base Rate (1.0x)</td>
+              <td><strong>FREE (Zero cost)</strong></td>
+              <td>None (Pay for exact seconds stored)</td>
+              <td>Hot data accessed multiple times daily</td>
+            </tr>
+            <tr>
+              <td><strong>Infrequent Access</strong></td>
+              <td>~40% Lower (~0.6x)</td>
+              <td>Low Retrieval Fee per GB</td>
+              <td>30 Days (Deleting on Day 5 billed for 30)</td>
+              <td>Warm data accessed 1-2 times per month</td>
+            </tr>
+            <tr>
+              <td><strong>Archive</strong></td>
+              <td>~75% Lower (~0.25x)</td>
+              <td>Moderate Retrieval Fee per GB</td>
+              <td>60 Days (Deleting on Day 10 billed for 60)</td>
+              <td>Cold data accessed 1-2 times per year</td>
+            </tr>
+            <tr>
+              <td><strong>Cold Archive</strong></td>
+              <td>~85% Lower (~0.15x)</td>
+              <td>Higher Retrieval Fee per GB</td>
+              <td>180 Days (Early delete penalty applies)</td>
+              <td>Historical records accessed once in 3 years</td>
+            </tr>
+            <tr>
+              <td><strong>Deep Cold Archive</strong></td>
+              <td>~90% Lower (~0.10x)</td>
+              <td>Highest Retrieval Fee per GB</td>
+              <td>180 Days (Early delete penalty applies)</td>
+              <td>Glacier compliance records rarely ever read</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 39: COST OPTIMIZATION ==================== -->
+    <section class="slide" data-category="Pricing Model">
+      <div class="slide-category">Section 6: Pricing Model</div>
+      <h2>Cost Optimization Strategies</h2>
+      
+      <div class="content-card highlight-blue" style="margin-top: 1.25rem; padding: 2rem 2.5rem;">
+        <ol style="margin: 0; padding-left: 1.75rem; font-size: calc(1.05rem + var(--font-delta)); line-height: 1.7; color: var(--text-main);">
+          <li style="margin-bottom: 1.15rem;"><strong>Move objects lifecycle rules</strong> that older than 30 days to IA, 90 days to Archive, and 365 days to Cold Archive.</li>
+          <li style="margin-bottom: 1.15rem;"><strong>Pre-purchased capacity packages</strong> offering up to 50%+ discounts with 1-year or 3-year commitments.</li>
+          <li style="margin-bottom: 1.15rem;"><strong>Clean orphaned multipart uploads</strong> with lifecycle rules that abort uncompleted multipart uploads after 7 days to eliminate hidden chunk charges.</li>
+          <li style="margin-bottom: 1.15rem;"><strong>Reduce public internet egress fees</strong> and offload repeated GET API request charges with <strong>Alibaba Cloud CDN</strong>.</li>
+          <li><strong>Keep all intra-cloud analytics and data pipelines</strong> strictly on internal endpoints for zero network cost with <strong>Internal VPC Endpoints</strong>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 40: QUIZ 1 QUESTION ==================== -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Interactive Quiz • Scenario 1</div>
+      <h2>Practice Scenario 1: Media Streaming Ingestion &amp; Distribution</h2>
+      
+      <div class="quiz-single-card">
+        <div class="quiz-single-question">
+          <span class="quiz-number">Question 1</span>
+          <span>An enterprise video streaming platform ingests 20 TB of 4K video footage daily from creators worldwide. Videos are accessed heavily during the first 14 days after publication, but viewing drops to near zero after 60 days. The platform must support files up to 200 GB each, deliver videos globally with sub-second start times, and minimize long-term storage and network egress costs. Which architecture best satisfies all requirements?</span>
+        </div>
+        <ul class="quiz-single-options">
+          <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Upload videos via Simple PutObject to an Infrequent Access bucket; distribute videos directly through public OSS endpoints; use manual scripts to delete videos after 60 days.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Ingest videos using Multipart Upload via Transfer Acceleration; front the Standard bucket with Alibaba Cloud CDN; configure lifecycle rules to transition to Infrequent Access at 14 days and Archive at 60 days.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Ingest videos via AppendObject directly to Deep Cold Archive; attach public Elastic IP addresses to the bucket; utilize Server-Side Encryption with Customer Master Keys (SSE-KMS).</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Store all raw footage in an EBS ESSD disk array mounted to an ECS cluster; replicate footage to OSS Standard ZRS using Cross-Region Replication; disable CDN to prevent cache misses.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 41: QUIZ 1 SOLUTION ==================== -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Quiz Solution • Scenario 1</div>
+      <h2>Scenario 1: Solution &amp; Architectural Analysis</h2>
+      
+      <div class="analysis-main-card">
+        <div>
+          <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: B</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Multipart Upload + Transfer Acceleration + CDN Caching + Automated Lifecycle Tiering</span>
+        </div>
+        <span class="badge badge-updated">Validated Architecture</span>
+      </div>
+
+      <div class="analysis-options-grid">
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect"><span>✖ Option A is Incorrect</span></div>
+          <div class="analysis-item-body">Simple PutObject has a strict 5 GB object size ceiling, failing the 200 GB video requirement. Direct public egress without CDN creates massive network costs and global latency.</div>
+        </div>
+
+        <div class="analysis-item correct">
+          <div class="analysis-item-header correct"><span>✔ Option B is Correct</span></div>
+          <div class="analysis-item-body">Multipart Upload supports files up to 48.8 TB. Transfer Acceleration optimizes global creator uploads. CDN provides high-speed edge caching with discounted origin-pull egress. Lifecycle rules automate cost reduction.</div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect"><span>✖ Option C is Incorrect</span></div>
+          <div class="analysis-item-body">AppendObject is limited to 5 GB. Deep Cold Archive requires 12-48 hours retrieval time, making immediate streaming impossible. EIPs cannot be attached directly to OSS buckets.</div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect"><span>✖ Option D is Incorrect</span></div>
+          <div class="analysis-item-body">EBS block storage cannot scale elastically to handle 20 TB daily ingests and lacks global web accessibility. Disabling CDN drastically increases public bandwidth costs and increases viewer latency.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 42: QUIZ 2 QUESTION ==================== -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Interactive Quiz • Scenario 2</div>
+      <h2>Practice Scenario 2: Financial Audit &amp; Legal Immutability</h2>
+      
+      <div class="quiz-single-card">
+        <div class="quiz-single-question">
+          <span class="quiz-number">Question 2</span>
+          <span>A multinational investment bank is required by financial regulators (SEC Rule 17a-4 compliance) to store transaction audit records for exactly 7 years. The compliance rule mandates that no user—including the corporate CIO and the cloud root account owner—can modify, tamper with, or delete any record during this 7-year period. Furthermore, data must be encrypted with keys owned and audited exclusively by the bank. Which solution meets these regulatory requirements?</span>
+        </div>
+        <ul class="quiz-single-options">
+          <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Enable Object Versioning on the bucket; configure a RAM Policy denying oss:DeleteObject for all RAM users except the Root account; apply SSE-OSS encryption.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Set bucket ACL to Private; configure Cross-Region Replication to duplicate records to another region; generate pre-signed URLs with a 7-year expiration timestamp.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Configure an OSS Bucket Lock (WORM) policy locked for a 7-year retention period; enable Server-Side Encryption with Customer Master Keys via KMS (SSE-KMS BYOK).</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Deploy an ECS instance running an NFS server with ext4 write protection; mount the disk over VPC PrivateLink; configure hourly snapshots to OSS Standard.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 43: QUIZ 2 SOLUTION ==================== -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Quiz Solution • Scenario 2</div>
+      <h2>Scenario 2: Solution &amp; Architectural Analysis</h2>
+      
+      <div class="analysis-main-card">
+        <div>
+          <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: C</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">WORM Bucket Lock (7-Year Immutable Retention) + SSE-KMS Hardware BYOK Encryption</span>
+        </div>
+        <span class="badge badge-updated">Validated Architecture</span>
+      </div>
+
+      <div class="analysis-options-grid">
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect"><span>✖ Option A is Incorrect</span></div>
+          <div class="analysis-item-body">RAM policies can be overridden or modified by the Root account owner, violating the strict SEC regulatory mandate requiring tamper-proof immutability from all principals.</div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect"><span>✖ Option B is Incorrect</span></div>
+          <div class="analysis-item-body">Private ACL and CRR do not prevent root or admin users from deleting records. Signed URLs provide read/write tokens but do not enforce write-once-read-many retention compliance.</div>
+        </div>
+
+        <div class="analysis-item correct">
+          <div class="analysis-item-header correct"><span>✔ Option C is Correct</span></div>
+          <div class="analysis-item-body">Bucket Lock (WORM) in the Locked state legally prohibits record deletion or modification by any identity (including the Root account) for 7 years. SSE-KMS BYOK ensures customer-controlled key governance.</div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect"><span>✖ Option D is Incorrect</span></div>
+          <div class="analysis-item-body">An NFS server on ECS introduces an unnecessary single point of failure, manual patch overhead, and fails certified SEC 17a-4 cloud immutability standards.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 44: QUIZ 3 QUESTION ==================== -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Interactive Quiz • Scenario 3</div>
+      <h2>Practice Scenario 3: Healthcare Imaging Lifecycle &amp; Security</h2>
+      
+      <div class="quiz-single-card">
+        <div class="quiz-single-question">
+          <span class="quiz-number">Question 3</span>
+          <span>A hospital system stores high-resolution DICOM medical imaging scans (average 500 MB each). Scans require multi-zone high availability and millisecond retrieval during the patient's initial 30-day treatment window. Afterwards, scans must be retained for 10 years for medical-legal compliance, but are rarely accessed. The hospital's compliance officer mandates that scans must NEVER traverse the public internet and must only be accessible from the hospital's dedicated VPC. How should the cloud architect design this architecture?</span>
+        </div>
+        <ul class="quiz-single-options">
+          <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Create an OSS Bucket with Zone-Redundant Storage (ZRS); configure an automated lifecycle rule to transition objects to Deep Cold Archive after 30 days; attach a Bucket Policy denying requests where acs:SourceVpc does not match the hospital VPC; access via VPC Endpoints.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Store all scans permanently in an OSS Standard LRS bucket; configure an IP Whitelist allowing only the hospital's public NAT gateway IP address; use manual cron jobs to archive scans to tape.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Upload scans directly to Deep Cold Archive; configure Transfer Acceleration to bypass the public internet; generate pre-signed URLs with 10-year validity.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Deploy a shared NAS Extreme file system inside the VPC; replicate files daily to OSS Archive via the public internet; attach a RAM user policy to all doctors.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 45: QUIZ 3 SOLUTION ==================== -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Quiz Solution • Scenario 3</div>
+      <h2>Scenario 3: Solution &amp; Architectural Analysis</h2>
+      
+      <div class="analysis-main-card">
+        <div>
+          <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: A</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Standard ZRS (Initial 30d) ➔ Automated Deep Cold Archive ➔ VPC Endpoint + SourceVpc Policy</span>
+        </div>
+        <span class="badge badge-updated">Validated Architecture</span>
+      </div>
+
+      <div class="analysis-options-grid">
+        <div class="analysis-item correct">
+          <div class="analysis-item-header correct"><span>✔ Option A is Correct</span></div>
+          <div class="analysis-item-body">ZRS provides 12 nines multi-zone resilience and real-time millisecond access during the active 30-day window. Automated lifecycle to Deep Cold Archive reduces long-term 10-year cost by ~90%. VPC Endpoints and SourceVpc bucket policies prevent public internet traversal.</div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect"><span>✖ Option B is Incorrect</span></div>
+          <div class="analysis-item-body">Keeping 10 years of heavy scans in Standard tier causes extreme storage cost overruns. Public NAT gateway access traverses public network addresses rather than staying inside the private SDN.</div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect"><span>✖ Option C is Incorrect</span></div>
+          <div class="analysis-item-body">Deep Cold Archive requires 12-48 hours retrieval latency, violating the requirement for millisecond immediate access during the active 30-day diagnostic window. Transfer Acceleration utilizes public edge nodes.</div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect"><span>✖ Option D is Incorrect</span></div>
+          <div class="analysis-item-body">Replicating files over the public internet directly violates the mandatory compliance requirement forbidding public internet transit. NAS Extreme is significantly more expensive for long-term 10-year archival.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 46: COMPLETION ==================== -->
+    <section class="slide title-slide" data-category="Summary">
+      <div class="slide-category">Module Complete</div>
+      <h1 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Module 05: Object Storage Service (OSS)</h1>
+      <div class="callout callout-green" style="max-width: 580px; margin: 0 auto; text-align: left;">
+        <div>
+          <span class="badge badge-updated">Up Next</span><br>
+          <strong>Module 06: ApsaraDB for RDS (Relational Database Service)</strong>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="assets/js/presentation.js"></script>
+</body>
+</html>

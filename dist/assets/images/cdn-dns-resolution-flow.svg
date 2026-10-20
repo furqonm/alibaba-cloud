@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 480" width="100%" height="100%">
+  <defs>
+    <filter id="boxShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrowHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7"/>
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#ea580c"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669"/>
+    </marker>
+  </defs>
+
+  <rect width="840" height="480" fill="#f8fafc" rx="12"/>
+
+  <!-- Top Titles & Legend -->
+  <text x="420" y="32" fill="#0f172a" font-size="16" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">Intelligent CNAME DNS Resolution &amp; Edge Scheduling Workflow</text>
+  
+  <!-- Entities / Columns -->
+  <!-- 1. End User Client -->
+  <g transform="translate(40, 60)">
+    <rect width="130" height="390" rx="10" fill="#ffffff" stroke="#bae6fd" stroke-width="2" filter="url(#boxShadow)"/>
+    <rect width="130" height="40" rx="10" fill="#e0f2fe"/>
+    <text x="65" y="25" fill="#0369a1" font-size="13" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">👤 Client Browser</text>
+    <line x1="65" y1="50" x2="65" y2="370" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4 4"/>
+  </g>
+
+  <!-- 2. Local DNS (LDNS) -->
+  <g transform="translate(230, 60)">
+    <rect width="130" height="390" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" filter="url(#boxShadow)"/>
+    <rect width="130" height="40" rx="10" fill="#f1f5f9"/>
+    <text x="65" y="25" fill="#334155" font-size="13" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">🌐 Local DNS</text>
+    <line x1="65" y1="50" x2="65" y2="370" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4 4"/>
+  </g>
+
+  <!-- 3. Authoritative DNS -->
+  <g transform="translate(420, 60)">
+    <rect width="140" height="390" rx="10" fill="#ffffff" stroke="#fed7aa" stroke-width="2" filter="url(#boxShadow)"/>
+    <rect width="140" height="40" rx="10" fill="#ffedd5"/>
+    <text x="70" y="25" fill="#c2410c" font-size="13" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">📋 Auth DNS (Domain)</text>
+    <line x1="70" y1="50" x2="70" y2="370" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4 4"/>
+  </g>
+
+  <!-- 4. Alibaba Cloud GSLB -->
+  <g transform="translate(620, 60)">
+    <rect width="180" height="180" rx="10" fill="#ffffff" stroke="#fed7aa" stroke-width="2" filter="url(#boxShadow)"/>
+    <rect width="180" height="40" rx="10" fill="#ea580c"/>
+    <text x="90" y="25" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">🎯 Alibaba Cloud GSLB</text>
+    <text x="90" y="65" fill="#9a3412" font-size="11" font-weight="600" text-anchor="middle" font-family="system-ui, sans-serif">Intelligent Scheduling</text>
+    <text x="90" y="85" fill="#475569" font-size="10" text-anchor="middle" font-family="system-ui, sans-serif">• Client Geo &amp; ISP</text>
+    <text x="90" y="105" fill="#475569" font-size="10" text-anchor="middle" font-family="system-ui, sans-serif">• Real-time PoP Health</text>
+    <text x="90" y="125" fill="#475569" font-size="10" text-anchor="middle" font-family="system-ui, sans-serif">• Bandwidth &amp; Load Balancing</text>
+    <text x="90" y="150" fill="#ea580c" font-size="10" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">Returns Optimal PoP IP</text>
+  </g>
+
+  <!-- 5. Edge PoP Node -->
+  <g transform="translate(620, 270)">
+    <rect width="180" height="180" rx="10" fill="#ffffff" stroke="#bbf7d0" stroke-width="2" filter="url(#boxShadow)"/>
+    <rect width="180" height="40" rx="10" fill="#10b981"/>
+    <text x="90" y="25" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">⚡ Edge PoP (L1 Node)</text>
+    <text x="90" y="70" fill="#065f46" font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">Optimal Edge Server</text>
+    <text x="90" y="95" fill="#047857" font-size="10" text-anchor="middle" font-family="system-ui, sans-serif">• SSL Termination (HTTP/3)</text>
+    <text x="90" y="115" fill="#047857" font-size="10" text-anchor="middle" font-family="system-ui, sans-serif">• Cache Hit / Rapid Response</text>
+    <text x="90" y="135" fill="#047857" font-size="10" text-anchor="middle" font-family="system-ui, sans-serif">• Edge WAF / Security</text>
+    <text x="90" y="155" fill="#047857" font-size="10" text-anchor="middle" font-family="system-ui, sans-serif">• Back-to-Origin if Miss</text>
+  </g>
+
+  <!-- STEP 1: Client -> LDNS -->
+  <line x1="105" y1="120" x2="285" y2="120" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowHead)"/>
+  <rect x="135" y="105" width="125" height="18" rx="4" fill="#e0f2fe"/>
+  <text x="197" y="118" fill="#0369a1" font-size="9" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">1. Query www.example.com</text>
+
+  <!-- STEP 2: LDNS -> Auth DNS -->
+  <line x1="295" y1="150" x2="480" y2="150" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowHead)"/>
+  <rect x="330" y="135" width="120" height="18" rx="4" fill="#e0f2fe"/>
+  <text x="390" y="148" fill="#0369a1" font-size="9" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">2. Recursive DNS Query</text>
+
+  <!-- STEP 3: Auth DNS -> LDNS (Returns CNAME) -->
+  <line x1="480" y1="180" x2="305" y2="180" stroke="#ea580c" stroke-width="2" marker-end="url(#arrowOrange)"/>
+  <rect x="315" y="165" width="150" height="18" rx="4" fill="#ffedd5"/>
+  <text x="390" y="178" fill="#c2410c" font-size="9" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">3. CNAME: *.w.kunlunsl.com</text>
+
+  <!-- STEP 4: LDNS -> GSLB -->
+  <line x1="305" y1="210" x2="610" y2="210" stroke="#ea580c" stroke-width="2" marker-end="url(#arrowOrange)"/>
+  <rect x="390" y="195" width="155" height="18" rx="4" fill="#ffedd5"/>
+  <text x="467" y="208" fill="#c2410c" font-size="9" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">4. Resolve CNAME to GSLB</text>
+
+  <!-- STEP 5: GSLB -> LDNS (Returns Edge IP) -->
+  <line x1="610" y1="235" x2="305" y2="235" stroke="#ea580c" stroke-width="2" marker-end="url(#arrowOrange)"/>
+  <rect x="385" y="222" width="165" height="18" rx="4" fill="#ffedd5"/>
+  <text x="467" y="235" fill="#c2410c" font-size="9" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">5. Returns Best Edge IP (e.g. 2.2.2.2)</text>
+
+  <!-- STEP 6: LDNS -> Client -->
+  <line x1="285" y1="265" x2="115" y2="265" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowHead)"/>
+  <rect x="135" y="252" width="130" height="18" rx="4" fill="#e0f2fe"/>
+  <text x="200" y="265" fill="#0369a1" font-size="9" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">6. Return Edge IP to Client</text>
+
+  <!-- STEP 7: Client -> Edge PoP (HTTP/HTTPS GET) -->
+  <path d="M 105 320 Q 360 360 610 320" fill="none" stroke="#059669" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
+  <rect x="270" y="325" width="200" height="20" rx="4" fill="#d1fae5"/>
+  <text x="370" y="339" fill="#065f46" font-size="10" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">7. HTTPS GET (Direct Edge Connection)</text>
+
+  <!-- STEP 8: Edge PoP -> Client (Content Delivered) -->
+  <path d="M 610 400 Q 360 440 115 400" fill="none" stroke="#059669" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
+  <rect x="260" y="405" width="220" height="20" rx="4" fill="#d1fae5"/>
+  <text x="370" y="419" fill="#065f46" font-size="10" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">8. 200 OK Content Delivered (Low Latency)</text>
+</svg>

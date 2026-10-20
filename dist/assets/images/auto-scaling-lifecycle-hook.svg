@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" width="100%" height="auto">
+  <defs>
+    <filter id="hk-shd" x="-3%" y="-3%" width="106%" height="106%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.08" />
+    </filter>
+    <marker id="hk-arr-o" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#FF6A00" />
+    </marker>
+    <marker id="hk-arr-b" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284C7" />
+    </marker>
+  </defs>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+    <!-- Canvas frame -->
+    <rect x="10" y="10" width="940" height="380" rx="12" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5" />
+
+    <!-- Title Bar -->
+    <text x="30" y="38" fill="#0F172A" font-size="14" font-weight="700">Auto Scaling Instance Lifecycle &amp; Lifecycle Hook Pipeline</text>
+    <text x="930" y="38" fill="#64748B" font-size="11" font-weight="500" text-anchor="end">Suspend Instance State &bull; Execute Custom Scripts &bull; Heartbeat Extensible</text>
+
+    <!-- Top Flow: Scale-Out Pathway -->
+    <g filter="url(#hk-shd)">
+      <!-- Step 1: Pending Creation -->
+      <rect x="30" y="65" width="165" height="135" rx="8" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.5" />
+      <rect x="30" y="65" width="165" height="24" rx="8" fill="#64748B" />
+      <rect x="30" y="81" width="165" height="8" fill="#64748B" />
+      <text x="112" y="81" fill="#FFFFFF" font-size="11" font-weight="700" text-anchor="middle">1. PENDING</text>
+      <text x="45" y="112" fill="#1E293B" font-size="10" font-weight="600">ECS Instance Created</text>
+      <text x="45" y="130" fill="#64748B" font-size="9">&bull; Disks attached</text>
+      <text x="45" y="146" fill="#64748B" font-size="9">&bull; VPC IP assigned</text>
+      <text x="45" y="162" fill="#64748B" font-size="9">&bull; OS booted (Cloud-init)</text>
+      <text x="45" y="180" fill="#D97706" font-size="9" font-weight="600">Not in SLB yet</text>
+
+      <!-- Arrow -->
+      <path d="M 195 132 L 235 132" stroke="#FF6A00" stroke-width="2.5" marker-end="url(#hk-arr-o)" />
+
+      <!-- Step 2: Lifecycle Hook PENDING_ADD -->
+      <rect x="245" y="65" width="220" height="135" rx="8" fill="#FFF7ED" stroke="#FF6A00" stroke-width="1.8" />
+      <rect x="245" y="65" width="220" height="24" rx="8" fill="#FF6A00" />
+      <rect x="245" y="81" width="220" height="8" fill="#FF6A00" />
+      <text x="355" y="81" fill="#FFFFFF" font-size="11" font-weight="700" text-anchor="middle">2. PENDING_ADD (Hook)</text>
+      <text x="260" y="112" fill="#C2410C" font-size="10" font-weight="700">Scaling Suspended by Hook</text>
+      <text x="260" y="130" fill="#9A3412" font-size="9">&bull; Pull code &amp; deploy packages</text>
+      <text x="260" y="146" fill="#9A3412" font-size="9">&bull; Run database schema checks</text>
+      <text x="260" y="162" fill="#9A3412" font-size="9">&bull; Send heartbeat: RecordLifecycleAction</text>
+      <text x="260" y="180" fill="#C2410C" font-size="9" font-weight="600">Outcome: CONTINUE or ABANDON</text>
+
+      <!-- Arrow -->
+      <path d="M 465 132 L 505 132" stroke="#FF6A00" stroke-width="2.5" marker-end="url(#hk-arr-o)" />
+
+      <!-- Step 3: In Service -->
+      <rect x="515" y="65" width="180" height="135" rx="8" fill="#ECFDF5" stroke="#10B981" stroke-width="1.8" />
+      <rect x="515" y="65" width="180" height="24" rx="8" fill="#059669" />
+      <rect x="515" y="81" width="180" height="8" fill="#059669" />
+      <text x="605" y="81" fill="#FFFFFF" font-size="11" font-weight="700" text-anchor="middle">3. IN_SERVICE</text>
+      <text x="530" y="112" fill="#047857" font-size="10" font-weight="700">Active Serving Traffic</text>
+      <text x="530" y="130" fill="#065F46" font-size="9">&bull; Added to SLB backend</text>
+      <text x="530" y="146" fill="#065F46" font-size="9">&bull; Added to RDS whitelist</text>
+      <text x="530" y="162" fill="#065F46" font-size="9">&bull; Health checks passing</text>
+      <text x="530" y="180" fill="#047857" font-size="9" font-weight="600">Handling User Requests</text>
+
+      <!-- Arrow down to scale-in -->
+      <path d="M 605 200 L 605 235" stroke="#0284C7" stroke-width="2.5" marker-end="url(#hk-arr-b)" />
+    </g>
+
+    <!-- Bottom Flow: Scale-In Pathway -->
+    <g filter="url(#hk-shd)">
+      <!-- Step 4: Lifecycle Hook PENDING_REMOVE -->
+      <rect x="495" y="245" width="220" height="130" rx="8" fill="#EFF6FF" stroke="#0284C7" stroke-width="1.8" />
+      <rect x="495" y="245" width="220" height="24" rx="8" fill="#0284C7" />
+      <rect x="495" y="261" width="220" height="8" fill="#0284C7" />
+      <text x="605" y="261" fill="#FFFFFF" font-size="11" font-weight="700" text-anchor="middle">4. PENDING_REMOVE (Hook)</text>
+      <text x="510" y="292" fill="#0369A1" font-size="10" font-weight="700">Graceful Evacuation</text>
+      <text x="510" y="310" fill="#1E40AF" font-size="9">&bull; Removed from SLB traffic</text>
+      <text x="510" y="326" fill="#1E40AF" font-size="9">&bull; Drain active connections</text>
+      <text x="510" y="342" fill="#1E40AF" font-size="9">&bull; Upload local logs to OSS</text>
+      <text x="510" y="360" fill="#0369A1" font-size="9" font-weight="600">Signal: CompleteLifecycleAction</text>
+
+      <!-- Arrow -->
+      <path d="M 495 310 L 455 310" stroke="#0284C7" stroke-width="2.5" marker-end="url(#hk-arr-b)" />
+
+      <!-- Step 5: Terminated / Stopped -->
+      <rect x="245" y="245" width="200" height="130" rx="8" fill="#FEF2F2" stroke="#EF4444" stroke-width="1.5" />
+      <rect x="245" y="245" width="200" height="24" rx="8" fill="#DC2626" />
+      <rect x="245" y="261" width="200" height="8" fill="#DC2626" />
+      <text x="345" y="261" fill="#FFFFFF" font-size="11" font-weight="700" text-anchor="middle">5. TERMINATED</text>
+      <text x="260" y="292" fill="#B91C1C" font-size="10" font-weight="700">Reclaim Decision</text>
+      <text x="260" y="310" fill="#7F1D1D" font-size="9">&bull; RDS IP pruned immediately</text>
+      <text x="260" y="326" fill="#7F1D1D" font-size="9">&bull; <strong>Release Mode:</strong> Destroy VM</text>
+      <text x="260" y="342" fill="#7F1D1D" font-size="9">&bull; <strong>Shutdown Mode:</strong> Stop VM</text>
+      <text x="260" y="360" fill="#B91C1C" font-size="9" font-weight="600">Zero In-Flight Request Loss</text>
+    </g>
+
+    <!-- Side Explanatory Badge -->
+    <g filter="url(#hk-shd)">
+      <rect x="735" y="100" width="195" height="235" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+      <rect x="735" y="100" width="195" height="24" rx="8" fill="#334155" />
+      <text x="832" y="117" fill="#FFFFFF" font-size="11" font-weight="700" text-anchor="middle">Hook Policy Parameters</text>
+      
+      <text x="748" y="145" fill="#0F172A" font-size="10" font-weight="700">Default Timeout:</text>
+      <text x="748" y="160" fill="#64748B" font-size="9">300 to 21,600 seconds</text>
+
+      <text x="748" y="185" fill="#0F172A" font-size="10" font-weight="700">Heartbeat Extension:</text>
+      <text x="748" y="200" fill="#64748B" font-size="9">Extend via API before expiry</text>
+
+      <text x="748" y="225" fill="#0F172A" font-size="10" font-weight="700">Timeout Action:</text>
+      <text x="748" y="240" fill="#059669" font-size="9" font-weight="600">CONTINUE: Force into service</text>
+      <text x="748" y="255" fill="#DC2626" font-size="9" font-weight="600">ABANDON: Rollback instance</text>
+
+      <text x="748" y="280" fill="#0F172A" font-size="10" font-weight="700">Notification Channels:</text>
+      <text x="748" y="295" fill="#64748B" font-size="9">MNS Topic / Queue / OOS</text>
+      <text x="748" y="310" fill="#64748B" font-size="9">Function Compute (FC)</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 04: Server Load Balancer (SLB) | Alibaba Cloud Professional</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header class="presentation-header">
+    <div class="brand-wrapper">
+      <span class="brand-badge">Alibaba Cloud</span>
+      <div class="course-info">
+        <span class="course-title">Alibaba Cloud Professional: Cloud Architect</span>
+        <span class="module-title">Module 04: Server Load Balancer (SLB) Deep Dive</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="section-indicator" id="sectionIndicator">Overview</span>
+      <div class="module-switcher-wrapper">
+        <select class="module-select" id="moduleSelect" onchange="if(this.value) window.location.href=this.value;">
+          <option value="module-01-overview.html">Module 01: Overview</option>
+          <option value="module-02-ecs.html">Module 02: ECS</option>
+          <option value="module-03-vpc.html">Module 03: VPC</option>
+          <option value="module-04-slb.html" selected>Module 04: SLB</option>
+          <option value="module-05-oss.html">Module 05: OSS</option>
+          <option value="module-06-rds.html">Module 06: RDS</option>
+          <option value="module-07-auto-scaling.html">Module 07: Auto Scaling</option>
+          <option value="module-08-cdn.html">Module 08: CDN</option>
+          <option value="module-09-security.html">Module 09: Security</option>
+        </select>
+      </div>
+      <div class="nav-buttons">
+        <span class="slide-counter" id="slideCounter">1/43</span>
+        <button class="btn-nav" id="prevBtn" title="Previous Slide (Left Arrow)">
+          <span>⬅️</span> Previous
+        </button>
+        <button class="btn-nav primary" id="nextBtn" title="Next Slide (Right Arrow / Space)">
+          Next <span>➡️</span>
+        </button>
+        <button class="btn-nav" id="fullscreenBtn" title="Toggle Fullscreen (F)">
+          <span>⛶</span> Fullscreen
+        </button>
+      </div>
+    </div>
+    <div class="slide-progress-bar" id="progressBar"></div>
+  </header>
+
+  <!-- Presentation Deck Container -->
+  <main class="deck-container">
+
+    <!-- ==================== SLIDE 1: CLEAN TITLE ==================== -->
+    <section class="slide active title-slide" data-category="Course Intro">
+      <h1>Module 04: Server Load Balancer (SLB)</h1>
+    </section>
+
+    <!-- ==================== SLIDE 2: AGENDA LIST ==================== -->
+    <section class="slide" data-category="Outline">
+      <div class="slide-category">Module Structure</div>
+      <h2>Agenda &amp; Learning Objectives</h2>
+      
+      <ol class="agenda-grid">
+        <li class="agenda-item">SLB Concept &amp; Architecture</li>
+        <li class="agenda-item">Classic Load Balancer (CLB)</li>
+        <li class="agenda-item">Application Load Balancer (ALB)</li>
+        <li class="agenda-item">Network Load Balancer (NLB)</li>
+        <li class="agenda-item">Gateway Load Balancer (GWLB)</li>
+        <li class="agenda-item">Backend Server Groups</li>
+        <li class="agenda-item">High Availability and Disaster Recovery</li>
+        <li class="agenda-item">Security Configuration</li>
+        <li class="agenda-item">Pricing Model</li>
+      </ol>
+    </section>
+
+    
+    <!-- ==================== SLIDE 3: SLB CONCEPTS - SINGLE INSTANCE ==================== -->
+    <section class="slide" data-category="SLB Concept &amp; Architecture">
+      <div class="slide-category">Section 1: SLB Concept &amp; Architecture</div>
+      <h2>SLB Concepts: Single Instance</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+        <img src="assets/images/slb-concept-single-instance.png" alt="SLB Concepts: Single Compute Instance" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
+      </div>
+
+      <div class="callout callout-blue" style="margin-top: 0.75rem;">
+        <strong>Initial Baseline:</strong> Clients connect directly to a single ECS instance via its Public IP address. This works well for low-traffic, early-stage workloads.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 4: SLB CONCEPTS - TRAFFIC SURGE ==================== -->
+    <section class="slide" data-category="SLB Concept &amp; Architecture">
+      <div class="slide-category">Section 1: SLB Concept &amp; Architecture</div>
+      <h2>SLB Concepts: Traffic Surge</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+        <img src="assets/images/slb-concept-traffic-surge.png" alt="SLB Concepts: Traffic Surge and Single Instance Bottleneck" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
+      </div>
+
+      <div class="callout callout-amber" style="margin-top: 0.75rem;">
+        <strong>Traffic Growth &amp; SPOF:</strong> As incoming user traffic surges, the single ECS instance suffers CPU/memory saturation and represents a critical Single Point of Failure (SPOF).
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 5: SLB CONCEPTS - HORIZONTAL SCALING ==================== -->
+    <section class="slide" data-category="SLB Concept &amp; Architecture">
+      <div class="slide-category">Section 1: SLB Concept &amp; Architecture</div>
+      <h2>SLB Concepts: Horizontal Scaling</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+        <img src="assets/images/slb-concept-multiple-instances.png" alt="SLB Concepts: Horizontal Compute Expansion" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
+      </div>
+
+      <div class="callout callout-blue" style="margin-top: 0.75rem;">
+        <strong>Horizontal Scaling:</strong> Additional ECS instances are deployed to expand compute capacity, but the instances operate independently without a unified client entry point.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 6: SLB CONCEPTS - ROUTING DILEMMA ==================== -->
+    <section class="slide" data-category="SLB Concept &amp; Architecture">
+      <div class="slide-category">Section 1: SLB Concept &amp; Architecture</div>
+      <h2>SLB Concepts: Routing Dilemma</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+        <img src="assets/images/slb-concept-routing-challenge.png" alt="SLB Concepts: Traffic Routing Dilemma" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
+      </div>
+
+      <div class="callout callout-purple" style="margin-top: 0.75rem;">
+        <strong>Architectural Challenge:</strong> How can incoming client requests be efficiently, evenly, and fault-tolerantly distributed across multiple backend ECS instances?
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 7: SLB CONCEPTS - LOAD BALANCER SOLUTION ==================== -->
+    <section class="slide" data-category="SLB Concept &amp; Architecture">
+      <div class="slide-category">Section 1: SLB Concept &amp; Architecture</div>
+      <h2>SLB Concepts: Load Balancer Solution</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+        <img src="assets/images/slb-concept-load-balancer.png" alt="SLB Concepts: Server Load Balancer Solution" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
+      </div>
+
+      <div class="callout callout-green" style="margin-top: 0.75rem;">
+        <strong>The SLB Solution:</strong> Server Load Balancer acts as the centralized reverse proxy entry point, automatically steering incoming client requests to healthy backend compute instances.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 8: SERVICE INTRODUCTION ==================== -->
+    <section class="slide" data-category="SLB Concept &amp; Architecture">
+      <div class="slide-category">Section 1: SLB Concept &amp; Architecture</div>
+      <h2>What is Server Load Balancer (SLB)?</h2>
+      
+      <div class="service-intro-banner">
+        <div class="service-icon-wrapper">
+          <img src="assets/images/slb-service-icon.svg" alt="Alibaba Cloud SLB Icon" class="service-icon">
+        </div>
+        <div class="service-intro-text">
+          <p class="service-lead">
+            <strong>SLB</strong> is a fully managed traffic distribution control service that automatically distributes incoming network and application traffic across multiple backend compute instances.
+          </p>
+          <p class="service-desc">
+            Compared to managing individual public IP addresses per server or deploying DIY software load balancers on virtual machines that introduce single points of failure and manual failover delays, SLB provides automated health detection, seamless elastic scaling, multi-zone disaster recovery, and integrated security inspection, ensuring uninterrupted application availability at cloud scale.
+          </p>
+        </div>
+      </div>
+
+      <div class="service-pillars-grid">
+        <div class="service-pillar-card">
+          <h4>⚡ High Availability &amp; Fault Tolerance</h4>
+          <p>Automatic health checks shift traffic away from impaired servers with zero service downtime.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>🚀 Elastic Hyper-Scale</h4>
+          <p>Seamless scaling up to 100M concurrent connections on NLB and 1M QPS on ALB without capacity planning.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>🎯 Intelligent Traffic Steering</h4>
+          <p>Fine-grained Layer 7 routing by domain, path, header, query string, cookie, and method.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>🔐 Enterprise Security Mesh</h4>
+          <p>Integrated with Anti-DDoS, WAF 3.0, and hardware-accelerated SSL/TLS offloading.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>📈 Automated Resource Elasticity</h4>
+          <p>Eliminates rigid hardware load balancers via fully managed cloud-native traffic scaling.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 9: PRODUCT FAMILIES ==================== -->
+    <section class="slide" data-category="SLB Concept &amp; Architecture">
+      <div class="slide-category">Section 1: SLB Concept &amp; Architecture</div>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+        <img src="assets/images/slb-product-family.svg" alt="SLB Product Family Comparison" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
+      </div>
+    </section>
+
+        <!-- ==================== SLIDE 10: SLB COMPONENTS ==================== -->
+    <section class="slide" data-category="SLB Concept &amp; Architecture">
+      <div class="slide-category">Section 1: SLB Concept &amp; Architecture</div>
+      <h2>SLB Components</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+        <img src="assets/images/slb-components-structure.svg" alt="SLB Components Structure" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 11: DUAL-LAYER ENGINE ARCHITECTURE ==================== -->
+    <section class="slide" data-category="SLB Concept &amp; Architecture">
+      <div class="slide-category">Section 1: SLB Concept &amp; Architecture</div>
+      <h2>SLB Architecture</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+        <img src="assets/images/slb-architecture-dual-layer.png" alt="SLB Architecture" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: auto; height: auto; object-fit: contain;">
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 12: CLB & MODERN MIGRATION ==================== -->
+    <section class="slide" data-category="Classic Load Balancer (CLB)">
+      <div class="slide-category">Section 2: Classic Load Balancer (CLB)</div>
+      <h2>Classic Load Balancer (CLB)</h2>
+      
+      <div class="two-column-layout">
+        <div class="column-left">
+          <div class="content-card highlight">
+            <h3>Classic Load Balancer (CLB) Architecture</h3>
+            <ul>
+              <li><strong>Dual-Layer Engine:</strong> Uses Linux Virtual Server (LVS) with keepalived for Layer 4 traffic, and Tengine (an enhanced Nginx branch) for Layer 7 traffic.</li>
+              <li><strong>Fixed Capacity Specifications:</strong> Offered in fixed performance tiers (e.g., <code>slb.s1.small</code> to <code>slb.s3.large</code>) or shared performance models.</li>
+              <li><strong>Primary / Secondary Zone DR:</strong> Operates in an active-standby primary/secondary zone failover model rather than multi-zone active-active.</li>
+              <li><strong>Legacy Scope:</strong> Maintained for existing customer architectures; no new major Layer 7 features are added to CLB.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="column-right">
+          <div class="content-card highlight-blue">
+            <h3>The Modern Migration Imperative</h3>
+            <ul>
+              <li><strong>Why Migrate to ALB (Layer 7):</strong> ALB provides up to 1,000,000 QPS, supports QUIC (HTTP/3), native gRPC, multiple certificate SNI, and fine-grained URL/header-based forwarding rules that CLB cannot deliver.</li>
+              <li><strong>Why Migrate to NLB (Layer 4):</strong> NLB delivers 100M concurrent connections, native client source IP preservation without Proxy Protocol, sub-millisecond latency, and active-active multi-zone scaling.</li>
+              <li><strong>Smooth Migration Tooling:</strong> Alibaba Cloud provides one-click CLB-to-ALB and CLB-to-NLB migration tools with automated configuration cloning and DNS canary traffic shifting.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 13: CLB TOPOLOGY ==================== -->
+    <section class="slide" data-category="Classic Load Balancer (CLB)">
+      <div class="slide-category">Section 2: Classic Load Balancer (CLB)</div>
+      <h2>CLB Topology</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+        <img src="assets/images/clb-forwarding-topology.svg" alt="CLB Topology" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 14: APPLICATION LOAD BALANCER (ALB) ==================== -->
+    <section class="slide" data-category="Application Load Balancer (ALB)">
+      <div class="slide-category">Section 3: Application Load Balancer (ALB)</div>
+      <h2>Application Load Balancer (ALB)</h2>
+      
+      <div class="two-column-layout">
+        <div class="column-left">
+          <div class="content-card highlight">
+            <h3>Cloud-Native Microservices Architecture</h3>
+            <ul>
+              <li><strong>Decoupled Control &amp; Data Planes:</strong> Built on Alibaba Cloud's proprietary NFV (Network Functions Virtualization) platform with completely independent scaling of management operations and packet processing.</li>
+              <li><strong>Massive Layer 7 Elasticity:</strong> A single ALB instance scales dynamically up to <strong>1,000,000 QPS</strong> with automated cross-zone traffic balancing.</li>
+              <li><strong>Modern Protocols:</strong> Native support for HTTP/1.1, HTTP/2, gRPC microservices, WebSockets, and <strong>QUIC (HTTP/3)</strong>.</li>
+              <li><strong>Dynamic Elastic Scaling:</strong> Automatically adapts packet processing throughput in real-time according to application load spikes, eliminating the need to pre-allocate fixed capacity tiers.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="column-right">
+          <div class="content-card highlight-blue">
+            <h3>Kubernetes Ingress &amp; Container Native</h3>
+            <ul>
+              <li><strong>Official Ingress Controller:</strong> Seamlessly acts as the enterprise Ingress controller for Container Service for Kubernetes (ACK) and Serverless Kubernetes (ASK).</li>
+              <li><strong>Pod-Level Direct Routing:</strong> Bypasses NodePort and kube-proxy overhead by routing traffic directly to Kubernetes Pod IPs using Terway CNI.</li>
+              <li><strong>Zero Downtime Deployments:</strong> Integrates natively with rolling updates, blue-green deployments, and canary traffic shifting.</li>
+              <li><strong>Zone-Independent Addressing:</strong> Allocates an elastic VIP in each selected Availability Zone for multi-zone fault resilience.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 15: ALB TOPOLOGY ==================== -->
+    <section class="slide" data-category="Application Load Balancer (ALB)">
+      <div class="slide-category">Section 3: Application Load Balancer (ALB)</div>
+      <h2>ALB Topology</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+        <img src="assets/images/alb-forwarding-topology.svg" alt="ALB Ingress &amp; Traffic Forwarding Topology" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
+      </div>
+    </section>
+
+<!-- ==================== SLIDE 16: ALB ADVANCED ROUTING RULES ==================== -->
+    <section class="slide" data-category="Application Load Balancer (ALB)">
+      <div class="slide-category">Section 3: Application Load Balancer (ALB)</div>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+        <img src="assets/images/alb-layer7-routing.svg" alt="ALB Layer 7 Routing Engine" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 17: ADVANCED TRAFFIC ACTIONS ==================== -->
+    <section class="slide" data-category="Application Load Balancer (ALB)">
+      <div class="slide-category">Section 3: Application Load Balancer (ALB)</div>
+      <h2>Advanced Traffic Actions</h2>
+      
+      <div class="content-grid-2x2">
+        <div class="content-card highlight">
+          <h3>Weighted Forwarding (Canary)</h3>
+          <ul>
+            <li><strong>Traffic Shifting:</strong> Forward requests across multiple server groups with percentage weights (e.g., 90% Prod / 10% Canary).</li>
+            <li><strong>Zero Downtime:</strong> Dynamically adjust canary weights on-the-fly via console or API without service restart.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <h3>HTTP to HTTPS Redirection</h3>
+          <ul>
+            <li><strong>Edge 301/302 Redirect:</strong> Automatically redirect unencrypted HTTP (80) requests to HTTPS (443) directly at the ALB edge.</li>
+            <li><strong>URI &amp; Query Preservation:</strong> Retains full path and query parameters without burdening backend compute servers.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>URL Path Rewriting</h3>
+          <ul>
+            <li><strong>Path Transformation:</strong> Rewrite request URLs before reaching backends (e.g., <code>/v1/user</code> to <code>/user</code>).</li>
+            <li><strong>Header Modification:</strong> Insert, remove, or modify custom HTTP headers in-flight.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-purple">
+          <h3>Traffic Mirroring &amp; Fixed Response</h3>
+          <ul>
+            <li><strong>Traffic Mirroring:</strong> Duplicate live production traffic to staging/audit clusters for zero-impact shadow testing.</li>
+            <li><strong>Fixed Response:</strong> Return immediate HTTP status codes (200, 403, 503) with custom JSON/HTML directly from ALB.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 18: QUIC PROTOCOL (HTTP/3) ==================== -->
+    <section class="slide" data-category="Application Load Balancer (ALB)">
+      <div class="slide-category">Section 3: Application Load Balancer (ALB)</div>
+      <h2>QUIC Protocol (HTTP/3)</h2>
+      
+      <div class="two-column-layout">
+        <div class="column-left">
+          <div class="content-card highlight">
+            <h3>Next-Generation Transport Architecture</h3>
+            <ul>
+              <li><strong>UDP-Based Protocol:</strong> QUIC (Quick UDP Internet Connections) operates over UDP, serving as the foundational transport layer for HTTP/3.</li>
+              <li><strong>Zero Head-of-Line Blocking:</strong> Unlike TCP, packet loss on one stream does not stall data transmission on other multiplexed streams within the same connection.</li>
+              <li><strong>Zero-RTT Connection Setup:</strong> Combines cryptographic and transport handshakes to achieve 0-RTT connection re-establishment for returning clients.</li>
+              <li><strong>Native ALB Offload:</strong> ALB terminates QUIC connections at the edge and proxies traffic to backend servers over optimized HTTP/1.1 or HTTP/2.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="column-right">
+          <div class="content-card highlight-blue">
+            <h3>Connection Migration for Mobile Networks</h3>
+            <ul>
+              <li><strong>Connection ID Addressing:</strong> QUIC identifies connections using a 64-bit Connection ID rather than the traditional 4-tuple (source IP, source port, dest IP, dest port).</li>
+              <li><strong>Seamless Network Handoff:</strong> When a user transitions from Wi-Fi to cellular 4G/5G, the client IP changes; QUIC seamlessly migrates the session without dropping active video streams or downloads.</li>
+              <li><strong>Mobile App Performance:</strong> Drastically reduces latency in poor network environments (weak signal, packet loss up to 20%), making it indispensable for live streaming and gaming.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== SLIDE 19: NETWORK LOAD BALANCER (NLB) ==================== -->
+    <section class="slide" data-category="Network Load Balancer (NLB)">
+      <div class="slide-category">Section 4: Network Load Balancer (NLB)</div>
+      <h2>Network Load Balancer (NLB)</h2>
+      
+      <div class="two-column-layout">
+        <div class="column-left">
+          <div class="content-card highlight">
+            <h3>Ultra-High Throughput &amp; CIPU Acceleration</h3>
+            <ul>
+              <li><strong>Hardware-Accelerated Forwarding:</strong> Built on Alibaba Cloud Cloud Infrastructure Processing Unit (CIPU) for line-rate packet processing with zero host CPU degradation.</li>
+              <li><strong>Massive Concurrency:</strong> Delivers up to <strong>100,000,000 concurrent connections</strong> and <strong>10,000,000 new CPS</strong> per instance with automated cross-zone scaling.</li>
+              <li><strong>Sub-Millisecond Latency:</strong> Operates at deterministic ultra-low latency (&lt; 0.5 ms), optimized for high-frequency trading, gaming, and real-time IoT.</li>
+              <li><strong>Layer 4 Protocols:</strong> Native support for TCP, UDP, and hardware-accelerated <strong>TCPSSL</strong> offload for secure transport without backend SSL overhead.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="column-right">
+          <div class="content-card highlight-blue">
+            <h3>Source IP Preservation &amp; Enterprise Networking</h3>
+            <ul>
+              <li><strong>Native Client IP Pass-Through:</strong> Preserves original client source IP directly in the Layer 3 IP packet header with zero encapsulation or NAT overhead.</li>
+              <li><strong>Zero Application Changes:</strong> Backend applications read real client IPs seamlessly via standard socket APIs (<code>getpeername()</code>).</li>
+              <li><strong>Multi-Zone Active-Active:</strong> Deploys elastic VIPs across multiple availability zones with automated traffic distribution and local failover.</li>
+              <li><strong>Proxy Protocol v2 Support:</strong> Provides native support for Proxy Protocol v2 header insertion when downstream proxy metadata is required.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 20: NLB TOPOLOGY ==================== -->
+    <section class="slide" data-category="Network Load Balancer (NLB)">
+      <div class="slide-category">Section 4: Network Load Balancer (NLB)</div>
+      <h2>NLB Topology</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+        <img src="assets/images/nlb-forwarding-topology.svg" alt="NLB Topology" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 21: GATEWAY LOAD BALANCER (GWLB) ==================== -->
+    <section class="slide" data-category="Gateway Load Balancer (GWLB)">
+      <div class="slide-category">Section 5: Gateway Load Balancer (GWLB)</div>
+      <h2>Gateway Load Balancer (GWLB)</h2>
+      
+      <div class="two-column-layout">
+        <div class="column-left">
+          <div class="content-card highlight">
+            <h3>Inline Virtual Appliance Chaining &amp; Elasticity</h3>
+            <ul>
+              <li><strong>Third-Party Appliance Integration:</strong> Cloud-native Layer 3 gateway designed for deploying and scaling third-party virtual network appliances (Palo Alto, Fortinet, Check Point NGFWs, IDS/IPS).</li>
+              <li><strong>GENEVE Protocol Encapsulation:</strong> Encapsulates client traffic into GENEVE tunnels over UDP port 6081, preserving original packet IP headers and metadata without NAT.</li>
+              <li><strong>Symmetric Flow Routing:</strong> Guarantees strict bidirectional flow symmetry; both request and response packets for a connection traverse the exact same firewall appliance instance.</li>
+              <li><strong>Elastic Firewall Farm:</strong> Automatically balances traffic across an auto-scaling cluster of firewall instances, eliminating bandwidth choke points and single points of failure.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="column-right">
+          <div class="content-card highlight-blue">
+            <h3>PrivateLink Decoupling &amp; Centralized Security VPC</h3>
+            <ul>
+              <li><strong>PrivateLink-Powered Decoupling:</strong> Connects business VPCs to the centralized security inspection VPC via GWLB Endpoints (GWLBe) without complex VPC peering meshes.</li>
+              <li><strong>Zero IP Architecture Overlap:</strong> Preserves complete network isolation; business VPCs and security inspection VPCs can utilize independent or overlapping CIDR blocks.</li>
+              <li><strong>Multi-Tenant Security Hub:</strong> A single centralized security VPC hosting GWLB can inspect traffic originating from multiple independent application VPCs concurrently.</li>
+              <li><strong>Transparent Health Failover:</strong> Health check mechanisms continuously monitor NVA health; failed firewall appliances are isolated within seconds with zero session disruption.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 22: GWLB TOPOLOGY ==================== -->
+    <section class="slide" data-category="Gateway Load Balancer (GWLB)">
+      <div class="slide-category">Section 5: Gateway Load Balancer (GWLB)</div>
+      <h2>GWLB Topology</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+        <img src="assets/images/gwlb-forwarding-topology.svg" alt="GWLB Topology" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 23: TRAFFIC SCHEDULING ALGORITHMS ==================== -->
+    <section class="slide" data-category="Backend Server Groups">
+      <div class="slide-category">Section 6: Backend Server Groups</div>
+      <h2>Traffic Scheduling Algorithms</h2>
+      
+      <div class="content-grid-2x2">
+        <div class="content-card highlight">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="margin: 0;">Weighted Round Robin (WRR)</h3>
+            <span class="badge badge-updated" style="font-size: 0.7rem;">CLB • ALB • NLB</span>
+          </div>
+          <ul>
+            <li><strong>Sequential Rotation:</strong> Distributes requests across backend servers in order based on assigned integer weights (1–100).</li>
+            <li><strong>Best For:</strong> Stateless web applications with uniform request processing times.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="margin: 0;">Weighted Least Connections (WLC)</h3>
+            <span class="badge badge-updated" style="font-size: 0.7rem;">CLB • ALB • NLB</span>
+          </div>
+          <ul>
+            <li><strong>Dynamic Concurrency:</strong> Routes incoming traffic to the server with the lowest active-connections-to-weight ratio.</li>
+            <li><strong>Best For:</strong> Long-lived connections, database sessions, and variable query workloads.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="margin: 0;">Consistent Hash</h3>
+            <span class="badge badge-blue" style="font-size: 0.7rem;">ALB • NLB • GWLB</span>
+          </div>
+          <ul>
+            <li><strong>Sticky Affinity:</strong> Hashes client Source IP or 5-tuple to backend servers with minimal disruption during scaling.</li>
+            <li><strong>Best For:</strong> Stateful Layer 4 services, gaming servers, and cached web workloads.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-purple">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="margin: 0;">QUIC Connection ID Hash</h3>
+            <span class="badge badge-purple" style="font-size: 0.7rem;">ALB Only</span>
+          </div>
+          <ul>
+            <li><strong>Session Mobility:</strong> Routes requests based on 64-bit QUIC Connection ID, persisting sessions across IP changes.</li>
+            <li><strong>Best For:</strong> Mobile applications, live video streaming, and Wi-Fi/cellular handoffs.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 24: BACKEND SERVER GROUPS ==================== -->
+    <section class="slide" data-category="Backend Server Groups">
+      <div class="slide-category">Section 6: Backend Server Groups</div>
+      <h2>Backend &quot;Server Groups&quot;</h2>
+      
+      <div class="card-grid-3">
+        <div class="content-card highlight">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="margin: 0;">Server / Instance Type</h3>
+            <span class="badge badge-updated" style="font-size: 0.7rem;">CLB • ALB • NLB • GWLB</span>
+          </div>
+          <ul>
+            <li><strong>Target Types:</strong> Standard ECS instances, Elastic Container Instances (ECI), and Elastic Network Interfaces (ENIs).</li>
+            <li><strong>Multi-Port Binding:</strong> Attach the same compute instance multiple times across different listening ports (e.g., 8080 and 8081).</li>
+            <li><strong>Dynamic Weights &amp; Elasticity:</strong> Configurable weights (0–100); integrates natively with Auto Scaling for automatic fleet elasticity.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="margin: 0;">IP Type (Private IPs)</h3>
+            <span class="badge badge-blue" style="font-size: 0.7rem;">ALB • NLB • GWLB</span>
+          </div>
+          <ul>
+            <li><strong>Private Addressing:</strong> Target backend endpoints directly by private IPv4 / IPv6 addresses without requiring cloud instance IDs.</li>
+            <li><strong>Hybrid &amp; Cross-VPC:</strong> Route traffic to on-premises servers via Express Connect/VPN or cross-VPC resources via CEN Transit Router.</li>
+            <li><strong>Virtual Appliance Tunnels:</strong> GWLB routes traffic to third-party firewall/NVA IP targets encapsulated via GENEVE (UDP port 6081).</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-purple">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="margin: 0;">Function Compute Type</h3>
+            <span class="badge badge-purple" style="font-size: 0.7rem;">ALB Only</span>
+          </div>
+          <ul>
+            <li><strong>Serverless Event Ingress:</strong> Routes incoming HTTP/HTTPS requests directly to Alibaba Cloud Function Compute (FC) routines.</li>
+            <li><strong>Zero Server Administration:</strong> Pure event-driven execution with zero server instances to provision, patch, or maintain.</li>
+            <li><strong>Unified API Entry Point:</strong> Combines microservices, static assets, container pods, and serverless functions under a single unified domain and port.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 25: HTTP & TCP HEALTH CHECKS ==================== -->
+    <section class="slide" data-category="Backend Server Groups">
+      <div class="slide-category">Section 6: Backend Server Groups</div>
+      <h2>Health Check: HTTP/HTTPS &amp; TCP Detection</h2>
+      
+      <div class="two-column-layout">
+        <div class="column-left">
+          <div class="architecture-diagram-wrapper">
+            <img src="assets/images/slb-healthcheck-http-tcp.svg" alt="HTTP and TCP Health Check Mechanics" class="architecture-diagram">
+          </div>
+        </div>
+        <div class="column-right">
+          <div class="content-card highlight">
+            <h3>HTTP / HTTPS Probing (Layer 7)</h3>
+            <ul>
+              <li><strong>Request Method:</strong> Probes send an HTTP <code>HEAD</code> or <code>GET</code> request to a specified URI path (e.g., <code>/healthz</code>) on backend instances.</li>
+              <li><strong>Status Code Validation:</strong> Deemed healthy if backend returns an HTTP <code>2xx</code> or <code>3xx</code> status code within the timeout threshold.</li>
+              <li><strong>Application-Aware:</strong> Verifies actual web server and application health beyond raw port availability.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-blue">
+            <h3>TCP Handshake Probing (Layer 4)</h3>
+            <ul>
+              <li><strong>Three-Way Handshake:</strong> SLB node sends a <code>SYN</code> packet to backend port; instance responds with <code>SYN+ACK</code>.</li>
+              <li><strong>Immediate Reset (RST):</strong> SLB immediately replies with <code>RST</code> to cleanly close probe without leaving half-open connections.</li>
+              <li><strong>Minimal Overhead:</strong> Lightweight and protocol-agnostic; validates backend socket listener responsiveness.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 26: UDP HEALTH CHECKS ==================== -->
+    <section class="slide" data-category="Backend Server Groups">
+      <div class="slide-category">Section 6: Backend Server Groups</div>
+      <h2>Health Check: Layer 4 UDP Probing &amp; ICMP Detection</h2>
+      
+      <div class="two-column-layout">
+        <div class="column-left">
+          <div class="architecture-diagram-wrapper">
+            <img src="assets/images/slb-healthcheck-udp.svg" alt="UDP Health Check Mechanics" class="architecture-diagram">
+          </div>
+        </div>
+        <div class="column-right">
+          <div class="content-card highlight-orange">
+            <h3>UDP Probing &amp; ICMP Evaluation</h3>
+            <ul>
+              <li><strong>Probing Mechanism:</strong> SLB sends custom UDP request packets from internal CIDRs (<code>100.64.0.0/10</code>) to backend target ports.</li>
+              <li><strong>ICMP Unreachable Detection:</strong> If backend port is closed or process halted, the OS kernel returns an ICMP <code>Port Unreachable</code> packet.</li>
+              <li><strong>Health Determination:</strong>
+                <ul>
+                  <li><em>Unhealthy:</em> Receiving ICMP Port Unreachable packet marks backend as down.</li>
+                  <li><em>Healthy:</em> Normal UDP response received, or absence of ICMP errors within the response timeout.</li>
+                </ul>
+              </li>
+              <li><strong>OS Rate Limiting Requirement:</strong> Backend Linux kernel must allow ICMP errors; ensure <code>icmp_ratelimit = 0</code> to avoid false positives.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 27: SESSION PERSISTENCE ==================== -->
+    <section class="slide" data-category="Backend Server Groups">
+      <div class="slide-category">Section 6: Backend Server Groups</div>
+      <h2>Session Persistence (Sticky Sessions)</h2>
+      
+      <div class="two-column-layout">
+        <div class="column-left">
+          <div class="architecture-diagram-wrapper">
+            <img src="assets/images/slb-session-persistence.svg" alt="Session Persistence Mechanics" class="architecture-diagram">
+          </div>
+        </div>
+        <div class="column-right">
+          <div class="content-card highlight">
+            <h3>Sticky Session Principles</h3>
+            <ul>
+              <li><strong>Session Affinity:</strong> Binds consecutive requests from the same client to the same backend server instance.</li>
+              <li><strong>Cookie Insertion (ALB):</strong> Injects an encrypted tracking cookie (<code>ALBSID</code>) with configurable duration (1s–7 days).</li>
+              <li><strong>Cookie Rewriting (ALB):</strong> Tracks existing application session cookies (e.g., <code>JSESSIONID</code>).</li>
+              <li><strong>Source IP Hash (NLB/CLB):</strong> Routes based on client IP address with a persistence timeout.</li>
+              <li><strong>Note for Enterprise NAT:</strong> Cookie insertion avoids NAT load imbalance by tracking individual browser sessions instead of shared egress IPs.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 28: MULTI-ZONE DISASTER TOLERANCE ==================== -->
+    <section class="slide" data-category="High Availability and Disaster Recovery">
+      <div class="slide-category">Section 7: High Availability and Disaster Recovery</div>
+      <h2>Multi-Zone Disaster Tolerance</h2>
+      
+      <div class="two-column-layout">
+        <div class="column-left">
+          <div class="architecture-diagram-wrapper">
+            <img src="assets/images/slb-multizone-dr.svg" alt="Multi-Zone Disaster Tolerance" class="architecture-diagram">
+          </div>
+        </div>
+        <div class="column-right">
+          <div class="content-card highlight">
+            <h3>Primary &amp; Backup Zone Architecture</h3>
+            <ul>
+              <li><strong>Primary / Backup Zone Deployment:</strong> SLB instances establish an active Master Node in a Primary Zone and a standby Slave Node in a Backup Zone.</li>
+              <li><strong>Automated Sub-30s Failover:</strong> If the Primary Zone suffers an outage or becomes unavailable, SLB rapidly switches to the Backup Zone within <strong>30 seconds</strong>.</li>
+              <li><strong>Automated Failback:</strong> When the Primary Zone recovers and passes health checks, SLB automatically switches back to the Primary Zone.</li>
+              <li><strong>Cross-Zone Traffic Balancing:</strong> The active node dynamically distributes requests across healthy backend ECS instances in both zones during normal operations.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 29: CROSS-REGION DISASTER TOLERANCE ==================== -->
+    <section class="slide" data-category="High Availability and Disaster Recovery">
+      <div class="slide-category">Section 7: High Availability and Disaster Recovery</div>
+      <h2>Cross-Region Disaster Tolerance</h2>
+      
+      <div class="two-column-layout">
+        <div class="column-left">
+          <div class="architecture-diagram-wrapper">
+            <img src="assets/images/slb-cross-region-dr.svg" alt="Cross-Region Disaster Tolerance" class="architecture-diagram">
+          </div>
+        </div>
+        <div class="column-right">
+          <div class="content-card highlight-green">
+            <h3>DNS-Driven Inter-Region Resilience</h3>
+            <ul>
+              <li><strong>Cross-Region Redundancy:</strong> Deploy independent SLB instances across geographically separated regions (e.g., China East 1 and China North 1).</li>
+              <li><strong>Intelligent DNS Resolution:</strong> Alibaba Cloud DNS / Global Traffic Manager (GTM) resolves domain names to the virtual IP (VIP) addresses of the regional SLB instances.</li>
+              <li><strong>Health-Driven Failover:</strong> Continually probes regional SLB endpoints; if an entire region fails, DNS redirects client traffic to the secondary region.</li>
+              <li><strong>Regional Scope Isolation:</strong> Individual SLB instances balance traffic only within their local region; cross-region distribution is orchestrated at the DNS layer.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 30: MULTI-CLOUD TRAFFIC DISTRIBUTION ==================== -->
+    <section class="slide" data-category="High Availability and Disaster Recovery">
+      <div class="slide-category">Section 7: High Availability and Disaster Recovery</div>
+      <h2>Multi-Cloud Traffic Distribution</h2>
+      
+      <div class="two-column-layout">
+        <div class="column-left">
+          <div class="architecture-diagram-wrapper">
+            <img src="assets/images/slb-multicloud-traffic.svg" alt="Multi-Cloud Traffic Distribution" class="architecture-diagram">
+          </div>
+        </div>
+        <div class="column-right">
+          <div class="content-card highlight-purple">
+            <h3>Hybrid &amp; Multi-Cloud Traffic Management</h3>
+            <ul>
+              <li><strong>Heterogeneous Ingress:</strong> Alibaba Cloud GTM and DNS direct client traffic across Alibaba Cloud, secondary cloud providers, and on-premises IDCs.</li>
+              <li><strong>Active-Active &amp; Active-Standby:</strong> Supports weighted proportional traffic distribution or automated failover across cloud provider boundaries.</li>
+              <li><strong>Private Hybrid Interconnect:</strong> Cloud Enterprise Network (CEN), Express Connect, and VPN Gateway link internal VPCs directly with remote datacenters.</li>
+              <li><strong>Vendor Lock-in Mitigation:</strong> Empowers mission-critical enterprise workloads with multi-cloud high availability and disaster tolerance.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 31: AUTO SCALING INTEGRATION ==================== -->
+    <section class="slide" data-category="High Availability and Disaster Recovery">
+      <div class="slide-category">Section 7: High Availability and Disaster Recovery</div>
+      <h2>Auto Scaling Integration</h2>
+      
+      <div class="two-column-layout">
+        <div class="column-left">
+          <div class="architecture-diagram-wrapper">
+            <img src="assets/images/slb-auto-scaling.svg" alt="Auto Scaling Integration" class="architecture-diagram">
+          </div>
+        </div>
+        <div class="column-right">
+          <div class="content-card highlight">
+            <h3>Automated Elastic Binding</h3>
+            <ul>
+              <li><strong>Dynamic Target Registration:</strong> When Auto Scaling spins up new ECS instances (<code>ESS-XX</code>) during traffic surges, they are automatically bound to the SLB backend server group.</li>
+              <li><strong>Slow Start:</strong> Enable the Slow Start feature on ALB server groups to gradually ramp up request volume to newly added backend servers over a configured duration (30–900 seconds), allowing servers to warm up and preventing sudden traffic surges from overwhelming connection pools.</li>
+              <li><strong>Graceful Connection Draining:</strong> When scale-in occurs, SLB stops sending new requests to terminating instances while allowing in-flight connections to complete gracefully.</li>
+              <li><strong>Health-Driven Replacement:</strong> Impaired ECS instances flagged unhealthy by SLB health checks are automatically terminated and replaced by Auto Scaling.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 32: SECURITY-IN-TRANSIT ==================== -->
+    <section class="slide" data-category="Security Configuration">
+      <div class="slide-category">Section 8: Security Configuration</div>
+      <h2>Security-in-Transit</h2>
+      
+      <div class="two-column-layout">
+        <div class="column-left">
+          <div class="content-card highlight">
+            <h3>Hardware-Accelerated SSL Offloading</h3>
+            <ul>
+              <li><strong>Centralized Cryptographic Termination:</strong> SSL/TLS handshakes and decryption are performed directly on the SLB proxy tier, offloading CPU-intensive cryptography from backend application servers.</li>
+              <li><strong>Modern Ciphers &amp; TLS 1.3:</strong> Supports TLS 1.0, 1.1, 1.2, and TLS 1.3 with customizable security cipher policy suites.</li>
+              <li><strong>SSL Certificate Management:</strong> Native integration with Alibaba Cloud Certificate Management Service; automated certificate renewal and one-click deployment.</li>
+              <li><strong>HTTP/2 &amp; QUIC Acceleration:</strong> Delivers multiplexed binary framing over HTTPS connections for faster web rendering.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="column-right">
+          <div class="content-card highlight-purple">
+            <h3>SNI Multi-Certificate &amp; Mutual TLS (mTLS)</h3>
+            <ul>
+              <li><strong>Server Name Indication (SNI):</strong> Bind up to <strong>25+ distinct SSL certificates</strong> to a single HTTPS listener port (443); ALB serves the exact matching domain certificate based on client SNI negotiation.</li>
+              <li><strong>Mutual TLS (mTLS):</strong> Enforce two-way certificate verification where both the server and client validate cryptographic certificates.</li>
+              <li><strong>Zero-Trust Client Authentication:</strong> Perfect for B2B financial APIs, banking gateways, and IoT device authentication.</li>
+              <li><strong>Custom CA Certificates:</strong> Upload and bind enterprise root or intermediate CA certificate bundles to verify client-issued certificates.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 33: WAF AND ANTI-DDOS PROTECTION ==================== -->
+    <section class="slide" data-category="Security Configuration">
+      <div class="slide-category">Section 8: Security Configuration</div>
+      <h2>WAF and Anti-DDoS Protection</h2>
+      
+      <div class="two-column-layout">
+        <div class="column-left">
+          <div class="architecture-diagram-wrapper">
+            <img src="assets/images/slb-security-mesh.svg" alt="WAF and Anti-DDoS Protection Architecture" class="architecture-diagram" style="max-height: 100%; max-width: 100%; height: auto; object-fit: contain;">
+          </div>
+        </div>
+        <div class="column-right">
+          <div class="content-card highlight">
+            <h3>Multi-Tiered Security Perimeter</h3>
+            <ul>
+              <li><strong>Anti-DDoS Basic (Default Shield):</strong> Every public SLB instance includes default DDoS mitigation up to 5 Gbps defending against SYN floods, UDP floods, ACK floods, and ICMP floods.</li>
+              <li><strong>Flow Cleaning &amp; Black Hole:</strong> Inbound traffic exceeding baseline bandwidth triggers automated traffic cleaning; extreme attacks trigger black hole routing to protect cloud infrastructure.</li>
+              <li><strong>Anti-DDoS Pro / Premium:</strong> Attach Anti-DDoS Pro/Premium dedicated scrubbing centers for unlimited Tbps-level volumetric attack mitigation.</li>
+              <li><strong>Cloud-Native WAF 3.0 Integration:</strong> ALB seamlessly integrates with Web Application Firewall (WAF 3.0) inline without requiring CNAME DNS redirection, inspecting traffic for SQL injection, XSS, and CC bot attacks.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 34: ACCESS CONTROL & NETWORK PERIMETER ==================== -->
+    <section class="slide" data-category="Security Configuration">
+      <div class="slide-category">Section 8: Security Configuration</div>
+      <h2>Access Control &amp; Network Perimeter</h2>
+      
+      <div class="two-column-layout">
+        <div class="column-left">
+          <div class="content-card highlight-blue">
+            <h3>Listener Access Control Lists (ACLs)</h3>
+            <ul>
+              <li><strong>Whitelist Mode:</strong> Accepts traffic strictly from designated IP addresses or CIDR blocks; all other traffic is rejected. Ideal for private partner APIs and staging environments.</li>
+              <li><strong>Blacklist Mode:</strong> Blocks traffic from specified malicious IP addresses while allowing all other internet traffic.</li>
+              <li><strong>Reusable ACL Profiles:</strong> Define an ACL profile once and bind it across multiple listeners simultaneously.</li>
+              <li><strong>Edge Perimeter Filtering:</strong> Enforce boundary traffic filtering directly at the SLB edge proxy before packets reach internal networks.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="column-right">
+          <div class="content-card highlight">
+            <h3>Security Group Binding on ALB &amp; NLB</h3>
+            <ul>
+              <li><strong>Direct Security Group Association:</strong> Attach VPC Security Groups directly to ALB and NLB elastic network interfaces.</li>
+              <li><strong>Stateful Microsegmentation:</strong> Define stateful port, protocol, and CIDR rules directly at the load balancer entry point.</li>
+              <li><strong>Defense-in-Depth Architecture:</strong>
+                <ul>
+                  <li><em>Perimeter:</em> SLB Security Group allows public internet access strictly on ports 80/443.</li>
+                  <li><em>Backend Fleet:</em> ECS Security Group permits inbound traffic <strong>strictly from the SLB internal CIDR</strong>, blocking all direct internet exposure.</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 35: MONITORING AND LOGGING ==================== -->
+    <section class="slide" data-category="Security Configuration">
+      <div class="slide-category">Section 8: Security Configuration</div>
+      <h2>Monitoring and Logging</h2>
+      
+      <div class="card-grid-3">
+        <div class="content-card highlight">
+          <h3>CloudMonitor Telemetry</h3>
+          <ul>
+            <li><strong>Traffic Metrics:</strong> Tracks inbound/outbound bandwidth, packet rates, and active/inactive connection counts.</li>
+            <li><strong>HTTP Response Metrics:</strong> Monitors QPS, average latency, upstream response times, and 2xx/3xx/4xx/5xx status codes.</li>
+            <li><strong>Automated Alarms:</strong> Configurable threshold alerts triggered on high 5xx error spikes or backend unhealthy instance counts.</li>
+            <li><strong>Unified Dashboards:</strong> Visualize aggregate fleet health across regions from a single operational pane.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <h3>SLS Access Logging</h3>
+          <ul>
+            <li><strong>Full Request Provenance:</strong> Automatically streams detailed access logs directly to Simple Log Service (SLS).</li>
+            <li><strong>Comprehensive Log Schema:</strong> Captures client IP, request URI, HTTP method, user agent, latency, SSL cipher, and upstream server IP.</li>
+            <li><strong>Real-Time SQL Analytics:</strong> Execute fast SQL queries across millions of log records to troubleshoot errors and slow requests.</li>
+            <li><strong>SIEM Integration:</strong> Ingest logs into security information and event management systems for audit compliance.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-purple">
+          <h3>Tracing &amp; Health Insights</h3>
+          <ul>
+            <li><strong>Distributed Tracing:</strong> Injects W3C trace context headers (<code>traceparent</code>) for end-to-end distributed tracing.</li>
+            <li><strong>Application Real-Time Monitoring (ARMS):</strong> Correlates edge SLB metrics with backend microservice execution bottlenecks.</li>
+            <li><strong>Health Check Diagnosis:</strong> Detailed diagnostic logging identifying the exact root cause of backend health check failures.</li>
+            <li><strong>Change Tracking:</strong> All configuration updates are recorded in ActionTrail for forensic audit compliance.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 36: SLB PRICING MODELS ==================== -->
+    <section class="slide" data-category="Pricing Model">
+      <div class="slide-category">Section 9: Pricing Model</div>
+      <h2>SLB Pricing Models</h2>
+      
+      <div class="two-column-layout">
+        <div class="column-left">
+          <div class="content-card highlight">
+            <h3>Pricing Models by Product Family</h3>
+            <ul>
+              <li><strong>Classic Load Balancer (CLB):</strong> Pay an instance rental fee (waived for private intranet instances) plus fixed specification tiers (e.g., <code>slb.s1.small</code> to <code>slb.s3.large</code>), plus outbound public internet traffic.</li>
+              <li><strong>ALB &amp; NLB (Elastic LCU):</strong> Hourly instance fee per Availability Zone + Pay-as-You-Go Load Balancer Capacity Units (LCU) + EIP/CBWP for public data transfer.</li>
+              <li><strong>Gateway Load Balancer (GWLB):</strong> Billed for GWLB instance hours, GWLB Endpoint (GWLBe) hours, and GWLB LCU consumption. Backend third-party virtual firewalls (e.g., Palo Alto, Fortinet) are licensed separately via BYOL or Marketplace.</li>
+              <li><strong>Private vs. Public Instances:</strong> Private CLB incurs zero instance fees; ALB, NLB, and GWLB charge instance/endpoint fees and LCU usage regardless of network deployment type.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="column-right">
+          <div class="content-card highlight-blue">
+            <h3>Capacity Unit (LCU) Dimensions</h3>
+            <ul>
+              <li><strong>ALB LCU Metrics (hourly fee based on peak of):</strong>
+                <ul>
+                  <li>25 new connections/sec (HTTPS) or 40 new/sec (HTTP).</li>
+                  <li>350 concurrent connections (HTTPS) or 500 concurrent (HTTP).</li>
+                  <li>1 GB processed data transfer per hour.</li>
+                  <li>1,000 rule evaluations per second.</li>
+                </ul>
+              </li>
+              <li><strong>NLB LCU Metrics (hourly fee based on peak of):</strong>
+                <ul>
+                  <li>800 new TCP connections/sec or 400 new UDP/sec.</li>
+                  <li>50,000 concurrent TCP connections or 12,500 UDP.</li>
+                  <li>1 GB processed data transfer per hour.</li>
+                </ul>
+              </li>
+              <li><strong>GWLB LCU Metrics (hourly fee based on peak of):</strong>
+                <ul>
+                  <li>New packet flows/sec, concurrent active flows, and processed GENEVE data volume.</li>
+                </ul>
+              </li>
+              <li><strong>Billing Formula:</strong> Total Hourly LCU Fee = Max(Dimensions) &times; Unit Price.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 37: PRACTICE QUIZ SCENARIO 1 ==================== -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Interactive Quiz • Scenario 1</div>
+      <h2>Practice Scenario 1: Microservices Dynamic Routing &amp; Canary Deployment</h2>
+      
+      <div class="quiz-single-card">
+        <div class="quiz-single-question">
+          <span class="quiz-number">Question 1</span>
+          <span>A retail e-commerce platform is migrating its monolithic store application into microservices hosted on Alibaba Cloud. The enterprise architecture mandates the following requirements:
+          <br>1. Client requests to <code>/order/*</code> must route to a high-capacity order processing fleet, while requests to <code>/user/*</code> must route to an identity fleet.
+          <br>2. When releasing new order microservice versions, 10% of traffic must be directed to a canary cluster, while 90% remains on the stable production fleet.
+          <br>3. All legacy HTTP (Port 80) traffic must automatically redirect to HTTPS (Port 443) with zero traffic forwarded to backend servers.
+          <br>Which load balancing architecture satisfies all requirements?</span>
+        </div>
+        <ul class="quiz-single-options">
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">A</span>
+            <span>Deploy Classic Load Balancer (CLB) with Primary-Secondary server groups, and configure Nginx rewrite rules on each backend ECS instance.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">B</span>
+            <span>Deploy Application Load Balancer (ALB); configure an HTTP:80 listener with a 301 Redirect action to HTTPS:443; configure HTTPS:443 forwarding rules with URL path matching and weighted server groups (90% Prod / 10% Canary).</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">C</span>
+            <span>Deploy Network Load Balancer (NLB) with Weighted Round Robin scheduling, and configure IP Server Groups pointing to external Nginx reverse proxies.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">D</span>
+            <span>Deploy Gateway Load Balancer (GWLB) with GENEVE encapsulation, and route traffic through an elastic cluster of third-party proxy firewalls.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 38: QUIZ ANSWER 1 ==================== -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Quiz Solution • Scenario 1</div>
+      <h2>Scenario 1: Solution &amp; Architectural Analysis</h2>
+      
+      <div class="analysis-main-card">
+        <div>
+          <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: B</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Application Load Balancer (ALB) with HTTP-to-HTTPS redirect action and path-based weighted canary server groups.</span>
+        </div>
+        <span class="badge badge-updated">Validated Architecture</span>
+      </div>
+
+      <div class="analysis-options-grid">
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option A is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Fails native cloud-native routing requirements.</strong> CLB Primary-Secondary server groups are restricted to Layer 4 TCP/UDP listeners and cannot perform URL path routing. Handling redirection on backend servers consumes unnecessary compute resources.
+          </div>
+        </div>
+
+        <div class="analysis-item correct">
+          <div class="analysis-item-header correct">
+            <span>✔ Option B is Correct</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Optimal Layer 7 microservices architecture.</strong> ALB natively executes HTTP-to-HTTPS 301 redirection at the edge without touching backend servers. Its Layer 7 rule engine matches URL paths (<code>/order/*</code> vs <code>/user/*</code>) and supports weighted multi-server group forwarding (90/10 canary split).
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option C is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Wrong layer and unnecessary proxy complexity.</strong> NLB operates at Layer 4 (TCP/UDP) and cannot inspect HTTP URL paths (<code>/order/*</code>) or execute HTTP redirects. Introducing self-managed Nginx proxies creates high operational overhead.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option D is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Incorrect service purpose.</strong> GWLB is designed for transparently chaining third-party virtual security appliances (firewalls/IPS) using GENEVE encapsulation, not for microservice URL routing and HTTP redirection.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 39: PRACTICE QUIZ SCENARIO 2 ==================== -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Interactive Quiz • Scenario 2</div>
+      <h2>Practice Scenario 2: Ultra-High Concurrency Gaming &amp; Source IP Preservation</h2>
+      
+      <div class="quiz-single-card">
+        <div class="quiz-single-question">
+          <span class="quiz-number">Question 2</span>
+          <span>A global gaming studio is launching a massive real-time multiplayer mobile game expected to host 30 million concurrent players worldwide. Architectural requirements stipulate:
+          <br>1. The load balancer must handle rapid traffic bursts and tens of millions of concurrent TCP and UDP sessions with sub-millisecond network processing latency.
+          <br>2. Backend game servers must receive the genuine client source IP address natively in packet IP headers without decoding Proxy Protocol headers or HTTP headers.
+          <br>3. Traffic must be balanced across multiple Availability Zones with active-active resilience.
+          <br>Which load balancing solution fulfills all criteria?</span>
+        </div>
+        <ul class="quiz-single-options">
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">A</span>
+            <span>Deploy Classic Load Balancer (CLB) with an active-standby primary/backup zone configuration.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">B</span>
+            <span>Deploy Application Load Balancer (ALB) and configure backend game servers to parse the <code>X-Forwarded-For</code> header.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">C</span>
+            <span>Deploy Network Load Balancer (NLB) across multiple Availability Zones with native client source IP pass-through enabled.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">D</span>
+            <span>Provision an Internet NAT Gateway with DNAT port forwarding rules mapped to ECS game servers.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 40: QUIZ ANSWER 2 ==================== -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Quiz Solution • Scenario 2</div>
+      <h2>Scenario 2: Solution &amp; Architectural Analysis</h2>
+      
+      <div class="analysis-main-card">
+        <div>
+          <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: C</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Network Load Balancer (NLB) deployed across multi-AZs with native client source IP pass-through.</span>
+        </div>
+        <span class="badge badge-updated">Validated Architecture</span>
+      </div>
+
+      <div class="analysis-options-grid">
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option A is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Capacity ceiling and single-zone bottlenecks.</strong> CLB cannot scale to 30 million concurrent connections, and its primary/backup architecture leaves standby capacity idle rather than active-active.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option B is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Incompatible protocols and proxy overhead.</strong> ALB is a Layer 7 proxy for HTTP/HTTPS/QUIC and cannot load-balance raw TCP/UDP gaming traffic. It also requires parsing HTTP headers rather than preserving native IP packet headers.
+          </div>
+        </div>
+
+        <div class="analysis-item correct">
+          <div class="analysis-item-header correct">
+            <span>✔ Option C is Correct</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Engineered for extreme gaming performance.</strong> NLB handles up to 100M concurrent connections with sub-millisecond latency powered by CIPU offloading. It preserves the client source IP directly in the Layer 3 packet header without requiring Proxy Protocol, and supports active-active multi-zone scaling.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option D is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>No load balancing or health checking.</strong> NAT Gateway DNAT performs 1-to-1 port forwarding; it does not distribute traffic across a dynamic pool of instances and lacks health checks or automated failover.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 41: PRACTICE QUIZ SCENARIO 3 ==================== -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Interactive Quiz • Scenario 3</div>
+      <h2>Practice Scenario 3: Multi-Zone Payment Gateway &amp; Session Persistence</h2>
+      
+      <div class="quiz-single-card">
+        <div class="quiz-single-question">
+          <span class="quiz-number">Question 3</span>
+          <span>A financial payment processing platform processes mission-critical online credit card checkouts. The compliance and security team enforces the following mandates:
+          <br>1. The platform must maintain high availability across three Availability Zones with automated cross-zone load balancing.
+          <br>2. Shoppers completing multi-step checkouts from corporate networks behind shared NAT proxies must remain bound to the same backend application server throughout their session.
+          <br>3. The entry point must enforce mutual TLS (mTLS) with client certificate verification for registered merchant terminals, while inspecting all inbound traffic against OWASP Top 10 vulnerabilities.
+          <br>Which architecture fulfills this banking-grade mandate?</span>
+        </div>
+        <ul class="quiz-single-options">
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">A</span>
+            <span>Deploy Classic Load Balancer (CLB) with Source IP hash scheduling and Anti-DDoS Basic.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">B</span>
+            <span>Deploy Application Load Balancer (ALB) across 3 AZs; configure cookie-based session persistence; enable mTLS with merchant CA certificate verification; integrate with WAF 3.0.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">C</span>
+            <span>Deploy Network Load Balancer (NLB) with TCPSSL listeners, configuring Source IP persistence with a 1,000-second timeout.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">D</span>
+            <span>Deploy multiple standalone ECS reverse proxies across zones, each running self-signed OpenSSL certificates and IP tables rules.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 42: QUIZ ANSWER 3 ==================== -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Quiz Solution • Scenario 3</div>
+      <h2>Scenario 3: Solution &amp; Architectural Analysis</h2>
+      
+      <div class="analysis-main-card">
+        <div>
+          <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: B</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">ALB across 3 AZs with cookie session stickiness, mTLS client authentication, and WAF 3.0 inspection.</span>
+        </div>
+        <span class="badge badge-updated">Validated Architecture</span>
+      </div>
+
+      <div class="analysis-options-grid">
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option A is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Fails NAT corporate persistence and mTLS.</strong> Source IP hash routes all corporate shoppers sharing a single NAT gateway to the exact same server, causing severe imbalances. CLB also lacks native mTLS client certificate verification and inline WAF 3.0 inspection.
+          </div>
+        </div>
+
+        <div class="analysis-item correct">
+          <div class="analysis-item-header correct">
+            <span>✔ Option B is Correct</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Comprehensive financial security &amp; resiliency.</strong> ALB operates across 3 AZs with active-active cross-zone balancing. Cookie-based session persistence guarantees session stickiness even behind shared NATs. Native mTLS verifies merchant client certificates, and cloud-native WAF 3.0 inspects payload vulnerabilities.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option C is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Wrong persistence model and no Layer 7 WAF.</strong> NLB Source IP persistence breaks under corporate NAT gateways. Furthermore, Layer 4 NLB cannot inspect HTTP payloads for OWASP Top 10 vulnerabilities (SQLi, XSS) or evaluate HTTP cookies.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option D is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>High operational risk and single points of failure.</strong> Unmanaged standalone VM proxies lack automated health-driven failover, elastic auto-scaling, and banking compliance certification.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 43: MODULE SUMMARY & NEXT STEPS ==================== -->
+    <section class="slide title-slide" data-category="Summary">
+      <div class="slide-category">Module Complete</div>
+      <h1 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Module 04: Server Load Balancer (SLB)</h1>
+      <div class="callout callout-green" style="max-width: 580px; margin: 0 auto; text-align: left;">
+        <div>
+          <span class="badge badge-updated">Up Next</span><br>
+          <strong>Module 06: ApsaraDB for RDS</strong>
+          <div style="margin-top: 0.75rem;">
+            <a href="module-03-vpc.html" class="btn-nav" style="display: inline-flex; align-items: center; text-decoration: none; padding: 0.45rem 1rem; font-size: 0.9rem; margin-right: 0.5rem;">⬅️ Back to Module 03 (VPC)</a>
+            <a href="module-06-rds.html" class="btn-nav primary" style="display: inline-flex; align-items: center; text-decoration: none; padding: 0.45rem 1rem; font-size: 0.9rem;">Proceed to Module 06 (RDS) ➡️</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="assets/js/presentation.js"></script>
+</body>
+</html>

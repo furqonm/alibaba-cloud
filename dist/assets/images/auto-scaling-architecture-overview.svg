@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="auto">
+  <defs>
+    <filter id="as-shd" x="-3%" y="-3%" width="106%" height="106%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.08" />
+    </filter>
+    <linearGradient id="as-og" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF6A00" />
+      <stop offset="100%" stop-color="#FF8F3D" />
+    </linearGradient>
+    <linearGradient id="as-bg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284C7" />
+      <stop offset="100%" stop-color="#38BDF8" />
+    </linearGradient>
+    <marker id="as-arr-o" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#FF6A00" />
+    </marker>
+    <marker id="as-arr-b" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284C7" />
+    </marker>
+    <marker id="as-arr-g" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669" />
+    </marker>
+  </defs>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+    <!-- Canvas frame -->
+    <rect x="10" y="10" width="940" height="460" rx="12" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5" />
+
+    <!-- Top: Triggers Layer -->
+    <g filter="url(#as-shd)">
+      <rect x="30" y="25" width="900" height="95" rx="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5" />
+      <rect x="30" y="25" width="900" height="26" rx="8" fill="url(#as-bg)" />
+      <rect x="30" y="43" width="900" height="8" fill="url(#as-bg)" />
+      <text x="50" y="43" fill="#FFFFFF" font-size="12" font-weight="700">Scaling Event Triggers &amp; Telemetry Inputs</text>
+      <text x="910" y="43" fill="#E0F2FE" font-size="11" font-weight="500" text-anchor="end">Scheduled &bull; Dynamic Alarms &bull; Custom OpenAPI</text>
+
+      <!-- Trigger 1: CloudMonitor -->
+      <rect x="50" y="60" width="260" height="48" rx="6" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="1" />
+      <text x="180" y="80" fill="#0369A1" font-size="11" font-weight="700" text-anchor="middle">CloudMonitor Alarms</text>
+      <text x="180" y="96" fill="#64748B" font-size="9" text-anchor="middle">Average CPU &ge; 70% &bull; Inbound Traffic &bull; QPS</text>
+
+      <!-- Trigger 2: Scheduled / Cron Tasks -->
+      <rect x="350" y="60" width="260" height="48" rx="6" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="1" />
+      <text x="480" y="80" fill="#0369A1" font-size="11" font-weight="700" text-anchor="middle">Scheduled &amp; Recurring Tasks</text>
+      <text x="480" y="96" fill="#64748B" font-size="9" text-anchor="middle">Launch Expiration Window &bull; Cron Scheduling</text>
+
+      <!-- Trigger 3: Manual / Custom Triggers -->
+      <rect x="650" y="60" width="260" height="48" rx="6" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="1" />
+      <text x="780" y="80" fill="#0369A1" font-size="11" font-weight="700" text-anchor="middle">Manual &amp; API Triggers</text>
+      <text x="780" y="96" fill="#64748B" font-size="9" text-anchor="middle">Console Trigger &bull; OpenTelemetry &bull; CI/CD</text>
+    </g>
+
+    <!-- Connector Arrow down to Auto Scaling Engine -->
+    <path d="M 480 120 L 480 150" stroke="#0284C7" stroke-width="2" marker-end="url(#as-arr-b)" />
+
+    <!-- Middle: Auto Scaling Engine & Core Policy Logic -->
+    <g filter="url(#as-shd)">
+      <rect x="30" y="155" width="900" height="110" rx="8" fill="#FFFFFF" stroke="#FF6A00" stroke-width="1.5" />
+      <rect x="30" y="155" width="900" height="26" rx="8" fill="url(#as-og)" />
+      <rect x="30" y="173" width="900" height="8" fill="url(#as-og)" />
+      <text x="50" y="173" fill="#FFFFFF" font-size="12" font-weight="700">Auto Scaling Management Core (Elastic Scaling Service - ESS)</text>
+      <text x="910" y="173" fill="#FFF7ED" font-size="11" font-weight="500" text-anchor="end">Atomic Activity &bull; Default Cooldown Lock</text>
+
+      <!-- Core Box 1: Scaling Rules -->
+      <rect x="50" y="190" width="260" height="62" rx="6" fill="#FFF7ED" stroke="#FED7AA" stroke-width="1" />
+      <text x="180" y="210" fill="#C2410C" font-size="11" font-weight="700" text-anchor="middle">Scaling Rules (Actions)</text>
+      <text x="180" y="226" fill="#9A3412" font-size="9" text-anchor="middle">Simple &bull; Target Tracking &bull; Step Scaling</text>
+      <text x="180" y="240" fill="#EA580C" font-size="9" font-weight="600" text-anchor="middle">Adjust instance quantity to Min / Max</text>
+
+      <!-- Core Box 2: Scaling Group State Engine -->
+      <rect x="350" y="190" width="260" height="62" rx="6" fill="#FFF7ED" stroke="#FED7AA" stroke-width="1" />
+      <text x="480" y="210" fill="#C2410C" font-size="11" font-weight="700" text-anchor="middle">Scaling Group Bounds &amp; State</text>
+      <text x="480" y="226" fill="#9A3412" font-size="9" text-anchor="middle">MinSize: 2 &bull; MaxSize: 50 &bull; Desired: 8</text>
+      <text x="480" y="240" fill="#EA580C" font-size="9" font-weight="600" text-anchor="middle">Multi-AZ VSwitches &bull; Cooldown (300s)</text>
+
+      <!-- Core Box 3: Scaling Configuration / Template -->
+      <rect x="650" y="190" width="260" height="62" rx="6" fill="#FFF7ED" stroke="#FED7AA" stroke-width="1" />
+      <text x="780" y="210" fill="#C2410C" font-size="11" font-weight="700" text-anchor="middle">Scaling Configuration (Blueprint)</text>
+      <text x="780" y="226" fill="#9A3412" font-size="9" text-anchor="middle">Multi-Instance Families &bull; Spot / On-Demand</text>
+      <text x="780" y="240" fill="#EA580C" font-size="9" font-weight="600" text-anchor="middle">Custom Image &bull; User Data &bull; Security Group</text>
+    </g>
+
+    <!-- Connectors down to Ecosystem -->
+    <path d="M 220 265 L 220 295" stroke="#FF6A00" stroke-width="2" marker-end="url(#as-arr-o)" />
+    <path d="M 480 265 L 480 295" stroke="#FF6A00" stroke-width="2" marker-end="url(#as-arr-o)" />
+    <path d="M 740 265 L 740 295" stroke="#FF6A00" stroke-width="2" marker-end="url(#as-arr-o)" />
+
+    <!-- Bottom: Cloud-Native Integrated Ecosystem -->
+    <g filter="url(#as-shd)">
+      <rect x="30" y="300" width="900" height="155" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" />
+      <rect x="30" y="300" width="900" height="26" rx="8" fill="#1E293B" />
+      <rect x="30" y="318" width="900" height="8" fill="#1E293B" />
+      <text x="50" y="318" fill="#FFFFFF" font-size="12" font-weight="700">Automated Infrastructure Provisioning &amp; Whitelisting</text>
+      <text x="910" y="318" fill="#94A3B8" font-size="11" font-weight="500" text-anchor="end">Zero Manual Touch &bull; Elastic Endpoints</text>
+
+      <!-- Target 1: SLB / ALB Auto-Binding -->
+      <rect x="50" y="335" width="260" height="105" rx="6" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="1" />
+      <text x="180" y="358" fill="#0284C7" font-size="12" font-weight="700" text-anchor="middle">Server Load Balancer (SLB)</text>
+      <text x="65" y="380" fill="#0369A1" font-size="10" font-weight="600">&bull; Auto-Attach to Backend Servers</text>
+      <text x="65" y="398" fill="#64748B" font-size="9">Dynamic registration to VServer groups</text>
+      <text x="65" y="415" fill="#0369A1" font-size="10" font-weight="600">&bull; Graceful Connection Draining</text>
+      <text x="65" y="430" fill="#64748B" font-size="9">Finishes in-flight HTTP requests before scale-in</text>
+
+      <!-- Target 2: ECS Instances Pool -->
+      <rect x="350" y="335" width="260" height="105" rx="6" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1" />
+      <text x="480" y="358" fill="#059669" font-size="12" font-weight="700" text-anchor="middle">Compute Capacity Pool</text>
+      <text x="365" y="380" fill="#047857" font-size="10" font-weight="600">&bull; Multi-Zone Elastic Compute (ECS)</text>
+      <text x="365" y="398" fill="#64748B" font-size="9">Spans Zone A, Zone B, Zone C</text>
+      <text x="365" y="415" fill="#047857" font-size="10" font-weight="600">&bull; Serverless Container Pods (ECI)</text>
+      <text x="365" y="430" fill="#64748B" font-size="9">Instant container burst in seconds</text>
+
+      <!-- Target 3: RDS Whitelisting -->
+      <rect x="650" y="335" width="260" height="105" rx="6" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1" />
+      <text x="780" y="358" fill="#D97706" font-size="12" font-weight="700" text-anchor="middle">ApsaraDB RDS Security</text>
+      <text x="665" y="380" fill="#B45309" font-size="10" font-weight="600">&bull; Auto-Whitelist Private IP</text>
+      <text x="665" y="398" fill="#64748B" font-size="9">Adds private IP to database security group</text>
+      <text x="665" y="415" fill="#B45309" font-size="10" font-weight="600">&bull; Auto-Prune on Scale-In</text>
+      <text x="665" y="430" fill="#64748B" font-size="9">Removes dead instance IP to prevent leakage</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 650 210" width="650" height="210">
+  <defs>
+    <style>
+      .text-title { font-family: PingFangSC-Regular, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #252525; }
+      .text-category { font-family: PingFangSC-Regular, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 13px; font-weight: bold; fill: #1366ec; text-anchor: middle; }
+      .text-inst { font-family: PingFangSC-Regular, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #252525; text-anchor: middle; }
+      .text-sub { font-family: PingFangSC-Regular, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 10.5px; fill: #252525; text-anchor: middle; }
+      .text-bar { font-family: PingFangSC-Regular, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: bold; fill: #252525; text-anchor: middle; }
+    </style>
+  </defs>
+  <g transform="translate(0.5,0.5)">
+    <!-- Clean Outer Boundary Box -->
+    <rect x="1" y="1" width="648" height="208" rx="8" ry="8" fill="#ffffff" stroke="#d9d9d9" pointer-events="none" />
+    <!-- Host Boundary Container (Single-Tenant Host Group / MyBase) -->
+    <rect x="20" y="16" width="610" height="130" rx="6" ry="6" fill="#fcfcfd" stroke="#1366ec" stroke-dasharray="4,4" stroke-width="1.5" />
+
+    <!-- Instance 1 -->
+    <rect x="35" y="28" width="185" height="106" rx="5" ry="5" fill="#ffffff" stroke="#e2e8f0" />
+    <path d="M 123.16 60.63 L 118.78 53.51 L 121.16 49.63 L 117.30 49.63 L 112.92 42.50 L 117.30 35.37 L 125.97 35.37 L 127.50 37.85 L 129.02 35.37 L 137.69 35.37 L 142.07 42.50 L 137.69 49.63 L 133.83 49.63 L 136.21 53.51 L 131.83 60.63 L 123.16 60.63 Z M 130.07 46.84 L 127.50 42.64 L 124.92 46.84 L 130.07 46.84 Z" fill="#1366ec" stroke="none" />
+    <text x="127.5" y="70" class="text-inst">RDS Instance 1</text>
+        <g>
+      <rect x="66.5" y="86.0" width="26" height="24" rx="2" ry="2" fill="#ffffff" stroke="#252525" stroke-width="1.2" />
+      <path d="M 66.5 91.0 L 92.5 91.0 M 72.5 86.0 L 72.5 110.0 M 79.5 86.0 L 79.5 110.0 M 86.5 86.0 L 86.5 110.0" fill="none" stroke="#252525" stroke-width="1" />
+      <text x="79.5" y="124.0" class="text-sub">Memory</text>
+    </g>
+        <g>
+      <path d="M 115.5 90.5 C 115.5 86.5 139.5 86.5 139.5 90.5 L 139.5 105.5 C 139.5 109.5 115.5 109.5 115.5 105.5 Z" fill="#ffffff" stroke="#252525" stroke-width="1.2" />
+      <path d="M 115.5 90.5 C 115.5 94.5 139.5 94.5 139.5 90.5 M 115.5 95.5 C 115.5 99.5 139.5 99.5 139.5 95.5 M 115.5 100.5 C 115.5 104.5 139.5 104.5 139.5 100.5" fill="none" stroke="#252525" stroke-width="1" />
+      <text x="127.5" y="124.0" class="text-sub">Storage</text>
+    </g>
+        <g>
+      <rect x="163.5" y="86.0" width="24" height="24" rx="2" ry="2" fill="#ffffff" stroke="#64748b" stroke-width="1.2" />
+      <rect x="167.0" y="89.5" width="17" height="17" rx="1" ry="1" fill="#cbd5e1" stroke="none" />
+      <text x="175.5" y="124.0" class="text-sub">CPU</text>
+    </g>
+
+    <!-- Instance 2 -->
+    <rect x="232.5" y="28" width="185" height="106" rx="5" ry="5" fill="#ffffff" stroke="#e2e8f0" />
+    <path d="M 320.66 60.63 L 316.28 53.51 L 318.66 49.63 L 314.80 49.63 L 310.42 42.50 L 314.80 35.37 L 323.47 35.37 L 325.00 37.85 L 326.52 35.37 L 335.19 35.37 L 339.57 42.50 L 335.19 49.63 L 331.33 49.63 L 333.71 53.51 L 329.33 60.63 L 320.66 60.63 Z M 327.57 46.84 L 325.00 42.64 L 322.42 46.84 L 327.57 46.84 Z" fill="#1366ec" stroke="none" />
+    <text x="325" y="70" class="text-inst">RDS Instance 2</text>
+        <g>
+      <rect x="264.0" y="86.0" width="26" height="24" rx="2" ry="2" fill="#ffffff" stroke="#252525" stroke-width="1.2" />
+      <path d="M 264.0 91.0 L 290.0 91.0 M 270.0 86.0 L 270.0 110.0 M 277.0 86.0 L 277.0 110.0 M 284.0 86.0 L 284.0 110.0" fill="none" stroke="#252525" stroke-width="1" />
+      <text x="277.0" y="124.0" class="text-sub">Memory</text>
+    </g>
+        <g>
+      <path d="M 313.0 90.5 C 313.0 86.5 337.0 86.5 337.0 90.5 L 337.0 105.5 C 337.0 109.5 313.0 109.5 313.0 105.5 Z" fill="#ffffff" stroke="#252525" stroke-width="1.2" />
+      <path d="M 313.0 90.5 C 313.0 94.5 337.0 94.5 337.0 90.5 M 313.0 95.5 C 313.0 99.5 337.0 99.5 337.0 95.5 M 313.0 100.5 C 313.0 104.5 337.0 104.5 337.0 100.5" fill="none" stroke="#252525" stroke-width="1" />
+      <text x="325.0" y="124.0" class="text-sub">Storage</text>
+    </g>
+        <g>
+      <rect x="361.0" y="86.0" width="24" height="24" rx="2" ry="2" fill="#ffffff" stroke="#64748b" stroke-width="1.2" />
+      <rect x="364.5" y="89.5" width="17" height="17" rx="1" ry="1" fill="#cbd5e1" stroke="none" />
+      <text x="373.0" y="124.0" class="text-sub">CPU</text>
+    </g>
+
+    <!-- Instance 3 (Flexible Sizing) -->
+    <rect x="430" y="28" width="185" height="106" rx="5" ry="5" fill="#ffffff" stroke="#e2e8f0" />
+    <path d="M 518.16 58.63 L 513.78 51.51 L 516.16 47.63 L 512.30 47.63 L 507.92 40.50 L 512.30 33.37 L 520.97 33.37 L 522.50 35.85 L 524.02 33.37 L 532.69 33.37 L 537.07 40.50 L 532.69 47.63 L 528.83 47.63 L 531.21 51.51 L 526.83 58.63 L 518.16 58.63 Z M 525.07 44.84 L 522.50 40.64 L 519.92 44.84 L 525.07 44.84 Z" fill="#1366ec" stroke="none" />
+    <text x="522.5" y="66" class="text-inst">RDS Instance 3</text>
+    <text x="522.5" y="79" class="text-sub" fill="#64748b" font-size="10px">(Flexible Sizing)</text>
+        <g>
+      <rect x="461.5" y="86.0" width="26" height="24" rx="2" ry="2" fill="#ffffff" stroke="#252525" stroke-width="1.2" />
+      <path d="M 461.5 91.0 L 487.5 91.0 M 467.5 86.0 L 467.5 110.0 M 474.5 86.0 L 474.5 110.0 M 481.5 86.0 L 481.5 110.0" fill="none" stroke="#252525" stroke-width="1" />
+      <text x="474.5" y="124.0" class="text-sub">Memory</text>
+    </g>
+        <g>
+      <path d="M 510.5 90.5 C 510.5 86.5 534.5 86.5 534.5 90.5 L 534.5 105.5 C 534.5 109.5 510.5 109.5 510.5 105.5 Z" fill="#ffffff" stroke="#252525" stroke-width="1.2" />
+      <path d="M 510.5 90.5 C 510.5 94.5 534.5 94.5 534.5 90.5 M 510.5 95.5 C 510.5 99.5 534.5 99.5 534.5 95.5 M 510.5 100.5 C 510.5 104.5 534.5 104.5 534.5 100.5" fill="none" stroke="#252525" stroke-width="1" />
+      <text x="522.5" y="124.0" class="text-sub">Storage</text>
+    </g>
+        <g>
+      <rect x="558.5" y="86.0" width="24" height="24" rx="2" ry="2" fill="#ffffff" stroke="#64748b" stroke-width="1.2" />
+      <rect x="562.0" y="89.5" width="17" height="17" rx="1" ry="1" fill="#cbd5e1" stroke="none" />
+      <text x="570.5" y="124.0" class="text-sub">CPU</text>
+    </g>
+
+    <!-- Bottom Physical Host Hardware Layer Base -->
+    <rect x="20" y="154" width="610" height="42" rx="5" ry="5" fill="#f0f2f5" stroke="#cbd5e1" stroke-width="1.2" />
+    <text x="325" y="172" class="text-bar">Physical Host Hardware Layer (Exclusive Bare-Metal Server)</text>
+    <text x="325" y="187" class="text-sub" fill="#64748b">Custom Resource Allocation • Up to 200%~300% CPU Oversubscription • Host OS Bastion Access</text>
+  </g>
+</svg>

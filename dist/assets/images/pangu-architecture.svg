@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" width="920" height="480">
+  <defs>
+    <filter id="pangu-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  <rect width="920" height="480" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+
+  <!-- ==================== LAYER 1: PRODUCT LAYER ==================== -->
+  <g transform="translate(20, 16)">
+    <!-- Label -->
+    <rect x="0" y="0" width="165" height="74" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.4"/>
+    <text x="82" y="35" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#1e293b">Product</text>
+    <text x="82" y="55" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#1e293b">Layer</text>
+
+    <!-- 3 Product Cards -->
+    <g transform="translate(180, 0)">
+      <!-- Storage Services -->
+      <g transform="translate(0, 0)" filter="url(#pangu-shadow)">
+        <rect width="225" height="74" rx="8" fill="#1e3a8a"/>
+        <text x="112" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#ffffff">Storage Services</text>
+        <text x="112" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#93c5fd">EBS • NAS • OSS • Hybrid</text>
+      </g>
+
+      <!-- Databases -->
+      <g transform="translate(238, 0)" filter="url(#pangu-shadow)">
+        <rect width="225" height="74" rx="8" fill="#1d4ed8"/>
+        <text x="112" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#ffffff">Databases</text>
+        <text x="112" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#bfdbfe">PolarDB • TableStore • RDS</text>
+      </g>
+
+      <!-- Computing Services -->
+      <g transform="translate(476, 0)" filter="url(#pangu-shadow)">
+        <rect width="224" height="74" rx="8" fill="#2563eb"/>
+        <text x="112" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#ffffff">Computing Services</text>
+        <text x="112" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#dbeafe">MaxCompute • Flink • PAI</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Divider 1 -->
+  <line x1="20" y1="102" x2="900" y2="102" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- ==================== LAYER 2: ADAPTATION LAYER ==================== -->
+  <g transform="translate(20, 114)">
+    <rect x="0" y="0" width="165" height="52" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.4"/>
+    <text x="82" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13.5" font-weight="800" fill="#334155">Adaptation Layer</text>
+
+    <!-- 3 Adaptation Cards -->
+    <g transform="translate(180, 0)">
+      <g transform="translate(0, 0)" filter="url(#pangu-shadow)">
+        <rect width="225" height="52" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.6"/>
+        <text x="112" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8">BlockFS</text>
+      </g>
+
+      <g transform="translate(238, 0)" filter="url(#pangu-shadow)">
+        <rect width="225" height="52" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.6"/>
+        <text x="112" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8">LogFile</text>
+      </g>
+
+      <g transform="translate(476, 0)" filter="url(#pangu-shadow)">
+        <rect width="224" height="52" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.6"/>
+        <text x="112" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8">HDFS</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Divider 2 -->
+  <line x1="20" y1="178" x2="900" y2="178" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- ==================== LAYER 3: CORE BASE LAYER ==================== -->
+  <g transform="translate(20, 190)">
+    <rect x="0" y="0" width="165" height="150" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.4"/>
+    <text x="82" y="68" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#1e293b">Pangu Core</text>
+    <text x="82" y="88" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#1e293b">Base Layer</text>
+
+    <g transform="translate(180, 0)">
+      <!-- Core Function Modules (Row 1) -->
+      <g transform="translate(0, 0)">
+        <rect width="225" height="42" rx="6" fill="#2563eb"/>
+        <text x="112" y="26" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#ffffff">Metadata Management</text>
+      </g>
+
+      <g transform="translate(238, 0)">
+        <rect width="225" height="42" rx="6" fill="#2563eb"/>
+        <text x="112" y="26" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#ffffff">Data Placement Policy</text>
+      </g>
+
+      <g transform="translate(476, 0)">
+        <rect width="224" height="42" rx="6" fill="#2563eb"/>
+        <text x="112" y="26" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#ffffff">Multi-Replica Protocol</text>
+      </g>
+
+      <!-- Core Function Modules (Row 2) -->
+      <g transform="translate(0, 50)">
+        <rect width="225" height="42" rx="6" fill="#3b82f6"/>
+        <text x="112" y="26" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#ffffff">Data Verification</text>
+      </g>
+
+      <g transform="translate(238, 50)">
+        <rect width="225" height="42" rx="6" fill="#3b82f6"/>
+        <text x="112" y="26" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#ffffff">Disk Management</text>
+      </g>
+
+      <g transform="translate(476, 50)">
+        <rect width="224" height="42" rx="6" fill="#3b82f6"/>
+        <text x="112" y="26" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#ffffff">Erasure Coding (EC)</text>
+      </g>
+
+      <!-- Standalone Storage Engine (Row 3) -->
+      <g transform="translate(0, 100)">
+        <rect width="700" height="48" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.6"/>
+        <text x="350" y="30" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#92400e">High-Performance Standalone Storage Engine</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Divider 3 -->
+  <line x1="20" y1="352" x2="900" y2="352" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- ==================== LAYER 4: HARDWARE INTEGRATION LAYER ==================== -->
+  <g transform="translate(20, 364)">
+    <rect x="0" y="0" width="165" height="52" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.4"/>
+    <text x="82" y="24" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#334155">HW Integration</text>
+    <text x="82" y="42" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#334155">Layer</text>
+
+    <!-- 3 HW Cards -->
+    <g transform="translate(180, 0)">
+      <g transform="translate(0, 0)" filter="url(#pangu-shadow)">
+        <rect width="225" height="52" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.4"/>
+        <text x="112" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13.5" font-weight="700" fill="#334155">CIPU &amp; Offloading</text>
+      </g>
+
+      <g transform="translate(238, 0)" filter="url(#pangu-shadow)">
+        <rect width="225" height="52" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.4"/>
+        <text x="112" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13.5" font-weight="700" fill="#334155">NVMe / High-Speed Media</text>
+      </g>
+
+      <g transform="translate(476, 0)" filter="url(#pangu-shadow)">
+        <rect width="224" height="52" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.4"/>
+        <text x="112" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13.5" font-weight="700" fill="#334155">Custom Hardware Acceleration</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bottom Brand Footnote -->
+  <text x="895" y="468" text-anchor="end" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#94a3b8">Alibaba Cloud Apsara Infrastructure</text>
+</svg>

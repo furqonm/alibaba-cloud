@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 440" width="100%" height="100%">
+  <rect x="15" y="15" width="850" height="410" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="440" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#1e293b">SLB Health Check Mechanisms: Layer 4 vs. Layer 7 Detection</text>
+
+  <!-- Left: Layer 4 TCP/UDP Probing -->
+  <g transform="translate(35, 75)">
+    <rect width="385" height="325" rx="12" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5"/>
+    <rect x="15" y="15" width="355" height="35" rx="6" fill="#0284c7"/>
+    <text x="192" y="38" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Layer 4 Health Checks (TCP / UDP)</text>
+
+    <g transform="translate(20, 65)">
+      <rect width="345" height="80" rx="6" fill="#ffffff" stroke="#bae6fd"/>
+      <text x="15" y="24" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0369a1">TCP Three-Way Handshake</text>
+      <text x="15" y="44" font-family="monospace" font-size="10" fill="#475569">SLB -&gt; SYN | ECS -&gt; SYN+ACK | SLB -&gt; RST</text>
+      <text x="15" y="64" font-family="system-ui, sans-serif" font-size="10" fill="#059669">Fast connection test; immediately resets connection</text>
+
+      <rect y="95" width="345" height="75" rx="6" fill="#ffffff" stroke="#bae6fd"/>
+      <text x="15" y="119" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0369a1">UDP Port Check</text>
+      <text x="15" y="139" font-family="monospace" font-size="10" fill="#475569">Sends UDP request; expects response or silence</text>
+      <text x="15" y="157" font-family="system-ui, sans-serif" font-size="10" fill="#dc2626">If ICMP "Port Unreachable" is returned -&gt; Unhealthy</text>
+
+      <rect y="180" width="345" height="55" rx="6" fill="#ffffff" stroke="#bae6fd"/>
+      <text x="15" y="202" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0284c7">Ideal For:</text>
+      <text x="15" y="222" font-family="system-ui, sans-serif" font-size="10" fill="#475569">High-throughput Layer 4 services, Redis, Kafka, and VPN gateways</text>
+    </g>
+  </g>
+
+  <!-- Right: Layer 7 HTTP/HTTPS Probing -->
+  <g transform="translate(455, 75)">
+    <rect width="385" height="325" rx="12" fill="#fff7ed" stroke="#FF6A00" stroke-width="1.5"/>
+    <rect x="15" y="15" width="355" height="35" rx="6" fill="#FF6A00"/>
+    <text x="192" y="38" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Layer 7 Health Checks (HTTP / HTTPS)</text>
+
+    <g transform="translate(20, 65)">
+      <rect width="345" height="80" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+      <text x="15" y="24" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#c2410c">HTTP HEAD / GET Probing</text>
+      <text x="15" y="44" font-family="monospace" font-size="10" fill="#475569">HEAD /healthz HTTP/1.1 (Host: check.local)</text>
+      <text x="15" y="64" font-family="system-ui, sans-serif" font-size="10" fill="#059669">Validates full web application server runtime stack</text>
+
+      <rect y="95" width="345" height="75" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+      <text x="15" y="119" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#c2410c">Status Code Evaluation</text>
+      <text x="15" y="139" font-family="monospace" font-size="10" fill="#475569">Expected: http_2xx, http_3xx (e.g. 200, 302)</text>
+      <text x="15" y="157" font-family="system-ui, sans-serif" font-size="10" fill="#dc2626">5xx Server Error or timeout -&gt; Marked Unhealthy</text>
+
+      <rect y="180" width="345" height="55" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+      <text x="15" y="202" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#c2410c">Threshold Parameters:</text>
+      <text x="15" y="222" font-family="system-ui, sans-serif" font-size="10" fill="#475569">Interval (2-5s) • Timeout (1-5s) • Healthy/Unhealthy Threshold (3x)</text>
+    </g>
+  </g>
+</svg>

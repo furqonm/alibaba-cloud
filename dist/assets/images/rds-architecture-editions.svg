@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <linearGradient id="primary-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f0f9ff"/>
+    </linearGradient>
+    <linearGradient id="ha-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f0fdf4"/>
+    </linearGradient>
+    <linearGradient id="ent-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#faf5ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Card 1: Basic Edition -->
+  <g transform="translate(30, 20)">
+    <rect width="280" height="440" rx="12" fill="url(#primary-grad)" stroke="#0284c7" stroke-width="1.8" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="280" height="52" rx="12" fill="#0284c7"/>
+    <rect x="0" y="40" width="280" height="12" fill="#0284c7"/>
+    <text x="140" y="33" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#ffffff">Basic Edition</text>
+    <text x="140" y="78" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#0369a1">Single Compute Node</text>
+
+    <!-- Node Box -->
+    <rect x="25" y="98" width="230" height="110" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+    <rect x="40" y="115" width="40" height="36" rx="6" fill="#e0f2fe"/>
+    <circle cx="60" cy="125" r="3" fill="#0284c7"/>
+    <circle cx="60" cy="133" r="3" fill="#0284c7"/>
+    <circle cx="60" cy="141" r="3" fill="#0284c7"/>
+    <text x="92" y="132" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#0f172a">Primary Node</text>
+    <text x="92" y="148" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#64748b">MySQL / PG / MSSQL</text>
+    <rect x="40" y="165" width="200" height="28" rx="5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="140" y="183" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#475569">Decoupled Compute Layer</text>
+
+    <!-- Storage Link -->
+    <line x1="140" y1="208" x2="140" y2="242" stroke="#0284c7" stroke-width="2" stroke-dasharray="3 3"/>
+    <polygon points="140,248 136,240 144,240" fill="#0284c7"/>
+
+    <!-- Storage Box -->
+    <rect x="25" y="250" width="230" height="80" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+    <text x="140" y="278" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#0369a1">Apsara Pangu Distributed Disk</text>
+    <text x="140" y="298" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#64748b">ESSD AutoPL / Cloud Disk (Triplicate)</text>
+    <text x="140" y="316" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#0284c7">99.9999999% Data Durability</text>
+
+    <!-- Characteristics Pill List -->
+    <rect x="25" y="348" width="230" height="74" rx="6" fill="#f1f5f9"/>
+    <text x="38" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155">• Availability: 99.9% SLA</text>
+    <text x="38" y="390" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155">• Single point of failure (No standby)</text>
+    <text x="38" y="410" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#0284c7">• Dev / Test / Micro workloads</text>
+  </g>
+
+  <!-- Card 2: High-Availability Edition -->
+  <g transform="translate(340, 20)">
+    <rect width="280" height="440" rx="12" fill="url(#ha-grad)" stroke="#10b981" stroke-width="2" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="280" height="52" rx="12" fill="#10b981"/>
+    <rect x="0" y="40" width="280" height="12" fill="#10b981"/>
+    <text x="140" y="33" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#ffffff">High-Availability Edition</text>
+    <text x="140" y="78" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#047857">Dual-Node Active-Standby</text>
+
+    <!-- Node 1: Primary -->
+    <rect x="20" y="98" width="112" height="100" rx="6" fill="#ffffff" stroke="#86efac" stroke-width="1.5"/>
+    <text x="76" y="122" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#15803d">Primary Node</text>
+    <text x="76" y="140" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#64748b">Active (R/W)</text>
+    <rect x="28" y="152" width="96" height="22" rx="4" fill="#dcfce7"/>
+    <text x="76" y="167" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#166534">Zone A</text>
+
+    <!-- Node 2: Secondary -->
+    <rect x="148" y="98" width="112" height="100" rx="6" fill="#ffffff" stroke="#86efac" stroke-width="1.5"/>
+    <text x="204" y="122" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#0f766e">Secondary</text>
+    <text x="204" y="140" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#64748b">Standby</text>
+    <rect x="156" y="152" width="96" height="22" rx="4" fill="#ccfbf1"/>
+    <text x="204" y="167" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#115e59">Zone B</text>
+
+    <!-- Sync Arrow between nodes -->
+    <path d="M 132 148 L 148 148" stroke="#10b981" stroke-width="2"/>
+    <polygon points="148,148 142,145 142,151" fill="#10b981"/>
+
+    <!-- Replication / Heartbeat label -->
+    <rect x="35" y="208" width="210" height="26" rx="4" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1"/>
+    <text x="140" y="225" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#047857">Semi-Sync &amp; HA Health Monitor</text>
+
+    <!-- Cloud Storage Tier -->
+    <rect x="20" y="246" width="240" height="84" rx="8" fill="#ffffff" stroke="#86efac" stroke-width="1.5"/>
+    <text x="140" y="272" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#15803d">Cross-AZ Shared Storage Fabric</text>
+    <text x="140" y="292" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#64748b">Automated VIP Failover (&lt; 30s)</text>
+    <text x="140" y="312" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#047857">Zero Data Loss Target (RPO ~ 0)</text>
+
+    <!-- Characteristics Pill List -->
+    <rect x="20" y="348" width="240" height="74" rx="6" fill="#f0fdf4"/>
+    <text x="32" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#166534">• Availability: 99.95% – 99.99%</text>
+    <text x="32" y="390" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#166534">• Automated HA failover detection</text>
+    <text x="32" y="410" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#15803d">• Enterprise Production Standard</text>
+  </g>
+
+  <!-- Card 3: Enterprise Edition -->
+  <g transform="translate(650, 20)">
+    <rect width="280" height="440" rx="12" fill="url(#ent-grad)" stroke="#8b5cf6" stroke-width="1.8" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="280" height="52" rx="12" fill="#8b5cf6"/>
+    <rect x="0" y="40" width="280" height="12" fill="#8b5cf6"/>
+    <text x="140" y="33" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#ffffff">Enterprise Edition</text>
+    <text x="140" y="78" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#6d28d9">Triple-Node Consensus (Paxos)</text>
+
+    <!-- 3 Nodes Grid -->
+    <g transform="translate(18, 98)">
+      <rect x="0" y="0" width="76" height="88" rx="6" fill="#ffffff" stroke="#c4b5fd" stroke-width="1.2"/>
+      <text x="38" y="24" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#6d28d9">Leader</text>
+      <text x="38" y="40" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="600" fill="#64748b">Active</text>
+      <rect x="8" y="54" width="60" height="18" rx="3" fill="#ede9fe"/>
+      <text x="38" y="67" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#5b21b6">Zone A</text>
+    </g>
+    <g transform="translate(102, 98)">
+      <rect x="0" y="0" width="76" height="88" rx="6" fill="#ffffff" stroke="#c4b5fd" stroke-width="1.2"/>
+      <text x="38" y="24" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#7c3aed">Follower</text>
+      <text x="38" y="40" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="600" fill="#64748b">Standby</text>
+      <rect x="8" y="54" width="60" height="18" rx="3" fill="#ede9fe"/>
+      <text x="38" y="67" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#5b21b6">Zone B</text>
+    </g>
+    <g transform="translate(186, 98)">
+      <rect x="0" y="0" width="76" height="88" rx="6" fill="#ffffff" stroke="#c4b5fd" stroke-width="1.2"/>
+      <text x="38" y="24" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#7c3aed">Follower</text>
+      <text x="38" y="40" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="600" fill="#64748b">Standby</text>
+      <rect x="8" y="54" width="60" height="18" rx="3" fill="#ede9fe"/>
+      <text x="38" y="67" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#5b21b6">Zone C</text>
+    </g>
+
+    <!-- Consensus Engine -->
+    <rect x="18" y="198" width="244" height="36" rx="6" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1"/>
+    <text x="140" y="215" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#6d28d9">Distributed X-Paxos Consensus</text>
+    <text x="140" y="228" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="500" fill="#7c3aed">Quorum Log Commit (2 of 3 Acks)</text>
+
+    <!-- Financial Storage Box -->
+    <rect x="18" y="246" width="244" height="84" rx="8" fill="#ffffff" stroke="#c4b5fd" stroke-width="1.5"/>
+    <text x="140" y="272" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#6d28d9">Multi-AZ Strong Consistency</text>
+    <text x="140" y="292" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#64748b">Zero Data Loss Guaranteed (RPO = 0)</text>
+    <text x="140" y="312" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#7c3aed">Cross-Datacenter Disaster Tolerance</text>
+
+    <!-- Characteristics Pill List -->
+    <rect x="18" y="348" width="244" height="74" rx="6" fill="#faf5ff"/>
+    <text x="30" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#5b21b6">• Availability: 99.99% Financial SLA</text>
+    <text x="30" y="390" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#5b21b6">• Multi-DC Paxos quorum commit</text>
+    <text x="30" y="410" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#6d28d9">• Banking, Securities &amp; Core Payments</text>
+  </g>
+</svg>

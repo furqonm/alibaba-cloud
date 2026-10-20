@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 440" width="100%" height="100%">
+  <rect x="15" y="15" width="850" height="410" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="440" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#1e293b">Core Architectural Entities: VIP, Listeners &amp; Server Groups</text>
+
+  <!-- Client Side Left -->
+  <g transform="translate(35, 80)">
+    <rect width="130" height="310" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="65" y="30" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b">Client Traffic</text>
+    
+    <circle cx="65" cy="80" r="22" fill="#e2e8f0"/>
+    <text x="65" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16">💻</text>
+    <text x="65" y="115" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#475569">Web Users</text>
+
+    <circle cx="65" cy="170" r="22" fill="#e2e8f0"/>
+    <text x="65" y="176" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16">📱</text>
+    <text x="65" y="205" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#475569">Mobile Apps</text>
+
+    <circle cx="65" cy="255" r="22" fill="#e2e8f0"/>
+    <text x="65" y="261" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16">🌐</text>
+    <text x="65" y="290" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#475569">API Gateways</text>
+  </g>
+
+  <!-- Ingress Flow Arrows -->
+  <path d="M 165 235 L 200 235" stroke="#FF6A00" stroke-width="3" fill="none"/>
+  <polygon points="205,235 195,230 195,240" fill="#FF6A00"/>
+
+  <!-- SLB Instance Middle Container -->
+  <g transform="translate(210, 80)">
+    <rect width="360" height="310" rx="12" fill="#fff7ed" stroke="#FF6A00" stroke-width="1.5"/>
+    <rect x="15" y="12" width="330" height="32" rx="6" fill="#FF6A00"/>
+    <text x="180" y="33" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">SLB Instance (Virtual IP: 47.88.x.x)</text>
+
+    <!-- Listeners Box -->
+    <g transform="translate(15, 60)">
+      <!-- Listener 1 -->
+      <rect width="330" height="65" rx="8" fill="#ffffff" stroke="#fed7aa"/>
+      <text x="15" y="24" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#c2410c">Listener 1: HTTPS : 443</text>
+      <text x="15" y="42" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">SSL Offload • SNI Certs • Forwarding Rules</text>
+      <text x="15" y="56" font-family="monospace" font-size="9" fill="#0284c7">Rule: /api/* -&gt; API Server Group</text>
+
+      <!-- Listener 2 -->
+      <rect y="80" width="330" height="65" rx="8" fill="#ffffff" stroke="#fed7aa"/>
+      <text x="15" y="104" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#c2410c">Listener 2: HTTP : 80</text>
+      <text x="15" y="122" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">Automatic 301 Redirect -&gt; HTTPS : 443</text>
+      <text x="15" y="136" font-family="monospace" font-size="9" fill="#16a34a">Redirect Action (Zero Backend Load)</text>
+
+      <!-- Listener 3 -->
+      <rect y="160" width="330" height="65" rx="8" fill="#ffffff" stroke="#fed7aa"/>
+      <text x="15" y="184" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#c2410c">Listener 3: TCP : 9000 (NLB)</text>
+      <text x="15" y="202" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">High-Performance RPC / Database Proxy</text>
+      <text x="15" y="216" font-family="monospace" font-size="9" fill="#7c3aed">WLC Scheduling • Source IP Pass-Through</text>
+    </g>
+  </g>
+
+  <!-- Connectors to Backend -->
+  <path d="M 570 155 L 610 155" stroke="#0284c7" stroke-width="2.5" fill="none"/>
+  <polygon points="615,155 605,150 605,160" fill="#0284c7"/>
+
+  <path d="M 570 315 L 610 315" stroke="#7c3aed" stroke-width="2.5" fill="none"/>
+  <polygon points="615,315 605,310 605,320" fill="#7c3aed"/>
+
+  <!-- Backend Server Groups Right -->
+  <g transform="translate(620, 80)">
+    <rect width="225" height="310" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="112" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b">Backend Server Groups</text>
+
+    <!-- Server Group 1: Web Tier -->
+    <rect x="12" y="45" width="201" height="110" rx="8" fill="#f0f9ff" stroke="#bae6fd"/>
+    <text x="22" y="65" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0369a1">Web Server Group (Port 8080)</text>
+    <rect x="22" y="75" width="85" height="30" rx="4" fill="#ffffff" stroke="#0284c7"/>
+    <text x="64" y="94" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10">ECS-ZoneA</text>
+    <rect x="115" y="75" width="85" height="30" rx="4" fill="#ffffff" stroke="#0284c7"/>
+    <text x="157" y="94" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10">ECS-ZoneB</text>
+    <text x="22" y="125" font-family="system-ui, sans-serif" font-size="9" fill="#059669">Health Check: HTTP 200 OK</text>
+    <text x="22" y="142" font-family="system-ui, sans-serif" font-size="9" fill="#0284c7">Algorithm: Weighted Round Robin</text>
+
+    <!-- Server Group 2: API & ECI -->
+    <rect x="12" y="170" width="201" height="125" rx="8" fill="#f5f3ff" stroke="#ddd6fe"/>
+    <text x="22" y="190" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#6d28d9">Microservices Group (ECI/ACK)</text>
+    <rect x="22" y="200" width="85" height="30" rx="4" fill="#ffffff" stroke="#7c3aed"/>
+    <text x="64" y="219" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10">ECI Pod 1</text>
+    <rect x="115" y="200" width="85" height="30" rx="4" fill="#ffffff" stroke="#7c3aed"/>
+    <text x="157" y="219" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10">ECI Pod 2</text>
+    <rect x="22" y="235" width="178" height="24" rx="4" fill="#ffffff" stroke="#7c3aed"/>
+    <text x="111" y="251" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10">IP Target: Hybrid On-Prem</text>
+    <text x="22" y="280" font-family="system-ui, sans-serif" font-size="9" fill="#059669">Health Check: TCP Port 9000</text>
+  </g>
+</svg>

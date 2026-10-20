@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 450" width="100%" height="100%">
+  <defs>
+    <filter id="shadow-gwlb" x="-3%" y="-3%" width="106%" height="106%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+    <marker id="arrow-gray" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M 1 1 L 6 3.5 L 1 6 Z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M 1 1 L 6 3.5 L 1 6 Z" fill="#10b981"/>
+    </marker>
+  </defs>
+
+  <!-- Outer Canvas -->
+  <rect x="4" y="4" width="912" height="442" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- ==================== BACKGROUND BOXES ==================== -->
+  <!-- Business VPC (Left Box) -->
+  <g filter="url(#shadow-gwlb)">
+    <rect x="30" y="80" width="350" height="305" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  </g>
+  <!-- Business VPC Header Badge -->
+  <g transform="translate(44, 94)">
+    <rect width="135" height="28" rx="6" fill="#e0f2fe" stroke="#38bdf8" stroke-width="1"/>
+    <path d="M 16 19 C 14.5 19 13 17.5 13 16 C 13 14.5 14.5 13 16 13 C 16.5 11.5 18 10.5 20 10.5 C 22.5 10.5 24.5 12 25 14 C 26 14 27 15 27 16 C 27 17.5 26 19 24.5 19 Z" fill="#0284c7"/>
+    <text x="34" y="19" font-family="system-ui, sans-serif" font-size="11.5" font-weight="800" fill="#0369a1">Business VPC</text>
+  </g>
+
+  <!-- Security VPC (Right Box) -->
+  <g filter="url(#shadow-gwlb)">
+    <rect x="520" y="80" width="370" height="305" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  </g>
+  <!-- Security VPC Header Badge -->
+  <g transform="translate(534, 94)">
+    <rect width="130" height="28" rx="6" fill="#f5f3ff" stroke="#c084fc" stroke-width="1"/>
+    <path d="M 16 19 C 14.5 19 13 17.5 13 16 C 13 14.5 14.5 13 16 13 C 16.5 11.5 18 10.5 20 10.5 C 22.5 10.5 24.5 12 25 14 C 26 14 27 15 27 16 C 27 17.5 26 19 24.5 19 Z" fill="#7c3aed"/>
+    <text x="34" y="19" font-family="system-ui, sans-serif" font-size="11.5" font-weight="800" fill="#6d28d9">Security VPC</text>
+  </g>
+
+  <!-- PrivateLink Center Zone -->
+  <g transform="translate(395, 165)">
+    <rect width="110" height="135" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+    <text x="55" y="24" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11.5" font-weight="700" fill="#475569">PrivateLink</text>
+  </g>
+
+  <!-- ==================== NODES / ICONS ==================== -->
+  <!-- Client (Top) -->
+  <g transform="translate(257, 14)" filter="url(#shadow-gwlb)">
+    <rect width="110" height="42" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+    <circle cx="24" cy="21" r="9" fill="#e2e8f0"/>
+    <path d="M 24 16 A 3.5 3.5 0 1 0 24 23 A 3.5 3.5 0 1 0 24 16 Z M 17 27 C 17 24.5 20 23.5 24 23.5 C 28 23.5 31 24.5 31 27 Z" fill="#334155"/>
+    <text x="44" y="25" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b">Client</text>
+  </g>
+
+  <!-- Application (ECS in Business VPC) -->
+  <g transform="translate(65, 195)" filter="url(#shadow-gwlb)">
+    <rect width="115" height="80" rx="8" fill="#ffffff" stroke="#fdba74" stroke-width="1.5"/>
+    <!-- Server Icon (3 stacked drives) -->
+    <g transform="translate(37, 12)">
+      <rect width="40" height="10" rx="2" fill="#ff6a00"/>
+      <circle cx="34" cy="5" r="1.8" fill="#ffffff"/>
+      <rect y="13" width="40" height="10" rx="2" fill="#ff6a00"/>
+      <circle cx="34" cy="18" r="1.8" fill="#ffffff"/>
+      <rect y="26" width="40" height="10" rx="2" fill="#ff6a00"/>
+      <circle cx="34" cy="31" r="1.8" fill="#ffffff"/>
+    </g>
+    <text x="57" y="65" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11.5" font-weight="700" fill="#9a3412">Application</text>
+  </g>
+
+  <!-- GWLBe (Endpoint in Business VPC) -->
+  <g transform="translate(265, 195)" filter="url(#shadow-gwlb)">
+    <rect width="95" height="80" rx="8" fill="#ffffff" stroke="#38bdf8" stroke-width="1.5"/>
+    <!-- Shield / Interface Icon -->
+    <g transform="translate(27, 10)">
+      <path d="M 20 4 L 35 9 L 35 22 C 35 31 20 37 20 37 C 20 37 5 31 5 22 L 5 9 Z" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/>
+      <circle cx="14" cy="20" r="3" fill="#0284c7"/>
+      <circle cx="26" cy="20" r="3" fill="#0284c7"/>
+      <line x1="14" y1="20" x2="26" y2="20" stroke="#0284c7" stroke-width="1.5"/>
+    </g>
+    <text x="47" y="65" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#0369a1">GWLBe</text>
+  </g>
+
+  <!-- GWLB (In Security VPC) -->
+  <g transform="translate(545, 195)" filter="url(#shadow-gwlb)">
+    <rect width="85" height="80" rx="8" fill="#ffffff" stroke="#818cf8" stroke-width="1.5"/>
+    <!-- GWLB Load Balancer Triangle Node Icon -->
+    <g transform="translate(17, 10)">
+      <circle cx="25" cy="10" r="5.5" fill="#4f46e5"/>
+      <circle cx="10" cy="34" r="5.5" fill="#4f46e5"/>
+      <circle cx="40" cy="34" r="5.5" fill="#4f46e5"/>
+      <line x1="25" y1="10" x2="10" y2="34" stroke="#4f46e5" stroke-width="2"/>
+      <line x1="25" y1="10" x2="40" y2="34" stroke="#4f46e5" stroke-width="2"/>
+      <line x1="10" y1="34" x2="40" y2="34" stroke="#4f46e5" stroke-width="2"/>
+    </g>
+    <text x="42" y="65" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#3730a3">GWLB</text>
+  </g>
+
+  <!-- Server Group (Target Group in Security VPC) -->
+  <g transform="translate(685, 125)">
+    <rect width="185" height="245" rx="8" fill="#ffffff" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4 4"/>
+    <rect x="12" y="8" width="100" height="20" rx="4" fill="#f1f5f9"/>
+    <text x="62" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#334155">Server group</text>
+
+    <!-- NVA 1 -->
+    <g transform="translate(90, 36)">
+      <rect width="75" height="52" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+      <g transform="translate(12, 14)">
+        <rect width="9" height="9" rx="1.5" fill="#334155"/>
+        <rect x="12" width="9" height="9" rx="1.5" fill="#334155"/>
+        <rect y="12" width="9" height="9" rx="1.5" fill="#334155"/>
+        <rect x="12" y="12" width="9" height="9" rx="1.5" fill="#334155"/>
+      </g>
+      <text x="46" y="29" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e293b">NVA</text>
+    </g>
+
+    <!-- NVA 2 -->
+    <g transform="translate(90, 102)">
+      <rect width="75" height="52" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+      <g transform="translate(12, 14)">
+        <rect width="9" height="9" rx="1.5" fill="#334155"/>
+        <rect x="12" width="9" height="9" rx="1.5" fill="#334155"/>
+        <rect y="12" width="9" height="9" rx="1.5" fill="#334155"/>
+        <rect x="12" y="12" width="9" height="9" rx="1.5" fill="#334155"/>
+      </g>
+      <text x="46" y="29" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e293b">NVA</text>
+    </g>
+
+    <!-- NVA 3 -->
+    <g transform="translate(90, 168)">
+      <rect width="75" height="52" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+      <g transform="translate(12, 14)">
+        <rect width="9" height="9" rx="1.5" fill="#334155"/>
+        <rect x="12" width="9" height="9" rx="1.5" fill="#334155"/>
+        <rect y="12" width="9" height="9" rx="1.5" fill="#334155"/>
+        <rect x="12" y="12" width="9" height="9" rx="1.5" fill="#334155"/>
+      </g>
+      <text x="46" y="29" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e293b">NVA</text>
+    </g>
+  </g>
+
+  <!-- ==================== FLOW CONNECTORS (ON TOP) ==================== -->
+  <!-- 1. Client to GWLBe (Dark Gray) -->
+  <path d="M 312 56 L 312 188" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-gray)"/>
+
+  <!-- 2. GWLBe to GWLB across PrivateLink (Dark Gray Forward Traffic) -->
+  <path d="M 360 225 L 538 225" fill="none" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow-gray)"/>
+
+  <!-- 3. GWLB to Server Group NVAs (Dark Gray Forward Traffic Branching) -->
+  <path d="M 630 225 L 725 225" fill="none" stroke="#475569" stroke-width="2"/>
+  <path d="M 725 188 L 725 320" fill="none" stroke="#475569" stroke-width="2"/>
+  <path d="M 725 188 L 768 188" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-gray)"/>
+  <path d="M 725 245 L 768 245" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-gray)"/>
+  <path d="M 725 320 L 768 320" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-gray)"/>
+
+  <!-- 4. NVAs return flow to GWLB (Green Secured Traffic) -->
+  <path d="M 768 260 L 638 260" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- 5. GWLB to GWLBe across PrivateLink (Green Secured Traffic Return) -->
+  <path d="M 545 248 L 368 248" fill="none" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+
+  <!-- 6. GWLBe to Application inside Business VPC (Green Secured Traffic Delivery) -->
+  <path d="M 265 235 L 188 235" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- ==================== BOTTOM LEGEND ==================== -->
+  <g transform="translate(370, 415)">
+    <!-- Uninspected Traffic -->
+    <path d="M 0 10 L 40 10" fill="none" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow-gray)"/>
+    <text x="48" y="14" font-family="system-ui, sans-serif" font-size="11.5" font-weight="700" fill="#475569">Traffic</text>
+
+    <!-- Secured Traffic -->
+    <path d="M 120 10 L 160 10" fill="none" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+    <text x="168" y="14" font-family="system-ui, sans-serif" font-size="11.5" font-weight="700" fill="#059669">Secured traffic</text>
+  </g>
+</svg>

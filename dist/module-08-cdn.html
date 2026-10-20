@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 08: Content Delivery Network (CDN) | Alibaba Cloud Professional</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header class="presentation-header">
+    <div class="brand-wrapper">
+      <span class="brand-badge">Alibaba Cloud</span>
+      <div class="course-info">
+        <span class="course-title">Alibaba Cloud Professional: Cloud Architect</span>
+        <span class="module-title">Module 08: Content Delivery Network (CDN) Deep Dive</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="section-indicator" id="sectionIndicator">Overview</span>
+      <div class="module-switcher-wrapper">
+        <select class="module-select" id="moduleSelect" onchange="if(this.value) window.location.href=this.value;">
+          <option value="module-01-overview.html">Module 01: Overview</option>
+          <option value="module-02-ecs.html">Module 02: ECS</option>
+          <option value="module-03-vpc.html">Module 03: VPC</option>
+          <option value="module-04-slb.html">Module 04: SLB</option>
+          <option value="module-05-oss.html">Module 05: OSS</option>
+          <option value="module-06-rds.html">Module 06: RDS</option>
+          <option value="module-07-auto-scaling.html">Module 07: Auto Scaling</option>
+          <option value="module-08-cdn.html" selected>Module 08: CDN</option>
+          <option value="module-09-security.html">Module 09: Security</option>
+        </select>
+      </div>
+      <div class="nav-buttons">
+        <span class="slide-counter" id="slideCounter">1/43</span>
+        <button class="btn-nav" id="prevBtn" title="Previous Slide (Left Arrow)">
+          <span>⬅️</span> Previous
+        </button>
+        <button class="btn-nav primary" id="nextBtn" title="Next Slide (Right Arrow / Space)">
+          Next <span>➡️</span>
+        </button>
+        <button class="btn-nav" id="fullscreenBtn" title="Toggle Fullscreen (F)">
+          <span>⛶</span> Fullscreen
+        </button>
+      </div>
+    </div>
+    <div class="slide-progress-bar" id="progressBar"></div>
+  </header>
+
+  <!-- Presentation Deck Container -->
+  <main class="deck-container">
+
+    <!-- ==================== SLIDE 1: CLEAN TITLE ==================== -->
+    <section class="slide active title-slide" data-category="Course Intro">
+      <h1>Module 08: Content Delivery Network (CDN)</h1>
+    </section>
+
+    <!-- ==================== SLIDE 2: AGENDA LIST ==================== -->
+    <section class="slide" data-category="Outline">
+      <div class="slide-category">Module Structure</div>
+      <h2>Agenda &amp; Learning Objectives</h2>
+      
+      <ol class="agenda-grid">
+        <li class="agenda-item">CDN Architecture &amp; Global Delivery</li>
+        <li class="agenda-item">DNS Resolution &amp; Request Workflow</li>
+        <li class="agenda-item">Caching Hierarchy &amp; Cache Management</li>
+        <li class="agenda-item">Dynamic Route for CDN (DCDN)</li>
+        <li class="agenda-item">Edge Computing with EdgeRoutine</li>
+        <li class="agenda-item">Edge Security &amp; Origin Protection</li>
+      </ol>
+    </section>
+
+    <!-- ==================== SECTION 1: CDN ARCHITECTURE & GLOBAL DELIVERY ==================== -->
+
+    <!-- SLIDE 3: SERVICE INTRODUCTION -->
+    <section class="slide" data-category="CDN Architecture &amp; Global Delivery">
+      <div class="slide-category">Section 1: CDN Architecture &amp; Global Delivery</div>
+      <h2>Alibaba Cloud CDN</h2>
+      
+      <div class="service-intro-banner">
+        <div class="service-icon-wrapper">
+          <img src="assets/images/cdn-service-icon.svg" alt="Alibaba Cloud CDN Icon" class="service-icon">
+        </div>
+        <div class="service-intro-text">
+          <p class="service-lead">
+            <strong>Alibaba Cloud Content Delivery Network (CDN)</strong> is an enterprise-grade distributed network that caches content across geographically dispersed edge nodes (Points of Presence) close to end users.
+          </p>
+          <p class="service-desc">
+            Compared to traditional centralized web hosting where all client traffic travels across unpredictable public internet hops to a single datacenter, Alibaba Cloud CDN offloads origin servers, slashes round-trip latency, eliminates cross-carrier bottlenecks, and delivers ultra-fast, highly resilient digital experiences worldwide.
+          </p>
+        </div>
+      </div>
+
+      <div class="service-pillars-grid">
+        <div class="service-pillar-card">
+          <h4>⚡ Low Latency</h4>
+          <p>Millisecond edge response times close to end users bypassing public backbone congestion.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>🌐 Global Scale</h4>
+          <p>3,200+ edge nodes across 70+ countries and regions with 180+ Tbps total bandwidth reserves.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>🛡️ High Availability</h4>
+          <p>Multi-tier failover and intelligent traffic scheduling eliminating single points of failure.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>💰 Cost Efficiency</h4>
+          <p>Drastically reduces origin compute burden and expensive outbound internet egress bandwidth.</p>
+        </div>
+        <div class="service-pillar-card">
+          <h4>🧠 Edge Intelligence</h4>
+          <p>Built-in serverless edge compute, smart routing, and security inspection at the perimeter.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: CENTRALIZED WEB HOSTING BOTTLENECKS -->
+    <section class="slide" data-category="CDN Architecture &amp; Global Delivery">
+      <div class="slide-category">Section 1: CDN Architecture &amp; Global Delivery</div>
+      <h2>Centralized Web Hosting Bottlenecks</h2>
+
+      <div class="grid-2" style="margin-top: 1rem; align-items: stretch;">
+        <div class="content-card highlight">
+          <h3>Traditional Hosting Limitations</h3>
+          <ul>
+            <li><strong>Cross-ISP Latency Penalties:</strong> Data packets crossing between disparate telecom carriers experience packet loss, queueing delays, and routing inefficiencies.</li>
+            <li><strong>Geographic Distance Constraints:</strong> Trans-oceanic physical propagation imposes 150 ms–300 ms round trips for international users accessing a single central server.</li>
+            <li><strong>Origin Resource Exhaustion:</strong> Marketing campaigns, product launches, or viral surges direct all concurrent hits to origin web servers, exhausting CPU, memory, and database connection pools.</li>
+            <li><strong>Single Point of Network Failure:</strong> If the central datacenter experiences a fiber cut or localized network outage, the entire global user base is severed immediately.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <h3>The Distributed Edge Solution</h3>
+          <ul>
+            <li><strong>Edge Proximity Delivery:</strong> Content is cached on edge servers within the user's local metropolitan area, reducing round-trip latency to under 10 milliseconds.</li>
+            <li><strong>Massive Origin Offload:</strong> Static assets (images, JavaScript, CSS, audio, video) are served directly from edge memory and NVMe SSDs, absorbing 80%–95%+ of total web traffic.</li>
+            <li><strong>Traffic Surge Absorption:</strong> Edge PoPs distribute incoming load across hundreds of global clusters, shielding backend databases from sudden traffic spikes.</li>
+            <li><strong>Architectural Principle:</strong> Transform a vulnerable single-point origin into a highly redundant, globally distributed content delivery mesh.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: GLOBAL INFRASTRUCTURE & TOPOLOGY -->
+    <section class="slide" data-category="CDN Architecture &amp; Global Delivery">
+      <div class="slide-category">Section 1: CDN Architecture &amp; Global Delivery</div>
+      <h2>Global Infrastructure &amp; Edge PoP Topology</h2>
+
+      <div class="grid-3" style="margin-top: 1rem;">
+        <div class="content-card highlight-green">
+          <h3>Massive Edge Footprint</h3>
+          <ul>
+            <li><strong>3,200+ Global Nodes:</strong> Over 2,300 high-capacity PoPs across mainland China covering all major cities and provinces, paired with 900+ international nodes across 70+ countries on six continents.</li>
+            <li><strong>180+ Tbps Bandwidth Capacity:</strong> World-class network capacity engineered to handle extreme traffic peaks during global shopping festivals (Double 11) with zero packet loss.</li>
+            <li><strong>Multi-Carrier Interconnect:</strong> Direct peering and BGP multi-line links with Tier-1 carriers worldwide (China Telecom, China Unicom, China Mobile, Singtel, NTT, Telstra, AT&amp;T, Vodafone).</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <h3>Enterprise Hardware Standards</h3>
+          <ul>
+            <li><strong>NVMe SSD Storage Tier:</strong> Edge servers utilize all-flash high-IOPS NVMe solid-state storage arrays delivering rapid cache read and write throughput.</li>
+            <li><strong>Cloud Silicon Acceleration:</strong> Powered by Alibaba Cloud proprietary processors and optimized network interface silicon for wire-speed packet processing.</li>
+            <li><strong>Redundant Power &amp; Uplinks:</strong> Dual-homed 40G/100G fiber uplinks per edge chassis with automated BGP failover to adjacent racks.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-purple">
+          <h3>Intelligent Edge Mesh</h3>
+          <ul>
+            <li><strong>Hierarchical Topology:</strong> Edge nodes operate in coordinated tiers—L1 Access PoPs, L2 Regional Hubs, and Origin Shield bastions.</li>
+            <li><strong>Automated Health Probing:</strong> Real-time health monitoring isolates degraded transit circuits or overloaded nodes in sub-second intervals.</li>
+            <li><strong>Strict Architecture Constraint:</strong> End users are strictly assigned to edge nodes matching their geographic location and ISP carrier for optimal route efficiency.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: MULTI-TIER CACHING ARCHITECTURE -->
+    <section class="slide" data-category="CDN Architecture &amp; Global Delivery">
+      <div class="slide-category">Section 1: CDN Architecture &amp; Global Delivery</div>
+      <h2>Multi-Tier Caching Hierarchy: L1, L2, &amp; Origin Shield</h2>
+
+      <div class="grid-2" style="margin-top: 0.5rem; align-items: center;">
+        <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <img src="assets/images/cdn-global-architecture.svg" alt="CDN Multi-Tier Global Architecture" class="diagram-image" style="max-height: 440px; width: 100%; object-fit: contain;">
+          <div class="diagram-caption">Hierarchical Distribution: L1 Edge, L2 Regional Hubs, Origin Shield &amp; Backend Origin</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div class="content-card highlight">
+            <h3>L1 Edge Access Nodes</h3>
+            <p>Frontline PoPs located close to the user perimeter. Terminates client TCP/TLS handshakes, evaluates cache keys, and delivers cached objects with sub-10ms response times.</p>
+          </div>
+
+          <div class="content-card highlight-blue">
+            <h3>L2 Regional Aggregation Nodes</h3>
+            <p>Backbone caching clusters that aggregate cache misses from dozens of surrounding L1 nodes. Consolidates redundant requests, deduplicates back-to-origin fetches, and coordinates cache warmup.</p>
+          </div>
+
+          <div class="content-card highlight-green">
+            <h3>Origin Shield (Parent Caching Layer)</h3>
+            <p>A centralized edge caching bastion situated geographically adjacent to the origin datacenter. Shields backend ECS/SLB/OSS clusters from thundering herds, reducing back-to-origin traffic by up to 95%+.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: CORE SYSTEM COMPONENTS -->
+    <section class="slide" data-category="CDN Architecture &amp; Global Delivery">
+      <div class="slide-category">Section 1: CDN Architecture &amp; Global Delivery</div>
+      <h2>Core System Components of Alibaba Cloud CDN</h2>
+
+      <div class="grid-2" style="margin-top: 1rem; align-items: stretch;">
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-blue">
+            <h3>GSLB Intelligent Scheduling System</h3>
+            <ul>
+              <li><strong>Distributed Scheduling Control Plane:</strong> Resolves DNS queries dynamically based on real-time network telemetry.</li>
+              <li><strong>Multi-Dimensional Optimization:</strong> Matches client IP geography, ISP carrier, network latency, and node bandwidth utilization.</li>
+              <li><strong>Dynamic Traffic Steering:</strong> Automatically shifts traffic away from congested PoPs or fiber cuts without client disruption.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-green">
+            <h3>High-Performance Edge Cache Engine</h3>
+            <ul>
+              <li><strong>Tengine-Powered Architecture:</strong> Customized enterprise web engine optimized for millions of concurrent persistent connections.</li>
+              <li><strong>Two-Level Storage Tier:</strong> In-memory caching for ultra-hot small assets and NVMe SSD flash storage for massive video and download objects.</li>
+              <li><strong>Protocol Termination:</strong> Seamlessly handles TLS 1.3, HTTP/2, and HTTP/3 (QUIC) at the edge.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight">
+            <h3>Central Configuration &amp; Control Plane</h3>
+            <ul>
+              <li><strong>Sub-Second Config Distribution:</strong> Pushes domain settings, SSL certificates, cache TTL rules, and WAF policies to 3,200+ nodes globally.</li>
+              <li><strong>Content Management System:</strong> Coordinates instant cache purges (URL and directory invalidation) and proactive cache warmup tasks.</li>
+              <li><strong>OpenAPI &amp; SDK Automation:</strong> Fully programmable via Terraform, Alibaba Cloud CLI, and RESTful APIs.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-purple">
+            <h3>Operational Telemetry &amp; Log Streaming</h3>
+            <ul>
+              <li><strong>Real-Time Metric Engine:</strong> Streams QPS, bandwidth, cache hit rates, and HTTP status codes to CloudMonitor dashboards.</li>
+              <li><strong>SLS Direct Ingestion:</strong> Streams granular edge access logs directly to Simple Log Service (SLS) within seconds for instant security analytics and auditing.</li>
+              <li><strong>Diagnostic Toolkit:</strong> Built-in IP lookup, DNS trace, and URL diagnostic tools for immediate network troubleshooting.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: SUPPORTED ORIGIN TYPES -->
+    <section class="slide" data-category="CDN Architecture &amp; Global Delivery">
+      <div class="slide-category">Section 1: CDN Architecture &amp; Global Delivery</div>
+      <h2>Supported Origin Server Types &amp; Topologies</h2>
+
+      <div class="grid-3" style="margin-top: 1rem;">
+        <div class="content-card highlight-blue">
+          <h3>Object Storage Service (OSS)</h3>
+          <ul>
+            <li><strong>Native Cloud Storage:</strong> Connects to an OSS bucket endpoint (standard or private).</li>
+            <li><strong>Optimized Egress Pricing:</strong> Utilizing CDN in front of OSS reduces data transfer costs compared to direct OSS internet egress.</li>
+            <li><strong>RAM Role Security:</strong> Authenticates against private OSS buckets using RAM role authorization; no need to make buckets public.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Server Load Balancer (ALB / NLB)</h3>
+          <ul>
+            <li><strong>Layer 7 &amp; Layer 4 Clusters:</strong> Back-to-origin requests terminate on an ALB or NLB public VIP.</li>
+            <li><strong>High-Availability Backend:</strong> Load balancers distribute missed requests across auto-scaling ECS fleets or ACK Kubernetes pods.</li>
+            <li><strong>Session Stickiness:</strong> Supports cookie-based routing when back-to-origin sessions require persistent application context.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight">
+          <h3>Custom IP, Domain &amp; Serverless</h3>
+          <ul>
+            <li><strong>Elastic Compute Service (ECS):</strong> Direct origin connection to standalone compute instances via public IP or domain.</li>
+            <li><strong>Hybrid / On-Premises IDC:</strong> Accelerates workloads hosted in customer private datacenters or third-party clouds.</li>
+            <li><strong>Function Compute (FC):</strong> Serverless backends generating dynamic rendering or on-demand image transformations.</li>
+            <li><strong>Origin Protocol Rules:</strong> Custom HTTP/HTTPS port mapping (80, 443, or custom ports) with protocol following.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 2: DNS RESOLUTION & REQUEST WORKFLOW ==================== -->
+
+    <!-- SLIDE 9: CNAME REDIRECTION MECHANISM -->
+    <section class="slide" data-category="DNS Resolution &amp; Request Workflow">
+      <div class="slide-category">Section 2: DNS Resolution &amp; Request Workflow</div>
+      <h2>The CNAME Redirection Mechanism</h2>
+
+      <div class="grid-2" style="margin-top: 1rem; align-items: stretch;">
+        <div class="content-card highlight">
+          <h3>How CNAME Routing Works</h3>
+          <ul>
+            <li><strong>Domain Name Decoupling:</strong> End users continue to browse your official corporate domain (e.g., <code>www.example.com</code>). The origin server's real IP address is never exposed directly.</li>
+            <li><strong>Alibaba Cloud CNAME Assignment:</strong> When you add an accelerated domain in the CDN console, the platform allocates a unique canonical name (e.g., <code>www.example.com.w.kunlunsl.com</code>).</li>
+            <li><strong>Authoritative DNS Delegation:</strong> You create a CNAME record at your DNS provider pointing <code>www.example.com</code> to the assigned Kunlun CNAME.</li>
+            <li><strong>Dynamic Control Handover:</strong> Subsequent DNS queries are delegated to Alibaba Cloud's intelligent resolution network without requiring IP re-architecture.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <h3>Key Architectural Advantages</h3>
+          <ul>
+            <li><strong>Zero Downtime Cutover:</strong> DNS CNAME migration can be tested using local <code>hosts</code> file mapping before flipping live production traffic.</li>
+            <li><strong>Dynamic IP Flexibility:</strong> Alibaba Cloud can scale, replace, or rotate edge server IP addresses transparently without requiring DNS record updates on your side.</li>
+            <li><strong>Multi-Line ISP Splitting:</strong> When combined with Alibaba Cloud DNS, you can configure split-horizon DNS routing (e.g., Telecom clients to CDN, internal office to VPC).</li>
+            <li><strong>Architectural Principle:</strong> CNAME redirection provides the structural abstraction required to decouple public domain branding from physical edge infrastructure.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: STEP-BY-STEP DNS RESOLUTION WORKFLOW -->
+    <section class="slide" data-category="DNS Resolution &amp; Request Workflow">
+      <div class="slide-category">Section 2: DNS Resolution &amp; Request Workflow</div>
+      <h2>Step-by-Step DNS Resolution &amp; Request Flow</h2>
+
+      <div class="grid-2" style="margin-top: 0.5rem; align-items: center;">
+        <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <img src="assets/images/cdn-dns-resolution-flow.svg" alt="CDN DNS Resolution &amp; Scheduling Workflow" class="diagram-image" style="max-height: 440px; width: 100%; object-fit: contain;">
+          <div class="diagram-caption">Complete 8-Step Lifecycle: Recursive DNS, GSLB Scheduling, and Direct Edge Connection</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+          <div class="content-card highlight-blue" style="padding: 0.75rem 1rem;">
+            <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem;">Steps 1–3: Recursive Domain Resolution</h4>
+            <p style="margin: 0; font-size: 0.85rem;">Client queries Local DNS (LDNS) for <code>www.example.com</code>. LDNS queries the domain's Authoritative DNS, which returns the CNAME record <code>*.w.kunlunsl.com</code>.</p>
+          </div>
+
+          <div class="content-card highlight" style="padding: 0.75rem 1rem;">
+            <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem;">Steps 4–6: Intelligent GSLB Scheduling</h4>
+            <p style="margin: 0; font-size: 0.85rem;">LDNS queries Alibaba Cloud GSLB. The scheduling system evaluates client geographic IP, ISP, and real-time PoP health, returning the optimal Edge PoP IP to LDNS, which delivers it to the client.</p>
+          </div>
+
+          <div class="content-card highlight-green" style="padding: 0.75rem 1rem;">
+            <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem;">Steps 7–8: Direct Edge Request &amp; Delivery</h4>
+            <p style="margin: 0; font-size: 0.85rem;">Client initiates direct HTTPS connection to the assigned edge IP. The edge node performs cache key lookup, delivers cached content instantly, or initiates back-to-origin retrieval on miss.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: CACHE HIT VS CACHE MISS WORKFLOW -->
+    <section class="slide" data-category="DNS Resolution &amp; Request Workflow">
+      <div class="slide-category">Section 2: DNS Resolution &amp; Request Workflow</div>
+      <h2>Cache Hit vs. Cache Miss Lifecycle</h2>
+
+      <div class="grid-2" style="margin-top: 0.5rem; align-items: center;">
+        <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <img src="assets/images/cdn-cache-hit-miss-workflow.svg" alt="CDN Cache Hit vs Miss Workflow" class="diagram-image" style="max-height: 440px; width: 100%; object-fit: contain;">
+          <div class="diagram-caption">Request Evaluation at Edge: Rapid Local Response vs Hierarchical Back-to-Origin Fetch</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div class="content-card highlight-green">
+            <h3>Scenario A: Cache Hit (Sub-10ms)</h3>
+            <ul>
+              <li><strong>Instant Lookup:</strong> Edge node matches request against its in-memory or SSD cache table. Object is present and TTL is valid.</li>
+              <li><strong>Zero Origin Impact:</strong> Content is streamed directly to the client with Gzip/Brotli compression. Zero origin bandwidth or compute utilized.</li>
+              <li><strong>HTTP Response Header:</strong> Marked with <code>X-Cache: TCP_HIT</code> or <code>TCP_MEM_HIT</code>.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight">
+            <h3>Scenario B: Cache Miss &amp; Invalidation</h3>
+            <ul>
+              <li><strong>Hierarchical Query:</strong> L1 queries regional L2 node; if L2 misses, query passes through Origin Shield to the backend origin.</li>
+              <li><strong>Asynchronous Caching:</strong> Origin returns 200 OK. Edge streams data to client while writing a local copy to NVMe SSD for subsequent requests.</li>
+              <li><strong>HTTP Response Header:</strong> Marked with <code>X-Cache: TCP_MISS</code>.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: BACK-TO-ORIGIN CONFIGURATIONS: HOST & SNI -->
+    <section class="slide" data-category="DNS Resolution &amp; Request Workflow">
+      <div class="slide-category">Section 2: DNS Resolution &amp; Request Workflow</div>
+      <h2>Back-to-Origin Configurations: Host Header &amp; SNI</h2>
+
+      <div class="grid-3" style="margin-top: 1rem;">
+        <div class="content-card highlight-blue">
+          <h3>Origin Address vs. Host Header</h3>
+          <ul>
+            <li><strong>Origin Address:</strong> The physical network address (IP address or OSS bucket domain) where CDN routes back-to-origin TCP packets.</li>
+            <li><strong>Back-to-Origin Host Header:</strong> The HTTP <code>Host:</code> header injected into the back-to-origin request.</li>
+            <li><strong>Virtual Hosting Support:</strong> Essential when the origin server hosts multiple websites on a single IP; determines which virtual host handles the request.</li>
+            <li><strong>Default Behavior:</strong> Defaults to the accelerated domain unless explicitly customized in console.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Server Name Indication (SNI)</h3>
+          <ul>
+            <li><strong>TLS Handshake Identity:</strong> In HTTPS back-to-origin requests, SNI specifies the exact domain name during the TLS ClientHello phase.</li>
+            <li><strong>Certificate Matching:</strong> Ensures the origin server presents the correct SSL/TLS certificate when hosting multiple HTTPS sites on a shared VIP.</li>
+            <li><strong>Strict Architecture Constraint:</strong> If origin uses HTTPS and virtual hosting, SNI must match the origin certificate domain to prevent handshake failure.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight">
+          <h3>Protocol &amp; Port Rules</h3>
+          <ul>
+            <li><strong>Protocol Following:</strong> Back-to-origin request matches client protocol (client HTTP -> origin HTTP; client HTTPS -> origin HTTPS).</li>
+            <li><strong>Forced Protocol Translation:</strong> Edge terminates client HTTPS on port 443, but connects to origin via HTTP on port 80 to reduce origin SSL overhead.</li>
+            <li><strong>Custom Port Mapping:</strong> Supports non-standard back-to-origin ports (e.g., origin listening on port 8080 or 8443).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: RANGE REQUESTS & LARGE FILE SLICING -->
+    <section class="slide" data-category="DNS Resolution &amp; Request Workflow">
+      <div class="slide-category">Section 2: DNS Resolution &amp; Request Workflow</div>
+      <h2>Range Requests &amp; Large File Slicing</h2>
+
+      <div class="grid-2" style="margin-top: 1rem; align-items: stretch;">
+        <div class="content-card highlight-blue">
+          <h3>HTTP Range Back-to-Origin</h3>
+          <ul>
+            <li><strong>Byte-Range Header Support:</strong> Supports RFC 7233 <code>Range: bytes=start-end</code> requests from clients (e.g., video player seeking or multi-threaded download managers).</li>
+            <li><strong>Targeted Retrieval:</strong> When Range Back-to-Origin is enabled, CDN requests only the specific byte segment requested by the client rather than fetching the entire file.</li>
+            <li><strong>Origin Bandwidth Conservation:</strong> If a user watches only 2 minutes of a 2-hour 4K movie, only the watched segments are pulled from origin, avoiding gigabytes of wasted bandwidth.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Edge Large File Slicing Architecture</h3>
+          <ul>
+            <li><strong>Automatic Chunk Segmentation:</strong> For large software installers, game patches, and media files, CDN automatically slices files into 1 MB–2 MB chunks for caching.</li>
+            <li><strong>Lower Time to First Byte (TTFB):</strong> The first chunk is downloaded and streamed to the user immediately, eliminating the wait time of downloading multi-GB files.</li>
+            <li><strong>Chunk-Level Redundancy:</strong> If a network blip occurs during a large download, only the interrupted chunk is re-requested rather than restarting the entire file.</li>
+            <li><strong>Architectural Principle:</strong> Decouple large media delivery into modular byte streams to maximize cache efficiency and user responsiveness.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 3: CACHING HIERARCHY & CACHE MANAGEMENT ==================== -->
+
+    <!-- SLIDE 14: CACHE KEY ARCHITECTURE -->
+    <section class="slide" data-category="Caching Hierarchy &amp; Cache Management">
+      <div class="slide-category">Section 3: Caching Hierarchy &amp; Cache Management</div>
+      <h2>Cache Key Architecture &amp; Customization</h2>
+
+      <div class="grid-3" style="margin-top: 1rem;">
+        <div class="content-card highlight-blue">
+          <h3>Default Cache Key Anatomy</h3>
+          <ul>
+            <li><strong>Standard Structure:</strong> By default, the edge cache key consists of <code>Scheme + Host + URI</code> (e.g., <code>https://example.com/assets/app.js</code>).</li>
+            <li><strong>Unique Identification:</strong> Every unique key corresponds to an independent cached object in edge NVMe storage.</li>
+            <li><strong>Case Sensitivity:</strong> Option to enforce case-insensitive URI matching, preventing duplicate caching of <code>/Logo.png</code> and <code>/logo.png</code>.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Query String Management</h3>
+          <ul>
+            <li><strong>Ignore Query Strings:</strong> <code>image.png?v=1</code> and <code>image.png?v=2</code> map to the same cache key. Greatly increases cache hit ratio when tracking/campaign tags are appended.</li>
+            <li><strong>Retain Specific Parameters:</strong> Retains meaningful query strings (e.g., <code>product.jpg?width=200</code> vs <code>?width=600</code>) while discarding analytics parameters (e.g., <code>utm_source</code>).</li>
+            <li><strong>Retain All Parameters:</strong> Generates distinct cache entries for every unique query string combination.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight">
+          <h3>Custom Header Inclusion</h3>
+          <ul>
+            <li><strong>Content Negotiation:</strong> Include HTTP headers in the cache key (e.g., <code>Accept-Encoding</code>) to maintain separate cached copies for Gzip and Brotli.</li>
+            <li><strong>Device-Specific Variants:</strong> Include custom headers (e.g., <code>X-Device-Type: mobile</code> vs <code>desktop</code>) to serve tailored layout templates.</li>
+            <li><strong>Architectural Principle:</strong> Balance cache key granularity: overly broad keys cause stale data; overly narrow keys destroy cache hit ratios.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 15: CACHE EXPIRATION RULES & TTL -->
+    <section class="slide" data-category="Caching Hierarchy &amp; Cache Management">
+      <div class="slide-category">Section 3: Caching Hierarchy &amp; Cache Management</div>
+      <h2>Cache Expiration Rules &amp; TTL Precedence</h2>
+
+      <div class="grid-2" style="margin-top: 1rem; align-items: stretch;">
+        <div class="content-card highlight">
+          <h3>Rule Evaluation Precedence Hierarchy</h3>
+          <ul>
+            <li><strong>1. Exact File URL (Highest Priority):</strong> Matches specific sensitive assets (e.g., <code>/app/config.json</code>) with customized short TTL (e.g., 10 minutes).</li>
+            <li><strong>2. File Extension Match:</strong> Matches static asset categories (e.g., <code>*.jpg;*.png;*.css;*.js</code>) with long TTL (e.g., 30 days).</li>
+            <li><strong>3. Directory Path Match:</strong> Matches folder paths (e.g., <code>/static/images/*</code>) with moderate TTL (e.g., 7 days).</li>
+            <li><strong>4. Default Match (Lowest Priority):</strong> Fallback rule applied to all unmatched requests (e.g., <code>/*</code> -> 1 day).</li>
+            <li><strong>Rule Priority Index:</strong> Rules are evaluated from highest priority index (top) to lowest; the first matching rule terminates evaluation.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <h3>Origin Headers &amp; Status Code Caching</h3>
+          <ul>
+            <li><strong>Honor Origin Cache-Control:</strong> Option to respect origin <code>Cache-Control: max-age=...</code>, <code>s-maxage</code>, or <code>no-cache</code> headers, allowing application developers to control TTL directly.</li>
+            <li><strong>CDN Console Override:</strong> Option to force CDN TTL policies, overriding origin headers when legacy backend systems cannot be easily modified.</li>
+            <li><strong>HTTP Status Code TTL:</strong> Configure dedicated caching rules for non-200 responses:
+              <ul>
+                <li>Cache HTTP 404 (Not Found) for 10 seconds to protect origin against scanning floods.</li>
+                <li>Cache HTTP 301/302 redirects for 2 hours to speed up URL relocations.</li>
+                <li>Zero caching (0s) for HTTP 5xx server errors to allow immediate retry upon origin recovery.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 16: CACHE REFRESH (PURGE) MECHANISMS -->
+    <section class="slide" data-category="Caching Hierarchy &amp; Cache Management">
+      <div class="slide-category">Section 3: Caching Hierarchy &amp; Cache Management</div>
+      <h2>Cache Refresh (Purge) Mechanisms</h2>
+
+      <div class="grid-3" style="margin-top: 1rem;">
+        <div class="content-card highlight-blue">
+          <h3>URL (File) Purge</h3>
+          <ul>
+            <li><strong>Targeted Invalidation:</strong> Purges specific file URLs (e.g., <code>https://example.com/bundle.js</code>) across all 3,200+ edge nodes globally.</li>
+            <li><strong>Rapid Execution:</strong> Propagates within seconds, ensuring users immediately receive updated content on their next request.</li>
+            <li><strong>Ideal Use Case:</strong> Hotfix deployments, CSS/JS stylesheet updates, and critical image replacements.</li>
+            <li><strong>Daily Quota:</strong> Generous daily allowance (typically 10,000+ URLs/day via OpenAPI or Console).</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Directory Purge</h3>
+          <ul>
+            <li><strong>Folder Invalidation:</strong> Purges entire directory paths (e.g., <code>https://example.com/v2.0/*</code>).</li>
+            <li><strong>Two Invalidation Modes:</strong>
+              <ul>
+                <li><strong>Expire (Recommended):</strong> Marks objects as expired; if origin is momentarily down, edge can still serve stale cache.</li>
+                <li><strong>Delete:</strong> Hard-deletes files from edge storage immediately.</li>
+              </ul>
+            </li>
+            <li><strong>Ideal Use Case:</strong> Major website version releases and bulk content updates.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight">
+          <h3>Regex Purge &amp; CI/CD Pipeline</h3>
+          <ul>
+            <li><strong>Regular Expression Purge:</strong> Invalidates assets matching complex patterns (e.g., <code>.*\.json$</code>).</li>
+            <li><strong>Automated Deployment Hooks:</strong> Integrate cache purge API calls into GitHub Actions, GitLab CI, or Jenkins pipelines.</li>
+            <li><strong>Task Tracking:</strong> Query real-time purge progress and completion status via OpenAPI.</li>
+            <li><strong>Strict Architecture Constraint:</strong> Avoid unnecessary bulk directory purges; excessive invalidations cause origin traffic spikes.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 17: CACHE WARMUP (PRE-FETCHING) -->
+    <section class="slide" data-category="Caching Hierarchy &amp; Cache Management">
+      <div class="slide-category">Section 3: Caching Hierarchy &amp; Cache Management</div>
+      <h2>Cache Warmup (Pre-fetching)</h2>
+
+      <div class="grid-2" style="margin-top: 1rem; align-items: stretch;">
+        <div class="content-card highlight">
+          <h3>The "Thundering Herd" Origin Problem</h3>
+          <ul>
+            <li><strong>The Cold Start Dilemma:</strong> When a major software update (e.g., 2 GB game patch) or new video episode is released, edge caches are completely empty.</li>
+            <li><strong>Instant Origin Collapse:</strong> Millions of concurrent users hitting the site simultaneously trigger millions of simultaneous cache misses.</li>
+            <li><strong>Bandwidth &amp; IOPS Saturation:</strong> Origin web servers and storage connections are overwhelmed within seconds, causing catastrophic 502/504 outages.</li>
+            <li><strong>Traditional Purge Failure:</strong> Purging alone leaves the cache cold, making thundering herd scenarios worse during peak traffic.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Proactive Edge Pre-Loading</h3>
+          <ul>
+            <li><strong>Proactive Ingestion:</strong> Trainer or automated script submits target URLs to the CDN Warmup API prior to public release.</li>
+            <li><strong>Backbone Pull:</strong> Alibaba Cloud CDN pulls objects from origin to L2 regional aggregation nodes over dedicated high-speed links.</li>
+            <li><strong>Instant 100% Cache Hit:</strong> When public users begin requesting the file, it is already cached at regional nodes, achieving immediate hits and zero origin load.</li>
+            <li><strong>Operational Best Practice:</strong> Execute warmup 30–60 minutes before scheduled marketing campaigns, ticket sales, or game releases.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 18: SMART COMPRESSION & PAGE OPTIMIZATION -->
+    <section class="slide" data-category="Caching Hierarchy &amp; Cache Management">
+      <div class="slide-category">Section 3: Caching Hierarchy &amp; Cache Management</div>
+      <h2>Smart Compression &amp; Page Optimization</h2>
+
+      <div class="grid-2" style="margin-top: 1rem; align-items: stretch;">
+        <div class="content-card highlight-blue">
+          <h3>Gzip &amp; Brotli Edge Compression</h3>
+          <ul>
+            <li><strong>Automated Dynamic Compression:</strong> Edge nodes automatically compress text payloads (<code>text/html</code>, <code>application/javascript</code>, <code>text/css</code>, <code>application/json</code>) on the fly.</li>
+            <li><strong>Brotli Next-Gen Algorithm:</strong> Brotli provides 15%–25% higher compression ratio than standard Gzip, significantly reducing mobile page load times.</li>
+            <li><strong>Content Negotiation:</strong> Inspects client <code>Accept-Encoding</code> header; delivers Brotli to modern browsers while falling back to Gzip for older clients.</li>
+            <li><strong>Direct Cost Savings:</strong> Reducing transferred bytes by up to 70% translates directly into lower CDN outbound traffic bills.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Page Optimization (Trimming)</h3>
+          <ul>
+            <li><strong>Whitespace &amp; Comment Removal:</strong> Automatically strips redundant spaces, line breaks, tabs, and developer comments from HTML, CSS, and JavaScript.</li>
+            <li><strong>Zero Functionality Impact:</strong> Minifies code syntax without altering script execution or DOM tree structure.</li>
+            <li><strong>HTML Asset Optimization:</strong> Eliminates bloated markup generated by legacy CMS platforms or template engines.</li>
+            <li><strong>Architectural Principle:</strong> Combine Brotli compression with edge minification to achieve minimum byte delivery across cellular networks.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 19: MODERN EDGE PROTOCOLS: HTTP/2 & HTTP/3 -->
+    <section class="slide" data-category="Caching Hierarchy &amp; Cache Management">
+      <div class="slide-category">Section 3: Caching Hierarchy &amp; Cache Management</div>
+      <h2>Modern Edge Protocols: HTTP/2 &amp; HTTP/3 (QUIC)</h2>
+
+      <div class="grid-3" style="margin-top: 1rem;">
+        <div class="content-card highlight-blue">
+          <h3>HTTP/1.1 vs HTTP/2</h3>
+          <ul>
+            <li><strong>Multiplexing Streams:</strong> Multiple requests and responses interleave concurrently over a single TCP connection, eliminating head-of-line blocking.</li>
+            <li><strong>HPACK Header Compression:</strong> Compresses repetitive HTTP request/response headers, slashing round-trip protocol overhead.</li>
+            <li><strong>Binary Framing:</strong> Replaces inefficient text parsing with lightweight binary frame processing.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>HTTP/3 over QUIC (UDP)</h3>
+          <ul>
+            <li><strong>Zero Head-of-Line Blocking:</strong> Built on UDP; packet loss in one stream never stalls or blocks other independent data streams.</li>
+            <li><strong>0-RTT Connection Resumption:</strong> Re-establishes encrypted connections instantaneously using cached session keys.</li>
+            <li><strong>Connection Migration:</strong> Seamless transition when mobile users switch between Wi-Fi and 5G cellular networks without dropping connections.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight">
+          <h3>Edge Protocol Handshake</h3>
+          <ul>
+            <li><strong>Edge Termination:</strong> HTTP/2 and HTTP/3 terminate at the edge PoP; clients gain cutting-edge protocol benefits even if origin supports only HTTP/1.1.</li>
+            <li><strong>Zero Origin Refactoring:</strong> Upgrade your entire public web presence to HTTP/3 with a single toggle in the Alibaba Cloud CDN console.</li>
+            <li><strong>Storage Innovation:</strong> Eliminates TLS handshake latency for end users worldwide.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 4: DYNAMIC ROUTE FOR CDN (DCDN) ==================== -->
+
+    <!-- SLIDE 20: DYNAMIC ACCELERATION CHALLENGE -->
+    <section class="slide" data-category="Dynamic Route for CDN (DCDN)">
+      <div class="slide-category">Section 4: Dynamic Route for CDN (DCDN)</div>
+      <h2>The Challenge of Dynamic Content &amp; APIs</h2>
+
+      <div class="grid-2" style="margin-top: 1rem; align-items: stretch;">
+        <div class="content-card highlight">
+          <h3>Why Traditional CDN Caching Fails</h3>
+          <ul>
+            <li><strong>Uncacheable Business Data:</strong> User authentication, live stock tickers, shopping cart checkouts, banking balances, and search queries change on every request.</li>
+            <li><strong>Stale Data Risks:</strong> Caching personalized or transaction data at the edge causes catastrophic privacy leaks and business errors.</li>
+            <li><strong>The Static Dilemma:</strong> Traditional CDN provides zero benefit for dynamic POST, PUT, and personalized GET requests, forcing all traffic back to origin.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <h3>The Public Internet Transmission Problem</h3>
+          <ul>
+            <li><strong>Unpredictable Routing Hops:</strong> BGP routing on the public internet frequently traverses congested peering exchanges and sub-optimal transit routes.</li>
+            <li><strong>Packet Loss &amp; Jitter:</strong> Trans-continental API calls suffer from packet retransmissions, connection drops, and unpredictable latency spikes.</li>
+            <li><strong>Repeated Handshake Tax:</strong> Establishing fresh TCP and TLS handshakes across trans-oceanic distances imposes 300 ms–600 ms latency before the first API byte is sent.</li>
+            <li><strong>The Modern Solution:</strong> Accelerate the <em>network transit path</em> itself using Dynamic Route for CDN (DCDN).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 21: DCDN ARCHITECTURE & PATH SPLITTING -->
+    <section class="slide" data-category="Dynamic Route for CDN (DCDN)">
+      <div class="slide-category">Section 4: Dynamic Route for CDN (DCDN)</div>
+      <h2>DCDN Architecture: Static &amp; Dynamic Path Splitting</h2>
+
+      <div class="grid-2" style="margin-top: 0.5rem; align-items: center;">
+        <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <img src="assets/images/cdn-dcdn-path-splitting.svg" alt="DCDN Static and Dynamic Path Splitting" class="diagram-image" style="max-height: 440px; width: 100%; object-fit: contain;">
+          <div class="diagram-caption">Unified Single-Domain Routing: Edge Caching for Static, Smart Fiber Routing for Dynamic</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div class="content-card highlight-green">
+            <h3>Static Path: Local Edge Caching</h3>
+            <p>Static resources (HTML, CSS, JS, images, fonts) are recognized by file extension or path rules and served directly from edge NVMe SSD cache, providing instant local response.</p>
+          </div>
+
+          <div class="content-card highlight">
+            <h3>Dynamic Path: Smart Dynamic Routing</h3>
+            <p>API requests (REST, GraphQL, POST checkouts) are intercepted and accelerated across Alibaba Cloud's private global fiber network, bypassing public internet congestion.</p>
+          </div>
+
+          <div class="content-card highlight-purple">
+            <h3>Single Unified Hostname</h3>
+            <p>Clients connect to a single domain (e.g., <code>app.example.com</code>). Eliminates complex multi-domain CORS policies, cookie sharing complications, and frontend fragmentation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 22: INTELLIGENT DYNAMIC ROUTING ALGORITHMS -->
+    <section class="slide" data-category="Dynamic Route for CDN (DCDN)">
+      <div class="slide-category">Section 4: Dynamic Route for CDN (DCDN)</div>
+      <h2>Intelligent Dynamic Routing Algorithms</h2>
+
+      <div class="grid-3" style="margin-top: 1rem;">
+        <div class="content-card highlight-blue">
+          <h3>Real-Time Network Probing</h3>
+          <ul>
+            <li><strong>Continuous Telemetry Probes:</strong> Edge nodes continuously measure latency, packet loss, and jitter across thousands of candidate paths in the private backbone.</li>
+            <li><strong>Dynamic Route Table:</strong> Millisecond-level updates to routing tables calculate the optimal multi-hop transmission path in real time.</li>
+            <li><strong>Submarine Cable Optimization:</strong> Avoids congested public trans-Pacific/Atlantic cables by utilizing Alibaba Cloud private dedicated fiber.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Multi-Hop Overlay Network</h3>
+          <ul>
+            <li><strong>Bypassing Internet Peering:</strong> Traffic is injected into Alibaba Cloud's high-speed private backbone at the closest ingress edge node.</li>
+            <li><strong>Intermediate Relay Acceleration:</strong> High-bandwidth relay nodes forward packets using optimized transport protocols, avoiding public BGP routing flaps.</li>
+            <li><strong>Zero Packet Loss Transit:</strong> Delivers carrier-grade transmission stability even during widespread international fiber disruptions.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight">
+          <h3>Performance Impact</h3>
+          <ul>
+            <li><strong>30%–50% Latency Reduction:</strong> Dynamic API round-trip times are slashed significantly compared to direct public internet routing.</li>
+            <li><strong>Zero Connection Timeouts:</strong> Eliminates frustrating payment timeouts and API failures during mobile transactions.</li>
+            <li><strong>Architectural Principle:</strong> Treat the network transit path as an actively engineered, intelligent routing fabric.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 23: PROTOCOL OPTIMIZATION & CONNECTION POOLING -->
+    <section class="slide" data-category="Dynamic Route for CDN (DCDN)">
+      <div class="slide-category">Section 4: Dynamic Route for CDN (DCDN)</div>
+      <h2>Protocol Optimization &amp; Multiplexed Back-to-Origin</h2>
+
+      <div class="grid-2" style="margin-top: 1rem; align-items: stretch;">
+        <div class="content-card highlight-blue">
+          <h3>Handshake Termination at the Edge</h3>
+          <ul>
+            <li><strong>Near-User TCP &amp; TLS Termination:</strong> End users establish TCP 3-way handshakes and TLS 1.3 cryptographic negotiation with the nearest local edge PoP.</li>
+            <li><strong>Eliminating Cross-Globe Round Trips:</strong> Instead of executing handshakes across 10,000 miles to the origin, handshakes complete locally in under 10 milliseconds.</li>
+            <li><strong>Instant First-Byte Delivery:</strong> Client can send HTTP request payload immediately after the local edge handshake completes.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Pre-Warmed Persistent Connection Pools</h3>
+          <ul>
+            <li><strong>Persistent Back-to-Origin Tunnels:</strong> Edge PoPs maintain persistent, pre-established connection pools to origin servers across the private backbone.</li>
+            <li><strong>Zero Handshake Overhead for Dynamic APIs:</strong> Incoming dynamic API requests reuse existing hot connections, completely bypassing TCP/TLS setup delays.</li>
+            <li><strong>Connection Multiplexing:</strong> Hundreds of user requests are multiplexed over persistent origin tunnels, reducing origin connection load by up to 90%.</li>
+            <li><strong>Kernel-Level Congestion Control:</strong> High-performance TCP BBR congestion algorithms tuned for high-bandwidth, high-latency long-haul circuits.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 24: WEBSOCKET ACCELERATION -->
+    <section class="slide" data-category="Dynamic Route for CDN (DCDN)">
+      <div class="slide-category">Section 4: Dynamic Route for CDN (DCDN)</div>
+      <h2>WebSocket Acceleration &amp; Real-Time Streaming</h2>
+
+      <div class="grid-3" style="margin-top: 1rem;">
+        <div class="content-card highlight-blue">
+          <h3>Persistent Full-Duplex Tunneling</h3>
+          <ul>
+            <li><strong>Protocol Upgrade Support:</strong> Transparently handles HTTP <code>Upgrade: websocket</code> requests, converting client sessions to full-duplex TCP channels.</li>
+            <li><strong>Edge-to-Origin Proxying:</strong> Maintains long-lived, low-latency bidirectional connections between client, edge PoP, and backend servers.</li>
+            <li><strong>Configurable Heartbeat &amp; Timeout:</strong> Customizable connection idle timeouts (up to 3,600s) matching enterprise application requirements.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Core Enterprise Use Cases</h3>
+          <ul>
+            <li><strong>Financial &amp; Crypto Trading:</strong> Streaming real-time market depth, ticker updates, and order book changes with sub-100ms latency.</li>
+            <li><strong>Live E-Commerce &amp; Chat:</strong> Interactive live stream comments, virtual gifting, and customer support messaging.</li>
+            <li><strong>Collaborative Workspaces:</strong> Real-time co-authoring, whiteboard sync, and multiplayer online gaming state updates.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight">
+          <h3>Architectural Benefits</h3>
+          <ul>
+            <li><strong>Edge Handshake Offload:</strong> Origin servers are shielded from managing massive volumes of concurrent SSL/TLS handshakes.</li>
+            <li><strong>Private Backbone Resilience:</strong> WebSocket frames travel across Alibaba Cloud's private fiber network, preventing dropped connections over flaky mobile links.</li>
+            <li><strong>High Availability Rule:</strong> Automatically fail over disconnected WebSocket clients to healthy standby origins.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 5: EDGE COMPUTING WITH EDGEROUTINE ==================== -->
+
+    <!-- SLIDE 25: PARADIGM SHIFT: COMPUTE AT THE EDGE -->
+    <section class="slide" data-category="Edge Computing with EdgeRoutine">
+      <div class="slide-category">Section 5: Edge Computing with EdgeRoutine</div>
+      <h2>Paradigm Shift: Serverless Compute at the Edge</h2>
+
+      <div class="grid-3" style="margin-top: 1rem;">
+        <div class="content-card highlight-blue">
+          <h3>CDN 1.0: Static Caching</h3>
+          <ul>
+            <li><strong>Passive Content Mirroring:</strong> Fixed edge caching based solely on static file extension and directory rules.</li>
+            <li><strong>No Programmability:</strong> Request and response handling was hardcoded in static web server configurations.</li>
+            <li><strong>Origin Dependency:</strong> Every dynamic business decision required round-trip back-to-origin fetches.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>CDN 2.0: Dynamic Route</h3>
+          <ul>
+            <li><strong>Transport Layer Optimization:</strong> Network-level routing, connection pooling, and WebSocket acceleration.</li>
+            <li><strong>Path-Based Splitting:</strong> Automated separation of static files and dynamic API traffic.</li>
+            <li><strong>Still Centralized Compute:</strong> Business logic still resided entirely within centralized origin datacenters.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight">
+          <h3>CDN 3.0: Programmable Edge</h3>
+          <ul>
+            <li><strong>Serverless Code Execution:</strong> Custom JavaScript / WebAssembly code runs directly inside thousands of edge PoPs.</li>
+            <li><strong>Micro-Latency Logic (&lt; 5ms):</strong> Authenticate, rewrite, steer traffic, or synthesize HTML at the edge nearest the user.</li>
+            <li><strong>Massive Origin Shielding:</strong> Intercepts and terminates unauthorized or bot requests before they consume origin compute.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 26: EDGEROUTINE (ER) ARCHITECTURE -->
+    <section class="slide" data-category="Edge Computing with EdgeRoutine">
+      <div class="slide-category">Section 5: Edge Computing with EdgeRoutine</div>
+      <h2>EdgeRoutine (ER) Architecture &amp; V8 Runtime</h2>
+
+      <div class="grid-2" style="margin-top: 0.5rem; align-items: center;">
+        <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <img src="assets/images/cdn-edgeroutine-architecture.svg" alt="EdgeRoutine Serverless Architecture" class="diagram-image" style="max-height: 440px; width: 100%; object-fit: contain;">
+          <div class="diagram-caption">Serverless V8 Isolates Running at Edge PoPs with Distributed EdgeKV Storage</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div class="content-card highlight">
+            <h3>Google Chrome V8 Isolate Model</h3>
+            <p>Utilizes lightweight V8 Isolate sandboxing rather than heavy Node.js processes or Docker containers. Thousands of secure customer isolate sandboxes share process memory safely, achieving sub-millisecond cold starts (&lt; 1 ms).</p>
+          </div>
+
+          <div class="content-card highlight-blue">
+            <h3>Standard Web API Compatibility</h3>
+            <p>Implements standard W3C Service Worker APIs (<code>FetchEvent</code>, <code>Request</code>, <code>Response</code>, <code>Headers</code>, <code>URL</code>, <code>Crypto</code>, <code>ReadableStream</code>). Developers write standard modern JavaScript (ES6+) or compile Rust/C++/Go to WebAssembly.</p>
+          </div>
+
+          <div class="content-card highlight-green">
+            <h3>Zero Server Management</h3>
+            <p>Fully managed serverless runtime. Code deployed via the Alibaba Cloud console or CLI automatically replicates across 3,200+ global edge nodes and auto-scales with incoming traffic.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 27: EDGEKV DISTRIBUTED STORAGE -->
+    <section class="slide" data-category="Edge Computing with EdgeRoutine">
+      <div class="slide-category">Section 5: Edge Computing with EdgeRoutine</div>
+      <h2>EdgeKV Distributed Key-Value Storage</h2>
+
+      <div class="grid-2" style="margin-top: 1rem; align-items: stretch;">
+        <div class="content-card highlight-purple">
+          <h3>EdgeKV Architecture &amp; Characteristics</h3>
+          <ul>
+            <li><strong>High-Read Distributed Datastore:</strong> A serverless, globally replicated key-value storage engine natively integrated into Alibaba Cloud CDN edge nodes.</li>
+            <li><strong>Single-Digit Read Latency (&lt; 2ms):</strong> Data is replicated directly into local edge memory and NVMe storage at each PoP, enabling instant lookups inside EdgeRoutine scripts.</li>
+            <li><strong>Asynchronous Global Replication:</strong> When data is updated via API or EdgeRoutine write, updates propagate across all edge nodes worldwide in seconds.</li>
+            <li><strong>Namespace Organization:</strong> Supports multiple isolated namespaces, key-value pairs, and customized per-key TTL expiration policies.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Synergy: EdgeRoutine + EdgeKV</h3>
+          <ul>
+            <li><strong>Dynamic Feature Flags:</strong> Toggle application features globally in real time by reading flag values from EdgeKV inside EdgeRoutine without touching origin.</li>
+            <li><strong>Token &amp; Session Validation:</strong> Store active session tokens, OAuth keys, or revoked JWT IDs in EdgeKV for micro-latency edge authentication.</li>
+            <li><strong>Real-Time IP Access Lists:</strong> Read dynamically updated threat IP lists from EdgeKV to block malicious scrapers at the edge perimeter.</li>
+            <li><strong>Architectural Principle:</strong> Decouple read-heavy reference data from origin databases and project it to the global edge via EdgeKV.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 28: COMMON EDGEROUTINE USE CASES -->
+    <section class="slide" data-category="Edge Computing with EdgeRoutine">
+      <div class="slide-category">Section 5: Edge Computing with EdgeRoutine</div>
+      <h2>Common EdgeRoutine Use Cases &amp; Code Patterns</h2>
+
+      <div class="grid-2" style="margin-top: 1rem; align-items: stretch;">
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight-blue">
+            <h3>1. Edge Authentication &amp; JWT Validation</h3>
+            <ul>
+              <li><strong>Zero Origin Verification:</strong> EdgeRoutine intercepts incoming requests, verifies the cryptographic signature (HMAC/RSA) of the <code>Authorization: Bearer &lt;JWT&gt;</code> token.</li>
+              <li><strong>Instant Rejection:</strong> Invalid or expired tokens receive an immediate HTTP 401 Unauthorized response at the edge, saving origin compute.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-green">
+            <h3>2. A/B Testing &amp; Canary Traffic Steering</h3>
+            <ul>
+              <li><strong>Cookie &amp; Header Inspection:</strong> Reads user cookies or geolocation data in EdgeRoutine; deterministically routes 10% of users to <code>/v2/</code> and 90% to <code>/v1/</code>.</li>
+              <li><strong>Zero Redirect Delay:</strong> Performs internal sub-request rewrites without issuing visible HTTP 302 redirects to client browsers.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="content-card highlight">
+            <h3>3. Request Mutation &amp; Custom Rewrites</h3>
+            <ul>
+              <li><strong>URI Normalization:</strong> Normalizes incoming URLs, strips tracking parameters, or rewrites legacy paths before cache lookup.</li>
+              <li><strong>Header Security Ingestion:</strong> Injects security headers (<code>Content-Security-Policy</code>, <code>HSTS</code>, <code>X-Frame-Options</code>) into responses at the edge.</li>
+            </ul>
+          </div>
+
+          <div class="content-card highlight-purple">
+            <h3>4. Geo-Personalized Edge Rendering</h3>
+            <ul>
+              <li><strong>Localized HTML Ingestion:</strong> Inspects client country and language headers (<code>ali-cdn-real-ip</code>, <code>ali-geo-country</code>); injects localized currency and text into cached HTML.</li>
+              <li><strong>Sub-Millisecond Personalization:</strong> Combines static template caching with personalized edge text substitution.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 6: EDGE SECURITY & ORIGIN PROTECTION ==================== -->
+
+    <!-- SLIDE 29: DEFENSE-IN-DEPTH AT THE EDGE NETWORK -->
+    <section class="slide" data-category="Edge Security &amp; Origin Protection">
+      <div class="slide-category">Section 6: Edge Security &amp; Origin Protection</div>
+      <h2>Defense-in-Depth at the Edge Network</h2>
+
+      <div class="grid-2" style="margin-top: 0.5rem; align-items: center;">
+        <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <img src="assets/images/cdn-security-mesh.svg" alt="CDN Edge Security Mesh" class="diagram-image" style="max-height: 440px; width: 100%; object-fit: contain;">
+          <div class="diagram-caption">5-Layer Protective Mesh: Absorbing Attacks at the Perimeter to Shield Origin Infrastructure</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+          <div class="content-card highlight" style="padding: 0.75rem 1rem;">
+            <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem;">1. Volumetric Defense (L3/L4 Anti-DDoS)</h4>
+            <p style="margin: 0; font-size: 0.85rem;">Tbps-scale Anycast edge network absorbs SYN floods, UDP amplification, and Layer 4 volumetric attacks across 3,200+ nodes.</p>
+          </div>
+
+          <div class="content-card highlight-blue" style="padding: 0.75rem 1rem;">
+            <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem;">2. Web Application Defense (Edge WAF 3.0)</h4>
+            <p style="margin: 0; font-size: 0.85rem;">Inspects HTTP/HTTPS payloads for OWASP Top 10 vulnerabilities (SQLi, XSS, Webshells) and throttles aggressive CC attack floods.</p>
+          </div>
+
+          <div class="content-card highlight-green" style="padding: 0.75rem 1rem;">
+            <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem;">3. Access Control &amp; Origin Shielding</h4>
+            <p style="margin: 0; font-size: 0.85rem;">Referer anti-leech, URL signing tokens, and private OSS RAM authentication mask origin IP and ensure zero direct public access.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 30: ANTI-LEECH PROTECTION: REFERER & UA -->
+    <section class="slide" data-category="Edge Security &amp; Origin Protection">
+      <div class="slide-category">Section 6: Edge Security &amp; Origin Protection</div>
+      <h2>Anti-Leech Protection: Referer &amp; User-Agent Filtering</h2>
+
+      <div class="grid-2" style="margin-top: 1rem; align-items: stretch;">
+        <div class="content-card highlight">
+          <h3>The Content Leeching Threat</h3>
+          <ul>
+            <li><strong>Unauthorized Hotlinking:</strong> Third-party websites directly embed your images, video streams, or software downloads in their web pages.</li>
+            <li><strong>Bandwidth Theft:</strong> Pirate websites profit from your content while forcing you to pay massive CDN data transfer bills.</li>
+            <li><strong>Origin Degradation:</strong> Automated leeching scripts trigger frequent cache misses, degrading overall origin responsiveness.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <h3>Referer &amp; User-Agent Enforcement</h3>
+          <ul>
+            <li><strong>Referer Whitelist Mode:</strong> Allows only requests containing authorized domain names in the HTTP <code>Referer</code> header (e.g., <code>*.example.com</code>).</li>
+            <li><strong>Referer Blacklist Mode:</strong> Rejects requests originating from known leeching portals or competitor websites with HTTP 403 Forbidden.</li>
+            <li><strong>Empty (Blank) Referer Policy:</strong> Configure whether to allow or block requests with missing Referer headers (direct address bar access, curl scripts, or mobile apps).</li>
+            <li><strong>User-Agent Blacklist:</strong> Block aggressive scraping tools, automated downloader bots, or malicious Python/Go scripts based on User-Agent patterns.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 31: URL SIGNING & TOKEN AUTHENTICATION -->
+    <section class="slide" data-category="Edge Security &amp; Origin Protection">
+      <div class="slide-category">Section 6: Edge Security &amp; Origin Protection</div>
+      <h2>URL Signing &amp; Token Authentication</h2>
+
+      <div class="grid-3" style="margin-top: 1rem;">
+        <div class="content-card highlight-blue">
+          <h3>Type A: Query String Token</h3>
+          <ul>
+            <li><strong>URL Format:</strong> <code>http://domain/file?auth_key=timestamp-rand-uid-md5hash</code></li>
+            <li><strong>Parameters in Query:</strong> Easy to generate in backend application logic; widely compatible across standard web and mobile clients.</li>
+            <li><strong>Verification:</strong> Edge calculates MD5 of URI, timestamp, and shared private key; verifies timestamp validity before serving.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Type B: Path Embedded Token</h3>
+          <ul>
+            <li><strong>URL Format:</strong> <code>http://domain/timestamp/md5hash/file</code></li>
+            <li><strong>Parameters in Path:</strong> Avoids query string stripping by intermediate proxy caches or client software.</li>
+            <li><strong>Clean Architecture:</strong> Ensures cache key uniquely incorporates authentication token directly in the URI path.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight">
+          <h3>Type C: Prefix &amp; Streaming Token</h3>
+          <ul>
+            <li><strong>URL Format:</strong> <code>http://domain/md5hash/timestamp/file</code></li>
+            <li><strong>HLS / M3U8 Streaming:</strong> Ideal for video streaming where relative paths (TS segment chunks) inherit parent playlist authentication.</li>
+            <li><strong>Security Principle:</strong> Shared secret key is known only to your application server and Alibaba Cloud CDN; impossible for leeches to forge.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 32: EDGE WAF 3.0 & IP ACCESS CONTROL -->
+    <section class="slide" data-category="Edge Security &amp; Origin Protection">
+      <div class="slide-category">Section 6: Edge Security &amp; Origin Protection</div>
+      <h2>Edge WAF 3.0 &amp; IP Access Control</h2>
+
+      <div class="grid-2" style="margin-top: 1rem; align-items: stretch;">
+        <div class="content-card highlight-blue">
+          <h3>Edge Web Application Firewall (WAF)</h3>
+          <ul>
+            <li><strong>OWASP Top 10 Core Rule Set:</strong> Inspects HTTP request bodies, URIs, and headers at the edge for SQL Injection, Cross-Site Scripting (XSS), OS command injection, and Webshell uploads.</li>
+            <li><strong>Edge-Level Mitigation:</strong> Malicious payloads are blocked and logged at the edge PoP within 1 millisecond; zero attack packets reach origin infrastructure.</li>
+            <li><strong>Challenge Collapsar (CC) Mitigation:</strong> Detects abnormal request rates from individual IP addresses or client session fingerprints, automatically triggering JavaScript challenges, CAPTCHAs, or temporary IP bans.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Geolocation &amp; IP Access Rules</h3>
+          <ul>
+            <li><strong>Geo-Fencing &amp; Regional Blocking:</strong> Block or allow requests based on client country or province (e.g., restrict service strictly to domestic markets and block high-risk overseas regions).</li>
+            <li><strong>IP Blacklists &amp; Whitelists:</strong> Enforce strict CIDR-based access controls for corporate VPN networks, partner IPs, or staging environments.</li>
+            <li><strong>Rate Limiting by Path:</strong> Enforce strict QPS quotas on sensitive endpoints (e.g., maximum 5 requests/sec to <code>/api/login</code> per client IP).</li>
+            <li><strong>Strict Architecture Constraint:</strong> Edge WAF operates inline at wire speed without introducing user-perceptible latency.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 33: PRIVATE OSS BUCKET ORIGIN INTEGRATION -->
+    <section class="slide" data-category="Edge Security &amp; Origin Protection">
+      <div class="slide-category">Section 6: Edge Security &amp; Origin Protection</div>
+      <h2>Private OSS Bucket Origin Integration</h2>
+
+      <div class="grid-2" style="margin-top: 1rem; align-items: stretch;">
+        <div class="content-card highlight">
+          <h3>The Public Bucket Risk</h3>
+          <ul>
+            <li><strong>Unauthorized Origin Bypassing:</strong> If an OSS bucket is configured with Public Read permissions, users can bypass CDN completely by accessing the OSS endpoint URL directly.</li>
+            <li><strong>Double Billing Vulnerability:</strong> Attackers can leech files directly from the OSS endpoint, incurring expensive OSS internet egress fees and completely bypassing CDN WAF rules.</li>
+            <li><strong>Regulatory Non-Compliance:</strong> Storing proprietary media or enterprise data in publicly readable buckets violates standard cloud governance benchmarks.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>RAM Role Back-to-Origin Authorization</h3>
+          <ul>
+            <li><strong>Zero Public Bucket Exposure:</strong> Set the OSS bucket ACL to strictly <strong>Private</strong>. Direct public internet access is completely blocked.</li>
+            <li><strong>Role-Based Back-to-Origin:</strong> Authorize Alibaba Cloud CDN service role via RAM Bucket Policy. When CDN pulls missed content from OSS, it automatically generates authorized HMAC signatures.</li>
+            <li><strong>Single Ingress Channel:</strong> Users can access bucket objects exclusively through the accelerated CDN domain (<code>cdn.example.com</code>).</li>
+            <li><strong>Architectural Principle:</strong> Enforce the principle of least privilege by locking down storage buckets and funneling all access through the secured edge perimeter.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 34: ORIGIN REDUNDANCY & ACTIVE-STANDBY FAILOVER -->
+    <section class="slide" data-category="Edge Security &amp; Origin Protection">
+      <div class="slide-category">Section 6: Edge Security &amp; Origin Protection</div>
+      <h2>Origin Redundancy &amp; Active-Standby Failover</h2>
+
+      <div class="grid-3" style="margin-top: 1rem;">
+        <div class="content-card highlight-blue">
+          <h3>Multi-Origin Pooling</h3>
+          <ul>
+            <li><strong>Multiple Origin Servers:</strong> Configure multiple origin IP addresses or domain names under a single CDN domain.</li>
+            <li><strong>Load Balancing Algorithms:</strong> Distributes back-to-origin requests using Weighted Round-Robin or IP Hash matching.</li>
+            <li><strong>Capacity Expansion:</strong> Scale back-to-origin handling horizontally across multiple origin servers or VPC clusters.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Active-Standby Failover</h3>
+          <ul>
+            <li><strong>Primary &amp; Standby Tiers:</strong> Designate primary origin servers and secondary disaster recovery backup origins.</li>
+            <li><strong>Automatic Fault Switching:</strong> When primary origins return HTTP 5xx errors or connection timeouts, CDN automatically reroutes to standby origins.</li>
+            <li><strong>Seamless User Experience:</strong> End users experience zero failed requests during backend server outages or rolling maintenance.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight">
+          <h3>Origin Health Probing</h3>
+          <ul>
+            <li><strong>Continuous Health Checks:</strong> CDN periodically probes origin health using HTTP/TCP synthetic checks.</li>
+            <li><strong>Automated Isolation:</strong> Unhealthy origin servers are dynamically removed from the active pool within seconds.</li>
+            <li><strong>High Availability Rule:</strong> Never rely on a single origin IP for mission-critical enterprise workloads.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 35: METRICS, OBSERVABILITY & SLS LOGGING -->
+    <section class="slide" data-category="Edge Security &amp; Origin Protection">
+      <div class="slide-category">Section 6: Edge Security &amp; Origin Protection</div>
+      <h2>Metrics, Observability &amp; Real-Time SLS Monitoring</h2>
+
+      <div class="grid-2" style="margin-top: 1rem; align-items: stretch;">
+        <div class="content-card highlight-blue">
+          <h3>Core Operational Key Performance Indicators</h3>
+          <ul>
+            <li><strong>Cache Hit Ratio:</strong> Monitors both Traffic Hit Ratio (bytes served from cache / total bytes) and Request Hit Ratio (target &gt; 90% for static assets).</li>
+            <li><strong>Back-to-Origin Bandwidth &amp; Ratio:</strong> Tracks back-to-origin load to ensure backend servers are never subjected to traffic saturation.</li>
+            <li><strong>Response Latency &amp; TTFB:</strong> Tracks 95th-percentile Time to First Byte and round-trip response times across global geographic regions.</li>
+            <li><strong>HTTP Status Code Distribution:</strong> Real-time alerts on 4xx client errors (broken links, auth rejections) and 5xx origin failures.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Real-Time SLS Log Streaming</h3>
+          <ul>
+            <li><strong>Direct Log Service Integration:</strong> Real-time streaming of edge access logs to Alibaba Cloud Simple Log Service (SLS) with zero log delay.</li>
+            <li><strong>Granular Telemetry Fields:</strong> Captures client IP, ISP, geographic location, request URL, HTTP method, status code, response bytes, execution time, and cache status (<code>HIT</code>/<code>MISS</code>).</li>
+            <li><strong>Instant Security &amp; Business Intelligence:</strong> Query top visited URLs, identify malicious scrapers, track user geographic distribution, and trigger automated alerts.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 36: BILLING MODELS & COST OPTIMIZATION -->
+    <section class="slide" data-category="Edge Security &amp; Origin Protection">
+      <div class="slide-category">Section 6: Edge Security &amp; Origin Protection</div>
+      <h2>Billing Models: Traffic vs. Peak Bandwidth</h2>
+
+      <div class="grid-3" style="margin-top: 1rem;">
+        <div class="content-card highlight-blue">
+          <h3>Pay-by-Data-Transfer (GB)</h3>
+          <ul>
+            <li><strong>Billing Metric:</strong> Billed strictly per gigabyte (GB) of outbound data transferred from edge nodes to end users.</li>
+            <li><strong>Ideal Workload Profile:</strong> Websites, enterprise portals, e-commerce apps, and mobile APIs with fluctuating traffic, periodic spikes, or low overall volume.</li>
+            <li><strong>Cost Advantage:</strong> Zero traffic means zero cost; no minimum bandwidth commitment required.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h3>Pay-by-Bandwidth (Mbps)</h3>
+          <ul>
+            <li><strong>Billing Metric:</strong> Billed based on daily peak bandwidth (Mbps) or monthly 95th-percentile bandwidth.</li>
+            <li><strong>Ideal Workload Profile:</strong> Video on demand (VOD), live media streaming, game patch delivery, and large file download portals.</li>
+            <li><strong>Cost Advantage:</strong> Significantly more economical than Pay-by-Traffic when bandwidth consumption is steady and continuous around the clock.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight">
+          <h3>Resource Plans &amp; Savings</h3>
+          <ul>
+            <li><strong>Prepaid Resource Plans:</strong> Purchase prepaid traffic or bandwidth packages in advance for up to 40%–60% discounts compared to standard Pay-As-You-Go rates.</li>
+            <li><strong>Multi-Region Packages:</strong> Select domestic (mainland China) or international regional packages matching user geographic distribution.</li>
+            <li><strong>Architectural Principle:</strong> Continuously monitor traffic patterns to switch billing models as workload characteristics evolve.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== INTERACTIVE PRACTICE SCENARIO QUIZZES ==================== -->
+
+    <!-- SLIDE 37: PRACTICE SCENARIO 1 (QUESTION) -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Interactive Quiz • Scenario 1</div>
+      <h2>Practice Scenario 1: E-Commerce Flash Sale Origin Stampede</h2>
+      
+      <div class="quiz-single-card">
+        <div class="quiz-single-question">
+          <span class="quiz-number">Question 1</span>
+          <span>A global retail e-commerce enterprise is launching a major midnight flash sale for a flagship product. Marketing forecasts indicate that over 2 million concurrent users will visit the promotional landing page containing product banners, feature videos, and price tables within the first 5 minutes. During a previous event, the company's backend ECS web servers and OSS storage crashed under an origin stampede due to cold caches and un-cached assets. Which comprehensive CDN architecture best guarantees 99.99% availability and protects the origin?</span>
+        </div>
+        <ul class="quiz-single-options">
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">A</span>
+            <span>Scale the CPU and memory of all backend ECS instances to maximum specifications and make the OSS bucket public read so users download assets directly.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">B</span>
+            <span>Deploy Alibaba Cloud CDN with Origin Shield enabled, pre-warm critical landing page assets 30 minutes before the sale, set appropriate cache TTL rules, and enforce private OSS bucket RAM authorization.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">C</span>
+            <span>Disable all CDN edge caching rules so that stock numbers reflect real-time database values on every static banner image request.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">D</span>
+            <span>Deploy a second VPC peering connection and replicate all static assets across three separate ECS availability zones without using a Content Delivery Network.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SLIDE 38: SCENARIO 1 SOLUTION & ANALYSIS -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Quiz Solution • Scenario 1</div>
+      <h2>Scenario 1: Solution &amp; Architectural Analysis</h2>
+      
+      <div class="analysis-main-card">
+        <div>
+          <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: B</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Deploy CDN with Origin Shield, pre-warm critical assets, configure TTLs, and lock OSS to private RAM authorization.</span>
+        </div>
+        <span class="badge badge-updated">Validated Architecture</span>
+      </div>
+
+      <div class="analysis-options-grid">
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option A is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Prohibitively expensive and unscalable.</strong> Vertically scaling ECS servers fails to solve public internet transit bottlenecks, incurs massive costs, and making the OSS bucket public exposes the storage endpoint to direct bandwidth exhaustion.
+          </div>
+        </div>
+
+        <div class="analysis-item correct">
+          <div class="analysis-item-header correct">
+            <span>✔ Option B is Correct</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Complete origin defense and edge readiness.</strong> Pre-warming populates edge nodes before user traffic arrives, eliminating initial cache misses; Origin Shield consolidates any residual back-to-origin queries; and private OSS integration ensures zero direct bucket access.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option C is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Guarantees catastrophic origin collapse.</strong> Disabling CDN caching forces all 2 million concurrent requests directly onto backend servers; dynamic stock figures should be fetched via separate lightweight APIs, not tied to static images.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option D is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Fails to solve edge latency and internet congestion.</strong> Cross-zone VPC replication does not provide edge caching close to global users and does not protect against transit peering congestion over public internet links.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 39: PRACTICE SCENARIO 2 (QUESTION) -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Interactive Quiz • Scenario 2</div>
+      <h2>Practice Scenario 2: Dynamic API &amp; Real-Time Trading Acceleration</h2>
+      
+      <div class="quiz-single-card">
+        <div class="quiz-single-question">
+          <span class="quiz-number">Question 2</span>
+          <span>A global financial trading platform operates interactive web and mobile applications with users distributed across Singapore, Tokyo, Frankfurt, and New York. While static website pages load quickly, international users experience severe latency spikes (400 ms–800 ms), frequent TCP connection timeouts, and dropped WebSocket ticker feeds during volatile market hours when submitting trade orders to backend API gateways in Hong Kong. Which architecture resolves this bottleneck?</span>
+        </div>
+        <ul class="quiz-single-options">
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">A</span>
+            <span>Deploy standard static CDN with a 30-day cache TTL for all API routes and replace real-time WebSocket feeds with static JSON polling.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">B</span>
+            <span>Require all international trading clients to connect through an on-premises IPsec-VPN gateway directly into the backend VPC.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">C</span>
+            <span>Deploy Alibaba Cloud DCDN (Dynamic Route for CDN) with smart dynamic routing, persistent connection multiplexing, and WebSocket edge acceleration.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">D</span>
+            <span>Replace the backend database with a distributed NoSQL cluster while leaving public internet routing and protocol transmission unchanged.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SLIDE 40: SCENARIO 2 SOLUTION & ANALYSIS -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Quiz Solution • Scenario 2</div>
+      <h2>Scenario 2: Solution &amp; Architectural Analysis</h2>
+      
+      <div class="analysis-main-card">
+        <div>
+          <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: C</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Deploy DCDN with smart dynamic routing, pre-warmed persistent connection pools, and WebSocket acceleration.</span>
+        </div>
+        <span class="badge badge-updated">Validated Architecture</span>
+      </div>
+
+      <div class="analysis-options-grid">
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option A is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Catastrophic financial data staleness.</strong> Dynamic trade orders and account balances cannot be cached statically, and replacing WebSockets with polling multiplies HTTP connection overhead and worsens server congestion.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option B is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Unsuitable for public client access.</strong> Client IPsec-VPN introduces heavy encryption latency, poor global mobile routing, single-point gateway bottlenecks, and is operationally unmanageable for retail users.
+          </div>
+        </div>
+
+        <div class="analysis-item correct">
+          <div class="analysis-item-header correct">
+            <span>✔ Option C is Correct</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Optimized transport and intelligent routing.</strong> DCDN terminates client handshakes locally at edge PoPs, routes dynamic API requests over Alibaba Cloud's private fiber backbone bypassing public congestion, reuses persistent origin tunnels, and accelerates full-duplex WebSockets.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option D is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Misdiagnoses the root bottleneck.</strong> The issue is public internet transit latency, packet loss, and repeated TLS handshakes across trans-oceanic cables, which cannot be cured by database modifications alone.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 41: PRACTICE SCENARIO 3 (QUESTION) -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Interactive Quiz • Scenario 3</div>
+      <h2>Practice Scenario 3: Video Streaming Anti-Leech &amp; Digital Rights Protection</h2>
+      
+      <div class="quiz-single-card">
+        <div class="quiz-single-question">
+          <span class="quiz-number">Question 3</span>
+          <span>A subscription-based online academy hosts premium video courses and downloadable training material. Recent security monitoring reveals that unauthorized third-party piracy portals are hotlinking video URLs directly into external forum posts, resulting in massive bandwidth theft and inflated CDN billing. In addition, malicious scrapers are systematically downloading full video archives. Which security configuration completely stops this unauthorized distribution?</span>
+        </div>
+        <ul class="quiz-single-options">
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">A</span>
+            <span>Configure Alibaba Cloud CDN with Referer header whitelisting, cryptographic URL Signing (Token Authentication), and enforce private OSS bucket access via RAM role authorization.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">B</span>
+            <span>Manually rename all video files on the origin server every 24 hours and email new raw IP download links to active students.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">C</span>
+            <span>Switch the video format to uncompressed raw AVI so that file sizes become too large for third-party websites to stream smoothly.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">D</span>
+            <span>Add a robots.txt file in the origin root directory with 'Disallow: /videos/' to instruct third-party portals not to embed files.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SLIDE 42: SCENARIO 3 SOLUTION & ANALYSIS -->
+    <section class="slide" data-category="Practice Quiz">
+      <div class="slide-category">Quiz Solution • Scenario 3</div>
+      <h2>Scenario 3: Solution &amp; Architectural Analysis</h2>
+      
+      <div class="analysis-main-card">
+        <div>
+          <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: A</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Combine Referer whitelisting, cryptographic URL token signing, and private OSS RAM bucket authorization.</span>
+        </div>
+        <span class="badge badge-updated">Validated Architecture</span>
+      </div>
+
+      <div class="analysis-options-grid">
+        <div class="analysis-item correct">
+          <div class="analysis-item-header correct">
+            <span>✔ Option A is Correct</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Multi-layered content protection.</strong> Referer whitelisting blocks unauthorized external web embeds, URL Signing generates time-limited MD5 tokens that cannot be forged or shared, and private OSS access prevents attackers from bypassing the CDN to download directly from storage.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option B is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Operationally unviable and insecure.</strong> Manual daily renaming breaks legitimate user bookmarks, imposes heavy operational toil, and fails to stop leeches from extracting the new links during the 24-hour window.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option C is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Counter-productive and expensive.</strong> Serving uncompressed AVI video destroys playback experience for legitimate students, inflates enterprise CDN bandwidth costs tenfold, and does not stop unauthorized downloads.
+          </div>
+        </div>
+
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect">
+            <span>✖ Option D is Incorrect</span>
+          </div>
+          <div class="analysis-item-body">
+            <strong>Zero security enforcement.</strong> A <code>robots.txt</code> file is strictly an advisory mechanism for cooperative search engine indexing bots; it is completely ignored by video players, browser hotlinks, and malicious scrapers.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 43: MODULE COMPLETE ==================== -->
+    <section class="slide title-slide" data-category="Summary">
+      <div class="slide-category">Module Complete</div>
+      <h1 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Module 08: Content Delivery Network (CDN)</h1>
+      <div class="callout callout-green" style="max-width: 580px; margin: 0 auto; text-align: left;">
+        <div>
+          <span class="badge badge-updated">Up Next</span><br>
+          <strong>Module 09: Security Products &amp; Defense Architecture</strong>
+          <div style="margin-top: 0.75rem;">
+            <a href="module-07-auto-scaling.html" class="btn-nav" style="display: inline-flex; align-items: center; text-decoration: none; padding: 0.45rem 1rem; font-size: 0.9rem; margin-right: 0.5rem;">⬅️ Back to Module 07</a>
+            <a href="module-09-security.html" class="btn-nav primary" style="display: inline-flex; align-items: center; text-decoration: none; padding: 0.45rem 1rem; font-size: 0.9rem;">Proceed to Module 09 ➡️</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="assets/js/presentation.js"></script>
+</body>
+</html>

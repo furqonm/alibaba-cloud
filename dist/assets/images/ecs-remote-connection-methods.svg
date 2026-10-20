@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="auto">
+  <defs>
+    <filter id="shadow-rem" x="-3%" y="-3%" width="106%" height="106%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.08" />
+    </filter>
+    <linearGradient id="protoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284C7" />
+      <stop offset="100%" stop-color="#38BDF8" />
+    </linearGradient>
+    <linearGradient id="cloudNativeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF6A00" />
+      <stop offset="100%" stop-color="#FF8F3D" />
+    </linearGradient>
+    <marker id="arrow-rem-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284C7" />
+    </marker>
+    <marker id="arrow-rem-orange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#FF6A00" />
+    </marker>
+    <marker id="arrow-rem-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669" />
+    </marker>
+    <marker id="arrow-rem-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#7C3AED" />
+    </marker>
+  </defs>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+    <!-- Outer Container -->
+    <rect x="10" y="10" width="940" height="460" rx="12" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5" />
+
+    <!-- Title Bar -->
+    <text x="30" y="36" fill="#0F172A" font-size="15" font-weight="700">ECS Instance Remote Access Architecture &amp; Connectivity Methods</text>
+    <text x="930" y="36" fill="#64748B" font-size="11" font-weight="500" text-anchor="end">Comparison: Traditional Inbound vs Out-of-Band vs Agent-Based</text>
+
+    <!-- 4 METHOD CARDS -->
+
+    <!-- METHOD 1: SSH (Linux) / RDP (Windows) -->
+    <g filter="url(#shadow-rem)">
+      <rect x="25" y="55" width="215" height="395" rx="8" fill="#FFFFFF" stroke="#BAE6FD" stroke-width="1.5" />
+      <rect x="25" y="55" width="215" height="28" rx="8" fill="#0284C7" />
+      <rect x="25" y="75" width="215" height="8" fill="#0284C7" />
+      <text x="132" y="74" fill="#FFFFFF" font-size="12" font-weight="700" text-anchor="middle">1. Native SSH / RDP</text>
+
+      <!-- Client side -->
+      <rect x="40" y="95" width="185" height="50" rx="6" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="1" />
+      <text x="132" y="115" fill="#0369A1" font-size="11" font-weight="700" text-anchor="middle">Client Terminal / MSTSC</text>
+      <text x="132" y="132" fill="#64748B" font-size="9" text-anchor="middle">PuTTY &bull; OpenSSH &bull; Windows RDP</text>
+
+      <!-- Arrow -->
+      <path d="M 132 145 L 132 185" stroke="#0284C7" stroke-width="2" marker-end="url(#arrow-rem-blue)" />
+      <rect x="72" y="153" width="120" height="18" rx="3" fill="#E0F2FE" />
+      <text x="132" y="166" fill="#0284C7" font-size="9" font-weight="700" text-anchor="middle">Direct Inbound Port</text>
+
+      <!-- Security / Prerequisites -->
+      <rect x="40" y="195" width="185" height="85" rx="6" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1" />
+      <text x="50" y="214" fill="#92400E" font-size="10" font-weight="700">Requirements &amp; Security:</text>
+      <text x="50" y="230" fill="#78350F" font-size="9">&bull; <strong>Linux:</strong> Port TCP 22 (SSH)</text>
+      <text x="50" y="245" fill="#78350F" font-size="9">&bull; <strong>Windows:</strong> Port TCP 3389 (RDP)</text>
+      <text x="50" y="260" fill="#78350F" font-size="9">&bull; Public IP / EIP or VPN/CEN</text>
+      <text x="50" y="274" fill="#DC2626" font-size="9" font-weight="600">&bull; Requires Inbound SG Rule</text>
+
+      <!-- ECS Target -->
+      <rect x="40" y="295" width="185" height="70" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
+      <text x="132" y="318" fill="#1E293B" font-size="11" font-weight="700" text-anchor="middle">ECS Operating System</text>
+      <text x="132" y="334" fill="#059669" font-size="9" font-weight="600" text-anchor="middle">SSHD / TermService Daemon</text>
+      <text x="132" y="350" fill="#64748B" font-size="8" text-anchor="middle">Key Pair (RSA/ED25519) / Password</text>
+
+      <!-- Verdict Badge -->
+      <rect x="40" y="380" width="185" height="55" rx="6" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1" />
+      <text x="132" y="400" fill="#1D4ED8" font-size="10" font-weight="700" text-anchor="middle">Ideal For</text>
+      <text x="132" y="415" fill="#1E40AF" font-size="9" text-anchor="middle">Developer daily command line,</text>
+      <text x="132" y="427" fill="#1E40AF" font-size="9" text-anchor="middle">automated Ansible/CI/CD pipelines</text>
+    </g>
+
+    <!-- METHOD 2: Alibaba Cloud Workbench -->
+    <g filter="url(#shadow-rem)">
+      <rect x="255" y="55" width="215" height="395" rx="8" fill="#FFFFFF" stroke="#FFD8A8" stroke-width="1.5" />
+      <rect x="255" y="55" width="215" height="28" rx="8" fill="#FF6A00" />
+      <rect x="255" y="75" width="215" height="8" fill="#FF6A00" />
+      <text x="362" y="74" fill="#FFFFFF" font-size="12" font-weight="700" text-anchor="middle">2. Cloud Workbench</text>
+
+      <!-- Client side -->
+      <rect x="270" y="95" width="185" height="50" rx="6" fill="#FFF7ED" stroke="#FFD8A8" stroke-width="1" />
+      <text x="362" y="115" fill="#C2410C" font-size="11" font-weight="700" text-anchor="middle">Web Browser Console</text>
+      <text x="362" y="132" fill="#64748B" font-size="9" text-anchor="middle">No local SSH/RDP client required</text>
+
+      <!-- Arrow -->
+      <path d="M 362 145 L 362 185" stroke="#FF6A00" stroke-width="2" marker-end="url(#arrow-rem-orange)" />
+      <rect x="302" y="153" width="120" height="18" rx="3" fill="#FFEDD5" />
+      <text x="362" y="166" fill="#C2410C" font-size="9" font-weight="700" text-anchor="middle">HTTPS 443 + Gateway</text>
+
+      <!-- Security / Prerequisites -->
+      <rect x="270" y="195" width="185" height="85" rx="6" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1" />
+      <text x="280" y="214" fill="#92400E" font-size="10" font-weight="700">Features &amp; Transport:</text>
+      <text x="280" y="230" fill="#78350F" font-size="9">&bull; Browser-based SSH &amp; RDP GUI</text>
+      <text x="280" y="245" fill="#78350F" font-size="9">&bull; <strong>Integrated SFTP File Manager</strong></text>
+      <text x="280" y="260" fill="#78350F" font-size="9">&bull; Session recording &amp; auditing</text>
+      <text x="280" y="274" fill="#DC2626" font-size="9" font-weight="600">&bull; Still requires IP reachability</text>
+
+      <!-- ECS Target -->
+      <rect x="270" y="295" width="185" height="70" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
+      <text x="362" y="318" fill="#1E293B" font-size="11" font-weight="700" text-anchor="middle">ECS Operating System</text>
+      <text x="362" y="334" fill="#C2410C" font-size="9" font-weight="600" text-anchor="middle">Console Ingress Proxy Gateway</text>
+      <text x="362" y="350" fill="#64748B" font-size="8" text-anchor="middle">One-click login with RAM identity</text>
+
+      <!-- Verdict Badge -->
+      <rect x="270" y="380" width="185" height="55" rx="6" fill="#FFF7ED" stroke="#FED7AA" stroke-width="1" />
+      <text x="362" y="400" fill="#C2410C" font-size="10" font-weight="700" text-anchor="middle">Ideal For</text>
+      <text x="362" y="415" fill="#9A3412" font-size="9" text-anchor="middle">Quick browser administration,</text>
+      <text x="362" y="427" fill="#9A3412" font-size="9" text-anchor="middle">file drag-and-drop without tools</text>
+    </g>
+
+    <!-- METHOD 3: VNC Management Terminal -->
+    <g filter="url(#shadow-rem)">
+      <rect x="485" y="55" width="215" height="395" rx="8" fill="#FFFFFF" stroke="#FED7AA" stroke-width="1.5" />
+      <rect x="485" y="55" width="215" height="28" rx="8" fill="#D97706" />
+      <rect x="485" y="75" width="215" height="8" fill="#D97706" />
+      <text x="592" y="74" fill="#FFFFFF" font-size="12" font-weight="700" text-anchor="middle">3. VNC Emergency Terminal</text>
+
+      <!-- Client side -->
+      <rect x="500" y="95" width="185" height="50" rx="6" fill="#FEF3C7" stroke="#FDE68A" stroke-width="1" />
+      <text x="592" y="115" fill="#92400E" font-size="11" font-weight="700" text-anchor="middle">Alibaba Cloud Console</text>
+      <text x="592" y="132" fill="#64748B" font-size="9" text-anchor="middle">Hypervisor Web Stream Console</text>
+
+      <!-- Arrow -->
+      <path d="M 592 145 L 592 185" stroke="#D97706" stroke-width="2" marker-end="url(#arrow-rem-orange)" />
+      <rect x="517" y="153" width="150" height="18" rx="3" fill="#FEF3C7" />
+      <text x="592" y="166" fill="#92400E" font-size="9" font-weight="700" text-anchor="middle">Out-of-Band Hardware Bus</text>
+
+      <!-- Security / Prerequisites -->
+      <rect x="500" y="195" width="185" height="85" rx="6" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1" />
+      <text x="510" y="214" fill="#166534" font-size="10" font-weight="700">Hardware-Level Out-of-Band:</text>
+      <text x="510" y="230" fill="#15803D" font-size="9">&bull; <strong>Bypasses OS Network Stack</strong></text>
+      <text x="510" y="245" fill="#15803D" font-size="9">&bull; <strong>Ignores Security Group rules!</strong></text>
+      <text x="510" y="260" fill="#15803D" font-size="9">&bull; No Public IP or EIP required</text>
+      <text x="510" y="274" fill="#166534" font-size="9" font-weight="600">&bull; Direct virtual display &amp; keyboard</text>
+
+      <!-- ECS Target -->
+      <rect x="500" y="295" width="185" height="70" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
+      <text x="592" y="318" fill="#1E293B" font-size="11" font-weight="700" text-anchor="middle">KVM / CIPU Hypervisor</text>
+      <text x="592" y="334" fill="#D97706" font-size="9" font-weight="600" text-anchor="middle">Hardware Video Framebuffer</text>
+      <text x="592" y="350" fill="#64748B" font-size="8" text-anchor="middle">Inspects BIOS, GRUB &amp; Kernel Boot</text>
+
+      <!-- Verdict Badge -->
+      <rect x="500" y="380" width="185" height="55" rx="6" fill="#FEF2F2" stroke="#FECACA" stroke-width="1" />
+      <text x="592" y="400" fill="#B91C1C" font-size="10" font-weight="700" text-anchor="middle">Ideal For (Disaster Recovery)</text>
+      <text x="592" y="415" fill="#991B1B" font-size="9" text-anchor="middle">Kernel panics, BSOD, boot crash,</text>
+      <text x="592" y="427" fill="#991B1B" font-size="9" text-anchor="middle">firewall lockout (iptables mistake)</text>
+    </g>
+
+    <!-- METHOD 4: Cloud Assistant & Session Manager -->
+    <g filter="url(#shadow-rem)">
+      <rect x="715" y="55" width="220" height="395" rx="8" fill="#FFFFFF" stroke="#BBF7D0" stroke-width="1.5" />
+      <rect x="715" y="55" width="220" height="28" rx="8" fill="#059669" />
+      <rect x="715" y="75" width="220" height="8" fill="#059669" />
+      <text x="825" y="74" fill="#FFFFFF" font-size="12" font-weight="700" text-anchor="middle">4. Cloud Assistant &amp; Session Mgr</text>
+
+      <!-- Client side -->
+      <rect x="730" y="95" width="190" height="50" rx="6" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1" />
+      <text x="825" y="115" fill="#15803D" font-size="11" font-weight="700" text-anchor="middle">Console / CLI / OpenAPI</text>
+      <text x="825" y="132" fill="#64748B" font-size="9" text-anchor="middle">Zero-Trust Identity-based Access</text>
+
+      <!-- Arrow -->
+      <path d="M 825 145 L 825 185" stroke="#059669" stroke-width="2" marker-end="url(#arrow-rem-green)" />
+      <rect x="745" y="153" width="160" height="18" rx="3" fill="#DCFCE7" />
+      <text x="825" y="166" fill="#15803D" font-size="9" font-weight="700" text-anchor="middle">Agent Outbound Polling Only</text>
+
+      <!-- Security / Prerequisites -->
+      <rect x="730" y="195" width="190" height="85" rx="6" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1" />
+      <text x="740" y="214" fill="#166534" font-size="10" font-weight="700">Zero Inbound Port Security:</text>
+      <text x="740" y="230" fill="#15803D" font-size="9">&bull; <strong>NO open inbound ports!</strong></text>
+      <text x="740" y="245" fill="#15803D" font-size="9">&bull; No Public IP / EIP required</text>
+      <text x="740" y="260" fill="#15803D" font-size="9">&bull; Connects via VPC internal endpoint</text>
+      <text x="740" y="274" fill="#166534" font-size="9" font-weight="600">&bull; Governed strictly by RAM policies</text>
+
+      <!-- ECS Target -->
+      <rect x="730" y="295" width="190" height="70" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
+      <text x="825" y="318" fill="#1E293B" font-size="11" font-weight="700" text-anchor="middle">AliyunService Agent</text>
+      <text x="825" y="334" fill="#059669" font-size="9" font-weight="600" text-anchor="middle">Built-in daemon on official images</text>
+      <text x="825" y="350" fill="#64748B" font-size="8" text-anchor="middle">Shell, PowerShell &amp; Session Manager</text>
+
+      <!-- Verdict Badge -->
+      <rect x="730" y="380" width="190" height="55" rx="6" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1" />
+      <text x="825" y="400" fill="#047857" font-size="10" font-weight="700" text-anchor="middle">Ideal For (Enterprise Cloud-Native)</text>
+      <text x="825" y="415" fill="#065F46" font-size="9" text-anchor="middle">Zero-trust fleet management,</text>
+      <text x="825" y="427" fill="#065F46" font-size="9" text-anchor="middle">secure terminal without bastions</text>
+    </g>
+  </g>
+</svg>

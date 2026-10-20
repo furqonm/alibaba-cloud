@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 440" width="100%" height="100%">
+  <rect x="15" y="15" width="850" height="410" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="440" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#1e293b">Multi-Zone High Availability: Active-Active Load Balancing &amp; DR</text>
+
+  <!-- Top Ingress Bar -->
+  <g transform="translate(140, 75)">
+    <rect width="600" height="45" rx="8" fill="#1e293b"/>
+    <text x="300" y="28" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Anycast BGP VIP / Public DNS Resolution (e.g., 47.88.x.x)</text>
+  </g>
+
+  <!-- Traffic split arrows -->
+  <path d="M 300 120 L 220 150" stroke="#FF6A00" stroke-width="2.5" fill="none"/>
+  <polygon points="216,152 225,145 227,155" fill="#FF6A00"/>
+
+  <path d="M 580 120 L 660 150" stroke="#FF6A00" stroke-width="2.5" fill="none"/>
+  <polygon points="664,152 653,155 655,145" fill="#FF6A00"/>
+
+  <!-- Zone A Box -->
+  <g transform="translate(60, 155)">
+    <rect width="360" height="245" rx="12" fill="#fff7ed" stroke="#FF6A00" stroke-width="1.5"/>
+    <rect x="15" y="12" width="330" height="30" rx="6" fill="#FF6A00"/>
+    <text x="180" y="32" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Availability Zone A (Active Node)</text>
+
+    <!-- Zone A SLB Node -->
+    <rect x="25" y="55" width="310" height="50" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+    <text x="180" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#c2410c">ALB / NLB Elastic Node Pool A</text>
+    <text x="180" y="94" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#059669">Healthy • Processing 50% Ingress</text>
+
+    <!-- Zone A Backend Fleet -->
+    <g transform="translate(25, 115)">
+      <rect width="145" height="60" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+      <text x="72" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#334155">ECS Server A1</text>
+      <text x="72" y="46" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#059669">✔ Healthy (vSwitch A)</text>
+
+      <rect x="165" width="145" height="60" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+      <text x="237" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#334155">ECS Server A2</text>
+      <text x="237" y="46" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#059669">✔ Healthy (vSwitch A)</text>
+    </g>
+
+    <text x="180" y="210" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">Cross-Zone Routing Enabled</text>
+  </g>
+
+  <!-- Zone B Box -->
+  <g transform="translate(460, 155)">
+    <rect width="360" height="245" rx="12" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5"/>
+    <rect x="15" y="12" width="330" height="30" rx="6" fill="#0284c7"/>
+    <text x="180" y="32" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Availability Zone B (Active Node)</text>
+
+    <!-- Zone B SLB Node -->
+    <rect x="25" y="55" width="310" height="50" rx="6" fill="#ffffff" stroke="#bae6fd"/>
+    <text x="180" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0284c7">ALB / NLB Elastic Node Pool B</text>
+    <text x="180" y="94" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#059669">Healthy • Processing 50% Ingress</text>
+
+    <!-- Zone B Backend Fleet -->
+    <g transform="translate(25, 115)">
+      <rect width="145" height="60" rx="6" fill="#ffffff" stroke="#bae6fd"/>
+      <text x="72" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#334155">ECS Server B1</text>
+      <text x="72" y="46" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#059669">✔ Healthy (vSwitch B)</text>
+
+      <rect x="165" width="145" height="60" rx="6" fill="#ffffff" stroke="#bae6fd"/>
+      <text x="237" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#334155">ECS Server B2</text>
+      <text x="237" y="46" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#059669">✔ Healthy (vSwitch B)</text>
+    </g>
+
+    <text x="180" y="210" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">Automatic Zone Failure Isolation (&lt; 30s)</text>
+  </g>
+
+  <!-- Cross-Zone balancing lines between zones -->
+  <path d="M 420 230 L 460 230" stroke="#10b981" stroke-width="2" stroke-dasharray="4 2" fill="none"/>
+  <path d="M 460 250 L 420 250" stroke="#10b981" stroke-width="2" stroke-dasharray="4 2" fill="none"/>
+</svg>

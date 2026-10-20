@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 460" width="100%" height="100%">
+  <defs>
+    <filter id="erShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-opacity="0.08"/>
+    </filter>
+    <marker id="ar1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7"/>
+    </marker>
+    <marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669"/>
+    </marker>
+    <marker id="ar3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#ea580c"/>
+    </marker>
+    <marker id="ar4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#7c3aed"/>
+    </marker>
+  </defs>
+
+  <rect width="840" height="460" fill="#f8fafc" rx="12"/>
+
+  <text x="420" y="30" fill="#0f172a" font-size="16" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">Edge Computing: EdgeRoutine (ER) Serverless &amp; EdgeKV Architecture</text>
+
+  <!-- Left: End User -->
+  <g transform="translate(30, 60)">
+    <rect width="130" height="360" rx="10" fill="#ffffff" stroke="#bae6fd" stroke-width="2" filter="url(#erShadow)"/>
+    <rect width="130" height="38" rx="10" fill="#e0f2fe"/>
+    <text x="65" y="24" fill="#0369a1" font-size="13" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">Client Request</text>
+
+    <g transform="translate(15, 60)">
+      <circle cx="20" cy="20" r="16" fill="#0284c7"/>
+      <text x="20" y="25" fill="#ffffff" font-size="14" text-anchor="middle">👤</text>
+      <text x="45" y="16" fill="#1e293b" font-size="11" font-weight="700" font-family="system-ui, sans-serif">User Client</text>
+      <text x="45" y="30" fill="#64748b" font-size="9" font-family="system-ui, sans-serif">HTTP Request</text>
+    </g>
+
+    <g transform="translate(12, 140)">
+      <rect width="106" height="85" rx="6" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5"/>
+      <text x="53" y="18" fill="#065f46" font-size="10" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">Direct Edge Exit</text>
+      <text x="53" y="36" fill="#047857" font-size="8.5" text-anchor="middle" font-family="system-ui, sans-serif">• Auth Rejected</text>
+      <text x="53" y="52" fill="#047857" font-size="8.5" text-anchor="middle" font-family="system-ui, sans-serif">• A/B Redirect</text>
+      <text x="53" y="68" fill="#047857" font-size="8.5" text-anchor="middle" font-family="system-ui, sans-serif">• Edge Rendered</text>
+    </g>
+
+    <g transform="translate(12, 250)">
+      <rect width="106" height="60" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+      <text x="53" y="22" fill="#15803d" font-size="10" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">Ultra-Low Latency</text>
+      <text x="53" y="44" fill="#16a34a" font-size="12" font-weight="800" text-anchor="middle" font-family="system-ui, sans-serif">&lt; 5 ms</text>
+    </g>
+  </g>
+
+  <!-- Middle: CDN Edge PoP with EdgeRoutine -->
+  <g transform="translate(200, 60)">
+    <rect width="390" height="360" rx="10" fill="#ffffff" stroke="#fed7aa" stroke-width="2" filter="url(#erShadow)"/>
+    <rect width="390" height="38" rx="10" fill="#ffedd5"/>
+    <text x="195" y="24" fill="#c2410c" font-size="13" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">Alibaba Cloud CDN Edge Node (Compute Layer)</text>
+
+    <!-- EdgeRoutine Box -->
+    <g transform="translate(15, 50)">
+      <rect width="215" height="180" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+      <rect width="215" height="30" rx="8" fill="#ea580c"/>
+      <text x="107" y="20" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">⚡ EdgeRoutine (ER) Engine</text>
+      <text x="107" y="48" fill="#9a3412" font-size="10" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">Chrome V8 Isolate Serverless</text>
+      <text x="15" y="70" fill="#475569" font-size="9" font-family="system-ui, sans-serif">• Sub-millisecond cold start (&lt;1ms)</text>
+      <text x="15" y="88" fill="#475569" font-size="9" font-family="system-ui, sans-serif">• JavaScript (ES6) / WebAssembly</text>
+      <text x="15" y="106" fill="#475569" font-size="9" font-family="system-ui, sans-serif">• Standard Fetch API &amp; Crypto</text>
+      <text x="15" y="124" fill="#475569" font-size="9" font-family="system-ui, sans-serif">• Zero server maintenance</text>
+      <text x="15" y="142" fill="#c2410c" font-size="9" font-weight="700" font-family="system-ui, sans-serif">• Intercepts request BEFORE cache/origin</text>
+      <text x="15" y="160" fill="#047857" font-size="9" font-weight="600" font-family="system-ui, sans-serif">• Can synthesize direct HTTP response</text>
+    </g>
+
+    <!-- EdgeKV Box -->
+    <g transform="translate(245, 50)">
+      <rect width="130" height="180" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+      <rect width="130" height="30" rx="8" fill="#7c3aed"/>
+      <text x="65" y="20" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">🗄️ EdgeKV</text>
+      <text x="65" y="48" fill="#5b21b6" font-size="9.5" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">Distributed KV Store</text>
+      <text x="10" y="72" fill="#475569" font-size="8.5" font-family="system-ui, sans-serif">• Global replication</text>
+      <text x="10" y="90" fill="#475569" font-size="8.5" font-family="system-ui, sans-serif">• Read latency &lt; 2ms</text>
+      <text x="10" y="108" fill="#475569" font-size="8.5" font-family="system-ui, sans-serif">• Session tokens</text>
+      <text x="10" y="126" fill="#475569" font-size="8.5" font-family="system-ui, sans-serif">• Feature flags</text>
+      <text x="10" y="144" fill="#475569" font-size="8.5" font-family="system-ui, sans-serif">• IP blacklists</text>
+      <text x="10" y="162" fill="#7c3aed" font-size="8.5" font-weight="700" font-family="system-ui, sans-serif">• Key-Value lookup</text>
+    </g>
+
+    <!-- Edge Core Capabilities Grid -->
+    <g transform="translate(15, 245)">
+      <rect width="360" height="100" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+      <text x="180" y="20" fill="#0f172a" font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">Edge Tasks Performed Instantly</text>
+      
+      <g transform="translate(10, 30)">
+        <rect width="165" height="30" rx="4" fill="#ecfdf5"/>
+        <text x="82" y="19" fill="#065f46" font-size="9.5" font-weight="600" text-anchor="middle" font-family="system-ui, sans-serif">🔑 JWT / Token Edge Auth</text>
+      </g>
+      <g transform="translate(185, 30)">
+        <rect width="165" height="30" rx="4" fill="#eff6ff"/>
+        <text x="82" y="19" fill="#1d4ed8" font-size="9.5" font-weight="600" text-anchor="middle" font-family="system-ui, sans-serif">🔀 A/B Testing &amp; Canary Split</text>
+      </g>
+      <g transform="translate(10, 65)">
+        <rect width="165" height="30" rx="4" fill="#fff7ed"/>
+        <text x="82" y="19" fill="#c2410c" font-size="9.5" font-weight="600" text-anchor="middle" font-family="system-ui, sans-serif">📝 URL Rewrite &amp; Headers</text>
+      </g>
+      <g transform="translate(185, 65)">
+        <rect width="165" height="30" rx="4" fill="#fdf4ff"/>
+        <text x="82" y="19" fill="#a21caf" font-size="9.5" font-weight="600" text-anchor="middle" font-family="system-ui, sans-serif">🌐 Geo-Personalized Content</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right: Origin Server -->
+  <g transform="translate(630, 60)">
+    <rect width="180" height="360" rx="10" fill="#ffffff" stroke="#c7d2fe" stroke-width="2" filter="url(#erShadow)"/>
+    <rect width="180" height="38" rx="10" fill="#e0e7ff"/>
+    <text x="90" y="24" fill="#3730a3" font-size="13" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">Backend Origin</text>
+
+    <g transform="translate(15, 60)">
+      <rect width="150" height="90" rx="6" fill="#eef2ff" stroke="#a5b4fc" stroke-width="1.5"/>
+      <text x="75" y="22" fill="#312e81" font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">Sanitized Traffic</text>
+      <text x="75" y="42" fill="#4338ca" font-size="9" text-anchor="middle" font-family="system-ui, sans-serif">Only authenticated,</text>
+      <text x="75" y="56" fill="#4338ca" font-size="9" text-anchor="middle" font-family="system-ui, sans-serif">normalized traffic arrives</text>
+      <text x="75" y="74" fill="#6366f1" font-size="9" font-weight="600" text-anchor="middle" font-family="system-ui, sans-serif">80%+ Origin Offload</text>
+    </g>
+
+    <g transform="translate(15, 170)">
+      <rect width="150" height="100" rx="6" fill="#eef2ff" stroke="#a5b4fc" stroke-width="1.5"/>
+      <text x="75" y="22" fill="#312e81" font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui, sans-serif">Origin Architecture</text>
+      <text x="75" y="42" fill="#4338ca" font-size="9" text-anchor="middle" font-family="system-ui, sans-serif">• ECS / ACK Containers</text>
+      <text x="75" y="58" fill="#4338ca" font-size="9" text-anchor="middle" font-family="system-ui, sans-serif">• PolarDB / RDS Database</text>
+      <text x="75" y="74" fill="#4338ca" font-size="9" text-anchor="middle" font-family="system-ui, sans-serif">• OSS Object Storage</text>
+      <text x="75" y="90" fill="#4338ca" font-size="9" text-anchor="middle" font-family="system-ui, sans-serif">• Private VPC boundary</text>
+    </g>
+  </g>
+
+  <!-- Connectors -->
+  <!-- Client -> ER -->
+  <line x1="160" y1="120" x2="195" y2="120" stroke="#0284c7" stroke-width="2.5" marker-end="url(#ar1)"/>
+  <!-- ER -> EdgeKV -->
+  <line x1="430" y1="120" x2="445" y2="120" stroke="#7c3aed" stroke-width="2" marker-end="url(#ar4)"/>
+  <line x1="445" y1="140" x2="430" y2="140" stroke="#7c3aed" stroke-width="2" marker-end="url(#ar4)"/>
+  <!-- Direct Response -> Client -->
+  <line x1="200" y1="180" x2="165" y2="180" stroke="#059669" stroke-width="2.5" marker-end="url(#ar2)"/>
+  <!-- Forward to Origin -->
+  <line x1="590" y1="150" x2="625" y2="150" stroke="#ea580c" stroke-width="2.5" marker-end="url(#ar3)"/>
+</svg>
