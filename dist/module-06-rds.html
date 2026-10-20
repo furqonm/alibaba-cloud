@@ -33,7 +33,7 @@
         </select>
       </div>
       <div class="nav-buttons">
-        <span class="slide-counter" id="slideCounter">1/52</span>
+        <span class="slide-counter" id="slideCounter">1/51</span>
         <button class="btn-nav" id="prevBtn" title="Previous Slide (Left Arrow)">
           <span>⬅️</span> Previous
         </button>
@@ -702,7 +702,7 @@
     <!-- ==================== SLIDE 19: BACKUP ARCHITECTURE & SNAPSHOTS ==================== -->
     <section class="slide" data-category="Storage &amp; Backup">
       <div class="slide-category">Section 3: Storage &amp; Backup</div>
-      <h2>Storage, Backup &amp; Point-in-Time Recovery (PITR)</h2>
+      <h2>Backup &amp; Point-in-Time Recovery (PITR)</h2>
       
       <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
         <img src="assets/images/rds-storage-backup-pitr.svg" alt="RDS Storage Backup and PITR Architecture" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
@@ -712,7 +712,7 @@
     <!-- ==================== SLIDE 20: PITR RESTORE WORKFLOW ==================== -->
     <section class="slide" data-category="Storage &amp; Backup">
       <div class="slide-category">Section 3: Storage &amp; Backup</div>
-      <h2>Point-in-Time Recovery (PITR) Execution Workflow</h2>
+      <h2>PITR Execution Workflow</h2>
       
       <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
         <img src="assets/images/rds-backup-pitr-concept.svg" alt="Backup and Point-in-Time Recovery (PITR) Concept &amp; Timeline" class="architecture-diagram" style="max-height: 290px; width: 100%; height: auto; object-fit: contain;">
@@ -911,10 +911,6 @@
       <div class="slide-category">Section 5: Scaling &amp; Performance</div>
       <h2>Dedicated Database Proxy: Intelligent Traffic Routing</h2>
       
-      <div class="callout callout-blue" style="margin-bottom: 0.85rem;">
-        <div>Following the Read/Write Splitting topology, the Dedicated Database Proxy sits directly between client applications and database nodes as an intelligent traffic router and connection manager.</div>
-      </div>
-
       <div class="two-column-layout">
         <div class="column-left">
           <div class="content-card highlight" style="height: 100%;">
@@ -947,91 +943,45 @@
     <!-- ==================== SLIDE 28: READ-ONLY REPLICAS FLEET ==================== -->
     <section class="slide" data-category="Scaling &amp; Performance">
       <div class="slide-category">Section 5: Scaling &amp; Performance</div>
-      <h2>Read-Only Replicas Fleet Management</h2>
+      <h2>Read-Only Replicas vs. HA Secondary Instance</h2>
       
-      <div class="callout callout-blue" style="margin-bottom: 0.85rem;">
-        <div>Downstream from the Database Proxy, an elastic fleet of Read-Only Replicas absorbs high-volume query traffic while isolating the transactional Primary node.</div>
-      </div>
-
-      <div class="grid-3" style="gap: 1.15rem;">
-        <div class="content-card highlight" style="height: 100%;">
-          <ul>
-            <li><strong>Scale Out (Up to 10 Replicas):</strong> Attach up to 10 read-only replicas to a single Primary RDS instance to absorb extreme read concurrency.</li>
-            <li><strong>Independent Hardware Sizing:</strong> Replicas can be provisioned with different CPU and RAM tiers tailored to specific read workload demands.</li>
-            <li><strong>Dedicated Direct Endpoints:</strong> Each replica provides an independent endpoint for heavy analytical jobs alongside the unified proxy endpoint.</li>
-            <li><strong>Zero-Downtime Provisioning:</strong> Created seamlessly from primary snapshot backups without table locking or impacting primary transactions.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-blue" style="height: 100%;">
-          <ul>
-            <li><strong>Weighted Round-Robin:</strong> Assign granular weights (0–100) per replica; higher-spec instances receive proportionally larger shares of read queries.</li>
-            <li><strong>Zero-Weight Maintenance Drainage:</strong> Setting a replica's weight to 0 drains active queries cleanly for index creation or maintenance without downtime.</li>
-            <li><strong>100% Write Dedication:</strong> Assign weight 0 to the Primary instance to preserve all Primary compute and I/O capacity exclusively for write transactions.</li>
-            <li><strong>Dynamic Runtime Tuning:</strong> Adjust routing weights on the fly via the Alibaba Cloud console or OpenAPI with zero connection resets.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-green" style="height: 100%;">
-          <ul>
-            <li><strong>Continuous Lag Monitoring:</strong> The proxy continuously measures replication delay (in seconds) between each replica and the Primary node.</li>
-            <li><strong>Automated Threshold Eviction:</strong> If a replica's delay exceeds the configured threshold (default 30s), the proxy automatically evicts it from the read pool.</li>
-            <li><strong>Automatic Re-admission:</strong> Once the replica replays pending binlogs and catches up with the primary, it is automatically re-admitted to the read pool.</li>
-            <li><strong>Stale Data Protection:</strong> Eliminates the risk of users receiving severely outdated information during sudden primary write surges.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="callout callout-amber" style="margin-top: 0.85rem;">
-        <div>Next Challenge: While proxy eviction protects against lag, how does the engine eliminate replication delay at the source, and what read consistency models can architects select?</div>
-      </div>
-    </section>
-
-    <!-- ==================== SLIDE 29: REPLICATION PARALLELISM & CONSISTENCY ==================== -->
-    <section class="slide" data-category="Scaling &amp; Performance">
-      <div class="slide-category">Section 5: Scaling &amp; Performance</div>
-      <h2>Replication Parallelism &amp; Read Consistency Levels</h2>
-      
-      <div class="callout callout-blue" style="margin-bottom: 0.85rem;">
-        <div>To balance high-throughput read scalability with strict data freshness, Alibaba Cloud RDS couples engine-level parallel replication with configurable proxy consistency modes.</div>
-      </div>
-
-      <div class="two-column-layout">
-        <div class="column-left">
-          <div class="content-card highlight" style="height: 100%;">
-            <ul>
-              <li><strong>Multi-Threaded Slave Applier (MTS):</strong> Overcomes legacy single-threaded replication bottlenecks by replaying binary logs across concurrent worker threads.</li>
-              <li><strong>Group Commit Parallelism:</strong> Transactions committed together in the same binary log group on the Primary are replayed concurrently on replicas.</li>
-              <li><strong>Writeset Dependency Tracking:</strong> Evaluates row-level primary key hashes; independent, conflict-free transactions execute in parallel across worker threads.</li>
-              <li><strong>Near-Zero Replication Latency:</strong> Drastically slashes replication delay, keeping read replicas up-to-date even during heavy batch data ingestion.</li>
-            </ul>
+      <div class="two-column-layout" style="align-items: stretch; gap: 1.5rem;">
+        <div class="column-left" style="flex: 1.1; display: flex; flex-direction: column; justify-content: center;">
+          <div class="architecture-diagram-wrapper" style="width: 100%; display: flex; align-items: center; justify-content: center;">
+            <img src="assets/images/rds-read-replica-topology.svg" alt="Primary/Secondary HA with Read-Only Replicas Topology" class="architecture-diagram" style="max-height: 290px; width: 100%; height: auto; object-fit: contain;">
+          </div>
+          <div class="callout callout-blue" style="margin-top: 0.85rem; width: 100%;">
+            <div>Architectural Distinction: The HA pair (Primary/Secondary) guarantees uptime and failover, while independent Read-Only Replicas scale query throughput horizontally.</div>
           </div>
         </div>
 
-        <div class="column-right">
-          <div class="content-card highlight-purple" style="height: 100%;">
+        <div class="column-right" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+          <div class="content-card highlight" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: 1.25rem;">
             <div style="margin-bottom: 0.75rem;">
-              <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.25rem 0; font-size: calc(0.95rem + var(--font-delta));">Eventual Consistency</h3>
-              <p style="margin: 0; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.45; color: var(--text-main);">Dispatches reads purely based on replica weights. Maximizes throughput and minimizes latency, but queries may read slightly delayed data. Best for public product catalogs and browsing.</p>
+              <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.35rem 0; font-size: calc(0.95rem + var(--font-delta));">Page 9: HA Secondary Node (High Availability)</h3>
+              <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.45;">
+                <li><strong>Core Objective:</strong> Uptime preservation &amp; automated disaster failover (sub-30s RTO, RPO ≈ 0).</li>
+                <li><strong>Traffic Role:</strong> Passive standby node; strictly does <em>not</em> serve application read or write queries.</li>
+                <li><strong>Replication Mode:</strong> Semi-synchronous data sync; tightly coupled to Primary commit lifecycle.</li>
+                <li><strong>Cluster Topology:</strong> Fixed 1:1 pair (1 Primary + 1 Secondary Standby in HA Edition).</li>
+              </ul>
             </div>
-            <div style="margin-bottom: 0.75rem;">
-              <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.25rem 0; font-size: calc(0.95rem + var(--font-delta));">Session Consistency (Read-Your-Own-Writes)</h3>
-              <p style="margin: 0; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.45; color: var(--text-main);">Tracks session GTID to guarantee a user always reads data at least as fresh as their own latest write. Automatically routes to Primary if replicas haven't caught up. Ideal for user profiles and shopping carts.</p>
-            </div>
-            <div>
-              <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.25rem 0; font-size: calc(0.95rem + var(--font-delta));">Global Read Consistency</h3>
-              <p style="margin: 0; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.45; color: var(--text-main);">Enforces cluster-wide real-time freshness by checking the Primary's GTID before every read. Guarantees zero stale reads across all sessions, routing to Primary if replicas lag. Ideal for finance and inventory ledgers.</p>
+
+            <div style="border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
+              <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.35rem 0; font-size: calc(0.95rem + var(--font-delta));">Page 28: Read-Only Replicas (Throughput Scaling)</h3>
+              <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.45;">
+                <li><strong>Core Objective:</strong> Offload intense <code>SELECT</code> traffic and scale read concurrency horizontally.</li>
+                <li><strong>Traffic Role:</strong> Active query workers; process reads directly or via Dedicated Database Proxy.</li>
+                <li><strong>Replication Mode:</strong> Asynchronous replication via MTS; completely decoupled from Primary commit path.</li>
+                <li><strong>Fleet Scale:</strong> Scale out elastically up to 10 independent replicas with custom CPU/RAM sizing.</li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="callout callout-green" style="margin-top: 0.85rem;">
-        <div>Architectural Principle: MTS ensures replicas stay synchronized during heavy write bursts, while Session Consistency provides the optimal balance of read scale and user freshness.</div>
-      </div>
     </section>
 
-    <!-- ==================== SLIDE 30: SECURITY DEFENSE MESH ==================== -->
+    <!-- ==================== SLIDE 29: SECURITY DEFENSE MESH ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Multi-Tier Database Security Defense Mesh</h2>
@@ -1041,7 +991,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 31: NETWORK ISOLATION & IP WHITELIST ==================== -->
+    <!-- ==================== SLIDE 30: NETWORK ISOLATION & IP WHITELIST ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Network Perimeter Isolation &amp; IP Whitelist Rules</h2>
@@ -1073,7 +1023,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 32: SSL/TLS IN-TRANSIT ENCRYPTION ==================== -->
+    <!-- ==================== SLIDE 31: SSL/TLS IN-TRANSIT ENCRYPTION ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>In-Transit Encryption: SSL / TLS 1.3 Acceleration</h2>
@@ -1105,7 +1055,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 33: DATA-AT-REST ENCRYPTION (TDE) ==================== -->
+    <!-- ==================== SLIDE 32: DATA-AT-REST ENCRYPTION (TDE) ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Data-at-Rest Encryption: Transparent Data Encryption (TDE)</h2>
@@ -1142,7 +1092,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 34: ENTERPRISE ACCESS GOVERNANCE ==================== -->
+    <!-- ==================== SLIDE 33: ENTERPRISE ACCESS GOVERNANCE ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Enterprise Governance: RAM &amp; Data Management Service (DMS)</h2>
@@ -1174,7 +1124,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 35: SQL AUDIT & DATABASE AUTONOMY ==================== -->
+    <!-- ==================== SLIDE 34: SQL AUDIT & DATABASE AUTONOMY ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Operational Intelligence: SQL Audit &amp; Database Autonomy (DAS)</h2>
@@ -1212,7 +1162,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 36: DATA TRANSMISSION SERVICE (DTS) ==================== -->
+    <!-- ==================== SLIDE 35: DATA TRANSMISSION SERVICE (DTS) ==================== -->
     <section class="slide" data-category="Migration">
       <div class="slide-category">Section 7: Migration</div>
       <h2>Data Transmission Service (DTS)</h2>
@@ -1255,7 +1205,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 37: DTS ARCHITECTURE ==================== -->
+    <!-- ==================== SLIDE 36: DTS ARCHITECTURE ==================== -->
     <section class="slide" data-category="Migration">
       <div class="slide-category">Section 7: Migration</div>
       <h2>DTS Architecture</h2>
@@ -1265,7 +1215,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 38: DTS DUAL-REGION TRAFFIC ROUTING ==================== -->
+    <!-- ==================== SLIDE 37: DTS DUAL-REGION TRAFFIC ROUTING ==================== -->
     <section class="slide" data-category="Migration">
       <div class="slide-category">Section 7: Migration</div>
       <h2>DTS Dual-Region Read/Write Traffic Routing</h2>
@@ -1279,7 +1229,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 39: DTS MULTI-REGION GEO-DISTRIBUTION ==================== -->
+    <!-- ==================== SLIDE 38: DTS MULTI-REGION GEO-DISTRIBUTION ==================== -->
     <section class="slide" data-category="Migration">
       <div class="slide-category">Section 7: Migration</div>
       <h2>DTS Multi-Region Active Geo-Distribution</h2>
@@ -1293,7 +1243,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 40: DTS REAL-TIME ANALYTICS SYNCHRONIZATION ==================== -->
+    <!-- ==================== SLIDE 39: DTS REAL-TIME ANALYTICS SYNCHRONIZATION ==================== -->
     <section class="slide" data-category="Migration">
       <div class="slide-category">Section 7: Migration</div>
       <h2>DTS Real-Time Analytics Synchronization</h2>
@@ -1307,7 +1257,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 41: ZERO-DOWNTIME MIGRATION PIPELINE ==================== -->
+    <!-- ==================== SLIDE 40: ZERO-DOWNTIME MIGRATION PIPELINE ==================== -->
     <section class="slide" data-category="Migration">
       <div class="slide-category">Section 7: Migration</div>
       <h2>Zero-Downtime Migration Pipeline</h2>
@@ -1345,7 +1295,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 42: POLARDB ==================== -->
+    <!-- ==================== SLIDE 41: POLARDB ==================== -->
     <section class="slide" data-category="PolarDB">
       <div class="slide-category">Section 8: PolarDB</div>
       <h2>PolarDB</h2>
@@ -1388,7 +1338,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 43: POLARDB ARCHITECTURE ==================== -->
+    <!-- ==================== SLIDE 42: POLARDB ARCHITECTURE ==================== -->
     <section class="slide" data-category="PolarDB">
       <div class="slide-category">Section 8: PolarDB</div>
       <h2>PolarDB Architecture</h2>
@@ -1437,7 +1387,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 44: RDS VS POLARDB DECISION MATRIX ==================== -->
+    <!-- ==================== SLIDE 43: RDS VS POLARDB DECISION MATRIX ==================== -->
     <section class="slide" data-category="PolarDB">
       <div class="slide-category">Section 8: PolarDB</div>
       <h2>When to Choose RDS vs. PolarDB</h2>
@@ -1469,7 +1419,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 45: PRICING MODEL ==================== -->
+    <!-- ==================== SLIDE 44: PRICING MODEL ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 9: Pricing Model</div>
       <h2>RDS Pricing Architecture &amp; Cost Dimensions</h2>
@@ -1501,7 +1451,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 46: PRACTICE QUIZ SCENARIO 1 ==================== -->
+    <!-- ==================== SLIDE 45: PRACTICE QUIZ SCENARIO 1 ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 1</div>
       <h2>Practice Scenario 1: High-Concurrency Read Scaling &amp; Failover</h2>
@@ -1536,7 +1486,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 47: QUIZ ANSWER 1 ==================== -->
+    <!-- ==================== SLIDE 46: QUIZ ANSWER 1 ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 1</div>
       <h2>Scenario 1: Solution &amp; Architectural Analysis</h2>
@@ -1588,7 +1538,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 48: PRACTICE QUIZ SCENARIO 2 ==================== -->
+    <!-- ==================== SLIDE 47: PRACTICE QUIZ SCENARIO 2 ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 2</div>
       <h2>Practice Scenario 2: Financial Compliance, TDE &amp; Multi-Zone Resiliency</h2>
@@ -1623,7 +1573,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 49: QUIZ ANSWER 2 ==================== -->
+    <!-- ==================== SLIDE 48: QUIZ ANSWER 2 ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 2</div>
       <h2>Scenario 2: Solution &amp; Architectural Analysis</h2>
@@ -1675,7 +1625,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 50: PRACTICE QUIZ SCENARIO 3 ==================== -->
+    <!-- ==================== SLIDE 49: PRACTICE QUIZ SCENARIO 3 ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 3</div>
       <h2>Practice Scenario 3: Zero-Downtime Enterprise Database Migration</h2>
@@ -1710,7 +1660,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 51: QUIZ ANSWER 3 ==================== -->
+    <!-- ==================== SLIDE 50: QUIZ ANSWER 3 ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 3</div>
       <h2>Scenario 3: Solution &amp; Architectural Analysis</h2>
@@ -1762,7 +1712,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 52: MODULE SUMMARY & NEXT STEPS ==================== -->
+    <!-- ==================== SLIDE 51: MODULE SUMMARY & NEXT STEPS ==================== -->
     <section class="slide title-slide" data-category="Summary">
       <div class="slide-category">Module Complete</div>
       <h1 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Module 06: ApsaraDB for RDS</h1>
