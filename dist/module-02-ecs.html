@@ -1226,24 +1226,24 @@ systemctl enable --now nginx</pre>
       <div class="grid-2" style="margin-top: 1rem; align-items: center;">
         <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
           <img src="assets/images/shared-responsibility-model.svg" alt="Alibaba Cloud Shared Responsibility Model" class="diagram-image" style="max-height: 400px; width: 100%; object-fit: contain;">
-          <div class="diagram-caption">Security OF the Cloud (Alibaba Cloud) vs Security IN the Cloud (Customer)</div>
+          <div class="diagram-caption">Security IN the Cloud (Customer) vs Security OF the Cloud (Alibaba Cloud)</div>
         </div>
 
         <div style="display: flex; flex-direction: column; gap: 0.85rem; justify-content: center;">
-          <div class="content-card highlight-blue">
-            <h3>Security OF the Cloud (Alibaba Cloud)</h3>
-            <ul>
-              <li><strong>Physical Facilities:</strong> Datacenter security, power, and environmental cooling.</li>
-              <li><strong>Hardware Infrastructure:</strong> Physical servers, storage arrays, switches, and CIPU hypervisors.</li>
-              <li><strong>Global Network:</strong> Regions, Availability Zones, and global fiber backbone.</li>
-            </ul>
-          </div>
           <div class="content-card highlight">
             <h3>Security IN the Cloud (Customer)</h3>
             <ul>
               <li><strong>Customer Data:</strong> Data protection, backups, and encryption at-rest/in-transit.</li>
               <li><strong>OS & Applications:</strong> OS patching, software runtimes, and application security.</li>
               <li><strong>Access & Network:</strong> RAM users, access credentials, and Security Group firewall rules.</li>
+            </ul>
+          </div>
+          <div class="content-card highlight-blue">
+            <h3>Security OF the Cloud (Alibaba Cloud)</h3>
+            <ul>
+              <li><strong>Physical Facilities:</strong> Datacenter security, power, and environmental cooling.</li>
+              <li><strong>Hardware Infrastructure:</strong> Physical servers, storage arrays, switches, and CIPU hypervisors.</li>
+              <li><strong>Global Network:</strong> Regions, Availability Zones, and global fiber backbone.</li>
             </ul>
           </div>
         </div>
@@ -1290,15 +1290,6 @@ systemctl enable --now nginx</pre>
       
       <div class="grid-2">
         <div class="content-card highlight-orange">
-          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
-            <div class="service-icon-wrapper" style="width: 48px; height: 48px; border-radius: 8px;">
-              <img src="assets/images/ecs-service-icon.svg" alt="Alibaba Cloud Workbench" style="width: 32px; height: 32px; object-fit: contain;">
-            </div>
-            <div>
-              <h3 style="margin: 0; font-size: calc(1.05rem + var(--font-delta));">Browser-Based Web Console</h3>
-              <span class="badge badge-updated" style="font-size: calc(0.72rem + var(--font-delta)); padding: 0.15rem 0.45rem;">Zero-Installation Management</span>
-            </div>
-          </div>
           <p>A zero-installation, browser-based management tool to manage and access ECS:</p>
           <ul>
             <li><strong>Clientless Operation:</strong> Open full-featured web SSH terminal (Linux) or web RDP GUI (Windows) directly in any modern browser without installing local client tools.</li>
@@ -1328,15 +1319,6 @@ systemctl enable --now nginx</pre>
       
       <div class="grid-2">
         <div class="content-card highlight-purple">
-          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
-            <div style="background: #fdf4ff; border: 1.5px solid #d946ef; width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
-              🖥️
-            </div>
-            <div>
-              <h3 style="margin: 0; font-size: calc(1.05rem + var(--font-delta));">Emergency Out-of-Band Console</h3>
-              <span class="badge badge-exam" style="font-size: calc(0.72rem + var(--font-delta)); padding: 0.15rem 0.45rem;">Direct Hypervisor Stream</span>
-            </div>
-          </div>
           <p>Hardware-level virtual display and keyboard stream powered directly by the CIPU / KVM hypervisor:</p>
           <ul>
             <li><strong>Out-of-Band Architectural Bypass:</strong> Completely independent of the guest operating system's network stack, IP address, or Security Groups!</li>
@@ -1430,15 +1412,6 @@ systemctl enable --now nginx</pre>
       
       <div class="grid-2" style="align-items: center; gap: 1.5rem;">
         <div class="content-card highlight-blue" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
-          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem;">
-            <div style="background: #eff6ff; border: 1.5px solid #3b82f6; width: 44px; height: 44px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">
-              💻
-            </div>
-            <div>
-              <h3 style="margin: 0; font-size: calc(1.05rem + var(--font-delta));">Cloud-Native Remote Terminal</h3>
-              <span class="badge badge-updated" style="font-size: calc(0.72rem + var(--font-delta)); padding: 0.15rem 0.45rem;">Built on Cloud Assistant</span>
-            </div>
-          </div>
           <p style="margin-bottom: 0.65rem;">
             Interactive command-line service running directly on top of Cloud Assistant—inheriting all Cloud Assistant capabilities without redundant overhead:
           </p>
