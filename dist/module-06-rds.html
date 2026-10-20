@@ -983,12 +983,8 @@
     <!-- ==================== SLIDE 29: SECURITY DEFENSE MESH ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
-      <h2>Multi-Tier Database Security Defense Mesh</h2>
+      <h2>Multi-Tier Database Security</h2>
       
-      <div class="callout callout-blue" style="margin-bottom: 0.85rem;">
-        <div>ApsaraDB RDS implements an enterprise defense-in-depth security model organized into 5 progressive protection layers, from perimeter isolation to autonomic intelligence (detailed across Slides 30–34).</div>
-      </div>
-
       <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
         <img src="assets/images/rds-security-mesh.svg" alt="RDS 5-Tier Security Defense Architecture" class="architecture-diagram" style="max-height: 400px; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
       </div>
@@ -1003,10 +999,6 @@
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Layer 1: Network Perimeter Isolation &amp; IP Whitelist Rules</h2>
       
-      <div class="callout callout-blue" style="margin-bottom: 0.85rem;">
-        <div>Layer 1 Defense: Secures the outer database boundary by locking RDS inside private VPC software-defined networks and enforcing strict client IP filtering.</div>
-      </div>
-
       <div class="two-column-layout" style="align-items: stretch; gap: 1.5rem;">
         <div class="column-left">
           <div class="content-card highlight" style="height: 100%; padding: 1.25rem;">
@@ -1043,10 +1035,6 @@
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Layer 2: In-Transit Encryption &amp; SSL / TLS 1.3 Acceleration</h2>
       
-      <div class="callout callout-blue" style="margin-bottom: 0.85rem;">
-        <div>Layer 2 Defense: Eliminates packet sniffing and eavesdropping across the network by enforcing end-to-end cryptographic encryption between clients and RDS nodes.</div>
-      </div>
-
       <div class="two-column-layout" style="align-items: stretch; gap: 1.5rem;">
         <div class="column-left">
           <div class="content-card highlight" style="height: 100%; padding: 1.25rem;">
@@ -1083,10 +1071,6 @@
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Layer 3: Data-at-Rest Encryption &amp; Storage Protection (TDE)</h2>
       
-      <div class="callout callout-blue" style="margin-bottom: 0.85rem;">
-        <div>Layer 3 Defense: Protects raw data storage and backups against physical theft or unauthorized disk access using hardware-accelerated cryptographic keys.</div>
-      </div>
-
       <div class="two-column-layout" style="align-items: stretch; gap: 1.5rem;">
         <div class="column-left">
           <div class="content-card highlight" style="height: 100%; padding: 1.25rem;">
@@ -1123,10 +1107,6 @@
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Layer 4: Access Governance: RAM &amp; Data Management Service (DMS)</h2>
       
-      <div class="callout callout-blue" style="margin-bottom: 0.85rem;">
-        <div>Layer 4 Defense: Enforces strict principle of least privilege, dynamic data masking, and administrative approval workflows across human operators and developers.</div>
-      </div>
-
       <div class="two-column-layout" style="align-items: stretch; gap: 1.5rem;">
         <div class="column-left">
           <div class="content-card highlight" style="height: 100%; padding: 1.25rem;">
@@ -1163,10 +1143,6 @@
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Layer 5: Audit &amp; Intelligence: SQL Audit, CloudMonitor &amp; DAS</h2>
       
-      <div class="callout callout-blue" style="margin-bottom: 0.85rem;">
-        <div>Layer 5 Defense: Provides comprehensive security observability, regulatory compliance archiving, real-time alerting, and autonomous database protection.</div>
-      </div>
-
       <div class="grid-3" style="gap: 1.15rem; align-items: stretch;">
         <div class="content-card highlight" style="height: 100%; padding: 1.25rem;">
           <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.92rem + var(--font-delta));">Full SQL Audit Trail</h3>
