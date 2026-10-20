@@ -4,12 +4,6 @@ This document serves as the official **Architectural North Star & Standard Templ
 
 All modules across the entire curriculum (`01_Overview`, `02_ECS`, `03_VPC`, `04_SLB`, `05_OSS`, `06_RDS`, `07_AutoScaling`, `08_CDN`, `09_Security Products`, and any future modules) **must strictly adhere to all guidelines, rules, and specifications in this Architectural North Star without exception**.
 
-> [!IMPORTANT]
-> **Authoritative Active Project Workspace**:
-> The sole, official, and active workspace for this project is:
-> `D:\OneDrive - Trainocate\Documents\GitHub\alibaba-cloud` (`https://github.com/furqonm/alibaba-cloud.git`).
-> The legacy directory `alibaba-presentation` is completely deprecated, obsolete, and strictly forgotten. It must NEVER be referenced, modified, or included in any workflows, scripts, or operational procedures.
-
 ---
 
 ## Expected Project Architecture & Directory Structure
@@ -58,12 +52,6 @@ The courseware repository is organized into isolated functional tiers to prevent
 ├── .gitignore                 # Excludes .venv, pycache, temporary files (Local only, untracked in GitHub)
 └── ARCHITECTURAL_NORTHSTAR.md # 📐 Official Courseware Template & Architectural Blueprint
 ```
-
-### Static Hosting & Deployment Guidelines
-To host this presentation online (e.g., Netlify, Cloudflare Pages, GitHub Pages, Vercel, cPanel, or Alibaba Cloud OSS static website hosting):
-1. **Deploy ONLY the `dist/` directory**:
-   - `dist/` contains 100% self-contained static deliverables (HTML5, CSS, JavaScript, and SVGs/images).
-   - **Do NOT upload** `tools/`, `materials/`, `.venv`, or markdown files to public static web hosting.
 
 ---
 
