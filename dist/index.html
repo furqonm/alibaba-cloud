@@ -33,7 +33,7 @@
         </select>
       </div>
       <div class="nav-buttons">
-        <span class="slide-counter" id="slideCounter">1/50</span>
+        <span class="slide-counter" id="slideCounter">1/51</span>
         <button class="btn-nav" id="prevBtn" title="Previous Slide (Left Arrow)">
           <span>⬅️</span> Previous
         </button>
@@ -726,39 +726,57 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 18: CLOUD DISK ATTACHMENT SIZING ==================== -->
+    <!-- ==================== SLIDE 18: CLOUD DISK ATTACHMENT ==================== -->
     <section class="slide" data-category="Storage Options">
       <div class="slide-category">Section 3: Storage Options</div>
-      <h2>Cloud Disk Attachment & Sizing</h2>
+      <h2>Cloud Disk Attachment</h2>
       
-      <div class="grid-2">
-        <div class="content-card highlight">
-          <h3>Zone Boundary & Attachment Scope</h3>
-          <p>Because Cloud Disks are decoupled network block storage devices managed by Pangu:</p>
-          <ul>
-            <li><strong>Strict Zone Boundary:</strong> A cloud disk can only be mounted to an ECS instance located in the <strong>exact same Availability Zone</strong>. Cross-zone disk mounting is not supported.</li>
-            <li><strong>Single Mount Policy:</strong> By default, an ECS cloud disk attaches to only one ECS instance at a time as an exclusive block storage device.</li>
-            <li><strong>Multi-Attach Support:</strong> Select ESSD models support NVMe multi-attach for enterprise clustered file systems requiring concurrent access.</li>
-            <li><strong>Hot Swapping:</strong> Data disks can be attached or detached dynamically while instances are running without rebooting the OS.</li>
-          </ul>
-        </div>
-        <div class="content-card highlight-blue">
-          <h3>Online Disk Resizing (Resize On-the-Fly)</h3>
-          <p>Cloud disks can be expanded dynamically while the instance is running (In-Use) with <strong>zero service downtime</strong>:</p>
-          <ul>
-            <li><strong>Step 1 — Console / API:</strong> Trigger <em>Online Resizing</em> in the ECS console or via <code>ResizeDisk</code> API. Specify the new larger size (disks can only expand, never shrink).</li>
-            <li><strong>Step 2 — OS Partition Extension:</strong> Run <code>growpart /dev/vdb 1</code> on Linux or use Disk Management on Windows to extend the partition table to the new boundary.</li>
-            <li><strong>Step 3 — OS Filesystem Expansion:</strong> Expand the active filesystem live using <code>resize2fs /dev/vdb1</code> (for ext4) or <code>xfs_growfs /mnt/data</code> (for XFS) without unmounting!</li>
-          </ul>
-        </div>
+      <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 1.25rem;">
+        <img src="assets/images/ecs-cloud-disk-attachment.png" alt="Cloud Disk Attachment" style="max-height: 220px; width: auto; max-width: 95%; object-fit: contain;">
       </div>
 
-      <div class="callout callout-blue" style="margin-top: 1rem;">
-        <strong>Architectural Principle:</strong> Online disk resizing is strictly one-way (expansion only). It eliminates scheduled maintenance downtime by allowing storage capacity to scale immediately under active production workloads without restarting the host instance.
+      <div class="grid-3" style="gap: 1rem;">
+        <div class="content-card highlight">
+          <h4 style="margin-bottom: 0.4rem; color: var(--primary);">Same-Zone Scope</h4>
+          <p style="font-size: 0.88rem; line-height: 1.45; margin: 0;">Cloud disks can only attach to ECS instances within the <strong>same Availability Zone</strong>. Cross-zone attachment is not supported.</p>
+        </div>
+        <div class="content-card highlight">
+          <h4 style="margin-bottom: 0.4rem; color: var(--primary);">Attachment Quota & Multi-Mount</h4>
+          <p style="font-size: 0.88rem; line-height: 1.45; margin: 0;">An instance attaches 1 system disk and up to 16 data disks. By default disks mount to <strong>one instance at a time</strong> (select ESSD support NVMe multi-attach).</p>
+        </div>
+        <div class="content-card highlight">
+          <h4 style="margin-bottom: 0.4rem; color: var(--primary);">Hot-Plug Lifecycle</h4>
+          <p style="font-size: 0.88rem; line-height: 1.45; margin: 0;">Data disks support dynamic <strong>hot-plugging</strong> (attach and detach while the instance is running) without requiring an OS restart.</p>
+        </div>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 19: INSTANCE FAILOVER ==================== -->
+    <!-- ==================== SLIDE 19: RESIZE A CLOUD DISK ==================== -->
+    <section class="slide" data-category="Storage Options">
+      <div class="slide-category">Section 3: Storage Options</div>
+      <h2>Resize a Cloud Disk</h2>
+      
+      <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 1.5rem;">
+        <img src="assets/images/ecs-resize-disk-workflow.svg" alt="Online Cloud Disk Resizing Workflow" style="max-height: 160px; width: auto; max-width: 92%; object-fit: contain;">
+      </div>
+
+      <div class="grid-3" style="gap: 1rem;">
+        <div class="content-card highlight-blue">
+          <h4 style="margin-bottom: 0.4rem; color: var(--primary);">Step 1: Increase Disk Capacity</h4>
+          <p style="font-size: 0.88rem; line-height: 1.45; margin: 0;">Specify target capacity in ECS Console or via <code>ResizeDisk</code> API. Resizing is performed online and is strictly <strong>expansion-only</strong>.</p>
+        </div>
+        <div class="content-card highlight-blue">
+          <h4 style="margin-bottom: 0.4rem; color: var(--primary);">Step 2: Extend Partitions</h4>
+          <p style="font-size: 0.88rem; line-height: 1.45; margin: 0;">If partitioned, extend the partition boundary using <code>growpart /dev/vdb 1</code> on Linux or Disk Management on Windows.</p>
+        </div>
+        <div class="content-card highlight-blue">
+          <h4 style="margin-bottom: 0.4rem; color: var(--primary);">Step 3: Extend File Systems</h4>
+          <p style="font-size: 0.88rem; line-height: 1.45; margin: 0;">Expand the filesystem live without unmounting: run <code>resize2fs /dev/vdb1</code> (ext4) or <code>xfs_growfs /mnt/data</code> (XFS).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 20: INSTANCE FAILOVER ==================== -->
     <section class="slide" data-category="Storage Options">
       <div class="slide-category">Section 3: Storage Options</div>
       <h2>Instance Failover</h2>
@@ -780,7 +798,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 20: ECS DISK SNAPSHOTS ==================== -->
+    <!-- ==================== SLIDE 21: ECS DISK SNAPSHOTS ==================== -->
     <section class="slide" data-category="Storage Options">
       <div class="slide-category">Section 3: Storage Options</div>
       <h2>ECS Disk Snapshots</h2>
@@ -811,7 +829,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 21: CLOUD DISK MIGRATION WORKFLOW ==================== -->
+    <!-- ==================== SLIDE 22: CLOUD DISK MIGRATION WORKFLOW ==================== -->
     <section class="slide" data-category="Storage Options">
       <div class="slide-category">Section 3: Storage Options</div>
       <h2>Cloud Disk Migration Workflow</h2>
@@ -844,7 +862,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 22: ECS IMAGES ==================== -->
+    <!-- ==================== SLIDE 23: ECS IMAGES ==================== -->
     <section class="slide" data-category="Storage Options">
       <div class="slide-category">Section 3: Storage Options</div>
       <h2>ECS Images</h2>
@@ -891,15 +909,14 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 23: BENEFITS OF MARKETPLACE IMAGES ==================== -->
+    <!-- ==================== SLIDE 24: BENEFITS OF MARKETPLACE IMAGES ==================== -->
     <section class="slide" data-category="Storage Options">
       <div class="slide-category">Section 3: Storage Options</div>
       <h2>Benefits of Marketplace Images</h2>
       
       <div class="grid-2" style="align-items: center; gap: 2rem;">
-        <div class="content-card highlight" style="padding: 1.35rem;">
-          <div class="table-wrapper">
-            <table class="slide-table" style="font-size: 0.84rem;">
+        <div class="table-wrapper">
+            <table class="slide-table" style="font-size: 0.88rem;">
               <thead>
                 <tr>
                   <th style="width: 50%;">Traditional OS Deployment</th>
@@ -909,7 +926,6 @@ systemctl enable --now nginx</pre>
               <tbody>
                 <tr>
                   <td>
-                    <strong>6-Step Manual Workflow:</strong>
                     <ol style="margin: 0.35rem 0 0 1rem; padding: 0; line-height: 1.45;">
                       <li>Purchase ECS instance with bare OS</li>
                       <li>Install web server (NGINX / Apache)</li>
@@ -920,7 +936,6 @@ systemctl enable --now nginx</pre>
                     </ol>
                   </td>
                   <td>
-                    <strong>2-Step Instant Turnkey:</strong>
                     <ol style="margin: 0.35rem 0 0 1rem; padding: 0; line-height: 1.45;">
                       <li>Select verified image with OS, runtimes, and application stack pre-installed</li>
                       <li>Launch ECS instance with the chosen image — instantly ready for production</li>
@@ -934,7 +949,6 @@ systemctl enable --now nginx</pre>
               </tbody>
             </table>
           </div>
-        </div>
 
         <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
           <img src="assets/images/ecs-marketplace-image-stack.png" alt="Pre-packaged Software Stack on ECS Image" style="max-height: 320px; width: auto; max-width: 100%; object-fit: contain;">
@@ -942,7 +956,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 24: BASIC NETWORK ==================== -->
+    <!-- ==================== SLIDE 25: BASIC NETWORK ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>Basic Network</h2>
@@ -970,7 +984,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 25: ELASTIC NETWORK INTERFACES (ENI) ==================== -->
+    <!-- ==================== SLIDE 26: ELASTIC NETWORK INTERFACES (ENI) ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>Elastic Network Interfaces (ENI)</h2>
@@ -999,7 +1013,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 26: SECURITY GROUPS ==================== -->
+    <!-- ==================== SLIDE 27: SECURITY GROUPS ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>Security Groups</h2>
@@ -1022,7 +1036,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 27: SECURITY GROUP (CONT.) ==================== -->
+    <!-- ==================== SLIDE 28: SECURITY GROUP (CONT.) ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>Security Group (cont.)</h2>
@@ -1055,7 +1069,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 28: INTERNET CONNECTIVITY ==================== -->
+    <!-- ==================== SLIDE 29: INTERNET CONNECTIVITY ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>Internet Connectivity</h2>
@@ -1118,7 +1132,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 29: ECS HIGH AVAILABILITY AUTOMATED FAILOVER ==================== -->
+    <!-- ==================== SLIDE 30: ECS HIGH AVAILABILITY AUTOMATED FAILOVER ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>ECS High Availability & Automated Failover</h2>
@@ -1185,7 +1199,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 30: THE SHARED RESPONSIBILITY MODEL IN CLOUD COMPUTING ==================== -->
+    <!-- ==================== SLIDE 31: THE SHARED RESPONSIBILITY MODEL IN CLOUD COMPUTING ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>The Shared Responsibility Model in Cloud Computing</h2>
@@ -1217,7 +1231,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 31: CONNECTING TO ECS ==================== -->
+    <!-- ==================== SLIDE 32: CONNECTING TO ECS ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>Connecting to ECS</h2>
@@ -1250,7 +1264,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 32: ALIBABA CLOUD WORKBENCH ==================== -->
+    <!-- ==================== SLIDE 33: ALIBABA CLOUD WORKBENCH ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>Alibaba Cloud Workbench</h2>
@@ -1288,7 +1302,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 33: VNC MANAGEMENT TERMINAL ==================== -->
+    <!-- ==================== SLIDE 34: VNC MANAGEMENT TERMINAL ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>VNC Management Terminal</h2>
@@ -1362,7 +1376,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 34: CLOUD ASSISTANT ==================== -->
+    <!-- ==================== SLIDE 35: CLOUD ASSISTANT ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>Cloud Assistant</h2>
@@ -1390,7 +1404,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 35: SESSION MANAGER ==================== -->
+    <!-- ==================== SLIDE 36: SESSION MANAGER ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>Session Manager</h2>
@@ -1425,7 +1439,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 36: HOW TO RUN CONTAINER APPLICATION ==================== -->
+    <!-- ==================== SLIDE 37: HOW TO RUN CONTAINER APPLICATION ==================== -->
     <section class="slide" data-category="Container">
       <div class="slide-category">Section 6: Container</div>
       <h2>How to Run Container Application</h2>
@@ -1484,7 +1498,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 37: CONTAINER SERVICE FOR KUBERNETES (ACK) ARCHITECTURE ==================== -->
+    <!-- ==================== SLIDE 38: CONTAINER SERVICE FOR KUBERNETES (ACK) ARCHITECTURE ==================== -->
     <section class="slide" data-category="Container">
       <div class="slide-category">Section 6: Container</div>
       <h2>Container Service for Kubernetes (ACK) Architecture</h2>
@@ -1501,7 +1515,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 38: PAY-AS-YOU-GO (PAYG) ==================== -->
+    <!-- ==================== SLIDE 39: PAY-AS-YOU-GO (PAYG) ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Pay-As-You-Go (PAYG)</h2>
@@ -1531,7 +1545,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 39: SUBSCRIPTION ==================== -->
+    <!-- ==================== SLIDE 40: SUBSCRIPTION ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Subscription</h2>
@@ -1560,7 +1574,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 40: SPOT INSTANCES ==================== -->
+    <!-- ==================== SLIDE 41: SPOT INSTANCES ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Spot Instances</h2>
@@ -1590,7 +1604,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 41: RESERVED INSTANCES (RI) ==================== -->
+    <!-- ==================== SLIDE 42: RESERVED INSTANCES (RI) ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Reserved Instances (RI)</h2>
@@ -1620,7 +1634,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 42: SAVINGS PLANS ==================== -->
+    <!-- ==================== SLIDE 43: SAVINGS PLANS ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Savings Plans</h2>
@@ -1653,7 +1667,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 43: ECS RESOURCE SCOPING ARCHITECTURAL BOUNDARIES ==================== -->
+    <!-- ==================== SLIDE 44: ECS RESOURCE SCOPING ARCHITECTURAL BOUNDARIES ==================== -->
     <section class="slide" data-category="Summary">
       <div class="slide-category">Cloud Architect Recap</div>
       <h2>ECS Resource Scoping & Architectural Boundaries</h2>
@@ -1713,7 +1727,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 44: PRACTICE SCENARIO 1: CROSS-ZONE DISASTER RECOVERY ==================== -->
+    <!-- ==================== SLIDE 45: PRACTICE SCENARIO 1: CROSS-ZONE DISASTER RECOVERY ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 1</div>
       <h2>Practice Scenario 1: Cross-Zone Disaster Recovery</h2>
@@ -1744,7 +1758,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 45: SCENARIO 1: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
+    <!-- ==================== SLIDE 46: SCENARIO 1: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 1</div>
       <h2>Scenario 1: Solution & Architectural Analysis</h2>
@@ -1796,7 +1810,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 46: PRACTICE SCENARIO 2: FLASH SALE IO HANDLING ==================== -->
+    <!-- ==================== SLIDE 47: PRACTICE SCENARIO 2: FLASH SALE IO HANDLING ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 2</div>
       <h2>Practice Scenario 2: Flash Sale I/O Handling</h2>
@@ -1827,7 +1841,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 47: SCENARIO 2: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
+    <!-- ==================== SLIDE 48: SCENARIO 2: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 2</div>
       <h2>Scenario 2: Solution & Architectural Analysis</h2>
@@ -1879,7 +1893,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 48: PRACTICE SCENARIO 3: HIGH-DENSITY MICRO-SEGMENTATION ==================== -->
+    <!-- ==================== SLIDE 49: PRACTICE SCENARIO 3: HIGH-DENSITY MICRO-SEGMENTATION ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 3</div>
       <h2>Practice Scenario 3: High-Density Micro-segmentation</h2>
@@ -1910,7 +1924,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 49: SCENARIO 3: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
+    <!-- ==================== SLIDE 50: SCENARIO 3: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 3</div>
       <h2>Scenario 3: Solution & Architectural Analysis</h2>
@@ -1962,7 +1976,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 50: MODULE 02: ELASTIC COMPUTE SERVICE (ECS) ==================== -->
+    <!-- ==================== SLIDE 51: MODULE 02: ELASTIC COMPUTE SERVICE (ECS) ==================== -->
     <section class="slide title-slide" data-category="Summary">
       <div class="slide-category">Module Complete</div>
       <h1 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Module 02: Elastic Compute Service (ECS)</h1>
