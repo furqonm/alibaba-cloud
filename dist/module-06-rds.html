@@ -937,10 +937,6 @@
           </div>
         </div>
       </div>
-
-      <div class="callout callout-green" style="margin-top: 0.85rem;">
-        <div>Architectural Flow: Read queries dispatched by the proxy flow downstream into an elastic fleet of Read-Only Replicas designed for high-concurrency scaling.</div>
-      </div>
     </section>
 
     <!-- ==================== SLIDE 28: READ-ONLY REPLICAS FLEET ==================== -->
@@ -961,7 +957,7 @@
         <div class="column-right" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
           <div class="content-card highlight" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: 1.25rem;">
             <div style="margin-bottom: 0.75rem;">
-              <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.35rem 0; font-size: calc(0.95rem + var(--font-delta));">Page 9: HA Secondary Node (High Availability)</h3>
+              <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.35rem 0; font-size: calc(0.95rem + var(--font-delta));">HA Secondary Node (High Availability)</h3>
               <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.45;">
                 <li><strong>Core Objective:</strong> Uptime preservation &amp; automated disaster failover (sub-30s RTO, RPO ≈ 0).</li>
                 <li><strong>Traffic Role:</strong> Passive standby node; strictly does <em>not</em> serve application read or write queries.</li>
@@ -971,7 +967,7 @@
             </div>
 
             <div style="border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
-              <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.35rem 0; font-size: calc(0.95rem + var(--font-delta));">Page 28: Read-Only Replicas (Throughput Scaling)</h3>
+              <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.35rem 0; font-size: calc(0.95rem + var(--font-delta));">Read-Only Replicas (Throughput Scaling)</h3>
               <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.45;">
                 <li><strong>Core Objective:</strong> Offload intense <code>SELECT</code> traffic and scale read concurrency horizontally.</li>
                 <li><strong>Traffic Role:</strong> Active query workers; process reads directly or via Dedicated Database Proxy.</li>
