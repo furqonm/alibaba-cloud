@@ -559,7 +559,6 @@
       
       <div class="grid-2">
         <div class="content-card highlight">
-          <h3>What is Instance Metadata Used For?</h3>
           <p>Instance metadata provides internal access to runtime configuration attributes from within the running ECS instance without calling external APIs:</p>
           <ul>
             <li><strong>Instance Identity:</strong> Query instance ID, image ID, region, availability zone, private IP, and hostname.</li>
@@ -592,7 +591,6 @@ curl -s -H "X-aliyun-ecs-metadata-token: $TOKEN" \
       
       <div class="grid-2">
         <div class="content-card highlight">
-          <h3>What is User Data?</h3>
           <p>User Data enables custom bootstrapping scripts passed to an instance during provisioning:</p>
           <ul>
             <li>Executed automatically by <strong>Cloud-init</strong> upon the initial boot of the instance.</li>
@@ -711,7 +709,6 @@ systemctl enable --now nginx</pre>
       
       <div class="grid-2">
         <div class="content-card highlight">
-          <h3>Pangu Distributed Storage Engine</h3>
           <p>ECS Cloud Disks do not reside on physical server drives inside compute hosts. They are powered by <strong>Pangu</strong>, Alibaba Cloud's distributed storage architecture:</p>
           <ul>
             <li><strong>Triplicate Data Replication:</strong> Every chunk of data written to a cloud disk is synchronously committed across <strong>3 independent copies</strong>.</li>
@@ -766,50 +763,20 @@ systemctl enable --now nginx</pre>
       <div class="slide-category">Section 3: Storage Options</div>
       <h2>Instance Failover</h2>
       
-      <div class="grid-2">
-        <div>
-          <div class="content-card highlight" style="margin-bottom: 0.85rem;">
-            <h3>Intra-Zone Automated Migration Mechanics</h3>
-            <p>ECS instances run on physical host machines called <strong>Node Controllers (NC)</strong>. When a physical hardware failure occurs:</p>
-            <ul>
-              <li><strong>Physical Host Failure (NC1 Down):</strong> Hardware malfunction, power disruption, or CPU/motherboard failure causes NC1 to stop operating.</li>
-              <li><strong>Autonomic Detection:</strong> The cloud hypervisor cluster management plane monitors continuous node heartbeats and promptly detects host unavailability.</li>
-              <li><strong>Automated Re-Instantiation:</strong> The instance (<code>i-001</code>) automatically migrates and boots on a healthy physical host (<strong>NC2</strong>) within the <strong>same Availability Zone</strong>.</li>
-              <li><strong>Data Preservation via Decoupled Storage:</strong> Because system and data volumes reside on network-attached <strong>Cloud Disks (Pangu)</strong>, no data is lost—NC2 immediately reconnects to the existing storage volumes.</li>
-            </ul>
-          </div>
-
-          <div class="content-card highlight-blue">
-            <h3>Service Level Agreement (SLA) Targets</h3>
-            <div class="table-wrapper">
-              <table class="slide-table" style="font-size: 0.85rem;">
-                <thead>
-                  <tr>
-                    <th>Deployment Model</th>
-                    <th>Monthly Uptime SLA</th>
-                    <th>Max Allowed Downtime</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>Single Instance</strong></td>
-                    <td><strong>99.975%</strong></td>
-                    <td>~10.9 minutes / month</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Multi-Zone Deployment</strong></td>
-                    <td><strong>99.995%</strong></td>
-                    <td>~2.2 minutes / month</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+      <div class="grid-2" style="align-items: center; gap: 2rem; margin-top: 1rem;">
+        <div class="content-card highlight" style="padding: 1.5rem;">
+          <h3 style="margin-bottom: 0.75rem;">Intra-Zone Automated Migration Mechanics</h3>
+          <p style="margin-bottom: 0.75rem;">ECS instances run on physical host machines called <strong>Node Controllers (NC)</strong>. When a physical hardware failure occurs:</p>
+          <ul style="line-height: 1.6;">
+            <li><strong>Physical Host Failure (NC1 Down):</strong> Hardware malfunction, power disruption, or CPU/motherboard failure causes NC1 to stop operating.</li>
+            <li><strong>Autonomic Detection:</strong> The cloud hypervisor cluster management plane monitors continuous node heartbeats and promptly detects host unavailability.</li>
+            <li><strong>Automated Re-Instantiation:</strong> The instance (<code>i-001</code>) automatically migrates and boots on a healthy physical host (<strong>NC2</strong>) within the <strong>same Availability Zone</strong>.</li>
+            <li><strong>Data Preservation via Decoupled Storage:</strong> Because system and data volumes reside on network-attached <strong>Cloud Disks (Pangu)</strong>, no data is lost—NC2 immediately reconnects to the existing storage volumes.</li>
+          </ul>
         </div>
 
-        <div class="diagram-container" style="justify-content: center;">
-          <img src="assets/images/ecs-instance-failover.png" alt="ECS Instance Automatic Failover Architecture" class="diagram-image" style="max-height: 310px; width: 100%; object-fit: contain;">
-          <div class="diagram-caption">Intra-Zone Automatic Migration from NC1 to NC2 upon Physical Server Failure (Singapore Region)</div>
+        <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+          <img src="assets/images/ecs-instance-failover.png" alt="ECS Instance Automatic Failover Architecture" style="max-height: 380px; width: auto; max-width: 100%; object-fit: contain;">
         </div>
       </div>
     </section>
