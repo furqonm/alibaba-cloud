@@ -33,7 +33,7 @@
         </select>
       </div>
       <div class="nav-buttons">
-        <span class="slide-counter" id="slideCounter">1/47</span>
+        <span class="slide-counter" id="slideCounter">1/48</span>
         <button class="btn-nav" id="prevBtn" title="Previous Slide (Left Arrow)">
           <span>⬅️</span> Previous
         </button>
@@ -385,26 +385,22 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 11: CHOOSING THE RIGHT ECS INSTANCE FAMILY (CONT.) ==================== -->
+    <!-- ==================== SLIDE 10: CHOOSING THE RIGHT ECS INSTANCE FAMILY (CONT.) ==================== -->
     <section class="slide" data-category="Instance Configuration">
       <div class="slide-category">Section 2: Instance Configuration</div>
       <h2>Choosing the Right ECS Instance Family (cont.)</h2>
       
-      <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin-bottom: 0.85rem;">
-        <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.4rem 1rem; box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: center;">
-          <img src="assets/images/ecs-gpu-card-1.png" alt="FPGA Accelerator Card" style="height: 100px; width: auto; object-fit: contain;">
-        </div>
-        <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.4rem 1rem; box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: center;">
-          <img src="assets/images/ecs-gpu-card-2.png" alt="NVIDIA Enterprise GPU Card" style="height: 100px; width: auto; object-fit: contain;">
-        </div>
+      <div style="display: flex; justify-content: center; align-items: center; gap: 3.5rem; margin: 0.25rem 0 1rem 0;">
+        <img src="assets/images/ecs-gpu-card-1.png" alt="FPGA Accelerator Card" style="height: 135px; width: auto; object-fit: contain;">
+        <img src="assets/images/ecs-gpu-card-2.png" alt="NVIDIA Enterprise GPU Card" style="height: 135px; width: auto; object-fit: contain;">
       </div>
 
       <div class="table-wrapper">
         <table class="slide-table">
           <thead>
             <tr>
-              <th>Heterogeneous Category</th>
-              <th>Acceleration Hardware</th>
+              <th>Instance Category</th>
+              <th>Chip</th>
               <th>Flagship Families</th>
               <th>Target Production Workloads</th>
             </tr>
@@ -445,10 +441,64 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 11: ECS BARE METAL INSTANCES (EBM) CONFIDENTIAL COMPUTING ==================== -->
+    <!-- ==================== SLIDE 11: YITIAN ARM-BASED INSTANCES ==================== -->
     <section class="slide" data-category="Instance Configuration">
       <div class="slide-category">Section 2: Instance Configuration</div>
-      <h2>ECS Bare Metal Instances (EBM) & Confidential Computing</h2>
+      <h2>YiTian ARM-Based Instances</h2>
+      
+      <div class="two-column-layout" style="align-items: stretch; gap: 1.75rem;">
+        <div class="column-left" style="flex: 0 0 44%; display: flex; flex-direction: column;">
+          <div class="content-card highlight" style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 1.1rem;">
+            <div style="width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); background: #000; display: flex; align-items: center; justify-content: center;">
+              <img src="assets/images/rds-yitian-710.png" alt="Alibaba Cloud T-Head YiTian 710 ARM Processor" style="width: 100%; height: auto; max-height: 160px; object-fit: cover; display: block;">
+            </div>
+            <div style="margin-top: 0.75rem; padding: 0.75rem 0.85rem; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.82rem; line-height: 1.42;">
+              <div style="font-weight: 700; color: var(--primary); font-size: 0.88rem; margin-bottom: 0.35rem;">
+                T-Head YiTian 710 SoC (ARMv9)
+              </div>
+              <ul style="margin: 0; padding-left: 1rem; color: var(--text-main); font-size: 0.8rem; line-height: 1.4;">
+                <li><strong>Cores &amp; Clock:</strong> 128 custom Armv9 physical cores @ 2.75 GHz (turbo up to 3.2 GHz; ~60B transistors).</li>
+                <li><strong>Cache Hierarchy:</strong> 128 MB system-level L3 cache + private L2 cache per core.</li>
+                <li><strong>Memory Channels:</strong> 8-channel DDR5-4800 (up to 4 TB RAM, ~307 GB/s bandwidth).</li>
+                <li><strong>Interconnect &amp; I/O:</strong> 96 PCIe Gen 5.0 lanes; dual-socket coherent interconnect.</li>
+                <li><strong>Hardware Acceleration:</strong> On-chip gzip data compression &amp; AES/SM4 hardware crypto engines.</li>
+                <li><strong>Integer Benchmark:</strong> SPEC CPU 2017 Integer rate &gt; 440.</li>
+              </ul>
+              <div style="margin-top: 0.45rem; font-size: 0.72rem; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 0.35rem;">
+                <em>(Alibaba Cloud Apsara - Technical Documentation, 2026).</em>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="column-right" style="flex: 1; display: flex; flex-direction: column;">
+          <div class="content-card highlight-blue" style="flex: 1; display: flex; flex-direction: column; justify-content: flex-start; gap: 0.75rem; padding: 1.15rem;">
+            <div>
+              <h3 style="margin-bottom: 0.35rem;">Key Architectural Strengths</h3>
+              <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.88rem; line-height: 1.45;">
+                <li><strong>20%~30% Price-Performance:</strong> Delivers superior throughput-per-dollar compared to legacy x86 CPUs for cloud and enterprise workloads.</li>
+                <li><strong>Dedicated Physical Cores:</strong> Pure single-threaded physical core execution without SMT (hyper-threading), eliminating noisy neighbors and CPU cache jitter.</li>
+                <li><strong>Hardware-Offloaded Compression:</strong> On-chip acceleration for gzip data compression and cryptographic hashing (AES/SM4), saving host CPU cycles.</li>
+              </ul>
+            </div>
+
+            <div style="padding-top: 0.65rem; border-top: 1px solid var(--border-color);">
+              <h3 style="margin-bottom: 0.35rem;">Use Cases</h3>
+              <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.88rem; line-height: 1.45;">
+                <li><strong>Cloud-Native &amp; Containerized Workloads:</strong> Exceptional performance and energy efficiency for ACK/Kubernetes microservices, web servers, and video transcoding.</li>
+                <li><strong>ECS Instance Families:</strong> Powers general-purpose (<code>ecs.g8y</code>), compute-optimized (<code>ecs.c8y</code>), and memory-optimized (<code>ecs.r8y</code>) instances.</li>
+                <li><strong>High-Concurrency Distributed Systems:</strong> Highly efficient execution of complex distributed queries, cache layers, and transactional systems at lower power draw.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 12: ECS BARE METAL INSTANCES ==================== -->
+    <section class="slide" data-category="Instance Configuration">
+      <div class="slide-category">Section 2: Instance Configuration</div>
+      <h2>ECS Bare Metal Instances</h2>
       
       <div class="grid-2">
         <div>
@@ -472,10 +522,10 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 12: HETEROGENEOUS COMPUTING GPU ACCELERATION ==================== -->
+    <!-- ==================== SLIDE 13: HETEROGENEOUS COMPUTING GPU ACCELERATION ==================== -->
     <section class="slide" data-category="Instance Configuration">
       <div class="slide-category">Section 2: Instance Configuration</div>
-      <h2>Heterogeneous Computing & GPU Acceleration</h2>
+      <h2>Heterogeneous Computing</h2>
       
       <div class="grid-2">
         <div>
@@ -502,7 +552,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 13: INSTANCE METADATA ==================== -->
+    <!-- ==================== SLIDE 14: INSTANCE METADATA ==================== -->
     <section class="slide" data-category="Instance Configuration">
       <div class="slide-category">Section 2: Instance Configuration</div>
       <h2>Instance Metadata</h2>
@@ -535,7 +585,7 @@ curl -s -H "X-aliyun-ecs-metadata-token: $TOKEN" \
       </div>
     </section>
 
-    <!-- ==================== SLIDE 14: BOOTSTRAPPING WITH ECS USER DATA ==================== -->
+    <!-- ==================== SLIDE 15: BOOTSTRAPPING WITH ECS USER DATA ==================== -->
     <section class="slide" data-category="Instance Configuration">
       <div class="slide-category">Section 2: Instance Configuration</div>
       <h2>Bootstrapping with ECS User Data</h2>
@@ -590,7 +640,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 15: APSARA PANGU DISTRIBUTED FILE SYSTEM ==================== -->
+    <!-- ==================== SLIDE 16: APSARA PANGU DISTRIBUTED FILE SYSTEM ==================== -->
     <section class="slide" data-category="Storage Options">
       <div class="slide-category">Section 3: Storage Options</div>
       <h2>Apsara Pangu Distributed File System</h2>
@@ -615,7 +665,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 16: CLOUD DISK ==================== -->
+    <!-- ==================== SLIDE 17: CLOUD DISK ==================== -->
     <section class="slide" data-category="Storage Options">
       <div class="slide-category">Section 3: Storage Options</div>
       <h2>Cloud Disk</h2>
@@ -679,7 +729,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 17: CLOUD DISK ATTACHMENT SIZING ==================== -->
+    <!-- ==================== SLIDE 18: CLOUD DISK ATTACHMENT SIZING ==================== -->
     <section class="slide" data-category="Storage Options">
       <div class="slide-category">Section 3: Storage Options</div>
       <h2>Cloud Disk Attachment & Sizing</h2>
@@ -711,7 +761,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 18: ECS DISK SNAPSHOTS ==================== -->
+    <!-- ==================== SLIDE 19: ECS DISK SNAPSHOTS ==================== -->
     <section class="slide" data-category="Storage Options">
       <div class="slide-category">Section 3: Storage Options</div>
       <h2>ECS Disk Snapshots</h2>
@@ -742,7 +792,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 19: CLOUD DISK MIGRATION WORKFLOW ==================== -->
+    <!-- ==================== SLIDE 20: CLOUD DISK MIGRATION WORKFLOW ==================== -->
     <section class="slide" data-category="Storage Options">
       <div class="slide-category">Section 3: Storage Options</div>
       <h2>Cloud Disk Migration Workflow</h2>
@@ -775,7 +825,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 20: ECS IMAGES ==================== -->
+    <!-- ==================== SLIDE 21: ECS IMAGES ==================== -->
     <section class="slide" data-category="Storage Options">
       <div class="slide-category">Section 3: Storage Options</div>
       <h2>ECS Images</h2>
@@ -822,7 +872,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 21: BASIC NETWORK ==================== -->
+    <!-- ==================== SLIDE 22: BASIC NETWORK ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>Basic Network</h2>
@@ -850,7 +900,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 22: SECURITY GROUPS ==================== -->
+    <!-- ==================== SLIDE 23: SECURITY GROUPS ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>Security Groups</h2>
@@ -875,7 +925,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 23: BASIC VS ADVANCED (ENTERPRISE) SECURITY GROUPS ==================== -->
+    <!-- ==================== SLIDE 24: BASIC VS ADVANCED (ENTERPRISE) SECURITY GROUPS ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>Basic vs Advanced (Enterprise) Security Groups</h2>
@@ -922,7 +972,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 24: INTERNET CONNECTIVITY ==================== -->
+    <!-- ==================== SLIDE 25: INTERNET CONNECTIVITY ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>Internet Connectivity</h2>
@@ -985,7 +1035,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 25: ECS HIGH AVAILABILITY AUTOMATED FAILOVER ==================== -->
+    <!-- ==================== SLIDE 26: ECS HIGH AVAILABILITY AUTOMATED FAILOVER ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>ECS High Availability & Automated Failover</h2>
@@ -1052,7 +1102,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 26: ELASTIC NETWORK INTERFACES (ENI) ==================== -->
+    <!-- ==================== SLIDE 27: ELASTIC NETWORK INTERFACES (ENI) ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>Elastic Network Interfaces (ENI)</h2>
@@ -1081,7 +1131,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 27: THE SHARED RESPONSIBILITY MODEL IN CLOUD COMPUTING ==================== -->
+    <!-- ==================== SLIDE 28: THE SHARED RESPONSIBILITY MODEL IN CLOUD COMPUTING ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>The Shared Responsibility Model in Cloud Computing</h2>
@@ -1113,7 +1163,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 28: CONNECTING TO ECS ==================== -->
+    <!-- ==================== SLIDE 29: CONNECTING TO ECS ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>Connecting to ECS</h2>
@@ -1146,7 +1196,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 29: ALIBABA CLOUD WORKBENCH ==================== -->
+    <!-- ==================== SLIDE 30: ALIBABA CLOUD WORKBENCH ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>Alibaba Cloud Workbench</h2>
@@ -1184,7 +1234,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 30: VNC MANAGEMENT TERMINAL ==================== -->
+    <!-- ==================== SLIDE 31: VNC MANAGEMENT TERMINAL ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>VNC Management Terminal</h2>
@@ -1258,7 +1308,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 31: CLOUD ASSISTANT ==================== -->
+    <!-- ==================== SLIDE 32: CLOUD ASSISTANT ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>Cloud Assistant</h2>
@@ -1286,7 +1336,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 32: SESSION MANAGER ==================== -->
+    <!-- ==================== SLIDE 33: SESSION MANAGER ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>Session Manager</h2>
@@ -1321,7 +1371,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 33: HOW TO RUN CONTAINER APPLICATION ==================== -->
+    <!-- ==================== SLIDE 34: HOW TO RUN CONTAINER APPLICATION ==================== -->
     <section class="slide" data-category="Container">
       <div class="slide-category">Section 6: Container</div>
       <h2>How to Run Container Application</h2>
@@ -1380,7 +1430,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 34: CONTAINER SERVICE FOR KUBERNETES (ACK) ARCHITECTURE ==================== -->
+    <!-- ==================== SLIDE 35: CONTAINER SERVICE FOR KUBERNETES (ACK) ARCHITECTURE ==================== -->
     <section class="slide" data-category="Container">
       <div class="slide-category">Section 6: Container</div>
       <h2>Container Service for Kubernetes (ACK) Architecture</h2>
@@ -1397,7 +1447,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 35: PAY-AS-YOU-GO (PAYG) ==================== -->
+    <!-- ==================== SLIDE 36: PAY-AS-YOU-GO (PAYG) ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Pay-As-You-Go (PAYG)</h2>
@@ -1427,7 +1477,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 36: SUBSCRIPTION ==================== -->
+    <!-- ==================== SLIDE 37: SUBSCRIPTION ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Subscription</h2>
@@ -1456,7 +1506,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 37: SPOT INSTANCES ==================== -->
+    <!-- ==================== SLIDE 38: SPOT INSTANCES ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Spot Instances</h2>
@@ -1486,7 +1536,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 38: RESERVED INSTANCES (RI) ==================== -->
+    <!-- ==================== SLIDE 39: RESERVED INSTANCES (RI) ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Reserved Instances (RI)</h2>
@@ -1516,7 +1566,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 39: SAVINGS PLANS ==================== -->
+    <!-- ==================== SLIDE 40: SAVINGS PLANS ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Savings Plans</h2>
@@ -1549,7 +1599,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 40: ECS RESOURCE SCOPING ARCHITECTURAL BOUNDARIES ==================== -->
+    <!-- ==================== SLIDE 41: ECS RESOURCE SCOPING ARCHITECTURAL BOUNDARIES ==================== -->
     <section class="slide" data-category="Summary">
       <div class="slide-category">Cloud Architect Recap</div>
       <h2>ECS Resource Scoping & Architectural Boundaries</h2>
@@ -1609,7 +1659,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 41: PRACTICE SCENARIO 1: CROSS-ZONE DISASTER RECOVERY ==================== -->
+    <!-- ==================== SLIDE 42: PRACTICE SCENARIO 1: CROSS-ZONE DISASTER RECOVERY ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 1</div>
       <h2>Practice Scenario 1: Cross-Zone Disaster Recovery</h2>
@@ -1640,7 +1690,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 42: SCENARIO 1: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
+    <!-- ==================== SLIDE 43: SCENARIO 1: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 1</div>
       <h2>Scenario 1: Solution & Architectural Analysis</h2>
@@ -1692,7 +1742,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 43: PRACTICE SCENARIO 2: FLASH SALE IO HANDLING ==================== -->
+    <!-- ==================== SLIDE 44: PRACTICE SCENARIO 2: FLASH SALE IO HANDLING ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 2</div>
       <h2>Practice Scenario 2: Flash Sale I/O Handling</h2>
@@ -1723,7 +1773,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 44: SCENARIO 2: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
+    <!-- ==================== SLIDE 45: SCENARIO 2: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 2</div>
       <h2>Scenario 2: Solution & Architectural Analysis</h2>
@@ -1775,7 +1825,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 45: PRACTICE SCENARIO 3: HIGH-DENSITY MICRO-SEGMENTATION ==================== -->
+    <!-- ==================== SLIDE 46: PRACTICE SCENARIO 3: HIGH-DENSITY MICRO-SEGMENTATION ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 3</div>
       <h2>Practice Scenario 3: High-Density Micro-segmentation</h2>
@@ -1806,7 +1856,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 46: SCENARIO 3: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
+    <!-- ==================== SLIDE 47: SCENARIO 3: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 3</div>
       <h2>Scenario 3: Solution & Architectural Analysis</h2>
@@ -1858,7 +1908,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 47: MODULE 02: ELASTIC COMPUTE SERVICE (ECS) ==================== -->
+    <!-- ==================== SLIDE 48: MODULE 02: ELASTIC COMPUTE SERVICE (ECS) ==================== -->
     <section class="slide title-slide" data-category="Summary">
       <div class="slide-category">Module Complete</div>
       <h1 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Module 02: Elastic Compute Service (ECS)</h1>

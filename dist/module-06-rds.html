@@ -33,7 +33,7 @@
         </select>
       </div>
       <div class="nav-buttons">
-        <span class="slide-counter" id="slideCounter">1/54</span>
+        <span class="slide-counter" id="slideCounter">1/53</span>
         <button class="btn-nav" id="prevBtn" title="Previous Slide (Left Arrow)">
           <span>⬅️</span> Previous
         </button>
@@ -492,62 +492,7 @@
       </div>
     </section>
 
-        <!-- ==================== SLIDE 15: YITIAN ARM-BASED INSTANCES ==================== -->
-    <section class="slide" data-category="Instance Configuration">
-      <div class="slide-category">Section 2: Instance Configuration</div>
-      <h2>YiTian ARM-Based Instances</h2>
-      
-      <div class="two-column-layout" style="align-items: stretch; gap: 1.75rem;">
-        <div class="column-left" style="flex: 0 0 44%; display: flex; flex-direction: column;">
-          <div class="content-card highlight" style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 1.1rem;">
-            <div style="width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); background: #000; display: flex; align-items: center; justify-content: center;">
-              <img src="assets/images/rds-yitian-710.png" alt="Alibaba Cloud T-Head YiTian 710 ARM Processor" style="width: 100%; height: auto; max-height: 160px; object-fit: cover; display: block;">
-            </div>
-            <div style="margin-top: 0.75rem; padding: 0.75rem 0.85rem; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.82rem; line-height: 1.42;">
-              <div style="font-weight: 700; color: var(--primary); font-size: 0.88rem; margin-bottom: 0.35rem;">
-                T-Head YiTian 710 SoC (ARMv9)
-              </div>
-              <ul style="margin: 0; padding-left: 1rem; color: var(--text-main); font-size: 0.8rem; line-height: 1.4;">
-                <li><strong>Cores &amp; Clock:</strong> 128 custom Armv9 physical cores @ 2.75 GHz (turbo up to 3.2 GHz; ~60B transistors).</li>
-                <li><strong>Cache Hierarchy:</strong> 128 MB system-level L3 cache + private L2 cache per core.</li>
-                <li><strong>Memory Channels:</strong> 8-channel DDR5-4800 (up to 4 TB RAM, ~307 GB/s bandwidth).</li>
-                <li><strong>Interconnect &amp; I/O:</strong> 96 PCIe Gen 5.0 lanes; dual-socket coherent interconnect.</li>
-                <li><strong>Hardware Acceleration:</strong> On-chip gzip data compression &amp; AES/SM4 hardware crypto engines.</li>
-                <li><strong>Integer Benchmark:</strong> SPEC CPU 2017 Integer rate &gt; 440.</li>
-              </ul>
-              <div style="margin-top: 0.45rem; font-size: 0.72rem; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 0.35rem;">
-                <em>(Alibaba Cloud Apsara - Technical Documentation, 2026).</em>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="column-right" style="flex: 1; display: flex; flex-direction: column;">
-          <div class="content-card highlight-blue" style="flex: 1; display: flex; flex-direction: column; justify-content: flex-start; gap: 0.75rem; padding: 1.15rem;">
-            <div>
-              <h3 style="margin-bottom: 0.35rem;">Key Architectural Strengths</h3>
-              <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.88rem; line-height: 1.45;">
-                <li><strong>20%~30% Price-Performance:</strong> Delivers superior throughput-per-dollar compared to legacy x86 CPUs for database transactional workloads.</li>
-                <li><strong>Dedicated Physical Cores:</strong> Pure single-threaded physical core execution without SMT (hyper-threading), eliminating noisy neighbors and CPU cache jitter.</li>
-                <li><strong>Hardware-Offloaded Compression:</strong> On-chip acceleration for gzip data compression and cryptographic hashing (AES/SM4), saving CPU cycles.</li>
-              </ul>
-            </div>
-
-            <div style="padding-top: 0.65rem; border-top: 1px solid var(--border-color);">
-              <h3 style="margin-bottom: 0.35rem;">Use Cases</h3>
-              <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.88rem; line-height: 1.45;">
-                <li><strong>High-Concurrency Web &amp; Mobile APIs:</strong> Sustained low-latency query handling under heavy multi-threaded connection pools.</li>
-                <li><strong>OLTP E-Commerce &amp; Core Systems:</strong> Highly efficient execution of complex joins, inventory updates, and cart checkouts at lower power draw.</li>
-                <li><strong>Engine Compatibility:</strong> Native binary optimization for ApsaraDB RDS for MySQL (8.0/5.7) and PostgreSQL (14/15) in Jakarta and Singapore.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ==================== SLIDE 16: RDS STORAGE TYPES COMPARISON ==================== -->
+<!-- ==================== SLIDE 15: RDS STORAGE TYPES COMPARISON ==================== -->
     <section class="slide" data-category="Storage &amp; Backup">
       <div class="slide-category">Section 3: Storage &amp; Backup</div>
       <h2>RDS Storage Types Comparison</h2>
@@ -630,7 +575,7 @@
       </table>
     </section>
 
-    <!-- ==================== SLIDE 17: BACKUP MECHANISMS ==================== -->
+    <!-- ==================== SLIDE 16: BACKUP MECHANISMS ==================== -->
     <section class="slide" data-category="Storage &amp; Backup">
       <div class="slide-category">Section 3: Storage &amp; Backup</div>
       <h2>RDS Backup Mechanisms</h2>
@@ -673,7 +618,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 18: AUTOMATED BACKUP SCHEDULING ==================== -->
+    <!-- ==================== SLIDE 17: AUTOMATED BACKUP SCHEDULING ==================== -->
     <section class="slide" data-category="Storage &amp; Backup">
       <div class="slide-category">Section 3: Storage &amp; Backup</div>
       <h2>Automated Backup Scheduling</h2>
@@ -699,7 +644,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 19: BACKUP ARCHITECTURE & SNAPSHOTS ==================== -->
+    <!-- ==================== SLIDE 18: BACKUP ARCHITECTURE & SNAPSHOTS ==================== -->
     <section class="slide" data-category="Storage &amp; Backup">
       <div class="slide-category">Section 3: Storage &amp; Backup</div>
       <h2>Backup &amp; Point-in-Time Recovery (PITR)</h2>
@@ -709,7 +654,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 20: PITR RESTORE WORKFLOW ==================== -->
+    <!-- ==================== SLIDE 19: PITR RESTORE WORKFLOW ==================== -->
     <section class="slide" data-category="Storage &amp; Backup">
       <div class="slide-category">Section 3: Storage &amp; Backup</div>
       <h2>PITR Execution Workflow</h2>
@@ -751,7 +696,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 21: DATABASE RESTORATION METHODS ==================== -->
+    <!-- ==================== SLIDE 20: DATABASE RESTORATION METHODS ==================== -->
     <section class="slide" data-category="Storage &amp; Backup">
       <div class="slide-category">Section 3: Storage &amp; Backup</div>
       <h2>RDS Database Restoration Methods</h2>
@@ -804,7 +749,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 22: ACTIVE-STANDBY FAILOVER ==================== -->
+    <!-- ==================== SLIDE 21: ACTIVE-STANDBY FAILOVER ==================== -->
     <section class="slide" data-category="High Availability &amp; Disaster Recovery">
       <div class="slide-category">Section 4: High Availability &amp; Disaster Recovery</div>
       <h2>Active-Standby Failover</h2>
@@ -814,7 +759,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 23: REPLICATION SYNCHRONIZATION ==================== -->
+    <!-- ==================== SLIDE 22: REPLICATION SYNCHRONIZATION ==================== -->
     <section class="slide" data-category="High Availability &amp; Disaster Recovery">
       <div class="slide-category">Section 4: High Availability &amp; Disaster Recovery</div>
       <h2>Replication Synchronization</h2>
@@ -824,7 +769,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 24: SINGLE-ZONE VS. MULTI-ZONE DEPLOYMENT ==================== -->
+    <!-- ==================== SLIDE 23: SINGLE-ZONE VS. MULTI-ZONE DEPLOYMENT ==================== -->
     <section class="slide" data-category="High Availability &amp; Disaster Recovery">
       <div class="slide-category">Section 4: High Availability &amp; Disaster Recovery</div>
       <h2>Single-Zone vs. Multi-Zone Deployment</h2>
@@ -864,7 +809,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 25: CROSS-REGION DISASTER RECOVERY ==================== -->
+    <!-- ==================== SLIDE 24: CROSS-REGION DISASTER RECOVERY ==================== -->
     <section class="slide" data-category="High Availability &amp; Disaster Recovery">
       <div class="slide-category">Section 4: High Availability &amp; Disaster Recovery</div>
       <h2>Cross-Region Disaster Recovery</h2>
@@ -896,7 +841,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 26: READ/WRITE SPLITTING ==================== -->
+    <!-- ==================== SLIDE 25: READ/WRITE SPLITTING ==================== -->
     <section class="slide" data-category="Scaling &amp; Performance">
       <div class="slide-category">Section 5: Scaling &amp; Performance</div>
       <h2>Read/Write Splitting</h2>
@@ -906,7 +851,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 27: DATABASE PROXY FEATURES ==================== -->
+    <!-- ==================== SLIDE 26: DATABASE PROXY FEATURES ==================== -->
     <section class="slide" data-category="Scaling &amp; Performance">
       <div class="slide-category">Section 5: Scaling &amp; Performance</div>
       <h2>Dedicated Database Proxy: Intelligent Traffic Routing</h2>
@@ -939,7 +884,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 28: READ-ONLY REPLICAS FLEET ==================== -->
+    <!-- ==================== SLIDE 27: READ-ONLY REPLICAS FLEET ==================== -->
     <section class="slide" data-category="Scaling &amp; Performance">
       <div class="slide-category">Section 5: Scaling &amp; Performance</div>
       <h2>Read-Only Replicas vs. HA Secondary Instance</h2>
@@ -980,7 +925,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 29: SECURITY DEFENSE MESH ==================== -->
+    <!-- ==================== SLIDE 28: SECURITY DEFENSE MESH ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Multi-Tier Database Security</h2>
@@ -994,7 +939,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 30: NETWORK ISOLATION & IP WHITELIST ==================== -->
+    <!-- ==================== SLIDE 29: NETWORK ISOLATION & IP WHITELIST ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Layer 1: Network Boundary</h2>
@@ -1026,7 +971,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 31: IN-TRANSIT ENCRYPTION ==================== -->
+    <!-- ==================== SLIDE 30: IN-TRANSIT ENCRYPTION ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Layer 2: In-Transit Security</h2>
@@ -1045,7 +990,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 32: AT-REST ENCRYPTION (TDE) ==================== -->
+    <!-- ==================== SLIDE 31: AT-REST ENCRYPTION (TDE) ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Layer 3: Data-at-Rest with Transparent Data Encryption (TDE)</h2>
@@ -1064,7 +1009,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 33: ACCESS GOVERNANCE - RAM ==================== -->
+    <!-- ==================== SLIDE 32: ACCESS GOVERNANCE - RAM ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Layer 4: Access Governance with Resource Access Management (RAM)</h2>
@@ -1083,7 +1028,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 34: ACCESS GOVERNANCE - DMS ==================== -->
+    <!-- ==================== SLIDE 33: ACCESS GOVERNANCE - DMS ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Layer 4: Access Governance with Data Management (DMS)</h2>
@@ -1102,7 +1047,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 35: AUDIT WITH SQL AUDIT TRAIL ==================== -->
+    <!-- ==================== SLIDE 34: AUDIT WITH SQL AUDIT TRAIL ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Layer 5: Audit with SQL Audit Trail</h2>
@@ -1121,7 +1066,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 38: MONITOR WITH CLOUDMONITOR ==================== -->
+    <!-- ==================== SLIDE 37: MONITOR WITH CLOUDMONITOR ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Layer 5: Monitor with CloudMonitor</h2>
@@ -1140,7 +1085,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 39: MANAGE WITH DATABASE AUTONOMY (DAS) ==================== -->
+    <!-- ==================== SLIDE 38: MANAGE WITH DATABASE AUTONOMY (DAS) ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Layer 5: Manage with Database Autonomy (DAS)</h2>
@@ -1159,7 +1104,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 38: DATA TRANSMISSION SERVICE (DTS) ==================== -->
+    <!-- ==================== SLIDE 37: DATA TRANSMISSION SERVICE (DTS) ==================== -->
     <section class="slide" data-category="Migration">
       <div class="slide-category">Section 7: Migration</div>
       <h2>Data Transmission Service (DTS)</h2>
@@ -1202,7 +1147,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 39: DTS ARCHITECTURE ==================== -->
+    <!-- ==================== SLIDE 38: DTS ARCHITECTURE ==================== -->
     <section class="slide" data-category="Migration">
       <div class="slide-category">Section 7: Migration</div>
       <h2>DTS Architecture</h2>
@@ -1212,7 +1157,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 40: ZERO-DOWNTIME MIGRATION PIPELINE ==================== -->
+    <!-- ==================== SLIDE 39: ZERO-DOWNTIME MIGRATION PIPELINE ==================== -->
     <section class="slide" data-category="Migration">
       <div class="slide-category">Section 7: Migration</div>
       <h2>Zero-Downtime Migration Pipeline</h2>
@@ -1250,7 +1195,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 41: DTS DUAL-REGION TRAFFIC ROUTING ==================== -->
+    <!-- ==================== SLIDE 40: DTS DUAL-REGION TRAFFIC ROUTING ==================== -->
     <section class="slide" data-category="Migration">
       <div class="slide-category">Section 7: Migration</div>
       <h2>DTS Dual-Region Read/Write Traffic Routing</h2>
@@ -1264,7 +1209,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 42: DTS MULTI-REGION GEO-DISTRIBUTION ==================== -->
+    <!-- ==================== SLIDE 41: DTS MULTI-REGION GEO-DISTRIBUTION ==================== -->
     <section class="slide" data-category="Migration">
       <div class="slide-category">Section 7: Migration</div>
       <h2>DTS Multi-Region Active Geo-Distribution</h2>
@@ -1278,7 +1223,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 43: DTS REAL-TIME ANALYTICS SYNCHRONIZATION ==================== -->
+    <!-- ==================== SLIDE 42: DTS REAL-TIME ANALYTICS SYNCHRONIZATION ==================== -->
     <section class="slide" data-category="Migration">
       <div class="slide-category">Section 7: Migration</div>
       <h2>DTS Real-Time Analytics Synchronization</h2>
@@ -1292,7 +1237,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 44: POLARDB ==================== -->
+    <!-- ==================== SLIDE 43: POLARDB ==================== -->
     <section class="slide" data-category="PolarDB">
       <div class="slide-category">Section 8: PolarDB</div>
       <h2>PolarDB</h2>
@@ -1335,7 +1280,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 45: POLARDB ARCHITECTURE ==================== -->
+    <!-- ==================== SLIDE 44: POLARDB ARCHITECTURE ==================== -->
     <section class="slide" data-category="PolarDB">
       <div class="slide-category">Section 8: PolarDB</div>
       <h2>PolarDB Architecture</h2>
@@ -1384,7 +1329,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 46: RDS VS POLARDB DECISION MATRIX ==================== -->
+    <!-- ==================== SLIDE 45: RDS VS POLARDB DECISION MATRIX ==================== -->
     <section class="slide" data-category="PolarDB">
       <div class="slide-category">Section 8: PolarDB</div>
       <h2>When to Choose RDS vs. PolarDB</h2>
@@ -1416,7 +1361,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 47: PRICING MODEL ==================== -->
+    <!-- ==================== SLIDE 46: PRICING MODEL ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 9: Pricing Model</div>
       <h2>RDS, PolarDB &amp; DTS Pricing Architecture</h2>
@@ -1480,7 +1425,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 48: PRACTICE QUIZ SCENARIO 1 ==================== -->
+    <!-- ==================== SLIDE 47: PRACTICE QUIZ SCENARIO 1 ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 1</div>
       <h2>Practice Scenario 1: High-Concurrency Read Scaling &amp; Failover</h2>
@@ -1515,7 +1460,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 49: QUIZ ANSWER 1 ==================== -->
+    <!-- ==================== SLIDE 48: QUIZ ANSWER 1 ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 1</div>
       <h2>Scenario 1: Solution &amp; Architectural Analysis</h2>
@@ -1567,7 +1512,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 50: PRACTICE QUIZ SCENARIO 2 ==================== -->
+    <!-- ==================== SLIDE 49: PRACTICE QUIZ SCENARIO 2 ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 2</div>
       <h2>Practice Scenario 2: Financial Compliance, TDE &amp; Multi-Zone Resiliency</h2>
@@ -1602,7 +1547,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 51: QUIZ ANSWER 2 ==================== -->
+    <!-- ==================== SLIDE 50: QUIZ ANSWER 2 ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 2</div>
       <h2>Scenario 2: Solution &amp; Architectural Analysis</h2>
@@ -1654,7 +1599,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 52: PRACTICE QUIZ SCENARIO 3 ==================== -->
+    <!-- ==================== SLIDE 51: PRACTICE QUIZ SCENARIO 3 ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 3</div>
       <h2>Practice Scenario 3: Zero-Downtime Enterprise Database Migration</h2>
@@ -1689,7 +1634,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 53: QUIZ ANSWER 3 ==================== -->
+    <!-- ==================== SLIDE 52: QUIZ ANSWER 3 ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 3</div>
       <h2>Scenario 3: Solution &amp; Architectural Analysis</h2>
@@ -1741,7 +1686,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 54: MODULE SUMMARY & NEXT STEPS ==================== -->
+    <!-- ==================== SLIDE 53: MODULE SUMMARY & NEXT STEPS ==================== -->
     <section class="slide title-slide" data-category="Summary">
       <div class="slide-category">Module Complete</div>
       <h1 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Module 06: ApsaraDB for RDS</h1>
