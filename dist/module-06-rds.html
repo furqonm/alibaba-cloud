@@ -33,7 +33,7 @@
         </select>
       </div>
       <div class="nav-buttons">
-        <span class="slide-counter" id="slideCounter">1/51</span>
+        <span class="slide-counter" id="slideCounter">1/52</span>
         <button class="btn-nav" id="prevBtn" title="Previous Slide (Left Arrow)">
           <span>⬅️</span> Previous
         </button>
@@ -1031,30 +1031,17 @@
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Layer 2: In-Transit Security</h2>
       
-      <div class="two-column-layout" style="align-items: stretch; gap: 1.5rem;">
-        <div class="column-left">
-          <div class="content-card highlight" style="height: 100%; padding: 1.25rem;">
-            <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.95rem + var(--font-delta));">Transport Layer Cryptography</h3>
-            <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.5;">
-              <li><strong>End-to-End Packet Encryption:</strong> Encrypts all client-to-database communication channels, preventing eavesdropping, tampering, and packet sniffing.</li>
-              <li><strong>Modern TLS 1.2 &amp; TLS 1.3:</strong> Employs state-of-the-art cipher suites with Perfect Forward Secrecy (PFS) and hardware-accelerated cryptographic handshakes.</li>
-              <li><strong>One-Click Console Activation:</strong> Enable TLS encryption directly in the RDS console with automated certificate issuance and zero manual server configuration.</li>
-              <li><strong>Zero Code Modifications:</strong> 100% compatible with standard client drivers (JDBC, ODBC, psycopg2, node-mysql) by enabling SSL connection parameters.</li>
-            </ul>
-          </div>
-        </div>
+      <div class="architecture-diagram-wrapper">
+        <img src="assets/images/rds-ssl-tls-p757139.png" alt="In-Transit SSL/TLS Encryption Architecture" class="architecture-diagram" style="max-height: 330px;">
+      </div>
 
-        <div class="column-right">
-          <div class="content-card highlight-green" style="height: 100%; padding: 1.25rem;">
-            <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.95rem + var(--font-delta));">Certificate Authority &amp; Policy Enforcement</h3>
-            <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.5;">
-              <li><strong>Custom Enterprise CA Integration:</strong> Upload enterprise intermediate or custom root CA certificates to verify database server identities in regulated environments.</li>
-              <li><strong>Mandatory SSL Enforcement (Force SSL):</strong> Enforce strict database policies that automatically reject unencrypted plaintext connection attempts.</li>
-              <li><strong>MitM Attack Prevention:</strong> Clients verify the server certificate common name and cryptographic signature before transmitting database credentials.</li>
-              <li><strong>Automated Certificate Renewal:</strong> Native integration with Alibaba Cloud Certificate Management Service ensures seamless automated certificate rotation.</li>
-            </ul>
-          </div>
-        </div>
+      <div class="content-card highlight" style="margin-top: 0.75rem; padding: 0.85rem 1.25rem;">
+        <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem 1.5rem;">
+          <li><strong>End-to-End Encryption:</strong> Cryptographically shields all network packets traversing between client applications and RDS using TLS 1.2/1.3 with Perfect Forward Secrecy.</li>
+          <li><strong>Zero Code Modifications:</strong> Fully compatible with standard client drivers (JDBC, ODBC, psycopg2) by simply enabling SSL connection flags.</li>
+          <li><strong>Managed &amp; Custom CA:</strong> Automatic certificate issuance via Alibaba Cloud CA, with support for uploading enterprise custom root CAs to meet compliance.</li>
+          <li><strong>Client CA Authentication:</strong> Enforce bi-directional mutual TLS (mTLS) verification requiring client applications to present trusted X.509 certificates.</li>
+        </ul>
       </div>
     </section>
 
@@ -1063,66 +1050,59 @@
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Layer 3: Data-at-Rest TDE</h2>
       
-      <div class="two-column-layout" style="align-items: stretch; gap: 1.5rem;">
-        <div class="column-left">
-          <div class="content-card highlight" style="height: 100%; padding: 1.25rem;">
-            <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.95rem + var(--font-delta));">Transparent Data Encryption (TDE)</h3>
-            <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.5;">
-              <li><strong>Real-Time Block Encryption:</strong> Database data files, undo logs, redo logs, and temporary files are encrypted on-the-fly before being written to disk storage.</li>
-              <li><strong>Zero Application Refactoring:</strong> Encryption and decryption execute transparently inside the database engine; applications query standard tables without SQL changes.</li>
-              <li><strong>AES-256 &amp; National SM4 Standards:</strong> Supports international standard AES-256 and national commercial cryptographic algorithm SM4 for strict banking compliance.</li>
-              <li><strong>Hardware Acceleration:</strong> Offloads cryptographic operations to CPU AES-NI instructions, maintaining high transactional throughput with negligible CPU overhead.</li>
-            </ul>
-          </div>
-        </div>
+      <div class="architecture-diagram-wrapper">
+        <img src="assets/images/rds-tde-key-management.svg" alt="Transparent Data Encryption (TDE) Architecture" class="architecture-diagram" style="max-height: 330px;">
+      </div>
 
-        <div class="column-right">
-          <div class="content-card highlight-blue" style="height: 100%; padding: 1.25rem;">
-            <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.95rem + var(--font-delta));">KMS Envelope Encryption &amp; Encrypted Backups</h3>
-            <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.5;">
-              <li><strong>Two-Tier Envelope Key Hierarchy:</strong> Customer Master Keys (CMK) in Alibaba Cloud KMS manage and protect local Data Encryption Keys (DEK) used for data encryption.</li>
-              <li><strong>Automated Key Rotation:</strong> KMS supports policy-driven automated annual CMK rotation without requiring database downtime or data re-encryption.</li>
-              <li><strong>Encrypted Snapshots &amp; Binlogs:</strong> Automated physical snapshots, logical dumps, and archived transaction logs stored in OSS are automatically encrypted.</li>
-              <li><strong>Cryptographic Access Revocation:</strong> Disabling the CMK in KMS immediately renders all disk blocks and backup archives unreadable, providing instant cryptographic wipe.</li>
-            </ul>
-          </div>
-        </div>
+      <div class="content-card highlight-blue" style="margin-top: 0.75rem; padding: 0.85rem 1.25rem;">
+        <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem 1.5rem;">
+          <li><strong>Real-Time Block Encryption:</strong> Transparently encrypts database pages before writing to disk and decrypts upon memory load with zero SQL application changes.</li>
+          <li><strong>Envelope Key Hierarchy:</strong> Backed by Key Management Service (KMS) HSMs; Customer Master Keys (CMK) protect Data Encryption Keys (DEK) used for tablespaces.</li>
+          <li><strong>Bring Your Own Key (BYOK):</strong> Full customer control over cryptographic root keys, enabling scheduled rotation and strict multi-tenant key isolation.</li>
+          <li><strong>Inherited Backup Protection:</strong> Physical snapshot backups, logical dumps, continuous binlogs, and underlying cloud disks automatically inherit cryptographic protection.</li>
+        </ul>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 33: ACCESS CONTROL & DMS ==================== -->
+    <!-- ==================== SLIDE 33: ACCESS GOVERNANCE - RAM ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Layer 4: Access Governance</h2>
       
-      <div class="two-column-layout" style="align-items: stretch; gap: 1.5rem;">
-        <div class="column-left">
-          <div class="content-card highlight" style="height: 100%; padding: 1.25rem;">
-            <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.95rem + var(--font-delta));">Resource Access Management (RAM) Control</h3>
-            <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.5;">
-              <li><strong>Decoupled Security Model:</strong> RAM policies govern cloud infrastructure operations (creating, scaling, modifying, rebooting instances); database accounts govern SQL queries.</li>
-              <li><strong>Least Privilege RBAC:</strong> Grant developers, devops engineers, and DBAs only the specific API actions required for their role (e.g., <code>DescribeDBInstances</code> vs <code>ModifySecurityIps</code>).</li>
-              <li><strong>Attribute-Based Access Control (ABAC):</strong> Restrict administrative operations using resource tags (e.g., only allow modifications to instances tagged <code>Env: Staging</code>).</li>
-              <li><strong>Permanent ActionTrail Logging:</strong> Every API call, configuration adjustment, and console access is immutably recorded in ActionTrail for compliance audits.</li>
-            </ul>
-          </div>
-        </div>
+      <div class="architecture-diagram-wrapper">
+        <img src="assets/images/rds-ram-access-governance.png" alt="RDS Access Governance via RAM and Database Grants" class="architecture-diagram" style="max-height: 330px;">
+      </div>
 
-        <div class="column-right">
-          <div class="content-card highlight-blue" style="height: 100%; padding: 1.25rem;">
-            <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.95rem + var(--font-delta));">DMS Unified Data Governance &amp; Masking</h3>
-            <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.5;">
-              <li><strong>Dynamic Data Masking:</strong> DMS automatically detects and masks sensitive columns (credit card numbers, telephone numbers, citizen IDs) in query results on the fly.</li>
-              <li><strong>Multi-Level Approval Tickets:</strong> Production schema alterations (DDL) and bulk data export requests require mandatory management authorization tickets.</li>
-              <li><strong>Row &amp; Column Permission Scopes:</strong> Grant developers temporary read access restricted strictly to specific tables, non-sensitive columns, or row-level tenant IDs.</li>
-              <li><strong>Complete SQL Provenance:</strong> Captures full user identity, client IP, executed SQL statements, and affected rows for all web-based DMS database operations.</li>
-            </ul>
-          </div>
-        </div>
+      <div class="content-card highlight" style="margin-top: 0.75rem; padding: 0.85rem 1.25rem;">
+        <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem 1.5rem;">
+          <li><strong>Cloud Infrastructure Control (RAM):</strong> Resource Access Management (RAM) governs who can create, modify, reboot, backup, or delete RDS instances at the cloud platform tier.</li>
+          <li><strong>In-Database SQL Privilege Boundary:</strong> Granular database operations (SELECT, INSERT, UPDATE, DDL) are controlled via native database grants and account privileges.</li>
+          <li><strong>Superuser Access Elimination:</strong> Standard root/SYSDBA logins are disabled; operational duties are segregated into Privileged vs. Standard accounts.</li>
+          <li><strong>Credential-Less RAM Roles:</strong> ECS applications and ACK containers authenticate securely using temporary STS security tokens instead of hardcoded database passwords.</li>
+        </ul>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 34: OPERATIONAL INTELLIGENCE ==================== -->
+    <!-- ==================== SLIDE 35: ACCESS GOVERNANCE - DMS ==================== -->
+    <section class="slide" data-category="Security &amp; Governance">
+      <div class="slide-category">Section 6: Security &amp; Governance</div>
+      <h2>Layer 4: Access Governance (cont.)</h2>
+      
+      <div class="architecture-diagram-wrapper">
+        <img src="assets/images/rds-dms-authorization-management.png" alt="DMS Unified Authorization Management System" class="architecture-diagram" style="max-height: 330px;">
+      </div>
+
+      <div class="content-card highlight-blue" style="margin-top: 0.75rem; padding: 0.85rem 1.25rem;">
+        <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem 1.5rem;">
+          <li><strong>Unified Authorization Matrix:</strong> DMS centralizes permissions across three dimensions: Permission Type (Query, Update, Export), Period (7, 30, 365 days), and Target (schema, table, column).</li>
+          <li><strong>Role-Based Persona Scopes:</strong> Distinct security boundaries tailored for Operators, Developers, Testers, Auditors, and Interns with automated expiration and credential revocation.</li>
+          <li><strong>Dynamic Data Masking:</strong> Sensitive attributes (credit cards, PII, corporate financials) are algorithmically masked in real time before query results reach user screens.</li>
+          <li><strong>Approval Workflows &amp; SQL Provenance:</strong> Schema alterations (DDL) and bulk exports mandate approval tickets, with 100% forensic logging of executed SQL statements.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 35: OPERATIONAL INTELLIGENCE ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Layer 5: Audit &amp; Intelligence</h2>
@@ -1160,7 +1140,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 35: DATA TRANSMISSION SERVICE (DTS) ==================== -->
+    <!-- ==================== SLIDE 36: DATA TRANSMISSION SERVICE (DTS) ==================== -->
     <section class="slide" data-category="Migration">
       <div class="slide-category">Section 7: Migration</div>
       <h2>Data Transmission Service (DTS)</h2>
@@ -1203,7 +1183,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 36: DTS ARCHITECTURE ==================== -->
+    <!-- ==================== SLIDE 37: DTS ARCHITECTURE ==================== -->
     <section class="slide" data-category="Migration">
       <div class="slide-category">Section 7: Migration</div>
       <h2>DTS Architecture</h2>
@@ -1213,7 +1193,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 37: ZERO-DOWNTIME MIGRATION PIPELINE ==================== -->
+    <!-- ==================== SLIDE 38: ZERO-DOWNTIME MIGRATION PIPELINE ==================== -->
     <section class="slide" data-category="Migration">
       <div class="slide-category">Section 7: Migration</div>
       <h2>Zero-Downtime Migration Pipeline</h2>
@@ -1251,7 +1231,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 38: DTS DUAL-REGION TRAFFIC ROUTING ==================== -->
+    <!-- ==================== SLIDE 39: DTS DUAL-REGION TRAFFIC ROUTING ==================== -->
     <section class="slide" data-category="Migration">
       <div class="slide-category">Section 7: Migration</div>
       <h2>DTS Dual-Region Read/Write Traffic Routing</h2>
@@ -1265,7 +1245,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 39: DTS MULTI-REGION GEO-DISTRIBUTION ==================== -->
+    <!-- ==================== SLIDE 40: DTS MULTI-REGION GEO-DISTRIBUTION ==================== -->
     <section class="slide" data-category="Migration">
       <div class="slide-category">Section 7: Migration</div>
       <h2>DTS Multi-Region Active Geo-Distribution</h2>
@@ -1279,7 +1259,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 40: DTS REAL-TIME ANALYTICS SYNCHRONIZATION ==================== -->
+    <!-- ==================== SLIDE 41: DTS REAL-TIME ANALYTICS SYNCHRONIZATION ==================== -->
     <section class="slide" data-category="Migration">
       <div class="slide-category">Section 7: Migration</div>
       <h2>DTS Real-Time Analytics Synchronization</h2>
@@ -1293,7 +1273,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 41: POLARDB ==================== -->
+    <!-- ==================== SLIDE 42: POLARDB ==================== -->
     <section class="slide" data-category="PolarDB">
       <div class="slide-category">Section 8: PolarDB</div>
       <h2>PolarDB</h2>
@@ -1336,7 +1316,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 42: POLARDB ARCHITECTURE ==================== -->
+    <!-- ==================== SLIDE 43: POLARDB ARCHITECTURE ==================== -->
     <section class="slide" data-category="PolarDB">
       <div class="slide-category">Section 8: PolarDB</div>
       <h2>PolarDB Architecture</h2>
@@ -1385,7 +1365,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 43: RDS VS POLARDB DECISION MATRIX ==================== -->
+    <!-- ==================== SLIDE 44: RDS VS POLARDB DECISION MATRIX ==================== -->
     <section class="slide" data-category="PolarDB">
       <div class="slide-category">Section 8: PolarDB</div>
       <h2>When to Choose RDS vs. PolarDB</h2>
@@ -1417,7 +1397,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 44: PRICING MODEL ==================== -->
+    <!-- ==================== SLIDE 45: PRICING MODEL ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 9: Pricing Model</div>
       <h2>RDS, PolarDB &amp; DTS Pricing Architecture</h2>
@@ -1481,7 +1461,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 45: PRACTICE QUIZ SCENARIO 1 ==================== -->
+    <!-- ==================== SLIDE 46: PRACTICE QUIZ SCENARIO 1 ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 1</div>
       <h2>Practice Scenario 1: High-Concurrency Read Scaling &amp; Failover</h2>
@@ -1516,7 +1496,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 46: QUIZ ANSWER 1 ==================== -->
+    <!-- ==================== SLIDE 47: QUIZ ANSWER 1 ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 1</div>
       <h2>Scenario 1: Solution &amp; Architectural Analysis</h2>
@@ -1568,7 +1548,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 47: PRACTICE QUIZ SCENARIO 2 ==================== -->
+    <!-- ==================== SLIDE 48: PRACTICE QUIZ SCENARIO 2 ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 2</div>
       <h2>Practice Scenario 2: Financial Compliance, TDE &amp; Multi-Zone Resiliency</h2>
@@ -1603,7 +1583,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 48: QUIZ ANSWER 2 ==================== -->
+    <!-- ==================== SLIDE 49: QUIZ ANSWER 2 ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 2</div>
       <h2>Scenario 2: Solution &amp; Architectural Analysis</h2>
@@ -1655,7 +1635,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 49: PRACTICE QUIZ SCENARIO 3 ==================== -->
+    <!-- ==================== SLIDE 50: PRACTICE QUIZ SCENARIO 3 ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 3</div>
       <h2>Practice Scenario 3: Zero-Downtime Enterprise Database Migration</h2>
@@ -1690,7 +1670,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 50: QUIZ ANSWER 3 ==================== -->
+    <!-- ==================== SLIDE 51: QUIZ ANSWER 3 ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 3</div>
       <h2>Scenario 3: Solution &amp; Architectural Analysis</h2>
@@ -1742,7 +1722,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 51: MODULE SUMMARY & NEXT STEPS ==================== -->
+    <!-- ==================== SLIDE 52: MODULE SUMMARY & NEXT STEPS ==================== -->
     <section class="slide title-slide" data-category="Summary">
       <div class="slide-category">Module Complete</div>
       <h1 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Module 06: ApsaraDB for RDS</h1>
