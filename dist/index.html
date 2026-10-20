@@ -33,7 +33,7 @@
         </select>
       </div>
       <div class="nav-buttons">
-        <span class="slide-counter" id="slideCounter">1/51</span>
+        <span class="slide-counter" id="slideCounter">1/52</span>
         <button class="btn-nav" id="prevBtn" title="Previous Slide (Left Arrow)">
           <span>⬅️</span> Previous
         </button>
@@ -445,17 +445,17 @@
       <h2>ECS Bare Metal Instances</h2>
       
       <div class="grid-2">
-        <div>
-          <div class="content-card highlight" style="margin-bottom: 0.75rem;">
-            <h3>1. Re-Virtualization (Nested Virtualization)</h3>
+        <div class="content-card highlight">
+          <div style="margin-bottom: 0.85rem;">
+            <h4 style="margin-bottom: 0.35rem; color: var(--primary);">1. Re-Virtualization (Nested Virtualization)</h4>
             <p>Deploy VMware ESXi, OpenStack, or KVM directly on cloud infrastructure without hypervisor nesting penalties.</p>
           </div>
-          <div class="content-card highlight-blue" style="margin-bottom: 0.75rem;">
-            <h3>2. Licensing & Physical Isolation</h3>
+          <div style="margin-bottom: 0.85rem;">
+            <h4 style="margin-bottom: 0.35rem; color: var(--primary);">2. Licensing &amp; Physical Isolation</h4>
             <p>Fulfill requirements for software requiring physical CPU socket binding (Oracle RAC, SAP) and regulatory compliance.</p>
           </div>
-          <div class="content-card highlight-purple">
-            <h3>3. Chip-Level Confidential Computing (Intel SGX)</h3>
+          <div>
+            <h4 style="margin-bottom: 0.35rem; color: var(--primary);">3. Chip-Level Confidential Computing (Intel SGX)</h4>
             <p>Enclave memory is hardware-encrypted, blocking OS, hypervisor, and cloud admins from inspecting sensitive in-use memory data.</p>
           </div>
         </div>
@@ -528,18 +528,18 @@
       <h2>Heterogeneous Computing</h2>
       
       <div class="grid-2">
-        <div>
-          <div class="content-card highlight-purple" style="margin-bottom: 0.75rem;">
-            <h3>GPU Accelerated Families</h3>
-            <ul>
-              <li><strong>AI Training & LLM:</strong> <code>ecs.ebmgn8v</code> / <code>ecs.gn7e</code> with high-bandwidth memory for foundation models.</li>
+        <div class="content-card highlight">
+          <div style="margin-bottom: 1rem;">
+            <h4 style="margin-bottom: 0.4rem; color: var(--primary);">GPU Accelerated Families</h4>
+            <ul style="line-height: 1.55;">
+              <li><strong>AI Training &amp; LLM:</strong> <code>ecs.ebmgn8v</code> / <code>ecs.gn7e</code> with high-bandwidth memory for foundation models.</li>
               <li><strong>AI Inference:</strong> <code>ecs.gn7i</code> (NVIDIA A10) and L-series for cost-effective deep learning inference.</li>
               <li><strong>Graphics / VDI:</strong> <code>ecs.vgn6i</code> lightweight virtual GPU sharing for CAD and 3D modeling.</li>
             </ul>
           </div>
-          <div class="content-card highlight-blue">
-            <h3>Supercomputing Clusters (SCC) with eRDMA</h3>
-            <ul>
+          <div>
+            <h4 style="margin-bottom: 0.4rem; color: var(--primary);">Supercomputing Clusters (SCC) with eRDMA</h4>
+            <ul style="line-height: 1.55;">
               <li><strong>RoCE v2 eRDMA:</strong> Remote Direct Memory Access bypasses OS kernel overhead, achieving sub-microsecond latency.</li>
               <li><strong>Scale-out HPC:</strong> Prevents network bottlenecks across distributed multi-node parallel computing.</li>
             </ul>
@@ -702,31 +702,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 17: APSARA PANGU DISTRIBUTED FILE SYSTEM ==================== -->
-    <section class="slide" data-category="Storage Options">
-      <div class="slide-category">Section 3: Storage Options</div>
-      <h2>Apsara Pangu Distributed File System</h2>
-      
-      <div class="grid-2">
-        <div class="content-card highlight">
-          <p>ECS Cloud Disks do not reside on physical server drives inside compute hosts. They are powered by <strong>Pangu</strong>, Alibaba Cloud's distributed storage architecture:</p>
-          <ul>
-            <li><strong>Triplicate Data Replication:</strong> Every chunk of data written to a cloud disk is synchronously committed across <strong>3 independent copies</strong>.</li>
-            <li><strong>Rack & Switch Isolation:</strong> Replicas are distributed across separate physical server racks and network switches within the same Availability Zone.</li>
-            <li><strong>Data Reliability:</strong> Delivers an industry-leading <strong>99.9999999% (9 nines)</strong> data durability guarantee.</li>
-            <li><strong>Zero Local RAID Dependency:</strong> Eliminates the operational hazard and rebuilding overhead of physical RAID arrays.</li>
-            <li><strong>Multi-Service Foundation:</strong> Powers BlockFS (EBS Cloud Disks), LogFile (Databases & TableStore), and HDFS (Big Data computing).</li>
-          </ul>
-        </div>
-
-        <div class="diagram-container clean">
-          <img src="assets/images/pangu-architecture.svg" alt="Apsara Pangu Distributed Storage Architecture" class="diagram-image" style="max-height: 280px; width: 100%; object-fit: contain;">
-          <div class="diagram-caption">Apsara Pangu Multi-Layer Architecture</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== SLIDE 18: CLOUD DISK ATTACHMENT ==================== -->
+    <!-- ==================== SLIDE 17: CLOUD DISK ATTACHMENT ==================== -->
     <section class="slide" data-category="Storage Options">
       <div class="slide-category">Section 3: Storage Options</div>
       <h2>Cloud Disk Attachment</h2>
@@ -751,7 +727,53 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 19: RESIZE A CLOUD DISK ==================== -->
+    <!-- ==================== SLIDE 18: APSARA PANGU DISTRIBUTED FILE SYSTEM ==================== -->
+    <section class="slide" data-category="Storage Options">
+      <div class="slide-category">Section 3: Storage Options</div>
+      <h2>Apsara Pangu Distributed File System</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <p>ECS Cloud Disks do not reside on physical server drives inside compute hosts. They are powered by <strong>Pangu</strong>, Alibaba Cloud's distributed storage architecture:</p>
+          <ul>
+            <li><strong>Triplicate Data Replication:</strong> Every chunk of data written to a cloud disk is synchronously committed across <strong>3 independent copies</strong>.</li>
+            <li><strong>Rack & Switch Isolation:</strong> Replicas are distributed across separate physical server racks and network switches within the same Availability Zone.</li>
+            <li><strong>Data Reliability:</strong> Delivers an industry-leading <strong>99.9999999% (9 nines)</strong> data durability guarantee.</li>
+            <li><strong>Zero Local RAID Dependency:</strong> Eliminates the operational hazard and rebuilding overhead of physical RAID arrays.</li>
+            <li><strong>Multi-Service Foundation:</strong> Powers BlockFS (EBS Cloud Disks), LogFile (Databases & TableStore), and HDFS (Big Data computing).</li>
+          </ul>
+        </div>
+
+        <div class="diagram-container clean">
+          <img src="assets/images/pangu-architecture.svg" alt="Apsara Pangu Distributed Storage Architecture" class="diagram-image" style="max-height: 280px; width: 100%; object-fit: contain;">
+          <div class="diagram-caption">Apsara Pangu Multi-Layer Architecture</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 19: INSTANCE FAILOVER ==================== -->
+    <section class="slide" data-category="Storage Options">
+      <div class="slide-category">Section 3: Storage Options</div>
+      <h2>Instance Failover</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 2rem; margin-top: 1rem;">
+        <div class="content-card highlight" style="padding: 1.5rem;">
+          <p style="margin-bottom: 0.75rem;">ECS instances run on physical host machines called <strong>Node Controllers (NC)</strong>. When a physical hardware failure occurs:</p>
+          <ul style="line-height: 1.6;">
+            <li><strong>Physical Host Failure (NC1 Down):</strong> Hardware malfunction, power disruption, or CPU/motherboard failure causes NC1 to stop operating.</li>
+            <li><strong>Autonomic Detection:</strong> The cloud hypervisor cluster management plane monitors continuous node heartbeats and promptly detects host unavailability.</li>
+            <li><strong>Automated Re-Instantiation:</strong> The instance (<code>i-001</code>) automatically migrates and boots on a healthy physical host (<strong>NC2</strong>) within the <strong>same Availability Zone</strong>.</li>
+            <li><strong>Data Preservation via Decoupled Storage:</strong> Because system and data volumes reside on network-attached <strong>Cloud Disks (Pangu)</strong>, no data is lost—NC2 immediately reconnects to the existing storage volumes.</li>
+          </ul>
+        </div>
+
+        <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+          <img src="assets/images/ecs-instance-failover.png" alt="ECS Instance Automatic Failover Architecture" style="max-height: 380px; width: auto; max-width: 100%; object-fit: contain;">
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 20: RESIZE A CLOUD DISK ==================== -->
     <section class="slide" data-category="Storage Options">
       <div class="slide-category">Section 3: Storage Options</div>
       <h2>Resize a Cloud Disk</h2>
@@ -772,28 +794,6 @@ systemctl enable --now nginx</pre>
         <div class="content-card highlight-blue">
           <h4 style="margin-bottom: 0.4rem; color: var(--primary);">Step 3: Extend File Systems</h4>
           <p style="font-size: 0.88rem; line-height: 1.45; margin: 0;">Expand the filesystem live without unmounting: run <code>resize2fs /dev/vdb1</code> (ext4) or <code>xfs_growfs /mnt/data</code> (XFS).</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== SLIDE 20: INSTANCE FAILOVER ==================== -->
-    <section class="slide" data-category="Storage Options">
-      <div class="slide-category">Section 3: Storage Options</div>
-      <h2>Instance Failover</h2>
-      
-      <div class="grid-2" style="align-items: center; gap: 2rem; margin-top: 1rem;">
-        <div class="content-card highlight" style="padding: 1.5rem;">
-          <p style="margin-bottom: 0.75rem;">ECS instances run on physical host machines called <strong>Node Controllers (NC)</strong>. When a physical hardware failure occurs:</p>
-          <ul style="line-height: 1.6;">
-            <li><strong>Physical Host Failure (NC1 Down):</strong> Hardware malfunction, power disruption, or CPU/motherboard failure causes NC1 to stop operating.</li>
-            <li><strong>Autonomic Detection:</strong> The cloud hypervisor cluster management plane monitors continuous node heartbeats and promptly detects host unavailability.</li>
-            <li><strong>Automated Re-Instantiation:</strong> The instance (<code>i-001</code>) automatically migrates and boots on a healthy physical host (<strong>NC2</strong>) within the <strong>same Availability Zone</strong>.</li>
-            <li><strong>Data Preservation via Decoupled Storage:</strong> Because system and data volumes reside on network-attached <strong>Cloud Disks (Pangu)</strong>, no data is lost—NC2 immediately reconnects to the existing storage volumes.</li>
-          </ul>
-        </div>
-
-        <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
-          <img src="assets/images/ecs-instance-failover.png" alt="ECS Instance Automatic Failover Architecture" style="max-height: 380px; width: auto; max-width: 100%; object-fit: contain;">
         </div>
       </div>
     </section>
@@ -916,39 +916,39 @@ systemctl enable --now nginx</pre>
       
       <div class="grid-2" style="align-items: center; gap: 2rem;">
         <div class="table-wrapper">
-            <table class="slide-table" style="font-size: 0.88rem;">
-              <thead>
-                <tr>
-                  <th style="width: 50%;">Traditional OS Deployment</th>
-                  <th style="width: 50%;">Marketplace / Custom Image</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <ol style="margin: 0.35rem 0 0 1rem; padding: 0; line-height: 1.45;">
-                      <li>Purchase ECS instance with bare OS</li>
-                      <li>Install web server (NGINX / Apache)</li>
-                      <li>Install runtime (PHP / Python / Node)</li>
-                      <li>Install database (MySQL / MariaDB)</li>
-                      <li>Install application (WordPress / CRM)</li>
-                      <li>Manual configuration &amp; debugging</li>
-                    </ol>
-                  </td>
-                  <td>
-                    <ol style="margin: 0.35rem 0 0 1rem; padding: 0; line-height: 1.45;">
-                      <li>Select verified image with OS, runtimes, and application stack pre-installed</li>
-                      <li>Launch ECS instance with the chosen image — instantly ready for production</li>
-                    </ol>
-                    <div style="margin-top: 0.65rem; color: var(--primary); font-weight: 600; font-size: 0.8rem;">
-                      ✓ Zero configuration downtime<br>
-                      ✓ Vendor-tested compatibility
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <table class="slide-table" style="font-size: calc(0.95rem + var(--font-delta));">
+            <thead>
+              <tr>
+                <th style="width: 50%; font-size: calc(1rem + var(--font-delta)); padding: 0.85rem 1.25rem;">Traditional OS Deployment</th>
+                <th style="width: 50%; font-size: calc(1rem + var(--font-delta)); padding: 0.85rem 1.25rem;">Marketplace / Custom Image</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 1rem 1.25rem;">
+                  <ol style="margin: 0.2rem 0 0 1.2rem; padding: 0; line-height: 1.65; font-size: calc(0.95rem + var(--font-delta));">
+                    <li>Purchase ECS instance with bare OS</li>
+                    <li>Install web server (NGINX / Apache)</li>
+                    <li>Install runtime (PHP / Python / Node)</li>
+                    <li>Install database (MySQL / MariaDB)</li>
+                    <li>Install application (WordPress / CRM)</li>
+                    <li>Manual configuration &amp; debugging</li>
+                  </ol>
+                </td>
+                <td style="padding: 1rem 1.25rem;">
+                  <ol style="margin: 0.2rem 0 0 1.2rem; padding: 0; line-height: 1.65; font-size: calc(0.95rem + var(--font-delta));">
+                    <li>Select verified image with OS, runtimes, and application stack pre-installed</li>
+                    <li>Launch ECS instance with the chosen image — instantly ready for production</li>
+                  </ol>
+                  <div style="margin-top: 1rem; color: var(--primary); font-weight: 600; font-size: calc(0.9rem + var(--font-delta)); line-height: 1.5;">
+                    ✓ Zero configuration downtime<br>
+                    ✓ Vendor-tested compatibility
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
           <img src="assets/images/ecs-marketplace-image-stack.png" alt="Pre-packaged Software Stack on ECS Image" style="max-height: 320px; width: auto; max-width: 100%; object-fit: contain;">
@@ -967,18 +967,14 @@ systemctl enable --now nginx</pre>
         </div>
 
         <div>
-          <div class="content-card highlight" style="margin-bottom: 0.75rem;">
+          <div class="content-card highlight">
             <h3>Virtual Private Cloud (VPC)</h3>
-            <ul>
-              <li><strong>VPC (Regional Boundary):</strong> Logically isolated virtual network. Defines private IPv4 CIDR blocks (<code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, <code>192.168.0.0/16</code>) and IPv6 blocks.</li>
-              <li><strong>VSwitch (Zone-Specific Subnet):</strong> Subdivides the VPC CIDR block and resides inside a <strong>single Availability Zone</strong>. Each ECS instance connects to a VSwitch.</li>
-              <li><strong>VRouter & Route Tables:</strong> Manages traffic routing within the VPC, across VSwitches, and through gateways (Internet NAT, VPN, CEN).</li>
+            <ul style="line-height: 1.6;">
+              <li><strong>VPC (Regional Boundary):</strong> Logically isolated virtual network on Alibaba Cloud. Defines private IPv4 CIDR blocks (<code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, <code>192.168.0.0/16</code>) and IPv6 address ranges.</li>
+              <li><strong>VSwitch (Zone-Specific Subnet):</strong> Subdivides the VPC CIDR block and resides strictly inside a <strong>single Availability Zone</strong>. Each ECS instance connects to a specific VSwitch.</li>
+              <li><strong>VRouter &amp; Route Tables:</strong> Automatically manages traffic forwarding within the VPC, across VSwitches, and through gateways (Internet NAT, VPN, CEN).</li>
+              <li><strong>VPC Isolation:</strong> Provides enterprise tenant isolation with software-defined security, complete IP address autonomy, and high-performance SDN fabric.</li>
             </ul>
-          </div>
-          <div class="callout callout-amber" style="margin-top: 0;">
-            <div>
-              <span class="badge badge-exam">Deprecation Warning</span> <strong>Classic Network is completely retired.</strong> All modern ECS instances reside inside a Virtual Private Cloud (VPC).
-            </div>
           </div>
         </div>
       </div>
@@ -989,31 +985,54 @@ systemctl enable --now nginx</pre>
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>Elastic Network Interfaces (ENI)</h2>
       
-      <div class="grid-2">
+      <div class="grid-2" style="gap: 1.5rem;">
         <div class="content-card highlight">
           <h3>Types of ENIs</h3>
-          <ul>
-            <li><strong>Primary ENI (<code class="inline-code">eth0</code>):</strong> Automatically created when the ECS instance launches. Bound to the primary private IP address in the instance's VSwitch. Cannot be detached from the instance.</li>
-            <li><strong>Secondary ENI:</strong> Can be created independently, dynamically attached, or detached from instances within the <strong>same Availability Zone</strong>.</li>
-            <li><strong>Trunking ENI:</strong> High-density interface configuration allowing container orchestration engines (ACK) to attach multiple virtual pod interfaces to a single physical ENI.</li>
+          <ul style="line-height: 1.6;">
+            <li><strong>Primary ENI (<code class="inline-code">eth0</code>):</strong> Created automatically during instance launch. Bound to the primary private IP address in the instance's VSwitch and cannot be detached.</li>
+            <li><strong>Secondary ENI:</strong> Created independently and can be dynamically attached or detached from instances within the <strong>same Availability Zone</strong>.</li>
+            <li><strong>Trunking ENI:</strong> High-density virtual interface architecture enabling container orchestration (ACK) to bind multiple pod interfaces to a single physical ENI.</li>
+            <li><strong>Attachment Quotas:</strong> Maximum number of ENIs and private IPs is determined by the instance type specification.</li>
           </ul>
         </div>
         <div class="content-card highlight-blue">
           <h3>Key Enterprise Use Cases</h3>
-          <ul>
-            <li><strong>Low-Cost Active/Standby Failover:</strong> If the primary firewall/proxy instance fails, the secondary ENI carrying private service IPs can be detached and instantly attached to a standby instance.</li>
-            <li><strong>Multi-Subnet Multi-Homing:</strong> An ECS instance can connect simultaneously to different VSwitches (e.g. management network on VSwitch-Mgmt and business traffic on VSwitch-App).</li>
-            <li><strong>High-Density Kubernetes Networking:</strong> Terway CNI plugin utilizes secondary ENIs and secondary IP addresses for native pod-to-pod networking.</li>
+          <ul style="line-height: 1.6;">
+            <li><strong>Low-Cost Active/Standby Failover:</strong> When a primary gateway fails, the secondary ENI carrying private service IPs detaches and attaches immediately to a standby host.</li>
+            <li><strong>Multi-Subnet Multi-Homing:</strong> An ECS instance connects simultaneously to different VSwitches (e.g. management traffic on VSwitch-Mgmt, application traffic on VSwitch-App).</li>
+            <li><strong>High-Density Kubernetes Networking:</strong> Terway CNI plugin utilizes secondary ENIs and secondary IP addresses for native pod-to-pod routing.</li>
+            <li><strong>Same-Zone Boundary:</strong> All attached secondary ENIs must reside in the exact same Availability Zone as the host ECS instance.</li>
           </ul>
         </div>
       </div>
+    </section>
 
-      <div class="callout callout-amber" style="margin-top: 1rem;">
-        <strong>Constraint:</strong> The maximum number of Elastic Network Interfaces and secondary private IP addresses that can be attached to an ECS instance is strictly determined by its instance type specification and all attached ENIs must reside in the exact same Availability Zone as the host instance.
+    <!-- ==================== SLIDE 27: ELASTIC IP ADDRESS ==================== -->
+    <section class="slide" data-category="Network & Security">
+      <div class="slide-category">Section 4: Network & Security</div>
+      <h2>Elastic IP Address</h2>
+      
+      <div class="grid-2" style="align-items: center; gap: 2rem;">
+        <div class="content-card highlight">
+          <h3 style="margin-bottom: 0.6rem;">Decoupled Public IPv4 Networking</h3>
+          <p style="margin-bottom: 0.75rem; line-height: 1.55;">An <strong>Elastic IP Address (EIP)</strong> is an independent static public IPv4 resource allocated in a specific region, decoupled from compute instance lifecycles:</p>
+          <ul style="line-height: 1.6;">
+            <li><strong>Independent Lifecycle:</strong> Allocated, billed, and retained separately from ECS instances. Detaching an EIP preserves the public IP address permanently in your account.</li>
+            <li><strong>Dynamic Binding:</strong> Bind and unbind on-the-fly to ECS instances, secondary ENIs, internal SLB instances, or NAT Gateways with zero downtime.</li>
+            <li><strong>High Availability Failover:</strong> Quickly rebind the public IP address from a malfunctioning instance to a healthy standby instance during maintenance or disaster recovery.</li>
+            <li><strong>Multi-Line BGP Quality:</strong> Backed by Alibaba Cloud multi-line BGP network, delivering carrier-grade Internet transit and minimal latency worldwide.</li>
+          </ul>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; display: flex; justify-content: center; align-items: center; box-shadow: var(--shadow-sm); max-width: 380px;">
+            <img src="assets/images/ecs-elastic-ip-address.png" alt="Elastic IP Address Dynamic Binding and Unbinding" style="max-height: 280px; width: auto; max-width: 100%; object-fit: contain;">
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 27: SECURITY GROUPS ==================== -->
+    <!-- ==================== SLIDE 28: SECURITY GROUPS ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>Security Groups</h2>
@@ -1036,7 +1055,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 28: SECURITY GROUP (CONT.) ==================== -->
+    <!-- ==================== SLIDE 29: SECURITY GROUP (CONT.) ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>Security Group (cont.)</h2>
@@ -1069,7 +1088,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 29: INTERNET CONNECTIVITY ==================== -->
+    <!-- ==================== SLIDE 30: INTERNET CONNECTIVITY ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>Internet Connectivity</h2>
@@ -1132,7 +1151,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 30: ECS HIGH AVAILABILITY AUTOMATED FAILOVER ==================== -->
+    <!-- ==================== SLIDE 31: ECS HIGH AVAILABILITY AUTOMATED FAILOVER ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>ECS High Availability & Automated Failover</h2>
@@ -1199,7 +1218,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 31: THE SHARED RESPONSIBILITY MODEL IN CLOUD COMPUTING ==================== -->
+    <!-- ==================== SLIDE 32: THE SHARED RESPONSIBILITY MODEL IN CLOUD COMPUTING ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
       <h2>The Shared Responsibility Model in Cloud Computing</h2>
@@ -1231,7 +1250,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 32: CONNECTING TO ECS ==================== -->
+    <!-- ==================== SLIDE 33: CONNECTING TO ECS ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>Connecting to ECS</h2>
@@ -1264,7 +1283,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 33: ALIBABA CLOUD WORKBENCH ==================== -->
+    <!-- ==================== SLIDE 34: ALIBABA CLOUD WORKBENCH ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>Alibaba Cloud Workbench</h2>
@@ -1302,7 +1321,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 34: VNC MANAGEMENT TERMINAL ==================== -->
+    <!-- ==================== SLIDE 35: VNC MANAGEMENT TERMINAL ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>VNC Management Terminal</h2>
@@ -1376,7 +1395,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 35: CLOUD ASSISTANT ==================== -->
+    <!-- ==================== SLIDE 36: CLOUD ASSISTANT ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>Cloud Assistant</h2>
@@ -1404,7 +1423,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 36: SESSION MANAGER ==================== -->
+    <!-- ==================== SLIDE 37: SESSION MANAGER ==================== -->
     <section class="slide" data-category="Remote Access">
       <div class="slide-category">Section 5: Remote Access</div>
       <h2>Session Manager</h2>
@@ -1439,7 +1458,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 37: HOW TO RUN CONTAINER APPLICATION ==================== -->
+    <!-- ==================== SLIDE 38: HOW TO RUN CONTAINER APPLICATION ==================== -->
     <section class="slide" data-category="Container">
       <div class="slide-category">Section 6: Container</div>
       <h2>How to Run Container Application</h2>
@@ -1498,7 +1517,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 38: CONTAINER SERVICE FOR KUBERNETES (ACK) ARCHITECTURE ==================== -->
+    <!-- ==================== SLIDE 39: CONTAINER SERVICE FOR KUBERNETES (ACK) ARCHITECTURE ==================== -->
     <section class="slide" data-category="Container">
       <div class="slide-category">Section 6: Container</div>
       <h2>Container Service for Kubernetes (ACK) Architecture</h2>
@@ -1515,7 +1534,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 39: PAY-AS-YOU-GO (PAYG) ==================== -->
+    <!-- ==================== SLIDE 40: PAY-AS-YOU-GO (PAYG) ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Pay-As-You-Go (PAYG)</h2>
@@ -1545,7 +1564,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 40: SUBSCRIPTION ==================== -->
+    <!-- ==================== SLIDE 41: SUBSCRIPTION ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Subscription</h2>
@@ -1574,7 +1593,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 41: SPOT INSTANCES ==================== -->
+    <!-- ==================== SLIDE 42: SPOT INSTANCES ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Spot Instances</h2>
@@ -1604,7 +1623,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 42: RESERVED INSTANCES (RI) ==================== -->
+    <!-- ==================== SLIDE 43: RESERVED INSTANCES (RI) ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Reserved Instances (RI)</h2>
@@ -1634,7 +1653,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 43: SAVINGS PLANS ==================== -->
+    <!-- ==================== SLIDE 44: SAVINGS PLANS ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
       <h2>Savings Plans</h2>
@@ -1667,7 +1686,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 44: ECS RESOURCE SCOPING ARCHITECTURAL BOUNDARIES ==================== -->
+    <!-- ==================== SLIDE 45: ECS RESOURCE SCOPING ARCHITECTURAL BOUNDARIES ==================== -->
     <section class="slide" data-category="Summary">
       <div class="slide-category">Cloud Architect Recap</div>
       <h2>ECS Resource Scoping & Architectural Boundaries</h2>
@@ -1727,7 +1746,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 45: PRACTICE SCENARIO 1: CROSS-ZONE DISASTER RECOVERY ==================== -->
+    <!-- ==================== SLIDE 46: PRACTICE SCENARIO 1: CROSS-ZONE DISASTER RECOVERY ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 1</div>
       <h2>Practice Scenario 1: Cross-Zone Disaster Recovery</h2>
@@ -1758,7 +1777,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 46: SCENARIO 1: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
+    <!-- ==================== SLIDE 47: SCENARIO 1: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 1</div>
       <h2>Scenario 1: Solution & Architectural Analysis</h2>
@@ -1810,7 +1829,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 47: PRACTICE SCENARIO 2: FLASH SALE IO HANDLING ==================== -->
+    <!-- ==================== SLIDE 48: PRACTICE SCENARIO 2: FLASH SALE IO HANDLING ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 2</div>
       <h2>Practice Scenario 2: Flash Sale I/O Handling</h2>
@@ -1841,7 +1860,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 48: SCENARIO 2: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
+    <!-- ==================== SLIDE 49: SCENARIO 2: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 2</div>
       <h2>Scenario 2: Solution & Architectural Analysis</h2>
@@ -1893,7 +1912,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 49: PRACTICE SCENARIO 3: HIGH-DENSITY MICRO-SEGMENTATION ==================== -->
+    <!-- ==================== SLIDE 50: PRACTICE SCENARIO 3: HIGH-DENSITY MICRO-SEGMENTATION ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 3</div>
       <h2>Practice Scenario 3: High-Density Micro-segmentation</h2>
@@ -1924,7 +1943,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 50: SCENARIO 3: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
+    <!-- ==================== SLIDE 51: SCENARIO 3: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 3</div>
       <h2>Scenario 3: Solution & Architectural Analysis</h2>
@@ -1976,7 +1995,7 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 51: MODULE 02: ELASTIC COMPUTE SERVICE (ECS) ==================== -->
+    <!-- ==================== SLIDE 52: MODULE 02: ELASTIC COMPUTE SERVICE (ECS) ==================== -->
     <section class="slide title-slide" data-category="Summary">
       <div class="slide-category">Module Complete</div>
       <h1 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Module 02: Elastic Compute Service (ECS)</h1>
