@@ -909,32 +909,38 @@
     <!-- ==================== SLIDE 27: DATABASE PROXY FEATURES ==================== -->
     <section class="slide" data-category="Scaling &amp; Performance">
       <div class="slide-category">Section 5: Scaling &amp; Performance</div>
-      <h2>Dedicated Database Proxy: Enterprise Features</h2>
+      <h2>Dedicated Database Proxy: Intelligent Traffic Routing</h2>
       
+      <div class="callout callout-blue" style="margin-bottom: 0.85rem;">
+        <div>Following the Read/Write Splitting topology, the Dedicated Database Proxy sits directly between client applications and database nodes as an intelligent traffic router and connection manager.</div>
+      </div>
+
       <div class="two-column-layout">
         <div class="column-left">
-          <div class="content-card highlight">
-            <h3>Transparent Query Routing Engine</h3>
+          <div class="content-card highlight" style="height: 100%;">
             <ul>
-              <li><strong>Unified Cluster Endpoint:</strong> Applications connect to a single endpoint (<code>*.rwlb.rds.aliyuncs.com</code>); proxy parses SQL verbs in-flight.</li>
-              <li><strong>Automatic Write Forwarding:</strong> All DDL operations, transactions, and DML write statements (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>) route strictly to the Primary.</li>
-              <li><strong>Read Load Balancing:</strong> Distributes <code>SELECT</code> queries across the primary and read-only replicas using configurable Weighted Round Robin.</li>
-              <li><strong>Zero Application Code Refactoring:</strong> Eliminates complex multi-datasource configuration in application application code frameworks.</li>
+              <li><strong>Unified Cluster Endpoint:</strong> Applications connect to a single read/write splitting endpoint (<code>*.rwlb.rds.aliyuncs.com</code>), abstracting backend database topology completely.</li>
+              <li><strong>Transparent SQL Parsing:</strong> The proxy parses SQL verbs in-flight: all DDL operations, write transactions, and DML statements (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>) route strictly to the Primary instance.</li>
+              <li><strong>Weighted Read Distribution:</strong> Non-transactional <code>SELECT</code> queries are automatically distributed across available read-only replicas according to configured weights.</li>
+              <li><strong>Zero Code Refactoring:</strong> Standard application frameworks interact with the proxy as a single standalone database instance, eliminating multi-datasource client configurations.</li>
             </ul>
           </div>
         </div>
 
         <div class="column-right">
-          <div class="content-card highlight-blue">
-            <h3>Connection Pooling &amp; Overload Shield</h3>
+          <div class="content-card highlight-blue" style="height: 100%;">
             <ul>
-              <li><strong>Transaction Tracking:</strong> Automatically routes read queries within an open transaction to the primary instance to guarantee read-your-own-writes consistency.</li>
-              <li><strong>Multiplexed Connection Pooling:</strong> Consolidates tens of thousands of client connections into an optimized pool of backend database connections.</li>
-              <li><strong>Surge &amp; Overload Protection:</strong> Buffers connection spikes and queues requests during peak traffic rushes, preventing database thread exhaustion crashes.</li>
-              <li><strong>Read-Only Failover Isolation:</strong> If a read replica fails, the proxy immediately diverts queries to remaining healthy replicas with zero client error.</li>
+              <li><strong>Transaction Boundary Pinning:</strong> Read queries executed within an open, uncommitted transaction automatically pin to the Primary instance to guarantee read-your-own-writes consistency.</li>
+              <li><strong>Multiplexed Connection Pooling:</strong> Consolidates thousands of client connections into an optimized pool of persistent backend connections, preventing database thread exhaustion.</li>
+              <li><strong>Traffic Surge Shield:</strong> Buffers sudden connection spikes and queues incoming requests during peak load, protecting backend database instances from memory exhaustion.</li>
+              <li><strong>Seamless Node Failover:</strong> If a read replica encounters failure, the proxy immediately redirects read traffic to surviving healthy nodes with zero application connection drops.</li>
             </ul>
           </div>
         </div>
+      </div>
+
+      <div class="callout callout-green" style="margin-top: 0.85rem;">
+        <div>Architectural Flow: Read queries dispatched by the proxy flow downstream into an elastic fleet of Read-Only Replicas designed for high-concurrency scaling.</div>
       </div>
     </section>
 
@@ -943,36 +949,41 @@
       <div class="slide-category">Section 5: Scaling &amp; Performance</div>
       <h2>Read-Only Replicas Fleet Management</h2>
       
-      <div class="card-grid-3">
-        <div class="content-card highlight">
-          <h3>Elastic Horizontal Scaling</h3>
+      <div class="callout callout-blue" style="margin-bottom: 0.85rem;">
+        <div>Downstream from the Database Proxy, an elastic fleet of Read-Only Replicas absorbs high-volume query traffic while isolating the transactional Primary node.</div>
+      </div>
+
+      <div class="grid-3" style="gap: 1.15rem;">
+        <div class="content-card highlight" style="height: 100%;">
           <ul>
-            <li><strong>Up to 10 Read Replicas:</strong> Attach up to 10 read-only replica instances to a single RDS MySQL/PostgreSQL primary instance.</li>
-            <li><strong>Independent Hardware Sizing:</strong> Read replicas can be provisioned with different CPU/memory specifications than the primary node.</li>
-            <li><strong>Independent Connection Endpoints:</strong> Each read replica provides its own private endpoint for dedicated reporting tools alongside the shared proxy.</li>
-            <li><strong>Zero Impact Provisioning:</strong> Created from primary snapshot backups without locking tables or degrading primary transactional throughput.</li>
+            <li><strong>Scale Out (Up to 10 Replicas):</strong> Attach up to 10 read-only replicas to a single Primary RDS instance to absorb extreme read concurrency.</li>
+            <li><strong>Independent Hardware Sizing:</strong> Replicas can be provisioned with different CPU and RAM tiers tailored to specific read workload demands.</li>
+            <li><strong>Dedicated Direct Endpoints:</strong> Each replica provides an independent endpoint for heavy analytical jobs alongside the unified proxy endpoint.</li>
+            <li><strong>Zero-Downtime Provisioning:</strong> Created seamlessly from primary snapshot backups without table locking or impacting primary transactions.</li>
           </ul>
         </div>
 
-        <div class="content-card highlight-blue">
-          <h3>Dynamic Traffic Weighting</h3>
+        <div class="content-card highlight-blue" style="height: 100%;">
           <ul>
-            <li><strong>Weighted Round Robin:</strong> Assign integer weights (0–100) per instance; higher-spec replicas receive proportionally more queries.</li>
-            <li><strong>Zero-Weight Maintenance:</strong> Set a replica's weight to 0 to safely drain read traffic for performance benchmarking or configuration tuning.</li>
-            <li><strong>Primary Read Allocation:</strong> Configure whether the primary node participates in serving read queries or is dedicated 100% to write transactions.</li>
-            <li><strong>Real-Time Weight Tuning:</strong> Modify weights dynamically via console or API with zero connection reset.</li>
+            <li><strong>Weighted Round-Robin:</strong> Assign granular weights (0–100) per replica; higher-spec instances receive proportionally larger shares of read queries.</li>
+            <li><strong>Zero-Weight Maintenance Drainage:</strong> Setting a replica's weight to 0 drains active queries cleanly for index creation or maintenance without downtime.</li>
+            <li><strong>100% Write Dedication:</strong> Assign weight 0 to the Primary instance to preserve all Primary compute and I/O capacity exclusively for write transactions.</li>
+            <li><strong>Dynamic Runtime Tuning:</strong> Adjust routing weights on the fly via the Alibaba Cloud console or OpenAPI with zero connection resets.</li>
           </ul>
         </div>
 
-        <div class="content-card highlight-green">
-          <h3>Replication Lag Protection</h3>
+        <div class="content-card highlight-green" style="height: 100%;">
           <ul>
-            <li><strong>Automated Lag Thresholding:</strong> Define a maximum replication delay threshold (default 30 seconds).</li>
-            <li><strong>Auto-Removal from Pool:</strong> When a read replica experiences replication lag exceeding the threshold, the proxy excludes it from routing.</li>
-            <li><strong>Automatic Re-admission:</strong> Once the replica catches up with primary binlog events, it is seamlessly reintegrated into the active read pool.</li>
-            <li><strong>Stale Data Prevention:</strong> Guarantees that client read requests are never routed to severely delayed replica instances.</li>
+            <li><strong>Continuous Lag Monitoring:</strong> The proxy continuously measures replication delay (in seconds) between each replica and the Primary node.</li>
+            <li><strong>Automated Threshold Eviction:</strong> If a replica's delay exceeds the configured threshold (default 30s), the proxy automatically evicts it from the read pool.</li>
+            <li><strong>Automatic Re-admission:</strong> Once the replica replays pending binlogs and catches up with the primary, it is automatically re-admitted to the read pool.</li>
+            <li><strong>Stale Data Protection:</strong> Eliminates the risk of users receiving severely outdated information during sudden primary write surges.</li>
           </ul>
         </div>
+      </div>
+
+      <div class="callout callout-amber" style="margin-top: 0.85rem;">
+        <div>Next Challenge: While proxy eviction protects against lag, how does the engine eliminate replication delay at the source, and what read consistency models can architects select?</div>
       </div>
     </section>
 
@@ -981,34 +992,46 @@
       <div class="slide-category">Section 5: Scaling &amp; Performance</div>
       <h2>Replication Parallelism &amp; Read Consistency Levels</h2>
       
+      <div class="callout callout-blue" style="margin-bottom: 0.85rem;">
+        <div>To balance high-throughput read scalability with strict data freshness, Alibaba Cloud RDS couples engine-level parallel replication with configurable proxy consistency modes.</div>
+      </div>
+
       <div class="two-column-layout">
         <div class="column-left">
-          <div class="content-card highlight">
-            <h3>Multi-Threaded Slave Applier (MTS)</h3>
+          <div class="content-card highlight" style="height: 100%;">
             <ul>
-              <li><strong>Parallel Relay Log Execution:</strong> Bypasses legacy single-threaded replication bottlenecks using logical clock and writeset dependency tracking.</li>
-              <li><strong>Group Commit Parallelism:</strong> Transactions committed concurrently in the same binlog group commit on the primary are replayed concurrently on replicas.</li>
-              <li><strong>Writeset Dependency Tracking:</strong> Evaluates row-level primary key hashes; independent transactions execute in parallel across worker threads.</li>
-              <li><strong>Eliminates Replication Lag:</strong> Maintains near-zero replication latency even during massive batch data import operations.</li>
+              <li><strong>Multi-Threaded Slave Applier (MTS):</strong> Overcomes legacy single-threaded replication bottlenecks by replaying binary logs across concurrent worker threads.</li>
+              <li><strong>Group Commit Parallelism:</strong> Transactions committed together in the same binary log group on the Primary are replayed concurrently on replicas.</li>
+              <li><strong>Writeset Dependency Tracking:</strong> Evaluates row-level primary key hashes; independent, conflict-free transactions execute in parallel across worker threads.</li>
+              <li><strong>Near-Zero Replication Latency:</strong> Drastically slashes replication delay, keeping read replicas up-to-date even during heavy batch data ingestion.</li>
             </ul>
           </div>
         </div>
 
         <div class="column-right">
-          <div class="content-card highlight-purple">
-            <h3>Read Consistency Configurations</h3>
-            <ul>
-              <li><strong>Eventual Consistency Mode:</strong> Read queries routed to replicas reflect the current replica state; optimal for standard web browsing and reporting.</li>
-              <li><strong>Session-Level Consistency:</strong> Enforces that a client session reads data that is at least as fresh as the client's latest committed write.</li>
-              <li><strong>Global Read Consistency:</strong> The proxy checks the primary GTID against replica executed GTID sets before executing reads, routing to primary if delayed.</li>
-              <li><strong>Architectural Balance:</strong> Allows architects to fine-tune the tradeoff between peak distributed throughput and strict transactional freshness.</li>
-            </ul>
+          <div class="content-card highlight-purple" style="height: 100%;">
+            <div style="margin-bottom: 0.75rem;">
+              <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.25rem 0; font-size: calc(0.95rem + var(--font-delta));">Eventual Consistency</h3>
+              <p style="margin: 0; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.45; color: var(--text-main);">Dispatches reads purely based on replica weights. Maximizes throughput and minimizes latency, but queries may read slightly delayed data. Best for public product catalogs and browsing.</p>
+            </div>
+            <div style="margin-bottom: 0.75rem;">
+              <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.25rem 0; font-size: calc(0.95rem + var(--font-delta));">Session Consistency (Read-Your-Own-Writes)</h3>
+              <p style="margin: 0; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.45; color: var(--text-main);">Tracks session GTID to guarantee a user always reads data at least as fresh as their own latest write. Automatically routes to Primary if replicas haven't caught up. Ideal for user profiles and shopping carts.</p>
+            </div>
+            <div>
+              <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.25rem 0; font-size: calc(0.95rem + var(--font-delta));">Global Read Consistency</h3>
+              <p style="margin: 0; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.45; color: var(--text-main);">Enforces cluster-wide real-time freshness by checking the Primary's GTID before every read. Guarantees zero stale reads across all sessions, routing to Primary if replicas lag. Ideal for finance and inventory ledgers.</p>
+            </div>
           </div>
         </div>
       </div>
+
+      <div class="callout callout-green" style="margin-top: 0.85rem;">
+        <div>Architectural Principle: MTS ensures replicas stay synchronized during heavy write bursts, while Session Consistency provides the optimal balance of read scale and user freshness.</div>
+      </div>
     </section>
 
-        <!-- ==================== SLIDE 30: SECURITY DEFENSE MESH ==================== -->
+    <!-- ==================== SLIDE 30: SECURITY DEFENSE MESH ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Multi-Tier Database Security Defense Mesh</h2>
