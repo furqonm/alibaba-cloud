@@ -1233,49 +1233,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 37: DTS DUAL-REGION TRAFFIC ROUTING ==================== -->
-    <section class="slide" data-category="Migration">
-      <div class="slide-category">Section 7: Migration</div>
-      <h2>DTS Dual-Region Read/Write Traffic Routing</h2>
-      
-      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
-        <img src="assets/images/rds-dts-p54090.png" alt="DTS Dual-Region Read/Write Traffic Routing" class="architecture-diagram" style="max-height: 380px; width: 100%; height: auto; object-fit: contain;">
-      </div>
-
-      <div class="callout callout-blue" style="margin-top: 0.75rem;">
-        <strong>Geo-Redundant Read Offloading:</strong> Region A handles 100% of write requests and a portion of read traffic (N%), while DTS continuously synchronizes data to Region B to serve remaining read requests (100-N)%, optimizing latency and cross-region resilience.
-      </div>
-    </section>
-
-    <!-- ==================== SLIDE 38: DTS MULTI-REGION GEO-DISTRIBUTION ==================== -->
-    <section class="slide" data-category="Migration">
-      <div class="slide-category">Section 7: Migration</div>
-      <h2>DTS Multi-Region Active Geo-Distribution</h2>
-      
-      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
-        <img src="assets/images/rds-dts-p54091.jpg" alt="DTS Multi-Region Active Geo-Distribution" class="architecture-diagram" style="max-height: 380px; width: 100%; height: auto; object-fit: contain;">
-      </div>
-
-      <div class="callout callout-blue" style="margin-top: 0.75rem;">
-        <strong>Centralized Writes &amp; Localized Reads:</strong> Primary transactional writes are processed in Region A, while DTS replicates updates in real time to databases in Region B and Region C, providing sub-second localized read access for globally distributed users.
-      </div>
-    </section>
-
-    <!-- ==================== SLIDE 39: DTS REAL-TIME ANALYTICS SYNCHRONIZATION ==================== -->
-    <section class="slide" data-category="Migration">
-      <div class="slide-category">Section 7: Migration</div>
-      <h2>DTS Real-Time Analytics Synchronization</h2>
-      
-      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
-        <img src="assets/images/rds-dts-p54094.png" alt="DTS Real-Time Analytics Synchronization" class="architecture-diagram" style="max-height: 380px; width: 100%; height: auto; object-fit: contain;">
-      </div>
-
-      <div class="callout callout-blue" style="margin-top: 0.75rem;">
-        <strong>OLTP to OLAP Real-Time Pipeline:</strong> Applications write operational data to RDS, and DTS captures real-time changes (CDC) to stream and apply data directly into AnalyticDB, completely isolating intensive analytics queries from production transactional workloads.
-      </div>
-    </section>
-
-    <!-- ==================== SLIDE 40: ZERO-DOWNTIME MIGRATION PIPELINE ==================== -->
+    <!-- ==================== SLIDE 37: ZERO-DOWNTIME MIGRATION PIPELINE ==================== -->
     <section class="slide" data-category="Migration">
       <div class="slide-category">Section 7: Migration</div>
       <h2>Zero-Downtime Migration Pipeline</h2>
@@ -1310,6 +1268,48 @@
             <li><strong>Rollback Safeguard:</strong> Configure reverse DTS synchronization to allow safe fallback to source if unexpected issues occur post-cutover.</li>
           </ul>
         </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 38: DTS DUAL-REGION TRAFFIC ROUTING ==================== -->
+    <section class="slide" data-category="Migration">
+      <div class="slide-category">Section 7: Migration</div>
+      <h2>DTS Dual-Region Read/Write Traffic Routing</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+        <img src="assets/images/rds-dts-p54090.png" alt="DTS Dual-Region Read/Write Traffic Routing" class="architecture-diagram" style="max-height: 380px; width: 100%; height: auto; object-fit: contain;">
+      </div>
+
+      <div class="callout callout-blue" style="margin-top: 0.75rem;">
+        <strong>Geo-Redundant Read Offloading:</strong> Region A handles 100% of write requests and a portion of read traffic (N%), while DTS continuously synchronizes data to Region B to serve remaining read requests (100-N)%, optimizing latency and cross-region resilience.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 39: DTS MULTI-REGION GEO-DISTRIBUTION ==================== -->
+    <section class="slide" data-category="Migration">
+      <div class="slide-category">Section 7: Migration</div>
+      <h2>DTS Multi-Region Active Geo-Distribution</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+        <img src="assets/images/rds-dts-p54091.jpg" alt="DTS Multi-Region Active Geo-Distribution" class="architecture-diagram" style="max-height: 380px; width: 100%; height: auto; object-fit: contain;">
+      </div>
+
+      <div class="callout callout-blue" style="margin-top: 0.75rem;">
+        <strong>Centralized Writes &amp; Localized Reads:</strong> Primary transactional writes are processed in Region A, while DTS replicates updates in real time to databases in Region B and Region C, providing sub-second localized read access for globally distributed users.
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 40: DTS REAL-TIME ANALYTICS SYNCHRONIZATION ==================== -->
+    <section class="slide" data-category="Migration">
+      <div class="slide-category">Section 7: Migration</div>
+      <h2>DTS Real-Time Analytics Synchronization</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+        <img src="assets/images/rds-dts-p54094.png" alt="DTS Real-Time Analytics Synchronization" class="architecture-diagram" style="max-height: 380px; width: 100%; height: auto; object-fit: contain;">
+      </div>
+
+      <div class="callout callout-blue" style="margin-top: 0.75rem;">
+        <strong>OLTP to OLAP Real-Time Pipeline:</strong> Applications write operational data to RDS, and DTS captures real-time changes (CDC) to stream and apply data directly into AnalyticDB, completely isolating intensive analytics queries from production transactional workloads.
       </div>
     </section>
 
