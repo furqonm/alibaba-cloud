@@ -81,6 +81,16 @@ To host this presentation online (e.g., Netlify, Cloudflare Pages, GitHub Pages,
 4. **Pedagogical Structure**:
    - Deconstruct complex subjects into bite-sized, single-topic slides rather than cramming multiple concepts onto one slide (e.g., pricing models separated into PAYG, Subscription, Spot, and Savings Plans).
    - Dedicated slides for complex operational workflows (e.g., Same-Zone detach/attach vs. Cross-Zone snapshot migration).
+5. **Mandatory Repository Push on Every Prompt**:
+   - The AI assistant **must automatically commit and push** all modified, added, or deleted project files to the remote GitHub repository (`origin main`) upon completing **every single user prompt / turn**.
+   - **Verification Pre-requisite**: Prior to committing, always execute the relevant verification test script(s) (e.g. `python tools/verify_<module>_deck.py`) to guarantee 100% test pass and zero regressions.
+   - **Commit Quality**: Formulate clear, concise, and professional commit messages describing the exact updates made.
+   - **Execution Protocol**:
+     ```bash
+     git add -A
+     git commit -m "Descriptive summary of prompt changes"
+     git push origin main
+     ```
 
 ---
 
