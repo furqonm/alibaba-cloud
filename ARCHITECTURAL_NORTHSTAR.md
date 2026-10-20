@@ -55,7 +55,7 @@ The courseware repository is organized into isolated functional tiers to prevent
 │   ├── verify_cdn_deck.py
 │   └── verify_security_deck.py
 │
-├── .gitignore                 # Excludes .venv, pycache, temporary files
+├── .gitignore                 # Excludes .venv, pycache, temporary files (Local only, untracked in GitHub)
 └── ARCHITECTURAL_NORTHSTAR.md # 📐 Official Courseware Template & Architectural Blueprint
 ```
 
@@ -406,7 +406,7 @@ alibaba-cloud/
 │   ├── requirements.txt       # Python dependencies (pypdf, pillow)
 │   └── README.md
 │
-├── .gitignore                 # Excludes .venv, pycache, and raw dumps from Git
+├── .gitignore                 # Excludes .venv, pycache, and raw dumps from Git (Local only, untracked in GitHub)
 ├── ARCHITECTURAL_NORTHSTAR.md # Architectural Blueprint & Template Specification
 └── README.md                  # Project overview & presenter documentation
 ```
