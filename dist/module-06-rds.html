@@ -985,179 +985,222 @@
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Multi-Tier Database Security Defense Mesh</h2>
       
+      <div class="callout callout-blue" style="margin-bottom: 0.85rem;">
+        <div>ApsaraDB RDS implements an enterprise defense-in-depth security model organized into 5 progressive protection layers, from perimeter isolation to autonomic intelligence (detailed across Slides 30–34).</div>
+      </div>
+
       <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
-        <img src="assets/images/rds-security-mesh.svg" alt="RDS Multi-Layer Security Defense Architecture" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
+        <img src="assets/images/rds-security-mesh.svg" alt="RDS 5-Tier Security Defense Architecture" class="architecture-diagram" style="max-height: 400px; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
+      </div>
+
+      <div class="callout callout-green" style="margin-top: 0.85rem;">
+        <div>Architectural Principle: Security is never single-point; each progressive tier seals specific threat vectors across network, transport, disk, identity, and audit domains.</div>
       </div>
     </section>
 
     <!-- ==================== SLIDE 30: NETWORK ISOLATION & IP WHITELIST ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
-      <h2>Network Perimeter Isolation &amp; IP Whitelist Rules</h2>
+      <h2>Layer 1: Network Perimeter Isolation &amp; IP Whitelist Rules</h2>
       
-      <div class="two-column-layout">
+      <div class="callout callout-blue" style="margin-bottom: 0.85rem;">
+        <div>Layer 1 Defense: Secures the outer database boundary by locking RDS inside private VPC software-defined networks and enforcing strict client IP filtering.</div>
+      </div>
+
+      <div class="two-column-layout" style="align-items: stretch; gap: 1.5rem;">
         <div class="column-left">
-          <div class="content-card highlight">
-            <h3>VPC Network Layer Isolation</h3>
-            <ul>
-              <li><strong>Zero Public IP Exposure:</strong> RDS instances are provisioned within a private VPC subnet without public IP addresses by default.</li>
-              <li><strong>VPC ENI Architecture:</strong> Connects to private vSwitch interfaces, ensuring all database traffic remains strictly on Alibaba Cloud internal SDN fabrics.</li>
-              <li><strong>Security Group Binding:</strong> Associate VPC Security Groups directly with RDS elastic network interfaces for unified firewall policy enforcement.</li>
-              <li><strong>Cross-VPC Private Transit:</strong> Connect across VPCs or hybrid data centers via Cloud Enterprise Network (CEN) without traversing the public internet.</li>
+          <div class="content-card highlight" style="height: 100%; padding: 1.25rem;">
+            <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.95rem + var(--font-delta));">VPC Subnet &amp; Network Isolation</h3>
+            <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.5;">
+              <li><strong>Zero Public IP Exposure:</strong> RDS instances are provisioned within private VPC subnets with strictly no public IP address assigned by default.</li>
+              <li><strong>VPC ENI Architecture:</strong> Direct attachment to private vSwitch interfaces ensures all database traffic flows over internal Alibaba Cloud SDN fabrics.</li>
+              <li><strong>Security Group Binding:</strong> Stateful VPC Security Group rules attached to ENIs act as a virtual firewall, filtering authorized TCP ports (e.g., 3306, 5432).</li>
+              <li><strong>Private Cloud Interconnect:</strong> Cross-VPC or hybrid on-premises workloads connect privately via Cloud Enterprise Network (CEN) without traversing the public internet.</li>
             </ul>
           </div>
         </div>
 
         <div class="column-right">
-          <div class="content-card highlight-blue">
-            <h3>Granular IP Whitelist Engine</h3>
-            <ul>
-              <li><strong>Built-in Mandatory Whitelist:</strong> All inbound connection attempts are rejected by default unless the client IP is explicitly whitelisted.</li>
-              <li><strong>Up to 1,000 Whitelist IP Entries:</strong> Define individual client IP addresses or CIDR blocks (e.g., <code>10.0.1.0/24</code>).</li>
-              <li><strong>Multi-Group Categorization:</strong> Organize whitelists into up to 50 independent groups (e.g., <code>app_web_fleet</code>, <code>bastion_mgmt</code>, <code>analytics_etl</code>).</li>
-              <li><strong>Shared Whitelist Templates:</strong> Create enterprise-wide IP whitelist templates and apply them across multiple RDS instances simultaneously.</li>
+          <div class="content-card highlight-blue" style="height: 100%; padding: 1.25rem;">
+            <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.95rem + var(--font-delta));">Granular IP Whitelist Engine</h3>
+            <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.5;">
+              <li><strong>Mandatory Default Rejection:</strong> All incoming connection attempts are blocked by default unless the client IP/CIDR is explicitly registered in the instance whitelist.</li>
+              <li><strong>Capacity of 1,000 IP Entries:</strong> Define individual IP addresses or CIDR blocks (e.g., <code>10.0.1.0/24</code>, <code>172.16.0.0/16</code>) for fine-grained network access control.</li>
+              <li><strong>50 Multi-Group Segments:</strong> Organize whitelists into separate functional groups (e.g., <code>web_tier</code>, <code>app_cluster</code>, <code>bastion_host</code>, <code>etl_analytics</code>).</li>
+              <li><strong>Shared Whitelist Templates:</strong> Define centralized whitelist templates applied across multiple RDS instances simultaneously for unified enterprise operations.</li>
             </ul>
           </div>
         </div>
       </div>
+
+      <div class="callout callout-green" style="margin-top: 0.85rem;">
+        <div>Transition to Layer 2: Once network perimeter access is granted, all packets traversing the wire are cryptographically shielded via SSL/TLS 1.3 (Slide 31).</div>
+      </div>
     </section>
 
-    <!-- ==================== SLIDE 31: SSL/TLS IN-TRANSIT ENCRYPTION ==================== -->
+    <!-- ==================== SLIDE 31: IN-TRANSIT ENCRYPTION ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
-      <h2>In-Transit Encryption: SSL / TLS 1.3 Acceleration</h2>
+      <h2>Layer 2: In-Transit Encryption &amp; SSL / TLS 1.3 Acceleration</h2>
       
-      <div class="two-column-layout">
+      <div class="callout callout-blue" style="margin-bottom: 0.85rem;">
+        <div>Layer 2 Defense: Eliminates packet sniffing and eavesdropping across the network by enforcing end-to-end cryptographic encryption between clients and RDS nodes.</div>
+      </div>
+
+      <div class="two-column-layout" style="align-items: stretch; gap: 1.5rem;">
         <div class="column-left">
-          <div class="content-card highlight">
-            <h3>Transport Layer Cryptography</h3>
-            <ul>
-              <li><strong>End-to-End Packet Encryption:</strong> Encrypts all client-to-database communication channels, preventing eavesdropping and packet sniffing.</li>
-              <li><strong>Modern TLS 1.2 &amp; TLS 1.3:</strong> Supports modern cryptographic cipher suites with forward secrecy and hardware-accelerated handshake negotiation.</li>
-              <li><strong>One-Click Activation:</strong> Enable SSL/TLS encryption directly in the RDS console with automated server certificate generation.</li>
-              <li><strong>Zero Application Code Modifications:</strong> Fully compatible with standard client database drivers (MySQL Connector/J, psycopg2, SQL Server JDBC).</li>
+          <div class="content-card highlight" style="height: 100%; padding: 1.25rem;">
+            <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.95rem + var(--font-delta));">Transport Layer Cryptography</h3>
+            <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.5;">
+              <li><strong>End-to-End Packet Encryption:</strong> Encrypts all client-to-database communication channels, preventing eavesdropping, tampering, and packet sniffing.</li>
+              <li><strong>Modern TLS 1.2 &amp; TLS 1.3:</strong> Employs state-of-the-art cipher suites with Perfect Forward Secrecy (PFS) and hardware-accelerated cryptographic handshakes.</li>
+              <li><strong>One-Click Console Activation:</strong> Enable TLS encryption directly in the RDS console with automated certificate issuance and zero manual server configuration.</li>
+              <li><strong>Zero Code Modifications:</strong> 100% compatible with standard client drivers (JDBC, ODBC, psycopg2, node-mysql) by enabling SSL connection parameters.</li>
             </ul>
           </div>
         </div>
 
         <div class="column-right">
-          <div class="content-card highlight-green">
-            <h3>Certificate Management &amp; Policy Enforcement</h3>
-            <ul>
-              <li><strong>Custom CA Integration:</strong> Upload enterprise intermediate or custom root CA certificates to verify database server identities.</li>
+          <div class="content-card highlight-green" style="height: 100%; padding: 1.25rem;">
+            <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.95rem + var(--font-delta));">Certificate Authority &amp; Policy Enforcement</h3>
+            <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.5;">
+              <li><strong>Custom Enterprise CA Integration:</strong> Upload enterprise intermediate or custom root CA certificates to verify database server identities in regulated environments.</li>
               <li><strong>Mandatory SSL Enforcement (Force SSL):</strong> Enforce strict database policies that automatically reject unencrypted plaintext connection attempts.</li>
               <li><strong>MitM Attack Prevention:</strong> Clients verify the server certificate common name and cryptographic signature before transmitting database credentials.</li>
-              <li><strong>Automated Renewal:</strong> Native integration with Alibaba Cloud Certificate Management Service ensures seamless automated certificate renewal.</li>
+              <li><strong>Automated Certificate Renewal:</strong> Native integration with Alibaba Cloud Certificate Management Service ensures seamless automated certificate rotation.</li>
             </ul>
           </div>
         </div>
       </div>
+
+      <div class="callout callout-green" style="margin-top: 0.85rem;">
+        <div>Transition to Layer 3: While in-transit data is protected across the wire, database blocks written to physical storage are protected by Transparent Data Encryption (Slide 32).</div>
+      </div>
     </section>
 
-    <!-- ==================== SLIDE 32: DATA-AT-REST ENCRYPTION (TDE) ==================== -->
+    <!-- ==================== SLIDE 32: AT-REST ENCRYPTION (TDE) ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
-      <h2>Data-at-Rest Encryption: Transparent Data Encryption (TDE)</h2>
+      <h2>Layer 3: Data-at-Rest Encryption &amp; Storage Protection (TDE)</h2>
       
-      <div class="two-column-layout">
+      <div class="callout callout-blue" style="margin-bottom: 0.85rem;">
+        <div>Layer 3 Defense: Protects raw data storage and backups against physical theft or unauthorized disk access using hardware-accelerated cryptographic keys.</div>
+      </div>
+
+      <div class="two-column-layout" style="align-items: stretch; gap: 1.5rem;">
         <div class="column-left">
-          <div class="content-card highlight">
-            <h3>Transparent Data Encryption (TDE) Mechanics</h3>
-            <ul>
-              <li><strong>Engine-Level Block Encryption:</strong> Real-time in-flight encryption of database files before writing to disk, and decryption upon reading into memory.</li>
-              <li><strong>Zero Schema Alterations:</strong> Transparent to business applications; requires zero table alterations, SQL changes, or ORM adjustments.</li>
-              <li><strong>Cryptographic Standards:</strong> Supports industry-standard AES-256 and national cryptographic SM4 encryption algorithms.</li>
-              <li><strong>Comprehensive Coverage:</strong> Automatically encrypts database tablespace files, redo logs, undo logs, snapshot backups, and binlog archives.</li>
+          <div class="content-card highlight" style="height: 100%; padding: 1.25rem;">
+            <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.95rem + var(--font-delta));">Transparent Data Encryption (TDE)</h3>
+            <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.5;">
+              <li><strong>Real-Time Block Encryption:</strong> Database data files, undo logs, redo logs, and temporary files are encrypted on-the-fly before being written to disk storage.</li>
+              <li><strong>Zero Application Refactoring:</strong> Encryption and decryption execute transparently inside the database engine; applications query standard tables without SQL changes.</li>
+              <li><strong>AES-256 &amp; National SM4 Standards:</strong> Supports international standard AES-256 and national commercial cryptographic algorithm SM4 for strict banking compliance.</li>
+              <li><strong>Hardware Acceleration:</strong> Offloads cryptographic operations to CPU AES-NI instructions, maintaining high transactional throughput with negligible CPU overhead.</li>
             </ul>
           </div>
         </div>
 
         <div class="column-right">
-          <div class="content-card highlight-purple">
-            <h3>Envelope Encryption with KMS</h3>
-            <ul>
-              <li><strong>Key Management Service (KMS) Integration:</strong> Cryptographic keys are managed via Alibaba Cloud KMS with Customer Master Keys (CMKs).</li>
-              <li><strong>Two-Tier Key Hierarchy:</strong>
-                <ul>
-                  <li><em>Customer Master Key (CMK):</em> Securely stored inside hardware security modules (HSM); rotated automatically on a regular schedule.</li>
-                  <li><em>Data Encryption Key (DEK):</em> Encrypts actual database tablespaces; protected and wrapped by the CMK.</li>
-                </ul>
-              </li>
-              <li><strong>Zero Cloud Admin Access:</strong> Even Alibaba Cloud administrators cannot decrypt customer data without explicit KMS authorization.</li>
-              <li><strong>Regulatory Compliance:</strong> Fulfills strict banking, financial, and healthcare data residency and at-rest security mandates.</li>
+          <div class="content-card highlight-blue" style="height: 100%; padding: 1.25rem;">
+            <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.95rem + var(--font-delta));">KMS Envelope Encryption &amp; Encrypted Backups</h3>
+            <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.5;">
+              <li><strong>Two-Tier Envelope Key Hierarchy:</strong> Customer Master Keys (CMK) in Alibaba Cloud KMS manage and protect local Data Encryption Keys (DEK) used for data encryption.</li>
+              <li><strong>Automated Key Rotation:</strong> KMS supports policy-driven automated annual CMK rotation without requiring database downtime or data re-encryption.</li>
+              <li><strong>Encrypted Snapshots &amp; Binlogs:</strong> Automated physical snapshots, logical dumps, and archived transaction logs stored in OSS are automatically encrypted.</li>
+              <li><strong>Cryptographic Access Revocation:</strong> Disabling the CMK in KMS immediately renders all disk blocks and backup archives unreadable, providing instant cryptographic wipe.</li>
             </ul>
           </div>
         </div>
       </div>
+
+      <div class="callout callout-green" style="margin-top: 0.85rem;">
+        <div>Transition to Layer 4: Even with encrypted storage, enterprise environments require fine-grained identity control and data masking for users accessing the database (Slide 33).</div>
+      </div>
     </section>
 
-    <!-- ==================== SLIDE 33: ENTERPRISE ACCESS GOVERNANCE ==================== -->
+    <!-- ==================== SLIDE 33: ACCESS CONTROL & DMS ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
-      <h2>Enterprise Governance: RAM &amp; Data Management Service (DMS)</h2>
+      <h2>Layer 4: Access Governance: RAM &amp; Data Management Service (DMS)</h2>
       
-      <div class="two-column-layout">
+      <div class="callout callout-blue" style="margin-bottom: 0.85rem;">
+        <div>Layer 4 Defense: Enforces strict principle of least privilege, dynamic data masking, and administrative approval workflows across human operators and developers.</div>
+      </div>
+
+      <div class="two-column-layout" style="align-items: stretch; gap: 1.5rem;">
         <div class="column-left">
-          <div class="content-card highlight">
-            <h3>Resource Access Management (RAM) RBAC</h3>
-            <ul>
-              <li><strong>Console &amp; API Control:</strong> Governs which cloud IAM users can create, modify, reboot, or delete RDS database instances.</li>
-              <li><strong>Decoupled Credential Model:</strong> RAM permissions manage infrastructure operations; internal database SQL accounts handle data queries.</li>
-              <li><strong>Attribute-Based Access Control (ABAC):</strong> Restrict administrative actions using resource tags (e.g., <code>Environment: Production</code>).</li>
-              <li><strong>ActionTrail Audit:</strong> Every API call and configuration adjustment is permanently logged in ActionTrail for compliance audits.</li>
+          <div class="content-card highlight" style="height: 100%; padding: 1.25rem;">
+            <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.95rem + var(--font-delta));">Resource Access Management (RAM) Control</h3>
+            <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.5;">
+              <li><strong>Decoupled Security Model:</strong> RAM policies govern cloud infrastructure operations (creating, scaling, modifying, rebooting instances); database accounts govern SQL queries.</li>
+              <li><strong>Least Privilege RBAC:</strong> Grant developers, devops engineers, and DBAs only the specific API actions required for their role (e.g., <code>DescribeDBInstances</code> vs <code>ModifySecurityIps</code>).</li>
+              <li><strong>Attribute-Based Access Control (ABAC):</strong> Restrict administrative operations using resource tags (e.g., only allow modifications to instances tagged <code>Env: Staging</code>).</li>
+              <li><strong>Permanent ActionTrail Logging:</strong> Every API call, configuration adjustment, and console access is immutably recorded in ActionTrail for compliance audits.</li>
             </ul>
           </div>
         </div>
 
         <div class="column-right">
-          <div class="content-card highlight-blue">
-            <h3>DMS Unified Data Governance</h3>
-            <ul>
-              <li><strong>Granular Data Masking:</strong> Automatically masks sensitive columns (e.g., credit card numbers, phone numbers, PII) in query results.</li>
-              <li><strong>Multi-Level Approval Workflows:</strong> Production DDL schema changes and data export requests require mandatory management approval tickets.</li>
-              <li><strong>Row &amp; Column Permission Scopes:</strong> Grant developers temporary SELECT permissions restricted to specific tables or non-sensitive columns.</li>
-              <li><strong>Full SQL Traceability:</strong> Records every executed query, export ticket, and data manipulation action with forensic provenance.</li>
+          <div class="content-card highlight-blue" style="height: 100%; padding: 1.25rem;">
+            <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.95rem + var(--font-delta));">DMS Unified Data Governance &amp; Masking</h3>
+            <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.5;">
+              <li><strong>Dynamic Data Masking:</strong> DMS automatically detects and masks sensitive columns (credit card numbers, telephone numbers, citizen IDs) in query results on the fly.</li>
+              <li><strong>Multi-Level Approval Tickets:</strong> Production schema alterations (DDL) and bulk data export requests require mandatory management authorization tickets.</li>
+              <li><strong>Row &amp; Column Permission Scopes:</strong> Grant developers temporary read access restricted strictly to specific tables, non-sensitive columns, or row-level tenant IDs.</li>
+              <li><strong>Complete SQL Provenance:</strong> Captures full user identity, client IP, executed SQL statements, and affected rows for all web-based DMS database operations.</li>
             </ul>
           </div>
         </div>
       </div>
+
+      <div class="callout callout-green" style="margin-top: 0.85rem;">
+        <div>Transition to Layer 5: Beyond access governance, production systems require real-time SQL auditing, telemetry alarms, and autonomic AI optimization (Slide 34).</div>
+      </div>
     </section>
 
-    <!-- ==================== SLIDE 34: SQL AUDIT & DATABASE AUTONOMY ==================== -->
+    <!-- ==================== SLIDE 34: OPERATIONAL INTELLIGENCE ==================== -->
     <section class="slide" data-category="Security &amp; Governance">
       <div class="slide-category">Section 6: Security &amp; Governance</div>
-      <h2>Operational Intelligence: SQL Audit &amp; Database Autonomy (DAS)</h2>
+      <h2>Layer 5: Audit &amp; Intelligence: SQL Audit, CloudMonitor &amp; DAS</h2>
       
-      <div class="card-grid-3">
-        <div class="content-card highlight">
-          <h3>Full SQL Audit Trail</h3>
-          <ul>
-            <li><strong>Comprehensive Query Logging:</strong> Logs every executed SQL statement with client source IP, execution duration, and affected row counts.</li>
-            <li><strong>Simple Log Service (SLS) Stream:</strong> Streams audit logs to SLS for sub-second SQL search and forensic security investigations.</li>
-            <li><strong>Compliance Certification:</strong> Satisfies strict regulatory requirements including SOC 1/2/3, ISO 27001, and PCI-DSS Level 1.</li>
-            <li><strong>Intrusion Detection:</strong> Automatically flags suspicious bulk queries and unauthorized access attempts.</li>
+      <div class="callout callout-blue" style="margin-bottom: 0.85rem;">
+        <div>Layer 5 Defense: Provides comprehensive security observability, regulatory compliance archiving, real-time alerting, and autonomous database protection.</div>
+      </div>
+
+      <div class="grid-3" style="gap: 1.15rem; align-items: stretch;">
+        <div class="content-card highlight" style="height: 100%; padding: 1.25rem;">
+          <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.92rem + var(--font-delta));">Full SQL Audit Trail</h3>
+          <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.83rem + var(--font-delta)); line-height: 1.45;">
+            <li><strong>Statement Logging:</strong> Records every executed SQL query with client IP, execution latency, error codes, and impacted row counts.</li>
+            <li><strong>Real-Time SLS Streaming:</strong> Streams audit records to Simple Log Service (SLS) for sub-second search and forensic threat analysis.</li>
+            <li><strong>Regulatory Compliance:</strong> Retains audit logs for 180+ days to satisfy strict financial mandates (SOC 1/2/3, ISO 27001, PCI-DSS Level 1).</li>
+            <li><strong>Intrusion Detection:</strong> Automatically alerts on suspicious bulk queries, unauthorized schema tampering, or SQL injection attacks.</li>
           </ul>
         </div>
 
-        <div class="content-card highlight-blue">
-          <h3>CloudMonitor Telemetry</h3>
-          <ul>
-            <li><strong>50+ Performance Metrics:</strong> Tracks CPU utilization, memory consumption, IOPS, connection counts, and disk space in real-time.</li>
-            <li><strong>Automated Alarm Policies:</strong> Trigger webhook, SMS, and DingTalk alerts on high CPU usage, connection exhaustion, or replication lag.</li>
-            <li><strong>Unified Operations Dashboard:</strong> Visualizes fleet-wide database performance across regions from a single management console.</li>
-            <li><strong>Customizable Granularity:</strong> High-precision 1-second metric collection for high-frequency trading and critical systems.</li>
+        <div class="content-card highlight-blue" style="height: 100%; padding: 1.25rem;">
+          <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.92rem + var(--font-delta));">CloudMonitor Telemetry</h3>
+          <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.83rem + var(--font-delta)); line-height: 1.45;">
+            <li><strong>50+ Operational Metrics:</strong> Continuously tracks CPU utilization, memory pressure, IOPS, active connections, and disk space in real time.</li>
+            <li><strong>Multi-Channel Alerts:</strong> Dispatches automated alarm notifications via DingTalk, Webhooks, SMS, and Email when thresholds are breached.</li>
+            <li><strong>Fleet-Wide Operations View:</strong> Visualizes database performance across multiple regions from a unified operational dashboard.</li>
+            <li><strong>High-Precision Monitoring:</strong> Up to 1-second metric sampling for high-frequency trading and mission-critical financial applications.</li>
           </ul>
         </div>
 
-        <div class="content-card highlight-green">
-          <h3>Database Autonomy Service (DAS)</h3>
-          <ul>
-            <li><strong>AI-Driven Optimization:</strong> Continuously analyzes execution plans and automatically generates missing index recommendations.</li>
-            <li><strong>Automated Slow SQL Throttling:</strong> Identifies and rate-limits abnormal runaway queries before they saturate database CPU cores.</li>
-            <li><strong>Autonomous Storage Expansion:</strong> Automatically triggers disk capacity expansion when free storage drops below critical safety margins.</li>
-            <li><strong>Health Diagnosis Reports:</strong> Daily automated health check reports identifying sub-optimal database parameter configurations.</li>
+        <div class="content-card highlight-green" style="height: 100%; padding: 1.25rem;">
+          <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.92rem + var(--font-delta));">Database Autonomy (DAS)</h3>
+          <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.83rem + var(--font-delta)); line-height: 1.45;">
+            <li><strong>AI-Driven Optimization:</strong> Machine learning models evaluate execution plans and automatically generate optimal missing index recommendations.</li>
+            <li><strong>Automated Query Throttling:</strong> Detects and rate-limits abnormal runaway SQL queries before they saturate database CPU cores or memory.</li>
+            <li><strong>Autonomous Storage Scaling:</strong> Automatically triggers disk capacity expansion when free storage drops below critical safety thresholds.</li>
+            <li><strong>Automated Health Diagnostics:</strong> Generates daily health inspection reports identifying sub-optimal database parameter configurations.</li>
           </ul>
         </div>
+      </div>
+
+      <div class="callout callout-green" style="margin-top: 0.85rem;">
+        <div>Architectural Synthesis: The 5-tier security defense mesh delivers comprehensive protection across the entire database lifecycle, satisfying enterprise compliance and operational resilience.</div>
       </div>
     </section>
 
