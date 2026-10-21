@@ -431,10 +431,6 @@ The top header (`.presentation-header`, fixed height 64px) serves as the unified
   ```html
   <div class="brand-wrapper">
     <img src="assets/images/alibaba-cloud-logo.png" alt="Alibaba Cloud" class="brand-logo">
-    <div class="course-info">
-      <span class="course-title">Alibaba Cloud Professional: Cloud Architect</span>
-      <span class="module-title">Module XX: [Topic Name]</span>
-    </div>
   </div>
   ```
 - **Right Header Controls (`.header-right`)**:
