@@ -69,7 +69,7 @@ The fixed 64px header (`.presentation-header`) provides unified branding and con
 ```html
 <header class="presentation-header">
   <div class="brand-wrapper">
-    <span class="brand-badge">Alibaba Cloud</span>
+    <img src="assets/images/alibaba-cloud-logo.png" alt="Alibaba Cloud" class="brand-logo">
     <div class="course-info">
       <span class="course-title">Alibaba Cloud Professional: Cloud Architect</span>
       <span class="module-title">Module 02: Elastic Compute Service (ECS)</span>

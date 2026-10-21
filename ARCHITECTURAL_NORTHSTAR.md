@@ -430,7 +430,7 @@ The top header (`.presentation-header`, fixed height 64px) serves as the unified
 - **Left Branding**:
   ```html
   <div class="brand-wrapper">
-    <span class="brand-badge">Alibaba Cloud</span>
+    <img src="assets/images/alibaba-cloud-logo.png" alt="Alibaba Cloud" class="brand-logo">
     <div class="course-info">
       <span class="course-title">Alibaba Cloud Professional: Cloud Architect</span>
       <span class="module-title">Module XX: [Topic Name]</span>
