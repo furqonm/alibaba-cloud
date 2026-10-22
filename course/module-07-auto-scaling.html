@@ -526,128 +526,149 @@
         </div>
       </div>
     </section>
-    <!-- ==================== SLIDE 18: SCALING CONFIGURATION ==================== -->
+    <!-- ==================== SLIDE 18: LAUNCH TEMPLATE ==================== -->
     <section class="slide" data-category="Scaling Configuration (Templates)">
       <div class="slide-category">Section 3: Scaling Configuration (Templates)</div>
-      <h2>Scaling Configuration</h2>
+      <h2>Launch Template</h2>
       
       <div class="grid-2">
-        <div class="content-card highlight">
-          <p>A <strong>Scaling Configuration</strong> serves as the technical blueprint defining the hardware and software specifications of ECS instances provisioned by Auto Scaling:</p>
+        <div class="content-card highlight-blue">
+          <p>An <strong>ECS Launch Template</strong> is a reusable blueprint that stores the instance launch parameters, so every instance created by Auto Scaling starts with the same specification:</p>
           <ul>
-            <li><strong>Compute Specification:</strong> Instance Type / Family (e.g. <code>ecs.g7.xlarge</code>, 4 vCPU, 16 GiB memory).</li>
-            <li><strong>Operating System Image:</strong> Public image, Custom image (golden AMI), or Alibaba Cloud Marketplace image.</li>
-            <li><strong>Storage Tiers:</strong> System disk category (ESSD PL0–PL3) and capacity; optional data disk attachments.</li>
-            <li><strong>Network &amp; Security:</strong> Security Group IDs, public IPv6 dual-stack, or EIP bandwidth allocations.</li>
-            <li><strong>Credentials &amp; Access:</strong> SSH Key Pair, password, or RAM Role for instance authentication.</li>
-            <li><strong>User Data Script:</strong> Cloud-init shell script for automated boot-time software initialization and package updates.</li>
+            <li><strong>Compute &amp; Image:</strong> Instance type and operating system image (public, custom, or Marketplace).</li>
+            <li><strong>Storage:</strong> System disk category and size, plus optional data disks.</li>
+            <li><strong>Network &amp; Security:</strong> Security Group, vSwitch, and public IP or EIP settings.</li>
+            <li><strong>Access &amp; Boot:</strong> SSH key pair, instance RAM role, tags, and User Data script.</li>
           </ul>
         </div>
 
-        <div class="content-card highlight-blue">
-          <p>Architectural Best Practices:</p>
+        <div class="content-card highlight-green">
+          <p>Why use a Launch Template:</p>
           <ul>
-            <li><strong>Pre-Baked Custom Images:</strong> Package application binaries, dependencies, and system configurations directly into a golden image to minimize boot-up time during scale-out events.</li>
-            <li><strong>Instance RAM Roles:</strong> Assign an instance RAM role in the scaling configuration rather than embedding hardcoded AccessKey credentials in User Data scripts.</li>
-            <li><strong>ESSD Storage Tiering:</strong> Choose ESSD AutoPL or PL1 system disks to ensure sufficient IOPS during application startup without storage throughput bottlenecks.</li>
+            <li><strong>Reusable:</strong> One template can serve multiple Scaling Groups and manual ECS creation.</li>
+            <li><strong>Centralized Governance:</strong> Update image, instance type, or security settings in one place.</li>
+            <li><strong>Consistent Instances:</strong> Every scale-out launches instances from the same tested blueprint.</li>
+            <li><strong>Independent Resource:</strong> It is managed in ECS, separate from the lifecycle of any Scaling Group.</li>
           </ul>
         </div>
       </div>
-    </section>
-    <!-- ==================== SLIDE 19: SCALING CONFIGURATION STATES ==================== -->
+    </section>
+    <!-- ==================== SLIDE 19: LAUNCH TEMPLATE VERSIONS ==================== -->
     <section class="slide" data-category="Scaling Configuration (Templates)">
       <div class="slide-category">Section 3: Scaling Configuration (Templates)</div>
-      <h2>Scaling Configuration States</h2>
+      <h2>Launch Template Versions</h2>
       
       <div class="grid-3">
-        <div class="content-card highlight-green">
-          <h4>Active Configuration</h4>
-          <p>The single operational blueprint:</p>
+        <div class="content-card highlight-blue">
+          <h4>Version History</h4>
+          <p>Every change creates a new version:</p>
           <ul>
-            <li>A Scaling Group can have <strong>only ONE Active Scaling Configuration</strong> at any given time.</li>
-            <li>All newly triggered scale-out activities use this active configuration to launch instances.</li>
-            <li>Cannot be deleted while marked as Active.</li>
+            <li>Versions are numbered sequentially (<code>Version 1</code>, <code>Version 2</code>, <code>Version 3</code>).</li>
+            <li>An existing version is not edited in place.</li>
+            <li>Old versions stay available for rollback.</li>
           </ul>
         </div>
 
         <div class="content-card highlight-purple">
-          <h4>Inactive Configurations</h4>
-          <p>Alternative blueprints:</p>
+          <h4>Default Version</h4>
+          <p>One version is marked as the default:</p>
           <ul>
-            <li>A Scaling Group can store up to <strong>10 Scaling Configurations</strong> simultaneously.</li>
-            <li>Allows staging newer instance generations or updated software images without downtime.</li>
-            <li>Can be switched to Active instantly with zero service disruption.</li>
+            <li>Used whenever no version is specified.</li>
+            <li>Can be switched to another version at any time.</li>
+            <li>Allows a quick rollout or rollback without touching the Scaling Group.</li>
           </ul>
         </div>
 
-        <div class="content-card highlight">
-          <h4>Deletion Rules</h4>
-          <p>Strict safety constraints:</p>
+        <div class="content-card highlight-green">
+          <h4>Update Workflow</h4>
+          <p>Safe way to change the blueprint:</p>
           <ul>
-            <li>Active configurations cannot be deleted directly; must switch to another configuration first.</li>
-            <li>A configuration cannot be deleted if running instances created by that configuration still exist in the group.</li>
+            <li>Create a new version with the new image or instance type.</li>
+            <li>Test it, then promote it as the default version.</li>
+            <li>Roll back by selecting the previous version.</li>
           </ul>
         </div>
       </div>
 
       <div class="content-card highlight-blue" style="margin-top: 0.75rem;">
-        <p><strong>Immutable Modification Principle:</strong> Once created, individual attributes of a Scaling Configuration cannot be edited in place. To update instance specs or image IDs, administrators create a new Scaling Configuration and set it as Active.</p>
+        <p><strong>Note:</strong> Changing a template version affects only newly launched instances. Instances that are already running are not modified.</p>
       </div>
-    </section>
-    <!-- ==================== SLIDE 20: MULTI-FAMILY SPECIFICATIONS & SPOT POOLING ==================== -->
+    </section>
+    <!-- ==================== SLIDE 20: LAUNCH TEMPLATE IN SCALING GROUP ==================== -->
     <section class="slide" data-category="Scaling Configuration (Templates)">
       <div class="slide-category">Section 3: Scaling Configuration (Templates)</div>
-      <h2>Multi-Family Specifications &amp; Spot Pooling</h2>
+      <h2>Launch Template in Scaling Group</h2>
       
       <div class="grid-2">
-        <div class="content-card highlight">
-          <h4>Multi-Instance Type Configuration</h4>
-          <p>Preventing inventory stockouts in high-density regions:</p>
-          <ul>
-            <li>Administrators can configure up to <strong>10 instance types</strong> in priority order within a single scaling configuration.</li>
-            <li>During scale-out, Auto Scaling attempts to provision the first priority instance family (e.g. <code>ecs.c7.large</code>).</li>
-            <li>If inventory is exhausted in that zone, it seamlessly falls back to subsequent configured families (e.g. <code>ecs.c6.large</code>, <code>ecs.g7.large</code>).</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-green">
-          <h4>Spot Instance Diversification</h4>
-          <p>Maximizing compute capacity at fraction of cost:</p>
-          <ul>
-            <li>Combine Pay-As-You-Go with Spot instances to achieve up to <strong>80% to 90% cost savings</strong>.</li>
-            <li>Configure Spot allocation strategy: <em>Cost-Optimized</em> (selects lowest price) or <em>Capacity-Optimized</em> (selects lowest eviction probability).</li>
-            <li><strong>Automated On-Demand Fallback:</strong> If Spot instances are unavailable or reclaimed, Auto Scaling automatically provisions Pay-As-You-Go instances to preserve capacity.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 21: ECS LAUNCH TEMPLATES INTEGRATION ==================== -->
-    <section class="slide" data-category="Scaling Configuration (Templates)">
-      <div class="slide-category">Section 3: Scaling Configuration (Templates)</div>
-      <h2>ECS Launch Templates Integration</h2>
-      
-      <div class="grid-2">
-        <div class="content-card highlight-blue">
-          <h4>Decoupled Launch Templates</h4>
-          <p>Modern cloud architecture replaces static scaling configurations with global <strong>ECS Launch Templates</strong>:</p>
-          <ul>
-            <li><strong>Reusable Blueprints:</strong> A single Launch Template can be shared across multiple Scaling Groups, E-MapReduce clusters, and manual ECS provisioning.</li>
-            <li><strong>Unified Governance:</strong> Centralizes instance specification governance, AMI updates, and security compliance.</li>
-            <li><strong>Multi-Version Management:</strong> Launch Templates maintain full version history (<code>Version 1</code>, <code>Version 2</code>, <code>Version 3</code>).</li>
-          </ul>
-        </div>
-
         <div class="content-card highlight-purple">
-          <h4>Version Binding in Auto Scaling</h4>
-          <p>Flexible version binding options for Scaling Groups:</p>
+          <h4>Version Binding</h4>
+          <p>A Scaling Group chooses which template version to use:</p>
           <ul>
-            <li><strong>Specific Version Pinning:</strong> Pin the Scaling Group to a tested version (e.g. <code>Version 2</code>) to guarantee operational consistency across deployments.</li>
-            <li><strong>Default Version Tracking:</strong> Automatically tracks the template's designated Default Version, enabling instant canary rollouts.</li>
-            <li><strong>Latest Version Tracking:</strong> Automatically adopts the latest published template version whenever a new scale-out activity occurs.</li>
+            <li><strong>Specific Version:</strong> Pin to a tested version (e.g. <code>Version 2</code>) for consistent results.</li>
+            <li><strong>Default Version:</strong> Follows the template's default version, so changing the default affects the next scale-out.</li>
+            <li><strong>Latest Version:</strong> Always uses the newest version at the time of each scale-out.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight">
+          <h4>Instance Type Flexibility</h4>
+          <p>Reduce the risk of running out of capacity:</p>
+          <ul>
+            <li>Set multiple instance types on the Scaling Group in priority order, on top of the template's instance type.</li>
+            <li>If one type is out of stock in a zone, Auto Scaling tries the next one.</li>
+            <li>Mix Pay-As-You-Go and Spot instances to reduce cost.</li>
           </ul>
         </div>
       </div>
-    </section>
+
+      <div class="content-card highlight-blue" style="margin-top: 0.75rem;">
+        <p><strong>Note:</strong> A Scaling Group uses either a Launch Template or a Scaling Configuration as its launch source, not both at the same time.</p>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 21: LAUNCH TEMPLATE VS SCALING CONFIGURATION ==================== -->
+    <section class="slide" data-category="Scaling Configuration (Templates)">
+      <div class="slide-category">Section 3: Scaling Configuration (Templates)</div>
+      <h2>Launch Template vs Scaling Configuration</h2>
+      
+      <div class="table-wrapper">
+        <table class="slide-table">
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>Launch Template</th>
+              <th>Scaling Configuration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Scope</strong></td>
+              <td>Independent ECS resource, reusable across Scaling Groups and manual ECS creation.</td>
+              <td>Belongs to one Scaling Group only.</td>
+            </tr>
+            <tr>
+              <td><strong>Versioning</strong></td>
+              <td>Multiple versions with a default version; roll back by selecting an earlier version.</td>
+              <td>No versions. Attributes cannot be edited, so a new configuration must be created.</td>
+            </tr>
+            <tr>
+              <td><strong>Activation</strong></td>
+              <td>Scaling Group binds to a specific, default, or latest version.</td>
+              <td>Only one configuration is Active at a time, up to 10 stored per group.</td>
+            </tr>
+            <tr>
+              <td><strong>Reuse</strong></td>
+              <td>One template shared by many groups.</td>
+              <td>Must be recreated for each Scaling Group.</td>
+            </tr>
+            <tr>
+              <td><strong>Best For</strong></td>
+              <td>Multiple groups, frequent updates, and centralized governance.</td>
+              <td>Simple, single-group setups.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
     <!-- ==================== SLIDE 22: SCALING RULES FUNDAMENTALS ==================== -->
     <section class="slide" data-category="Scaling Rules">
       <div class="slide-category">Section 4: Scaling Rules</div>
