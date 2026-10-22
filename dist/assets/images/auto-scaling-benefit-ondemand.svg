@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 220" width="100%" height="100%">
+  <defs>
+    <marker id="arr-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0ea5e9"/>
+    </marker>
+    <marker id="arr-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#84cc16"/>
+    </marker>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="620" height="220" fill="#ffffff"/>
+
+  <!-- ==================== CLOUD COMPUTE EXPANSION ==================== -->
+  <g transform="translate(110, 85)">
+    <!-- Cloud shape -->
+    <path d="M -60 20 C -75 20 -85 8 -85 -5 C -85 -20 -72 -30 -58 -30 C -55 -48 -35 -60 -15 -60 C 5 -60 22 -48 26 -30 C 40 -30 52 -18 52 -5 C 52 10 40 20 25 20 Z" 
+          fill="#f1f5f9" stroke="#cbd5e1" stroke-width="5" stroke-linejoin="round"/>
+    
+    <!-- 5 Outward scaling arrows -->
+    <!-- Far left (blue) -->
+    <line x1="-70" y1="20" x2="-95" y2="45" stroke="#0ea5e9" stroke-width="4.5" marker-end="url(#arr-blue)"/>
+    <!-- Mid-left (green) -->
+    <line x1="-35" y1="26" x2="-50" y2="60" stroke="#84cc16" stroke-width="4.5" marker-end="url(#arr-green)"/>
+    <!-- Center (blue) -->
+    <line x1="-15" y1="28" x2="-15" y2="65" stroke="#0ea5e9" stroke-width="4.5" marker-end="url(#arr-blue)"/>
+    <!-- Mid-right (green) -->
+    <line x1="10" y1="26" x2="25" y2="60" stroke="#84cc16" stroke-width="4.5" marker-end="url(#arr-green)"/>
+    <!-- Far right (blue) -->
+    <line x1="40" y1="20" x2="65" y2="45" stroke="#0ea5e9" stroke-width="4.5" marker-end="url(#arr-blue)"/>
+  </g>
+
+  <!-- ==================== PLUS SIGN '+' ==================== -->
+  <text x="260" y="105" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="44" font-weight="700" fill="#cbd5e1">+</text>
+
+  <!-- ==================== DEMAND CURVE / WAVEFORM ==================== -->
+  <g transform="translate(320, 20)">
+    <!-- Flat baseline -->
+    <line x1="10" y1="100" x2="50" y2="100" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- Rising line to peak 1 -->
+    <line x1="50" y1="100" x2="62" y2="60" stroke="#0284c7" stroke-width="4.5" stroke-linecap="round"/>
+    <circle cx="62" cy="60" r="5.5" fill="#84cc16"/>
+
+    <!-- Dip 1 -->
+    <line x1="62" y1="60" x2="85" y2="150" stroke="#cbd5e1" stroke-width="4"/>
+
+    <!-- Surge to highest peak 2 -->
+    <line x1="85" y1="150" x2="115" y2="25" stroke="#0284c7" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="115" cy="25" r="6" fill="#84cc16"/>
+
+    <!-- Dip 2 -->
+    <line x1="115" y1="25" x2="140" y2="165" stroke="#cbd5e1" stroke-width="4"/>
+
+    <!-- Surge to peak 3 -->
+    <line x1="140" y1="165" x2="160" y2="75" stroke="#0284c7" stroke-width="4.5" stroke-linecap="round"/>
+    <circle cx="160" cy="75" r="5.5" fill="#84cc16"/>
+
+    <!-- Trailing dips -->
+    <line x1="160" y1="75" x2="178" y2="135" stroke="#cbd5e1" stroke-width="4"/>
+    <line x1="178" y1="135" x2="195" y2="95" stroke="#cbd5e1" stroke-width="4"/>
+    <line x1="195" y1="95" x2="215" y2="155" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>
