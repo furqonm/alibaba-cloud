@@ -187,96 +187,111 @@
       <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
       <h2>Elastic Scale-Out</h2>
       
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.75rem;">
-        <img src="assets/images/auto-scaling-scale-out.png" alt="Auto Scaling Scale Out Architecture" style="max-height: 280px; width: auto; max-width: 100%; object-fit: contain;">
+      <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto; width: 100%;">
+        <img src="assets/images/auto-scaling-scale-out.png" alt="Auto Scaling Scale Out Architecture" class="diagram-image-lg" style="max-height: 440px; width: auto; max-width: 95%; object-fit: contain;">
       </div>
 
-      <div class="content-card highlight" style="padding: 1rem 1.5rem;">
-        <p style="margin-bottom: 0.5rem;">Elastic scale-out adds additional computing resources to the pool during peak traffic periods:</p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-          <ol class="step-list" style="margin-top: 0;">
-            <li><strong>Surge Trigger Detection:</strong> CloudMonitor alarms (e.g., average CPU &ge; 70%), scheduled timers, or target tracking policies trigger a scaling activity.</li>
-            <li><strong>Automated VM Provisioning:</strong> Auto Scaling provisions new ECS instances across multi-zone vSwitches according to the active Scaling Configuration.</li>
-          </ol>
-          <ol class="step-list" start="3" style="margin-top: 0;">
-            <li><strong>Load Balancer Registration:</strong> Automatically attaches newly created instances to associated Server Load Balancer (SLB) backend server groups.</li>
-            <li><strong>Database Whitelist Synchronization:</strong> Automatically injects the private IP addresses of the new instances into associated ApsaraDB RDS security whitelists.</li>
-          </ol>
+      <div class="grid-4" style="margin-top: 0.75rem; gap: 0.75rem;">
+        <div class="content-card highlight" style="padding: 0.75rem 0.85rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">1. Surge Trigger</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">CloudMonitor alarms, timers, or tracking rules trigger scale-out.</p>
+        </div>
+        <div class="content-card highlight-blue" style="padding: 0.75rem 0.85rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">2. Provisioning</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Provisions new ECS instances across multi-zone vSwitches.</p>
+        </div>
+        <div class="content-card highlight-green" style="padding: 0.75rem 0.85rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">3. SLB Registration</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Attaches new instances to SLB backend server groups.</p>
+        </div>
+        <div class="content-card highlight-purple" style="padding: 0.75rem 0.85rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">4. RDS Whitelisting</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Adds instance private IPs to ApsaraDB RDS security whitelists.</p>
         </div>
       </div>
-    </section>
+    </section>
     <!-- ==================== SLIDE 8: ELASTIC SCALE-IN MECHANICS ==================== -->
     <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
       <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
       <h2>Elastic Scale-In</h2>
       
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.75rem;">
-        <img src="assets/images/auto-scaling-scale-in.png" alt="Auto Scaling Scale In Architecture" style="max-height: 280px; width: auto; max-width: 100%; object-fit: contain;">
+      <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto; width: 100%;">
+        <img src="assets/images/auto-scaling-scale-in.png" alt="Auto Scaling Scale In Architecture" class="diagram-image-lg" style="max-height: 440px; width: auto; max-width: 95%; object-fit: contain;">
       </div>
 
-      <div class="content-card highlight-blue" style="padding: 1rem 1.5rem;">
-        <p style="margin-bottom: 0.5rem;">Elastic scale-in releases surplus ECS instances when business demand decreases:</p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-          <ol class="step-list" style="margin-top: 0;">
-            <li><strong>Low Demand Detection:</strong> CloudMonitor detects low resource utilization (e.g., average CPU &lt; 25% for 3 consecutive periods) or a scheduled window concludes.</li>
-            <li><strong>Traffic Deregistration:</strong> Auto Scaling removes selected instances from Server Load Balancer (SLB) backend groups, initiating connection draining to finish in-flight requests.</li>
-          </ol>
-          <ol class="step-list" start="3" style="margin-top: 0;">
-            <li><strong>Security Pruning:</strong> Automatically removes instance private IP addresses from ApsaraDB RDS security whitelists, preventing stale network access.</li>
-            <li><strong>Instance Termination or Stopping:</strong> Instances are either released (Release Mode) or stopped (Shutdown and Reclaim Mode) based on group configuration.</li>
-          </ol>
+      <div class="grid-4" style="margin-top: 0.75rem; gap: 0.75rem;">
+        <div class="content-card highlight-blue" style="padding: 0.75rem 0.85rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">1. Low Demand</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">CloudMonitor alarms detect low load or off-peak schedule ends.</p>
+        </div>
+        <div class="content-card highlight" style="padding: 0.75rem 0.85rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">2. Deregister SLB</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Deregisters instances from SLB and drains in-flight requests.</p>
+        </div>
+        <div class="content-card highlight-purple" style="padding: 0.75rem 0.85rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">3. Prune RDS</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Removes private IP addresses from RDS security whitelists.</p>
+        </div>
+        <div class="content-card highlight-green" style="padding: 0.75rem 0.85rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">4. Reclaim Instance</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Instances are released or stopped based on reclaim policy.</p>
         </div>
       </div>
-    </section>
+    </section>
     <!-- ==================== SLIDE 9: ELASTIC SELF-HEALING ARCHITECTURE ==================== -->
     <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
       <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
       <h2>Elastic Self-Healing</h2>
       
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.75rem;">
-        <img src="assets/images/auto-scaling-self-healing.png" alt="Auto Scaling Self Healing Architecture" style="max-height: 280px; width: auto; max-width: 100%; object-fit: contain;">
+      <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto; width: 100%;">
+        <img src="assets/images/auto-scaling-self-healing.png" alt="Auto Scaling Self Healing Architecture" class="diagram-image-lg" style="max-height: 440px; width: auto; max-width: 95%; object-fit: contain;">
       </div>
 
-      <div class="content-card highlight-green" style="padding: 1rem 1.5rem;">
-        <p style="margin-bottom: 0.5rem;">Elastic self-healing continuously monitors instance health and autonomously restores cluster capacity:</p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-          <ol class="step-list" style="margin-top: 0;">
-            <li><strong>Continuous Health Inspection:</strong> Auto Scaling regularly inspects the operating state of all ECS instances in the scaling group and checks SLB health check statuses.</li>
-            <li><strong>Unhealthy State Detection:</strong> If an instance enters an abnormal state (OS crash, hardware failure, or SLB health check failure), Auto Scaling flags it as unhealthy.</li>
-          </ol>
-          <ol class="step-list" start="3" style="margin-top: 0;">
-            <li><strong>Autonomous Removal &amp; Release:</strong> The failed instance is automatically detached from the SLB backend, removed from the RDS whitelist, and terminated.</li>
-            <li><strong>Replacement Provisioning:</strong> Auto Scaling automatically provisions a healthy new instance using the active Scaling Configuration to restore total capacity.</li>
-          </ol>
+      <div class="grid-4" style="margin-top: 0.75rem; gap: 0.75rem;">
+        <div class="content-card highlight-green" style="padding: 0.75rem 0.85rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">1. Health Check</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Continuously inspects ECS operating state and SLB health.</p>
+        </div>
+        <div class="content-card highlight" style="padding: 0.75rem 0.85rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">2. Flag Unhealthy</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Identifies VM crashes, hardware faults, or health probe failures.</p>
+        </div>
+        <div class="content-card highlight-purple" style="padding: 0.75rem 0.85rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">3. Detach &amp; Release</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Detaches from SLB, removes RDS whitelist, and terminates VM.</p>
+        </div>
+        <div class="content-card highlight-blue" style="padding: 0.75rem 0.85rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">4. Restore Capacity</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Provisions healthy replacement VM from active configuration.</p>
         </div>
       </div>
-    </section>
+    </section>
     <!-- ==================== SLIDE 10: ARCHITECTURAL ECOSYSTEM OVERVIEW ==================== -->
     <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
       <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
       <h2>Auto Scaling Architecture Ecosystem</h2>
       
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
-        <img src="assets/images/auto-scaling-architecture-overview.png" alt="Auto Scaling Architectural Ecosystem" style="max-height: 250px; width: auto; max-width: 100%; object-fit: contain;">
+      <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto; width: 100%;">
+        <img src="assets/images/auto-scaling-architecture-overview.png" alt="Auto Scaling Architectural Ecosystem" class="diagram-image-lg" style="max-height: 420px; width: auto; max-width: 95%; object-fit: contain;">
       </div>
 
-      <div class="grid-3">
-        <div class="content-card highlight-blue">
-          <h4>1. Telemetry &amp; Trigger Layer</h4>
-          <p>CloudMonitor alarms, scheduled cron tasks, target tracking algorithms, and OpenAPI triggers deliver scaling events to the ESS core.</p>
+      <div class="grid-3" style="margin-top: 0.75rem; gap: 0.85rem;">
+        <div class="content-card highlight-blue" style="padding: 0.75rem 1rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">1. Telemetry &amp; Triggers</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">CloudMonitor alarms, cron schedules, target tracking, and OpenAPI.</p>
         </div>
 
-        <div class="content-card highlight">
-          <h4>2. Management &amp; Policy Core</h4>
-          <p>Auto Scaling evaluates rules, manages cooldown windows, enforces capacity bounds (Min/Max), and coordinates atomic activities.</p>
+        <div class="content-card highlight" style="padding: 0.75rem 1rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">2. Policy &amp; Scaling Engine</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Evaluates scaling rules, cooldown windows, bounds, and lifecycle hooks.</p>
         </div>
 
-        <div class="content-card highlight-green">
-          <h4>3. Target Cloud Ecosystem</h4>
-          <p>Automates provisioning across multi-AZ ECS/ECI, attaches backends to SLB/ALB, and syncs private IP whitelists on RDS databases.</p>
+        <div class="content-card highlight-green" style="padding: 0.75rem 1rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">3. Target Cloud Resources</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Multi-AZ ECS/ECI, SLB/ALB backend pools, and RDS security whitelists.</p>
         </div>
       </div>
-    </section>
+    </section>
     <!-- ==================== SLIDE 11: SCALING GROUP ==================== -->
     <section class="slide" data-category="Scaling Group &amp; Capacity Design">
       <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
@@ -412,64 +427,66 @@
         </div>
       </div>
     </section>
-    <!-- ==================== SLIDE 15: ENABLE, DISABLE & REBALANCING ==================== -->
+    <!-- ==================== SLIDE 15: INSTANCE REMOVAL POLICIES ==================== -->
     <section class="slide" data-category="Scaling Group &amp; Capacity Design">
       <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
-      <h2>Enable, Disable &amp; Capacity Rebalancing</h2>
+      <h2>Instance Removal Policies</h2>
       
-      <div class="grid-2">
-        <div class="content-card highlight-green">
-          <h4>Enable Operation</h4>
-          <p>Transitioning from Inactive to Active state:</p>
-          <ol class="step-list">
-            <li><strong>Configuration Validation:</strong> The group must have exactly one Active Scaling Configuration before enabling can proceed.</li>
-            <li><strong>MinSize Fulfillment:</strong> If current capacity is below MinSize, Auto Scaling immediately provisions Pay-As-You-Go instances until MinSize is satisfied.</li>
-            <li><strong>Ecosystem Synchronization:</strong> Registers instances with SLB and updates RDS access whitelists.</li>
-          </ol>
-        </div>
-
-        <div class="content-card highlight-purple">
-          <h4>Disable Operation</h4>
-          <p>Transitioning from Active to Inactive state:</p>
-          <ol class="step-list">
-            <li><strong>Activity Lock:</strong> A group can only be disabled when NO scaling activity is currently executing.</li>
-            <li><strong>Preserve Running Capacity:</strong> Disabling does NOT terminate instances; existing VMs continue running and serving traffic.</li>
-            <li><strong>Task Suspension:</strong> Rejects all incoming alarms and scheduled triggers until re-enabled.</li>
-          </ol>
-        </div>
+      <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto; width: 100%;">
+        <img src="assets/images/auto-scaling-removal-policy-flow.svg" alt="Auto Scaling Instance Removal Decision Flow" class="diagram-image-lg" style="max-height: 440px; width: auto; max-width: 95%; object-fit: contain;">
       </div>
 
-      <div class="content-card highlight" style="margin-top: 0.75rem;">
-        <p><strong>Capacity Rebalancing Rule:</strong> When modifying MinSize or MaxSize on an active group, Auto Scaling automatically evaluates total capacity. If current capacity &lt; new MinSize, instances are automatically added. If current capacity &gt; new MaxSize, instances are automatically removed until the boundary is reached.</p>
+      <div class="grid-3" style="margin-top: 0.75rem; gap: 0.85rem;">
+        <div class="content-card highlight" style="padding: 0.75rem 1rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Zone Balancing First</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
+            Auto Scaling always evicts from the zone or vSwitch with the greatest number of instances to preserve HA.
+          </p>
+        </div>
+        <div class="content-card highlight-blue" style="padding: 0.75rem 1rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">RemovalPolicy.1 &amp; .2</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
+            Evaluates <code>OldestScalingConfiguration</code>, <code>OldestInstance</code>, or <code>NewestInstance</code> in sequence.
+          </p>
+        </div>
+        <div class="content-card highlight-green" style="padding: 0.75rem 1rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Graceful Deregistration</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
+            Deregisters selected VM from SLB with connection draining and removes private IP from RDS whitelists.
+          </p>
+        </div>
       </div>
-    </section>
-    <!-- ==================== SLIDE 16: REMOVAL POLICIES & RECLAIM MODES ==================== -->
+    </section>
+    <!-- ==================== SLIDE 16: RECLAIM MODES & INSTANCE LIFECYCLE ==================== -->
     <section class="slide" data-category="Scaling Group &amp; Capacity Design">
       <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
-      <h2>Removal Policies &amp; Reclaim Modes</h2>
+      <h2>Reclaim Modes &amp; Instance Lifecycle</h2>
       
-      <div class="grid-2">
-        <div class="content-card highlight">
-          <h4>Instance Removal Policies</h4>
-          <p>Determines which instances are selected for eviction during scale-in:</p>
-          <ul>
-            <li><strong>OldestInstance:</strong> Removes the earliest automatically created instances first. Ideal for continuous rolling deployment of newer software builds.</li>
-            <li><strong>NewestInstance:</strong> Removes the most recently created instances first. Preserves long-running warm nodes and cache state.</li>
-            <li><strong>OldestScalingConfiguration:</strong> Prioritizes instances created by older scaling configurations, ensuring the cluster converges on modern configurations.</li>
-          </ul>
-        </div>
+      <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto; width: 100%;">
+        <img src="assets/images/auto-scaling-reclaim-modes.svg" alt="Auto Scaling Reclaim Modes Comparison" class="diagram-image-lg" style="max-height: 440px; width: auto; max-width: 95%; object-fit: contain;">
+      </div>
 
-        <div class="content-card highlight-blue">
-          <h4>Reclaim Modes</h4>
-          <p>Controls whether evicted instances are destroyed or preserved:</p>
-          <ul>
-            <li><strong>Release Mode (Default):</strong> Permanently deletes and releases ECS instances, immediately terminating all compute and storage charges.</li>
-            <li><strong>Shutdown and Reclaim Mode:</strong> Stops instances without deleting them. Stopped instances can qualify for No-Fee When Stopped, allowing rapid warm restart without image provisioning overhead.</li>
-            <li><strong>Manual Instance Preservation:</strong> When a manually attached ECS instance is removed from a group, it is detached from SLB/RDS but NEVER stopped or released.</li>
-          </ul>
+      <div class="grid-3" style="margin-top: 0.75rem; gap: 0.85rem;">
+        <div class="content-card highlight" style="padding: 0.75rem 1rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Release Mode (Default)</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
+            Permanently terminates and deletes ECS instances. Compute and storage charges stop immediately.
+          </p>
+        </div>
+        <div class="content-card highlight-blue" style="padding: 0.75rem 1rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Shutdown &amp; Reclaim Mode</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
+            Stops instances without deletion (No-Fee When Stopped), enabling instantaneous warm restart.
+          </p>
+        </div>
+        <div class="content-card highlight-green" style="padding: 0.75rem 1rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Manual Preservation</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
+            Manually attached instances are detached from SLB/group but remain running independently.
+          </p>
         </div>
       </div>
-    </section>
+    </section>
     <!-- ==================== SLIDE 17: DELETION MECHANICS & SCOPE ==================== -->
     <section class="slide" data-category="Scaling Group &amp; Capacity Design">
       <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
