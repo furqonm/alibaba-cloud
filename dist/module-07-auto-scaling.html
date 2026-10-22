@@ -40,7 +40,7 @@
         </select>
       </div>
       <div class="nav-buttons">
-        <span class="slide-counter" id="slideCounter">1/45</span>
+        <span class="slide-counter" id="slideCounter">1/47</span>
         <button class="btn-nav" id="prevBtn" title="Previous Slide (Left Arrow)">
           <span>⬅️</span> Previous
         </button>
@@ -60,8 +60,7 @@
     <!-- ==================== SLIDE 1: CLEAN TITLE ==================== -->
     <section class="slide active title-slide" data-category="Course Intro">
       <h1>Module 07: Auto Scaling (ESS)</h1>
-    </section>
-
+    </section>
     <!-- ==================== SLIDE 2: AGENDA LIST ==================== -->
     <section class="slide" data-category="Outline">
       <div class="slide-category">Module Structure</div>
@@ -76,9 +75,63 @@
         <li class="agenda-item">Lifecycle Hooks &amp; Event Notifications</li>
         <li class="agenda-item">Cloud-Native Scaling &amp; Cost Optimization</li>
       </ol>
-    </section>
+    </section>
+    <!-- ==================== SLIDE 3: PAIN POINT: HANDLING CHANGES IN DEMAND ==================== -->
+    <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
+      <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
+      <h2>Pain Point: Handling Changes in Demand</h2>
+      <p style="font-size: calc(1.05rem + var(--font-delta)); color: var(--text-secondary); margin: 0.25rem 0 1rem 0; font-weight: 500;">How can we scale services automatically to match demand?</p>
+      
+      <div class="grid-2">
+        <div class="content-card" style="align-items: center; text-align: center; padding: 1.25rem;">
+          <div style="display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 1rem;">
+            <img src="assets/images/auto-scaling-video-streaming.png" alt="Video streaming" style="max-height: 340px; width: auto; max-width: 100%; object-fit: contain; border-radius: 12px;">
+          </div>
+          <h3 style="font-size: calc(1.2rem + var(--font-delta)); font-weight: 700; color: var(--text-main); margin-bottom: 0.25rem; justify-content: center;">Video streaming</h3>
+          <p style="font-size: calc(0.95rem + var(--font-delta)); color: var(--text-muted); margin: 0;">(unpredictable traffic)</p>
+        </div>
 
-    <!-- ==================== SLIDE 3: SERVICE INTRODUCTION ==================== -->
+        <div class="content-card" style="align-items: center; text-align: center; padding: 1.25rem;">
+          <div style="display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 1rem;">
+            <img src="assets/images/auto-scaling-gaming.png" alt="Gaming" style="max-height: 340px; width: auto; max-width: 100%; object-fit: contain; border-radius: 12px;">
+          </div>
+          <h3 style="font-size: calc(1.2rem + var(--font-delta)); font-weight: 700; color: var(--text-main); margin-bottom: 0.25rem; justify-content: center;">Gaming</h3>
+          <p style="font-size: calc(0.95rem + var(--font-delta)); color: var(--text-muted); margin: 0;">(regular peak hours every day)</p>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 4: BENEFITS OF AUTO SCALING ==================== -->
+    <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
+      <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
+      <h2>Benefits of Auto Scaling</h2>
+      
+      <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1rem;">
+        <div class="content-card highlight-blue" style="display: grid; grid-template-columns: 1fr 1.3fr; gap: 2rem; align-items: center; padding: 1.5rem 2rem;">
+          <div style="display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+            <img src="assets/images/auto-scaling-benefit-ondemand.png" alt="On demand" style="max-height: 140px; width: auto; max-width: 100%; object-fit: contain;">
+          </div>
+          <div>
+            <h3 style="font-size: calc(1.25rem + var(--font-delta)); font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem;">On demand</h3>
+            <p style="font-size: calc(1rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.6; margin: 0;">
+              Adjust resources to fit the demand curve in real time. You do not have to worry about your compute capacity when demand surges occur.
+            </p>
+          </div>
+        </div>
+
+        <div class="content-card highlight-green" style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 2rem; align-items: center; padding: 1.5rem 2rem;">
+          <div>
+            <h3 style="font-size: calc(1.25rem + var(--font-delta)); font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem;">Automated</h3>
+            <p style="font-size: calc(1rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.6; margin: 0;">
+              Automatically create and release ECS instances based on policies you specify. Configure SLB and RDS whitelists with no manual operation.
+            </p>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+            <img src="assets/images/auto-scaling-benefit-automated.png" alt="Automated" style="max-height: 140px; width: auto; max-width: 100%; object-fit: contain;">
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 5: SERVICE INTRODUCTION ==================== -->
     <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
       <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
       <h2>Auto Scaling (Elastic Scaling Service - ESS)</h2>
@@ -119,9 +172,8 @@
           <p>Automatically registers instances with SLB backend groups and manages private IP whitelists on RDS databases.</p>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 4: THE ELASTICITY IMPERATIVE ==================== -->
+    </section>
+    <!-- ==================== SLIDE 6: THE ELASTICITY IMPERATIVE ==================== -->
     <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
       <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
       <h2>The Elasticity Imperative</h2>
@@ -147,9 +199,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 5: ELASTIC SCALE-OUT MECHANICS ==================== -->
+    </section>
+    <!-- ==================== SLIDE 7: ELASTIC SCALE-OUT MECHANICS ==================== -->
     <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
       <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
       <h2>Elastic Scale-Out</h2>
@@ -172,9 +223,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 6: ELASTIC SCALE-IN MECHANICS ==================== -->
+    </section>
+    <!-- ==================== SLIDE 8: ELASTIC SCALE-IN MECHANICS ==================== -->
     <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
       <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
       <h2>Elastic Scale-In</h2>
@@ -197,9 +247,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 7: ELASTIC SELF-HEALING ARCHITECTURE ==================== -->
+    </section>
+    <!-- ==================== SLIDE 9: ELASTIC SELF-HEALING ARCHITECTURE ==================== -->
     <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
       <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
       <h2>Elastic Self-Healing</h2>
@@ -222,9 +271,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 8: ARCHITECTURAL ECOSYSTEM OVERVIEW ==================== -->
+    </section>
+    <!-- ==================== SLIDE 10: ARCHITECTURAL ECOSYSTEM OVERVIEW ==================== -->
     <section class="slide" data-category="Auto Scaling Concept &amp; Architecture">
       <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
       <h2>Auto Scaling Architecture Ecosystem</h2>
@@ -249,9 +297,8 @@
           <p>Automates provisioning across multi-AZ ECS/ECI, attaches backends to SLB/ALB, and syncs private IP whitelists on RDS databases.</p>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 9: SCALING GROUP FUNDAMENTALS ==================== -->
+    </section>
+    <!-- ==================== SLIDE 11: SCALING GROUP FUNDAMENTALS ==================== -->
     <section class="slide" data-category="Scaling Group &amp; Capacity Design">
       <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
       <h2>Scaling Group Fundamentals</h2>
@@ -282,9 +329,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 10: MULTI-ZONE VSWITCH ARCHITECTURE ==================== -->
+    </section>
+    <!-- ==================== SLIDE 12: MULTI-ZONE VSWITCH ARCHITECTURE ==================== -->
     <section class="slide" data-category="Scaling Group &amp; Capacity Design">
       <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
       <h2>Multi-Zone vSwitch Architecture</h2>
@@ -306,9 +352,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 11: SCALING GROUP LIFECYCLE STATES ==================== -->
+    </section>
+    <!-- ==================== SLIDE 13: SCALING GROUP LIFECYCLE STATES ==================== -->
     <section class="slide" data-category="Scaling Group &amp; Capacity Design">
       <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
       <h2>Scaling Group Lifecycle States</h2>
@@ -351,9 +396,8 @@
       <div class="content-card highlight-blue" style="margin-top: 0.75rem;">
         <p><strong>State Transition Constraint:</strong> A Scaling Group can only transition to <code>Inactive</code> when no Scaling Activity is currently in progress. Administrative updates (modifying Min/Max size, attaching SLB) can be performed in either Active or Inactive state.</p>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 12: CREATION & IMMUTABLE ATTRIBUTES ==================== -->
+    </section>
+    <!-- ==================== SLIDE 14: CREATION & IMMUTABLE ATTRIBUTES ==================== -->
     <section class="slide" data-category="Scaling Group &amp; Capacity Design">
       <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
       <h2>Creation &amp; Immutable Attributes</h2>
@@ -394,9 +438,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 13: ENABLE, DISABLE & REBALANCING ==================== -->
+    </section>
+    <!-- ==================== SLIDE 15: ENABLE, DISABLE & REBALANCING ==================== -->
     <section class="slide" data-category="Scaling Group &amp; Capacity Design">
       <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
       <h2>Enable, Disable &amp; Capacity Rebalancing</h2>
@@ -426,9 +469,8 @@
       <div class="content-card highlight" style="margin-top: 0.75rem;">
         <p><strong>Capacity Rebalancing Rule:</strong> When modifying MinSize or MaxSize on an active group, Auto Scaling automatically evaluates total capacity. If current capacity &lt; new MinSize, instances are automatically added. If current capacity &gt; new MaxSize, instances are automatically removed until the boundary is reached.</p>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 14: REMOVAL POLICIES & RECLAIM MODES ==================== -->
+    </section>
+    <!-- ==================== SLIDE 16: REMOVAL POLICIES & RECLAIM MODES ==================== -->
     <section class="slide" data-category="Scaling Group &amp; Capacity Design">
       <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
       <h2>Removal Policies &amp; Reclaim Modes</h2>
@@ -454,9 +496,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 15: DELETION MECHANICS & SCOPE ==================== -->
+    </section>
+    <!-- ==================== SLIDE 17: DELETION MECHANICS & SCOPE ==================== -->
     <section class="slide" data-category="Scaling Group &amp; Capacity Design">
       <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
       <h2>Deletion Mechanics &amp; Scope</h2>
@@ -495,9 +536,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 16: SCALING CONFIGURATION FUNDAMENTALS ==================== -->
+    </section>
+    <!-- ==================== SLIDE 18: SCALING CONFIGURATION FUNDAMENTALS ==================== -->
     <section class="slide" data-category="Scaling Configuration &amp; Templates">
       <div class="slide-category">Section 3: Scaling Configuration &amp; Templates</div>
       <h2>Scaling Configuration Fundamentals</h2>
@@ -524,9 +564,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 17: CONFIGURATION LIFECYCLE & MANAGEMENT ==================== -->
+    </section>
+    <!-- ==================== SLIDE 19: CONFIGURATION LIFECYCLE & MANAGEMENT ==================== -->
     <section class="slide" data-category="Scaling Configuration &amp; Templates">
       <div class="slide-category">Section 3: Scaling Configuration &amp; Templates</div>
       <h2>Configuration Lifecycle &amp; Management</h2>
@@ -565,9 +604,8 @@
       <div class="content-card highlight-blue" style="margin-top: 0.75rem;">
         <p><strong>Immutable Modification Principle:</strong> Once created, individual attributes of a Scaling Configuration cannot be edited in place. To update instance specs or image IDs, administrators create a new Scaling Configuration and set it as Active.</p>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 18: MULTI-FAMILY SPECIFICATIONS & SPOT POOLING ==================== -->
+    </section>
+    <!-- ==================== SLIDE 20: MULTI-FAMILY SPECIFICATIONS & SPOT POOLING ==================== -->
     <section class="slide" data-category="Scaling Configuration &amp; Templates">
       <div class="slide-category">Section 3: Scaling Configuration &amp; Templates</div>
       <h2>Multi-Family Specifications &amp; Spot Pooling</h2>
@@ -593,9 +631,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 19: ECS LAUNCH TEMPLATES INTEGRATION ==================== -->
+    </section>
+    <!-- ==================== SLIDE 21: ECS LAUNCH TEMPLATES INTEGRATION ==================== -->
     <section class="slide" data-category="Scaling Configuration &amp; Templates">
       <div class="slide-category">Section 3: Scaling Configuration &amp; Templates</div>
       <h2>ECS Launch Templates Integration</h2>
@@ -621,9 +658,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 20: SCALING RULES FUNDAMENTALS ==================== -->
+    </section>
+    <!-- ==================== SLIDE 22: SCALING RULES FUNDAMENTALS ==================== -->
     <section class="slide" data-category="Scaling Rules &amp; Capacity Bounds">
       <div class="slide-category">Section 4: Scaling Rules &amp; Capacity Bounds</div>
       <h2>Scaling Rules Fundamentals</h2>
@@ -654,9 +690,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 21: STRICT BOUNDARY CLAMPING ==================== -->
+    </section>
+    <!-- ==================== SLIDE 23: STRICT BOUNDARY CLAMPING ==================== -->
     <section class="slide" data-category="Scaling Rules &amp; Capacity Bounds">
       <div class="slide-category">Section 4: Scaling Rules &amp; Capacity Bounds</div>
       <h2>Strict Boundary Clamping</h2>
@@ -684,9 +719,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 22: TARGET TRACKING SCALING ==================== -->
+    </section>
+    <!-- ==================== SLIDE 24: TARGET TRACKING SCALING ==================== -->
     <section class="slide" data-category="Scaling Rules &amp; Capacity Bounds">
       <div class="slide-category">Section 4: Scaling Rules &amp; Capacity Bounds</div>
       <h2>Target Tracking Scaling</h2>
@@ -714,9 +748,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 23: STEP SCALING RULES ==================== -->
+    </section>
+    <!-- ==================== SLIDE 25: STEP SCALING RULES ==================== -->
     <section class="slide" data-category="Scaling Rules &amp; Capacity Bounds">
       <div class="slide-category">Section 4: Scaling Rules &amp; Capacity Bounds</div>
       <h2>Step Scaling Rules</h2>
@@ -743,9 +776,8 @@
           <p><strong>Warm-Up Optimization:</strong> Instances launched via step scaling observe an instance warm-up timer before their metrics are included in cluster averages.</p>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 24: TRIGGER ARCHITECTURE OVERVIEW ==================== -->
+    </section>
+    <!-- ==================== SLIDE 26: TRIGGER ARCHITECTURE OVERVIEW ==================== -->
     <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
       <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
       <h2>Auto Scaling Operational Usage Workflow</h2>
@@ -765,9 +797,8 @@
           <li><strong>Create Alarm Tasks:</strong> Configure CloudMonitor rules to dynamically scale based on real-time metrics (e.g. CPU &ge; 80%).</li>
         </ol>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 25: DIRECT EXECUTION & MANUAL OPERATIONS ==================== -->
+    </section>
+    <!-- ==================== SLIDE 27: DIRECT EXECUTION & MANUAL OPERATIONS ==================== -->
     <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
       <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
       <h2>Direct Execution &amp; Manual Operations</h2>
@@ -793,9 +824,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 26: SCHEDULED TASKS & RECURRING CRON ==================== -->
+    </section>
+    <!-- ==================== SLIDE 28: SCHEDULED TASKS & RECURRING CRON ==================== -->
     <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
       <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
       <h2>Scheduled Tasks &amp; Recurring Cron</h2>
@@ -823,9 +853,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 27: SCHEDULED TASK CONCURRENCY RESOLUTION ==================== -->
+    </section>
+    <!-- ==================== SLIDE 29: SCHEDULED TASK CONCURRENCY RESOLUTION ==================== -->
     <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
       <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
       <h2>Scheduled Task Concurrency Resolution</h2>
@@ -850,9 +879,8 @@
           </ol>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 28: CLOUDMONITOR METRIC ALARM TASKS ==================== -->
+    </section>
+    <!-- ==================== SLIDE 30: CLOUDMONITOR METRIC ALARM TASKS ==================== -->
     <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
       <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
       <h2>CloudMonitor Metric Alarm Tasks</h2>
@@ -881,9 +909,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 29: COOL-DOWN PERIOD ARCHITECTURE ==================== -->
+    </section>
+    <!-- ==================== SLIDE 31: COOL-DOWN PERIOD ARCHITECTURE ==================== -->
     <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
       <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
       <h2>Cool-Down Period Architecture</h2>
@@ -909,9 +936,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 30: ACTIVITY ATOMICITY & ROLLBACK INTEGRITY ==================== -->
+    </section>
+    <!-- ==================== SLIDE 32: ACTIVITY ATOMICITY & ROLLBACK INTEGRITY ==================== -->
     <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
       <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
       <h2>Scaling Activity Atomicity &amp; Rollback Integrity</h2>
@@ -936,9 +962,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 31: LIFECYCLE HOOKS ARCHITECTURE ==================== -->
+    </section>
+    <!-- ==================== SLIDE 33: LIFECYCLE HOOKS ARCHITECTURE ==================== -->
     <section class="slide" data-category="Lifecycle Hooks &amp; Event Notifications">
       <div class="slide-category">Section 6: Lifecycle Hooks &amp; Event Notifications</div>
       <h2>Lifecycle Hooks Architecture</h2>
@@ -968,9 +993,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 32: HOOK EXECUTION FLOW & HEARTBEATS ==================== -->
+    </section>
+    <!-- ==================== SLIDE 34: HOOK EXECUTION FLOW & HEARTBEATS ==================== -->
     <section class="slide" data-category="Lifecycle Hooks &amp; Event Notifications">
       <div class="slide-category">Section 6: Lifecycle Hooks &amp; Event Notifications</div>
       <h2>Lifecycle Hook Pipeline &amp; Heartbeats</h2>
@@ -995,9 +1019,8 @@
           <p><code>CONTINUE</code> proceeds to IN_SERVICE or termination. <code>ABANDON</code> aborts scale-out, releasing the instance cleanly.</p>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 33: GRACEFUL SCALE-IN EVACUATION ==================== -->
+    </section>
+    <!-- ==================== SLIDE 35: GRACEFUL SCALE-IN EVACUATION ==================== -->
     <section class="slide" data-category="Lifecycle Hooks &amp; Event Notifications">
       <div class="slide-category">Section 6: Lifecycle Hooks &amp; Event Notifications</div>
       <h2>Graceful Scale-In Evacuation</h2>
@@ -1023,9 +1046,8 @@
           </ol>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 34: EVENT NOTIFICATIONS VIA MNS & CLOUDMONITOR ==================== -->
+    </section>
+    <!-- ==================== SLIDE 36: EVENT NOTIFICATIONS VIA MNS & CLOUDMONITOR ==================== -->
     <section class="slide" data-category="Lifecycle Hooks &amp; Event Notifications">
       <div class="slide-category">Section 6: Lifecycle Hooks &amp; Event Notifications</div>
       <h2>Event Notifications via MNS &amp; CloudMonitor</h2>
@@ -1056,9 +1078,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 35: SERVERLESS CONTAINER BURSTS WITH ECI ==================== -->
+    </section>
+    <!-- ==================== SLIDE 37: SERVERLESS CONTAINER BURSTS WITH ECI ==================== -->
     <section class="slide" data-category="Cloud-Native Scaling &amp; Cost Optimization">
       <div class="slide-category">Section 7: Cloud-Native Scaling &amp; Cost Optimization</div>
       <h2>Serverless Container Bursts with ECI</h2>
@@ -1078,9 +1099,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 36: PREDICTIVE SCALING & AI FORECASTING ==================== -->
+    </section>
+    <!-- ==================== SLIDE 38: PREDICTIVE SCALING & AI FORECASTING ==================== -->
     <section class="slide" data-category="Cloud-Native Scaling &amp; Cost Optimization">
       <div class="slide-category">Section 7: Cloud-Native Scaling &amp; Cost Optimization</div>
       <h2>Predictive Scaling &amp; AI Forecasting</h2>
@@ -1105,9 +1125,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 37: ZERO-TOUCH SECURITY & WHITELISTING ==================== -->
+    </section>
+    <!-- ==================== SLIDE 39: ZERO-TOUCH SECURITY & WHITELISTING ==================== -->
     <section class="slide" data-category="Cloud-Native Scaling &amp; Cost Optimization">
       <div class="slide-category">Section 7: Cloud-Native Scaling &amp; Cost Optimization</div>
       <h2>Zero-Touch Security &amp; Whitelisting</h2>
@@ -1133,9 +1152,8 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 38: PRICING & COST EFFICIENCY ==================== -->
+    </section>
+    <!-- ==================== SLIDE 40: PRICING & COST EFFICIENCY ==================== -->
     <section class="slide" data-category="Cloud-Native Scaling &amp; Cost Optimization">
       <div class="slide-category">Section 7: Cloud-Native Scaling &amp; Cost Optimization</div>
       <h2>Auto Scaling Pricing &amp; Cost Optimization</h2>
@@ -1160,9 +1178,8 @@
           </ol>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 39: SCENARIO 1 QUESTION ==================== -->
+    </section>
+    <!-- ==================== SLIDE 41: SCENARIO 1 QUESTION ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 1</div>
       <h2>Practice Scenario 1: E-Commerce Flash Sale Architecture</h2>
@@ -1179,9 +1196,8 @@
           <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Deploy an Auto Scaling group with a single large instance configuration and rely exclusively on vertical instance specification upgrades during peak traffic events.</span></li>
         </ul>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 40: SCENARIO 1 SOLUTION ==================== -->
+    </section>
+    <!-- ==================== SLIDE 42: SCENARIO 1 SOLUTION ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 1</div>
       <h2>Scenario 1: Solution &amp; Architectural Analysis</h2>
@@ -1219,9 +1235,8 @@
           <div class="analysis-item-body">Auto Scaling scales horizontally by adding/removing instances rather than upgrading instance specifications vertically in place; vertical resizing incurs downtime and cannot scale dynamically across multiple zones.</div>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 41: SCENARIO 2 QUESTION ==================== -->
+    </section>
+    <!-- ==================== SLIDE 43: SCENARIO 2 QUESTION ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 2</div>
       <h2>Practice Scenario 2: Batch Processing with Spot Diversification</h2>
@@ -1238,9 +1253,8 @@
           <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Use a static Pay-As-You-Go ECS cluster and write custom external cron scripts to delete VMs whenever hourly spot prices fluctuate.</span></li>
         </ul>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 42: SCENARIO 2 SOLUTION ==================== -->
+    </section>
+    <!-- ==================== SLIDE 44: SCENARIO 2 SOLUTION ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 2</div>
       <h2>Scenario 2: Solution &amp; Architectural Analysis</h2>
@@ -1278,9 +1292,8 @@
           <div class="analysis-item-body">Custom external cron scripts managing raw Pay-As-You-Go instances require complex manual maintenance and do not benefit from native Auto Scaling health recovery or spot capacity bidding.</div>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 43: SCENARIO 3 QUESTION ==================== -->
+    </section>
+    <!-- ==================== SLIDE 45: SCENARIO 3 QUESTION ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 3</div>
       <h2>Practice Scenario 3: Zero-Downtime State Evacuation with Hooks</h2>
@@ -1297,9 +1310,8 @@
           <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Configure CloudMonitor to send an SMS alert to system administrators whenever a scale-in activity begins so they can manually stop the application service.</span></li>
         </ul>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 44: SCENARIO 3 SOLUTION ==================== -->
+    </section>
+    <!-- ==================== SLIDE 46: SCENARIO 3 SOLUTION ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 3</div>
       <h2>Scenario 3: Solution &amp; Architectural Analysis</h2>
@@ -1337,9 +1349,8 @@
           <div class="analysis-item-body">SMS alerts are asynchronous notifications and cannot pause or intercept the automated scale-in activity, meaning instances would terminate long before human operators could respond.</div>
         </div>
       </div>
-    </section>
-
-    <!-- ==================== SLIDE 45: MODULE COMPLETE ==================== -->
+    </section>
+    <!-- ==================== SLIDE 47: MODULE COMPLETE ==================== -->
     <section class="slide title-slide" data-category="Summary">
       <div class="slide-category">Module Complete</div>
       <h1 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Module 07: Auto Scaling (ESS)</h1>
@@ -1354,5 +1365,4 @@
 
   <script src="assets/js/presentation.js"></script>
 </body>
-</html>
-
+</html>
