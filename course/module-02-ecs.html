@@ -29,7 +29,7 @@
         </select>
       </div>
       <div class="nav-buttons">
-        <span class="slide-counter" id="slideCounter">1/52</span>
+        <span class="slide-counter" id="slideCounter">1/51</span>
         <button class="btn-nav" id="prevBtn" title="Previous Slide (Left Arrow)">
           <span>⬅️</span> Previous
         </button>
@@ -1654,69 +1654,9 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 45: ECS RESOURCE SCOPING ARCHITECTURAL BOUNDARIES ==================== -->
-    <section class="slide" data-category="Summary">
-      <div class="slide-category">Cloud Architect Recap</div>
-      <h2>ECS Resource Scoping & Architectural Boundaries</h2>
-      
-      <div class="table-wrapper">
-        <table class="slide-table">
-          <thead>
-            <tr>
-              <th>Resource Type</th>
-              <th>Architectural Scope</th>
-              <th>Cross-Boundary Mobility Rules</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>ECS Instance</strong></td>
-              <td><strong>Zone-Specific</strong></td>
-              <td>Deployed inside a specific VSwitch in one Zone. Auto-failover operates within the same zone only.</td>
-            </tr>
-            <tr>
-              <td><strong>Cloud Disk (ESSD / AutoPL)</strong></td>
-              <td><strong>Zone-Specific</strong></td>
-              <td>Can only be mounted to ECS instances in the <strong>same Zone</strong>. (Replicated across racks via Pangu).</td>
-            </tr>
-            <tr>
-              <td><strong>VSwitch (Subnet)</strong></td>
-              <td><strong>Zone-Specific</strong></td>
-              <td>A VSwitch belongs to exactly one Availability Zone within the parent VPC.</td>
-            </tr>
-            <tr>
-              <td><strong>VPC (Virtual Private Cloud)</strong></td>
-              <td><strong>Regional</strong></td>
-              <td>Encompasses all Availability Zones in that Region. VSwitches communicate privately across zones.</td>
-            </tr>
-            <tr>
-              <td><strong>Security Group</strong></td>
-              <td><strong>Regional</strong></td>
-              <td>Secures instances across multiple Availability Zones within the same parent VPC.</td>
-            </tr>
-            <tr>
-              <td><strong>Disk Snapshot & Custom Image</strong></td>
-              <td><strong>Regional</strong></td>
-              <td>Visible across all Zones in the region. Can create new instances or disks in any Zone of that Region.</td>
-            </tr>
-            <tr>
-              <td><strong>Elastic IP (EIP)</strong></td>
-              <td><strong>Regional</strong></td>
-              <td>Can be bound to any ECS instance or ENI in any Zone within that Region.</td>
-            </tr>
-            <tr>
-              <td><strong>Server Load Balancer (SLB/ALB)</strong></td>
-              <td><strong>Regional / Multi-Zone</strong></td>
-              <td>Listens across zones and distributes traffic to ECS instances across multiple Availability Zones.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ==================== SLIDE 46: PRACTICE SCENARIO 1: CROSS-ZONE DISASTER RECOVERY ==================== -->
+    <!-- ==================== SLIDE 45: PRACTICE SCENARIO 1: CROSS-ZONE DISASTER RECOVERY ==================== -->
     <section class="slide" data-category="Practice Quiz">
-      <div class="slide-category">Interactive Quiz • Scenario 1</div>
+      <div class="slide-category">Interactive Quiz ? Scenario 1</div>
       <h2>Practice Scenario 1: Cross-Zone Disaster Recovery</h2>
       
       <div class="quiz-single-card">
@@ -1745,9 +1685,9 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 47: SCENARIO 1: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
+    <!-- ==================== SLIDE 46: SCENARIO 1: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
     <section class="slide" data-category="Practice Quiz">
-      <div class="slide-category">Quiz Solution • Scenario 1</div>
+      <div class="slide-category">Quiz Solution ? Scenario 1</div>
       <h2>Scenario 1: Solution & Architectural Analysis</h2>
       
       <div class="analysis-main-card">
@@ -1761,7 +1701,7 @@ systemctl enable --now nginx</pre>
       <div class="analysis-options-grid">
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect">
-            <span>✖ Option A is Incorrect</span>
+            <span>? Option A is Incorrect</span>
           </div>
           <div class="analysis-item-body">
             <strong>Cloud disks cannot cross zones.</strong> An ESSD disk provisioned in Zone A is physically attached to storage clusters in Zone A and cannot be mounted directly to an ECS instance in Zone B.
@@ -1770,7 +1710,7 @@ systemctl enable --now nginx</pre>
 
         <div class="analysis-item correct">
           <div class="analysis-item-header correct">
-            <span>✔ Option B is Correct</span>
+            <span>? Option B is Correct</span>
           </div>
           <div class="analysis-item-body">
             <strong>Snapshots are regional resources.</strong> Although cloud disks are physically restricted to a single Availability Zone, their snapshots are stored in OSS and accessible across the entire region. You can instantly create a brand-new cloud disk in Zone B using a snapshot taken in Zone A.
@@ -1779,7 +1719,7 @@ systemctl enable --now nginx</pre>
 
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect">
-            <span>✖ Option C is Incorrect</span>
+            <span>? Option C is Incorrect</span>
           </div>
           <div class="analysis-item-body">
             <strong>NC failover is strictly intra-zone.</strong> Automatic Node Controller (NC) failover and hardware migrations only operate between physical hosts within the exact same Availability Zone.
@@ -1788,7 +1728,7 @@ systemctl enable --now nginx</pre>
 
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect">
-            <span>✖ Option D is Incorrect</span>
+            <span>? Option D is Incorrect</span>
           </div>
           <div class="analysis-item-body">
             <strong>VSwitches are strictly zone-bound.</strong> A VSwitch cannot span across multiple Availability Zones; each VSwitch belongs to exactly one Availability Zone within the VPC.
@@ -1797,9 +1737,9 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 48: PRACTICE SCENARIO 2: FLASH SALE IO HANDLING ==================== -->
+    <!-- ==================== SLIDE 47: PRACTICE SCENARIO 2: FLASH SALE IO HANDLING ==================== -->
     <section class="slide" data-category="Practice Quiz">
-      <div class="slide-category">Interactive Quiz • Scenario 2</div>
+      <div class="slide-category">Interactive Quiz ? Scenario 2</div>
       <h2>Practice Scenario 2: Flash Sale I/O Handling</h2>
       
       <div class="quiz-single-card">
@@ -1828,9 +1768,9 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 49: SCENARIO 2: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
+    <!-- ==================== SLIDE 48: SCENARIO 2: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
     <section class="slide" data-category="Practice Quiz">
-      <div class="slide-category">Quiz Solution • Scenario 2</div>
+      <div class="slide-category">Quiz Solution ? Scenario 2</div>
       <h2>Scenario 2: Solution & Architectural Analysis</h2>
       
       <div class="analysis-main-card">
@@ -1844,7 +1784,7 @@ systemctl enable --now nginx</pre>
       <div class="analysis-options-grid">
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect">
-            <span>✖ Option A is Incorrect</span>
+            <span>? Option A is Incorrect</span>
           </div>
           <div class="analysis-item-body">
             <strong>Excessive cost overhead.</strong> Sizing a massive 32 TB Standard ESSD PL3 disk 24/7 just to obtain high IOPS for a 1-hour weekly spike generates massive unused storage costs throughout the rest of the week.
@@ -1853,7 +1793,7 @@ systemctl enable --now nginx</pre>
 
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect">
-            <span>✖ Option B is Incorrect</span>
+            <span>? Option B is Incorrect</span>
           </div>
           <div class="analysis-item-body">
             <strong>Operational hazard & IOPS bottleneck.</strong> Ultra Disks are capped at 5,000 IOPS per disk. Combining them in software RAID 0 increases maintenance complexity, point-of-failure risks, and still struggles to deliver 80,000 IOPS reliably.
@@ -1862,7 +1802,7 @@ systemctl enable --now nginx</pre>
 
         <div class="analysis-item correct">
           <div class="analysis-item-header correct">
-            <span>✔ Option C is Correct</span>
+            <span>? Option C is Correct</span>
           </div>
           <div class="analysis-item-body">
             <strong>Decoupled capacity and performance.</strong> ESSD AutoPL allows sizing the disk at 200 GB for daily low baseline costs, while automatically bursting up to 1,000,000 IOPS during traffic surges without disk resizing or service downtime.
@@ -1871,7 +1811,7 @@ systemctl enable --now nginx</pre>
 
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect">
-            <span>✖ Option D is Incorrect</span>
+            <span>? Option D is Incorrect</span>
           </div>
           <div class="analysis-item-body">
             <strong>Deprecated disk category.</strong> Legacy Standard SSD is phased out for modern instance generations, and expanding cloud disk size cannot be dynamically shrunk back down after the flash sale concludes.
@@ -1880,46 +1820,46 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 50: PRACTICE SCENARIO 3: HIGH-DENSITY MICRO-SEGMENTATION ==================== -->
+    <!-- ==================== SLIDE 49: PRACTICE SCENARIO 3: ZERO-TRUST REMOTE ADMINISTRATION ==================== -->
     <section class="slide" data-category="Practice Quiz">
-      <div class="slide-category">Interactive Quiz • Scenario 3</div>
-      <h2>Practice Scenario 3: High-Density Micro-segmentation</h2>
+      <div class="slide-category">Interactive Quiz ? Scenario 3</div>
+      <h2>Practice Scenario 3: Zero-Trust Remote Administration</h2>
       
       <div class="quiz-single-card">
         <div class="quiz-single-question">
           <span class="quiz-number">Question 3</span>
-          <span>A cloud architect is designing a high-density Kubernetes cluster on Alibaba Cloud (ACK) deploying over 15,000 microservice pods across hundreds of ECS worker nodes in a single VPC. Company cybersecurity policy mandates strict micro-segmentation where compute instances and pods cannot communicate with each other over the internal network by default unless explicitly whitelisted. Which security group design meets these requirements?</span>
+          <span>A financial enterprise runs private Linux ECS instances inside a VPC with no Public IP or Elastic IP (EIP) addresses attached. Corporate security policy strictly prohibits opening inbound SSH (Port 22) or RDP (Port 3389) in any Security Group, prohibits deploying external bastion hosts, and requires every interactive terminal keystroke and command output to be archived to OSS and audited in ActionTrail. Which native ECS access method fulfills all requirements?</span>
         </div>
         <ul class="quiz-single-options">
           <li class="quiz-single-option">
             <span class="quiz-single-letter">A</span>
-            <span>Use a single Basic Security Group and configure security group authorization rules pointing to itself.</span>
+            <span>Connect via a standard SSH client after binding a temporary Elastic IP and opening inbound Port 22 at Priority 100.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">B</span>
-            <span>Associate each worker node with one Basic Security Group and one Advanced Security Group simultaneously.</span>
+            <span>Use the VNC Management Terminal for daily multi-user command auditing and automatic OSS keystroke streaming.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">C</span>
-            <span>Deploy multiple Basic Security Groups with intra-group interconnectivity enabled to bypass private IP limits.</span>
+            <span>Migrate the ECS instances from VPC to Basic Network so administrators can connect without Security Group rules.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">D</span>
-            <span>Deploy Advanced (Enterprise) Security Groups supporting up to 65,536 private IPs with default intra-group network isolation.</span>
+            <span>Use Session Manager (built on Cloud Assistant) to establish interactive shell sessions over outbound HTTPS with RAM authorization and OSS/ActionTrail auditing.</span>
           </li>
         </ul>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 51: SCENARIO 3: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
+    <!-- ==================== SLIDE 50: SCENARIO 3: SOLUTION ARCHITECTURAL ANALYSIS ==================== -->
     <section class="slide" data-category="Practice Quiz">
-      <div class="slide-category">Quiz Solution • Scenario 3</div>
+      <div class="slide-category">Quiz Solution ? Scenario 3</div>
       <h2>Scenario 3: Solution & Architectural Analysis</h2>
       
       <div class="analysis-main-card">
         <div>
           <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: D</span>
-          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Advanced (Enterprise) Security Groups with default internal isolation.</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Session Manager (built on Cloud Assistant) with outbound agent channels and OSS/ActionTrail audit archival.</span>
         </div>
         <span class="badge badge-updated">Validated Architecture</span>
       </div>
@@ -1927,43 +1867,43 @@ systemctl enable --now nginx</pre>
       <div class="analysis-options-grid">
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect">
-            <span>✖ Option A is Incorrect</span>
+            <span>? Option A is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            <strong>IP capacity ceiling exceeded.</strong> Basic Security Groups support a maximum of 6,000 private IPs per VPC, making them physically unable to support a 15,000-pod cluster.
+            <strong>Violates network and security constraints.</strong> Standard SSH requires both public/routable IP reachability and opening inbound TCP Port 22 in the Security Group, which corporate policy explicitly forbids.
           </div>
         </div>
 
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect">
-            <span>✖ Option B is Incorrect</span>
+            <span>? Option B is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            <strong>Type consistency violation.</strong> Alibaba Cloud strictly prohibits mixing Basic and Advanced Security Groups on the same ECS instance or Elastic Network Interface (ENI). All associated groups must be of the same type.
+            <strong>Designed for emergency out-of-band recovery.</strong> VNC Management Terminal provides hypervisor-level video display for boot/BIOS/crash recovery rather than audited daily CLI session streaming to OSS.
           </div>
         </div>
 
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect">
-            <span>✖ Option C is Incorrect</span>
+            <span>? Option C is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            <strong>Security policy violation.</strong> Enabling intra-group interconnectivity allows all instances and pods within the group to communicate freely, directly violating the company's zero-trust micro-segmentation mandate.
+            <strong>Legacy architecture &amp; security violation.</strong> Basic Network is a deprecated legacy flat network model lacking hardware-isolated VPC routing, and still requires inbound ports and public IPs for direct SSH.
           </div>
         </div>
 
         <div class="analysis-item correct">
           <div class="analysis-item-header correct">
-            <span>✔ Option D is Correct</span>
+            <span>? Option D is Correct</span>
           </div>
           <div class="analysis-item-body">
-            <strong>Enterprise scale & strict default isolation.</strong> Advanced (Enterprise) Security Groups support up to <strong>65,536 private IP addresses per VPC</strong> and enforce <strong>internal isolation by default</strong>, fulfilling both the 15,000 pod capacity and micro-segmentation requirements.
+            <strong>Portless, IP-less, and fully audited.</strong> Session Manager runs on top of Cloud Assistant via outbound HTTPS (TCP 443) without requiring a Public IP, EIP, or open inbound ports 22/3389, while streaming all session keystrokes and outputs to <strong>OSS / SLS</strong> and <strong>ActionTrail</strong>.
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 52: MODULE 02: ELASTIC COMPUTE SERVICE (ECS) ==================== -->
+    <!-- ==================== SLIDE 51: MODULE 02: ELASTIC COMPUTE SERVICE (ECS) ==================== -->
     <section class="slide title-slide" data-category="Summary">
       <div class="slide-category">Module Complete</div>
       <h1 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Module 02: Elastic Compute Service (ECS)</h1>
@@ -1972,7 +1912,7 @@ systemctl enable --now nginx</pre>
           <span class="badge badge-updated">Up Next</span><br>
           <strong>Module 03: Virtual Private Cloud (VPC)</strong>
           <div style="margin-top: 0.75rem;">
-            <a href="module-03-vpc.html" class="btn-nav primary" style="display: inline-flex; align-items: center; text-decoration: none; padding: 0.45rem 1rem; font-size: 0.9rem;">Launch Module 03 ➡️</a>
+            <a href="module-03-vpc.html" class="btn-nav primary" style="display: inline-flex; align-items: center; text-decoration: none; padding: 0.45rem 1rem; font-size: 0.9rem;">Launch Module 03 ??</a>
           </div>
         </div>
       </div>
