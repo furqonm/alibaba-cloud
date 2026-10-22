@@ -29,7 +29,7 @@
         </select>
       </div>
       <div class="nav-buttons">
-        <span class="slide-counter" id="slideCounter">1/38</span>
+        <span class="slide-counter" id="slideCounter">1/37</span>
         <button class="btn-nav" id="prevBtn" title="Previous Slide (Left Arrow)">
           <span>⬅️</span> Previous
         </button>
@@ -1092,46 +1092,9 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 24: VPC CORE COMPONENTS ==================== -->
-    <section class="slide" data-category="Network Services">
-      <div class="slide-category">Section 5: Network Services</div>
-      <h2>VPC Core Architecture: VRouter, RouteTable &amp; VSwitch</h2>
-      
-      <div class="grid-2" style="align-items: center; gap: 1.5rem;">
-        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
-          <div class="content-card highlight-blue">
-            <h3>Core Architectural Building Blocks</h3>
-            <p style="font-size: calc(0.9rem + var(--font-delta)); margin: 0; line-height: 1.5;">
-              Every VPC consists of three fundamental components that control internal packet forwarding, subnet boundaries, and external connectivity.
-            </p>
-          </div>
+    
 
-          <div class="content-card">
-            <h3>Component Specifications</h3>
-            <ul class="feature-list">
-              <li><strong>VRouter (Virtual Router):</strong> The hub of the VPC that forwards traffic between VSwitches and external network gateways.</li>
-              <li><strong>RouteTable &amp; Custom Routes:</strong> Contains route entries directing internal IP CIDR traffic to VSwitches, CEN, or NAT Gateways.</li>
-              <li><strong>VSwitch (Virtual Switch):</strong> Zone-specific subnets. An ECS instance resides within exactly one VSwitch, which resides in exactly one Availability Zone.</li>
-              <li><strong>Security Groups:</strong> Distributed stateful virtual firewalls filtering ingress and egress traffic at the virtual NIC level.</li>
-            </ul>
-          </div>
-
-          <div class="content-card highlight-green">
-            <h3>High Availability Multi-Zone Design</h3>
-            <p style="font-size: calc(0.85rem + var(--font-delta)); color: var(--text-secondary); margin: 0;">
-              <strong>Architectural Principle:</strong> Deploying VSwitches across distinct Availability Zones (e.g., Zone A, Zone B, Zone C) enables active-active multi-zone application resilience with zero inter-subnet routing latency.
-            </p>
-          </div>
-        </div>
-
-        <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center;">
-          <img src="assets/images/overview-vpc-core-components.png" alt="VPC Core Components" style="max-height: 440px; width: 100%; object-fit: contain;">
-          <div class="diagram-caption">VPC Architecture: VRouter, VSwitch &amp; Route Table Topology</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== SLIDE 25: CLOUD ENTERPRISE NETWORK (CEN) ==================== -->
+    <!-- ==================== SLIDE 24: CLOUD ENTERPRISE NETWORK (CEN) ==================== -->
     <section class="slide" data-category="Network Services">
       <div class="slide-category">Section 5: Network Services</div>
       <h2>Alibaba Cloud – Cloud Enterprise Network (CEN)</h2>
@@ -1183,7 +1146,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 26: ELASTIC IP (EIP) ==================== -->
+    <!-- ==================== SLIDE 25: ELASTIC IP (EIP) ==================== -->
     <section class="slide" data-category="Network Services">
       <div class="slide-category">Section 5: Network Services</div>
       <h2>Alibaba Cloud – Elastic IP (EIP)</h2>
@@ -1255,7 +1218,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 27: NAT GATEWAY ==================== -->
+    <!-- ==================== SLIDE 26: NAT GATEWAY ==================== -->
     <section class="slide" data-category="Network Services">
       <div class="slide-category">Section 5: Network Services</div>
       <h2>Alibaba Cloud – NAT Gateway</h2>
@@ -1307,7 +1270,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 28: CONTENT DELIVERY NETWORK (CDN) ==================== -->
+    <!-- ==================== SLIDE 27: CONTENT DELIVERY NETWORK (CDN) ==================== -->
     <section class="slide" data-category="Network Services">
       <div class="slide-category">Section 5: Network Services</div>
       <h2>Alibaba Cloud – Content Delivery Network (CDN)</h2>
@@ -1359,7 +1322,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 29: SECURITY & GOVERNANCE OVERVIEW ==================== -->
+    <!-- ==================== SLIDE 28: SECURITY & GOVERNANCE OVERVIEW ==================== -->
     <section class="slide" data-category="Security, Identity &amp; Operations">
       <div class="slide-category">Section 6: Security, Identity &amp; Operations</div>
       <h2>Security &amp; Governance Services Portfolio</h2>
@@ -1403,7 +1366,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 30: CLOUDMONITOR ==================== -->
+    <!-- ==================== SLIDE 29: CLOUDMONITOR ==================== -->
     <section class="slide" data-category="Security, Identity &amp; Operations">
       <div class="slide-category">Section 6: Security, Identity &amp; Operations</div>
       <h2>Alibaba Cloud – CloudMonitor</h2>
@@ -1467,7 +1430,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 31: RESOURCE ACCESS MANAGEMENT (RAM) ==================== -->
+    <!-- ==================== SLIDE 30: RESOURCE ACCESS MANAGEMENT (RAM) ==================== -->
     <section class="slide" data-category="Security, Identity &amp; Operations">
       <div class="slide-category">Section 6: Security, Identity &amp; Operations</div>
       <h2>Alibaba Cloud – Resource Access Management (RAM)</h2>
@@ -1507,7 +1470,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 32: PRACTICE SCENARIO 1 (QUESTION) ==================== -->
+    <!-- ==================== SLIDE 31: PRACTICE SCENARIO 1 (QUESTION) ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 1</div>
       <h2>Practice Scenario 1: Decoupled Multi-Tier Web Architecture</h2>
@@ -1538,7 +1501,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 33: SCENARIO 1: SOLUTION ==================== -->
+    <!-- ==================== SLIDE 32: SCENARIO 1: SOLUTION ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 1</div>
       <h2>Scenario 1: Solution &amp; Architectural Analysis</h2>
@@ -1590,7 +1553,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 34: PRACTICE SCENARIO 2 (QUESTION) ==================== -->
+    <!-- ==================== SLIDE 33: PRACTICE SCENARIO 2 (QUESTION) ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 2</div>
       <h2>Practice Scenario 2: Enterprise Hybrid &amp; Multi-VPC Transit Networking</h2>
@@ -1621,7 +1584,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 35: SCENARIO 2: SOLUTION ==================== -->
+    <!-- ==================== SLIDE 34: SCENARIO 2: SOLUTION ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 2</div>
       <h2>Scenario 2: Solution &amp; Architectural Analysis</h2>
@@ -1673,7 +1636,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 36: PRACTICE SCENARIO 3 (QUESTION) ==================== -->
+    <!-- ==================== SLIDE 35: PRACTICE SCENARIO 3 (QUESTION) ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Interactive Quiz • Scenario 3</div>
       <h2>Practice Scenario 3: Secure Least-Privilege Application Access</h2>
@@ -1704,7 +1667,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 37: SCENARIO 3: SOLUTION ==================== -->
+    <!-- ==================== SLIDE 36: SCENARIO 3: SOLUTION ==================== -->
     <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Quiz Solution • Scenario 3</div>
       <h2>Scenario 3: Solution &amp; Architectural Analysis</h2>
@@ -1756,7 +1719,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 38: MODULE COMPLETION SLIDE ==================== -->
+    <!-- ==================== SLIDE 37: MODULE COMPLETION SLIDE ==================== -->
     <section class="slide title-slide" data-category="Summary">
       <div class="slide-category">Module Complete</div>
       <h1 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Module 01: Cloud Architecture &amp; Services Overview</h1>
