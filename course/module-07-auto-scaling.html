@@ -457,33 +457,32 @@
         </div>
       </div>
     </section>
-    <!-- ==================== SLIDE 16: RECLAIM MODES & INSTANCE LIFECYCLE ==================== -->
+    <!-- ==================== SLIDE 16: RECLAIM MODES ==================== -->
     <section class="slide" data-category="Scaling Group &amp; Capacity Design">
       <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
-      <h2>Reclaim Modes &amp; Instance Lifecycle</h2>
-      
-      <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto; width: 100%;">
-        <img src="assets/images/auto-scaling-reclaim-modes.svg" alt="Auto Scaling Reclaim Modes Comparison" class="diagram-image-lg" style="max-height: 440px; width: auto; max-width: 95%; object-fit: contain;">
-      </div>
+      <h2>Reclaim Modes</h2>
 
-      <div class="grid-3" style="margin-top: 0.75rem; gap: 0.85rem;">
-        <div class="content-card highlight" style="padding: 0.75rem 1rem;">
-          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Release Mode (Default)</h4>
-          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
+      <div class="grid-3" style="margin-top: 0.5rem; gap: 1rem; align-items: stretch;">
+        <div class="content-card highlight" style="padding: 0.85rem 1rem; display: flex; flex-direction: column; align-items: center;">
+          <h4 style="margin: 0 0 0.35rem 0; width: 100%; font-size: calc(0.9rem + var(--font-delta)); color: var(--text-main);">Release Mode (Default)</h4>
+          <p style="margin: 0 0 0.65rem 0; width: 100%; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
             Permanently terminates and deletes ECS instances. Compute and storage charges stop immediately.
           </p>
+          <img src="assets/images/auto-scaling-reclaim-release.svg" alt="Release Mode Before and After" style="width: 100%; max-height: 360px; object-fit: contain; margin-top: auto;">
         </div>
-        <div class="content-card highlight-blue" style="padding: 0.75rem 1rem;">
-          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Shutdown &amp; Reclaim Mode</h4>
-          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
+        <div class="content-card highlight-blue" style="padding: 0.85rem 1rem; display: flex; flex-direction: column; align-items: center;">
+          <h4 style="margin: 0 0 0.35rem 0; width: 100%; font-size: calc(0.9rem + var(--font-delta)); color: var(--text-main);">Shutdown &amp; Reclaim Mode</h4>
+          <p style="margin: 0 0 0.65rem 0; width: 100%; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
             Stops instances without deletion (No-Fee When Stopped), enabling instantaneous warm restart.
           </p>
+          <img src="assets/images/auto-scaling-reclaim-shutdown.svg" alt="Shutdown and Reclaim Mode Before and After" style="width: 100%; max-height: 360px; object-fit: contain; margin-top: auto;">
         </div>
-        <div class="content-card highlight-green" style="padding: 0.75rem 1rem;">
-          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Manual Preservation</h4>
-          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
+        <div class="content-card highlight-green" style="padding: 0.85rem 1rem; display: flex; flex-direction: column; align-items: center;">
+          <h4 style="margin: 0 0 0.35rem 0; width: 100%; font-size: calc(0.9rem + var(--font-delta)); color: var(--text-main);">Manual Preservation</h4>
+          <p style="margin: 0 0 0.65rem 0; width: 100%; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
             Manually attached instances are detached from SLB/group but remain running independently.
           </p>
+          <img src="assets/images/auto-scaling-reclaim-manual.svg" alt="Manual Preservation Before and After" style="width: 100%; max-height: 360px; object-fit: contain; margin-top: auto;">
         </div>
       </div>
     </section>
