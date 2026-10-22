@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 430" width="100%" height="100%">
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <!-- Outer Alibaba Cloud Frame -->
+    <rect x="330" y="16" width="570" height="398" fill="#ffffff" stroke="#1e293b" stroke-width="1.6"/>
+
+    <!-- Top-Left Alibaba Cloud Badge & Label -->
+    <rect x="330" y="16" width="32" height="30" fill="#ff6a00"/>
+    <!-- Simplified Alibaba Cloud Arch Logo inside badge -->
+    <path d="M 338 28 C 338 24 342 23 346 23 C 350 23 354 24 354 28 C 356 28 357 30 357 32 C 357 34 355 36 353 36 L 339 36 C 337 36 335 34 335 32 C 335 30 336 28 338 28 Z" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <line x1="342" y1="31" x2="350" y2="31" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
+    <text x="372" y="37" font-size="14.5" font-weight="700" fill="#0f172a">Alibaba Cloud</text>
+
+    <!-- Availability Zone 1 (Dashed Blue) -->
+    <rect x="366" y="60" width="156" height="334" fill="none" stroke="#3b82f6" stroke-width="1.4" stroke-dasharray="5,4"/>
+    <text x="444" y="83" font-size="13.5" font-weight="500" fill="#2563eb" text-anchor="middle">Availability Zone 1</text>
+
+    <!-- Availability Zone 2 (Dashed Blue) -->
+    <rect x="710" y="60" width="156" height="334" fill="none" stroke="#3b82f6" stroke-width="1.4" stroke-dasharray="5,4"/>
+    <text x="788" y="83" font-size="13.5" font-weight="500" fill="#2563eb" text-anchor="middle">Availability Zone 2</text>
+
+    <!-- VPC Container (Green Border) -->
+    <rect x="340" y="95" width="550" height="284" fill="none" stroke="#3f8624" stroke-width="1.5"/>
+    <!-- VPC Top-Left Icon Badge -->
+    <rect x="340" y="95" width="28" height="28" fill="#3f8624"/>
+    <path d="M 347 112 C 345 112 344 110.5 344 109 C 344 107.5 345.2 106.2 346.8 106 C 347.5 103.5 350 102 352.5 102 C 355.5 102 358 104 358.5 106.8 C 360 107 361 108.2 361 109.7 C 361 111 360 112 358.5 112 Z" fill="none" stroke="#ffffff" stroke-width="1.4"/>
+    <text x="376" y="116" font-size="13.5" font-weight="600" fill="#3f8624">VPC</text>
+
+    <!-- Top-Center: Alibaba Cloud Auto Scaling Icon & Label -->
+    <g transform="translate(587, 108)">
+      <rect width="58" height="58" rx="4" fill="#ff6a00"/>
+      <!-- Central chip square -->
+      <rect x="21" y="21" width="16" height="16" fill="none" stroke="#ffffff" stroke-width="2"/>
+      <!-- 4 Scaling Arrows (Up, Down, Left, Right) -->
+      <line x1="29" y1="18" x2="29" y2="8" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+      <polyline points="24,13 29,8 34,13" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="29" y1="40" x2="29" y2="50" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+      <polyline points="24,45 29,50 34,45" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="8" y1="29" x2="18" y2="29" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+      <polyline points="13,24 18,29 13,34" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="50" y1="29" x2="40" y2="29" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+      <polyline points="45,24 40,29 45,34" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="616" y="185" font-size="13.5" font-weight="600" fill="#0f172a" text-anchor="middle">Alibaba Cloud Auto Scaling</text>
+
+    <!-- Scaling Group Dashed Orange Box -->
+    <rect x="378" y="202" width="478" height="84" fill="none" stroke="#d97706" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+    <!-- Center inside Scaling Group: Mini Auto Scaling Icon + "Scaling Group" -->
+    <g transform="translate(602, 214)">
+      <rect width="28" height="28" rx="3" fill="#d97706"/>
+      <rect x="10" y="10" width="8" height="8" fill="none" stroke="#ffffff" stroke-width="1.3"/>
+      <line x1="14" y1="9" x2="14" y2="4" stroke="#ffffff" stroke-width="1.3"/>
+      <polyline points="11.5,6.5 14,4 16.5,6.5" fill="none" stroke="#ffffff" stroke-width="1.3"/>
+      <line x1="14" y1="19" x2="14" y2="24" stroke="#ffffff" stroke-width="1.3"/>
+      <polyline points="11.5,21.5 14,24 16.5,21.5" fill="none" stroke="#ffffff" stroke-width="1.3"/>
+      <line x1="4" y1="14" x2="9" y2="14" stroke="#ffffff" stroke-width="1.3"/>
+      <polyline points="6.5,11.5 9,14 6.5,16.5" fill="none" stroke="#ffffff" stroke-width="1.3"/>
+      <line x1="24" y1="14" x2="19" y2="14" stroke="#ffffff" stroke-width="1.3"/>
+      <polyline points="21.5,11.5 19,14 21.5,16.5" fill="none" stroke="#ffffff" stroke-width="1.3"/>
+    </g>
+    <text x="616" y="261" font-size="13.5" font-weight="600" fill="#b45309" text-anchor="middle">Scaling Group</text>
+
+    <!-- Left Instance in AZ 1: ARM64 (g8y) -->
+    <g transform="translate(431, 222)">
+      <rect x="5" y="5" width="32" height="32" rx="3" fill="none" stroke="#d97706" stroke-width="2"/>
+      <!-- Top pins -->
+      <line x1="11" y1="0" x2="11" y2="5" stroke="#d97706" stroke-width="2"/>
+      <line x1="17" y1="0" x2="17" y2="5" stroke="#d97706" stroke-width="2"/>
+      <line x1="24" y1="0" x2="24" y2="5" stroke="#d97706" stroke-width="2"/>
+      <line x1="30" y1="0" x2="30" y2="5" stroke="#d97706" stroke-width="2"/>
+      <!-- Bottom pins -->
+      <line x1="11" y1="37" x2="11" y2="42" stroke="#d97706" stroke-width="2"/>
+      <line x1="17" y1="37" x2="17" y2="42" stroke="#d97706" stroke-width="2"/>
+      <line x1="24" y1="37" x2="24" y2="42" stroke="#d97706" stroke-width="2"/>
+      <line x1="30" y1="37" x2="30" y2="42" stroke="#d97706" stroke-width="2"/>
+      <!-- Left pins -->
+      <line x1="0" y1="11" x2="5" y2="11" stroke="#d97706" stroke-width="2"/>
+      <line x1="0" y1="17" x2="5" y2="17" stroke="#d97706" stroke-width="2"/>
+      <line x1="0" y1="24" x2="5" y2="24" stroke="#d97706" stroke-width="2"/>
+      <line x1="0" y1="30" x2="5" y2="30" stroke="#d97706" stroke-width="2"/>
+      <!-- Right pins -->
+      <line x1="37" y1="11" x2="42" y2="11" stroke="#d97706" stroke-width="2"/>
+      <line x1="37" y1="17" x2="42" y2="17" stroke="#d97706" stroke-width="2"/>
+      <line x1="37" y1="24" x2="42" y2="24" stroke="#d97706" stroke-width="2"/>
+      <line x1="37" y1="30" x2="42" y2="30" stroke="#d97706" stroke-width="2"/>
+      <text x="21" y="25" font-size="11.5" font-weight="700" fill="#b45309" text-anchor="middle">g8y</text>
+    </g>
+
+    <!-- Right Instance in AZ 2: x86 (g8i) -->
+    <g transform="translate(763, 222)">
+      <rect x="5" y="5" width="32" height="32" rx="3" fill="none" stroke="#d97706" stroke-width="2"/>
+      <!-- Top pins -->
+      <line x1="11" y1="0" x2="11" y2="5" stroke="#d97706" stroke-width="2"/>
+      <line x1="17" y1="0" x2="17" y2="5" stroke="#d97706" stroke-width="2"/>
+      <line x1="24" y1="0" x2="24" y2="5" stroke="#d97706" stroke-width="2"/>
+      <line x1="30" y1="0" x2="30" y2="5" stroke="#d97706" stroke-width="2"/>
+      <!-- Bottom pins -->
+      <line x1="11" y1="37" x2="11" y2="42" stroke="#d97706" stroke-width="2"/>
+      <line x1="17" y1="37" x2="17" y2="42" stroke="#d97706" stroke-width="2"/>
+      <line x1="24" y1="37" x2="24" y2="42" stroke="#d97706" stroke-width="2"/>
+      <line x1="30" y1="37" x2="30" y2="42" stroke="#d97706" stroke-width="2"/>
+      <!-- Left pins -->
+      <line x1="0" y1="11" x2="5" y2="11" stroke="#d97706" stroke-width="2"/>
+      <line x1="0" y1="17" x2="5" y2="17" stroke="#d97706" stroke-width="2"/>
+      <line x1="0" y1="24" x2="5" y2="24" stroke="#d97706" stroke-width="2"/>
+      <line x1="0" y1="30" x2="5" y2="30" stroke="#d97706" stroke-width="2"/>
+      <!-- Right pins -->
+      <line x1="37" y1="11" x2="42" y2="11" stroke="#d97706" stroke-width="2"/>
+      <line x1="37" y1="17" x2="42" y2="17" stroke="#d97706" stroke-width="2"/>
+      <line x1="37" y1="24" x2="42" y2="24" stroke="#d97706" stroke-width="2"/>
+      <line x1="37" y1="30" x2="42" y2="30" stroke="#d97706" stroke-width="2"/>
+      <text x="21" y="25" font-size="11.5" font-weight="700" fill="#b45309" text-anchor="middle">g8i</text>
+    </g>
+
+    <!-- Launch Template Icon in AZ 1 -->
+    <g transform="translate(438, 310)">
+      <rect width="26" height="32" rx="4" fill="none" stroke="#c026d3" stroke-width="2"/>
+      <rect x="5" y="7" width="4" height="4" fill="none" stroke="#c026d3" stroke-width="1.4"/>
+      <line x1="12" y1="9" x2="21" y2="9" stroke="#c026d3" stroke-width="1.6"/>
+      <rect x="5" y="14" width="4" height="4" fill="none" stroke="#c026d3" stroke-width="1.4"/>
+      <line x1="12" y1="16" x2="21" y2="16" stroke="#c026d3" stroke-width="1.6"/>
+      <rect x="5" y="21" width="4" height="4" fill="none" stroke="#c026d3" stroke-width="1.4"/>
+      <line x1="12" y1="23" x2="21" y2="23" stroke="#c026d3" stroke-width="1.6"/>
+    </g>
+
+    <!-- Launch Template Icon in AZ 2 -->
+    <g transform="translate(770, 310)">
+      <rect width="26" height="32" rx="4" fill="none" stroke="#c026d3" stroke-width="2"/>
+      <rect x="5" y="7" width="4" height="4" fill="none" stroke="#c026d3" stroke-width="1.4"/>
+      <line x1="12" y1="9" x2="21" y2="9" stroke="#c026d3" stroke-width="1.6"/>
+      <rect x="5" y="14" width="4" height="4" fill="none" stroke="#c026d3" stroke-width="1.4"/>
+      <line x1="12" y1="16" x2="21" y2="16" stroke="#c026d3" stroke-width="1.6"/>
+      <rect x="5" y="21" width="4" height="4" fill="none" stroke="#c026d3" stroke-width="1.4"/>
+      <line x1="12" y1="23" x2="21" y2="23" stroke="#c026d3" stroke-width="1.6"/>
+    </g>
+
+    <!-- Left Callout Labels & Red Pointer Lines -->
+    <text x="20" y="249" font-size="16.5" font-weight="700" fill="#000000">Arm64 and x86 instances</text>
+    <line x1="228" y1="244" x2="320" y2="244" stroke="#ef4444" stroke-width="1.5"/>
+
+    <text x="20" y="331" font-size="16.5" font-weight="700" fill="#000000">Launch templates</text>
+    <line x1="168" y1="326" x2="424" y2="326" stroke="#ef4444" stroke-width="1.5"/>
+  </g>
+</svg>

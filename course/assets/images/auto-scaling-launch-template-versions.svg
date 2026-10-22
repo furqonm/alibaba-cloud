@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 763 268" width="100%" height="100%">
+  <g transform="translate(0.5, 0.5)" font-family="Segoe UI, PingFang SC, sans-serif">
+    <!-- Outer Launch Template Container -->
+    <rect x="1" y="1" width="760" height="220" fill="#ebf0ff" stroke="#8c8c8c" stroke-width="1"/>
+
+    <!-- ==================== VERSION 1 - DEFAULT ==================== -->
+    <rect x="21" y="36" width="220" height="128" fill="#ebf0ff" stroke="#8c8c8c" stroke-width="1"/>
+
+    <rect x="27" y="45" width="100" height="26" fill="#d9d9d9" stroke="#8c8c8c" stroke-width="1"/>
+    <text x="77" y="62.5" font-size="13.5" fill="#252525" text-anchor="middle">ecs.g5.large</text>
+
+    <rect x="135" y="45" width="100" height="26" fill="#d9d9d9" stroke="#8c8c8c" stroke-width="1"/>
+    <text x="185" y="62.5" font-size="13.5" fill="#252525" text-anchor="middle">Alibaba Cloud</text>
+
+    <rect x="27" y="85" width="100" height="26" fill="#d9d9d9" stroke="#8c8c8c" stroke-width="1"/>
+    <text x="77" y="102.5" font-size="13.5" fill="#252525" text-anchor="middle">vsw-bp1i****</text>
+
+    <rect x="135" y="85" width="100" height="26" fill="#d9d9d9" stroke="#8c8c8c" stroke-width="1"/>
+    <text x="185" y="102.5" font-size="13.5" fill="#252525" text-anchor="middle">vpc-bp13****</text>
+
+    <text x="131" y="193" font-size="14" font-weight="700" fill="#252525" text-anchor="middle">Version 1 - Default</text>
+
+    <!-- ==================== VERSION 2 ==================== -->
+    <rect x="271" y="36" width="220" height="128" fill="#ebf0ff" stroke="#8c8c8c" stroke-width="1"/>
+
+    <rect x="277" y="45" width="100" height="26" fill="#d9d9d9" stroke="#8c8c8c" stroke-width="1"/>
+    <text x="327" y="62.5" font-size="13.5" fill="#252525" text-anchor="middle">ecs.g5.large</text>
+
+    <rect x="385" y="45" width="100" height="26" fill="#d9d9d9" stroke="#8c8c8c" stroke-width="1"/>
+    <text x="435" y="62.5" font-size="13.5" fill="#252525" text-anchor="middle">Alibaba Cloud</text>
+
+    <rect x="277" y="85" width="100" height="26" fill="#d9d9d9" stroke="#8c8c8c" stroke-width="1"/>
+    <text x="327" y="102.5" font-size="13.5" fill="#252525" text-anchor="middle">vsw-bp1i****</text>
+
+    <rect x="385" y="85" width="100" height="26" fill="#d9d9d9" stroke="#8c8c8c" stroke-width="1"/>
+    <text x="435" y="102.5" font-size="13.5" fill="#252525" text-anchor="middle">vpc-bp13****</text>
+
+    <rect x="277" y="125" width="100" height="26" fill="#d9d9d9" stroke="#8c8c8c" stroke-width="1"/>
+    <text x="327" y="142.5" font-size="13.5" fill="#252525" text-anchor="middle">sg-bp18n****</text>
+
+    <text x="381" y="193" font-size="14" fill="#252525" text-anchor="middle">Version 2</text>
+
+    <!-- ==================== VERSION 3 ==================== -->
+    <rect x="521" y="36" width="220" height="128" fill="#ebf0ff" stroke="#8c8c8c" stroke-width="1"/>
+
+    <rect x="527" y="45" width="100" height="26" fill="#ff8064" stroke="#8c8c8c" stroke-width="1"/>
+    <text x="577" y="62.5" font-size="13.5" fill="#252525" text-anchor="middle">ecs.g6.large</text>
+
+    <rect x="635" y="45" width="100" height="26" fill="#ff8064" stroke="#8c8c8c" stroke-width="1"/>
+    <text x="685" y="62.5" font-size="13.5" fill="#252525" text-anchor="middle">Ubuntu 22.04</text>
+
+    <rect x="527" y="85" width="100" height="26" fill="#d9d9d9" stroke="#8c8c8c" stroke-width="1"/>
+    <text x="577" y="102.5" font-size="13.5" fill="#252525" text-anchor="middle">vsw-bp1i****</text>
+
+    <rect x="635" y="85" width="100" height="26" fill="#d9d9d9" stroke="#8c8c8c" stroke-width="1"/>
+    <text x="685" y="102.5" font-size="13.5" fill="#252525" text-anchor="middle">vpc-bp13****</text>
+
+    <rect x="527" y="125" width="100" height="26" fill="#ff8064" stroke="#8c8c8c" stroke-width="1"/>
+    <text x="577" y="142.5" font-size="13.5" fill="#252525" text-anchor="middle">sg-bp1dr4****</text>
+
+    <text x="631" y="193" font-size="14" fill="#252525" text-anchor="middle">Version 3</text>
+
+    <!-- Bottom Caption -->
+    <text x="381" y="254" font-size="18" font-weight="700" fill="#252525" text-anchor="middle">Launch template</text>
+  </g>
+</svg>
