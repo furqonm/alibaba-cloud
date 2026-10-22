@@ -341,7 +341,49 @@
         </div>
       </div>
     </section>
-    <!-- ==================== SLIDE 13: SCALING GROUP LIFECYCLE STATES ==================== -->
+    <!-- ==================== SLIDE 13: CREATION & IMMUTABLE ATTRIBUTES ==================== -->
+    <section class="slide" data-category="Scaling Group &amp; Capacity Design">
+      <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
+      <h2>Creation &amp; Immutable Attributes</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <h4>Mandatory Creation Parameters</h4>
+          <p>When provisioning a new Scaling Group, administrators define:</p>
+          <ul>
+            <li><strong>Scaling Group Name:</strong> Unique identifier within the region.</li>
+            <li><strong>MinSize &amp; MaxSize:</strong> Baseline floor and ceiling capacity limits.</li>
+            <li><strong>Default Cooldown Time:</strong> Lockout duration in seconds (default: 300s).</li>
+            <li><strong>Removal Policy:</strong> Rule governing which instances are evicted during scale-in.</li>
+            <li><strong>Network Configuration:</strong> Target VPC and multi-zone vSwitches.</li>
+            <li><strong>Load Balancer &amp; Database:</strong> Associated SLB instances and RDS databases.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-purple">
+          <h4>Mutable vs. Immutable Attributes</h4>
+          <p>Understanding architectural boundaries after group creation:</p>
+          <ul>
+            <li><strong>Strict Immutable Attributes:</strong>
+              <ul>
+                <li><strong>Region:</strong> Cannot be moved across regions once created.</li>
+                <li><strong>Network Type:</strong> VPC network type cannot be switched to Classic.</li>
+                <li><strong>Primary VPC ID:</strong> Cannot be rebound to a different VPC.</li>
+              </ul>
+            </li>
+            <li><strong>Dynamically Mutable Attributes:</strong>
+              <ul>
+                <li>MinSize, MaxSize, and Desired Capacity.</li>
+                <li>Default Cooldown period and Removal Policies.</li>
+                <li>Associated SLB instances and RDS database instances.</li>
+                <li>Associated vSwitches within the same VPC.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 14: SCALING GROUP LIFECYCLE STATES ==================== -->
     <section class="slide" data-category="Scaling Group &amp; Capacity Design">
       <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
       <h2>Scaling Group Lifecycle States</h2>
@@ -383,48 +425,6 @@
 
       <div class="content-card highlight-blue" style="margin-top: 0.75rem;">
         <p><strong>State Transition Constraint:</strong> A Scaling Group can only transition to <code>Inactive</code> when no Scaling Activity is currently in progress. Administrative updates (modifying Min/Max size, attaching SLB) can be performed in either Active or Inactive state.</p>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 14: CREATION & IMMUTABLE ATTRIBUTES ==================== -->
-    <section class="slide" data-category="Scaling Group &amp; Capacity Design">
-      <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
-      <h2>Creation &amp; Immutable Attributes</h2>
-      
-      <div class="grid-2">
-        <div class="content-card highlight">
-          <h4>Mandatory Creation Parameters</h4>
-          <p>When provisioning a new Scaling Group, administrators define:</p>
-          <ul>
-            <li><strong>Scaling Group Name:</strong> Unique identifier within the region.</li>
-            <li><strong>MinSize &amp; MaxSize:</strong> Baseline floor and ceiling capacity limits.</li>
-            <li><strong>Default Cooldown Time:</strong> Lockout duration in seconds (default: 300s).</li>
-            <li><strong>Removal Policy:</strong> Rule governing which instances are evicted during scale-in.</li>
-            <li><strong>Network Configuration:</strong> Target VPC and multi-zone vSwitches.</li>
-            <li><strong>Load Balancer &amp; Database:</strong> Associated SLB instances and RDS databases.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-purple">
-          <h4>Mutable vs. Immutable Attributes</h4>
-          <p>Understanding architectural boundaries after group creation:</p>
-          <ul>
-            <li><strong>Strict Immutable Attributes:</strong>
-              <ul>
-                <li><strong>Region:</strong> Cannot be moved across regions once created.</li>
-                <li><strong>Network Type:</strong> VPC network type cannot be switched to Classic.</li>
-                <li><strong>Primary VPC ID:</strong> Cannot be rebound to a different VPC.</li>
-              </ul>
-            </li>
-            <li><strong>Dynamically Mutable Attributes:</strong>
-              <ul>
-                <li>MinSize, MaxSize, and Desired Capacity.</li>
-                <li>Default Cooldown period and Removal Policies.</li>
-                <li>Associated SLB instances and RDS database instances.</li>
-                <li>Associated vSwitches within the same VPC.</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
       </div>
     </section>
     <!-- ==================== SLIDE 15: INSTANCE REMOVAL POLICIES ==================== -->
