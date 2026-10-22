@@ -122,36 +122,29 @@
       <div class="slide-category">Section 1: Global Infrastructure &amp; Platform</div>
       <h2>Alibaba Cloud Global Infrastructure</h2>
       
-      <div class="grid-2" style="align-items: center; gap: 1.5rem;">
-        <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center;">
-          <img src="assets/images/overview-global-infrastructure.png" alt="Global Infrastructure Map" style="max-height: 440px; width: 100%; object-fit: contain;">
-          <div class="diagram-caption">Global Cloud Backbone &amp; Regional Presence</div>
+      <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto; width: 100%;">
+        <img src="assets/images/overview-global-infrastructure.png" alt="Global Infrastructure Map" class="diagram-image-lg" style="max-height: 440px; width: auto; max-width: 95%; object-fit: contain;">
+        <div class="diagram-caption">Global Cloud Backbone &amp; Regional Presence</div>
+      </div>
+
+      <div class="grid-3" style="margin-top: 0.75rem; gap: 0.85rem;">
+        <div class="content-card highlight-green" style="padding: 0.75rem 1rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Three Local Zones</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
+            Region <code>ap-southeast-5</code> operates 3 distinct Availability Zones (Zone A, Zone B, Zone C) in Jakarta.
+          </p>
         </div>
-
-        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
-          <div class="content-card highlight">
-            <h3>Hyper-Scale Global Footprint</h3>
-            <ul class="feature-list">
-              <li><strong>Global Presence:</strong> 30+ geographic Regions and 89+ Availability Zones across 70+ countries worldwide.</li>
-              <li><strong>Edge Network:</strong> Over 3,200 CDN points of presence (PoPs) delivering sub-second edge response times globally.</li>
-            </ul>
-          </div>
-
-          <div class="content-card highlight-green">
-            <h3>Indonesia (Jakarta) Local Presence</h3>
-            <ul class="feature-list">
-              <li><strong>Three Local Zones:</strong> Region <code>ap-southeast-5</code> operates 3 distinct Availability Zones (Zone A, Zone B, Zone C) in Jakarta.</li>
-              <li><strong>Data Sovereignty &amp; Residency:</strong> In-country data processing guarantees compliance with domestic data regulations.</li>
-              <li><strong>Ultra-Low Latency:</strong> Direct interconnectivity with local telecommunications carriers and Internet Exchange (IX) providers.</li>
-            </ul>
-          </div>
-
-          <div class="content-card">
-            <h3>Availability Zone (AZ) Architecture</h3>
-            <p style="font-size: calc(0.85rem + var(--font-delta)); color: var(--text-secondary); margin: 0;">
-              Each Availability Zone is an independent physical data center with isolated power, cooling, and network fabric. Zones within the same region are interconnected via redundant, ultra-low latency fiber rings (&lt;2ms).
-            </p>
-          </div>
+        <div class="content-card highlight-green" style="padding: 0.75rem 1rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Data Sovereignty &amp; Residency</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
+            In-country data storage and processing ensures strict adherence to Indonesian data privacy regulations.
+          </p>
+        </div>
+        <div class="content-card highlight-green" style="padding: 0.75rem 1rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Ultra-Low Latency</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
+            Direct high-speed interconnectivity with local telecommunications carriers and Internet Exchanges (IXPs).
+          </p>
         </div>
       </div>
     </section>
@@ -161,57 +154,27 @@
       <div class="slide-category">Section 1: Global Infrastructure &amp; Platform</div>
       <h2>System Architecture: The Apsara Cloud OS</h2>
       
-      <div class="grid-2" style="align-items: center; gap: 1.5rem;">
-        <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center;">
-          <img src="assets/images/overview-apsara-architecture.png" alt="Apsara Platform Architecture" style="max-height: 440px; width: 100%; object-fit: contain;">
-          <div class="diagram-caption">Apsara Distributed Cloud Operating System Architecture</div>
+      <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto; width: 100%;">
+        <img src="assets/images/overview-apsara-architecture.png" alt="Apsara Platform Architecture" class="diagram-image-lg" style="max-height: 440px; width: auto; max-width: 95%; object-fit: contain;">
+        <div class="diagram-caption">Apsara Distributed Cloud Operating System Architecture</div>
+      </div>
+
+      <div class="grid-4" style="margin-top: 0.75rem; gap: 0.75rem;">
+        <div class="content-card" style="padding: 0.75rem 0.85rem; border-top: 3px solid var(--primary);">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Dragonfly &amp; CIPU</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Hardware-accelerated hypervisor &amp; zero-CPU-tax virtualization offload.</p>
         </div>
-
-        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
-          <div class="content-card highlight-blue">
-            <h3>Unified Distributed Platform</h3>
-            <p style="font-size: calc(0.9rem + var(--font-delta)); margin: 0; line-height: 1.5;">
-              All Alibaba Cloud services operate on top of <strong>Apsara</strong>, a proprietary distributed cloud operating system that manages massive clusters of physical servers across global data centers as a single unified supercomputer.
-            </p>
-          </div>
-
-          <div class="overview-feature-grid-2x2">
-            <div class="overview-feature-card">
-              <h4>Dragonfly &amp; CIPU</h4>
-              <ul>
-                <li>Hardware-accelerated hypervisor.</li>
-                <li>Zero host CPU tax offloading.</li>
-                <li>Microsecond network latency.</li>
-              </ul>
-            </div>
-
-            <div class="overview-feature-card blue">
-              <h4>Pangu Storage</h4>
-              <ul>
-                <li>Distributed file system foundation.</li>
-                <li>Triplicate erasure-coded data.</li>
-                <li>99.9999999999% durability SLA.</li>
-              </ul>
-            </div>
-
-            <div class="overview-feature-card green">
-              <h4>Fuxi Scheduler</h4>
-              <ul>
-                <li>Hyper-scale job scheduling engine.</li>
-                <li>Allocates millions of CPU cores.</li>
-                <li>Sub-second task dispatching.</li>
-              </ul>
-            </div>
-
-            <div class="overview-feature-card purple">
-              <h4>Shennong &amp; Kuafu</h4>
-              <ul>
-                <li>Automated cluster health monitoring.</li>
-                <li>High-speed RPC communication.</li>
-                <li>Rapid fault isolation and self-healing.</li>
-              </ul>
-            </div>
-          </div>
+        <div class="content-card" style="padding: 0.75rem 0.85rem; border-top: 3px solid #0284c7;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Pangu Storage</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Distributed storage engine with 99.9999999999% data durability SLA.</p>
+        </div>
+        <div class="content-card" style="padding: 0.75rem 0.85rem; border-top: 3px solid #059669;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Fuxi Scheduler</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Hyper-scale distributed scheduling across millions of CPU cores.</p>
+        </div>
+        <div class="content-card" style="padding: 0.75rem 0.85rem; border-top: 3px solid #7c3aed;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Shennong &amp; Kuafu</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Real-time automated cluster health monitoring &amp; high-speed RPC.</p>
         </div>
       </div>
     </section>
@@ -221,34 +184,29 @@
       <div class="slide-category">Section 1: Global Infrastructure &amp; Platform</div>
       <h2>Enterprise Security &amp; Compliance Standards</h2>
       
-      <div class="grid-2" style="align-items: center; gap: 1.5rem;">
-        <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center;">
-          <img src="assets/images/overview-security-compliance.png" alt="Security &amp; Compliance Certifications" style="max-height: 440px; width: 100%; object-fit: contain;">
-          <div class="diagram-caption">Global, Regional &amp; Industry Compliance Standards</div>
+      <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto; width: 100%;">
+        <img src="assets/images/overview-security-compliance.png" alt="Security &amp; Compliance Certifications" class="diagram-image-lg" style="max-height: 440px; width: auto; max-width: 95%; object-fit: contain;">
+        <div class="diagram-caption">Global, Regional &amp; Industry Compliance Standards</div>
+      </div>
+
+      <div class="grid-3" style="margin-top: 0.75rem; gap: 0.85rem;">
+        <div class="content-card highlight-green" style="padding: 0.75rem 1rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Global Accreditations</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
+            Certified with ISO 27001, SOC 1/2/3, and PCI-DSS Level 1 for banking-grade transactions.
+          </p>
         </div>
-
-        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
-          <div class="content-card highlight-green">
-            <h3>Global Compliance Certifications</h3>
-            <p style="font-size: calc(0.88rem + var(--font-delta)); margin: 0; line-height: 1.5;">
-              Alibaba Cloud continuously conducts third-party audits and holds international accreditations including <strong>ISO 27001, ISO 20000, ISO 22301, SOC 1, SOC 2, SOC 3</strong>, and <strong>PCI-DSS Level 1</strong> for banking-grade transactions.
-            </p>
-          </div>
-
-          <div class="content-card highlight-blue">
-            <h3>Data Privacy &amp; Protection Frameworks</h3>
-            <ul class="feature-list">
-              <li><strong>GDPR &amp; Global Privacy:</strong> Comprehensive privacy safeguards ensuring customer personal information is processed strictly within user-consented scopes.</li>
-              <li><strong>Indonesian Domestic Security:</strong> Adheres to domestic information security frameworks and national data protection standards.</li>
-            </ul>
-          </div>
-
-          <div class="content-card">
-            <h3>Customer Data Sovereignty</h3>
-            <p style="font-size: calc(0.85rem + var(--font-delta)); color: var(--text-secondary); margin: 0;">
-              <strong>Architectural Principle:</strong> Data stored in Alibaba Cloud belongs exclusively to the customer. End-to-end envelope encryption via Key Management Service (KMS) ensures data cannot be accessed by unauthorized entities.
-            </p>
-          </div>
+        <div class="content-card highlight-blue" style="padding: 0.75rem 1rem;">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Privacy &amp; Compliance</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
+            Full compliance with GDPR privacy frameworks and Indonesian national regulations.
+          </p>
+        </div>
+        <div class="content-card" style="padding: 0.75rem 1rem; border-top: 3px solid var(--primary);">
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Data Sovereignty</h4>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
+            Customer data is strictly isolated with envelope encryption via Key Management Service (KMS).
+          </p>
         </div>
       </div>
     </section>
