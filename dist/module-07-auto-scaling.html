@@ -59,7 +59,7 @@
   <main class="deck-container">
     <!-- ==================== SLIDE 1: CLEAN TITLE ==================== -->
     <section class="slide active title-slide" data-category="Course Intro">
-      <h1>Module 07: Auto Scaling (ESS)</h1>
+      <h1>Module 07: Auto Scaling</h1>
     </section>
     <!-- ==================== SLIDE 2: AGENDA LIST ==================== -->
     <section class="slide" data-category="Outline">
@@ -187,8 +187,8 @@
       <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
       <h2>Elastic Scale-Out</h2>
       
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
-        <img src="assets/images/auto-scaling-scale-out.png" alt="Auto Scaling Scale Out Architecture" style="max-height: 220px; width: auto; max-width: 100%; object-fit: contain;">
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.75rem;">
+        <img src="assets/images/auto-scaling-scale-out.png" alt="Auto Scaling Scale Out Architecture" style="max-height: 280px; width: auto; max-width: 100%; object-fit: contain;">
       </div>
 
       <div class="content-card highlight" style="padding: 1rem 1.5rem;">
@@ -198,15 +198,10 @@
             <li><strong>Surge Trigger Detection:</strong> CloudMonitor alarms (e.g., average CPU &ge; 70%), scheduled timers, or target tracking policies trigger a scaling activity.</li>
             <li><strong>Automated VM Provisioning:</strong> Auto Scaling provisions new ECS instances across multi-zone vSwitches according to the active Scaling Configuration.</li>
           </ol>
-          <div>
-            <ol class="step-list" start="3" style="margin-top: 0;">
-              <li><strong>Load Balancer Registration:</strong> Automatically attaches newly created instances to associated Server Load Balancer (SLB) backend server groups.</li>
-              <li><strong>Database Whitelist Synchronization:</strong> Automatically injects the private IP addresses of the new instances into associated ApsaraDB RDS security whitelists.</li>
-            </ol>
-            <ul style="margin-top: 0.5rem;">
-              <li><strong>High Availability Principle:</strong> Scale-out operations ensure user response latency and application throughput remain strictly within contractual SLA limits.</li>
-            </ul>
-          </div>
+          <ol class="step-list" start="3" style="margin-top: 0;">
+            <li><strong>Load Balancer Registration:</strong> Automatically attaches newly created instances to associated Server Load Balancer (SLB) backend server groups.</li>
+            <li><strong>Database Whitelist Synchronization:</strong> Automatically injects the private IP addresses of the new instances into associated ApsaraDB RDS security whitelists.</li>
+          </ol>
         </div>
       </div>
     </section>
@@ -215,8 +210,8 @@
       <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
       <h2>Elastic Scale-In</h2>
       
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
-        <img src="assets/images/auto-scaling-scale-in.png" alt="Auto Scaling Scale In Architecture" style="max-height: 220px; width: auto; max-width: 100%; object-fit: contain;">
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.75rem;">
+        <img src="assets/images/auto-scaling-scale-in.png" alt="Auto Scaling Scale In Architecture" style="max-height: 280px; width: auto; max-width: 100%; object-fit: contain;">
       </div>
 
       <div class="content-card highlight-blue" style="padding: 1rem 1.5rem;">
@@ -226,15 +221,10 @@
             <li><strong>Low Demand Detection:</strong> CloudMonitor detects low resource utilization (e.g., average CPU &lt; 25% for 3 consecutive periods) or a scheduled window concludes.</li>
             <li><strong>Traffic Deregistration:</strong> Auto Scaling removes selected instances from Server Load Balancer (SLB) backend groups, initiating connection draining to finish in-flight requests.</li>
           </ol>
-          <div>
-            <ol class="step-list" start="3" style="margin-top: 0;">
-              <li><strong>Security Pruning:</strong> Automatically removes instance private IP addresses from ApsaraDB RDS security whitelists, preventing stale network access.</li>
-              <li><strong>Instance Termination or Stopping:</strong> Instances are either released (Release Mode) or stopped (Shutdown and Reclaim Mode) based on group configuration.</li>
-            </ol>
-            <ul style="margin-top: 0.5rem;">
-              <li><strong>Cost Optimization Rule:</strong> Releasing or stopping surplus instances immediately halts computing fees, eliminating idle budget waste during off-peak hours.</li>
-            </ul>
-          </div>
+          <ol class="step-list" start="3" style="margin-top: 0;">
+            <li><strong>Security Pruning:</strong> Automatically removes instance private IP addresses from ApsaraDB RDS security whitelists, preventing stale network access.</li>
+            <li><strong>Instance Termination or Stopping:</strong> Instances are either released (Release Mode) or stopped (Shutdown and Reclaim Mode) based on group configuration.</li>
+          </ol>
         </div>
       </div>
     </section>
@@ -243,8 +233,8 @@
       <div class="slide-category">Section 1: Auto Scaling Concept &amp; Architecture</div>
       <h2>Elastic Self-Healing</h2>
       
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
-        <img src="assets/images/auto-scaling-self-healing.png" alt="Auto Scaling Self Healing Architecture" style="max-height: 220px; width: auto; max-width: 100%; object-fit: contain;">
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.75rem;">
+        <img src="assets/images/auto-scaling-self-healing.png" alt="Auto Scaling Self Healing Architecture" style="max-height: 280px; width: auto; max-width: 100%; object-fit: contain;">
       </div>
 
       <div class="content-card highlight-green" style="padding: 1rem 1.5rem;">
@@ -254,15 +244,10 @@
             <li><strong>Continuous Health Inspection:</strong> Auto Scaling regularly inspects the operating state of all ECS instances in the scaling group and checks SLB health check statuses.</li>
             <li><strong>Unhealthy State Detection:</strong> If an instance enters an abnormal state (OS crash, hardware failure, or SLB health check failure), Auto Scaling flags it as unhealthy.</li>
           </ol>
-          <div>
-            <ol class="step-list" start="3" style="margin-top: 0;">
-              <li><strong>Autonomous Removal &amp; Release:</strong> The failed instance is automatically detached from the SLB backend, removed from the RDS whitelist, and terminated.</li>
-              <li><strong>Replacement Provisioning:</strong> Auto Scaling automatically provisions a healthy new instance using the active Scaling Configuration to restore total capacity.</li>
-            </ol>
-            <ul style="margin-top: 0.5rem;">
-              <li><strong>Autonomous SLA Guarantee:</strong> Eliminates human intervention and on-call night emergency responses by healing faulty infrastructure automatically in minutes.</li>
-            </ul>
-          </div>
+          <ol class="step-list" start="3" style="margin-top: 0;">
+            <li><strong>Autonomous Removal &amp; Release:</strong> The failed instance is automatically detached from the SLB backend, removed from the RDS whitelist, and terminated.</li>
+            <li><strong>Replacement Provisioning:</strong> Auto Scaling automatically provisions a healthy new instance using the active Scaling Configuration to restore total capacity.</li>
+          </ol>
         </div>
       </div>
     </section>
@@ -292,34 +277,26 @@
         </div>
       </div>
     </section>
-    <!-- ==================== SLIDE 11: SCALING GROUP FUNDAMENTALS ==================== -->
+    <!-- ==================== SLIDE 11: SCALING GROUP ==================== -->
     <section class="slide" data-category="Scaling Group &amp; Capacity Design">
       <div class="slide-category">Section 2: Scaling Group &amp; Capacity Design</div>
-      <h2>Scaling Group Fundamentals</h2>
+      <h2>Scaling Group</h2>
       
       <div class="grid-2">
-        <div class="content-card highlight">
-          <p>A <strong>Scaling Group</strong> is a logical collection of ECS instances deployed for a common application role or service tier:</p>
-          <ul>
-            <li><strong>Boundary Container:</strong> Encapsulates Scaling Configurations, Scaling Rules, Scaling Activities, and lifecycle policies.</li>
-            <li><strong>Associated Infrastructure:</strong> Bound to a specific VPC, multi-zone vSwitches, SLB instances, and RDS database instances.</li>
-            <li><strong>Capacity Bounds:</strong>
-              <ul>
-                <li><strong>MinSize (Minimum Capacity):</strong> The floor. Auto Scaling guarantees instance count never drops below this threshold.</li>
-                <li><strong>MaxSize (Maximum Capacity):</strong> The ceiling. Auto Scaling guarantees instance count never exceeds this threshold.</li>
-                <li><strong>Desired Capacity (Target):</strong> The expected baseline number of running instances maintained by the group.</li>
-              </ul>
-            </li>
-          </ul>
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+          <img src="assets/images/auto-scaling-group-bounds.svg" alt="Auto Scaling Group Capacity Bounds" style="max-height: 420px; width: auto; max-width: 100%; object-fit: contain;">
         </div>
 
-        <div class="content-card highlight-purple">
-          <p>Core Operational Constraints:</p>
-          <ul>
-            <li><strong>Cascading Deletion:</strong> Deleting a Scaling Group automatically deletes its Scaling Configurations, Scaling Rules, and Scaling Activities.</li>
-            <li><strong>Preserved External Assets:</strong> Deleting a Scaling Group does NOT delete associated SLB instances, RDS databases, or CloudMonitor alarm tasks.</li>
-            <li><strong>Independent Trigger Tasks:</strong> Scheduled Tasks and CloudMonitor alarms exist independently of the Scaling Group and can be rebound to other groups.</li>
-            <li><strong>Capacity Enforcement:</strong> If MinSize is set to 2 during creation, Auto Scaling immediately creates 2 Pay-As-You-Go instances upon enabling the group.</li>
+        <div class="content-card highlight" style="padding: 1.25rem 1.5rem; display: flex; flex-direction: column; justify-content: center;">
+          <p style="font-size: calc(1.05rem + var(--font-delta)); margin-bottom: 0.75rem;">
+            A <strong>Scaling Group</strong> is a logical management container of ECS instances bound to SLB and VPC infrastructure:
+          </p>
+          <ul style="margin: 0; line-height: 1.6;">
+            <li><strong>Minimum Size (MinSize):</strong> The capacity floor. Guarantees healthy instances never drop below this value.</li>
+            <li><strong>Desired Capacity:</strong> The baseline target automatically maintained during normal traffic.</li>
+            <li><strong>Scale-Out as Needed:</strong> Dynamic compute buffer added automatically during load surges.</li>
+            <li><strong>Maximum Size (MaxSize):</strong> The capacity ceiling. Guarantees instance count never exceeds this cost limit.</li>
+            <li><strong>Zero-Touch Binding:</strong> Automatically registers ECS backends with SLB and updates RDS whitelists.</li>
           </ul>
         </div>
       </div>
@@ -331,18 +308,20 @@
       
       <div class="grid-2">
         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0;">
-          <img src="assets/images/auto-scaling-multizone-allocation.svg" alt="Multi-Zone vSwitch Allocation Architecture" style="max-height: 420px; width: auto; max-width: 100%; object-fit: contain;">
+          <img src="assets/images/auto-scaling-multizone-allocation.png" alt="Multi-Zone vSwitch Allocation Architecture" style="max-height: 420px; width: auto; max-width: 100%; object-fit: contain;">
         </div>
 
-        <div class="content-card highlight-blue">
-          <p>To eliminate single-point-of-failure (SPOF) risks, a Scaling Group can span multiple vSwitches across different Availability Zones (AZs):</p>
-          <ol class="step-list">
-            <li><strong>Priority Strategy:</strong> Provisions instances in the first priority vSwitch (Zone A). If Zone A runs out of inventory or IP addresses, Auto Scaling automatically fails over to the next configured vSwitch (Zone B).</li>
-            <li><strong>Balanced Strategy (High Availability):</strong> Evenly distributes ECS instances across all configured vSwitches (Zone A, Zone B, Zone C) to maximize fault tolerance. If one zone experiences a physical outage, remaining zones sustain service traffic.</li>
-            <li><strong>Cost-Optimized Strategy:</strong> Prioritizes vSwitches and instance families that offer lowest compute cost or highest spot inventory availability.</li>
+        <div class="content-card highlight-blue" style="padding: 1.25rem 1.5rem; display: flex; flex-direction: column; justify-content: center;">
+          <p style="font-size: calc(1.05rem + var(--font-delta)); margin-bottom: 0.75rem;">
+            Scaling groups span multiple vSwitches across Availability Zones (AZs) to eliminate single points of failure:
+          </p>
+          <ol class="step-list" style="margin: 0; line-height: 1.5;">
+            <li><strong>Priority Strategy:</strong> Provisions in primary Zone A first. If inventory or IP addresses exhaust, automatically fails over to Zone B.</li>
+            <li><strong>Balanced Strategy (HA):</strong> Distributes ECS instances evenly across all configured zones to maximize disaster recovery tolerance.</li>
+            <li><strong>Cost-Optimized Strategy:</strong> Prioritizes zones and instance families that offer lowest compute costs or deepest spot discounts.</li>
           </ol>
-          <ul style="margin-top: 0.5rem;">
-            <li><strong>High Availability Rule:</strong> Production scaling groups should always bind at least 2 or 3 vSwitches across distinct Availability Zones.</li>
+          <ul style="margin-top: 0.75rem; margin-bottom: 0;">
+            <li><strong>Production Standard:</strong> Always bind at least 2 or 3 vSwitches across distinct Availability Zones.</li>
           </ul>
         </div>
       </div>
@@ -1347,7 +1326,7 @@
     <!-- ==================== SLIDE 47: MODULE COMPLETE ==================== -->
     <section class="slide title-slide" data-category="Summary">
       <div class="slide-category">Module Complete</div>
-      <h1 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Module 07: Auto Scaling (ESS)</h1>
+      <h1 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Module 07: Auto Scaling</h1>
       <div class="callout callout-green" style="max-width: 580px; margin: 0 auto; text-align: left;">
         <div>
           <span class="badge badge-updated">Up Next</span><br>
