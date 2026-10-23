@@ -71,7 +71,7 @@
         <li class="agenda-item">Scaling Group</li>
         <li class="agenda-item">Launch Templates</li>
         <li class="agenda-item">Scaling Rules</li>
-        <li class="agenda-item">Trigger Mechanisms &amp; Scheduling</li>
+        <li class="agenda-item">Scaling Activity</li>
         <li class="agenda-item">Lifecycle Hooks &amp; Event Notifications</li>
         <li class="agenda-item">Pricing Model</li>
       </ol>
@@ -689,39 +689,10 @@
         </div>
       </div>
     </section>
-    <!-- ==================== SLIDE 23: STRICT BOUNDARY CLAMPING ==================== -->
-    <section class="slide" data-category="Scaling Rules">
-      <div class="slide-category">Section 4: Scaling Rules</div>
-      <h2>Strict Boundary Clamping</h2>
-      
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
-        <img src="assets/images/auto-scaling-rules-adjustment.png" alt="Scaling Rule Boundary Clamping Diagram" style="max-height: 250px; width: auto; max-width: 100%; object-fit: contain;">
-      </div>
-
-      <div class="grid-2">
-        <div class="content-card highlight">
-          <h4>MaxSize Ceiling Clamping</h4>
-          <p>Scaling rules can never breach the group's upper boundary:</p>
-          <ul>
-            <li><strong>Scenario:</strong> Scaling Group MaxSize = 3, Total Capacity = 2. A rule triggers to "Add 3 instances".</li>
-            <li><strong>Outcome:</strong> Auto Scaling clamps the request and adds <strong>only 1 instance</strong>, bringing total capacity exactly to MaxSize (3).</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-purple">
-          <h4>MinSize Floor Clamping</h4>
-          <p>Scaling rules can never breach the group's lower boundary:</p>
-          <ul>
-            <li><strong>Scenario:</strong> Scaling Group MinSize = 2, Total Capacity = 3. A rule triggers to "Remove 5 instances".</li>
-            <li><strong>Outcome:</strong> Auto Scaling clamps the request and removes <strong>only 1 instance</strong>, preserving the MinSize baseline (2).</li>
-          </ul>
-        </div>
-      </div>
-    </section>
     <!-- ==================== SLIDE 24: SIMPLE RULE & STEP RULE ==================== -->
     <section class="slide" data-category="Scaling Rules">
       <div class="slide-category">Section 4: Scaling Rules</div>
-      <h2>Simple Rule &amp; Step Rule</h2>
+      <h2>Simple &amp; Step Rule</h2>
       
       <div class="grid-2">
         <div class="content-card highlight-blue">
@@ -758,7 +729,7 @@
     <!-- ==================== SLIDE 25: TARGET TRACKING RULE & PREDICTIVE RULE ==================== -->
     <section class="slide" data-category="Scaling Rules">
       <div class="slide-category">Section 4: Scaling Rules</div>
-      <h2>Target Tracking Rule &amp; Predictive Rule</h2>
+      <h2>Target Tracking &amp; Predictive Rule</h2>
       
       <div class="grid-2">
         <div class="content-card highlight-green">
@@ -789,9 +760,9 @@
       </div>
     </section>
     <!-- ==================== SLIDE 26: DIRECT EXECUTION & MANUAL OPERATIONS ==================== -->
-    <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
-      <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
-      <h2>Direct Execution &amp; Manual Operations</h2>
+    <section class="slide" data-category="Scaling Activity">
+      <div class="slide-category">Section 5: Scaling Activity</div>
+      <h2>Manual Scaling</h2>
       
       <div class="grid-2">
         <div class="content-card highlight-blue">
@@ -815,10 +786,39 @@
         </div>
       </div>
     </section>
+    <!-- ==================== SLIDE 23: STRICT BOUNDARY CLAMPING ==================== -->
+    <section class="slide" data-category="Scaling Activity">
+      <div class="slide-category">Section 5: Scaling Activity</div>
+      <h2>Strict Boundary Clamping</h2>
+      
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
+        <img src="assets/images/auto-scaling-rules-adjustment.png" alt="Scaling Rule Boundary Clamping Diagram" style="max-height: 250px; width: auto; max-width: 100%; object-fit: contain;">
+      </div>
+
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <h4>MaxSize Ceiling Clamping</h4>
+          <p>Scaling rules can never breach the group's upper boundary:</p>
+          <ul>
+            <li><strong>Scenario:</strong> Scaling Group MaxSize = 3, Total Capacity = 2. A rule triggers to "Add 3 instances".</li>
+            <li><strong>Outcome:</strong> Auto Scaling clamps the request and adds <strong>only 1 instance</strong>, bringing total capacity exactly to MaxSize (3).</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-purple">
+          <h4>MinSize Floor Clamping</h4>
+          <p>Scaling rules can never breach the group's lower boundary:</p>
+          <ul>
+            <li><strong>Scenario:</strong> Scaling Group MinSize = 2, Total Capacity = 3. A rule triggers to "Remove 5 instances".</li>
+            <li><strong>Outcome:</strong> Auto Scaling clamps the request and removes <strong>only 1 instance</strong>, preserving the MinSize baseline (2).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
     <!-- ==================== SLIDE 27: SCHEDULED TASKS & RECURRING CRON ==================== -->
-    <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
-      <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
-      <h2>Scheduled Tasks &amp; Recurring Cron</h2>
+    <section class="slide" data-category="Scaling Activity">
+      <div class="slide-category">Section 5: Scaling Activity</div>
+      <h2>Automatic Scaling: Scheduled Tasks</h2>
       
       <div class="grid-2">
         <div class="content-card highlight">
@@ -845,9 +845,9 @@
       </div>
     </section>
     <!-- ==================== SLIDE 28: SCHEDULED TASK CONCURRENCY RESOLUTION ==================== -->
-    <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
-      <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
-      <h2>Scheduled Task Concurrency Resolution</h2>
+    <section class="slide" data-category="Scaling Activity">
+      <div class="slide-category">Section 5: Scaling Activity</div>
+      <h2>Automatic Scaling: Scheduled Task Concurrency</h2>
       
       <div class="grid-2">
         <div class="content-card highlight-purple">
@@ -871,9 +871,9 @@
       </div>
     </section>
     <!-- ==================== SLIDE 29: CLOUDMONITOR METRIC ALARM TASKS ==================== -->
-    <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
-      <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
-      <h2>CloudMonitor Metric Alarm Tasks</h2>
+    <section class="slide" data-category="Scaling Activity">
+      <div class="slide-category">Section 5: Scaling Activity</div>
+      <h2>Automatic Scaling: Alarm Tasks</h2>
       
       <div class="grid-2">
         <div class="content-card highlight">
@@ -888,7 +888,7 @@
         </div>
 
         <div class="content-card highlight-green">
-          <h4>Core Telemetry Metrics</h4>
+          <h4>CloudMonitor Metric</h4>
           <p>Key metrics used in enterprise scaling alarms:</p>
           <ul>
             <li><strong>CpuUtilization:</strong> Processor load (scale-out at &ge; 75%, scale-in at &le; 25%).</li>
@@ -901,9 +901,9 @@
       </div>
     </section>
     <!-- ==================== SLIDE 30: COOL-DOWN PERIOD ARCHITECTURE ==================== -->
-    <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
-      <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
-      <h2>Cool-Down Period Architecture</h2>
+    <section class="slide" data-category="Scaling Activity">
+      <div class="slide-category">Section 5: Scaling Activity</div>
+      <h2>Cool-Down Period</h2>
       
       <div class="grid-2">
         <div class="content-card highlight-purple">
@@ -928,9 +928,9 @@
       </div>
     </section>
     <!-- ==================== SLIDE 31: ACTIVITY ATOMICITY & ROLLBACK INTEGRITY ==================== -->
-    <section class="slide" data-category="Trigger Mechanisms &amp; Scheduling">
-      <div class="slide-category">Section 5: Trigger Mechanisms &amp; Scheduling</div>
-      <h2>Scaling Activity Atomicity &amp; Rollback Integrity</h2>
+    <section class="slide" data-category="Scaling Activity">
+      <div class="slide-category">Section 5: Scaling Activity</div>
+      <h2>Atomicity &amp; Rollback Integrity</h2>
       
       <div class="grid-2">
         <div class="content-card highlight-blue">
@@ -956,10 +956,10 @@
     <!-- ==================== SLIDE 32: LIFECYCLE HOOKS ARCHITECTURE ==================== -->
     <section class="slide" data-category="Lifecycle Hooks &amp; Event Notifications">
       <div class="slide-category">Section 6: Lifecycle Hooks &amp; Event Notifications</div>
-      <h2>Lifecycle Hooks Architecture</h2>
+      <h2>Lifecycle Hooks</h2>
       
       <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
-        <img src="assets/images/auto-scaling-lifecycle-hooks.png" alt="Auto Scaling Lifecycle Hooks Architecture" style="max-height: 250px; width: auto; max-width: 100%; object-fit: contain;">
+        <img src="assets/images/auto-scaling-lifecycle-hooks.png" alt="Auto Scaling Lifecycle Hooks" style="max-height: 340px; width: auto; max-width: 100%; object-fit: contain;">
       </div>
 
       <div class="grid-2">
@@ -987,10 +987,10 @@
     <!-- ==================== SLIDE 33: HOOK EXECUTION FLOW & HEARTBEATS ==================== -->
     <section class="slide" data-category="Lifecycle Hooks &amp; Event Notifications">
       <div class="slide-category">Section 6: Lifecycle Hooks &amp; Event Notifications</div>
-      <h2>Lifecycle Hook Pipeline &amp; Heartbeats</h2>
+      <h2>Lifecycle Hook Pipeline</h2>
       
       <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
-        <img src="assets/images/auto-scaling-lifecycle-hook-flow.png" alt="Lifecycle Hook State Machine" style="max-height: 330px; width: auto; max-width: 100%; object-fit: contain;">
+        <img src="assets/images/auto-scaling-lifecycle-hook-flow.png" alt="Lifecycle Hook State Machine" style="max-height: 400px; width: auto; max-width: 100%; object-fit: contain;">
       </div>
 
       <div class="grid-3">
@@ -1013,7 +1013,7 @@
     <!-- ==================== SLIDE 34: GRACEFUL SCALE-IN EVACUATION ==================== -->
     <section class="slide" data-category="Lifecycle Hooks &amp; Event Notifications">
       <div class="slide-category">Section 6: Lifecycle Hooks &amp; Event Notifications</div>
-      <h2>Graceful Scale-In Evacuation</h2>
+      <h2>Graceful Shutdown</h2>
       
       <div class="grid-2">
         <div class="content-card highlight-purple">
@@ -1040,7 +1040,7 @@
     <!-- ==================== SLIDE 35: EVENT NOTIFICATIONS VIA MNS & CLOUDMONITOR ==================== -->
     <section class="slide" data-category="Lifecycle Hooks &amp; Event Notifications">
       <div class="slide-category">Section 6: Lifecycle Hooks &amp; Event Notifications</div>
-      <h2>Event Notifications via MNS &amp; CloudMonitor</h2>
+      <h2>Event Notifications</h2>
       
       <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
         <img src="assets/images/auto-scaling-event-notifications.png" alt="Auto Scaling Event Notifications Architecture" style="max-height: 250px; width: auto; max-width: 100%; object-fit: contain;">

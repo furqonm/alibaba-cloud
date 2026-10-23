@@ -19,7 +19,7 @@
 
   <!-- 1. Auto Scaling Container Box -->
   <rect x="40" y="80" width="295" height="175" rx="8" fill="#ffffff" stroke="#334155" stroke-width="1.8" filter="url(#box-shadow)"/>
-  <text x="60" y="110" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="#0f172a">Auto Scaling</text>
+  <text x="60" y="110" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="#0f172a">Scaling Group</text>
 
   <!-- ECS 1 -->
   <g transform="translate(62, 130)">
@@ -121,7 +121,7 @@
 
   <!-- 2. Auto Scaling Container Box Bottom (contains 5 ECS) -->
   <rect x="40" y="420" width="480" height="175" rx="8" fill="#ffffff" stroke="#334155" stroke-width="1.8" filter="url(#box-shadow)"/>
-  <text x="60" y="450" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="#0f172a">Auto Scaling</text>
+  <text x="60" y="450" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="#0f172a">Scaling Group</text>
 
   <!-- Bottom ECS 1 -->
   <g transform="translate(62, 470)">
