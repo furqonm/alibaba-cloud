@@ -1364,9 +1364,7 @@ code.inline-code {
 :root[data-theme="dark"] .diagram-image,
 :root[data-theme="dark"] .diagram-image-lg,
 :root[data-theme="dark"] .architecture-diagram {
-  background: #f8fafc;
-  padding: 0.4rem;
-  border-radius: 8px;
+  background: transparent;
 }
 
 :root[data-theme="dark"] .slide::-webkit-scrollbar-thumb {
