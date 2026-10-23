@@ -1,3 +1,13 @@
+// Apply saved theme immediately to prevent flash of unstyled theme
+(function () {
+  try {
+    const savedTheme = localStorage.getItem('agy-theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch (e) {}
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
   const slides = document.querySelectorAll('.slide');
   const prevBtn = document.getElementById('prevBtn');
@@ -9,6 +19,45 @@ document.addEventListener('DOMContentLoaded', () => {
   const fullscreenBtn = document.getElementById('fullscreenBtn');
   const sectionIndicator = document.getElementById('sectionIndicator');
   const slideJumpSelect = document.getElementById('slideJumpSelect');
+
+  // Setup Night Theme Toggle Button
+  let themeToggleBtn = document.getElementById('themeToggleBtn');
+  if (!themeToggleBtn) {
+    const navButtons = document.querySelector('.nav-buttons');
+    if (navButtons) {
+      themeToggleBtn = document.createElement('button');
+      themeToggleBtn.className = 'btn-nav';
+      themeToggleBtn.id = 'themeToggleBtn';
+      themeToggleBtn.title = 'Toggle Night Theme (T)';
+      navButtons.appendChild(themeToggleBtn);
+    }
+  }
+
+  function updateThemeButtonUI() {
+    if (!themeToggleBtn) return;
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    themeToggleBtn.innerHTML = isDark ? '<span>☀️</span> Light' : '<span>🌙</span> Night';
+    themeToggleBtn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+  }
+
+  function toggleTheme() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const nextTheme = isDark ? 'light' : 'dark';
+    if (nextTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    try {
+      localStorage.setItem('agy-theme', nextTheme);
+    } catch (e) {}
+    updateThemeButtonUI();
+  }
+
+  updateThemeButtonUI();
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', toggleTheme);
+  }
 
   let currentIdx = 0;
   const total = slides.length;
@@ -138,6 +187,10 @@ document.addEventListener('DOMContentLoaded', () => {
       case 'f':
       case 'F':
         toggleFullscreen();
+        break;
+      case 't':
+      case 'T':
+        toggleTheme();
         break;
     }
   });
