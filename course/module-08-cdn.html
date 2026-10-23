@@ -29,7 +29,7 @@
         </select>
       </div>
       <div class="nav-buttons">
-        <span class="slide-counter" id="slideCounter">1/44</span>
+        <span class="slide-counter" id="slideCounter">1/43</span>
         <button class="btn-nav" id="prevBtn" title="Previous Slide (Left Arrow)">
           <span>â¬…ï¸</span> Previous
         </button>
@@ -124,42 +124,13 @@
       </div>
     </section>
 
-    <!-- SLIDE 4: CENTRALIZED WEB HOSTING BOTTLENECKS -->
-    <section class="slide" data-category="CDN Architecture &amp; Global Delivery">
-      <div class="slide-category">Section 1: CDN Architecture &amp; Global Delivery</div>
-      <h2>Centralized Web Hosting Bottlenecks</h2>
-
-      <div class="grid-2" style="margin-top: 1rem; align-items: stretch;">
-        <div class="content-card highlight">
-          <h3>Traditional Hosting Limitations</h3>
-          <ul>
-            <li><strong>Cross-ISP Latency Penalties:</strong> Data packets crossing between disparate telecom carriers experience packet loss, queueing delays, and routing inefficiencies.</li>
-            <li><strong>Geographic Distance Constraints:</strong> Trans-oceanic physical propagation imposes 150 msâ€“300 ms round trips for international users accessing a single central server.</li>
-            <li><strong>Origin Resource Exhaustion:</strong> Marketing campaigns, product launches, or viral surges direct all concurrent hits to origin web servers, exhausting CPU, memory, and database connection pools.</li>
-            <li><strong>Single Point of Network Failure:</strong> If the central datacenter experiences a fiber cut or localized network outage, the entire global user base is severed immediately.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-blue">
-          <h3>The Distributed Edge Solution</h3>
-          <ul>
-            <li><strong>Edge Proximity Delivery:</strong> Content is cached on edge servers within the user's local metropolitan area, reducing round-trip latency to under 10 milliseconds.</li>
-            <li><strong>Massive Origin Offload:</strong> Static assets (images, JavaScript, CSS, audio, video) are served directly from edge memory and NVMe SSDs, absorbing 80%â€“95%+ of total web traffic.</li>
-            <li><strong>Traffic Surge Absorption:</strong> Edge PoPs distribute incoming load across hundreds of global clusters, shielding backend databases from sudden traffic spikes.</li>
-            <li><strong>Architectural Principle:</strong> Transform a vulnerable single-point origin into a highly redundant, globally distributed content delivery mesh.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
 
     <!-- SLIDE 5: GLOBAL INFRASTRUCTURE & TOPOLOGY -->
     <section class="slide" data-category="CDN Architecture &amp; Global Delivery">
       <div class="slide-category">Section 1: CDN Architecture &amp; Global Delivery</div>
-      <h2>Global Infrastructure &amp; Edge PoP Topology</h2>
+      <h2>Edge PoP Infrastructure</h2>
 
-      <div style="display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0; margin: 0.25rem 0 0.75rem 0;">
-        <img src="assets/images/cdn-global-edge-map.png" alt="Alibaba Cloud CDN global node coverage map" style="max-height: 300px; width: auto; max-width: 100%; object-fit: contain;">
-      </div>
+      <img src="assets/images/cdn-global-edge-map.png" alt="Alibaba Cloud CDN global node coverage map" style="display: block; margin: 0 auto 0.75rem auto; max-height: 400px; width: auto; max-width: 100%; object-fit: contain;">
 
       <div class="grid-3">
         <div class="content-card highlight-green" style="padding: 0.75rem 1rem;">
