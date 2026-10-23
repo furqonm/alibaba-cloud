@@ -393,7 +393,7 @@
           <h4>1. Active State</h4>
           <p>The operational state of a Scaling Group:</p>
           <ul>
-            <li>Requires at least one <strong>Active Scaling Configuration</strong>.</li>
+            <li>Requires at least one <strong>Active Launch Template</strong>.</li>
             <li>Accepts and executes scaling rules, scheduled tasks, and alarm tasks.</li>
             <li>Maintains total instance count between MinSize and MaxSize.</li>
             <li>Performs periodic self-healing health check replacements.</li>
@@ -407,7 +407,7 @@
             <li>Reject all automated scaling rule executions and trigger tasks.</li>
             <li>Existing ECS instances remain running and serving traffic.</li>
             <li>Allows administrative modifications to configurations and rules.</li>
-            <li>Can be re-enabled once an active scaling configuration is ready.</li>
+            <li>Can be re-enabled once an active Launch Template is ready.</li>
           </ul>
         </div>
 
@@ -510,7 +510,7 @@
             <li><strong>Permanently Deleted:</strong>
               <ul>
                 <li>The Scaling Group container itself.</li>
-                <li>All internal Scaling Configurations and Scaling Rules.</li>
+                <li>All internal Launch Templates and Scaling Rules.</li>
                 <li>All Scaling Activities and execution history logs.</li>
               </ul>
             </li>
@@ -809,7 +809,7 @@
           <p>Integrating pre-existing ECS instances:</p>
           <ul>
             <li><strong>Adding Existing Instances:</strong> Existing instances in the same VPC/region can be attached to the group. The operation fails immediately if adding them exceeds MaxSize.</li>
-            <li><strong>Configuration Independence:</strong> Manually attached instances are NOT tied to the active Scaling Configuration.</li>
+            <li><strong>Configuration Independence:</strong> Manually attached instances are NOT tied to the active Launch Template.</li>
             <li><strong>Detaching Instances:</strong> Detached instances are removed from SLB/RDS, but are NEVER stopped or deleted.</li>
           </ul>
         </div>
@@ -1106,10 +1106,10 @@
           <span>An enterprise e-commerce platform experiences sudden 5x traffic surges during midnight flash sales. The application tier connects to an ApsaraDB RDS MySQL database and sits behind a Server Load Balancer (SLB). Which Auto Scaling architecture ensures immediate capacity expansion, zero in-flight request drops, and seamless database connectivity with zero manual operational intervention?</span>
         </div>
         <ul class="quiz-single-options">
-          <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Configure a single static scaling rule set to Add 50 instances, manually whitelist the subnet CIDR in RDS, and disable SLB health checks during peak sale windows.</span></li>
-          <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Deploy a multi-zone Scaling Group associated with the SLB and RDS instance, utilize Target Tracking on CPU and Request Count, and enable SLB Connection Draining with automated RDS whitelisting.</span></li>
-          <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Create a scheduled task set to launch instances across a single availability zone 1 minute before the sale with a 0-second cooldown period and Shutdown Reclaim mode.</span></li>
-          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Deploy an Auto Scaling group with a single large instance configuration and rely exclusively on vertical instance specification upgrades during peak traffic events.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Wait until the sale starts, then log in to the console and manually execute a scaling rule that adds 50 instances.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Create only a CloudMonitor alarm task on CPU utilization, so new instances are added after the traffic surge has already started.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Create a Scheduled Task that runs a scaling rule shortly before the midnight sale to add instances in advance, and a second scheduled task to remove them after the sale ends.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Keep a fixed number of instances and upgrade each instance to a larger specification when the sale starts.</span></li>
         </ul>
       </div>
     </section>
@@ -1120,8 +1120,8 @@
       
       <div class="analysis-main-card">
         <div>
-          <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: B</span>
-          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Multi-Zone Scaling Group + Target Tracking + SLB Connection Draining + RDS Auto-Whitelisting</span>
+          <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: C</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Scheduled Scaling (Scheduled Tasks for Scale-Out and Scale-In)</span>
         </div>
         <span class="badge badge-updated">Validated Architecture</span>
       </div>
@@ -1130,25 +1130,25 @@
         <!-- ALWAYS Option A first -->
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option A is Incorrect</span></div>
-          <div class="analysis-item-body">Static addition of 50 instances causes severe over-provisioning waste, manual whitelisting introduces operational delays and human error, and disabling SLB health checks breaks high availability routing.</div>
+          <div class="analysis-item-body">Manual execution is slow and error-prone. Capacity is added only after customers already face slow responses, and it is not automated.</div>
         </div>
 
         <!-- ALWAYS Option B second -->
-        <div class="analysis-item correct">
-          <div class="analysis-item-header correct"><span>✔ Option B is Correct</span></div>
-          <div class="analysis-item-body">Target Tracking dynamically aligns capacity with traffic surges, multi-zone vSwitches eliminate single-zone inventory risks, SLB connection draining protects in-flight transactions during scale-in, and RDS auto-whitelisting guarantees instant database connectivity.</div>
+        <div class="analysis-item incorrect">
+          <div class="analysis-item-header incorrect"><span>✔ Option B is Incorrect</span></div>
+          <div class="analysis-item-body">An alarm task is reactive. It only triggers after the metric breaches the threshold, and new instances still need time to start, so the surge hits before capacity is ready. Alarm tasks are also rejected during cooldown.</div>
         </div>
 
         <!-- ALWAYS Option C third -->
-        <div class="analysis-item incorrect">
-          <div class="analysis-item-header incorrect"><span>✖ Option C is Incorrect</span></div>
-          <div class="analysis-item-body">Single-zone deployment introduces severe single-point-of-failure risks and inventory bottlenecks, while a 0-second cooldown causes continuous metric instability and rapid instance flapping.</div>
+        <div class="analysis-item correct">
+          <div class="analysis-item-header correct"><span>✖ Option C is Correct</span></div>
+          <div class="analysis-item-body">The midnight flash sale is a predictable event. A Scheduled Task adds capacity before the sale starts, and a second task scales in afterwards to save cost. The scaling group still registers new instances to SLB and RDS automatically.</div>
         </div>
 
         <!-- ALWAYS Option D fourth -->
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option D is Incorrect</span></div>
-          <div class="analysis-item-body">Auto Scaling scales horizontally by adding/removing instances rather than upgrading instance specifications vertically in place; vertical resizing incurs downtime and cannot scale dynamically across multiple zones.</div>
+          <div class="analysis-item-body">Auto Scaling scales horizontally by adding or removing instances. Fixed capacity with bigger specs does not scale automatically and wastes cost outside the sale.</div>
         </div>
       </div>
     </section>
@@ -1163,10 +1163,10 @@
           <span>A financial research company runs nightly containerized quantitative modeling tasks. The workload can tolerate interruptions if interrupted jobs can be retried automatically. Management mandates slashing compute costs by at least 70% while guaranteeing that tasks finish before morning business hours even if spot instance capacity becomes unavailable. Which Auto Scaling design best satisfies these requirements?</span>
         </div>
         <ul class="quiz-single-options">
-          <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Provision dedicated ECS hosts under Subscription billing and configure a manual scaling rule to turn on instances at night.</span></li>
-          <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Deploy an Auto Scaling group configured exclusively with a single spot instance family in one availability zone without any fallback configuration.</span></li>
-          <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Configure a Scaling Configuration with multi-instance Spot pooling across multiple compute families, and configure automatic fallback to Pay-As-You-Go instances if spot inventory is exhausted.</span></li>
-          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Use a static Pay-As-You-Go ECS cluster and write custom external cron scripts to delete VMs whenever hourly spot prices fluctuate.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Buy Subscription ECS instances and keep them running 24/7.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Use Spot instances of one instance type in one zone only.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Use Spot instances with several instance types in the Launch Template, and let Auto Scaling switch to Pay-As-You-Go if Spot is unavailable.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Use only Pay-As-You-Go instances and turn them off by hand every morning.</span></li>
         </ul>
       </div>
     </section>
@@ -1178,7 +1178,7 @@
       <div class="analysis-main-card">
         <div>
           <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: C</span>
-          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Multi-Instance Spot Pooling with Automated Pay-As-You-Go Fallback</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Multiple Spot Instance Types with Pay-As-You-Go Fallback</span>
         </div>
         <span class="badge badge-updated">Validated Architecture</span>
       </div>
@@ -1187,25 +1187,25 @@
         <!-- ALWAYS Option A first -->
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option A is Incorrect</span></div>
-          <div class="analysis-item-body">Subscription dedicated hosts require continuous 24/7 long-term commitments, resulting in massive wasted capital for workloads that run exclusively overnight.</div>
+          <div class="analysis-item-body">Subscription instances are paid for 24/7, which wastes money because the job runs only at night. It also does not reach the 70% cost saving.</div>
         </div>
 
         <!-- ALWAYS Option B second -->
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option B is Incorrect</span></div>
-          <div class="analysis-item-body">Relying on a single spot instance family in a single zone exposes the batch job to complete failure and missed morning deadlines if market capacity for that specific instance type is reclaimed.</div>
+          <div class="analysis-item-body">One instance type in one zone is risky. If Spot capacity runs out or is reclaimed, the job may not finish before morning.</div>
         </div>
 
         <!-- ALWAYS Option C third -->
         <div class="analysis-item correct">
           <div class="analysis-item-header correct"><span>✔ Option C is Correct</span></div>
-          <div class="analysis-item-body">Multi-instance spot pooling across multiple instance types captures 80–90% cost savings while minimizing eviction probability, and automatic Pay-As-You-Go fallback guarantees tasks complete on schedule even during market capacity shortages.</div>
+          <div class="analysis-item-body">Spot instances are much cheaper, and using several instance types lowers the chance of running out. If Spot is unavailable, Pay-As-You-Go keeps the job on schedule.</div>
         </div>
 
         <!-- ALWAYS Option D fourth -->
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option D is Incorrect</span></div>
-          <div class="analysis-item-body">Custom external cron scripts managing raw Pay-As-You-Go instances require complex manual maintenance and do not benefit from native Auto Scaling health recovery or spot capacity bidding.</div>
+          <div class="analysis-item-body">Pay-As-You-Go is more expensive than Spot, and turning instances off by hand is slow and easy to forget. It does not meet the 70% cost saving.</div>
         </div>
       </div>
     </section>
