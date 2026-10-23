@@ -759,6 +759,35 @@
         </div>
       </div>
     </section>
+    <!-- ==================== SLIDE 23: STRICT BOUNDARY CLAMPING ==================== -->
+    <section class="slide" data-category="Scaling Rules">
+      <div class="slide-category">Section 4: Scaling Rules</div>
+      <h2>Strict Boundary Clamping</h2>
+      
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
+        <img src="assets/images/auto-scaling-rules-adjustment.png" alt="Scaling Rule Boundary Clamping Diagram" style="max-height: 250px; width: auto; max-width: 100%; object-fit: contain;">
+      </div>
+
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <h4>MaxSize Ceiling Clamping</h4>
+          <p>Scaling rules can never breach the group's upper boundary:</p>
+          <ul>
+            <li><strong>Scenario:</strong> Scaling Group MaxSize = 3, Total Capacity = 2. A rule triggers to "Add 3 instances".</li>
+            <li><strong>Outcome:</strong> Auto Scaling clamps the request and adds <strong>only 1 instance</strong>, bringing total capacity exactly to MaxSize (3).</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-purple">
+          <h4>MinSize Floor Clamping</h4>
+          <p>Scaling rules can never breach the group's lower boundary:</p>
+          <ul>
+            <li><strong>Scenario:</strong> Scaling Group MinSize = 2, Total Capacity = 3. A rule triggers to "Remove 5 instances".</li>
+            <li><strong>Outcome:</strong> Auto Scaling clamps the request and removes <strong>only 1 instance</strong>, preserving the MinSize baseline (2).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
     <!-- ==================== SLIDE 26: DIRECT EXECUTION & MANUAL OPERATIONS ==================== -->
     <section class="slide" data-category="Scaling Activity">
       <div class="slide-category">Section 5: Scaling Activity</div>
@@ -786,31 +815,32 @@
         </div>
       </div>
     </section>
-    <!-- ==================== SLIDE 23: STRICT BOUNDARY CLAMPING ==================== -->
+    <!-- ==================== SLIDE 29: CLOUDMONITOR METRIC ALARM TASKS ==================== -->
     <section class="slide" data-category="Scaling Activity">
       <div class="slide-category">Section 5: Scaling Activity</div>
-      <h2>Strict Boundary Clamping</h2>
+      <h2>Automatic Scaling: Alarm Tasks</h2>
       
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
-        <img src="assets/images/auto-scaling-rules-adjustment.png" alt="Scaling Rule Boundary Clamping Diagram" style="max-height: 250px; width: auto; max-width: 100%; object-fit: contain;">
-      </div>
-
       <div class="grid-2">
         <div class="content-card highlight">
-          <h4>MaxSize Ceiling Clamping</h4>
-          <p>Scaling rules can never breach the group's upper boundary:</p>
+          <h4>Telemetry Alarm Architecture</h4>
+          <p>Dynamic scaling triggered by real-time infrastructure metrics:</p>
           <ul>
-            <li><strong>Scenario:</strong> Scaling Group MaxSize = 3, Total Capacity = 2. A rule triggers to "Add 3 instances".</li>
-            <li><strong>Outcome:</strong> Auto Scaling clamps the request and adds <strong>only 1 instance</strong>, bringing total capacity exactly to MaxSize (3).</li>
+            <li>Monitors telemetry streams collected by the CloudMonitor agent on each ECS instance.</li>
+            <li><strong>Statistical Functions:</strong> Evaluates Average, Maximum, or Minimum across all instances in the Scaling Group.</li>
+            <li><strong>Evaluation Periods:</strong> Configures continuous evaluation periods (e.g. 3 consecutive checks of 1 minute) to filter out transient metric spikes.</li>
+            <li><strong>Comparison Operators:</strong> Triggers linked Scaling Rules when metric &ge; or &le; threshold.</li>
           </ul>
         </div>
 
-        <div class="content-card highlight-purple">
-          <h4>MinSize Floor Clamping</h4>
-          <p>Scaling rules can never breach the group's lower boundary:</p>
+        <div class="content-card highlight-green">
+          <h4>CloudMonitor Metric</h4>
+          <p>Key metrics used in enterprise scaling alarms:</p>
           <ul>
-            <li><strong>Scenario:</strong> Scaling Group MinSize = 2, Total Capacity = 3. A rule triggers to "Remove 5 instances".</li>
-            <li><strong>Outcome:</strong> Auto Scaling clamps the request and removes <strong>only 1 instance</strong>, preserving the MinSize baseline (2).</li>
+            <li><strong>CpuUtilization:</strong> Processor load (scale-out at &ge; 75%, scale-in at &le; 25%).</li>
+            <li><strong>MemoryUtilization:</strong> Memory saturation for caching tiers.</li>
+            <li><strong>IntranetIn / IntranetOut:</strong> Internal bandwidth flows across application tiers.</li>
+            <li><strong>TcpConnection:</strong> Active socket counts on web application servers.</li>
+            <li><strong>SystemDiskReadBps / WriteBps:</strong> Storage I/O throughput bottlenecks.</li>
           </ul>
         </div>
       </div>
@@ -870,36 +900,6 @@
         </div>
       </div>
     </section>
-    <!-- ==================== SLIDE 29: CLOUDMONITOR METRIC ALARM TASKS ==================== -->
-    <section class="slide" data-category="Scaling Activity">
-      <div class="slide-category">Section 5: Scaling Activity</div>
-      <h2>Automatic Scaling: Alarm Tasks</h2>
-      
-      <div class="grid-2">
-        <div class="content-card highlight">
-          <h4>Telemetry Alarm Architecture</h4>
-          <p>Dynamic scaling triggered by real-time infrastructure metrics:</p>
-          <ul>
-            <li>Monitors telemetry streams collected by the CloudMonitor agent on each ECS instance.</li>
-            <li><strong>Statistical Functions:</strong> Evaluates Average, Maximum, or Minimum across all instances in the Scaling Group.</li>
-            <li><strong>Evaluation Periods:</strong> Configures continuous evaluation periods (e.g. 3 consecutive checks of 1 minute) to filter out transient metric spikes.</li>
-            <li><strong>Comparison Operators:</strong> Triggers linked Scaling Rules when metric &ge; or &le; threshold.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-green">
-          <h4>CloudMonitor Metric</h4>
-          <p>Key metrics used in enterprise scaling alarms:</p>
-          <ul>
-            <li><strong>CpuUtilization:</strong> Processor load (scale-out at &ge; 75%, scale-in at &le; 25%).</li>
-            <li><strong>MemoryUtilization:</strong> Memory saturation for caching tiers.</li>
-            <li><strong>IntranetIn / IntranetOut:</strong> Internal bandwidth flows across application tiers.</li>
-            <li><strong>TcpConnection:</strong> Active socket counts on web application servers.</li>
-            <li><strong>SystemDiskReadBps / WriteBps:</strong> Storage I/O throughput bottlenecks.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
     <!-- ==================== SLIDE 30: COOL-DOWN PERIOD ARCHITECTURE ==================== -->
     <section class="slide" data-category="Scaling Activity">
       <div class="slide-category">Section 5: Scaling Activity</div>
@@ -950,6 +950,33 @@
             <li><strong>Targeted Release:</strong> The system releases only the failed instance; successfully configured instances remain active in the group.</li>
             <li><strong>Billing Implication:</strong> Because Auto Scaling provisions instances via the ECS API, rolled-back instances incur standard Pay-As-You-Go charges for the brief period they ran.</li>
           </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 34: GRACEFUL SCALE-IN EVACUATION ==================== -->
+    <section class="slide" data-category="Scaling Activity">
+      <div class="slide-category">Section 5: Scaling Activity</div>
+      <h2>Graceful Shutdown</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight-purple">
+          <h4>The In-Flight Data Loss Dilemma</h4>
+          <p>Abruptly terminating web servers during scale-in causes sever customer-facing errors:</p>
+          <ul>
+            <li>Active HTTP sessions and long-polling connections are severed mid-transaction, generating HTTP 502/504 errors.</li>
+            <li>Local application transaction logs stored on ephemeral system disks are destroyed before being archived to central storage.</li>
+            <li>Asynchronous queue workers processing payment or report jobs are terminated without completing state checkpoints.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green">
+          <h4>The 4-Step Graceful Evacuation Architecture</h4>
+          <ol class="step-list">
+            <li><strong>SLB Connection Draining:</strong> Instance weight is set to 0. SLB stops routing new connections while allowing existing requests up to 300 seconds to complete cleanly.</li>
+            <li><strong>Trigger PENDING_REMOVE Hook:</strong> Auto Scaling suspends VM deletion and triggers a Cloud Assistant notification.</li>
+            <li><strong>Automated Log &amp; Queue Flushing:</strong> Local shell scripts upload application logs to Object Storage Service (OSS) and finish pending jobs.</li>
+            <li><strong>Signal CompleteLifecycleAction:</strong> Cloud Assistant signals Auto Scaling to release the VM with zero customer impact.</li>
+          </ol>
         </div>
       </div>
     </section>
@@ -1007,33 +1034,6 @@
         <div class="content-card highlight-green">
           <h4>3. Hook Outcomes</h4>
           <p><code>CONTINUE</code> proceeds to IN_SERVICE or termination. <code>ABANDON</code> aborts scale-out, releasing the instance cleanly.</p>
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 34: GRACEFUL SCALE-IN EVACUATION ==================== -->
-    <section class="slide" data-category="Lifecycle Hooks &amp; Event Notifications">
-      <div class="slide-category">Section 6: Lifecycle Hooks &amp; Event Notifications</div>
-      <h2>Graceful Shutdown</h2>
-      
-      <div class="grid-2">
-        <div class="content-card highlight-purple">
-          <h4>The In-Flight Data Loss Dilemma</h4>
-          <p>Abruptly terminating web servers during scale-in causes sever customer-facing errors:</p>
-          <ul>
-            <li>Active HTTP sessions and long-polling connections are severed mid-transaction, generating HTTP 502/504 errors.</li>
-            <li>Local application transaction logs stored on ephemeral system disks are destroyed before being archived to central storage.</li>
-            <li>Asynchronous queue workers processing payment or report jobs are terminated without completing state checkpoints.</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-green">
-          <h4>The 4-Step Graceful Evacuation Architecture</h4>
-          <ol class="step-list">
-            <li><strong>SLB Connection Draining:</strong> Instance weight is set to 0. SLB stops routing new connections while allowing existing requests up to 300 seconds to complete cleanly.</li>
-            <li><strong>Trigger PENDING_REMOVE Hook:</strong> Auto Scaling suspends VM deletion and triggers a Cloud Assistant notification.</li>
-            <li><strong>Automated Log &amp; Queue Flushing:</strong> Local shell scripts upload application logs to Object Storage Service (OSS) and finish pending jobs.</li>
-            <li><strong>Signal CompleteLifecycleAction:</strong> Cloud Assistant signals Auto Scaling to release the VM with zero customer impact.</li>
-          </ol>
         </div>
       </div>
     </section>
