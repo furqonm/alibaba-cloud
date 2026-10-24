@@ -1,0 +1,273 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 700" width="100%" height="auto">
+  <defs>
+    <!-- Arrowhead markers -->
+    <marker id="nacl-green-arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 2 L 8 5 L 0 8 z" fill="#16a34a"/>
+    </marker>
+    <marker id="nacl-red-arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 2 L 8 5 L 0 8 z" fill="#dc2626"/>
+    </marker>
+    <filter id="nacl-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Transparent Canvas Background for Night Mode -->
+  <rect width="740" height="700" fill="none"/>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    
+    <!-- Top: Internet Cloud Icon -->
+    <g transform="translate(325, 20)">
+      <path d="M 15 32 
+               A 16 16 0 0 1 32 14 
+               A 24 24 0 0 1 76 14 
+               A 16 16 0 0 1 92 32 
+               A 14 14 0 0 1 84 48 
+               L 22 48 
+               A 14 14 0 0 1 15 32 Z" 
+            fill="#ff6a00"/>
+      <text x="54" y="36" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Internet</text>
+    </g>
+
+    <!-- Outbound Rule Links between Internet and Network ACL -->
+    <!-- Green Upward Arrow (Matched) -->
+    <line x1="355" y1="180" x2="355" y2="76" stroke="#16a34a" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#nacl-green-arr)"/>
+    <!-- Red Upward Arrow (No Match) -->
+    <line x1="395" y1="180" x2="395" y2="76" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#nacl-red-arr)"/>
+    <!-- Red X on unmatched path -->
+    <g transform="translate(395, 125)">
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#b91c1c" stroke-width="2.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#b91c1c" stroke-width="2.5"/>
+    </g>
+
+    <!-- Outbound Labels (with pill backgrounds for night mode) -->
+    <g transform="translate(295, 120)">
+      <rect x="-60" y="-14" width="105" height="36" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+      <text x="-8" y="0" text-anchor="middle" font-size="11" font-weight="700" fill="#16a34a">Outbound rule</text>
+      <text x="-8" y="14" text-anchor="middle" font-size="11" font-weight="700" fill="#16a34a">matched</text>
+    </g>
+    <g transform="translate(455, 120)">
+      <rect x="-45" y="-14" width="115" height="48" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+      <text x="12" y="-1" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">No outbound</text>
+      <text x="12" y="13" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">rule matched</text>
+    </g>
+
+    <!-- Outer VPC Boundary -->
+    <g transform="translate(20, 210)">
+      <rect x="0" y="0" width="700" height="470" rx="20" fill="none" stroke="#ea580c" stroke-width="1.8" stroke-dasharray="6,4"/>
+
+      <!-- VPC Cloud Icon & Badge -->
+      <g transform="translate(-15, -15)">
+        <circle cx="20" cy="20" r="18" fill="#ff6a00"/>
+        <circle cx="15" cy="19" r="2.5" fill="#ffffff"/>
+        <circle cx="25" cy="16" r="2" fill="#ffffff"/>
+        <circle cx="23" cy="24" r="2.5" fill="#ffffff"/>
+        <line x1="15" y1="19" x2="25" y2="16" stroke="#ffffff" stroke-width="1.2"/>
+        <line x1="15" y1="19" x2="23" y2="24" stroke="#ffffff" stroke-width="1.2"/>
+        <text x="20" y="32" text-anchor="middle" font-size="8" font-weight="800" fill="#ffffff">VPC</text>
+      </g>
+    </g>
+
+    <!-- Network ACL Icon & Label (at top border of VPC) -->
+    <g transform="translate(370, 210)" filter="url(#nacl-shadow)">
+      <circle cx="0" cy="0" r="26" fill="#ffffff" stroke="#ff6a00" stroke-width="2.5"/>
+      <circle cx="0" cy="0" r="22" fill="#ff6a00"/>
+      <!-- Sliders / Gates Icon -->
+      <line x1="-12" y1="-6" x2="12" y2="-6" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+      <rect x="-4" y="-9" width="8" height="6" rx="1.5" fill="#ffffff"/>
+      <line x1="-12" y1="6" x2="12" y2="6" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+      <rect x="-4" y="3" width="8" height="6" rx="1.5" fill="#ffffff"/>
+      
+      <!-- Text to right -->
+      <text x="36" y="-3" font-size="12" font-weight="700" fill="#ea580c">Inbound rule</text>
+      <text x="36" y="13" font-size="12" font-weight="700" fill="#ea580c">Outbound rule</text>
+
+      <!-- Label below -->
+      <text x="0" y="42" text-anchor="middle" font-size="14" font-weight="800" fill="#ea580c">Network ACL</text>
+    </g>
+
+    <!-- Inbound Path Arrows from Network ACL to vSwitches -->
+    <!-- Left Branch: Green matched, Red unmatched -->
+    <line x1="345" y1="240" x2="215" y2="350" stroke="#16a34a" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#nacl-green-arr)"/>
+    <line x1="355" y1="250" x2="245" y2="350" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#nacl-red-arr)"/>
+    <g transform="translate(295, 305)">
+      <line x1="-4" y1="-4" x2="4" y2="4" stroke="#b91c1c" stroke-width="2.5"/>
+      <line x1="4" y1="-4" x2="-4" y2="4" stroke="#b91c1c" stroke-width="2.5"/>
+    </g>
+
+    <!-- Right Branch: Green matched, Red unmatched -->
+    <line x1="395" y1="240" x2="525" y2="350" stroke="#16a34a" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#nacl-green-arr)"/>
+    <line x1="385" y1="250" x2="495" y2="350" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#nacl-red-arr)"/>
+    <g transform="translate(445, 305)">
+      <line x1="-4" y1="-4" x2="4" y2="4" stroke="#b91c1c" stroke-width="2.5"/>
+      <line x1="4" y1="-4" x2="-4" y2="4" stroke="#b91c1c" stroke-width="2.5"/>
+    </g>
+
+    <!-- Inbound Labels (with pill backgrounds) -->
+    <g transform="translate(210, 275)">
+      <rect x="-40" y="-12" width="95" height="32" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+      <text x="7" y="1" text-anchor="middle" font-size="10.5" font-weight="700" fill="#16a34a">Inbound rule</text>
+      <text x="7" y="14" text-anchor="middle" font-size="10.5" font-weight="700" fill="#16a34a">matched</text>
+    </g>
+    <g transform="translate(530, 275)">
+      <rect x="-40" y="-12" width="95" height="32" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+      <text x="7" y="1" text-anchor="middle" font-size="10.5" font-weight="700" fill="#16a34a">Inbound rule</text>
+      <text x="7" y="14" text-anchor="middle" font-size="10.5" font-weight="700" fill="#16a34a">matched</text>
+    </g>
+    <g transform="translate(370, 315)">
+      <rect x="-55" y="-14" width="110" height="42" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+      <text x="0" y="2" text-anchor="middle" font-size="10.5" font-weight="700" fill="#b91c1c">No inbound</text>
+      <text x="0" y="16" text-anchor="middle" font-size="10.5" font-weight="700" fill="#b91c1c">rule matched</text>
+    </g>
+
+    <!-- ==================== LEFT VSWITCH SECTION ==================== -->
+    <g transform="translate(50, 360)">
+      <!-- Outer vSwitch Container -->
+      <rect x="0" y="0" width="300" height="300" rx="10" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+      <!-- vSwitch Icon & Label at top -->
+      <g transform="translate(150, 0)">
+        <circle cx="0" cy="0" r="22" fill="#ffffff" stroke="#ff6a00" stroke-width="2"/>
+        <circle cx="0" cy="0" r="19" fill="#ff6a00"/>
+        <!-- Intersecting switch arrows -->
+        <path d="M -10 -5 L 10 5 M 4 5 L 10 5 L 10 -1" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M -10 5 L 10 -5 M 4 -5 L 10 -5 L 10 1" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <text x="28" y="24" font-size="13" font-weight="700" fill="#ea580c">vSwitch</text>
+      </g>
+
+      <!-- Bidirectional Link from vSwitch to Security Group 1 -->
+      <line x1="150" y1="22" x2="150" y2="65" stroke="#ea580c" stroke-width="1.8" stroke-dasharray="3,3"/>
+
+      <!-- Security Group 1 Box -->
+      <g transform="translate(30, 65)">
+        <rect x="0" y="0" width="240" height="70" rx="8" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4,4"/>
+        
+        <!-- Lock Icon -->
+        <g transform="translate(15, 12)">
+          <rect x="0" y="8" width="16" height="14" rx="2" fill="#ea580c"/>
+          <path d="M 3 8 L 3 5 A 5 5 0 0 1 13 5 L 13 8" stroke="#ea580c" stroke-width="2" fill="none"/>
+        </g>
+        <text x="120" y="42" text-anchor="middle" font-size="13" font-weight="700" fill="#ea580c">Security group 1</text>
+      </g>
+
+      <!-- Links to ECS1 and ECS2 -->
+      <line x1="85" y1="135" x2="85" y2="180" stroke="#ea580c" stroke-width="1.8" stroke-dasharray="3,3"/>
+      <line x1="215" y1="135" x2="215" y2="180" stroke="#ea580c" stroke-width="1.8" stroke-dasharray="3,3"/>
+
+      <!-- ECS1 -->
+      <g transform="translate(55, 180)">
+        <rect x="0" y="0" width="60" height="14" rx="3" fill="#ff6a00"/>
+        <circle cx="10" cy="7" r="2.5" fill="#ffffff"/>
+        <circle cx="50" cy="7" r="2.5" fill="#ffffff"/>
+
+        <rect x="0" y="18" width="60" height="14" rx="3" fill="#ff6a00"/>
+        <circle cx="10" cy="25" r="2.5" fill="#ffffff"/>
+        <circle cx="50" cy="25" r="2.5" fill="#ffffff"/>
+
+        <rect x="0" y="36" width="60" height="14" rx="3" fill="#ff6a00"/>
+        <circle cx="10" cy="43" r="2.5" fill="#ffffff"/>
+        <circle cx="50" cy="43" r="2.5" fill="#ffffff"/>
+
+        <text x="30" y="66" text-anchor="middle" font-size="13" font-weight="800" fill="#ea580c">ECS1</text>
+      </g>
+
+      <!-- ECS2 -->
+      <g transform="translate(185, 180)">
+        <rect x="0" y="0" width="60" height="14" rx="3" fill="#ff6a00"/>
+        <circle cx="10" cy="7" r="2.5" fill="#ffffff"/>
+        <circle cx="50" cy="7" r="2.5" fill="#ffffff"/>
+
+        <rect x="0" y="18" width="60" height="14" rx="3" fill="#ff6a00"/>
+        <circle cx="10" cy="25" r="2.5" fill="#ffffff"/>
+        <circle cx="50" cy="25" r="2.5" fill="#ffffff"/>
+
+        <rect x="0" y="36" width="60" height="14" rx="3" fill="#ff6a00"/>
+        <circle cx="10" cy="43" r="2.5" fill="#ffffff"/>
+        <circle cx="50" cy="43" r="2.5" fill="#ffffff"/>
+
+        <text x="30" y="66" text-anchor="middle" font-size="13" font-weight="800" fill="#ea580c">ECS2</text>
+      </g>
+    </g>
+
+    <!-- ==================== RIGHT VSWITCH SECTION ==================== -->
+    <g transform="translate(390, 360)">
+      <!-- Outer vSwitch Container -->
+      <rect x="0" y="0" width="300" height="300" rx="10" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+      <!-- vSwitch Icon & Label at top -->
+      <g transform="translate(150, 0)">
+        <circle cx="0" cy="0" r="22" fill="#ffffff" stroke="#ff6a00" stroke-width="2"/>
+        <circle cx="0" cy="0" r="19" fill="#ff6a00"/>
+        <path d="M -10 -5 L 10 5 M 4 5 L 10 5 L 10 -1" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M -10 5 L 10 -5 M 4 -5 L 10 -5 L 10 1" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <text x="28" y="24" font-size="13" font-weight="700" fill="#ea580c">vSwitch</text>
+      </g>
+
+      <!-- Bidirectional Links from vSwitch to Security Groups -->
+      <line x1="125" y1="22" x2="80" y2="65" stroke="#ea580c" stroke-width="1.8" stroke-dasharray="3,3"/>
+      <line x1="175" y1="22" x2="220" y2="65" stroke="#ea580c" stroke-width="1.8" stroke-dasharray="3,3"/>
+
+      <!-- Security Group 2 Box -->
+      <g transform="translate(20, 65)">
+        <rect x="0" y="0" width="120" height="70" rx="8" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4,4"/>
+        <g transform="translate(8, 8)">
+          <rect x="0" y="6" width="14" height="12" rx="2" fill="#ea580c"/>
+          <path d="M 2.5 6 L 2.5 4 A 4.5 4.5 0 0 1 11.5 4 L 11.5 6" stroke="#ea580c" stroke-width="1.8" fill="none"/>
+        </g>
+        <text x="60" y="38" text-anchor="middle" font-size="12" font-weight="700" fill="#ea580c">Security</text>
+        <text x="60" y="54" text-anchor="middle" font-size="12" font-weight="700" fill="#ea580c">group 2</text>
+      </g>
+
+      <!-- Security Group 3 Box -->
+      <g transform="translate(160, 65)">
+        <rect x="0" y="0" width="120" height="70" rx="8" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4,4"/>
+        <g transform="translate(98, 8)">
+          <rect x="0" y="6" width="14" height="12" rx="2" fill="#ea580c"/>
+          <path d="M 2.5 6 L 2.5 4 A 4.5 4.5 0 0 1 11.5 4 L 11.5 6" stroke="#ea580c" stroke-width="1.8" fill="none"/>
+        </g>
+        <text x="60" y="38" text-anchor="middle" font-size="12" font-weight="700" fill="#ea580c">Security</text>
+        <text x="60" y="54" text-anchor="middle" font-size="12" font-weight="700" fill="#ea580c">group 3</text>
+      </g>
+
+      <!-- Links to ECS3 and ECS4 -->
+      <line x1="80" y1="135" x2="80" y2="180" stroke="#ea580c" stroke-width="1.8" stroke-dasharray="3,3"/>
+      <line x1="220" y1="135" x2="220" y2="180" stroke="#ea580c" stroke-width="1.8" stroke-dasharray="3,3"/>
+
+      <!-- ECS3 -->
+      <g transform="translate(50, 180)">
+        <rect x="0" y="0" width="60" height="14" rx="3" fill="#ff6a00"/>
+        <circle cx="10" cy="7" r="2.5" fill="#ffffff"/>
+        <circle cx="50" cy="7" r="2.5" fill="#ffffff"/>
+
+        <rect x="0" y="18" width="60" height="14" rx="3" fill="#ff6a00"/>
+        <circle cx="10" cy="25" r="2.5" fill="#ffffff"/>
+        <circle cx="50" cy="25" r="2.5" fill="#ffffff"/>
+
+        <rect x="0" y="36" width="60" height="14" rx="3" fill="#ff6a00"/>
+        <circle cx="10" cy="43" r="2.5" fill="#ffffff"/>
+        <circle cx="50" cy="43" r="2.5" fill="#ffffff"/>
+
+        <text x="30" y="66" text-anchor="middle" font-size="13" font-weight="800" fill="#ea580c">ECS3</text>
+      </g>
+
+      <!-- ECS4 -->
+      <g transform="translate(190, 180)">
+        <rect x="0" y="0" width="60" height="14" rx="3" fill="#ff6a00"/>
+        <circle cx="10" cy="7" r="2.5" fill="#ffffff"/>
+        <circle cx="50" cy="7" r="2.5" fill="#ffffff"/>
+
+        <rect x="0" y="18" width="60" height="14" rx="3" fill="#ff6a00"/>
+        <circle cx="10" cy="25" r="2.5" fill="#ffffff"/>
+        <circle cx="50" cy="25" r="2.5" fill="#ffffff"/>
+
+        <rect x="0" y="36" width="60" height="14" rx="3" fill="#ff6a00"/>
+        <circle cx="10" cy="43" r="2.5" fill="#ffffff"/>
+        <circle cx="50" cy="43" r="2.5" fill="#ffffff"/>
+
+        <text x="30" y="66" text-anchor="middle" font-size="13" font-weight="800" fill="#ea580c">ECS4</text>
+      </g>
+    </g>
+
+  </g>
+</svg>

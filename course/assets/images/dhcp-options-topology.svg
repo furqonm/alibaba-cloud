@@ -1,0 +1,218 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 500" width="100%" height="auto">
+  <defs>
+    <filter id="dhcp-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Transparent Canvas Background for Night Mode -->
+  <rect width="680" height="500" fill="none"/>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    
+    <!-- Top: DHCP Circle Badge -->
+    <g transform="translate(340, 36)" filter="url(#dhcp-shadow)">
+      <circle cx="0" cy="0" r="28" fill="#ff6a00"/>
+      <text x="0" y="6" text-anchor="middle" font-size="14.5" font-weight="800" fill="#ffffff">DHCP</text>
+    </g>
+
+    <!-- DHCP options set Dashed Box -->
+    <g transform="translate(160, 60)">
+      <rect x="0" y="0" width="360" height="135" rx="16" fill="none" stroke="#ea580c" stroke-width="1.8" stroke-dasharray="6,4"/>
+      <text x="180" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="#ea580c">DHCP options set</text>
+
+      <!-- Left: Domain name icon & label -->
+      <g transform="translate(95, 68)">
+        <!-- Server + Cloud Icon -->
+        <g transform="translate(-16, -14)">
+          <rect x="0" y="0" width="32" height="6" rx="2" fill="#ff6a00"/>
+          <rect x="0" y="8" width="32" height="6" rx="2" fill="#ff6a00"/>
+          <path d="M 6 22 A 6 6 0 0 1 12 16 A 8 8 0 0 1 26 16 A 6 6 0 0 1 30 22 Z" fill="#ff6a00"/>
+        </g>
+        <text x="0" y="36" text-anchor="middle" font-size="13" font-weight="700" fill="#ea580c">Domain name</text>
+      </g>
+
+      <!-- Center: Plus Sign -->
+      <text x="180" y="76" text-anchor="middle" font-size="24" font-weight="700" fill="#ea580c">+</text>
+
+      <!-- Right: DNS server IP address icon & label -->
+      <g transform="translate(265, 68)">
+        <!-- DNS Globe Icon -->
+        <circle cx="0" cy="-2" r="14" fill="none" stroke="#ff6a00" stroke-width="2"/>
+        <ellipse cx="0" cy="-2" rx="6" ry="14" fill="none" stroke="#ff6a00" stroke-width="1.8"/>
+        <line x1="-14" y1="-2" x2="14" y2="-2" stroke="#ff6a00" stroke-width="1.8"/>
+        <text x="0" y="3" text-anchor="middle" font-size="8.5" font-weight="900" fill="#ff6a00">DNS</text>
+
+        <text x="0" y="36" text-anchor="middle" font-size="13" font-weight="700" fill="#ea580c">DNS server IP address</text>
+      </g>
+    </g>
+
+    <!-- Distribution Lines from DHCP set to VPCs -->
+    <path d="M 340 195 L 340 230 L 150 230 L 150 248" fill="none" stroke="#ea580c" stroke-width="2"/>
+    <path d="M 340 230 L 530 230 L 530 248" fill="none" stroke="#ea580c" stroke-width="2"/>
+
+    <!-- ==================== LEFT VPC BRANCH ==================== -->
+    <g transform="translate(50, 250)">
+      <!-- VPC Icon & Label -->
+      <g transform="translate(100, 24)" filter="url(#dhcp-shadow)">
+        <circle cx="0" cy="0" r="26" fill="#ffffff" stroke="#ff6a00" stroke-width="2"/>
+        <circle cx="0" cy="0" r="22" fill="#ff6a00"/>
+        <!-- VPC Cloud Nodes -->
+        <circle cx="-5" cy="-2" r="3" fill="#ffffff"/>
+        <circle cx="7" cy="-6" r="2.5" fill="#ffffff"/>
+        <circle cx="5" cy="4" r="3" fill="#ffffff"/>
+        <line x1="-5" y1="-2" x2="7" y2="-6" stroke="#ffffff" stroke-width="1.5"/>
+        <line x1="-5" y1="-2" x2="5" y2="4" stroke="#ffffff" stroke-width="1.5"/>
+        <text x="40" y="7" font-size="16" font-weight="800" fill="#ea580c">VPC</text>
+      </g>
+
+      <!-- Lines to ECS instances -->
+      <path d="M 100 50 L 100 80 L 35 80 L 35 102" fill="none" stroke="#ea580c" stroke-width="1.8"/>
+      <path d="M 100 80 L 100 102" fill="none" stroke="#ea580c" stroke-width="1.8"/>
+      <path d="M 100 80 L 165 80 L 165 102" fill="none" stroke="#ea580c" stroke-width="1.8"/>
+
+      <!-- Arrowheads -->
+      <polygon points="35,108 31,100 39,100" fill="#ea580c"/>
+      <polygon points="100,108 96,100 104,100" fill="#ea580c"/>
+      <polygon points="165,108 161,100 169,100" fill="#ea580c"/>
+
+      <!-- VPC Subnet Dashed Box -->
+      <rect x="-15" y="70" width="230" height="155" rx="14" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+      <!-- ECS Instances -->
+      <!-- ECS 1 -->
+      <g transform="translate(10, 115)">
+        <rect x="0" y="0" width="50" height="12" rx="2.5" fill="#ff6a00"/>
+        <circle cx="8" cy="6" r="2" fill="#ffffff"/>
+        <circle cx="42" cy="6" r="2" fill="#ffffff"/>
+
+        <rect x="0" y="15" width="50" height="12" rx="2.5" fill="#ff6a00"/>
+        <circle cx="8" cy="21" r="2" fill="#ffffff"/>
+        <circle cx="42" cy="21" r="2" fill="#ffffff"/>
+
+        <rect x="0" y="30" width="50" height="12" rx="2.5" fill="#ff6a00"/>
+        <circle cx="8" cy="36" r="2" fill="#ffffff"/>
+        <circle cx="42" cy="36" r="2" fill="#ffffff"/>
+
+        <text x="25" y="56" text-anchor="middle" font-size="13" font-weight="800" fill="#ea580c">ECS</text>
+      </g>
+
+      <!-- ECS 2 -->
+      <g transform="translate(75, 115)">
+        <rect x="0" y="0" width="50" height="12" rx="2.5" fill="#ff6a00"/>
+        <circle cx="8" cy="6" r="2" fill="#ffffff"/>
+        <circle cx="42" cy="6" r="2" fill="#ffffff"/>
+
+        <rect x="0" y="15" width="50" height="12" rx="2.5" fill="#ff6a00"/>
+        <circle cx="8" cy="21" r="2" fill="#ffffff"/>
+        <circle cx="42" cy="21" r="2" fill="#ffffff"/>
+
+        <rect x="0" y="30" width="50" height="12" rx="2.5" fill="#ff6a00"/>
+        <circle cx="8" cy="36" r="2" fill="#ffffff"/>
+        <circle cx="42" cy="36" r="2" fill="#ffffff"/>
+
+        <text x="25" y="56" text-anchor="middle" font-size="13" font-weight="800" fill="#ea580c">ECS</text>
+      </g>
+
+      <!-- ECS 3 -->
+      <g transform="translate(140, 115)">
+        <rect x="0" y="0" width="50" height="12" rx="2.5" fill="#ff6a00"/>
+        <circle cx="8" cy="6" r="2" fill="#ffffff"/>
+        <circle cx="42" cy="6" r="2" fill="#ffffff"/>
+
+        <rect x="0" y="15" width="50" height="12" rx="2.5" fill="#ff6a00"/>
+        <circle cx="8" cy="21" r="2" fill="#ffffff"/>
+        <circle cx="42" cy="21" r="2" fill="#ffffff"/>
+
+        <rect x="0" y="30" width="50" height="12" rx="2.5" fill="#ff6a00"/>
+        <circle cx="8" cy="36" r="2" fill="#ffffff"/>
+        <circle cx="42" cy="36" r="2" fill="#ffffff"/>
+
+        <text x="25" y="56" text-anchor="middle" font-size="13" font-weight="800" fill="#ea580c">ECS</text>
+      </g>
+    </g>
+
+    <!-- Center Ellipsis Dots -->
+    <text x="340" y="395" text-anchor="middle" font-size="28" font-weight="900" fill="#ea580c" letter-spacing="4">......</text>
+
+    <!-- ==================== RIGHT VPC BRANCH ==================== -->
+    <g transform="translate(430, 250)">
+      <!-- VPC Icon & Label -->
+      <g transform="translate(100, 24)" filter="url(#dhcp-shadow)">
+        <circle cx="0" cy="0" r="26" fill="#ffffff" stroke="#ff6a00" stroke-width="2"/>
+        <circle cx="0" cy="0" r="22" fill="#ff6a00"/>
+        <circle cx="-5" cy="-2" r="3" fill="#ffffff"/>
+        <circle cx="7" cy="-6" r="2.5" fill="#ffffff"/>
+        <circle cx="5" cy="4" r="3" fill="#ffffff"/>
+        <line x1="-5" y1="-2" x2="7" y2="-6" stroke="#ffffff" stroke-width="1.5"/>
+        <line x1="-5" y1="-2" x2="5" y2="4" stroke="#ffffff" stroke-width="1.5"/>
+        <text x="40" y="7" font-size="16" font-weight="800" fill="#ea580c">VPC</text>
+      </g>
+
+      <!-- Lines to ECS instances -->
+      <path d="M 100 50 L 100 80 L 35 80 L 35 102" fill="none" stroke="#ea580c" stroke-width="1.8"/>
+      <path d="M 100 80 L 100 102" fill="none" stroke="#ea580c" stroke-width="1.8"/>
+      <path d="M 100 80 L 165 80 L 165 102" fill="none" stroke="#ea580c" stroke-width="1.8"/>
+
+      <polygon points="35,108 31,100 39,100" fill="#ea580c"/>
+      <polygon points="100,108 96,100 104,100" fill="#ea580c"/>
+      <polygon points="165,108 161,100 169,100" fill="#ea580c"/>
+
+      <!-- VPC Subnet Dashed Box -->
+      <rect x="-15" y="70" width="230" height="155" rx="14" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+      <!-- ECS Instances -->
+      <!-- ECS 1 -->
+      <g transform="translate(10, 115)">
+        <rect x="0" y="0" width="50" height="12" rx="2.5" fill="#ff6a00"/>
+        <circle cx="8" cy="6" r="2" fill="#ffffff"/>
+        <circle cx="42" cy="6" r="2" fill="#ffffff"/>
+
+        <rect x="0" y="15" width="50" height="12" rx="2.5" fill="#ff6a00"/>
+        <circle cx="8" cy="21" r="2" fill="#ffffff"/>
+        <circle cx="42" cy="21" r="2" fill="#ffffff"/>
+
+        <rect x="0" y="30" width="50" height="12" rx="2.5" fill="#ff6a00"/>
+        <circle cx="8" cy="36" r="2" fill="#ffffff"/>
+        <circle cx="42" cy="36" r="2" fill="#ffffff"/>
+
+        <text x="25" y="56" text-anchor="middle" font-size="13" font-weight="800" fill="#ea580c">ECS</text>
+      </g>
+
+      <!-- ECS 2 -->
+      <g transform="translate(75, 115)">
+        <rect x="0" y="0" width="50" height="12" rx="2.5" fill="#ff6a00"/>
+        <circle cx="8" cy="6" r="2" fill="#ffffff"/>
+        <circle cx="42" cy="6" r="2" fill="#ffffff"/>
+
+        <rect x="0" y="15" width="50" height="12" rx="2.5" fill="#ff6a00"/>
+        <circle cx="8" cy="21" r="2" fill="#ffffff"/>
+        <circle cx="42" cy="21" r="2" fill="#ffffff"/>
+
+        <rect x="0" y="30" width="50" height="12" rx="2.5" fill="#ff6a00"/>
+        <circle cx="8" cy="36" r="2" fill="#ffffff"/>
+        <circle cx="42" cy="36" r="2" fill="#ffffff"/>
+
+        <text x="25" y="56" text-anchor="middle" font-size="13" font-weight="800" fill="#ea580c">ECS</text>
+      </g>
+
+      <!-- ECS 3 -->
+      <g transform="translate(140, 115)">
+        <rect x="0" y="0" width="50" height="12" rx="2.5" fill="#ff6a00"/>
+        <circle cx="8" cy="6" r="2" fill="#ffffff"/>
+        <circle cx="42" cy="6" r="2" fill="#ffffff"/>
+
+        <rect x="0" y="15" width="50" height="12" rx="2.5" fill="#ff6a00"/>
+        <circle cx="8" cy="21" r="2" fill="#ffffff"/>
+        <circle cx="42" cy="21" r="2" fill="#ffffff"/>
+
+        <rect x="0" y="30" width="50" height="12" rx="2.5" fill="#ff6a00"/>
+        <circle cx="8" cy="36" r="2" fill="#ffffff"/>
+        <circle cx="42" cy="36" r="2" fill="#ffffff"/>
+
+        <text x="25" y="56" text-anchor="middle" font-size="13" font-weight="800" fill="#ea580c">ECS</text>
+      </g>
+    </g>
+
+  </g>
+</svg>

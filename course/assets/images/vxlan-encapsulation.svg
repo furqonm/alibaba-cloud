@@ -1,61 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 220" width="100%" height="auto">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 240" width="100%" height="auto">
   <defs>
-    <linearGradient id="outerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#f1f5f9"/>
-      <stop offset="100%" stop-color="#e2e8f0"/>
-    </linearGradient>
-    <linearGradient id="vxlanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#ffedd5"/>
-      <stop offset="100%" stop-color="#fed7aa"/>
-    </linearGradient>
-    <linearGradient id="innerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#e0f2fe"/>
-      <stop offset="100%" stop-color="#bae6fd"/>
-    </linearGradient>
+    <!-- Drop shadow for packet -->
+    <filter id="packet-shadow" x="-3%" y="-5%" width="106%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
   </defs>
 
-  <!-- Outer Frame: Physical Transport (Underlay) -->
-  <rect x="10" y="15" width="740" height="190" rx="10" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
-  <text x="25" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="12" font-weight="bold" fill="#475569">Physical Underlay Transport Packet (Layer 3 UDP Network)</text>
+  <!-- Transparent Canvas Background for Night Mode -->
+  <rect width="820" height="240" fill="none"/>
 
-  <!-- Outer Ethernet Header -->
-  <rect x="25" y="55" width="110" height="85" rx="6" fill="url(#outerGrad)" stroke="#94a3b8" stroke-width="1.5"/>
-  <text x="80" y="85" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="11" font-weight="bold" fill="#1e293b">Outer Ethernet</text>
-  <text x="80" y="105" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="10" fill="#64748b">14 Bytes (MAC)</text>
-  <text x="80" y="125" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="9" fill="#94a3b8">Physical Host NIC</text>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" filter="url(#packet-shadow)">
+    <!-- 1. Eth (Light Gray) -->
+    <rect x="30" y="30" width="115" height="75" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="87.5" y="75" text-anchor="middle" font-size="22" font-weight="700" fill="#1e293b">Eth</text>
 
-  <!-- Outer IP Header -->
-  <rect x="145" y="55" width="110" height="85" rx="6" fill="url(#outerGrad)" stroke="#94a3b8" stroke-width="1.5"/>
-  <text x="200" y="85" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="11" font-weight="bold" fill="#1e293b">Outer IPv4</text>
-  <text x="200" y="105" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="10" fill="#64748b">20 Bytes (IP)</text>
-  <text x="200" y="125" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="9" fill="#94a3b8">Host IP Routing</text>
+    <!-- 2. IP (Medium Gray) -->
+    <rect x="145" y="30" width="100" height="75" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="195" y="75" text-anchor="middle" font-size="22" font-weight="700" fill="#1e293b">IP</text>
 
-  <!-- Outer UDP Header -->
-  <rect x="265" y="55" width="95" height="85" rx="6" fill="url(#outerGrad)" stroke="#94a3b8" stroke-width="1.5"/>
-  <text x="312" y="85" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="11" font-weight="bold" fill="#1e293b">Outer UDP</text>
-  <text x="312" y="105" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="10" fill="#64748b">8 Bytes</text>
-  <text x="312" y="125" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="9" fill="#94a3b8">Port 4789</text>
+    <!-- 3. UDP (Orange/Yellow) -->
+    <rect x="245" y="30" width="100" height="75" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"/>
+    <text x="295" y="75" text-anchor="middle" font-size="22" font-weight="700" fill="#1e293b">UDP</text>
 
-  <!-- VXLAN Header (Tunnel ID) -->
-  <rect x="370" y="50" width="130" height="95" rx="8" fill="url(#vxlanGrad)" stroke="#ea580c" stroke-width="2"/>
-  <text x="435" y="80" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="12" font-weight="800" fill="#c2410c">VXLAN Header</text>
-  <text x="435" y="100" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="11" font-weight="bold" fill="#9a3412">24-bit Tunnel ID</text>
-  <text x="435" y="118" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="10" fill="#7c2d12">(16 Million VNIs)</text>
-  <text x="435" y="135" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="9" font-weight="bold" fill="#c2410c">VPC Isolation Key</text>
+    <!-- 4. Tunnel (Light Blue) -->
+    <rect x="345" y="30" width="190" height="75" fill="#bae6fd" stroke="#0284c7" stroke-width="1.5"/>
+    <text x="440" y="75" text-anchor="middle" font-size="22" font-weight="700" fill="#0369a1">Tunnel</text>
 
-  <!-- Inner Tenant Ethernet Frame -->
-  <rect x="510" y="55" width="110" height="85" rx="6" fill="url(#innerGrad)" stroke="#0284c7" stroke-width="1.5"/>
-  <text x="565" y="85" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="11" font-weight="bold" fill="#0369a1">Inner Ethernet</text>
-  <text x="565" y="105" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="10" fill="#0284c7">Original MAC</text>
-  <text x="565" y="125" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="9" fill="#0369a1">VM Virtual ENI</text>
+    <!-- 5. User packet (Green) -->
+    <rect x="535" y="30" width="250" height="75" fill="#86efac" stroke="#16a34a" stroke-width="1.5"/>
+    <text x="660" y="75" text-anchor="middle" font-size="22" font-weight="700" fill="#14532d">User packet</text>
+  </g>
 
-  <!-- Inner Tenant Payload -->
-  <rect x="630" y="55" width="105" height="85" rx="6" fill="url(#innerGrad)" stroke="#0284c7" stroke-width="1.5"/>
-  <text x="682" y="85" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="11" font-weight="bold" fill="#0369a1">Tenant IP & Data</text>
-  <text x="682" y="105" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="10" fill="#0284c7">Private Payload</text>
-  <text x="682" y="125" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="9" fill="#0369a1">TCP/UDP/HTTP</text>
+  <!-- Bracket under Tunnel -->
+  <g>
+    <!-- Left bracket curve: starts at x=348 y=120, curves to x=440 y=145, right curve to x=532 y=120 -->
+    <path d="M 348 118 
+             Q 348 138, 385 138 
+             L 430 138 
+             Q 440 138, 440 152
+             Q 440 138, 450 138 
+             L 495 138 
+             Q 532 138, 532 118" 
+          fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round"/>
 
-  <!-- Bottom Explanatory Caption -->
-  <path d="M 510 150 L 510 170 L 735 170 L 735 150" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="3,3"/>
-  <text x="622" y="188" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto" font-size="10.5" font-weight="600" fill="#0369a1">Original Tenant VM Packet (Encapsulated)</text>
+    <!-- 24-bit Tunnel ID Text with White Halo for Night Mode Contrast -->
+    <g transform="translate(440, 195)">
+      <!-- Card Pill for perfect contrast in both light & dark modes -->
+      <rect x="-110" y="-24" width="220" height="38" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="1.5" filter="url(#packet-shadow)"/>
+      <text x="0" y="2" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="800" fill="#0369a1">24-bit Tunnel ID</text>
+    </g>
+  </g>
 </svg>

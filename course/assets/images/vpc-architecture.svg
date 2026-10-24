@@ -5,14 +5,20 @@
     </filter>
   </defs>
 
+  <!-- Transparent Canvas Background -->
+  <rect width="1000" height="600" fill="none"/>
+
   <!-- ==================== OUTER: REGION (DASHED BORDER) ==================== -->
-  <rect x="8" y="8" width="984" height="540" rx="16" fill="#ffffff" stroke="#334155" stroke-width="2" stroke-dasharray="8,6"/>
-  <text x="500" y="582" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="800" fill="#0f172a">Region</text>
+  <rect x="8" y="8" width="984" height="535" rx="16" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="8,6"/>
+  
+  <!-- Region Badge -->
+  <rect x="420" y="555" width="160" height="34" rx="6" fill="#0284c7"/>
+  <text x="500" y="578" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="800" fill="#ffffff">Region</text>
 
   <!-- ==================== INNER: VPC SOLID BOX ==================== -->
-  <g transform="translate(45, 35)">
+  <g transform="translate(45, 30)">
     <!-- VPC Boundary -->
-    <path d="M 0 0 L 820 0 L 910 60 L 910 480 L 0 480 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+    <path d="M 0 0 L 820 0 L 910 60 L 910 475 L 0 475 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
 
     <!-- VPC Icon & Label (Top Left) -->
     <g transform="translate(30, 20)">
@@ -27,46 +33,42 @@
       </g>
     </g>
 
-    <!-- VRouter Icon & Label (Top Center) -->
+    <!-- vRouter Icon & Label (Top Center) -->
     <g transform="translate(430, 20)">
-      <!-- VRouter Circular Icon -->
+      <!-- vRouter Circular Icon -->
       <circle cx="50" cy="30" r="30" fill="#ff6a00"/>
       <!-- 4 Outward Diagonal Arrows -->
-      <!-- NE -->
       <path d="M 54 26 L 68 12 M 60 12 L 68 12 L 68 20" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <!-- NW -->
       <path d="M 46 26 L 32 12 M 40 12 L 32 12 L 32 20" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <!-- SE -->
       <path d="M 54 34 L 68 48 M 60 48 L 68 48 L 68 40" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <!-- SW -->
       <path d="M 46 34 L 32 48 M 40 48 L 32 48 L 32 40" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 
       <!-- Label Card -->
       <g transform="translate(-10, 68)" filter="url(#vpc-shadow)">
         <rect width="120" height="34" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
-        <text x="60" y="23" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="800" fill="#1e293b">VRouter</text>
+        <text x="60" y="23" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="800" fill="#1e293b">vRouter</text>
       </g>
     </g>
 
-    <!-- Connecting line between VPC and VRouter -->
+    <!-- Connecting line between VPC and vRouter -->
     <line x1="120" y1="45" x2="420" y2="45" stroke="#cbd5e1" stroke-width="2"/>
     <line x1="500" y1="45" x2="820" y2="45" stroke="#cbd5e1" stroke-width="2"/>
 
     <!-- ==================== SECURITY GROUP RED BOX ==================== -->
-    <g transform="translate(30, 140)">
+    <g transform="translate(30, 135)">
       <rect width="840" height="260" rx="14" fill="none" stroke="#ef4444" stroke-width="2"/>
       <text x="420" y="246" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="800" fill="#dc2626">Security Group</text>
     </g>
 
-    <!-- ==================== ZONE A (LEFT BLUE DASHED) ==================== -->
-    <g transform="translate(55, 125)">
-      <rect width="260" height="310" rx="16" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="6,4"/>
+    <!-- ==================== ZONE A (LEFT BLUE BOX) ==================== -->
+    <g transform="translate(55, 120)">
+      <rect width="260" height="310" rx="16" fill="none" stroke="#2563eb" stroke-width="2"/>
       <text x="130" y="335" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="800" fill="#1d4ed8">Zone A</text>
 
-      <!-- VSwitch Card -->
+      <!-- vSwitch Card -->
       <g transform="translate(25, 30)">
         <rect width="210" height="230" rx="12" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
-        <text x="105" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="800" fill="#1e40af">VSwitch</text>
+        <text x="105" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="800" fill="#1e40af">vSwitch</text>
 
         <!-- 4 ECS Servers Grid -->
         <!-- Server 1 -->
@@ -111,28 +113,28 @@
       </g>
     </g>
 
-    <!-- ==================== ZONE B (RIGHT BLUE DASHED) ==================== -->
-    <g transform="translate(560, 125)">
-      <rect width="295" height="310" rx="16" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="6,4"/>
+    <!-- ==================== ZONE B (RIGHT BLUE BOX) ==================== -->
+    <g transform="translate(560, 120)">
+      <rect width="295" height="310" rx="16" fill="none" stroke="#2563eb" stroke-width="2"/>
       <text x="147" y="335" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="800" fill="#1d4ed8">Zone B</text>
 
-      <!-- 4 VSwitch Cards -->
+      <!-- 4 vSwitch Cards -->
       <g transform="translate(25, 30)">
-        <!-- VSwitch 1 -->
+        <!-- vSwitch 1 -->
         <rect x="0" y="0" width="115" height="74" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
-        <text x="57" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#1e40af">VSwitch 1</text>
+        <text x="57" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#1e40af">vSwitch 1</text>
 
-        <!-- VSwitch 2 -->
+        <!-- vSwitch 2 -->
         <rect x="130" y="0" width="115" height="74" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
-        <text x="187" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#1e40af">VSwitch 2</text>
+        <text x="187" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#1e40af">vSwitch 2</text>
 
-        <!-- VSwitch 3 -->
+        <!-- vSwitch 3 -->
         <rect x="0" y="95" width="115" height="74" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
-        <text x="57" y="139" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#1e40af">VSwitch 3</text>
+        <text x="57" y="139" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#1e40af">vSwitch 3</text>
 
-        <!-- VSwitch 4 -->
+        <!-- vSwitch 4 -->
         <rect x="130" y="95" width="115" height="74" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
-        <text x="187" y="139" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#1e40af">VSwitch 4</text>
+        <text x="187" y="139" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#1e40af">vSwitch 4</text>
       </g>
     </g>
   </g>

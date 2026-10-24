@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 440" width="100%" height="auto">
+  <defs>
+    <!-- Drop shadow -->
+    <filter id="mz-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Transparent Canvas Background for Night Mode -->
+  <rect width="680" height="440" fill="none"/>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    
+    <!-- Outer Region / VPC Boundary with clean card container -->
+    <rect x="15" y="15" width="650" height="410" rx="26" fill="#ffffff" stroke="#0284c7" stroke-width="2.2" filter="url(#mz-shadow)"/>
+
+    <!-- Top Left: VPC Official Cloud Icon + CIDR -->
+    <g transform="translate(45, 32)">
+      <!-- Official Orange VPC Cloud Icon -->
+      <g transform="scale(0.065) translate(0, -50)">
+        <path d="M418.816 339.456l29.696-11.776c6.144 17.92 11.776 29.696 17.92 41.472h11.776c35.328 0 58.88 29.696 58.88 58.88v6.144c47.104 17.92 144.896 50.176 153.6 53.248 11.776-23.552 35.328-41.472 65.024-41.472h6.144c5.12-25.6 11.264-51.2 17.92-76.8H737.28c0-6.144-47.104-177.152-229.888-177.152H465.92C371.2 209.92 318.464 250.88 294.912 292.352 342.016 327.68 389.12 363.008 436.224 386.56c-5.632-17.408-11.776-29.184-17.408-47.104z m-6.144-105.984c6.144 17.92 11.776 29.696 17.92 47.104l-29.696 11.776-17.92-53.248 29.696-5.632z m247.808 424.448h11.776c17.92-29.696 29.696-53.248 41.472-82.432-17.92-11.776-29.696-35.328-29.696-58.88-10.24-2.56-112.128-35.328-165.376-53.248-6.144 17.92-23.552 23.552-41.472 23.552-35.328 0-58.88-29.696-58.88-58.88v-11.776c-47.104-29.696-88.576-58.88-135.68-94.208C265.216 374.784 271.36 416.256 271.36 421.888c0 0-194.56 11.776-224.256 153.6-35.328 177.152 153.6 241.664 218.112 241.664h283.136c29.696-23.552 53.248-53.248 70.656-82.432 0-6.144-6.144-17.92-6.144-29.696 0.512-29.184 24.064-47.104 47.616-47.104z m-118.272-88.576c-11.776-11.776-23.552-29.696-29.696-41.472l23.552-17.92c6.144 11.776 17.92 29.696 29.696 41.472l-23.552 17.92z m29.696 41.472l23.552-17.92c11.776 11.776 17.92 29.696 29.696 41.472l-23.552 17.92c-11.776-12.288-23.552-24.064-29.696-41.472z m407.04-53.248c-41.472 0-100.352-6.144-159.232-11.776-11.776 23.552-35.328 41.472-65.024 41.472h-6.144c-11.776 29.696-29.696 58.88-41.472 88.576 6.144 6.144 11.776 17.92 11.776 29.696 0 29.696-23.552 47.104-47.104 47.104H660.48c-17.92 23.552-35.328 41.472-53.248 65.024h141.312c6.144 0 153.088 0 224.256-135.68 6.144-41.984 11.776-82.944 6.144-124.416zM737.28 811.008l-35.328-35.328 23.552-23.552 35.328 35.328-23.552 23.552z m235.52-282.624c-17.92-76.8-76.8-135.68-165.376-153.088-6.144 23.552-11.776 53.248-17.92 82.432 17.92 11.776 29.696 29.696 35.328 58.88 59.392 5.632 107.008 11.776 147.968 11.776z" fill="#FF6A00"/>
+      </g>
+      <!-- VPC Master CIDR -->
+      <text x="90" y="44" font-size="28" font-weight="700" fill="#0f172a">10.0.0.0/8</text>
+    </g>
+
+    <!-- Center vRouter Icon with 4 arrows -->
+    <g transform="translate(340, 130)" filter="url(#mz-shadow)">
+      <circle cx="0" cy="0" r="26" fill="#ff6a00"/>
+      <!-- Diagonal Arrows -->
+      <path d="M 4 -4 L 14 -14 M 7 -14 L 14 -14 L 14 -7" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M -4 -4 L -14 -14 M -7 -14 L -14 -14 L -14 -7" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M 4 4 L 14 14 M 7 14 L 14 14 L 14 7" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M -4 4 L -14 14 M -7 14 L -14 14 L -14 7" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </g>
+
+    <!-- ==================== ZONE A (LEFT) ==================== -->
+    <g transform="translate(35, 115)">
+      <!-- Zone A Dashed Boundary -->
+      <rect x="0" y="0" width="275" height="235" rx="18" fill="none" stroke="#0284c7" stroke-width="1.8" stroke-dasharray="6,4"/>
+
+      <!-- vSwitch Box -->
+      <g transform="translate(25, 25)" filter="url(#mz-shadow)">
+        <rect x="0" y="0" width="225" height="135" rx="14" fill="#ffffff" stroke="#0284c7" stroke-width="1.8"/>
+        <text x="18" y="44" font-size="23" font-weight="700" fill="#0f172a">10.1.0.0/16</text>
+        
+        <!-- Official Orange vSwitch Icon -->
+        <g transform="translate(142, 60)">
+          <rect x="0" y="0" width="62" height="52" rx="7" fill="#ff6a00"/>
+          <!-- Top Arrow (Right) -->
+          <path d="M 12 18 L 48 18 M 40 12 L 48 18 L 40 24" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <!-- Bottom Arrow (Left) -->
+          <path d="M 50 34 L 14 34 M 22 28 L 14 34 L 22 40" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </g>
+      </g>
+
+      <!-- Zone A Label -->
+      <text x="137.5" y="205" text-anchor="middle" font-size="24" font-weight="700" fill="#0f172a">Zone A</text>
+    </g>
+
+    <!-- ==================== ZONE B (RIGHT) ==================== -->
+    <g transform="translate(370, 115)">
+      <!-- Zone B Dashed Boundary -->
+      <rect x="0" y="0" width="275" height="235" rx="18" fill="none" stroke="#0284c7" stroke-width="1.8" stroke-dasharray="6,4"/>
+
+      <!-- vSwitch Box -->
+      <g transform="translate(25, 25)" filter="url(#mz-shadow)">
+        <rect x="0" y="0" width="225" height="135" rx="14" fill="#ffffff" stroke="#0284c7" stroke-width="1.8"/>
+        <text x="18" y="44" font-size="23" font-weight="700" fill="#0f172a">10.2.0.0/16</text>
+        
+        <!-- Official Orange vSwitch Icon -->
+        <g transform="translate(142, 60)">
+          <rect x="0" y="0" width="62" height="52" rx="7" fill="#ff6a00"/>
+          <!-- Top Arrow (Right) -->
+          <path d="M 12 18 L 48 18 M 40 12 L 48 18 L 40 24" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <!-- Bottom Arrow (Left) -->
+          <path d="M 50 34 L 14 34 M 22 28 L 14 34 L 22 40" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </g>
+      </g>
+
+      <!-- Zone B Label -->
+      <text x="137.5" y="205" text-anchor="middle" font-size="24" font-weight="700" fill="#0f172a">Zone B</text>
+    </g>
+
+    <!-- Bottom Left: Singapore Region Label -->
+    <text x="45" y="395" font-size="26" font-weight="700" fill="#0f172a">Singapore</text>
+
+  </g>
+</svg>
