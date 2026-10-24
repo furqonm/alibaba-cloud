@@ -1,218 +1,174 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 500" width="100%" height="auto">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 480" width="680" height="480">
   <defs>
-    <filter id="dhcp-shadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
-    </filter>
+    <marker id="dhcp-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#ea580c"/>
+    </marker>
   </defs>
 
-  <!-- Transparent Canvas Background for Night Mode -->
-  <rect width="680" height="500" fill="none"/>
+  <rect width="680" height="480" fill="none"/>
 
   <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
-    
-    <!-- Top: DHCP Circle Badge -->
-    <g transform="translate(340, 36)" filter="url(#dhcp-shadow)">
-      <circle cx="0" cy="0" r="28" fill="#ff6a00"/>
-      <text x="0" y="6" text-anchor="middle" font-size="14.5" font-weight="800" fill="#ffffff">DHCP</text>
+    <!-- ==================== TOP: DHCP OPTIONS SET ==================== -->
+    <!-- Dashed Outer Container (with white halo for Night Mode) -->
+    <rect x="160" y="62" width="368" height="140" rx="22" fill="none" stroke="#ffffff" stroke-width="4"/>
+    <rect x="160" y="62" width="368" height="140" rx="22" fill="none" stroke="#b45309" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+    <!-- DHCP Top Circle Badge -->
+    <circle cx="338" cy="44" r="34" fill="#ff6a00" stroke="#ffffff" stroke-width="2"/>
+    <text x="338" y="51" text-anchor="middle" font-size="21" font-weight="700" fill="#ffffff">DHCP</text>
+
+    <text x="338" y="98" text-anchor="middle" font-size="16.5" font-weight="600" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" fill="none">DHCP options set</text>
+    <text x="338" y="98" text-anchor="middle" font-size="16.5" font-weight="600" fill="#c2410c">DHCP options set</text>
+
+    <!-- Left Item: Domain name (3 server bars + small orange cloud at bottom-right) -->
+    <g transform="translate(244, 124)">
+      <rect x="-2" y="-2" width="44" height="36" rx="3" fill="#ffffff"/>
+      <rect x="0" y="0" width="28" height="7" rx="1.5" fill="#ff6a00"/>
+      <circle cx="4" cy="3.5" r="1" fill="#ffffff"/>
+      <rect x="0" y="9" width="28" height="7" rx="1.5" fill="#ff6a00"/>
+      <circle cx="4" cy="12.5" r="1" fill="#ffffff"/>
+      <rect x="0" y="18" width="12" height="13" rx="1.5" fill="#ff6a00"/>
+      <circle cx="4" cy="22" r="1" fill="#ffffff"/>
+      <!-- Small Cloud at bottom-right -->
+      <path d="M 14 31 A 5 5 0 0 1 18 22 A 7 7 0 0 1 31 22 A 5 5 0 0 1 35 31 Z" fill="#ff6a00" stroke="#ffffff" stroke-width="1.2"/>
     </g>
+    <text x="256" y="178" text-anchor="middle" font-size="15" font-weight="600" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" fill="none">Domain name</text>
+    <text x="256" y="178" text-anchor="middle" font-size="15" font-weight="600" fill="#c2410c">Domain name</text>
 
-    <!-- DHCP options set Dashed Box -->
-    <g transform="translate(160, 60)">
-      <rect x="0" y="0" width="360" height="135" rx="16" fill="none" stroke="#ea580c" stroke-width="1.8" stroke-dasharray="6,4"/>
-      <text x="180" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="#ea580c">DHCP options set</text>
+    <!-- Plus Sign -->
+    <text x="344" y="150" text-anchor="middle" font-size="24" font-weight="500" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" fill="none">+</text>
+    <text x="344" y="150" text-anchor="middle" font-size="24" font-weight="500" fill="#c2410c">+</text>
 
-      <!-- Left: Domain name icon & label -->
-      <g transform="translate(95, 68)">
-        <!-- Server + Cloud Icon -->
-        <g transform="translate(-16, -14)">
-          <rect x="0" y="0" width="32" height="6" rx="2" fill="#ff6a00"/>
-          <rect x="0" y="8" width="32" height="6" rx="2" fill="#ff6a00"/>
-          <path d="M 6 22 A 6 6 0 0 1 12 16 A 8 8 0 0 1 26 16 A 6 6 0 0 1 30 22 Z" fill="#ff6a00"/>
+    <!-- Right Item: DNS server IP address (Globe with clean "DNS" center band) -->
+    <g transform="translate(432, 140)">
+      <circle cx="0" cy="0" r="19" fill="#ffffff"/>
+      <circle cx="0" cy="0" r="17" fill="none" stroke="#ff6a00" stroke-width="2.2"/>
+      <ellipse cx="0" cy="0" rx="8" ry="17" fill="none" stroke="#ff6a00" stroke-width="1.8"/>
+      <line x1="0" y1="-17" x2="0" y2="17" stroke="#ff6a00" stroke-width="1.8"/>
+      <rect x="-15" y="-6.5" width="30" height="13" rx="2" fill="#ffffff" stroke="#ff6a00" stroke-width="1.6"/>
+      <text x="0" y="3.5" text-anchor="middle" font-size="9.5" font-weight="800" fill="#ff6a00">DNS</text>
+    </g>
+    <text x="438" y="179" text-anchor="middle" font-size="15" font-weight="600" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" fill="none">DNS server IP address</text>
+    <text x="438" y="179" text-anchor="middle" font-size="15" font-weight="600" fill="#c2410c">DNS server IP address</text>
+
+    <!-- ==================== DISTRIBUTION ARROWS TO VPCS ==================== -->
+    <line x1="344" y1="202" x2="344" y2="234" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"/>
+    <line x1="344" y1="202" x2="344" y2="234" stroke="#ea580c" stroke-width="1.6"/>
+    <path d="M 344 234 L 145 234 L 145 272" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 344 234 L 145 234 L 145 272" fill="none" stroke="#ea580c" stroke-width="1.6" marker-end="url(#dhcp-arr)"/>
+    <path d="M 344 234 L 538 234 L 538 272" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 344 234 L 538 234 L 538 272" fill="none" stroke="#ea580c" stroke-width="1.6" marker-end="url(#dhcp-arr)"/>
+
+    <!-- ==================== BOTTOM LEFT VPC ==================== -->
+    <g transform="translate(20, 312)">
+      <rect x="0" y="0" width="238" height="140" rx="22" fill="none" stroke="#ffffff" stroke-width="4"/>
+      <rect x="0" y="0" width="238" height="140" rx="22" fill="none" stroke="#b45309" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+      <!-- VPC Circle Icon on Top Border (containing Official Orange VPC Cloud) -->
+      <g transform="translate(125, -4)">
+        <circle cx="0" cy="0" r="31" fill="#ffffff" stroke="#ea580c" stroke-width="2.2"/>
+        <g transform="translate(-26, -24) scale(1.35)">
+          <path d="M 17.08 14.61 L 18 14.24 C 18.19 14.79 18.37 15.16 18.56 15.53 L 18.92 15.53 C 20.03 15.53 20.77 16.45 20.77 17.37 L 20.77 17.56 C 22.24 18.11 25.3 19.12 25.56 19.22 C 25.93 18.48 26.66 17.93 27.59 17.93 L 27.77 17.93 C 27.93 17.13 28.12 16.33 28.32 15.53 L 27.03 15.53 C 27.03 15.34 25.56 10 19.85 10 L 18.56 10 C 15.61 10.55 13.95 11.84 13.21 13.13 C 14.69 14.24 16.16 15.35 17.63 16.08 C 17.45 15.53 17.27 15.16 17.08 14.61 Z M 16.9 11.29 C 17.08 11.84 17.26 12.21 17.45 12.76 L 16.53 13.13 L 15.97 11.47 L 16.9 11.29 Z M 24.64 24.56 L 25.01 24.56 C 25.56 23.64 25.93 22.9 26.3 21.98 C 25.74 21.61 25.37 20.87 25.37 20.14 C 25.05 20.05 21.87 19.03 20.21 18.48 C 20.03 19.03 19.48 19.21 18.92 19.21 C 17.82 19.21 17.08 18.29 17.08 17.37 L 17.08 17 C 15.61 16.08 14.32 15.16 12.84 14.05 C 12.29 15.71 12.47 17 12.47 17.19 C 12.47 17.19 6.39 17.56 5.47 21.98 C 4.36 27.51 10.26 29.54 12.29 29.54 L 21.14 29.54 C 22.06 28.8 22.8 27.88 23.35 26.96 C 23.35 26.77 23.16 26.4 23.16 26.04 C 23.16 25.11 23.9 24.56 24.64 24.56 Z M 20.95 21.79 C 20.58 21.43 20.21 20.87 20.03 20.5 L 20.77 19.95 C 20.95 20.32 21.32 20.87 21.69 21.24 L 20.95 21.79 Z M 21.87 23.09 L 22.61 22.53 C 22.98 22.9 23.16 23.45 23.53 23.82 L 22.79 24.38 C 22.43 24.01 22.06 23.64 21.87 23.09 Z M 34.59 21.43 C 33.3 21.43 31.46 21.24 29.61 21.06 C 29.25 21.8 28.51 22.35 27.59 22.35 L 27.4 22.35 C 27.03 23.27 26.48 24.19 26.11 25.11 C 26.3 25.3 26.48 25.67 26.48 26.03 C 26.48 26.95 25.74 27.51 25.01 27.51 L 24.64 27.51 C 24.08 28.25 23.53 28.8 22.98 29.54 L 27.4 29.54 C 27.59 29.54 32.19 29.54 34.41 25.3 C 34.59 24.01 34.77 22.72 34.59 21.43 Z M 27.03 29.35 L 25.93 28.25 L 26.66 27.51 L 27.77 28.61 L 27.03 29.35 Z M 34.41 20.5 C 33.85 18.11 32.01 16.27 29.24 15.71 C 29.06 16.45 28.88 17.37 28.69 18.29 C 29.24 18.66 29.61 19.21 29.8 20.14 C 31.64 20.32 33.11 20.5 34.41 20.5 Z" fill="#ff6a00"/>
         </g>
-        <text x="0" y="36" text-anchor="middle" font-size="13" font-weight="700" fill="#ea580c">Domain name</text>
       </g>
+      <text x="168" y="36" text-anchor="start" font-size="15.5" font-weight="600" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" fill="none">VPC</text>
+    <text x="168" y="36" text-anchor="start" font-size="15.5" font-weight="600" fill="#c2410c">VPC</text>
 
-      <!-- Center: Plus Sign -->
-      <text x="180" y="76" text-anchor="middle" font-size="24" font-weight="700" fill="#ea580c">+</text>
+      <!-- Arrows to 3 ECS instances -->
+      <line x1="125" y1="28" x2="125" y2="48" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"/>
+    <line x1="125" y1="28" x2="125" y2="48" stroke="#ea580c" stroke-width="1.6"/>
+      <path d="M 125 48 L 54 48 L 54 64" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 125 48 L 54 48 L 54 64" fill="none" stroke="#ea580c" stroke-width="1.6" marker-end="url(#dhcp-arr)"/>
+      <line x1="125" y1="48" x2="125" y2="64" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"/>
+    <line x1="125" y1="48" x2="125" y2="64" stroke="#ea580c" stroke-width="1.6" marker-end="url(#dhcp-arr)"/>
+      <path d="M 125 48 L 192 48 L 192 64" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 125 48 L 192 48 L 192 64" fill="none" stroke="#ea580c" stroke-width="1.6" marker-end="url(#dhcp-arr)"/>
 
-      <!-- Right: DNS server IP address icon & label -->
-      <g transform="translate(265, 68)">
-        <!-- DNS Globe Icon -->
-        <circle cx="0" cy="-2" r="14" fill="none" stroke="#ff6a00" stroke-width="2"/>
-        <ellipse cx="0" cy="-2" rx="6" ry="14" fill="none" stroke="#ff6a00" stroke-width="1.8"/>
-        <line x1="-14" y1="-2" x2="14" y2="-2" stroke="#ff6a00" stroke-width="1.8"/>
-        <text x="0" y="3" text-anchor="middle" font-size="8.5" font-weight="900" fill="#ff6a00">DNS</text>
-
-        <text x="0" y="36" text-anchor="middle" font-size="13" font-weight="700" fill="#ea580c">DNS server IP address</text>
+      <!-- 3 ECS Instances -->
+      <g transform="translate(35, 76)">
+        <rect x="-2" y="-2" width="42" height="34" rx="3" fill="#ffffff"/>
+        <rect x="0" y="0" width="38" height="8.5" rx="2" fill="#ff6a00"/><circle cx="32" cy="4.2" r="1.5" fill="#ffffff"/>
+        <rect x="0" y="11" width="38" height="8.5" rx="2" fill="#ff6a00"/><circle cx="32" cy="15.2" r="1.5" fill="#ffffff"/>
+        <rect x="0" y="22" width="38" height="8.5" rx="2" fill="#ff6a00"/><circle cx="32" cy="26.2" r="1.5" fill="#ffffff"/>
       </g>
+      <text x="54" y="126" text-anchor="middle" font-size="14.5" font-weight="600" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" fill="none">ECS</text>
+    <text x="54" y="126" text-anchor="middle" font-size="14.5" font-weight="600" fill="#c2410c">ECS</text>
+
+      <g transform="translate(106, 76)">
+        <rect x="-2" y="-2" width="42" height="34" rx="3" fill="#ffffff"/>
+        <rect x="0" y="0" width="38" height="8.5" rx="2" fill="#ff6a00"/><circle cx="32" cy="4.2" r="1.5" fill="#ffffff"/>
+        <rect x="0" y="11" width="38" height="8.5" rx="2" fill="#ff6a00"/><circle cx="32" cy="15.2" r="1.5" fill="#ffffff"/>
+        <rect x="0" y="22" width="38" height="8.5" rx="2" fill="#ff6a00"/><circle cx="32" cy="26.2" r="1.5" fill="#ffffff"/>
+      </g>
+      <text x="125" y="126" text-anchor="middle" font-size="14.5" font-weight="600" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" fill="none">ECS</text>
+    <text x="125" y="126" text-anchor="middle" font-size="14.5" font-weight="600" fill="#c2410c">ECS</text>
+
+      <g transform="translate(173, 76)">
+        <rect x="-2" y="-2" width="42" height="34" rx="3" fill="#ffffff"/>
+        <rect x="0" y="0" width="38" height="8.5" rx="2" fill="#ff6a00"/><circle cx="32" cy="4.2" r="1.5" fill="#ffffff"/>
+        <rect x="0" y="11" width="38" height="8.5" rx="2" fill="#ff6a00"/><circle cx="32" cy="15.2" r="1.5" fill="#ffffff"/>
+        <rect x="0" y="22" width="38" height="8.5" rx="2" fill="#ff6a00"/><circle cx="32" cy="26.2" r="1.5" fill="#ffffff"/>
+      </g>
+      <text x="192" y="126" text-anchor="middle" font-size="14.5" font-weight="600" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" fill="none">ECS</text>
+    <text x="192" y="126" text-anchor="middle" font-size="14.5" font-weight="600" fill="#c2410c">ECS</text>
     </g>
 
-    <!-- Distribution Lines from DHCP set to VPCs -->
-    <path d="M 340 195 L 340 230 L 150 230 L 150 248" fill="none" stroke="#ea580c" stroke-width="2"/>
-    <path d="M 340 230 L 530 230 L 530 248" fill="none" stroke="#ea580c" stroke-width="2"/>
+    <!-- Center Ellipsis -->
+    <text x="336" y="376" text-anchor="middle" font-size="22" font-weight="700" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" fill="none">......</text>
+    <text x="336" y="376" text-anchor="middle" font-size="22" font-weight="700" fill="#b45309">......</text>
 
-    <!-- ==================== LEFT VPC BRANCH ==================== -->
-    <g transform="translate(50, 250)">
-      <!-- VPC Icon & Label -->
-      <g transform="translate(100, 24)" filter="url(#dhcp-shadow)">
-        <circle cx="0" cy="0" r="26" fill="#ffffff" stroke="#ff6a00" stroke-width="2"/>
-        <circle cx="0" cy="0" r="22" fill="#ff6a00"/>
-        <!-- VPC Cloud Nodes -->
-        <circle cx="-5" cy="-2" r="3" fill="#ffffff"/>
-        <circle cx="7" cy="-6" r="2.5" fill="#ffffff"/>
-        <circle cx="5" cy="4" r="3" fill="#ffffff"/>
-        <line x1="-5" y1="-2" x2="7" y2="-6" stroke="#ffffff" stroke-width="1.5"/>
-        <line x1="-5" y1="-2" x2="5" y2="4" stroke="#ffffff" stroke-width="1.5"/>
-        <text x="40" y="7" font-size="16" font-weight="800" fill="#ea580c">VPC</text>
+    <!-- ==================== BOTTOM RIGHT VPC ==================== -->
+    <g transform="translate(414, 312)">
+      <rect x="0" y="0" width="238" height="140" rx="22" fill="none" stroke="#ffffff" stroke-width="4"/>
+      <rect x="0" y="0" width="238" height="140" rx="22" fill="none" stroke="#b45309" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+      <!-- VPC Circle Icon on Top Border -->
+      <g transform="translate(124, -4)">
+        <circle cx="0" cy="0" r="31" fill="#ffffff" stroke="#ea580c" stroke-width="2.2"/>
+        <g transform="translate(-26, -24) scale(1.35)">
+          <path d="M 17.08 14.61 L 18 14.24 C 18.19 14.79 18.37 15.16 18.56 15.53 L 18.92 15.53 C 20.03 15.53 20.77 16.45 20.77 17.37 L 20.77 17.56 C 22.24 18.11 25.3 19.12 25.56 19.22 C 25.93 18.48 26.66 17.93 27.59 17.93 L 27.77 17.93 C 27.93 17.13 28.12 16.33 28.32 15.53 L 27.03 15.53 C 27.03 15.34 25.56 10 19.85 10 L 18.56 10 C 15.61 10.55 13.95 11.84 13.21 13.13 C 14.69 14.24 16.16 15.35 17.63 16.08 C 17.45 15.53 17.27 15.16 17.08 14.61 Z M 16.9 11.29 C 17.08 11.84 17.26 12.21 17.45 12.76 L 16.53 13.13 L 15.97 11.47 L 16.9 11.29 Z M 24.64 24.56 L 25.01 24.56 C 25.56 23.64 25.93 22.9 26.3 21.98 C 25.74 21.61 25.37 20.87 25.37 20.14 C 25.05 20.05 21.87 19.03 20.21 18.48 C 20.03 19.03 19.48 19.21 18.92 19.21 C 17.82 19.21 17.08 18.29 17.08 17.37 L 17.08 17 C 15.61 16.08 14.32 15.16 12.84 14.05 C 12.29 15.71 12.47 17 12.47 17.19 C 12.47 17.19 6.39 17.56 5.47 21.98 C 4.36 27.51 10.26 29.54 12.29 29.54 L 21.14 29.54 C 22.06 28.8 22.8 27.88 23.35 26.96 C 23.35 26.77 23.16 26.4 23.16 26.04 C 23.16 25.11 23.9 24.56 24.64 24.56 Z M 20.95 21.79 C 20.58 21.43 20.21 20.87 20.03 20.5 L 20.77 19.95 C 20.95 20.32 21.32 20.87 21.69 21.24 L 20.95 21.79 Z M 21.87 23.09 L 22.61 22.53 C 22.98 22.9 23.16 23.45 23.53 23.82 L 22.79 24.38 C 22.43 24.01 22.06 23.64 21.87 23.09 Z M 34.59 21.43 C 33.3 21.43 31.46 21.24 29.61 21.06 C 29.25 21.8 28.51 22.35 27.59 22.35 L 27.4 22.35 C 27.03 23.27 26.48 24.19 26.11 25.11 C 26.3 25.3 26.48 25.67 26.48 26.03 C 26.48 26.95 25.74 27.51 25.01 27.51 L 24.64 27.51 C 24.08 28.25 23.53 28.8 22.98 29.54 L 27.4 29.54 C 27.59 29.54 32.19 29.54 34.41 25.3 C 34.59 24.01 34.77 22.72 34.59 21.43 Z M 27.03 29.35 L 25.93 28.25 L 26.66 27.51 L 27.77 28.61 L 27.03 29.35 Z M 34.41 20.5 C 33.85 18.11 32.01 16.27 29.24 15.71 C 29.06 16.45 28.88 17.37 28.69 18.29 C 29.24 18.66 29.61 19.21 29.8 20.14 C 31.64 20.32 33.11 20.5 34.41 20.5 Z" fill="#ff6a00"/>
+        </g>
       </g>
+      <text x="168" y="36" text-anchor="start" font-size="15.5" font-weight="600" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" fill="none">VPC</text>
+    <text x="168" y="36" text-anchor="start" font-size="15.5" font-weight="600" fill="#c2410c">VPC</text>
 
-      <!-- Lines to ECS instances -->
-      <path d="M 100 50 L 100 80 L 35 80 L 35 102" fill="none" stroke="#ea580c" stroke-width="1.8"/>
-      <path d="M 100 80 L 100 102" fill="none" stroke="#ea580c" stroke-width="1.8"/>
-      <path d="M 100 80 L 165 80 L 165 102" fill="none" stroke="#ea580c" stroke-width="1.8"/>
+      <!-- Arrows to 3 ECS instances -->
+      <line x1="124" y1="28" x2="124" y2="48" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"/>
+    <line x1="124" y1="28" x2="124" y2="48" stroke="#ea580c" stroke-width="1.6"/>
+      <path d="M 124 48 L 54 48 L 54 64" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 124 48 L 54 48 L 54 64" fill="none" stroke="#ea580c" stroke-width="1.6" marker-end="url(#dhcp-arr)"/>
+      <line x1="124" y1="48" x2="124" y2="64" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"/>
+    <line x1="124" y1="48" x2="124" y2="64" stroke="#ea580c" stroke-width="1.6" marker-end="url(#dhcp-arr)"/>
+      <path d="M 124 48 L 192 48 L 192 64" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 124 48 L 192 48 L 192 64" fill="none" stroke="#ea580c" stroke-width="1.6" marker-end="url(#dhcp-arr)"/>
 
-      <!-- Arrowheads -->
-      <polygon points="35,108 31,100 39,100" fill="#ea580c"/>
-      <polygon points="100,108 96,100 104,100" fill="#ea580c"/>
-      <polygon points="165,108 161,100 169,100" fill="#ea580c"/>
-
-      <!-- VPC Subnet Dashed Box -->
-      <rect x="-15" y="70" width="230" height="155" rx="14" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="5,4"/>
-
-      <!-- ECS Instances -->
-      <!-- ECS 1 -->
-      <g transform="translate(10, 115)">
-        <rect x="0" y="0" width="50" height="12" rx="2.5" fill="#ff6a00"/>
-        <circle cx="8" cy="6" r="2" fill="#ffffff"/>
-        <circle cx="42" cy="6" r="2" fill="#ffffff"/>
-
-        <rect x="0" y="15" width="50" height="12" rx="2.5" fill="#ff6a00"/>
-        <circle cx="8" cy="21" r="2" fill="#ffffff"/>
-        <circle cx="42" cy="21" r="2" fill="#ffffff"/>
-
-        <rect x="0" y="30" width="50" height="12" rx="2.5" fill="#ff6a00"/>
-        <circle cx="8" cy="36" r="2" fill="#ffffff"/>
-        <circle cx="42" cy="36" r="2" fill="#ffffff"/>
-
-        <text x="25" y="56" text-anchor="middle" font-size="13" font-weight="800" fill="#ea580c">ECS</text>
+      <!-- 3 ECS Instances -->
+      <g transform="translate(35, 76)">
+        <rect x="-2" y="-2" width="42" height="34" rx="3" fill="#ffffff"/>
+        <rect x="0" y="0" width="38" height="8.5" rx="2" fill="#ff6a00"/><circle cx="32" cy="4.2" r="1.5" fill="#ffffff"/>
+        <rect x="0" y="11" width="38" height="8.5" rx="2" fill="#ff6a00"/><circle cx="32" cy="15.2" r="1.5" fill="#ffffff"/>
+        <rect x="0" y="22" width="38" height="8.5" rx="2" fill="#ff6a00"/><circle cx="32" cy="26.2" r="1.5" fill="#ffffff"/>
       </g>
+      <text x="54" y="126" text-anchor="middle" font-size="14.5" font-weight="600" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" fill="none">ECS</text>
+    <text x="54" y="126" text-anchor="middle" font-size="14.5" font-weight="600" fill="#c2410c">ECS</text>
 
-      <!-- ECS 2 -->
-      <g transform="translate(75, 115)">
-        <rect x="0" y="0" width="50" height="12" rx="2.5" fill="#ff6a00"/>
-        <circle cx="8" cy="6" r="2" fill="#ffffff"/>
-        <circle cx="42" cy="6" r="2" fill="#ffffff"/>
-
-        <rect x="0" y="15" width="50" height="12" rx="2.5" fill="#ff6a00"/>
-        <circle cx="8" cy="21" r="2" fill="#ffffff"/>
-        <circle cx="42" cy="21" r="2" fill="#ffffff"/>
-
-        <rect x="0" y="30" width="50" height="12" rx="2.5" fill="#ff6a00"/>
-        <circle cx="8" cy="36" r="2" fill="#ffffff"/>
-        <circle cx="42" cy="36" r="2" fill="#ffffff"/>
-
-        <text x="25" y="56" text-anchor="middle" font-size="13" font-weight="800" fill="#ea580c">ECS</text>
+      <g transform="translate(105, 76)">
+        <rect x="-2" y="-2" width="42" height="34" rx="3" fill="#ffffff"/>
+        <rect x="0" y="0" width="38" height="8.5" rx="2" fill="#ff6a00"/><circle cx="32" cy="4.2" r="1.5" fill="#ffffff"/>
+        <rect x="0" y="11" width="38" height="8.5" rx="2" fill="#ff6a00"/><circle cx="32" cy="15.2" r="1.5" fill="#ffffff"/>
+        <rect x="0" y="22" width="38" height="8.5" rx="2" fill="#ff6a00"/><circle cx="32" cy="26.2" r="1.5" fill="#ffffff"/>
       </g>
+      <text x="124" y="126" text-anchor="middle" font-size="14.5" font-weight="600" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" fill="none">ECS</text>
+    <text x="124" y="126" text-anchor="middle" font-size="14.5" font-weight="600" fill="#c2410c">ECS</text>
 
-      <!-- ECS 3 -->
-      <g transform="translate(140, 115)">
-        <rect x="0" y="0" width="50" height="12" rx="2.5" fill="#ff6a00"/>
-        <circle cx="8" cy="6" r="2" fill="#ffffff"/>
-        <circle cx="42" cy="6" r="2" fill="#ffffff"/>
-
-        <rect x="0" y="15" width="50" height="12" rx="2.5" fill="#ff6a00"/>
-        <circle cx="8" cy="21" r="2" fill="#ffffff"/>
-        <circle cx="42" cy="21" r="2" fill="#ffffff"/>
-
-        <rect x="0" y="30" width="50" height="12" rx="2.5" fill="#ff6a00"/>
-        <circle cx="8" cy="36" r="2" fill="#ffffff"/>
-        <circle cx="42" cy="36" r="2" fill="#ffffff"/>
-
-        <text x="25" y="56" text-anchor="middle" font-size="13" font-weight="800" fill="#ea580c">ECS</text>
+      <g transform="translate(173, 76)">
+        <rect x="-2" y="-2" width="42" height="34" rx="3" fill="#ffffff"/>
+        <rect x="0" y="0" width="38" height="8.5" rx="2" fill="#ff6a00"/><circle cx="32" cy="4.2" r="1.5" fill="#ffffff"/>
+        <rect x="0" y="11" width="38" height="8.5" rx="2" fill="#ff6a00"/><circle cx="32" cy="15.2" r="1.5" fill="#ffffff"/>
+        <rect x="0" y="22" width="38" height="8.5" rx="2" fill="#ff6a00"/><circle cx="32" cy="26.2" r="1.5" fill="#ffffff"/>
       </g>
+      <text x="192" y="126" text-anchor="middle" font-size="14.5" font-weight="600" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" fill="none">ECS</text>
+    <text x="192" y="126" text-anchor="middle" font-size="14.5" font-weight="600" fill="#c2410c">ECS</text>
     </g>
-
-    <!-- Center Ellipsis Dots -->
-    <text x="340" y="395" text-anchor="middle" font-size="28" font-weight="900" fill="#ea580c" letter-spacing="4">......</text>
-
-    <!-- ==================== RIGHT VPC BRANCH ==================== -->
-    <g transform="translate(430, 250)">
-      <!-- VPC Icon & Label -->
-      <g transform="translate(100, 24)" filter="url(#dhcp-shadow)">
-        <circle cx="0" cy="0" r="26" fill="#ffffff" stroke="#ff6a00" stroke-width="2"/>
-        <circle cx="0" cy="0" r="22" fill="#ff6a00"/>
-        <circle cx="-5" cy="-2" r="3" fill="#ffffff"/>
-        <circle cx="7" cy="-6" r="2.5" fill="#ffffff"/>
-        <circle cx="5" cy="4" r="3" fill="#ffffff"/>
-        <line x1="-5" y1="-2" x2="7" y2="-6" stroke="#ffffff" stroke-width="1.5"/>
-        <line x1="-5" y1="-2" x2="5" y2="4" stroke="#ffffff" stroke-width="1.5"/>
-        <text x="40" y="7" font-size="16" font-weight="800" fill="#ea580c">VPC</text>
-      </g>
-
-      <!-- Lines to ECS instances -->
-      <path d="M 100 50 L 100 80 L 35 80 L 35 102" fill="none" stroke="#ea580c" stroke-width="1.8"/>
-      <path d="M 100 80 L 100 102" fill="none" stroke="#ea580c" stroke-width="1.8"/>
-      <path d="M 100 80 L 165 80 L 165 102" fill="none" stroke="#ea580c" stroke-width="1.8"/>
-
-      <polygon points="35,108 31,100 39,100" fill="#ea580c"/>
-      <polygon points="100,108 96,100 104,100" fill="#ea580c"/>
-      <polygon points="165,108 161,100 169,100" fill="#ea580c"/>
-
-      <!-- VPC Subnet Dashed Box -->
-      <rect x="-15" y="70" width="230" height="155" rx="14" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="5,4"/>
-
-      <!-- ECS Instances -->
-      <!-- ECS 1 -->
-      <g transform="translate(10, 115)">
-        <rect x="0" y="0" width="50" height="12" rx="2.5" fill="#ff6a00"/>
-        <circle cx="8" cy="6" r="2" fill="#ffffff"/>
-        <circle cx="42" cy="6" r="2" fill="#ffffff"/>
-
-        <rect x="0" y="15" width="50" height="12" rx="2.5" fill="#ff6a00"/>
-        <circle cx="8" cy="21" r="2" fill="#ffffff"/>
-        <circle cx="42" cy="21" r="2" fill="#ffffff"/>
-
-        <rect x="0" y="30" width="50" height="12" rx="2.5" fill="#ff6a00"/>
-        <circle cx="8" cy="36" r="2" fill="#ffffff"/>
-        <circle cx="42" cy="36" r="2" fill="#ffffff"/>
-
-        <text x="25" y="56" text-anchor="middle" font-size="13" font-weight="800" fill="#ea580c">ECS</text>
-      </g>
-
-      <!-- ECS 2 -->
-      <g transform="translate(75, 115)">
-        <rect x="0" y="0" width="50" height="12" rx="2.5" fill="#ff6a00"/>
-        <circle cx="8" cy="6" r="2" fill="#ffffff"/>
-        <circle cx="42" cy="6" r="2" fill="#ffffff"/>
-
-        <rect x="0" y="15" width="50" height="12" rx="2.5" fill="#ff6a00"/>
-        <circle cx="8" cy="21" r="2" fill="#ffffff"/>
-        <circle cx="42" cy="21" r="2" fill="#ffffff"/>
-
-        <rect x="0" y="30" width="50" height="12" rx="2.5" fill="#ff6a00"/>
-        <circle cx="8" cy="36" r="2" fill="#ffffff"/>
-        <circle cx="42" cy="36" r="2" fill="#ffffff"/>
-
-        <text x="25" y="56" text-anchor="middle" font-size="13" font-weight="800" fill="#ea580c">ECS</text>
-      </g>
-
-      <!-- ECS 3 -->
-      <g transform="translate(140, 115)">
-        <rect x="0" y="0" width="50" height="12" rx="2.5" fill="#ff6a00"/>
-        <circle cx="8" cy="6" r="2" fill="#ffffff"/>
-        <circle cx="42" cy="6" r="2" fill="#ffffff"/>
-
-        <rect x="0" y="15" width="50" height="12" rx="2.5" fill="#ff6a00"/>
-        <circle cx="8" cy="21" r="2" fill="#ffffff"/>
-        <circle cx="42" cy="21" r="2" fill="#ffffff"/>
-
-        <rect x="0" y="30" width="50" height="12" rx="2.5" fill="#ff6a00"/>
-        <circle cx="8" cy="36" r="2" fill="#ffffff"/>
-        <circle cx="42" cy="36" r="2" fill="#ffffff"/>
-
-        <text x="25" y="56" text-anchor="middle" font-size="13" font-weight="800" fill="#ea580c">ECS</text>
-      </g>
-    </g>
-
   </g>
 </svg>
