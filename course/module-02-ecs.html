@@ -546,7 +546,7 @@
           </div>
         </div>
         <div class="diagram-container">
-          <img src="assets/images/supercomputing-scc.png" alt="Supercomputing Cluster SCC Architecture" class="diagram-image" style="max-height: 250px;">
+          <img src="assets/images/supercomputing-scc.jpg" alt="Supercomputing Cluster SCC Architecture" class="diagram-image" style="max-height: 250px;">
           <div class="diagram-caption">Supercomputing Cluster (SCC) with High-Bandwidth Low-Latency RDMA Network</div>
         </div>
       </div>
@@ -702,7 +702,31 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 17: CLOUD DISK ATTACHMENT ==================== -->
+    <!-- ==================== SLIDE 17: APSARA PANGU DISTRIBUTED FILE SYSTEM ==================== -->
+    <section class="slide" data-category="Storage Options">
+      <div class="slide-category">Section 3: Storage Options</div>
+      <h2>Apsara Pangu Distributed File System</h2>
+      
+      <div class="grid-2">
+        <div class="content-card highlight">
+          <p>ECS Cloud Disks do not reside on physical server drives inside compute hosts. They are powered by <strong>Pangu</strong>, Alibaba Cloud's distributed storage architecture:</p>
+          <ul>
+            <li><strong>Triplicate Data Replication:</strong> Every chunk of data written to a cloud disk is synchronously committed across <strong>3 independent copies</strong>.</li>
+            <li><strong>Rack & Switch Isolation:</strong> Replicas are distributed across separate physical server racks and network switches within the same Availability Zone.</li>
+            <li><strong>Data Reliability:</strong> Delivers an industry-leading <strong>99.9999999% (9 nines)</strong> data durability guarantee.</li>
+            <li><strong>Zero Local RAID Dependency:</strong> Eliminates the operational hazard and rebuilding overhead of physical RAID arrays.</li>
+            <li><strong>Multi-Service Foundation:</strong> Powers BlockFS (EBS Cloud Disks), LogFile (Databases & TableStore), and HDFS (Big Data computing).</li>
+          </ul>
+        </div>
+
+        <div class="diagram-container clean">
+          <img src="assets/images/pangu-architecture.svg" alt="Apsara Pangu Distributed Storage Architecture" class="diagram-image" style="max-height: 280px; width: 100%; object-fit: contain;">
+          <div class="diagram-caption">Apsara Pangu Multi-Layer Architecture</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 18: CLOUD DISK ATTACHMENT ==================== -->
     <section class="slide" data-category="Storage Options">
       <div class="slide-category">Section 3: Storage Options</div>
       <h2>Cloud Disk Attachment</h2>
@@ -723,30 +747,6 @@ systemctl enable --now nginx</pre>
         <div class="content-card highlight">
           <h4 style="margin-bottom: 0.4rem; color: var(--primary);">Hot-Plug Lifecycle</h4>
           <p style="font-size: 0.88rem; line-height: 1.45; margin: 0;">Data disks support dynamic <strong>hot-plugging</strong> (attach and detach while the instance is running) without requiring an OS restart.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== SLIDE 18: APSARA PANGU DISTRIBUTED FILE SYSTEM ==================== -->
-    <section class="slide" data-category="Storage Options">
-      <div class="slide-category">Section 3: Storage Options</div>
-      <h2>Apsara Pangu Distributed File System</h2>
-      
-      <div class="grid-2">
-        <div class="content-card highlight">
-          <p>ECS Cloud Disks do not reside on physical server drives inside compute hosts. They are powered by <strong>Pangu</strong>, Alibaba Cloud's distributed storage architecture:</p>
-          <ul>
-            <li><strong>Triplicate Data Replication:</strong> Every chunk of data written to a cloud disk is synchronously committed across <strong>3 independent copies</strong>.</li>
-            <li><strong>Rack & Switch Isolation:</strong> Replicas are distributed across separate physical server racks and network switches within the same Availability Zone.</li>
-            <li><strong>Data Reliability:</strong> Delivers an industry-leading <strong>99.9999999% (9 nines)</strong> data durability guarantee.</li>
-            <li><strong>Zero Local RAID Dependency:</strong> Eliminates the operational hazard and rebuilding overhead of physical RAID arrays.</li>
-            <li><strong>Multi-Service Foundation:</strong> Powers BlockFS (EBS Cloud Disks), LogFile (Databases & TableStore), and HDFS (Big Data computing).</li>
-          </ul>
-        </div>
-
-        <div class="diagram-container clean">
-          <img src="assets/images/pangu-architecture.svg" alt="Apsara Pangu Distributed Storage Architecture" class="diagram-image" style="max-height: 280px; width: 100%; object-fit: contain;">
-          <div class="diagram-caption">Apsara Pangu Multi-Layer Architecture</div>
         </div>
       </div>
     </section>
@@ -824,7 +824,7 @@ systemctl enable --now nginx</pre>
       </div>
 
       <div class="diagram-container" style="padding: 0.75rem; width: 100%; display: flex; flex-direction: column; align-items: center;">
-        <img src="assets/images/snapshot-incremental.png" alt="Incremental Snapshot Mechanism" class="diagram-image" style="max-height: 275px; width: auto; max-width: 100%; object-fit: contain;">
+        <img src="assets/images/snapshot-incremental.jpg" alt="Incremental Snapshot Mechanism" class="diagram-image" style="max-height: 275px; width: auto; max-width: 100%; object-fit: contain;">
         <div class="diagram-caption">Incremental Snapshot Mechanism: Only differential changed blocks are stored in OSS</div>
       </div>
     </section>
