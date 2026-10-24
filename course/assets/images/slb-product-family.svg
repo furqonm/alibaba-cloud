@@ -1,97 +1,98 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 440" width="100%" height="100%">
-  <rect x="15" y="15" width="850" height="410" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="440" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#1e293b">Alibaba Cloud Server Load Balancer (SLB) Product Family</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 420" width="100%" height="100%">
+  <!-- Adaptive Halo Title (No outer confining box) -->
+  <text x="440" y="38" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="18.5" font-weight="800" fill="none" stroke="#ffffff" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round">Alibaba Cloud Server Load Balancer (SLB) Product Family</text>
+  <text x="440" y="38" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="18.5" font-weight="800" fill="#1e293b">Alibaba Cloud Server Load Balancer (SLB) Product Family</text>
 
   <!-- 4 Columns Grid -->
   <!-- Col 1: ALB -->
-  <g transform="translate(35, 75)">
-    <rect width="195" height="325" rx="12" fill="#fff7ed" stroke="#FF6A00" stroke-width="2"/>
+  <g transform="translate(30, 65)">
+    <rect width="195" height="330" rx="12" fill="#fff7ed" stroke="#FF6A00" stroke-width="2"/>
     <rect x="12" y="12" width="171" height="36" rx="6" fill="#FF6A00"/>
-    <text x="97" y="35" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">ALB (Layer 7)</text>
+    <text x="97" y="35" text-anchor="middle" fill="#ffffff" font-family="'Inter', system-ui, sans-serif" font-size="13" font-weight="700">ALB (Layer 7)</text>
     
-    <text x="15" y="70" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#c2410c">Protocols:</text>
-    <text x="15" y="88" font-family="monospace" font-size="11" fill="#475569">HTTP, HTTPS, QUIC</text>
+    <text x="15" y="70" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" fill="#c2410c">Protocols:</text>
+    <text x="15" y="88" font-family="monospace" font-size="11" fill="#334155">HTTP, HTTPS, QUIC</text>
 
-    <text x="15" y="118" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#c2410c">Max Capacity:</text>
-    <text x="15" y="136" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#ea580c">Up to 1,000,000 QPS</text>
+    <text x="15" y="118" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" fill="#c2410c">Max Capacity:</text>
+    <text x="15" y="136" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" fill="#ea580c">Up to 1,000,000 QPS</text>
 
-    <text x="15" y="166" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#c2410c">Core Features:</text>
-    <text x="15" y="184" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• URL &amp; Header Routing</text>
-    <text x="15" y="200" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• HTTP-&gt;HTTPS 301/302</text>
-    <text x="15" y="216" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• Path Rewrite &amp; Mirror</text>
-    <text x="15" y="232" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• WAF 3.0 &amp; mTLS Offload</text>
+    <text x="15" y="166" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" fill="#c2410c">Core Features:</text>
+    <text x="15" y="184" font-family="'Inter', system-ui, sans-serif" font-size="10.5" fill="#334155">• URL &amp; Header Routing</text>
+    <text x="15" y="200" font-family="'Inter', system-ui, sans-serif" font-size="10.5" fill="#334155">• HTTP-&gt;HTTPS 301/302</text>
+    <text x="15" y="216" font-family="'Inter', system-ui, sans-serif" font-size="10.5" fill="#334155">• Path Rewrite &amp; Mirror</text>
+    <text x="15" y="232" font-family="'Inter', system-ui, sans-serif" font-size="10.5" fill="#334155">• WAF 3.0 &amp; mTLS Offload</text>
 
-    <rect x="12" y="260" width="171" height="42" rx="6" fill="#ffffff" stroke="#fed7aa"/>
-    <text x="97" y="278" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#c2410c">Recommended Standard</text>
-    <text x="97" y="293" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#64748b">Modern Web &amp; Mobile Apps</text>
+    <rect x="12" y="264" width="171" height="44" rx="6" fill="#ffffff" stroke="#fdba74" stroke-width="1.2"/>
+    <text x="97" y="282" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#c2410c">Recommended Standard</text>
+    <text x="97" y="297" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="9.5" fill="#475569">Modern Web &amp; Mobile Apps</text>
   </g>
 
   <!-- Col 2: NLB -->
-  <g transform="translate(245, 75)">
-    <rect width="195" height="325" rx="12" fill="#f0f9ff" stroke="#0284c7" stroke-width="2"/>
+  <g transform="translate(242, 65)">
+    <rect width="195" height="330" rx="12" fill="#f0f9ff" stroke="#0284c7" stroke-width="2"/>
     <rect x="12" y="12" width="171" height="36" rx="6" fill="#0284c7"/>
-    <text x="97" y="35" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">NLB (Layer 4)</text>
+    <text x="97" y="35" text-anchor="middle" fill="#ffffff" font-family="'Inter', system-ui, sans-serif" font-size="13" font-weight="700">NLB (Layer 4)</text>
     
-    <text x="15" y="70" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0369a1">Protocols:</text>
-    <text x="15" y="88" font-family="monospace" font-size="11" fill="#475569">TCP, UDP, TCPSSL</text>
+    <text x="15" y="70" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" fill="#0369a1">Protocols:</text>
+    <text x="15" y="88" font-family="monospace" font-size="11" fill="#334155">TCP, UDP, TCPSSL</text>
 
-    <text x="15" y="118" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0369a1">Max Capacity:</text>
-    <text x="15" y="136" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0284c7">100M Conns / 10M QPS</text>
+    <text x="15" y="118" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" fill="#0369a1">Max Capacity:</text>
+    <text x="15" y="136" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" fill="#0284c7">100M Conns / 10M QPS</text>
 
-    <text x="15" y="166" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0369a1">Core Features:</text>
-    <text x="15" y="184" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• Sub-ms Ultra Latency</text>
-    <text x="15" y="200" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• Native Client IP Pass</text>
-    <text x="15" y="216" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• CIPU Silicon Offload</text>
-    <text x="15" y="232" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• PrivateLink Endpoint</text>
+    <text x="15" y="166" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" fill="#0369a1">Core Features:</text>
+    <text x="15" y="184" font-family="'Inter', system-ui, sans-serif" font-size="10.5" fill="#334155">• Sub-ms Ultra Latency</text>
+    <text x="15" y="200" font-family="'Inter', system-ui, sans-serif" font-size="10.5" fill="#334155">• Native Client IP Pass</text>
+    <text x="15" y="216" font-family="'Inter', system-ui, sans-serif" font-size="10.5" fill="#334155">• CIPU Silicon Offload</text>
+    <text x="15" y="232" font-family="'Inter', system-ui, sans-serif" font-size="10.5" fill="#334155">• PrivateLink Endpoint</text>
 
-    <rect x="12" y="260" width="171" height="42" rx="6" fill="#ffffff" stroke="#bae6fd"/>
-    <text x="97" y="278" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#0284c7">Recommended Standard</text>
-    <text x="97" y="293" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#64748b">Gaming, IoT &amp; Big Data</text>
+    <rect x="12" y="264" width="171" height="44" rx="6" fill="#ffffff" stroke="#7dd3fc" stroke-width="1.2"/>
+    <text x="97" y="282" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#0284c7">Recommended Standard</text>
+    <text x="97" y="297" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="9.5" fill="#475569">Gaming, IoT &amp; Big Data</text>
   </g>
 
   <!-- Col 3: CLB -->
-  <g transform="translate(455, 75)">
-    <rect width="185" height="325" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
-    <rect x="12" y="12" width="161" height="36" rx="6" fill="#64748b"/>
-    <text x="92" y="35" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">CLB (Legacy)</text>
+  <g transform="translate(454, 65)">
+    <rect width="190" height="330" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+    <rect x="12" y="12" width="166" height="36" rx="6" fill="#64748b"/>
+    <text x="95" y="35" text-anchor="middle" fill="#ffffff" font-family="'Inter', system-ui, sans-serif" font-size="13" font-weight="700">CLB (Legacy)</text>
     
-    <text x="15" y="70" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#475569">Protocols:</text>
-    <text x="15" y="88" font-family="monospace" font-size="11" fill="#64748b">TCP, UDP, HTTP, HTTPS</text>
+    <text x="15" y="70" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" fill="#334155">Protocols:</text>
+    <text x="15" y="88" font-family="monospace" font-size="11" fill="#475569">TCP, UDP, HTTP, HTTPS</text>
 
-    <text x="15" y="118" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#475569">Architecture:</text>
-    <text x="15" y="136" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">LVS + Tengine Cluster</text>
+    <text x="15" y="118" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" fill="#334155">Architecture:</text>
+    <text x="15" y="136" font-family="'Inter', system-ui, sans-serif" font-size="11" fill="#475569">LVS + Tengine Cluster</text>
 
-    <text x="15" y="166" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#475569">Limitations:</text>
-    <text x="15" y="184" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">• Fixed Spec Tiers (s1-s3)</text>
-    <text x="15" y="200" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">• Primary/Backup Zones</text>
-    <text x="15" y="216" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">• Limited L7 Routing Rules</text>
-    <text x="15" y="232" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">• No QUIC / HTTP/3</text>
+    <text x="15" y="166" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" fill="#334155">Limitations:</text>
+    <text x="15" y="184" font-family="'Inter', system-ui, sans-serif" font-size="10.5" fill="#475569">• Fixed Spec Tiers (s1-s3)</text>
+    <text x="15" y="200" font-family="'Inter', system-ui, sans-serif" font-size="10.5" fill="#475569">• Primary/Backup Zones</text>
+    <text x="15" y="216" font-family="'Inter', system-ui, sans-serif" font-size="10.5" fill="#475569">• Limited L7 Routing Rules</text>
+    <text x="15" y="232" font-family="'Inter', system-ui, sans-serif" font-size="10.5" fill="#475569">• No QUIC / HTTP/3</text>
 
-    <rect x="12" y="260" width="161" height="42" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
-    <text x="92" y="278" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#64748b">Maintenance Mode</text>
-    <text x="92" y="293" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8">Migrate to ALB / NLB</text>
+    <rect x="12" y="264" width="166" height="44" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="95" y="282" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#475569">Maintenance Mode</text>
+    <text x="95" y="297" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="9.5" fill="#64748b">Migrate to ALB / NLB</text>
   </g>
 
   <!-- Col 4: GWLB -->
-  <g transform="translate(655, 75)">
-    <rect width="185" height="325" rx="12" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="1.5"/>
-    <rect x="12" y="12" width="161" height="36" rx="6" fill="#8b5cf6"/>
-    <text x="92" y="35" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">GWLB (Gateway)</text>
+  <g transform="translate(660, 65)">
+    <rect width="190" height="330" rx="12" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+    <rect x="12" y="12" width="166" height="36" rx="6" fill="#8b5cf6"/>
+    <text x="95" y="35" text-anchor="middle" fill="#ffffff" font-family="'Inter', system-ui, sans-serif" font-size="13" font-weight="700">GWLB (Gateway)</text>
     
-    <text x="15" y="70" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#6d28d9">Encapsulation:</text>
-    <text x="15" y="88" font-family="monospace" font-size="11" fill="#7c3aed">GENEVE (Layer 3/4)</text>
+    <text x="15" y="70" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" fill="#6d28d9">Encapsulation:</text>
+    <text x="15" y="88" font-family="monospace" font-size="11" fill="#6d28d9">GENEVE (Layer 3/4)</text>
 
-    <text x="15" y="118" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#6d28d9">Target Workload:</text>
-    <text x="15" y="136" font-family="system-ui, sans-serif" font-size="11" fill="#6d28d9">Network Virtual Apps</text>
+    <text x="15" y="118" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" fill="#6d28d9">Target Workload:</text>
+    <text x="15" y="136" font-family="'Inter', system-ui, sans-serif" font-size="11" fill="#6d28d9">Network Virtual Apps</text>
 
-    <text x="15" y="166" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#6d28d9">Core Features:</text>
-    <text x="15" y="184" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• Transparent Chaining</text>
-    <text x="15" y="200" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• Third-Party NGFW / IPS</text>
-    <text x="15" y="216" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• Single IP Ingress/Egress</text>
-    <text x="15" y="232" font-family="system-ui, sans-serif" font-size="10" fill="#475569">• Elastic Appliance Cluster</text>
+    <text x="15" y="166" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700" fill="#6d28d9">Core Features:</text>
+    <text x="15" y="184" font-family="'Inter', system-ui, sans-serif" font-size="10.5" fill="#334155">• Transparent Chaining</text>
+    <text x="15" y="200" font-family="'Inter', system-ui, sans-serif" font-size="10.5" fill="#334155">• Third-Party NGFW / IPS</text>
+    <text x="15" y="216" font-family="'Inter', system-ui, sans-serif" font-size="10.5" fill="#334155">• Single IP Ingress/Egress</text>
+    <text x="15" y="232" font-family="'Inter', system-ui, sans-serif" font-size="10.5" fill="#334155">• Elastic Appliance Cluster</text>
 
-    <rect x="12" y="260" width="161" height="42" rx="6" fill="#ffffff" stroke="#ddd6fe"/>
-    <text x="92" y="278" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#7c3aed">Enterprise Security</text>
-    <text x="92" y="293" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#64748b">Inline Firewall Farms</text>
+    <rect x="12" y="264" width="166" height="44" rx="6" fill="#ffffff" stroke="#c4b5fd" stroke-width="1.2"/>
+    <text x="95" y="282" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#7c3aed">Enterprise Security</text>
+    <text x="95" y="297" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="9.5" fill="#475569">Inline Firewall Farms</text>
   </g>
 </svg>

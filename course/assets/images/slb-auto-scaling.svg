@@ -1,107 +1,115 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 460" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 635 450" width="100%" height="100%">
   <defs>
-    <marker id="as-arr-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0284c7"/>
-    </marker>
-    <marker id="as-arr-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#16a34a"/>
-    </marker>
-    <marker id="as-arr-gray" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748b"/>
-    </marker>
     <filter id="as-shadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08"/>
     </filter>
   </defs>
 
-  <!-- Background Canvas -->
-  <rect width="640" height="460" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-
   <!-- Client Node (Left) -->
-  <g transform="translate(25, 175)" filter="url(#as-shadow)">
+  <g transform="translate(18, 170)" filter="url(#as-shadow)">
     <circle cx="28" cy="28" r="26" fill="#ffffff" stroke="#0284c7" stroke-width="2"/>
     <circle cx="28" cy="20" r="8" fill="#0284c7"/>
     <path d="M 13 40 C 13 32 20 30 28 30 C 36 30 43 32 43 40" fill="#0284c7"/>
-    <text x="28" y="70" text-anchor="middle" fill="#334155" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Client</text>
+    <text x="28" y="72" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="none" stroke="#ffffff" stroke-width="5.0" stroke-linejoin="round" stroke-linecap="round">Client</text>
+    <text x="28" y="72" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#1e293b">Client</text>
   </g>
 
   <!-- Arrow Client -> SLB -->
-  <line x1="88" y1="203" x2="132" y2="203" stroke="#0284c7" stroke-width="2.5" marker-end="url(#as-arr-blue)"/>
+  <g>
+      <line x1="80.0" y1="198.0" x2="121.0" y2="198.0" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+      <polygon points="128.00,198.00 117.00,203.50 117.00,192.50" fill="#ffffff" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
+      <line x1="80.0" y1="198.0" x2="121.0" y2="198.0" stroke="#3b6fc2" stroke-width="3" stroke-linecap="round"/>
+      <polygon points="128.00,198.00 117.00,203.50 117.00,192.50" fill="#3b6fc2"/>
+    </g>
 
-  <!-- SLB Node -->
-  <g transform="translate(140, 160)" filter="url(#as-shadow)">
-    <rect width="90" height="85" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="2"/>
-    <circle cx="45" cy="35" r="16" fill="#e0f2fe"/>
-    <circle cx="45" cy="28" r="4" fill="#0284c7"/>
-    <circle cx="36" cy="40" r="4" fill="#0284c7"/>
-    <circle cx="54" cy="40" r="4" fill="#0284c7"/>
-    <path d="M 45 28 L 36 40 M 45 28 L 54 40" stroke="#0284c7" stroke-width="1.8"/>
-    <text x="45" y="68" text-anchor="middle" fill="#0369a1" font-family="system-ui, sans-serif" font-size="12" font-weight="700">SLB</text>
+  <!-- SLB Node (Official Alibaba Cloud Orange SLB Icon) -->
+  <g transform="translate(135, 155)" filter="url(#as-shadow)">
+    <rect width="90" height="86" rx="8" fill="#ffffff" stroke="#ff6a00" stroke-width="2"/>
+    <circle cx="45" cy="34" r="19" fill="#fff7ed"/>
+    <g>
+      <line x1="45.0" y1="25.8" x2="34.9" y2="42.6" stroke="#ff6a00" stroke-width="2.3" stroke-linecap="round"/>
+      <line x1="45.0" y1="25.8" x2="55.1" y2="42.6" stroke="#ff6a00" stroke-width="2.3" stroke-linecap="round"/>
+      <line x1="34.9" y1="42.6" x2="55.1" y2="42.6" stroke="#ff6a00" stroke-width="2.3" stroke-linecap="round"/>
+      <circle cx="45.0" cy="25.8" r="5.9" fill="#ff6a00"/>
+      <circle cx="34.9" cy="42.6" r="5.9" fill="#ff6a00"/>
+      <circle cx="55.1" cy="42.6" r="5.9" fill="#ff6a00"/>
+    </g>
+    <text x="45" y="70" text-anchor="middle" fill="#ea580c" font-family="'Inter', system-ui, sans-serif" font-size="12.5" font-weight="800">SLB</text>
   </g>
 
   <!-- Arrow SLB -> Scaling Group / Server Group -->
-  <line x1="235" y1="203" x2="278" y2="203" stroke="#0284c7" stroke-width="2.5" marker-end="url(#as-arr-blue)"/>
+  <g>
+      <line x1="232.0" y1="198.0" x2="267.0" y2="198.0" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+      <polygon points="274.00,198.00 263.00,203.50 263.00,192.50" fill="#ffffff" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
+      <line x1="232.0" y1="198.0" x2="267.0" y2="198.0" stroke="#3b6fc2" stroke-width="3" stroke-linecap="round"/>
+      <polygon points="274.00,198.00 263.00,203.50 263.00,192.50" fill="#3b6fc2"/>
+    </g>
 
   <!-- Scaling Group Container -->
-  <g transform="translate(285, 25)">
-    <rect width="335" height="410" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <g transform="translate(280, 22)" filter="url(#as-shadow)">
+    <rect width="335" height="410" rx="10" fill="#f8fafc" stroke="none"/>
+    <path d="M0.00 0.00L7.00 0.00 M11.50 0.00L18.50 0.00 M23.00 0.00L30.00 0.00 M34.50 0.00L41.50 0.00 M46.00 0.00L53.00 0.00 M57.50 0.00L64.50 0.00 M69.00 0.00L76.00 0.00 M80.50 0.00L87.50 0.00 M92.00 0.00L99.00 0.00 M103.50 0.00L110.50 0.00 M115.00 0.00L122.00 0.00 M126.50 0.00L133.50 0.00 M138.00 0.00L145.00 0.00 M149.50 0.00L156.50 0.00 M161.00 0.00L168.00 0.00 M172.50 0.00L179.50 0.00 M184.00 0.00L191.00 0.00 M195.50 0.00L202.50 0.00 M207.00 0.00L214.00 0.00 M218.50 0.00L225.50 0.00 M230.00 0.00L237.00 0.00 M241.50 0.00L248.50 0.00 M253.00 0.00L260.00 0.00 M264.50 0.00L271.50 0.00 M276.00 0.00L283.00 0.00 M287.50 0.00L294.50 0.00 M299.00 0.00L306.00 0.00 M310.50 0.00L317.50 0.00 M322.00 0.00L329.00 0.00 M333.50 0.00L335.00 0.00 M335.00 0.00L335.00 7.00 M335.00 11.50L335.00 18.50 M335.00 23.00L335.00 30.00 M335.00 34.50L335.00 41.50 M335.00 46.00L335.00 53.00 M335.00 57.50L335.00 64.50 M335.00 69.00L335.00 76.00 M335.00 80.50L335.00 87.50 M335.00 92.00L335.00 99.00 M335.00 103.50L335.00 110.50 M335.00 115.00L335.00 122.00 M335.00 126.50L335.00 133.50 M335.00 138.00L335.00 145.00 M335.00 149.50L335.00 156.50 M335.00 161.00L335.00 168.00 M335.00 172.50L335.00 179.50 M335.00 184.00L335.00 191.00 M335.00 195.50L335.00 202.50 M335.00 207.00L335.00 214.00 M335.00 218.50L335.00 225.50 M335.00 230.00L335.00 237.00 M335.00 241.50L335.00 248.50 M335.00 253.00L335.00 260.00 M335.00 264.50L335.00 271.50 M335.00 276.00L335.00 283.00 M335.00 287.50L335.00 294.50 M335.00 299.00L335.00 306.00 M335.00 310.50L335.00 317.50 M335.00 322.00L335.00 329.00 M335.00 333.50L335.00 340.50 M335.00 345.00L335.00 352.00 M335.00 356.50L335.00 363.50 M335.00 368.00L335.00 375.00 M335.00 379.50L335.00 386.50 M335.00 391.00L335.00 398.00 M335.00 402.50L335.00 409.50 M335.00 410.00L328.00 410.00 M323.50 410.00L316.50 410.00 M312.00 410.00L305.00 410.00 M300.50 410.00L293.50 410.00 M289.00 410.00L282.00 410.00 M277.50 410.00L270.50 410.00 M266.00 410.00L259.00 410.00 M254.50 410.00L247.50 410.00 M243.00 410.00L236.00 410.00 M231.50 410.00L224.50 410.00 M220.00 410.00L213.00 410.00 M208.50 410.00L201.50 410.00 M197.00 410.00L190.00 410.00 M185.50 410.00L178.50 410.00 M174.00 410.00L167.00 410.00 M162.50 410.00L155.50 410.00 M151.00 410.00L144.00 410.00 M139.50 410.00L132.50 410.00 M128.00 410.00L121.00 410.00 M116.50 410.00L109.50 410.00 M105.00 410.00L98.00 410.00 M93.50 410.00L86.50 410.00 M82.00 410.00L75.00 410.00 M70.50 410.00L63.50 410.00 M59.00 410.00L52.00 410.00 M47.50 410.00L40.50 410.00 M36.00 410.00L29.00 410.00 M24.50 410.00L17.50 410.00 M13.00 410.00L6.00 410.00 M1.50 410.00L0.00 410.00 M0.00 410.00L0.00 403.00 M0.00 398.50L0.00 391.50 M0.00 387.00L0.00 380.00 M0.00 375.50L0.00 368.50 M0.00 364.00L0.00 357.00 M0.00 352.50L0.00 345.50 M0.00 341.00L0.00 334.00 M0.00 329.50L0.00 322.50 M0.00 318.00L0.00 311.00 M0.00 306.50L0.00 299.50 M0.00 295.00L0.00 288.00 M0.00 283.50L0.00 276.50 M0.00 272.00L0.00 265.00 M0.00 260.50L0.00 253.50 M0.00 249.00L0.00 242.00 M0.00 237.50L0.00 230.50 M0.00 226.00L0.00 219.00 M0.00 214.50L0.00 207.50 M0.00 203.00L0.00 196.00 M0.00 191.50L0.00 184.50 M0.00 180.00L0.00 173.00 M0.00 168.50L0.00 161.50 M0.00 157.00L0.00 150.00 M0.00 145.50L0.00 138.50 M0.00 134.00L0.00 127.00 M0.00 122.50L0.00 115.50 M0.00 111.00L0.00 104.00 M0.00 99.50L0.00 92.50 M0.00 88.00L0.00 81.00 M0.00 76.50L0.00 69.50 M0.00 65.00L0.00 58.00 M0.00 53.50L0.00 46.50 M0.00 42.00L0.00 35.00 M0.00 30.50L0.00 23.50 M0.00 19.00L0.00 12.00 M0.00 7.50L0.00 0.50" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round"/>
     <!-- Scaling Group Header Badge -->
-    <rect x="15" y="-12" width="115" height="24" rx="4" fill="#334155"/>
-    <text x="72" y="4" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="11" font-weight="700">Scaling Group</text>
+    <rect x="15" y="-12" width="118" height="24" rx="5" fill="#334155" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="74" y="4" text-anchor="middle" fill="#ffffff" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700">Scaling Group</text>
 
     <!-- Server Group Container (Left Column inside Scaling Group) -->
     <g transform="translate(20, 30)">
-      <rect width="135" height="285" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <rect width="135" height="285" rx="8" fill="#ffffff" stroke="none"/>
+      <path d="M0.00 0.00L6.00 0.00 M10.00 0.00L16.00 0.00 M20.00 0.00L26.00 0.00 M30.00 0.00L36.00 0.00 M40.00 0.00L46.00 0.00 M50.00 0.00L56.00 0.00 M60.00 0.00L66.00 0.00 M70.00 0.00L76.00 0.00 M80.00 0.00L86.00 0.00 M90.00 0.00L96.00 0.00 M100.00 0.00L106.00 0.00 M110.00 0.00L116.00 0.00 M120.00 0.00L126.00 0.00 M130.00 0.00L135.00 0.00 M135.00 0.00L135.00 6.00 M135.00 10.00L135.00 16.00 M135.00 20.00L135.00 26.00 M135.00 30.00L135.00 36.00 M135.00 40.00L135.00 46.00 M135.00 50.00L135.00 56.00 M135.00 60.00L135.00 66.00 M135.00 70.00L135.00 76.00 M135.00 80.00L135.00 86.00 M135.00 90.00L135.00 96.00 M135.00 100.00L135.00 106.00 M135.00 110.00L135.00 116.00 M135.00 120.00L135.00 126.00 M135.00 130.00L135.00 136.00 M135.00 140.00L135.00 146.00 M135.00 150.00L135.00 156.00 M135.00 160.00L135.00 166.00 M135.00 170.00L135.00 176.00 M135.00 180.00L135.00 186.00 M135.00 190.00L135.00 196.00 M135.00 200.00L135.00 206.00 M135.00 210.00L135.00 216.00 M135.00 220.00L135.00 226.00 M135.00 230.00L135.00 236.00 M135.00 240.00L135.00 246.00 M135.00 250.00L135.00 256.00 M135.00 260.00L135.00 266.00 M135.00 270.00L135.00 276.00 M135.00 280.00L135.00 285.00 M135.00 285.00L129.00 285.00 M125.00 285.00L119.00 285.00 M115.00 285.00L109.00 285.00 M105.00 285.00L99.00 285.00 M95.00 285.00L89.00 285.00 M85.00 285.00L79.00 285.00 M75.00 285.00L69.00 285.00 M65.00 285.00L59.00 285.00 M55.00 285.00L49.00 285.00 M45.00 285.00L39.00 285.00 M35.00 285.00L29.00 285.00 M25.00 285.00L19.00 285.00 M15.00 285.00L9.00 285.00 M5.00 285.00L0.00 285.00 M0.00 285.00L0.00 279.00 M0.00 275.00L0.00 269.00 M0.00 265.00L0.00 259.00 M0.00 255.00L0.00 249.00 M0.00 245.00L0.00 239.00 M0.00 235.00L0.00 229.00 M0.00 225.00L0.00 219.00 M0.00 215.00L0.00 209.00 M0.00 205.00L0.00 199.00 M0.00 195.00L0.00 189.00 M0.00 185.00L0.00 179.00 M0.00 175.00L0.00 169.00 M0.00 165.00L0.00 159.00 M0.00 155.00L0.00 149.00 M0.00 145.00L0.00 139.00 M0.00 135.00L0.00 129.00 M0.00 125.00L0.00 119.00 M0.00 115.00L0.00 109.00 M0.00 105.00L0.00 99.00 M0.00 95.00L0.00 89.00 M0.00 85.00L0.00 79.00 M0.00 75.00L0.00 69.00 M0.00 65.00L0.00 59.00 M0.00 55.00L0.00 49.00 M0.00 45.00L0.00 39.00 M0.00 35.00L0.00 29.00 M0.00 25.00L0.00 19.00 M0.00 15.00L0.00 9.00 M0.00 5.00L0.00 0.00" fill="none" stroke="#0284c7" stroke-width="1.6" stroke-linecap="round"/>
       <!-- Server Group Header Badge -->
-      <rect x="12" y="-10" width="110" height="20" rx="4" fill="#e0f2fe"/>
-      <text x="67" y="4" text-anchor="middle" fill="#0369a1" font-family="system-ui, sans-serif" font-size="10.5" font-weight="700">Server Group</text>
+      <rect x="12" y="-10" width="110" height="20" rx="4" fill="#e0f2fe" stroke="#bae6fd" stroke-width="1"/>
+      <text x="67" y="4" text-anchor="middle" fill="#0369a1" font-family="'Inter', system-ui, sans-serif" font-size="10.5" font-weight="700">Server Group</text>
 
       <!-- Static / Manual Backend Instance (ECS01) -->
       <g transform="translate(15, 30)" filter="url(#as-shadow)">
-        <rect width="105" height="85" rx="6" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1.5"/>
-        <rect x="12" y="12" width="81" height="22" rx="4" fill="#e0f2fe"/>
-        <text x="52" y="27" text-anchor="middle" fill="#0369a1" font-family="system-ui, sans-serif" font-size="11" font-weight="700">ECS01</text>
-        <rect x="20" y="42" width="65" height="18" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-        <text x="52" y="55" text-anchor="middle" fill="#475569" font-family="system-ui, sans-serif" font-size="9" font-weight="600">Manual</text>
-        <circle cx="52" cy="72" r="4" fill="#10b981"/>
+        <rect width="105" height="85" rx="6" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+        <rect x="12" y="10" width="81" height="22" rx="4" fill="#ffedd5"/>
+        <text x="52" y="25" text-anchor="middle" fill="#c2410c" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700">ECS01</text>
+        <rect x="20" y="40" width="65" height="18" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+        <text x="52" y="53" text-anchor="middle" fill="#334155" font-family="'Inter', system-ui, sans-serif" font-size="9.5" font-weight="600">Manual</text>
+        <circle cx="52" cy="71" r="4.5" fill="#10b981"/>
       </g>
 
       <!-- Auto-Scaled Attached Backend Instance (ESS-XX) -->
       <g transform="translate(15, 160)" filter="url(#as-shadow)">
         <rect width="105" height="85" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
-        <rect x="12" y="12" width="81" height="22" rx="4" fill="#dcfce7"/>
-        <text x="52" y="27" text-anchor="middle" fill="#166534" font-family="system-ui, sans-serif" font-size="11" font-weight="700">ESS-XX</text>
-        <rect x="16" y="42" width="73" height="18" rx="3" fill="#ffffff" stroke="#86efac" stroke-width="1"/>
-        <text x="52" y="55" text-anchor="middle" fill="#16a34a" font-family="system-ui, sans-serif" font-size="9" font-weight="700">Auto-Bound</text>
-        <circle cx="52" cy="72" r="4" fill="#16a34a"/>
+        <rect x="12" y="10" width="81" height="22" rx="4" fill="#dcfce7"/>
+        <text x="52" y="25" text-anchor="middle" fill="#166534" font-family="'Inter', system-ui, sans-serif" font-size="11" font-weight="700">ESS-XX</text>
+        <rect x="16" y="40" width="73" height="18" rx="3" fill="#ffffff" stroke="#86efac" stroke-width="1"/>
+        <text x="52" y="53" text-anchor="middle" fill="#16a34a" font-family="'Inter', system-ui, sans-serif" font-size="9.5" font-weight="700">Auto-Bound</text>
+        <circle cx="52" cy="71" r="4.5" fill="#16a34a"/>
       </g>
     </g>
 
     <!-- Auto-Created ECS Instance (Right Column inside Scaling Group) -->
     <g transform="translate(195, 190)" filter="url(#as-shadow)">
       <rect width="120" height="85" rx="6" fill="#ffffff" stroke="#16a34a" stroke-width="2"/>
-      <rect x="15" y="12" width="90" height="22" rx="4" fill="#dcfce7"/>
-      <text x="60" y="27" text-anchor="middle" fill="#166534" font-family="system-ui, sans-serif" font-size="11.5" font-weight="700">ESS-XX</text>
-      <rect x="15" y="42" width="90" height="20" rx="3" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
-      <text x="60" y="56" text-anchor="middle" fill="#166534" font-family="system-ui, sans-serif" font-size="9" font-weight="700">Auto-Created</text>
-      <circle cx="60" cy="72" r="4" fill="#16a34a"/>
+      <rect x="15" y="10" width="90" height="22" rx="4" fill="#dcfce7"/>
+      <text x="60" y="25" text-anchor="middle" fill="#166534" font-family="'Inter', system-ui, sans-serif" font-size="11.5" font-weight="700">ESS-XX</text>
+      <rect x="15" y="40" width="90" height="20" rx="3" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+      <text x="60" y="54" text-anchor="middle" fill="#166534" font-family="'Inter', system-ui, sans-serif" font-size="9.5" font-weight="700">Auto-Created</text>
+      <circle cx="60" cy="71" r="4.5" fill="#16a34a"/>
     </g>
 
     <!-- Bidirectional Dynamic Binding Arrows between Server Group and ESS-XX -->
-    <g transform="translate(160, 215)">
+    <g transform="translate(158, 215)">
       <!-- Add to group arrow (top line, points left into Server Group) -->
-      <line x1="30" y1="5" x2="2" y2="5" stroke="#16a34a" stroke-width="2" marker-end="url(#as-arr-green)"/>
+      <line x1="33" y1="6" x2="7" y2="6" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round"/>
+      <polygon points="0,6 9,1.5 9,10.5" fill="#16a34a"/>
       <!-- Remove from group arrow (bottom line, points right out of Server Group) -->
-      <line x1="2" y1="25" x2="30" y2="25" stroke="#64748b" stroke-width="2" marker-end="url(#as-arr-gray)"/>
+      <line x1="2" y1="26" x2="28" y2="26" stroke="#64748b" stroke-width="2.2" stroke-linecap="round"/>
+      <polygon points="35,26 26,21.5 26,30.5" fill="#64748b"/>
     </g>
 
-    <!-- CloudMonitor Component (Bottom Center of Scaling Group) -->
+    <!-- CloudMonitor Component (Bottom Center of Scaling Group — Official Orange Icon) -->
     <g transform="translate(90, 345)" filter="url(#as-shadow)">
-      <rect width="155" height="46" rx="6" fill="#ffffff" stroke="#3b82f6" stroke-width="1.8"/>
-      <circle cx="24" cy="23" r="11" fill="#eff6ff"/>
-      <path d="M 17 24 L 21 19 L 26 22 L 31 17" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
-      <text x="92" y="27" text-anchor="middle" fill="#1e40af" font-family="system-ui, sans-serif" font-size="11.5" font-weight="700">CloudMonitor</text>
+      <rect width="155" height="46" rx="6" fill="#ffffff" stroke="#ff6a00" stroke-width="1.8"/>
+      <circle cx="26" cy="23" r="13" fill="#fff7ed"/>
+      <path d="M 18 27 L 23 20 L 28 24 L 34 16" fill="none" stroke="#ff6a00" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="34" cy="16" r="2" fill="#ff6a00"/>
+      <text x="93" y="27" text-anchor="middle" fill="#ea580c" font-family="'Inter', system-ui, sans-serif" font-size="11.5" font-weight="800">CloudMonitor</text>
     </g>
-    <line x1="167" y1="345" x2="167" y2="322" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <path d="M167.00 345.00L167.00 340.50 M167.00 337.50L167.00 333.00 M167.00 330.00L167.00 325.50 M167.00 322.50L167.00 318.00" fill="none" stroke="#ff6a00" stroke-width="1.8" stroke-linecap="round"/>
   </g>
 </svg>

@@ -5,97 +5,115 @@
     </filter>
   </defs>
 
-  <!-- Backend Server Group Box -->
-  <rect x="9" y="214" width="266" height="88" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 4" />
+  <!-- Backend Server Group Box (White Interior for Night Mode Contrast) -->
+  <rect x="9" y="214" width="266" height="88" rx="8" fill="#f8fafc" stroke="none" />
+  <path d="M9.00 214.00L14.00 214.00 M17.50 214.00L22.50 214.00 M26.00 214.00L31.00 214.00 M34.50 214.00L39.50 214.00 M43.00 214.00L48.00 214.00 M51.50 214.00L56.50 214.00 M60.00 214.00L65.00 214.00 M68.50 214.00L73.50 214.00 M77.00 214.00L82.00 214.00 M85.50 214.00L90.50 214.00 M94.00 214.00L99.00 214.00 M102.50 214.00L107.50 214.00 M111.00 214.00L116.00 214.00 M119.50 214.00L124.50 214.00 M128.00 214.00L133.00 214.00 M136.50 214.00L141.50 214.00 M145.00 214.00L150.00 214.00 M153.50 214.00L158.50 214.00 M162.00 214.00L167.00 214.00 M170.50 214.00L175.50 214.00 M179.00 214.00L184.00 214.00 M187.50 214.00L192.50 214.00 M196.00 214.00L201.00 214.00 M204.50 214.00L209.50 214.00 M213.00 214.00L218.00 214.00 M221.50 214.00L226.50 214.00 M230.00 214.00L235.00 214.00 M238.50 214.00L243.50 214.00 M247.00 214.00L252.00 214.00 M255.50 214.00L260.50 214.00 M264.00 214.00L269.00 214.00 M272.50 214.00L275.00 214.00 M275.00 214.00L275.00 219.00 M275.00 222.50L275.00 227.50 M275.00 231.00L275.00 236.00 M275.00 239.50L275.00 244.50 M275.00 248.00L275.00 253.00 M275.00 256.50L275.00 261.50 M275.00 265.00L275.00 270.00 M275.00 273.50L275.00 278.50 M275.00 282.00L275.00 287.00 M275.00 290.50L275.00 295.50 M275.00 299.00L275.00 302.00 M275.00 302.00L270.00 302.00 M266.50 302.00L261.50 302.00 M258.00 302.00L253.00 302.00 M249.50 302.00L244.50 302.00 M241.00 302.00L236.00 302.00 M232.50 302.00L227.50 302.00 M224.00 302.00L219.00 302.00 M215.50 302.00L210.50 302.00 M207.00 302.00L202.00 302.00 M198.50 302.00L193.50 302.00 M190.00 302.00L185.00 302.00 M181.50 302.00L176.50 302.00 M173.00 302.00L168.00 302.00 M164.50 302.00L159.50 302.00 M156.00 302.00L151.00 302.00 M147.50 302.00L142.50 302.00 M139.00 302.00L134.00 302.00 M130.50 302.00L125.50 302.00 M122.00 302.00L117.00 302.00 M113.50 302.00L108.50 302.00 M105.00 302.00L100.00 302.00 M96.50 302.00L91.50 302.00 M88.00 302.00L83.00 302.00 M79.50 302.00L74.50 302.00 M71.00 302.00L66.00 302.00 M62.50 302.00L57.50 302.00 M54.00 302.00L49.00 302.00 M45.50 302.00L40.50 302.00 M37.00 302.00L32.00 302.00 M28.50 302.00L23.50 302.00 M20.00 302.00L15.00 302.00 M11.50 302.00L9.00 302.00 M9.00 302.00L9.00 297.00 M9.00 293.50L9.00 288.50 M9.00 285.00L9.00 280.00 M9.00 276.50L9.00 271.50 M9.00 268.00L9.00 263.00 M9.00 259.50L9.00 254.50 M9.00 251.00L9.00 246.00 M9.00 242.50L9.00 237.50 M9.00 234.00L9.00 229.00 M9.00 225.50L9.00 220.50 M9.00 217.00L9.00 214.00" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" />
 
   <!-- Divider Line (Internet / Cloud Boundary) -->
-  <path d="M 0 124 L 284 124" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4 4" />
+  <path d="M0.00 124.00L5.00 124.00 M9.00 124.00L14.00 124.00 M18.00 124.00L23.00 124.00 M27.00 124.00L32.00 124.00 M36.00 124.00L41.00 124.00 M45.00 124.00L50.00 124.00 M54.00 124.00L59.00 124.00 M63.00 124.00L68.00 124.00 M72.00 124.00L77.00 124.00 M81.00 124.00L86.00 124.00 M90.00 124.00L95.00 124.00 M99.00 124.00L104.00 124.00 M108.00 124.00L113.00 124.00 M117.00 124.00L122.00 124.00 M126.00 124.00L131.00 124.00 M135.00 124.00L140.00 124.00 M144.00 124.00L149.00 124.00 M153.00 124.00L158.00 124.00 M162.00 124.00L167.00 124.00 M171.00 124.00L176.00 124.00 M180.00 124.00L185.00 124.00 M189.00 124.00L194.00 124.00 M198.00 124.00L203.00 124.00 M207.00 124.00L212.00 124.00 M216.00 124.00L221.00 124.00 M225.00 124.00L230.00 124.00 M234.00 124.00L239.00 124.00 M243.00 124.00L248.00 124.00 M252.00 124.00L257.00 124.00 M261.00 124.00L266.00 124.00 M270.00 124.00L275.00 124.00 M279.00 124.00L284.00 124.00" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" />
 
   <!-- 1. Client to Anti-DDoS Line (Red) -->
-  <path d="M 134 41 L 134 65" fill="none" stroke="#ef4444" stroke-width="1.8" />
+  <path d="M 134 41 L 134 65" fill="none" stroke="#ef4444" stroke-width="2" />
   <polygon points="134,71 130.5,64 137.5,64" fill="#ef4444" />
 
   <!-- Request Label with white pill background -->
   <g transform="translate(134, 53)">
     <rect x="-26" y="-9" width="52" height="18" rx="4" fill="#ffffff" stroke="#fca5a5" stroke-width="1"/>
-    <text x="0" y="4" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#dc2626">Request</text>
+    <text x="0" y="4" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#dc2626">Request</text>
   </g>
 
-  <!-- 2. Anti-DDoS to CLB Line (Blue) -->
-  <path d="M 134 108 L 134 133" fill="none" stroke="#0284c7" stroke-width="1.8" />
-  <polygon points="134,139 130.5,132 137.5,132" fill="#0284c7" />
+  <!-- 2. Anti-DDoS to CLB Line (Orange/Blue) -->
+  <path d="M 134 108 L 134 133" fill="none" stroke="#ff6a00" stroke-width="2" />
+  <polygon points="134,139 130.5,132 137.5,132" fill="#ff6a00" />
 
   <!-- 3. CLB to RS3 Lines (Blue) -->
-  <path d="M 149 150 L 227 150 L 227 228" fill="none" stroke="#0284c7" stroke-width="1.8" />
-  <polygon points="227,235 223.5,228 230.5,228" fill="#0284c7" />
-  <path d="M 152 162 L 216 162 L 216 228" fill="none" stroke="#0284c7" stroke-width="1.8" />
+  <path d="M 152 150 L 227 150 L 227 228" fill="none" stroke="#38bdf8" stroke-width="2" />
+  <polygon points="227,235 223.5,228 230.5,228" fill="#38bdf8" />
+  <path d="M 152 162 L 216 162 L 216 228" fill="none" stroke="#0284c7" stroke-width="2" />
   <polygon points="216,235 212.5,228 219.5,228" fill="#0284c7" />
 
   <!-- 4. CLB to RS1 Lines -->
-  <path d="M 115 163 L 57 163 L 57 228" fill="none" stroke="#ef4444" stroke-width="1.8" />
+  <path d="M 115 163 L 57 163 L 57 228" fill="none" stroke="#ef4444" stroke-width="2" />
   <polygon points="57,234 53.5,227 60.5,227" fill="#ef4444" />
-  <path d="M 113 150 L 46 150 L 46 228" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3 3" />
-  <polygon points="120,150 113,153.5 113,146.5" fill="#64748b" />
-  <polygon points="46,234 42.5,227 49.5,227" fill="#64748b" />
+  <path d="M113.00 150.00L109.00 150.00 M106.00 150.00L102.00 150.00 M99.00 150.00L95.00 150.00 M92.00 150.00L88.00 150.00 M85.00 150.00L81.00 150.00 M78.00 150.00L74.00 150.00 M71.00 150.00L67.00 150.00 M64.00 150.00L60.00 150.00 M57.00 150.00L53.00 150.00 M50.00 150.00L46.00 150.00 M46.00 150.00L46.00 154.00 M46.00 157.00L46.00 161.00 M46.00 164.00L46.00 168.00 M46.00 171.00L46.00 175.00 M46.00 178.00L46.00 182.00 M46.00 185.00L46.00 189.00 M46.00 192.00L46.00 196.00 M46.00 199.00L46.00 203.00 M46.00 206.00L46.00 210.00 M46.00 213.00L46.00 217.00 M46.00 220.00L46.00 224.00 M46.00 227.00L46.00 228.00" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" />
+  <polygon points="116,150 109,153.5 109,146.5" fill="#94a3b8" />
+  <polygon points="46,234 42.5,227 49.5,227" fill="#94a3b8" />
 
   <!-- 5. CLB to RS2 Lines -->
-  <path d="M 141 196 L 141 228" fill="none" stroke="#ef4444" stroke-width="1.8" />
+  <path d="M 141 196 L 141 228" fill="none" stroke="#ef4444" stroke-width="2" />
   <polygon points="141,234 137.5,227 144.5,227" fill="#ef4444" />
-  <path d="M 127 202 L 126.5 228" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3 3" />
-  <polygon points="127,196 130.5,203 123.5,203" fill="#64748b" />
-  <polygon points="126.5,234 123,227 130,227" fill="#64748b" />
+  <path d="M127.00 202.00L126.92 206.00 M126.87 209.00L126.79 213.00 M126.73 216.00L126.65 220.00 M126.60 223.00L126.52 227.00" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" />
+  <polygon points="127,196 130.5,203 123.5,203" fill="#94a3b8" />
+  <polygon points="126.5,234 123,227 130,227" fill="#94a3b8" />
 
-  <!-- ==================== ICONS & LABELS ==================== -->
+  <!-- ==================== ICONS & LABELS (WITH WHITE HALOS & OFFICIAL ORANGE ICONS) ==================== -->
   <!-- Client Icon -->
   <g transform="translate(116, 5)">
     <rect width="36" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" filter="url(#shadow-soft)"/>
     <path d="M 29.96 11 L 29.96 24.99 L 6 24.99 L 6 11 Z M 31.96 9 L 4 9 L 4 26.99 L 31.96 26.99 Z M 11.97 28.99 L 23.95 28.99 L 23.95 31 L 11.97 31 Z" fill="#1e293b"/>
   </g>
-  <text x="162" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="700" fill="#1e293b">Client</text>
+  <text x="162" y="27" text-anchor="start" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="700" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round">Client</text>
+    <text x="162" y="27" text-anchor="start" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="700" fill="#1e293b">Client</text>
 
-  <!-- Anti-DDoS Basic Icon -->
+  <!-- Anti-DDoS Basic Icon (Official Alibaba Cloud Orange Shield) -->
   <g transform="translate(116, 72)">
-    <rect width="36" height="36" rx="6" fill="#ffffff" stroke="#93c5fd" stroke-width="1.2" filter="url(#shadow-soft)"/>
+    <rect width="36" height="36" rx="6" fill="#ffffff" stroke="#fdba74" stroke-width="1.4" filter="url(#shadow-soft)"/>
     <g transform="translate(-116, -89)">
-      <path d="M 134.17 93.67 L 134.06 93.67 L 122 97.69 L 124.07 109.6 C 124.07 111.18 124.52 112.09 126.8 116.64 C 132.18 118.85 133.91 119.66 134.1 119.73 C 134.29 119.66 136.01 118.85 141.4 116.64 C 143.68 112.09 144.13 111.18 144.18 109.6 L 146.25 97.69 L 134.17 93.67 Z" fill="#0284c7"/>
+      <path d="M 134.17 93.67 L 134.06 93.67 L 122 97.69 L 124.07 109.6 C 124.07 111.18 124.52 112.09 126.8 116.64 C 132.18 118.85 133.91 119.66 134.1 119.73 C 134.29 119.66 136.01 118.85 141.4 116.64 C 143.68 112.09 144.13 111.18 144.18 109.6 L 146.25 97.69 L 134.17 93.67 Z" fill="#ff6a00"/>
       <path d="M 141.25 107.73 C 140.17 109.89 137.75 109.9 137.75 109.9 L 130.41 109.9 C 129.34 109.9 126.45 108.84 126.97 106.02 C 127.45 103.4 130.48 103.63 130.48 103.63 C 130.48 103.63 130.05 100.52 133.46 100.06 C 136.87 99.6 137.72 102.83 137.72 102.83 C 140.94 102.53 142.34 105.57 141.25 107.73 Z" fill="#ffffff"/>
     </g>
   </g>
-  <text x="162" y="95" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#0369a1">Anti-DDoS Basic</text>
+  <text x="162" y="95" text-anchor="start" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round">Anti-DDoS Basic</text>
+    <text x="162" y="95" text-anchor="start" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#ea580c">Anti-DDoS Basic</text>
 
-  <!-- CLB Icon -->
+  <!-- CLB Icon (Official Alibaba Cloud Orange SLB Icon) -->
   <g transform="translate(116, 140)">
-    <rect width="36" height="36" rx="6" fill="#ffffff" stroke="#93c5fd" stroke-width="1.2" filter="url(#shadow-soft)"/>
-    <g transform="translate(-116, -198)">
-      <path d="M 143.39 217.3 C 142.51 217.31 141.68 217.53 140.93 217.89 L 137.75 213.13 C 138.94 212.07 139.69 210.54 139.68 208.84 C 139.67 205.66 137.08 203.09 133.91 203.11 C 130.73 203.12 128.17 205.72 128.18 208.89 C 128.19 210.6 128.96 212.11 130.15 213.16 L 127.02 217.95 C 126.27 217.6 125.44 217.39 124.55 217.39 C 121.38 217.4 118.81 220 118.83 223.17 C 118.84 226.34 121.43 228.91 124.61 228.89 C 127.5 228.88 129.87 226.72 130.26 223.92 L 137.75 223.89 C 138.16 226.68 140.54 228.82 143.44 228.81 C 146.61 228.8 149.18 226.21 149.17 223.03 C 149.15 219.86 146.56 217.29 143.39 217.3 Z M 137.74 222.27 L 130.25 222.31 C 130.05 220.97 129.38 219.74 128.36 218.84 L 131.5 214.05 C 132.25 214.4 133.08 214.62 133.96 214.61 C 134.81 214.6 135.65 214.41 136.42 214.03 L 139.6 218.79 C 138.59 219.69 137.93 220.93 137.74 222.27 Z" fill="#0284c7"/>
+    <rect width="36" height="36" rx="6" fill="#ffffff" stroke="#fdba74" stroke-width="1.4" filter="url(#shadow-soft)"/>
+    <g>
+      <line x1="18.0" y1="10.6" x2="8.9" y2="25.8" stroke="#ff6a00" stroke-width="2.1" stroke-linecap="round"/>
+      <line x1="18.0" y1="10.6" x2="27.1" y2="25.8" stroke="#ff6a00" stroke-width="2.1" stroke-linecap="round"/>
+      <line x1="8.9" y1="25.8" x2="27.1" y2="25.8" stroke="#ff6a00" stroke-width="2.1" stroke-linecap="round"/>
+      <circle cx="18.0" cy="10.6" r="5.3" fill="#ff6a00"/>
+      <circle cx="8.9" cy="25.8" r="5.3" fill="#ff6a00"/>
+      <circle cx="27.1" cy="25.8" r="5.3" fill="#ff6a00"/>
     </g>
   </g>
-  <text x="134" y="190" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#0284c7">CLB</text>
+  <text x="134" y="191" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round">CLB</text>
+    <text x="134" y="191" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#ea580c">CLB</text>
 
-  <!-- RS1 Node -->
+  <!-- RS1 Node (Official Alibaba Cloud Orange ECS Icon) -->
   <g transform="translate(33, 236)">
-    <rect width="36" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" filter="url(#shadow-soft)"/>
-    <g transform="translate(-33, -370)">
-      <path d="M 62.02 400.24 L 40.64 400.24 C 39.37 400.24 38.33 399.31 38.33 398.03 L 38.33 395.47 C 38.33 394.19 39.37 393.27 40.64 393.27 L 62.02 393.27 C 63.3 393.27 64.33 394.19 64.33 395.47 L 64.33 398.03 C 64.33 399.31 63.3 400.24 62.02 400.24 Z M 59.44 395.08 C 58.52 395.08 57.77 395.83 57.77 396.75 C 57.77 397.67 58.52 398.42 59.44 398.42 C 60.36 398.42 61.11 397.67 61.11 396.75 C 61.11 395.83 60.36 395.08 59.44 395.08 Z M 62.02 391.6 L 40.64 391.6 C 39.37 391.6 38.33 390.68 38.33 389.4 L 38.33 386.83 C 38.33 385.56 39.37 384.63 40.64 384.63 L 62.02 384.63 C 63.3 384.63 64.33 385.56 64.33 386.83 L 64.33 389.4 C 64.33 390.68 63.3 391.6 62.02 391.6 Z M 59.44 386.44 C 58.52 386.45 57.77 387.2 57.77 388.12 C 57.78 389.04 58.52 389.78 59.44 389.79 C 60.37 389.79 61.11 389.04 61.11 388.12 C 61.11 387.19 60.37 386.44 59.44 386.44 Z M 62.02 382.97 L 40.64 382.97 C 39.37 382.97 38.33 382.04 38.33 380.77 L 38.33 378.21 C 38.33 376.93 39.37 376 40.64 376 L 62.02 376 C 63.3 376 64.33 376.93 64.33 378.21 L 64.33 380.77 C 64.33 382.04 63.3 382.97 62.02 382.97 Z M 59.44 377.81 C 59 377.81 58.57 377.99 58.26 378.3 C 57.94 378.62 57.77 379.05 57.77 379.49 C 57.77 380.41 58.52 381.16 59.44 381.16 C 60.36 381.16 61.11 380.41 61.11 379.49 C 61.11 379.05 60.94 378.62 60.62 378.3 C 60.31 377.99 59.88 377.81 59.44 377.81 Z" fill="#0284c7"/>
-    </g>
+    <rect width="36" height="36" rx="6" fill="#ffffff" stroke="#fdba74" stroke-width="1.2" filter="url(#shadow-soft)"/>
+    <rect x="5.0" y="6.0" width="26.0" height="6.2" rx="2.6" fill="#ff6a00"/>
+<circle cx="25.8" cy="9.1" r="1.6" fill="#ffffff"/>
+<rect x="5.0" y="14.9" width="26.0" height="6.2" rx="2.6" fill="#ff6a00"/>
+<circle cx="25.8" cy="18.0" r="1.6" fill="#ffffff"/>
+<rect x="5.0" y="23.8" width="26.0" height="6.2" rx="2.6" fill="#ff6a00"/>
+<circle cx="25.8" cy="26.9" r="1.6" fill="#ffffff"/>
   </g>
-  <text x="51" y="289" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#475569">RS1</text>
+  <text x="51" y="289" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#334155">RS1</text>
 
-  <!-- RS2 Node -->
+  <!-- RS2 Node (Official Alibaba Cloud Orange ECS Icon) -->
   <g transform="translate(114, 236)">
-    <rect width="36" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" filter="url(#shadow-soft)"/>
-    <g transform="translate(-114, -370)">
-      <path d="M 143.02 400.24 L 121.64 400.24 C 120.37 400.24 119.33 399.31 119.33 398.03 L 119.33 395.47 C 119.33 394.19 120.37 393.27 121.64 393.27 L 143.02 393.27 C 144.3 393.27 145.33 394.19 145.33 395.47 L 145.33 398.03 C 145.33 399.31 144.3 400.24 143.02 400.24 Z M 140.44 395.08 C 139.52 395.08 138.77 395.83 138.77 396.75 C 138.77 397.67 139.52 398.42 140.44 398.42 C 141.36 398.42 142.11 397.67 142.11 396.75 C 142.11 395.83 141.36 395.08 140.44 395.08 Z M 143.02 391.6 L 121.64 391.6 C 120.37 391.6 119.33 390.68 119.33 389.4 L 119.33 386.83 C 119.33 385.56 120.37 384.63 121.64 384.63 L 143.02 384.63 C 144.3 384.63 145.33 385.56 145.33 386.83 L 145.33 389.4 C 145.33 390.68 144.3 391.6 143.02 391.6 Z M 140.44 386.44 C 139.52 386.45 138.77 387.2 138.77 388.12 C 138.78 389.04 139.52 389.78 140.44 389.79 C 141.37 389.79 142.11 389.04 142.11 388.12 C 142.11 387.19 141.37 386.44 140.44 386.44 Z M 143.02 382.97 L 121.64 382.97 C 120.37 382.97 119.33 382.04 119.33 380.77 L 119.33 378.21 C 119.33 376.93 120.37 376 121.64 376 L 143.02 376 C 144.3 376 145.33 376.93 145.33 378.21 L 145.33 380.77 C 145.33 382.04 144.3 382.97 143.02 382.97 Z M 140.44 377.81 C 140 377.81 139.57 377.99 139.26 378.3 C 138.94 378.62 138.77 379.05 138.77 379.49 C 138.77 380.41 139.52 381.16 140.44 381.16 C 141.36 381.16 142.11 380.41 142.11 379.49 C 142.11 379.05 141.94 378.62 141.62 378.3 C 141.31 377.99 140.88 377.81 140.44 377.81 Z" fill="#0284c7"/>
-    </g>
+    <rect width="36" height="36" rx="6" fill="#ffffff" stroke="#fdba74" stroke-width="1.2" filter="url(#shadow-soft)"/>
+    <rect x="5.0" y="6.0" width="26.0" height="6.2" rx="2.6" fill="#ff6a00"/>
+<circle cx="25.8" cy="9.1" r="1.6" fill="#ffffff"/>
+<rect x="5.0" y="14.9" width="26.0" height="6.2" rx="2.6" fill="#ff6a00"/>
+<circle cx="25.8" cy="18.0" r="1.6" fill="#ffffff"/>
+<rect x="5.0" y="23.8" width="26.0" height="6.2" rx="2.6" fill="#ff6a00"/>
+<circle cx="25.8" cy="26.9" r="1.6" fill="#ffffff"/>
   </g>
-  <text x="132" y="289" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#475569">RS2</text>
+  <text x="132" y="289" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#334155">RS2</text>
 
-  <!-- RS3 Node -->
+  <!-- RS3 Node (Official Alibaba Cloud Orange ECS Icon) -->
   <g transform="translate(202, 236)">
-    <rect width="36" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" filter="url(#shadow-soft)"/>
-    <g transform="translate(-202, -370)">
-      <path d="M 231.02 400.24 L 209.64 400.24 C 208.37 400.24 207.33 399.31 207.33 398.03 L 207.33 395.47 C 207.33 394.19 208.37 393.27 209.64 393.27 L 231.02 393.27 C 232.3 393.27 233.33 394.19 233.33 395.47 L 233.33 398.03 C 233.33 399.31 232.3 400.24 231.02 400.24 Z M 228.44 395.08 C 227.52 395.08 226.77 395.83 226.77 396.75 C 226.77 397.67 227.52 398.42 228.44 398.42 C 229.36 398.42 230.11 397.67 230.11 396.75 C 230.11 395.83 229.36 395.08 228.44 395.08 Z M 231.02 391.6 L 209.64 391.6 C 208.37 391.6 207.33 390.68 207.33 389.4 L 207.33 386.83 C 207.33 385.56 208.37 384.63 209.64 384.63 L 231.02 384.63 C 232.3 384.63 233.33 385.56 233.33 386.83 L 233.33 389.4 C 233.33 390.68 232.3 391.6 231.02 391.6 Z M 228.44 386.44 C 227.52 386.45 226.77 387.2 226.77 388.12 C 226.78 389.04 227.52 389.78 228.44 389.79 C 229.37 389.79 230.11 389.04 230.11 388.12 C 230.11 387.19 229.37 386.44 228.44 386.44 Z M 231.02 382.97 L 209.64 382.97 C 208.37 382.97 207.33 382.04 207.33 380.77 L 207.33 378.21 C 207.33 376.93 208.37 376 209.64 376 L 231.02 376 C 232.3 376 233.33 376.93 233.33 378.21 L 233.33 380.77 C 233.33 382.04 232.3 382.97 231.02 382.97 Z M 228.44 377.81 C 228 377.81 227.57 377.99 227.26 378.3 C 226.94 378.62 226.77 379.05 226.77 379.49 C 226.77 380.41 227.52 381.16 228.44 381.16 C 229.36 381.16 230.11 380.41 230.11 379.49 C 230.11 379.05 229.94 378.62 229.62 378.3 C 229.31 377.99 228.88 377.81 228.44 377.81 Z" fill="#0284c7"/>
-    </g>
+    <rect width="36" height="36" rx="6" fill="#ffffff" stroke="#fdba74" stroke-width="1.2" filter="url(#shadow-soft)"/>
+    <rect x="5.0" y="6.0" width="26.0" height="6.2" rx="2.6" fill="#ff6a00"/>
+<circle cx="25.8" cy="9.1" r="1.6" fill="#ffffff"/>
+<rect x="5.0" y="14.9" width="26.0" height="6.2" rx="2.6" fill="#ff6a00"/>
+<circle cx="25.8" cy="18.0" r="1.6" fill="#ffffff"/>
+<rect x="5.0" y="23.8" width="26.0" height="6.2" rx="2.6" fill="#ff6a00"/>
+<circle cx="25.8" cy="26.9" r="1.6" fill="#ffffff"/>
   </g>
-  <text x="220" y="289" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#475569">RS3</text>
+  <text x="220" y="289" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#334155">RS3</text>
 </svg>
