@@ -36,7 +36,7 @@
 
   <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
     <!-- Container Background -->
-    <rect x="5" y="5" width="490" height="470" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" />
+    <rect x="5" y="5" width="490" height="470" rx="12" fill="none" stroke="#e2e8f0" stroke-width="1.5" />
 
     <!-- 3 Actor Top Headers -->
     <!-- 1. Client -->

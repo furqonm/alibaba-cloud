@@ -15,7 +15,7 @@
   </defs>
 
   <!-- Background Canvas -->
-  <rect width="920" height="330" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect width="920" height="330" rx="10" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
 
   <!-- ==================== STEP 1: CLIENT REQUEST ==================== -->
   <g transform="translate(18, 100)" filter="url(#card-shadow)">

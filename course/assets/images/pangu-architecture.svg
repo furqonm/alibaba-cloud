@@ -5,7 +5,7 @@
     </filter>
   </defs>
 
-  <rect width="920" height="480" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect width="920" height="480" rx="10" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
 
   <!-- ==================== LAYER 1: PRODUCT LAYER ==================== -->
   <g transform="translate(20, 16)">

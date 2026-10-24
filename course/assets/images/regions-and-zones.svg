@@ -6,7 +6,7 @@
   </defs>
 
   <!-- Outer Canvas Border -->
-  <rect width="820" height="330" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <rect width="820" height="330" rx="10" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="6,4"/>
 
   
 

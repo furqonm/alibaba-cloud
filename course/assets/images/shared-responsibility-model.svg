@@ -6,7 +6,7 @@
   </defs>
 
   <!-- Background -->
-  <rect width="860" height="520" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect width="860" height="520" rx="12" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
 
   <!-- ==================== LEFT: ACTOR LABELS ==================== -->
   <!-- Top: Customer -->
