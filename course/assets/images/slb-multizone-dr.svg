@@ -17,11 +17,10 @@
   <!-- Canvas Background -->
   <rect width="640" height="480" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
 
-  <!-- Internet Cloud Node (Top Center) -->
+  <!-- Top Internet Node -->
   <g transform="translate(265, 20)">
-    <rect width="110" height="44" rx="22" fill="#e0f2fe" stroke="#38bdf8" stroke-width="1.5"/>
-    <path d="M 295 42 C 285 42 277 35 277 25 C 277 16 284 10 293 10 C 295 5 301 2 308 2 C 317 2 323 7 325 13 C 329 11 334 13 336 17 C 339 19 341 23 341 27 C 341 35 334 42 325 42 Z" fill="#0284c7" opacity="0.15" transform="translate(-265, -8)"/>
-    <text x="55" y="27" text-anchor="middle" fill="#0369a1" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Internet</text>
+    <rect width="110" height="38" rx="19" fill="#e0f2fe" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="55" y="24" text-anchor="middle" fill="#0369a1" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Internet</text>
   </g>
 
   <!-- Region Boundary -->
@@ -103,7 +102,7 @@
   </g>
 
   <!-- Inactive Route to Primary Zone A (Crossed) -->
-  <line x1="285" y1="64" x2="152" y2="175" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4,4"/>
+  <line x1="285" y1="58" x2="152" y2="175" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4,4"/>
   <g transform="translate(210, 125)">
     <circle cx="0" cy="0" r="11" fill="#ef4444" stroke="#ffffff" stroke-width="2"/>
     <line x1="-5" y1="-5" x2="5" y2="5" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
@@ -111,7 +110,7 @@
   </g>
 
   <!-- Failover Active Route to Backup Zone B (Orange) -->
-  <line x1="355" y1="64" x2="447" y2="175" stroke="#ea580c" stroke-width="2.5" stroke-dasharray="5,3" marker-end="url(#arr-orange)"/>
+  <line x1="355" y1="58" x2="447" y2="175" stroke="#ea580c" stroke-width="2.5" stroke-dasharray="5,3" marker-end="url(#arr-orange)"/>
 
   <!-- Failover Distribution from Slave Node to Zone B ECS Fleet -->
   <line x1="447" y1="230" x2="385" y2="280" stroke="#16a34a" stroke-width="1.8" marker-end="url(#arr-green)"/>
