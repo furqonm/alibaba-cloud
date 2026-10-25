@@ -1085,27 +1085,26 @@
     <section class="slide" data-category="Advanced Features">
       <div class="slide-category">Section 5: Advanced Features</div>
       <h2>OSS Log Management</h2>
-      
-      <!-- Log Architecture & Console Workflow Diagram from Page 19 -->
-      <div class="architecture-diagram-wrapper" style="display: flex; justify-content: center; align-items: center; margin: 0.15rem 0 0.45rem; min-height: 0;">
-        <div style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 1040px;">
-          <img src="assets/images/oss-manage-logs.png" alt="OSS Log Management: Access Log Configuration and SLS Real-time Log Analysis" style="max-height: 335px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
-        </div>
-      </div>
 
-      <div class="grid-2" style="margin-top: 0; gap: 0.85rem;">
-        <div class="content-card highlight-orange" style="padding: 0.55rem 0.95rem;">
-          <h3 style="font-size: calc(0.92rem + var(--font-delta)); margin-bottom: 0.25rem; color: #c2410c;">Bucket Access Logging (Access Log)</h3>
-          <ul style="font-size: calc(0.80rem + var(--font-delta)); line-height: 1.35; margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.25rem;">
+      <div class="grid-2" style="flex: 1; margin-top: 0.5rem; gap: 1rem; align-items: stretch; min-height: 0;">
+        <div class="content-card highlight-orange" style="display: flex; flex-direction: column; padding: 0.75rem 1rem;">
+          <h3 style="font-size: calc(0.95rem + var(--font-delta)); margin-bottom: 0.45rem; color: #c2410c;">Bucket Access Logging (Access Log)</h3>
+          <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 0.65rem; min-height: 0;">
+            <img src="assets/images/oss-bucket-access-logging.png" alt="Bucket Access Logging Console Configuration and Raw Access Logs" style="max-height: 195px; width: 100%; height: auto; object-fit: contain; border-radius: 6px;">
+          </div>
+          <ul style="font-size: calc(0.80rem + var(--font-delta)); line-height: 1.4; margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.25rem;">
             <li><strong>Target Bucket Storage:</strong> Automatically delivers hourly raw access logs to a designated destination bucket.</li>
             <li><strong>Zero Performance Impact:</strong> Asynchronous log generation ensures zero read/write request latency overhead.</li>
             <li><strong>Comprehensive Audit:</strong> Records client IP, HTTP status, request payload size, and caller RAM identity.</li>
           </ul>
         </div>
 
-        <div class="content-card highlight-blue" style="padding: 0.55rem 0.95rem;">
-          <h3 style="font-size: calc(0.92rem + var(--font-delta)); margin-bottom: 0.25rem; color: #1e40af;">Real-Time Log Analysis (SLS)</h3>
-          <ul style="font-size: calc(0.80rem + var(--font-delta)); line-height: 1.35; margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.25rem;">
+        <div class="content-card highlight-blue" style="display: flex; flex-direction: column; padding: 0.75rem 1rem;">
+          <h3 style="font-size: calc(0.95rem + var(--font-delta)); margin-bottom: 0.45rem; color: #1e40af;">Real-Time Log Analysis (SLS)</h3>
+          <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 0.65rem; min-height: 0;">
+            <img src="assets/images/oss-realtime-log-analysis.png" alt="Log Service (SLS) Real-Time Log Analysis Console" style="max-height: 195px; width: 100%; height: auto; object-fit: contain; border-radius: 6px;">
+          </div>
+          <ul style="font-size: calc(0.80rem + var(--font-delta)); line-height: 1.4; margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.25rem;">
             <li><strong>Sub-Second Ingestion:</strong> Streams access logs in real time directly into Log Service (<code>oss-log-store</code>).</li>
             <li><strong>Instant SQL Analytics:</strong> Execute interactive SQL queries to isolate 4xx/5xx spikes, malicious IPs, or traffic spikes.</li>
             <li><strong>Pre-Built Dashboards:</strong> Instant visualization of access trends, top downloaded objects, and client distribution.</li>
