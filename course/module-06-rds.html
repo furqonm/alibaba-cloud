@@ -745,27 +745,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 21: ACTIVE-STANDBY FAILOVER ==================== -->
-    <section class="slide" data-category="High Availability &amp; Disaster Recovery">
-      <div class="slide-category">Section 4: High Availability &amp; Disaster Recovery</div>
-      <h2>Active-Standby Failover</h2>
-      
-      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
-        <img src="assets/images/rds-ha-failover-topology.svg" alt="RDS High-Availability Topology" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
-      </div>
-    </section>
-
-    <!-- ==================== SLIDE 22: REPLICATION SYNCHRONIZATION ==================== -->
-    <section class="slide" data-category="High Availability &amp; Disaster Recovery">
-      <div class="slide-category">Section 4: High Availability &amp; Disaster Recovery</div>
-      <h2>Replication Synchronization</h2>
-      
-      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
-        <img src="assets/images/rds-replication-sync-compare.svg" alt="Replication Synchronization: Semi-Sync vs Asynchronous" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
-      </div>
-    </section>
-
-    <!-- ==================== SLIDE 23: SINGLE-ZONE VS. MULTI-ZONE DEPLOYMENT ==================== -->
+    <!-- ==================== SLIDE 21: SINGLE-ZONE VS. MULTI-ZONE DEPLOYMENT ==================== -->
     <section class="slide" data-category="High Availability &amp; Disaster Recovery">
       <div class="slide-category">Section 4: High Availability &amp; Disaster Recovery</div>
       <h2>Single-Zone vs. Multi-Zone Deployment</h2>
@@ -802,6 +782,26 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 22: ACTIVE-STANDBY FAILOVER ==================== -->
+    <section class="slide" data-category="High Availability &amp; Disaster Recovery">
+      <div class="slide-category">Section 4: High Availability &amp; Disaster Recovery</div>
+      <h2>Active-Standby Failover</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+        <img src="assets/images/rds-ha-failover-topology.svg" alt="RDS High-Availability Topology" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 23: REPLICATION SYNCHRONIZATION ==================== -->
+    <section class="slide" data-category="High Availability &amp; Disaster Recovery">
+      <div class="slide-category">Section 4: High Availability &amp; Disaster Recovery</div>
+      <h2>Replication Synchronization</h2>
+      
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
+        <img src="assets/images/rds-replication-sync-compare.svg" alt="Replication Synchronization: Semi-Sync vs Asynchronous" class="architecture-diagram" style="max-height: 100%; max-width: 100%; width: 100%; height: auto; object-fit: contain;">
       </div>
     </section>
 
@@ -1086,16 +1086,16 @@
       <div class="slide-category">Section 6: Security &amp; Governance</div>
       <h2>Layer 5: Manage with Database Autonomy (DAS)</h2>
       
-      <div class="architecture-diagram-wrapper">
-        <img src="assets/images/rds-das-architecture.webp" alt="Alibaba Cloud Database Autonomy Service (DAS) Architecture" class="architecture-diagram" style="max-height: 330px;">
+      <div class="architecture-diagram-wrapper" style="height: auto; flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0; margin: 0.25rem 0;">
+        <img src="assets/images/rds-das-architecture.webp" alt="Alibaba Cloud Database Autonomy Service (DAS) Architecture" class="architecture-diagram" style="max-height: 385px; width: auto; max-width: 95%; height: auto; object-fit: contain;">
       </div>
 
-      <div class="content-card highlight-green" style="margin-top: 0.75rem; padding: 0.85rem 1.25rem;">
-        <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem 1.5rem;">
-          <li><strong>AI-Driven Query Optimization:</strong> Machine learning models evaluate SQL execution plans and automatically synthesize missing index recommendations to eliminate slow queries.</li>
-          <li><strong>Autonomous Query Throttling:</strong> Detects runaway SQL queries in real time and enforces automated concurrency limits before database CPU or memory is exhausted.</li>
-          <li><strong>Autonomous Elastic Storage Scaling:</strong> Triggers automated disk capacity expansion when available storage volume falls below safety thresholds, preventing instance lockups.</li>
-          <li><strong>Automated Health Diagnostics:</strong> Continuously analyzes database parameters, deadlocks, and connection spikes to generate automated daily inspection reports.</li>
+      <div class="content-card highlight-green" style="margin-top: 0.4rem; padding: 0.55rem 1.25rem;">
+        <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; display: grid; grid-template-columns: 1fr 1fr; gap: 0.25rem 1.5rem;">
+          <li><strong>AI Query Optimization:</strong> Evaluates SQL execution plans and synthesizes missing index recommendations.</li>
+          <li><strong>Autonomous Throttling:</strong> Detects runaway SQL queries and enforces automated concurrency limits.</li>
+          <li><strong>Elastic Storage Scaling:</strong> Triggers automated disk expansion when storage falls below safety thresholds.</li>
+          <li><strong>Automated Diagnostics:</strong> Analyzes parameters, deadlocks, and connection spikes with daily reports.</li>
         </ul>
       </div>
     </section>
@@ -1283,8 +1283,8 @@
       
       <div class="two-column-layout" style="flex: 1; align-items: center; gap: 1.5rem; margin-top: 0.5rem;">
         <div class="column-left" style="display: flex; align-items: center; justify-content: center; height: 100%;">
-          <div class="architecture-diagram-wrapper" style="border: none; box-shadow: none; background: transparent; padding: 0; width: 100%; max-height: 480px; display: flex; justify-content: center; align-items: center;">
-            <img src="assets/images/polardb-arch-comparison.svg" alt="PolarDB Cloud-Native Architecture" class="architecture-diagram" style="max-height: 460px; width: 100%; height: auto; object-fit: contain;">
+          <div class="architecture-diagram-wrapper" style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem; box-shadow: var(--shadow-sm); width: 100%; max-height: 480px;">
+            <img src="assets/images/polardb-arch-comparison.png" alt="PolarDB Cloud-Native Architecture" class="architecture-diagram" style="max-height: 460px; width: 100%; height: auto; object-fit: contain;">
           </div>
         </div>
 
