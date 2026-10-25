@@ -22,24 +22,24 @@
     <text x="0" y="4" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#dc2626">Request</text>
   </g>
 
-  <!-- 2. Anti-DDoS to CLB Line (Orange/Blue) -->
+  <!-- 2. Anti-DDoS to ALB Line (Orange/Blue) -->
   <path d="M 134 108 L 134 133" fill="none" stroke="#ff6a00" stroke-width="2" />
   <polygon points="134,139 130.5,132 137.5,132" fill="#ff6a00" />
 
-  <!-- 3. CLB to RS3 Lines (Blue) -->
+  <!-- 3. ALB to ECS 3 Lines (Blue) -->
   <path d="M 152 150 L 227 150 L 227 228" fill="none" stroke="#38bdf8" stroke-width="2" />
   <polygon points="227,235 223.5,228 230.5,228" fill="#38bdf8" />
   <path d="M 152 162 L 216 162 L 216 228" fill="none" stroke="#0284c7" stroke-width="2" />
   <polygon points="216,235 212.5,228 219.5,228" fill="#0284c7" />
 
-  <!-- 4. CLB to RS1 Lines -->
+  <!-- 4. ALB to ECS 1 Lines -->
   <path d="M 115 163 L 57 163 L 57 228" fill="none" stroke="#ef4444" stroke-width="2" />
   <polygon points="57,234 53.5,227 60.5,227" fill="#ef4444" />
   <path d="M113.00 150.00L109.00 150.00 M106.00 150.00L102.00 150.00 M99.00 150.00L95.00 150.00 M92.00 150.00L88.00 150.00 M85.00 150.00L81.00 150.00 M78.00 150.00L74.00 150.00 M71.00 150.00L67.00 150.00 M64.00 150.00L60.00 150.00 M57.00 150.00L53.00 150.00 M50.00 150.00L46.00 150.00 M46.00 150.00L46.00 154.00 M46.00 157.00L46.00 161.00 M46.00 164.00L46.00 168.00 M46.00 171.00L46.00 175.00 M46.00 178.00L46.00 182.00 M46.00 185.00L46.00 189.00 M46.00 192.00L46.00 196.00 M46.00 199.00L46.00 203.00 M46.00 206.00L46.00 210.00 M46.00 213.00L46.00 217.00 M46.00 220.00L46.00 224.00 M46.00 227.00L46.00 228.00" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" />
   <polygon points="116,150 109,153.5 109,146.5" fill="#94a3b8" />
   <polygon points="46,234 42.5,227 49.5,227" fill="#94a3b8" />
 
-  <!-- 5. CLB to RS2 Lines -->
+  <!-- 5. ALB to ECS 2 Lines -->
   <path d="M 141 196 L 141 228" fill="none" stroke="#ef4444" stroke-width="2" />
   <polygon points="141,234 137.5,227 144.5,227" fill="#ef4444" />
   <path d="M127.00 202.00L126.92 206.00 M126.87 209.00L126.79 213.00 M126.73 216.00L126.65 220.00 M126.60 223.00L126.52 227.00" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" />
@@ -66,7 +66,7 @@
   <text x="162" y="95" text-anchor="start" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round">Anti-DDoS Basic</text>
     <text x="162" y="95" text-anchor="start" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#ea580c">Anti-DDoS Basic</text>
 
-  <!-- CLB Icon (Official Alibaba Cloud Orange SLB Icon) -->
+  <!-- ALB Icon (Official Alibaba Cloud Orange SLB Icon) -->
   <g transform="translate(116, 140)">
     <rect width="36" height="36" rx="6" fill="#ffffff" stroke="#fdba74" stroke-width="1.4" filter="url(#shadow-soft)"/>
     <g>
@@ -78,10 +78,10 @@
       <circle cx="27.1" cy="25.8" r="5.3" fill="#ff6a00"/>
     </g>
   </g>
-  <text x="134" y="191" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round">CLB</text>
-    <text x="134" y="191" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#ea580c">CLB</text>
+  <text x="134" y="191" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round">ALB</text>
+    <text x="134" y="191" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#ea580c">ALB</text>
 
-  <!-- RS1 Node (Official Alibaba Cloud Orange ECS Icon) -->
+  <!-- ECS 1 Node (Official Alibaba Cloud Orange ECS Icon) -->
   <g transform="translate(33, 236)">
     <rect width="36" height="36" rx="6" fill="#ffffff" stroke="#fdba74" stroke-width="1.2" filter="url(#shadow-soft)"/>
     <rect x="5.0" y="6.0" width="26.0" height="6.2" rx="2.6" fill="#ff6a00"/>
@@ -91,9 +91,9 @@
 <rect x="5.0" y="23.8" width="26.0" height="6.2" rx="2.6" fill="#ff6a00"/>
 <circle cx="25.8" cy="26.9" r="1.6" fill="#ffffff"/>
   </g>
-  <text x="51" y="289" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#334155">RS1</text>
+  <text x="51" y="289" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#334155">ECS 1</text>
 
-  <!-- RS2 Node (Official Alibaba Cloud Orange ECS Icon) -->
+  <!-- ECS 2 Node (Official Alibaba Cloud Orange ECS Icon) -->
   <g transform="translate(114, 236)">
     <rect width="36" height="36" rx="6" fill="#ffffff" stroke="#fdba74" stroke-width="1.2" filter="url(#shadow-soft)"/>
     <rect x="5.0" y="6.0" width="26.0" height="6.2" rx="2.6" fill="#ff6a00"/>
@@ -103,9 +103,9 @@
 <rect x="5.0" y="23.8" width="26.0" height="6.2" rx="2.6" fill="#ff6a00"/>
 <circle cx="25.8" cy="26.9" r="1.6" fill="#ffffff"/>
   </g>
-  <text x="132" y="289" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#334155">RS2</text>
+  <text x="132" y="289" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#334155">ECS 2</text>
 
-  <!-- RS3 Node (Official Alibaba Cloud Orange ECS Icon) -->
+  <!-- ECS 3 Node (Official Alibaba Cloud Orange ECS Icon) -->
   <g transform="translate(202, 236)">
     <rect width="36" height="36" rx="6" fill="#ffffff" stroke="#fdba74" stroke-width="1.2" filter="url(#shadow-soft)"/>
     <rect x="5.0" y="6.0" width="26.0" height="6.2" rx="2.6" fill="#ff6a00"/>
@@ -115,5 +115,5 @@
 <rect x="5.0" y="23.8" width="26.0" height="6.2" rx="2.6" fill="#ff6a00"/>
 <circle cx="25.8" cy="26.9" r="1.6" fill="#ffffff"/>
   </g>
-  <text x="220" y="289" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#334155">RS3</text>
+  <text x="220" y="289" text-anchor="middle" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#334155">ECS 3</text>
 </svg>

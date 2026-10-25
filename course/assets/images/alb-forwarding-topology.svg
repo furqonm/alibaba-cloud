@@ -77,10 +77,10 @@
   <path d="M 660 225 L 660 260" fill="none" stroke="#FF6A00" stroke-width="2" marker-end="url(#arrow-orange-clean)"/>
 
   <!-- ==================== BOTTOM TIER: SERVER GROUPS ==================== -->
-  <!-- Server group A (ECS) -->
+  <!-- Server Group A (ECS) -->
   <g transform="translate(20, 265)" filter="url(#shadow-alb-clean)">
     <rect width="250" height="120" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-    <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e293b">Server group A</text>
+    <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e293b">Server Group A</text>
 
     <g transform="translate(14, 28)">
       <rect width="66" height="48" rx="6" fill="#eff6ff" stroke="#bfdbfe"/>
@@ -102,10 +102,10 @@
     <text x="125" y="101" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#065f46">Health check</text>
   </g>
 
-  <!-- Server group B (ECI) -->
+  <!-- Server Group B (ECI) -->
   <g transform="translate(295, 265)" filter="url(#shadow-alb-clean)">
     <rect width="250" height="120" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-    <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e293b">Server group B</text>
+    <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e293b">Server Group B</text>
 
     <g transform="translate(14, 28)">
       <rect width="66" height="48" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
@@ -127,10 +127,10 @@
     <text x="125" y="101" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#065f46">Health check</text>
   </g>
 
-  <!-- Server group C (ENI) -->
+  <!-- Server Group C (ENI) -->
   <g transform="translate(570, 265)" filter="url(#shadow-alb-clean)">
     <rect width="250" height="120" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-    <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e293b">Server group C</text>
+    <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e293b">Server Group C</text>
 
     <g transform="translate(14, 28)">
       <rect width="66" height="48" rx="6" fill="#ecfdf5" stroke="#a7f3d0"/>

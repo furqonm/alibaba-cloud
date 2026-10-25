@@ -74,16 +74,16 @@
     </g>
   </g>
 
-  <!-- Connectors from Listeners down to Service Groups -->
+  <!-- Connectors from Listeners down to Server Groups -->
   <path d="M 145 205 L 145 250" fill="none" stroke="#FF6A00" stroke-width="2" marker-end="url(#arrow-nlb-orange)"/>
   <path d="M 420 205 L 420 250" fill="none" stroke="#FF6A00" stroke-width="2" marker-end="url(#arrow-nlb-orange)"/>
   <path d="M 695 205 L 695 250" fill="none" stroke="#FF6A00" stroke-width="2" marker-end="url(#arrow-nlb-orange)"/>
 
-  <!-- ==================== BOTTOM TIER: 3 SERVICE GROUPS ==================== -->
-  <!-- Service Group A (ECS + ENI) -->
+  <!-- ==================== BOTTOM TIER: 3 SERVER GROUPS ==================== -->
+  <!-- Server Group A (ECS + ENI) -->
   <g transform="translate(20, 255)" filter="url(#shadow-nlb-clean)">
     <rect width="250" height="130" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-    <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e293b">Service Group A</text>
+    <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e293b">Server Group A</text>
 
     <g transform="translate(14, 28)">
       <rect width="66" height="52" rx="6" fill="#eff6ff" stroke="#bfdbfe"/>
@@ -105,10 +105,10 @@
     <text x="125" y="109" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#065f46">Health Check</text>
   </g>
 
-  <!-- Service Group B (ECS + ECI) -->
+  <!-- Server Group B (ECS + ECI) -->
   <g transform="translate(295, 255)" filter="url(#shadow-nlb-clean)">
     <rect width="250" height="130" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-    <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e293b">Service Group B</text>
+    <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e293b">Server Group B</text>
 
     <g transform="translate(14, 28)">
       <rect width="66" height="52" rx="6" fill="#eff6ff" stroke="#bfdbfe"/>
@@ -130,10 +130,10 @@
     <text x="125" y="109" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#065f46">Health Check</text>
   </g>
 
-  <!-- Service Group C (IP Address) -->
+  <!-- Server Group C (IP Address) -->
   <g transform="translate(570, 255)" filter="url(#shadow-nlb-clean)">
     <rect width="250" height="130" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-    <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e293b">Service Group C</text>
+    <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e293b">Server Group C</text>
 
     <g transform="translate(14, 28)">
       <rect width="66" height="52" rx="6" fill="#faf5ff" stroke="#e9d5ff"/>
