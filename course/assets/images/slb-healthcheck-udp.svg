@@ -19,11 +19,7 @@
     <rect x="0" y="0" width="120" height="24" rx="8" fill="#0284c7"/>
     <rect x="0" y="16" width="120" height="8" fill="#0284c7"/>
     <text x="60" y="16" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="11" font-weight="700">SLB Service</text>
-    <circle cx="60" cy="50" r="14" fill="#e0f2fe"/>
-    <circle cx="60" cy="45" r="3" fill="#0284c7"/>
-    <circle cx="53" cy="54" r="3" fill="#0284c7"/>
-    <circle cx="67" cy="54" r="3" fill="#0284c7"/>
-    <path d="M 60 45 L 53 54 M 60 45 L 67 54" stroke="#0284c7" stroke-width="1.5"/>
+    <g transform="translate(44.25, 34.69) scale(0.8750)"><line x1="18.0" y1="8.5" x2="8.2" y2="24.8" stroke="#FF6A00" stroke-width="2.6" stroke-linecap="round"/><line x1="18.0" y1="8.5" x2="27.8" y2="24.8" stroke="#FF6A00" stroke-width="2.6" stroke-linecap="round"/><line x1="8.2" y1="24.8" x2="27.8" y2="24.8" stroke="#FF6A00" stroke-width="2.6" stroke-linecap="round"/><circle cx="18.0" cy="8.5" r="5.6" fill="#FF6A00"/><circle cx="8.2" cy="24.8" r="5.6" fill="#FF6A00"/><circle cx="27.8" cy="24.8" r="5.6" fill="#FF6A00"/></g>
   </g>
 
   <!-- Right: Backend ECS Node -->
@@ -32,11 +28,7 @@
     <rect x="0" y="0" width="120" height="24" rx="8" fill="#059669"/>
     <rect x="0" y="16" width="120" height="8" fill="#059669"/>
     <text x="60" y="16" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="11" font-weight="700">Backend ECS</text>
-    <rect x="46" y="38" width="28" height="24" rx="3" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
-    <line x1="50" y1="45" x2="70" y2="45" stroke="#059669" stroke-width="1.5"/>
-    <line x1="50" y1="52" x2="70" y2="52" stroke="#059669" stroke-width="1.5"/>
-    <circle cx="52" cy="45" r="1" fill="#059669"/>
-    <circle cx="52" cy="52" r="1" fill="#059669"/>
+    <g transform="translate(41.14, 31.18) scale(0.03606)"><path d="M864.768 903.68H180.736c-40.96 0-73.728-29.696-73.728-70.656v-81.92c0-40.96 33.28-70.656 73.728-70.656h684.032c40.96 0 74.24 29.696 74.24 70.656v81.92c-0.512 40.96-33.28 70.656-74.24 70.656z m-82.944-165.376c-29.696 0-53.76 24.064-53.76 53.248 0 29.696 24.064 53.76 53.76 53.76 29.696-1.024 52.736-25.6 52.224-54.784-1.024-28.16-23.552-51.2-52.224-52.224z m82.944-111.104H180.736c-40.96 0-73.728-29.696-73.728-70.656v-81.92c0-40.96 33.28-70.656 73.728-70.656h684.032c40.96 0 74.24 29.696 74.24 70.656v81.92c-0.512 40.96-33.28 70.656-74.24 70.656z m-82.944-164.864c-29.696 0-53.76 24.064-53.76 53.76s24.064 53.248 53.76 53.76c29.696 0 53.76-23.552 53.76-53.248 0.512-30.208-23.552-54.272-53.76-54.272 0.512 0 0.512 0 0 0z m82.944-111.104H180.736c-40.96 0-73.728-29.696-73.728-70.656v-81.92c0-40.96 33.28-70.656 73.728-70.656h684.032c40.96 0 74.24 29.696 74.24 70.656v81.92c-0.512 40.96-33.28 70.656-74.24 70.656z m-82.944-165.376c-29.696 0-53.76 24.064-53.76 53.76s24.064 53.248 53.76 53.248c29.184 0 53.248-24.064 53.248-53.248 0.512-29.696-23.552-53.76-53.248-53.76z" fill="#FF6A00"/></g>
   </g>
 
   <!-- Lifelines -->
