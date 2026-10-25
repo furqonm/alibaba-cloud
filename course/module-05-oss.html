@@ -202,11 +202,20 @@
         </div>
         <div class="service-pillar-card">
           <h4>🧊 Cold Archive</h4>
-          <p>Ultra-low cost for long-term retention. 3 restore modes (Expedited &lt;1h, Standard 2-5h, Bulk 5-11h).</p>
+          <p style="margin-bottom: 0.35rem;">Ultra-low cost for long-term retention. Restore modes:</p>
+          <ul style="font-size: calc(0.74rem + var(--font-delta)); line-height: 1.35; padding-left: 1rem; margin: 0; text-align: left;">
+            <li><strong>Expedited:</strong> &lt; 1 hour</li>
+            <li><strong>Standard:</strong> 2 - 5 hours</li>
+            <li><strong>Bulk:</strong> 5 - 11 hours</li>
+          </ul>
         </div>
         <div class="service-pillar-card">
           <h4>🏔️ Deep Cold Archive</h4>
-          <p>Cheapest cloud storage tier (tape replacement). Restore time 12-48 hours. Built for multi-year compliance.</p>
+          <p style="margin-bottom: 0.35rem;">Cheapest tier for tape replacement. Restore modes:</p>
+          <ul style="font-size: calc(0.74rem + var(--font-delta)); line-height: 1.35; padding-left: 1rem; margin: 0; text-align: left;">
+            <li><strong>Standard:</strong> ~12 hours</li>
+            <li><strong>Bulk:</strong> 24 - 48 hours</li>
+          </ul>
         </div>
       </div>
 
@@ -1012,9 +1021,9 @@
       <h2>Image Processing (IMG)</h2>
       
       <!-- Access Method Architecture Diagram from Page 38 -->
-      <div class="architecture-diagram-wrapper" style="display: flex; justify-content: center; align-items: center; margin: 0.2rem 0 0.65rem; min-height: 0;">
-        <div style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 980px;">
-          <img src="assets/images/oss-img-access-methods.svg" alt="OSS Image Processing Access Methods: Parameter Mode vs Style Mode Architecture" style="max-height: 240px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
+      <div class="architecture-diagram-wrapper" style="display: flex; justify-content: center; align-items: center; margin: 0.15rem 0 0.5rem; min-height: 0;">
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 1040px;">
+          <img src="assets/images/oss-img-access-methods.svg" alt="OSS Image Processing Access Methods: Parameter Mode vs Style Mode Architecture" style="max-height: 295px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
         </div>
       </div>
 
@@ -1113,10 +1122,14 @@
       <div class="grid-2" style="flex: 1; margin-top: 0.35rem; gap: 1rem; align-items: stretch; min-height: 0;">
         <div class="content-card highlight-orange" style="display: flex; flex-direction: column; padding: 0.65rem 0.95rem;">
           <h3 style="font-size: calc(0.95rem + var(--font-delta)); margin-bottom: 0.35rem; color: #c2410c;">Bucket Access Logging (Access Log)</h3>
-          <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 0.45rem; min-height: 0; flex: 1;">
-            <img src="assets/images/oss-bucket-access-logging.png" alt="Bucket Access Logging Console Configuration and Raw Access Logs" style="max-height: 275px; width: 100%; height: auto; object-fit: contain; border-radius: 6px;">
+          <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 0.35rem; min-height: 0;">
+            <img src="assets/images/oss-bucket-access-logging.png" alt="Bucket Access Logging Console Configuration" style="max-height: 175px; width: 100%; height: auto; object-fit: contain; border-radius: 6px;">
           </div>
-          <ul style="font-size: calc(0.78rem + var(--font-delta)); line-height: 1.35; margin: 0; padding-left: 1.05rem; display: flex; flex-direction: column; gap: 0.2rem;">
+          <div style="margin: 0 0 0.45rem; background: #0f172a; border-radius: 6px; padding: 0.45rem 0.65rem; border: 1px solid rgba(255,255,255,0.1); overflow-x: auto;">
+            <div style="font-size: 0.65rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2rem;">Raw Access Log Record</div>
+            <pre style="margin: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.62rem; line-height: 1.35; color: #38bdf8; white-space: pre-wrap; word-break: break-all;"><code>100.68.13.141 - - [11/Feb/2017:22:44:06 +0800] "GET /?bucketInfo HTTP/1.1" 200 610 35 "-" "aliyun-sdk-java/2.4.0(Linux/2.6.32-220.23.2.ali927.el5.x86_64/amd64;1.6.0_24)" "ezybiztravel-id.oss-cn-hangzhou-cross.aliyuncs.com" "589F23366575C184D1EC9AA1" "true" "1066165288152053" "GetBucketInfo" "ezybiztravel-id" "-" - - "-" 497 "1066165288152053" - "-" "-"</code></pre>
+          </div>
+          <ul style="font-size: calc(0.76rem + var(--font-delta)); line-height: 1.35; margin: 0; padding-left: 1.05rem; display: flex; flex-direction: column; gap: 0.2rem;">
             <li><strong>Target Bucket Storage:</strong> Automatically delivers hourly raw access logs to designated bucket.</li>
             <li><strong>Zero Performance Impact:</strong> Asynchronous log generation ensures zero latency overhead.</li>
             <li><strong>Comprehensive Audit:</strong> Records client IP, HTTP status, payload size, and caller RAM identity.</li>
