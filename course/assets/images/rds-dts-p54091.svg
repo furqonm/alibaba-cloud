@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 410" width="100%" height="100%">
+  <defs>
+    <filter id="dts-geo-shadow" x="-5%" y="-4%" width="110%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <marker id="geo-arr-orange" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <polygon points="0 1, 7 3.5, 0 6" fill="#ea580c"/>
+    </marker>
+    <marker id="geo-arr-blue" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <polygon points="0 1, 7 3.5, 0 6" fill="#0284c7"/>
+    </marker>
+    <marker id="geo-arr-green" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <polygon points="0 1, 7 3.5, 0 6" fill="#10b981"/>
+    </marker>
+  </defs>
+
+  <!-- ==================== REGION A (Center Top) ==================== -->
+  <g transform="translate(365, 10)">
+    <rect width="230" height="205" rx="10" fill="#ffffff" stroke="#fed7aa" stroke-dasharray="4 3" stroke-width="1.8" filter="url(#dts-geo-shadow)"/>
+    <text x="115" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="800" fill="#c2410c">Region A (Centralized Writes)</text>
+
+    <!-- User Node -->
+    <g transform="translate(90, 28)">
+      <rect width="50" height="28" rx="5" fill="#fff7ed" stroke="#fdba74" stroke-width="1"/>
+      <circle cx="25" cy="10" r="4.5" fill="#ff6a00"/>
+      <path d="M 16 22 C 16 16, 34 16, 34 22 Z" fill="#ff6a00"/>
+    </g>
+
+    <!-- Arrow User -> Application -->
+    <path d="M 115 56 L 115 95" stroke="#ea580c" stroke-width="1.8" marker-end="url(#geo-arr-orange)"/>
+    <!-- Badge -->
+    <rect x="65" y="62" width="100" height="26" rx="4" fill="#fff7ed" stroke="#fdba74" stroke-width="1"/>
+    <text x="115" y="74" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="800" fill="#c2410c">Write Request</text>
+    <text x="115" y="84" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" font-weight="600" fill="#ea580c">Read Request</text>
+
+    <!-- Application Node -->
+    <g transform="translate(45, 98)">
+      <rect width="140" height="38" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+      <g transform="translate(14, 9)">
+        <rect x="0" y="0" width="20" height="4.5" rx="1.2" fill="#ff6a00"/>
+        <circle cx="16" cy="2.25" r="0.9" fill="#ffffff"/>
+        <rect x="0" y="6.5" width="20" height="4.5" rx="1.2" fill="#ff6a00"/>
+        <circle cx="16" cy="8.75" r="0.9" fill="#ffffff"/>
+        <rect x="0" y="13" width="20" height="4.5" rx="1.2" fill="#ff6a00"/>
+        <circle cx="16" cy="15.25" r="0.9" fill="#ffffff"/>
+      </g>
+      <text x="78" y="24" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#0f172a">Application</text>
+    </g>
+
+    <!-- Arrow App -> DB -->
+    <path d="M 115 136 L 115 152" stroke="#64748b" stroke-width="1.5" marker-end="url(#geo-arr-orange)"/>
+
+    <!-- DB Node (Master) -->
+    <g transform="translate(45, 155)">
+      <rect width="140" height="42" rx="6" fill="#fff7ed" stroke="#ff6a00" stroke-width="1.5"/>
+      <g transform="translate(14, 12)">
+        <polygon points="7,0 11,2.5 11,7 7,9.5 3,7 3,2.5" fill="#ff6a00"/>
+        <polygon points="3,7 7,9.5 7,14 3,16.5 -1,14 -1,9.5" fill="#ff6a00"/>
+        <polygon points="11,7 15,9.5 15,14 11,16.5 7,14 7,9.5" fill="#ff6a00"/>
+      </g>
+      <text x="78" y="22" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="800" fill="#c2410c">DataBase</text>
+      <text x="78" y="34" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" font-weight="600" fill="#ea580c">Master (Read/Write)</text>
+    </g>
+  </g>
+
+  <!-- ==================== REGION B (Left Lower) ==================== -->
+  <g transform="translate(40, 90)">
+    <rect width="250" height="295" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="4 3" stroke-width="1.5" filter="url(#dts-geo-shadow)"/>
+    <text x="125" y="22" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="800" fill="#0284c7">Region B</text>
+
+    <!-- User Node (Aligned horizontally with Application A!) -->
+    <g transform="translate(100, 32)">
+      <rect width="50" height="34" rx="5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+      <circle cx="25" cy="12" r="5" fill="#475569"/>
+      <path d="M 15 26 C 15 20, 35 20, 35 26 Z" fill="#475569"/>
+    </g>
+
+    <!-- Arrow User -> App (Local Read) -->
+    <path d="M 125 66 L 125 150" stroke="#0284c7" stroke-width="1.8" marker-end="url(#geo-arr-blue)"/>
+    <rect x="65" y="98" width="120" height="22" rx="4" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1"/>
+    <text x="125" y="113" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#0284c7">Local Region Read</text>
+
+    <!-- App Node -->
+    <g transform="translate(50, 155)">
+      <rect width="150" height="42" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+      <g transform="translate(15, 11)">
+        <rect x="0" y="0" width="22" height="5" rx="1.5" fill="#ff6a00"/>
+        <circle cx="17.5" cy="2.5" r="1" fill="#ffffff"/>
+        <rect x="0" y="7" width="22" height="5" rx="1.5" fill="#ff6a00"/>
+        <circle cx="17.5" cy="9.5" r="1" fill="#ffffff"/>
+        <rect x="0" y="14" width="22" height="5" rx="1.5" fill="#ff6a00"/>
+        <circle cx="17.5" cy="16.5" r="1" fill="#ffffff"/>
+      </g>
+      <text x="85" y="26" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Application</text>
+    </g>
+
+    <!-- Arrow App -> DB -->
+    <path d="M 125 197 L 125 225" stroke="#64748b" stroke-width="1.5" marker-end="url(#geo-arr-blue)"/>
+
+    <!-- DB Node -->
+    <g transform="translate(50, 230)">
+      <rect width="150" height="46" rx="6" fill="#f0f9ff" stroke="#38bdf8" stroke-width="1.5"/>
+      <g transform="translate(15, 13)">
+        <polygon points="8,0 13,3 13,8 8,11 3,8 3,3" fill="#ff6a00"/>
+        <polygon points="3,8 8,11 8,16 3,19 -2,16 -2,11" fill="#ff6a00"/>
+        <polygon points="13,8 18,11 18,16 13,19 8,16 8,11" fill="#ff6a00"/>
+      </g>
+      <text x="85" y="24" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#0284c7">DataBase</text>
+      <text x="85" y="38" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="600" fill="#64748b">Local Read-Only</text>
+    </g>
+  </g>
+
+  <!-- Cross-Region Write Arrow from Region B User directly to Application A -->
+  <path d="M 190 139 L 410 139" fill="none" stroke="#ea580c" stroke-width="1.8" marker-end="url(#geo-arr-orange)"/>
+  <rect x="235" y="127" width="90" height="24" rx="4" fill="#fff7ed" stroke="#fdba74" stroke-width="1" filter="url(#dts-geo-shadow)"/>
+  <text x="280" y="143" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="800" fill="#c2410c">Write Request</text>
+
+  <!-- ==================== REGION C (Right Lower) ==================== -->
+  <g transform="translate(670, 90)">
+    <rect width="250" height="295" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="4 3" stroke-width="1.5" filter="url(#dts-geo-shadow)"/>
+    <text x="125" y="22" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="800" fill="#0284c7">Region C</text>
+
+    <!-- User Node (Aligned horizontally with Application A!) -->
+    <g transform="translate(100, 32)">
+      <rect width="50" height="34" rx="5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+      <circle cx="25" cy="12" r="5" fill="#475569"/>
+      <path d="M 15 26 C 15 20, 35 20, 35 26 Z" fill="#475569"/>
+    </g>
+
+    <!-- Arrow User -> App (Local Read) -->
+    <path d="M 125 66 L 125 150" stroke="#0284c7" stroke-width="1.8" marker-end="url(#geo-arr-blue)"/>
+    <rect x="65" y="98" width="120" height="22" rx="4" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1"/>
+    <text x="125" y="113" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#0284c7">Local Region Read</text>
+
+    <!-- App Node -->
+    <g transform="translate(50, 155)">
+      <rect width="150" height="42" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+      <g transform="translate(15, 11)">
+        <rect x="0" y="0" width="22" height="5" rx="1.5" fill="#ff6a00"/>
+        <circle cx="17.5" cy="2.5" r="1" fill="#ffffff"/>
+        <rect x="0" y="7" width="22" height="5" rx="1.5" fill="#ff6a00"/>
+        <circle cx="17.5" cy="9.5" r="1" fill="#ffffff"/>
+        <rect x="0" y="14" width="22" height="5" rx="1.5" fill="#ff6a00"/>
+        <circle cx="17.5" cy="16.5" r="1" fill="#ffffff"/>
+      </g>
+      <text x="85" y="26" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Application</text>
+    </g>
+
+    <!-- Arrow App -> DB -->
+    <path d="M 125 197 L 125 225" stroke="#64748b" stroke-width="1.5" marker-end="url(#geo-arr-blue)"/>
+
+    <!-- DB Node -->
+    <g transform="translate(50, 230)">
+      <rect width="150" height="46" rx="6" fill="#f0f9ff" stroke="#38bdf8" stroke-width="1.5"/>
+      <g transform="translate(15, 13)">
+        <polygon points="8,0 13,3 13,8 8,11 3,8 3,3" fill="#ff6a00"/>
+        <polygon points="3,8 8,11 8,16 3,19 -2,16 -2,11" fill="#ff6a00"/>
+        <polygon points="13,8 18,11 18,16 13,19 8,16 8,11" fill="#ff6a00"/>
+      </g>
+      <text x="85" y="24" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#0284c7">DataBase</text>
+      <text x="85" y="38" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="600" fill="#64748b">Local Read-Only</text>
+    </g>
+  </g>
+
+  <!-- Cross-Region Write Arrow from Region C User directly to Application A -->
+  <path d="M 770 139 L 550 139" fill="none" stroke="#ea580c" stroke-width="1.8" marker-end="url(#geo-arr-orange)"/>
+  <rect x="635" y="127" width="90" height="24" rx="4" fill="#fff7ed" stroke="#fdba74" stroke-width="1" filter="url(#dts-geo-shadow)"/>
+  <text x="680" y="143" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="800" fill="#c2410c">Write Request</text>
+
+  <!-- ==================== DTS CENTRAL SYNCHRONIZATION ==================== -->
+  <!-- Line DB A -> DTS -->
+  <path d="M 480 207 L 480 240" stroke="#10b981" stroke-width="2.2" marker-end="url(#geo-arr-green)"/>
+
+  <!-- DTS Node -->
+  <g transform="translate(425, 240)">
+    <rect width="110" height="44" rx="8" fill="#ffffff" stroke="#10b981" stroke-width="1.8" filter="url(#dts-geo-shadow)"/>
+    <g transform="translate(12, 10)">
+      <rect x="0" y="0" width="24" height="24" rx="5" fill="#ff6a00"/>
+      <path d="M 6 12 L 12 6 L 12 10 L 18 10 L 18 14 L 12 14 L 12 18 Z" fill="#ffffff"/>
+    </g>
+    <text x="68" y="22" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="800" fill="#047857">DTS Service</text>
+    <text x="68" y="34" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" font-weight="600" fill="#64748b">Continuous Sync</text>
+  </g>
+
+  <!-- DTS -> DataBase B and DataBase C Branches -->
+  <path d="M 425 262 L 350 262 L 350 343 L 245 343" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#geo-arr-green)"/>
+  <path d="M 535 262 L 610 262 L 610 343 L 715 343" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#geo-arr-green)"/>
+</svg>

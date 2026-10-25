@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" width="100%" height="100%">
+  <defs>
+    <filter id="ram-shadow" x="-5%" y="-4%" width="110%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <marker id="ram-arr-blue" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <polygon points="0 1, 7 3.5, 0 6" fill="#0284c7"/>
+    </marker>
+    <marker id="ram-arr-orange" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <polygon points="0 1, 7 3.5, 0 6" fill="#ea580c"/>
+    </marker>
+    <linearGradient id="db-cyl-blue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="35%" stop-color="#38bdf8"/>
+      <stop offset="70%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Top Note Callout: DMS Management -->
+  <g transform="translate(140, 10)">
+    <path d="M 0 25 C 0 8, 20 8, 30 8 L 270 8 C 280 8, 300 8, 300 25" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <rect x="35" y="0" width="230" height="22" rx="11" fill="#ffffff" stroke="#fed7aa" stroke-width="1.2" filter="url(#ram-shadow)"/>
+    <text x="150" y="15" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#c2410c">You can now manage some of this with DMS</text>
+  </g>
+
+  <!-- LEFT ZONE: In-Database SQL Access (Data Plane) -->
+  <g transform="translate(40, 42)">
+    <rect width="380" height="280" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#ram-shadow)"/>
+    
+    <!-- Zone Header -->
+    <rect x="20" y="16" width="210" height="24" rx="6" fill="#f0f9ff"/>
+    <text x="125" y="32" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#0369a1">IN-DATABASE ACCESS (DATA PLANE)</text>
+
+    <!-- Source Personas -->
+    <!-- Persona 1: Applications -->
+    <g transform="translate(35, 56)">
+      <rect width="140" height="64" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+      <!-- App / Server Icon -->
+      <g transform="translate(70, 20)">
+        <rect x="-16" y="-8" width="32" height="18" rx="3" fill="#0284c7"/>
+        <line x1="-12" y1="-2" x2="12" y2="-2" stroke="#ffffff" stroke-width="1.5"/>
+        <line x1="-12" y1="4" x2="12" y2="4" stroke="#ffffff" stroke-width="1.5"/>
+        <circle cx="8" cy="-2" r="1" fill="#ffffff"/>
+      </g>
+      <text x="70" y="48" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#0f172a">Applications</text>
+    </g>
+
+    <!-- Persona 2: Users & DBA -->
+    <g transform="translate(205, 56)">
+      <rect width="140" height="64" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+      <!-- Users Icon -->
+      <g transform="translate(70, 20)">
+        <circle cx="0" cy="-4" r="7" fill="#0284c7"/>
+        <path d="M -12 12 C -12 4, 12 4, 12 12 Z" fill="#0284c7"/>
+      </g>
+      <text x="70" y="48" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#0f172a">Users &amp; DBA</text>
+    </g>
+
+    <!-- Downward Arrows into Database -->
+    <path d="M 105 120 L 105 168 L 150 168 L 150 190" stroke="#0284c7" stroke-width="2" fill="none" marker-end="url(#ram-arr-blue)"/>
+    <path d="M 275 120 L 275 168 L 230 168 L 230 190" stroke="#0284c7" stroke-width="2" fill="none" marker-end="url(#ram-arr-blue)"/>
+
+    <!-- Database Cylinder Node -->
+    <g transform="translate(100, 195)">
+      <path d="M 0 20 A 90 14 0 0 0 180 20 L 180 52 A 90 14 0 0 1 0 52 Z" fill="url(#db-cyl-blue)" stroke="#0369a1" stroke-width="1.2"/>
+      <ellipse cx="90" cy="20" rx="90" ry="14" fill="#38bdf8" stroke="#0369a1" stroke-width="1.2"/>
+      <text x="90" y="24" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="800" fill="#ffffff">Database</text>
+      <text x="90" y="44" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#ffffff">SQL Grants &amp; User Accounts</text>
+    </g>
+
+    <text x="190" y="270" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="600" fill="#64748b">Direct SELECT, INSERT, UPDATE, DDL on port 3306</text>
+  </g>
+
+  <!-- RIGHT ZONE: Cloud Infrastructure Governance (Control Plane / RAM) -->
+  <g transform="translate(460, 42)">
+    <rect width="380" height="280" rx="12" fill="#ffffff" stroke="#fed7aa" stroke-width="1.8" filter="url(#ram-shadow)"/>
+    
+    <!-- Zone Header -->
+    <rect x="20" y="16" width="230" height="24" rx="6" fill="#fff7ed"/>
+    <text x="135" y="32" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#c2410c">CLOUD INFRASTRUCTURE (CONTROL PLANE)</text>
+
+    <!-- Source Persona: DBA & Ops -->
+    <g transform="translate(110, 56)">
+      <rect width="160" height="64" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.2"/>
+      <!-- Admin Users Icon (Orange) -->
+      <g transform="translate(80, 20)">
+        <circle cx="0" cy="-4" r="7" fill="#ff6a00"/>
+        <path d="M -12 12 C -12 4, 12 4, 12 12 Z" fill="#ff6a00"/>
+      </g>
+      <text x="80" y="48" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#c2410c">DBA &amp; Ops</text>
+    </g>
+
+    <!-- Downward Arrow with RAM governance -->
+    <path d="M 190 120 L 190 185" stroke="#ea580c" stroke-width="2.2" fill="none" marker-end="url(#ram-arr-orange)"/>
+    <rect x="135" y="140" width="110" height="22" rx="4" fill="#ffffff" stroke="#fdba74" stroke-width="1"/>
+    <text x="190" y="155" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="800" fill="#ea580c">RAM Role / Policies</text>
+
+    <!-- RDS Instance Node -->
+    <g transform="translate(85, 195)">
+      <rect width="210" height="54" rx="8" fill="#ffffff" stroke="#ff6a00" stroke-width="2" filter="url(#ram-shadow)"/>
+      <!-- RDS Icon -->
+      <g transform="translate(24, 16)">
+        <polygon points="7,0 12,2.5 12,7.5 7,10 2,7.5 2,2.5" fill="#ff6a00"/>
+        <polygon points="2,7.5 7,10 7,15 2,17.5 -3,15 -3,10" fill="#ff6a00"/>
+        <polygon points="12,7.5 17,10 17,15 12,17.5 7,15 7,10" fill="#ff6a00"/>
+      </g>
+      <text x="120" y="26" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="800" fill="#0f172a">ApsaraDB for RDS</text>
+      <text x="120" y="42" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#ea580c">Create, Reboot, Backup, Scale</text>
+    </g>
+
+    <text x="190" y="270" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="600" fill="#64748b">Cloud API / Console Management (Control Plane)</text>
+  </g>
+</svg>

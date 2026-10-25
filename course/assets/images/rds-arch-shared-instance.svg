@@ -1,51 +1,63 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 650 210" width="650" height="210">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 210" width="100%" height="100%">
   <defs>
+    <filter id="inst-shadow" x="-4%" y="-4%" width="108%" height="108%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
     <style>
-      .text-title { font-family: PingFangSC-Regular, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #252525; }
-      .text-category { font-family: PingFangSC-Regular, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 13px; font-weight: bold; fill: #1366ec; text-anchor: middle; }
-      .text-inst { font-family: PingFangSC-Regular, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #252525; text-anchor: middle; }
-      .text-sub { font-family: PingFangSC-Regular, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 10.5px; fill: #252525; text-anchor: middle; }
-      .text-bar { font-family: PingFangSC-Regular, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: bold; fill: #252525; text-anchor: middle; }
+      .text-title { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #0f172a; }
+      .text-category { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 13px; font-weight: bold; fill: #ea580c; text-anchor: middle; }
+      .text-inst { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 12.5px; font-weight: 700; fill: #0f172a; text-anchor: middle; }
+      .text-sub { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 11px; fill: #475569; text-anchor: middle; font-weight: 500; }
+      .text-bar { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 700; fill: #0f172a; text-anchor: middle; }
     </style>
   </defs>
-  <g transform="translate(0.5,0.5)">
-    <!-- Clean Outer Boundary Box -->
-    <rect x="1" y="1" width="648" height="208" rx="8" ry="8" fill="#ffffff" stroke="#d9d9d9" pointer-events="none" />
-    <!-- Instance 1 Card -->
-    <rect x="90" y="20" width="230" height="118" rx="6" ry="6" fill="#fcfcfd" stroke="#d9d9d9" />
-    <path d="M 200.66 54.63 L 196.28 47.51 L 198.66 43.63 L 194.80 43.63 L 190.42 36.50 L 194.80 29.37 L 203.47 29.37 L 205.00 31.85 L 206.52 29.37 L 215.19 29.37 L 219.57 36.50 L 215.19 43.63 L 211.33 43.63 L 213.71 47.51 L 209.33 54.63 L 200.66 54.63 Z M 207.57 40.84 L 205.00 36.64 L 202.42 40.84 L 207.57 40.84 Z" fill="#1366ec" stroke="none" />
-    <text x="205" y="66" class="text-inst">RDS Instance 1</text>
-        <g>
-      <rect x="152.0" y="84.0" width="26" height="24" rx="2" ry="2" fill="#ffffff" stroke="#252525" stroke-width="1.2" />
-      <path d="M 152.0 89.0 L 178.0 89.0 M 158.0 84.0 L 158.0 108.0 M 165.0 84.0 L 165.0 108.0 M 172.0 84.0 L 172.0 108.0" fill="none" stroke="#252525" stroke-width="1" />
-      <text x="165.0" y="122.0" class="text-sub">Memory</text>
-    </g>
-        <g>
-      <path d="M 233.0 88.5 C 233.0 84.5 257.0 84.5 257.0 88.5 L 257.0 103.5 C 257.0 107.5 233.0 107.5 233.0 103.5 Z" fill="#ffffff" stroke="#252525" stroke-width="1.2" />
-      <path d="M 233.0 88.5 C 233.0 92.5 257.0 92.5 257.0 88.5 M 233.0 93.5 C 233.0 97.5 257.0 97.5 257.0 93.5 M 233.0 98.5 C 233.0 102.5 257.0 102.5 257.0 98.5" fill="none" stroke="#252525" stroke-width="1" />
-      <text x="245.0" y="122.0" class="text-sub">Storage</text>
-    </g>
 
-    <!-- Instance 2 Card -->
-    <rect x="330" y="20" width="230" height="118" rx="6" ry="6" fill="#fcfcfd" stroke="#d9d9d9" />
-    <path d="M 440.66 54.63 L 436.28 47.51 L 438.66 43.63 L 434.80 43.63 L 430.42 36.50 L 434.80 29.37 L 443.47 29.37 L 445.00 31.85 L 446.52 29.37 L 455.19 29.37 L 459.57 36.50 L 455.19 43.63 L 451.33 43.63 L 453.71 47.51 L 449.33 54.63 L 440.66 54.63 Z M 447.57 40.84 L 445.00 36.64 L 442.42 40.84 L 447.57 40.84 Z" fill="#1366ec" stroke="none" />
-    <text x="445" y="66" class="text-inst">RDS Instance 2</text>
-        <g>
-      <rect x="392.0" y="84.0" width="26" height="24" rx="2" ry="2" fill="#ffffff" stroke="#252525" stroke-width="1.2" />
-      <path d="M 392.0 89.0 L 418.0 89.0 M 398.0 84.0 L 398.0 108.0 M 405.0 84.0 L 405.0 108.0 M 412.0 84.0 L 412.0 108.0" fill="none" stroke="#252525" stroke-width="1" />
-      <text x="405.0" y="122.0" class="text-sub">Memory</text>
+  <!-- Instance 1 Card -->
+  <g transform="translate(90, 20)">
+    <rect width="230" height="118" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#inst-shadow)" />
+    <g>
+      <polygon points="120.9,26.3 115.0,29.7 109.1,26.3 109.1,19.4 115.0,16.0 120.9,19.4" fill="#ff6a00"/>
+      <polygon points="114.1,38.0 108.2,41.4 102.3,38.0 102.3,31.2 108.2,27.8 114.1,31.2" fill="#ff6a00"/>
+      <polygon points="127.7,38.0 121.8,41.4 115.9,38.0 115.9,31.2 121.8,27.8 127.7,31.2" fill="#ff6a00"/>
     </g>
-        <g>
-      <path d="M 473.0 88.5 C 473.0 84.5 497.0 84.5 497.0 88.5 L 497.0 103.5 C 497.0 107.5 473.0 107.5 473.0 103.5 Z" fill="#ffffff" stroke="#252525" stroke-width="1.2" />
-      <path d="M 473.0 88.5 C 473.0 92.5 497.0 92.5 497.0 88.5 M 473.0 93.5 C 473.0 97.5 497.0 97.5 497.0 93.5 M 473.0 98.5 C 473.0 102.5 497.0 102.5 497.0 98.5" fill="none" stroke="#252525" stroke-width="1" />
-      <text x="485.0" y="122.0" class="text-sub">Storage</text>
+    <text x="115" y="58" class="text-inst">RDS Instance 1</text>
+    <g transform="translate(0, 0)">
+      <rect x="62.0" y="74.0" width="26" height="24" rx="3" fill="#ffffff" stroke="#475569" stroke-width="1.2" />
+      <path d="M 62.0 79.0 L 88.0 79.0 M 68.0 74.0 L 68.0 98.0 M 75.0 74.0 L 75.0 98.0 M 82.0 74.0 L 82.0 98.0" fill="none" stroke="#475569" stroke-width="1" />
+      <text x="75.0" y="112.0" class="text-sub">Memory</text>
     </g>
-
-    <!-- Connecting Link Bars to Shared Resource Pool -->
-    <path d="M 205 138 L 205 155 M 445 138 L 445 155" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3" />
-
-    <!-- Shared Resource Pool Bar -->
-    <rect x="90" y="155" width="470" height="38" rx="5" ry="5" fill="#f0f2f5" stroke="#cbd5e1" stroke-width="1.2" />
-    <text x="325" y="179" class="text-bar">Highly Reused CPUs</text>
+    <g transform="translate(0, 0)">
+      <path d="M 143.0 78.5 C 143.0 74.5 167.0 74.5 167.0 78.5 L 167.0 93.5 C 167.0 97.5 143.0 97.5 143.0 93.5 Z" fill="#ffffff" stroke="#475569" stroke-width="1.2" />
+      <path d="M 143.0 78.5 C 143.0 82.5 167.0 82.5 167.0 78.5 M 143.0 83.5 C 143.0 87.5 167.0 87.5 167.0 83.5 M 143.0 88.5 C 143.0 92.5 167.0 92.5 167.0 88.5" fill="none" stroke="#475569" stroke-width="1" />
+      <text x="155.0" y="112.0" class="text-sub">Storage</text>
+    </g>
   </g>
+
+  <!-- Instance 2 Card -->
+  <g transform="translate(330, 20)">
+    <rect width="230" height="118" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#inst-shadow)" />
+    <g>
+      <polygon points="120.9,26.3 115.0,29.7 109.1,26.3 109.1,19.4 115.0,16.0 120.9,19.4" fill="#ff6a00"/>
+      <polygon points="114.1,38.0 108.2,41.4 102.3,38.0 102.3,31.2 108.2,27.8 114.1,31.2" fill="#ff6a00"/>
+      <polygon points="127.7,38.0 121.8,41.4 115.9,38.0 115.9,31.2 121.8,27.8 127.7,31.2" fill="#ff6a00"/>
+    </g>
+    <text x="115" y="58" class="text-inst">RDS Instance 2</text>
+    <g transform="translate(0, 0)">
+      <rect x="62.0" y="74.0" width="26" height="24" rx="3" fill="#ffffff" stroke="#475569" stroke-width="1.2" />
+      <path d="M 62.0 79.0 L 88.0 79.0 M 68.0 74.0 L 68.0 98.0 M 75.0 74.0 L 75.0 98.0 M 82.0 74.0 L 82.0 98.0" fill="none" stroke="#475569" stroke-width="1" />
+      <text x="75.0" y="112.0" class="text-sub">Memory</text>
+    </g>
+    <g transform="translate(0, 0)">
+      <path d="M 143.0 78.5 C 143.0 74.5 167.0 74.5 167.0 78.5 L 167.0 93.5 C 167.0 97.5 143.0 97.5 143.0 93.5 Z" fill="#ffffff" stroke="#475569" stroke-width="1.2" />
+      <path d="M 143.0 78.5 C 143.0 82.5 167.0 82.5 167.0 78.5 M 143.0 83.5 C 143.0 87.5 167.0 87.5 167.0 83.5 M 143.0 88.5 C 143.0 92.5 167.0 92.5 167.0 88.5" fill="none" stroke="#475569" stroke-width="1" />
+      <text x="155.0" y="112.0" class="text-sub">Storage</text>
+    </g>
+  </g>
+
+  <!-- Connecting Link Bars to Shared Resource Pool -->
+  <path d="M 205 138 L 205 155 M 445 138 L 445 155" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3" />
+
+  <!-- Shared Resource Pool Bar -->
+  <rect x="90" y="155" width="470" height="38" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" filter="url(#inst-shadow)" />
+  <text x="325" y="179" class="text-bar">Highly Reused CPUs</text>
 </svg>

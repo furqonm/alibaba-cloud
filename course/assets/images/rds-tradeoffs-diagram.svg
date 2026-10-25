@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 410" width="100%" height="100%">
+  <defs>
+    <filter id="card-shadow" x="-4%" y="-3%" width="108%" height="108%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <linearGradient id="grad-trad-cyl" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="35%" stop-color="#94a3b8"/>
+      <stop offset="70%" stop-color="#64748b"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+    <linearGradient id="grad-rds-cyl" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ea580c"/>
+      <stop offset="30%" stop-color="#fb923c"/>
+      <stop offset="70%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#c2410c"/>
+    </linearGradient>
+    <linearGradient id="server-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="50%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- LEFT CARD: Traditional Way -->
+  <g transform="translate(45, 15)">
+    <rect width="410" height="380" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#card-shadow)"/>
+    
+    <!-- Top Category Tag -->
+    <rect x="24" y="22" width="180" height="26" rx="6" fill="#f1f5f9"/>
+    <text x="114" y="39" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#475569">TRADITIONAL ON-PREM</text>
+
+    <!-- Header Title -->
+    <text x="24" y="76" font-family="system-ui, -apple-system, sans-serif" font-size="16.5" font-weight="800" fill="#0f172a">Building a database (the traditional way)</text>
+    
+    <!-- Step list with numbered badges -->
+    <g transform="translate(24, 98)">
+      <!-- Step 1 -->
+      <circle cx="12" cy="14" r="11" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+      <text x="12" y="18" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#334155">1</text>
+      <text x="34" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="600" fill="#1e293b">Prepare hardware</text>
+      
+      <!-- Step 2 -->
+      <circle cx="12" cy="42" r="11" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+      <text x="12" y="46" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#334155">2</text>
+      <text x="34" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="600" fill="#1e293b">Install OS</text>
+
+      <!-- Step 3 -->
+      <circle cx="12" cy="70" r="11" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+      <text x="12" y="74" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#334155">3</text>
+      <text x="34" y="74" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="600" fill="#1e293b">Install database software</text>
+
+      <!-- Step 4 -->
+      <circle cx="12" cy="98" r="11" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+      <text x="12" y="102" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#334155">4</text>
+      <text x="34" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="600" fill="#1e293b">Configuration</text>
+
+      <!-- Step 5 -->
+      <circle cx="12" cy="126" r="11" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+      <text x="12" y="130" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#334155">5</text>
+      <text x="34" y="130" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="600" fill="#1e293b">Tweaking</text>
+    </g>
+
+    <!-- Time Badge Callout -->
+    <g transform="translate(255, 130)">
+      <rect width="130" height="60" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.2"/>
+      <text x="65" y="24" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#92400e">TYPICAL TIME</text>
+      <text x="65" y="48" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="900" fill="#b45309">3 ~ 5 hours</text>
+    </g>
+
+    <!-- Bottom Illustration: Traditional Physical Server + Database -->
+    <g transform="translate(100, 260)">
+      <!-- Server Rack Tower -->
+      <rect x="0" y="0" width="68" height="92" rx="4" fill="url(#server-grad)" stroke="#64748b" stroke-width="1.5"/>
+      <!-- Server Slots -->
+      <rect x="8" y="10" width="52" height="12" rx="2" fill="#334155"/>
+      <circle cx="15" cy="16" r="2" fill="#22c55e"/>
+      <circle cx="22" cy="16" r="2" fill="#eab308"/>
+      <line x1="30" y1="16" x2="52" y2="16" stroke="#64748b" stroke-width="1.5"/>
+
+      <rect x="8" y="26" width="52" height="12" rx="2" fill="#334155"/>
+      <circle cx="15" cy="32" r="2" fill="#22c55e"/>
+      <circle cx="22" cy="32" r="2" fill="#38bdf8"/>
+      <line x1="30" y1="32" x2="52" y2="32" stroke="#64748b" stroke-width="1.5"/>
+
+      <rect x="8" y="42" width="52" height="12" rx="2" fill="#334155"/>
+      <circle cx="15" cy="48" r="2" fill="#22c55e"/>
+      <line x1="28" y1="48" x2="52" y2="48" stroke="#64748b" stroke-width="1.5"/>
+
+      <rect x="8" y="58" width="52" height="24" rx="2" fill="#475569"/>
+      <!-- Grill slits -->
+      <line x1="16" y1="65" x2="52" y2="65" stroke="#94a3b8" stroke-width="1.2"/>
+      <line x1="16" y1="70" x2="52" y2="70" stroke="#94a3b8" stroke-width="1.2"/>
+      <line x1="16" y1="75" x2="52" y2="75" stroke="#94a3b8" stroke-width="1.2"/>
+
+      <!-- Database Disks next to Server -->
+      <g transform="translate(86, 6)">
+        <!-- Cylinder 1 (Bottom) -->
+        <path d="M 0 54 A 36 12 0 0 0 72 54 L 72 70 A 36 12 0 0 1 0 70 Z" fill="url(#grad-trad-cyl)" stroke="#334155" stroke-width="1.2"/>
+        <ellipse cx="36" cy="54" rx="36" ry="12" fill="#64748b" stroke="#334155" stroke-width="1.2"/>
+        <!-- Cylinder 2 (Middle) -->
+        <path d="M 0 32 A 36 12 0 0 0 72 32 L 72 48 A 36 12 0 0 1 0 48 Z" fill="url(#grad-trad-cyl)" stroke="#334155" stroke-width="1.2"/>
+        <ellipse cx="36" cy="32" rx="36" ry="12" fill="#64748b" stroke="#334155" stroke-width="1.2"/>
+        <!-- Cylinder 3 (Top) -->
+        <path d="M 0 10 A 36 12 0 0 0 72 10 L 72 26 A 36 12 0 0 1 0 26 Z" fill="url(#grad-trad-cyl)" stroke="#334155" stroke-width="1.2"/>
+        <ellipse cx="36" cy="10" rx="36" ry="12" fill="#94a3b8" stroke="#334155" stroke-width="1.2"/>
+      </g>
+      
+      <text x="122" y="104" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#64748b">Self-Managed DB</text>
+    </g>
+  </g>
+
+  <!-- VS BADGE -->
+  <g transform="translate(480, 205)">
+    <circle cx="0" cy="0" r="20" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" filter="url(#card-shadow)"/>
+    <text x="0" y="5" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="900" fill="#ea580c">VS</text>
+  </g>
+
+  <!-- RIGHT CARD: Alibaba Cloud RDS -->
+  <g transform="translate(505, 15)">
+    <rect width="410" height="380" rx="14" fill="#ffffff" stroke="#fed7aa" stroke-width="2" filter="url(#card-shadow)"/>
+    
+    <!-- Top Category Tag -->
+    <rect x="24" y="22" width="200" height="26" rx="6" fill="#fff7ed" stroke="#ffedd5" stroke-width="1"/>
+    <text x="124" y="39" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#c2410c">ALIBABA CLOUD RDS</text>
+
+    <!-- Header Title -->
+    <text x="24" y="76" font-family="system-ui, -apple-system, sans-serif" font-size="16.5" font-weight="800" fill="#0f172a">Building a database with cloud (RDS)</text>
+    
+    <!-- Step list with numbered badges -->
+    <g transform="translate(24, 105)">
+      <!-- Step 1 -->
+      <circle cx="12" cy="18" r="12" fill="#ff6a00"/>
+      <text x="12" y="23" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#ffffff">1</text>
+      <text x="36" y="23" font-family="system-ui, -apple-system, sans-serif" font-size="14.5" font-weight="700" fill="#1e293b">Choose and pay</text>
+      
+      <!-- Step 2 -->
+      <g transform="translate(0, 48)">
+        <circle cx="12" cy="18" r="12" fill="#ff6a00"/>
+        <text x="12" y="23" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#ffffff">2</text>
+        <text x="36" y="23" font-family="system-ui, -apple-system, sans-serif" font-size="14.5" font-weight="700" fill="#1e293b">That's it!</text>
+      </g>
+    </g>
+
+    <!-- Time Badge Callout -->
+    <g transform="translate(255, 115)">
+      <rect width="130" height="60" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="1.2"/>
+      <text x="65" y="24" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#047857">TYPICAL TIME</text>
+      <text x="65" y="48" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="19" font-weight="900" fill="#059669">&lt; 10 min</text>
+    </g>
+
+    <!-- Bottom Illustration: Official RDS Service Icon & Cloud DB -->
+    <g transform="translate(100, 260)">
+      <!-- RDS 3-Hexagon Logo Cluster -->
+      <g transform="translate(12, 10)">
+        <!-- Top Hexagon -->
+        <polygon points="26,0 42,9 42,27 26,36 10,27 10,9" fill="#ff6a00"/>
+        <!-- Bottom Left Hexagon -->
+        <polygon points="10,28 26,37 26,55 10,64 -6,55 -6,37" fill="#ff6a00"/>
+        <!-- Bottom Right Hexagon -->
+        <polygon points="42,28 58,37 58,55 42,64 26,55 26,37" fill="#ff6a00"/>
+      </g>
+
+      <!-- Cloud RDS Database Disks -->
+      <g transform="translate(98, 6)">
+        <!-- Cylinder 1 (Bottom) -->
+        <path d="M 0 54 A 36 12 0 0 0 72 54 L 72 70 A 36 12 0 0 1 0 70 Z" fill="url(#grad-rds-cyl)" stroke="#c2410c" stroke-width="1.2"/>
+        <ellipse cx="36" cy="54" rx="36" ry="12" fill="#ea580c" stroke="#c2410c" stroke-width="1.2"/>
+        <!-- Cylinder 2 (Middle) -->
+        <path d="M 0 32 A 36 12 0 0 0 72 32 L 72 48 A 36 12 0 0 1 0 48 Z" fill="url(#grad-rds-cyl)" stroke="#c2410c" stroke-width="1.2"/>
+        <ellipse cx="36" cy="32" rx="36" ry="12" fill="#ea580c" stroke="#c2410c" stroke-width="1.2"/>
+        <!-- Cylinder 3 (Top) -->
+        <path d="M 0 10 A 36 12 0 0 0 72 10 L 72 26 A 36 12 0 0 1 0 26 Z" fill="url(#grad-rds-cyl)" stroke="#c2410c" stroke-width="1.2"/>
+        <ellipse cx="36" cy="10" rx="36" ry="12" fill="#fb923c" stroke="#c2410c" stroke-width="1.2"/>
+      </g>
+
+      <text x="134" y="104" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#ea580c">ApsaraDB for RDS</text>
+    </g>
+  </g>
+</svg>

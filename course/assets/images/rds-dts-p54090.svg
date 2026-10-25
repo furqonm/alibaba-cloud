@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 380" width="100%" height="100%">
+  <defs>
+    <filter id="dts-shadow" x="-5%" y="-4%" width="110%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <marker id="dts-arr" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <polygon points="0 1, 7 3.5, 0 6" fill="#ea580c"/>
+    </marker>
+    <marker id="dts-arr-blue" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <polygon points="0 1, 7 3.5, 0 6" fill="#0284c7"/>
+    </marker>
+    <marker id="dts-arr-sync" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <polygon points="0 1, 7 3.5, 0 6" fill="#10b981"/>
+    </marker>
+  </defs>
+
+  <!-- TOP USER / CLIENT NODE -->
+  <g transform="translate(390, 15)">
+    <rect width="80" height="42" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" filter="url(#dts-shadow)"/>
+    <circle cx="40" cy="16" r="6" fill="#475569"/>
+    <path d="M 28 32 C 28 25, 52 25, 52 32 Z" fill="#475569"/>
+  </g>
+
+  <!-- Connector User -> Region A SLB (Writes & Portion of Reads) -->
+  <path d="M 410 57 L 410 80 L 230 80 L 230 115" fill="none" stroke="#ea580c" stroke-width="2" marker-end="url(#dts-arr)"/>
+  <!-- Badge -->
+  <rect x="150" y="70" width="160" height="22" rx="4" fill="#fff7ed" stroke="#fdba74" stroke-width="1" filter="url(#dts-shadow)"/>
+  <text x="230" y="85" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="800" fill="#c2410c">100% Writes • N% Reads</text>
+
+  <!-- Connector User -> Region B SLB (Remaining Reads) -->
+  <path d="M 450 57 L 450 80 L 630 80 L 630 115" fill="none" stroke="#0284c7" stroke-width="2" marker-end="url(#dts-arr-blue)"/>
+  <!-- Badge -->
+  <rect x="560" y="70" width="140" height="22" rx="4" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1" filter="url(#dts-shadow)"/>
+  <text x="630" y="85" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="800" fill="#0284c7">(100 - N)% Reads</text>
+
+  <!-- REGION A CONTAINER -->
+  <g transform="translate(60, 115)">
+    <rect width="340" height="245" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="4 3" stroke-width="1.5" filter="url(#dts-shadow)"/>
+    <rect x="20" y="12" width="120" height="22" rx="4" fill="#fff7ed"/>
+    <text x="80" y="27" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#c2410c">REGION A (Primary)</text>
+
+    <!-- SLB Node (Widened to 160px with Server Load Balancer) -->
+    <g transform="translate(90, 42)">
+      <rect width="160" height="42" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+      <g transform="translate(10, 9)">
+        <circle cx="12" cy="12" r="12" fill="#ff6a00"/>
+        <circle cx="12" cy="7" r="2.5" fill="#ffffff"/>
+        <circle cx="7" cy="15" r="2.5" fill="#ffffff"/>
+        <circle cx="17" cy="15" r="2.5" fill="#ffffff"/>
+        <path d="M 12 7 L 7 15 M 12 7 L 17 15" stroke="#ffffff" stroke-width="1.2"/>
+      </g>
+      <text x="92" y="26" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#0f172a">Server Load Balancer</text>
+    </g>
+
+    <!-- Arrow SLB to ECS Fleet -->
+    <path d="M 170 84 L 170 102" stroke="#64748b" stroke-width="1.5"/>
+
+    <!-- ECS Fleet Container -->
+    <g transform="translate(40, 102)">
+      <rect width="260" height="50" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+      <!-- ECS 1 -->
+      <g transform="translate(30, 8)">
+        <rect x="0" y="0" width="22" height="5" rx="1.5" fill="#ff6a00"/>
+        <circle cx="17.5" cy="2.5" r="1" fill="#ffffff"/>
+        <rect x="0" y="7" width="22" height="5" rx="1.5" fill="#ff6a00"/>
+        <circle cx="17.5" cy="9.5" r="1" fill="#ffffff"/>
+        <rect x="0" y="14" width="22" height="5" rx="1.5" fill="#ff6a00"/>
+        <circle cx="17.5" cy="16.5" r="1" fill="#ffffff"/>
+        <text x="11" y="32" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#334155">ECS-1</text>
+      </g>
+      <!-- ECS 2 -->
+      <g transform="translate(170, 8)">
+        <rect x="0" y="0" width="22" height="5" rx="1.5" fill="#ff6a00"/>
+        <circle cx="17.5" cy="2.5" r="1" fill="#ffffff"/>
+        <rect x="0" y="7" width="22" height="5" rx="1.5" fill="#ff6a00"/>
+        <circle cx="17.5" cy="9.5" r="1" fill="#ffffff"/>
+        <rect x="0" y="14" width="22" height="5" rx="1.5" fill="#ff6a00"/>
+        <circle cx="17.5" cy="16.5" r="1" fill="#ffffff"/>
+        <text x="11" y="32" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#334155">ECS-2</text>
+      </g>
+    </g>
+
+    <!-- Arrow ECS to DB -->
+    <path d="M 170 152 L 170 174" stroke="#64748b" stroke-width="1.5"/>
+
+    <!-- Database Node -->
+    <g transform="translate(70, 175)">
+      <rect width="200" height="50" rx="8" fill="#fff7ed" stroke="#ff6a00" stroke-width="1.8"/>
+      <g transform="translate(25, 15)">
+        <polygon points="8,0 13,3 13,8 8,11 3,8 3,3" fill="#ff6a00"/>
+        <polygon points="3,8 8,11 8,16 3,19 -2,16 -2,11" fill="#ff6a00"/>
+        <polygon points="13,8 18,11 18,16 13,19 8,16 8,11" fill="#ff6a00"/>
+      </g>
+      <text x="110" y="26" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#c2410c">ApsaraDB for RDS</text>
+      <text x="110" y="40" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="600" fill="#ea580c">Primary (Read/Write)</text>
+    </g>
+  </g>
+
+  <!-- DTS SYNCHRONIZATION BRIDGE (Center) -->
+  <g transform="translate(400, 265)">
+    <!-- Sync Arrow -->
+    <path d="M 0 25 L 60 25" stroke="#10b981" stroke-width="2.5" marker-end="url(#dts-arr-sync)"/>
+    <!-- DTS Node -->
+    <g transform="translate(10, -45)">
+      <rect width="40" height="40" rx="8" fill="#ffffff" stroke="#10b981" stroke-width="1.5" filter="url(#dts-shadow)"/>
+      <g transform="translate(6, 6)">
+        <rect x="0" y="0" width="28" height="28" rx="6" fill="#ff6a00"/>
+        <path d="M 8 14 L 14 8 L 14 12 L 20 12 L 20 16 L 14 16 L 14 20 Z" fill="#ffffff"/>
+      </g>
+      <text x="20" y="52" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="800" fill="#047857">DTS</text>
+      <text x="20" y="62" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="7.5" font-weight="600" fill="#64748b">Real-Time CDC</text>
+    </g>
+  </g>
+
+  <!-- REGION B CONTAINER -->
+  <g transform="translate(460, 115)">
+    <rect width="340" height="245" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="4 3" stroke-width="1.5" filter="url(#dts-shadow)"/>
+    <rect x="20" y="12" width="130" height="22" rx="4" fill="#f0f9ff"/>
+    <text x="85" y="27" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#0284c7">REGION B (Secondary)</text>
+
+    <!-- SLB Node (Widened to 160px with Server Load Balancer) -->
+    <g transform="translate(90, 42)">
+      <rect width="160" height="42" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+      <g transform="translate(10, 9)">
+        <circle cx="12" cy="12" r="12" fill="#ff6a00"/>
+        <circle cx="12" cy="7" r="2.5" fill="#ffffff"/>
+        <circle cx="7" cy="15" r="2.5" fill="#ffffff"/>
+        <circle cx="17" cy="15" r="2.5" fill="#ffffff"/>
+        <path d="M 12 7 L 7 15 M 12 7 L 17 15" stroke="#ffffff" stroke-width="1.2"/>
+      </g>
+      <text x="92" y="26" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#0f172a">Server Load Balancer</text>
+    </g>
+
+    <!-- Arrow SLB to ECS Fleet -->
+    <path d="M 170 84 L 170 102" stroke="#64748b" stroke-width="1.5"/>
+
+    <!-- ECS Fleet Container -->
+    <g transform="translate(40, 102)">
+      <rect width="260" height="50" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+      <!-- ECS 1 -->
+      <g transform="translate(30, 8)">
+        <rect x="0" y="0" width="22" height="5" rx="1.5" fill="#ff6a00"/>
+        <circle cx="17.5" cy="2.5" r="1" fill="#ffffff"/>
+        <rect x="0" y="7" width="22" height="5" rx="1.5" fill="#ff6a00"/>
+        <circle cx="17.5" cy="9.5" r="1" fill="#ffffff"/>
+        <rect x="0" y="14" width="22" height="5" rx="1.5" fill="#ff6a00"/>
+        <circle cx="17.5" cy="16.5" r="1" fill="#ffffff"/>
+        <text x="11" y="32" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#334155">ECS-1</text>
+      </g>
+      <!-- ECS 2 -->
+      <g transform="translate(170, 8)">
+        <rect x="0" y="0" width="22" height="5" rx="1.5" fill="#ff6a00"/>
+        <circle cx="17.5" cy="2.5" r="1" fill="#ffffff"/>
+        <rect x="0" y="7" width="22" height="5" rx="1.5" fill="#ff6a00"/>
+        <circle cx="17.5" cy="9.5" r="1" fill="#ffffff"/>
+        <rect x="0" y="14" width="22" height="5" rx="1.5" fill="#ff6a00"/>
+        <circle cx="17.5" cy="16.5" r="1" fill="#ffffff"/>
+        <text x="11" y="32" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#334155">ECS-2</text>
+      </g>
+    </g>
+
+    <!-- Arrow ECS to DB -->
+    <path d="M 170 152 L 170 174" stroke="#64748b" stroke-width="1.5"/>
+
+    <!-- Database Node -->
+    <g transform="translate(70, 175)">
+      <rect width="200" height="50" rx="8" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.8"/>
+      <g transform="translate(25, 15)">
+        <polygon points="8,0 13,3 13,8 8,11 3,8 3,3" fill="#ff6a00"/>
+        <polygon points="3,8 8,11 8,16 3,19 -2,16 -2,11" fill="#ff6a00"/>
+        <polygon points="13,8 18,11 18,16 13,19 8,16 8,11" fill="#ff6a00"/>
+      </g>
+      <text x="110" y="26" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#0369a1">ApsaraDB for RDS</text>
+      <text x="110" y="40" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="600" fill="#0284c7">Secondary (Read-Only)</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,202 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 450" width="100%" height="100%">
+  <defs>
+    <filter id="stack-shadow" x="-5%" y="-3%" width="110%" height="108%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- LEGEND (Top) -->
+  <g transform="translate(300, 15)">
+    <rect x="0" y="0" width="160" height="26" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+    <rect x="8" y="7" width="12" height="12" rx="3" fill="#ff6a00"/>
+    <text x="26" y="17" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#1e293b">Customer Managed</text>
+
+    <rect x="180" y="0" width="180" height="26" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+    <rect x="188" y="7" width="12" height="12" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1"/>
+    <text x="206" y="17" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#475569">Alibaba Cloud Managed</text>
+  </g>
+
+  <!-- COLUMN 1: O&M without cloud (On-Prem) -->
+  <g transform="translate(60, 55)">
+    <!-- Header Box -->
+    <rect width="250" height="52" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#stack-shadow)"/>
+    <!-- Server Rack Mini Icon -->
+    <g transform="translate(20, 13)">
+      <rect x="0" y="0" width="22" height="26" rx="2" fill="#475569"/>
+      <rect x="3" y="3" width="16" height="5" rx="1" fill="#64748b"/>
+      <rect x="3" y="11" width="16" height="5" rx="1" fill="#64748b"/>
+      <rect x="3" y="19" width="16" height="4" rx="1" fill="#94a3b8"/>
+    </g>
+    <text x="54" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="14.5" font-weight="800" fill="#0f172a">O&amp;M without cloud</text>
+
+    <!-- Layers: All 9 are Customer Managed (Orange) -->
+    <!-- Layer 1: Applications -->
+    <g transform="translate(0, 62)">
+      <rect width="250" height="30" rx="5" fill="#ff6a00" filter="url(#stack-shadow)"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#ffffff">Applications</text>
+    </g>
+    <!-- Layer 2: Data -->
+    <g transform="translate(0, 96)">
+      <rect width="250" height="30" rx="5" fill="#ff6a00" filter="url(#stack-shadow)"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#ffffff">Data</text>
+    </g>
+    <!-- Layer 3: Runtime -->
+    <g transform="translate(0, 130)">
+      <rect width="250" height="30" rx="5" fill="#ff6a00" filter="url(#stack-shadow)"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#ffffff">Runtime</text>
+    </g>
+    <!-- Layer 4: Middleware -->
+    <g transform="translate(0, 164)">
+      <rect width="250" height="30" rx="5" fill="#ff6a00" filter="url(#stack-shadow)"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#ffffff">Middleware</text>
+    </g>
+    <!-- Layer 5: Operating System -->
+    <g transform="translate(0, 198)">
+      <rect width="250" height="30" rx="5" fill="#ff6a00" filter="url(#stack-shadow)"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#ffffff">Operating System</text>
+    </g>
+    <!-- Layer 6: Virtualization -->
+    <g transform="translate(0, 232)">
+      <rect width="250" height="30" rx="5" fill="#ff6a00" filter="url(#stack-shadow)"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#ffffff">Virtualization</text>
+    </g>
+    <!-- Layer 7: Servers -->
+    <g transform="translate(0, 266)">
+      <rect width="250" height="30" rx="5" fill="#ff6a00" filter="url(#stack-shadow)"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#ffffff">Servers</text>
+    </g>
+    <!-- Layer 8: Storage -->
+    <g transform="translate(0, 300)">
+      <rect width="250" height="30" rx="5" fill="#ff6a00" filter="url(#stack-shadow)"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#ffffff">Storage</text>
+    </g>
+    <!-- Layer 9: Networking -->
+    <g transform="translate(0, 334)">
+      <rect width="250" height="30" rx="5" fill="#ff6a00" filter="url(#stack-shadow)"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#ffffff">Networking</text>
+    </g>
+  </g>
+
+  <!-- COLUMN 2: ECS (IaaS) -->
+  <g transform="translate(355, 55)">
+    <!-- Header Box -->
+    <rect width="250" height="52" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#stack-shadow)"/>
+    <!-- ECS Vector Icon -->
+    <g transform="translate(45, 14)">
+      <rect x="0" y="0" width="30" height="7" rx="2" fill="#ff6a00"/>
+      <circle cx="24" cy="3.5" r="1.5" fill="#ffffff"/>
+      <rect x="0" y="9" width="30" height="7" rx="2" fill="#ff6a00"/>
+      <circle cx="24" cy="12.5" r="1.5" fill="#ffffff"/>
+      <rect x="0" y="18" width="30" height="7" rx="2" fill="#ff6a00"/>
+      <circle cx="24" cy="21.5" r="1.5" fill="#ffffff"/>
+    </g>
+    <text x="88" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#0f172a">ECS (IaaS)</text>
+
+    <!-- Layers: Top 5 Customer Managed (Orange), Bottom 4 Cloud Managed (Slate) -->
+    <!-- Layer 1: Applications -->
+    <g transform="translate(0, 62)">
+      <rect width="250" height="30" rx="5" fill="#ff6a00" filter="url(#stack-shadow)"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#ffffff">Applications</text>
+    </g>
+    <!-- Layer 2: Data -->
+    <g transform="translate(0, 96)">
+      <rect width="250" height="30" rx="5" fill="#ff6a00" filter="url(#stack-shadow)"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#ffffff">Data</text>
+    </g>
+    <!-- Layer 3: Runtime -->
+    <g transform="translate(0, 130)">
+      <rect width="250" height="30" rx="5" fill="#ff6a00" filter="url(#stack-shadow)"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#ffffff">Runtime</text>
+    </g>
+    <!-- Layer 4: Middleware -->
+    <g transform="translate(0, 164)">
+      <rect width="250" height="30" rx="5" fill="#ff6a00" filter="url(#stack-shadow)"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#ffffff">Middleware</text>
+    </g>
+    <!-- Layer 5: Operating System -->
+    <g transform="translate(0, 198)">
+      <rect width="250" height="30" rx="5" fill="#ff6a00" filter="url(#stack-shadow)"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#ffffff">Operating System</text>
+    </g>
+    <!-- Layer 6: Virtualization (Managed) -->
+    <g transform="translate(0, 232)">
+      <rect width="250" height="30" rx="5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.2"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#334155">Virtualization</text>
+    </g>
+    <!-- Layer 7: Servers (Managed) -->
+    <g transform="translate(0, 266)">
+      <rect width="250" height="30" rx="5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.2"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#334155">Servers</text>
+    </g>
+    <!-- Layer 8: Storage (Managed) -->
+    <g transform="translate(0, 300)">
+      <rect width="250" height="30" rx="5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.2"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#334155">Storage</text>
+    </g>
+    <!-- Layer 9: Networking (Managed) -->
+    <g transform="translate(0, 334)">
+      <rect width="250" height="30" rx="5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.2"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#334155">Networking</text>
+    </g>
+  </g>
+
+  <!-- COLUMN 3: RDS (PaaS) -->
+  <g transform="translate(650, 55)">
+    <!-- Header Box -->
+    <rect width="250" height="52" rx="8" fill="#ffffff" stroke="#fed7aa" stroke-width="1.8" filter="url(#stack-shadow)"/>
+    <!-- RDS Vector Icon Cluster -->
+    <g transform="translate(48, 12)">
+      <polygon points="12,0 19,4 19,13 12,17 5,13 5,4" fill="#ff6a00"/>
+      <polygon points="5,13 12,17 12,26 5,30 -2,26 -2,17" fill="#ff6a00"/>
+      <polygon points="19,13 26,17 26,26 19,30 12,26 12,17" fill="#ff6a00"/>
+    </g>
+    <text x="88" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#c2410c">RDS (PaaS)</text>
+
+    <!-- Layers: Top 2 Customer Managed (Orange), Bottom 7 Cloud Managed (Slate) -->
+    <!-- Layer 1: Applications -->
+    <g transform="translate(0, 62)">
+      <rect width="250" height="30" rx="5" fill="#ff6a00" filter="url(#stack-shadow)"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#ffffff">Applications</text>
+    </g>
+    <!-- Layer 2: Data -->
+    <g transform="translate(0, 96)">
+      <rect width="250" height="30" rx="5" fill="#ff6a00" filter="url(#stack-shadow)"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#ffffff">Data</text>
+    </g>
+    <!-- Layer 3: Runtime (Managed) -->
+    <g transform="translate(0, 130)">
+      <rect width="250" height="30" rx="5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.2"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#334155">Runtime</text>
+    </g>
+    <!-- Layer 4: Middleware (Managed) -->
+    <g transform="translate(0, 164)">
+      <rect width="250" height="30" rx="5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.2"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#334155">Middleware</text>
+    </g>
+    <!-- Layer 5: Operating System (Managed) -->
+    <g transform="translate(0, 198)">
+      <rect width="250" height="30" rx="5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.2"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#334155">Operating System</text>
+    </g>
+    <!-- Layer 6: Virtualization (Managed) -->
+    <g transform="translate(0, 232)">
+      <rect width="250" height="30" rx="5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.2"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#334155">Virtualization</text>
+    </g>
+    <!-- Layer 7: Servers (Managed) -->
+    <g transform="translate(0, 266)">
+      <rect width="250" height="30" rx="5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.2"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#334155">Servers</text>
+    </g>
+    <!-- Layer 8: Storage (Managed) -->
+    <g transform="translate(0, 300)">
+      <rect width="250" height="30" rx="5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.2"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#334155">Storage</text>
+    </g>
+    <!-- Layer 9: Networking (Managed) -->
+    <g transform="translate(0, 334)">
+      <rect width="250" height="30" rx="5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.2"/>
+      <text x="125" y="20" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#334155">Networking</text>
+    </g>
+  </g>
+</svg>
