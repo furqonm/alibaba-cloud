@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 330" width="100%" height="auto">
+  <defs>
+    <filter id="shadow-soft" x="-3%" y="-5%" width="106%" height="114%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.08" />
+    </filter>
+    <filter id="shadow-card" x="-3%" y="-4%" width="106%" height="112%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.07" />
+    </filter>
+    <linearGradient id="grad-red" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EF4444" />
+      <stop offset="100%" stop-color="#DC2626" />
+    </linearGradient>
+    <linearGradient id="grad-yellow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+    <linearGradient id="grad-green" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#7C3AED" />
+    </linearGradient>
+  </defs>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <!-- URL Base Card (Top Left to Center) -->
+    <g filter="url(#shadow-soft)">
+      <rect x="20" y="24" width="635" height="56" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" />
+      
+      <text x="35" y="59" font-family="'Consolas', 'Fira Code', 'Courier New', monospace" font-size="14.5">
+        <tspan fill="#475569" font-weight="600">http(s)://</tspan>
+        <tspan fill="#DC2626" font-weight="700">image-demo.</tspan>
+        <tspan fill="#D97706" font-weight="700">oss-ap-southeast-1.aliyuncs.com/</tspan>
+        <tspan fill="#059669" font-weight="700">example.jpg</tspan>
+      </text>
+    </g>
+
+    <!-- Query String Pill Container -->
+    <g filter="url(#shadow-soft)">
+      <rect x="670" y="24" width="145" height="56" rx="8" fill="#FAF5FF" stroke="#A855F7" stroke-width="1.5" />
+      <text x="742" y="59" font-family="'Consolas', 'Fira Code', monospace" font-size="14.5" font-weight="700" fill="#7C3AED" text-anchor="middle">?x-oss-process=</text>
+    </g>
+
+    <!-- 1. Bucket Pill & Connector -->
+    <g filter="url(#shadow-card)">
+      <line x1="172" y1="80" x2="172" y2="114" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="3 3" />
+      <rect x="117" y="114" width="110" height="38" rx="6" fill="url(#grad-red)" />
+      <text x="172" y="138" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">Bucket</text>
+    </g>
+
+    <!-- 2. Endpoint Card & Connector -->
+    <g filter="url(#shadow-card)">
+      <line x1="388" y1="80" x2="388" y2="108" stroke="#D97706" stroke-width="1.5" stroke-dasharray="3 3" />
+      <rect x="268" y="108" width="240" height="72" rx="8" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1.5" />
+      <rect x="268" y="108" width="240" height="26" rx="8" fill="url(#grad-yellow)" />
+      <text x="388" y="126" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">Endpoint</text>
+      <text x="388" y="150" font-size="11" font-weight="500" fill="#475569" text-anchor="middle">Accessible from public network,</text>
+      <text x="388" y="166" font-size="11" font-weight="500" fill="#475569" text-anchor="middle">VPC, and internal intranet.</text>
+    </g>
+
+    <!-- 3. Object Pill & Connector -->
+    <g filter="url(#shadow-card)">
+      <line x1="585" y1="80" x2="585" y2="114" stroke="#059669" stroke-width="1.5" stroke-dasharray="3 3" />
+      <rect x="530" y="114" width="110" height="38" rx="6" fill="url(#grad-green)" />
+      <text x="585" y="138" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">Object</text>
+    </g>
+
+    <!-- 4. Query String Pill & Connector -->
+    <g filter="url(#shadow-card)">
+      <line x1="742" y1="80" x2="742" y2="114" stroke="#7C3AED" stroke-width="1.5" stroke-dasharray="3 3" />
+      <rect x="680" y="114" width="125" height="38" rx="6" fill="url(#grad-purple)" />
+      <text x="742" y="138" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">Query String</text>
+    </g>
+
+    <!-- Branch Connector Paths to Processing Modes -->
+    <path d="M 815 44 C 840 44, 840 58, 862 58" fill="none" stroke="#2563EB" stroke-width="2" />
+    <path d="M 815 62 C 840 62, 840 205, 862 205" fill="none" stroke="#EA580C" stroke-width="2" />
+
+    <!-- Branch 1: Parameter Mode (Top Right) -->
+    <g filter="url(#shadow-card)">
+      <!-- Code Pill -->
+      <rect x="862" y="42" width="140" height="32" rx="6" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.5" />
+      <text x="932" y="63" font-size="11.5" font-family="'Consolas', 'Fira Code', monospace" font-weight="700" fill="#1D4ED8" text-anchor="middle">image/resize,w_200</text>
+      
+      <!-- Card Box -->
+      <rect x="845" y="82" width="165" height="86" rx="8" fill="#FFFFFF" stroke="#60A5FA" stroke-width="1.5" />
+      <rect x="845" y="82" width="165" height="24" rx="8" fill="#DBEAFE" />
+      <text x="927" y="99" font-size="11" font-weight="700" fill="#1E40AF" text-anchor="middle">Parameter Mode</text>
+      <text x="855" y="121" font-size="10.5" font-weight="500" fill="#334155">Input processing rule</text>
+      <text x="855" y="137" font-size="10.5" font-weight="500" fill="#334155">directly within URL</text>
+      <text x="855" y="153" font-size="10.5" font-weight="500" fill="#334155">when accessing.</text>
+    </g>
+
+    <!-- Branch 2: Style Mode (Bottom Right) -->
+    <g filter="url(#shadow-card)">
+      <!-- Code Pill -->
+      <rect x="862" y="189" width="140" height="32" rx="6" fill="#FFF7ED" stroke="#F97316" stroke-width="1.5" />
+      <text x="932" y="210" font-size="11.5" font-family="'Consolas', 'Fira Code', monospace" font-weight="700" fill="#C2410C" text-anchor="middle">style/stylename</text>
+      
+      <!-- Card Box -->
+      <rect x="845" y="229" width="165" height="86" rx="8" fill="#FFFFFF" stroke="#FB923C" stroke-width="1.5" />
+      <rect x="845" y="229" width="165" height="24" rx="8" fill="#FFEDD5" />
+      <text x="927" y="246" font-size="11" font-weight="700" fill="#9A3412" text-anchor="middle">Style Mode</text>
+      <text x="855" y="268" font-size="10.5" font-weight="500" fill="#334155">Package parameter into</text>
+      <text x="855" y="284" font-size="10.5" font-weight="500" fill="#334155">reusable styles; easy</text>
+      <text x="855" y="300" font-size="10.5" font-weight="500" fill="#334155">to manage and use.</text>
+    </g>
+  </g>
+</svg>

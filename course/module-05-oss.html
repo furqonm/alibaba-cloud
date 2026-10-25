@@ -292,8 +292,32 @@
       <div class="slide-category">Section 2: Storage Classes &amp; Lifecycle</div>
       <h2>Automated Lifecycle Policies</h2>
       
-      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-top: 0.5rem;">
-        <img src="assets/images/oss-lifecycle-tiering.svg" alt="OSS Lifecycle Tiering Transition Diagram" class="architecture-diagram" style="max-height: 480px; width: 100%; height: auto; object-fit: contain;">
+      <!-- Streamlined Lifecycle Timeline Diagram -->
+      <div class="architecture-diagram-wrapper" style="display: flex; justify-content: center; align-items: center; margin: 0.1rem 0 0.65rem; min-height: 0;">
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 900px;">
+          <img src="assets/images/oss-lifecycle-tiering.svg" alt="OSS Lifecycle Tiering Transition Diagram" style="max-height: 210px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
+        </div>
+      </div>
+
+      <!-- Lifecycle Policy Mechanics & Cost Optimization Cards -->
+      <div class="grid-2" style="margin-top: 0; gap: 1rem;">
+        <div class="content-card highlight-blue" style="padding: 0.85rem 1.15rem;">
+          <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem; color: #1e40af;">Rule Configuration &amp; Scope Matching</h3>
+          <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem;">
+            <li><strong>Time-Based Triggers:</strong> Automate transitions based on days elapsed since object creation (or explicit calendar dates).</li>
+            <li><strong>Target Scope Filters:</strong> Bind rules to the entire bucket, specific object path prefixes (e.g., <code>logs/</code>, <code>backup/</code>), or custom object tags.</li>
+            <li><strong>Version-Aware Management:</strong> Define independent transition and expiration rules for current versions vs non-current historical versions.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-green" style="padding: 0.85rem 1.15rem;">
+          <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem; color: #065f46;">Automated Execution &amp; Cost Reduction</h3>
+          <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem;">
+            <li><strong>Zero Execution Cost:</strong> Lifecycle evaluations execute asynchronously in the background once daily with zero API request charges.</li>
+            <li><strong>Massive TCO Savings:</strong> Automatically tiers cold data down to IA (~40%), Archive (~75%), and Cold Archive (up to 90% cheaper).</li>
+            <li><strong>Automated Cleanup:</strong> Automatically purges expired temporary objects and aborts incomplete multipart uploads to prevent storage leaks.</li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -990,7 +1014,7 @@
       <!-- Access Method Architecture Diagram from Page 38 -->
       <div class="architecture-diagram-wrapper" style="display: flex; justify-content: center; align-items: center; margin: 0.2rem 0 0.65rem; min-height: 0;">
         <div style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 980px;">
-          <img src="assets/images/oss-img-access-methods.png" alt="OSS Image Processing Access Methods: Parameter Mode vs Style Mode Architecture" style="max-height: 200px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
+          <img src="assets/images/oss-img-access-methods.svg" alt="OSS Image Processing Access Methods: Parameter Mode vs Style Mode Architecture" style="max-height: 240px; width: 100%; height: auto; object-fit: contain; border: none; box-shadow: none;">
         </div>
       </div>
 
