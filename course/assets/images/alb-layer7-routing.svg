@@ -1,9 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 440" width="100%" height="100%">
-  <rect x="15" y="15" width="850" height="410" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="440" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#1e293b">Application Load Balancer (ALB): Layer 7 Intelligent Routing Engine</text>
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="25 0 830 345" width="100%" height="100%">
   <!-- Left: Inbound Request Structure -->
-  <g transform="translate(35, 75)">
+  <g transform="translate(35, 10)">
     <rect width="250" height="325" rx="12" fill="#fff7ed" stroke="#FF6A00" stroke-width="1.5"/>
     <rect x="12" y="12" width="226" height="32" rx="6" fill="#FF6A00"/>
     <text x="125" y="33" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Inbound Request Conditions</text>
@@ -36,7 +33,7 @@
   </g>
 
   <!-- Middle: ALB Rule Engine Actions -->
-  <g transform="translate(315, 75)">
+  <g transform="translate(315, 10)">
     <rect width="250" height="325" rx="12" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5"/>
     <rect x="12" y="12" width="226" height="32" rx="6" fill="#0284c7"/>
     <text x="125" y="33" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Dynamic Traffic Actions</text>
@@ -65,7 +62,7 @@
   </g>
 
   <!-- Right: Destination Target Groups -->
-  <g transform="translate(595, 75)">
+  <g transform="translate(595, 10)">
     <rect width="250" height="325" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
     <rect x="12" y="12" width="226" height="32" rx="6" fill="#1e293b"/>
     <text x="125" y="33" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Routed Backend Targets</text>

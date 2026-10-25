@@ -1,11 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 420" width="100%" height="100%">
-  <!-- Adaptive Halo Title (No outer confining box) -->
-  <text x="440" y="38" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="18.5" font-weight="800" fill="none" stroke="#ffffff" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round">Alibaba Cloud Server Load Balancer (SLB) Product Family</text>
-  <text x="440" y="38" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="18.5" font-weight="800" fill="#1e293b">Alibaba Cloud Server Load Balancer (SLB) Product Family</text>
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 0 840 350" width="100%" height="100%">
   <!-- 4 Columns Grid -->
   <!-- Col 1: ALB -->
-  <g transform="translate(30, 65)">
+  <g transform="translate(30, 10)">
     <rect width="195" height="330" rx="12" fill="#fff7ed" stroke="#FF6A00" stroke-width="2"/>
     <rect x="12" y="12" width="171" height="36" rx="6" fill="#FF6A00"/>
     <text x="97" y="35" text-anchor="middle" fill="#ffffff" font-family="'Inter', system-ui, sans-serif" font-size="13" font-weight="700">ALB (Layer 7)</text>
@@ -28,7 +24,7 @@
   </g>
 
   <!-- Col 2: NLB -->
-  <g transform="translate(242, 65)">
+  <g transform="translate(242, 10)">
     <rect width="195" height="330" rx="12" fill="#f0f9ff" stroke="#0284c7" stroke-width="2"/>
     <rect x="12" y="12" width="171" height="36" rx="6" fill="#0284c7"/>
     <text x="97" y="35" text-anchor="middle" fill="#ffffff" font-family="'Inter', system-ui, sans-serif" font-size="13" font-weight="700">NLB (Layer 4)</text>
@@ -51,7 +47,7 @@
   </g>
 
   <!-- Col 3: CLB -->
-  <g transform="translate(454, 65)">
+  <g transform="translate(454, 10)">
     <rect width="190" height="330" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
     <rect x="12" y="12" width="166" height="36" rx="6" fill="#64748b"/>
     <text x="95" y="35" text-anchor="middle" fill="#ffffff" font-family="'Inter', system-ui, sans-serif" font-size="13" font-weight="700">CLB (Legacy)</text>
@@ -74,7 +70,7 @@
   </g>
 
   <!-- Col 4: GWLB -->
-  <g transform="translate(660, 65)">
+  <g transform="translate(660, 10)">
     <rect width="190" height="330" rx="12" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
     <rect x="12" y="12" width="166" height="36" rx="6" fill="#8b5cf6"/>
     <text x="95" y="35" text-anchor="middle" fill="#ffffff" font-family="'Inter', system-ui, sans-serif" font-size="13" font-weight="700">GWLB (Gateway)</text>
