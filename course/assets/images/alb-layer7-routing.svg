@@ -8,7 +8,7 @@
     <g transform="translate(15, 60)" font-family="system-ui, sans-serif" font-size="11">
       <rect width="220" height="32" rx="4" fill="#ffffff" stroke="#fed7aa"/>
       <text x="10" y="20" font-weight="700" fill="#c2410c">Domain Name:</text>
-      <text x="95" y="20" font-family="monospace" font-size="10" fill="#334155">api.shop.com / img.shop.com</text>
+      <text x="95" y="20" font-family="monospace" font-size="10" fill="#334155">api.shop.id / img.shop.id</text>
 
       <rect y="40" width="220" height="32" rx="4" fill="#ffffff" stroke="#fed7aa"/>
       <text x="10" y="60" font-weight="700" fill="#c2410c">URL Path:</text>
@@ -28,7 +28,7 @@
 
       <rect y="200" width="220" height="32" rx="4" fill="#ffffff" stroke="#fed7aa"/>
       <text x="10" y="220" font-weight="700" fill="#c2410c">Cookie / Source IP:</text>
-      <text x="115" y="220" font-family="monospace" font-size="10" fill="#334155">client_cid / CIDR Block</text>
+      <text x="115" y="220" font-family="monospace" font-size="10" fill="#334155">CIDR Block</text>
     </g>
   </g>
 
