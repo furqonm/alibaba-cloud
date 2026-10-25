@@ -15,20 +15,24 @@
   <!-- Arrow 4: OSS -> Client (pointing LEFT) -->
   <line x1="610" y1="85" x2="195" y2="85" stroke="#128ced" stroke-width="3"/>
   <polygon points="180,85 196,78 196,92" fill="#128ced"/>
+  <text x="395" y="72" text-anchor="middle" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-size="13.5px">4. Return data to Client</text>
   <text x="395" y="72" text-anchor="middle" fill="#0f172a" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-size="13.5px">4. Return data to Client</text>
 
   <!-- Arrow 1: Client -> OSS (pointing RIGHT) -->
   <line x1="180" y1="135" x2="595" y2="135" stroke="#128ced" stroke-width="3"/>
   <polygon points="610,135 594,128 594,142" fill="#128ced"/>
+  <text x="395" y="160" text-anchor="middle" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-size="13.5px">1. Request for data</text>
   <text x="395" y="160" text-anchor="middle" fill="#0f172a" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-size="13.5px">1. Request for data</text>
 
   <!-- Arrow 3: Source Site -> OSS (pointing LEFT) -->
   <line x1="1180" y1="85" x2="765" y2="85" stroke="#128ced" stroke-width="3"/>
   <polygon points="750,85 766,78 766,92" fill="#128ced"/>
+  <text x="965" y="72" text-anchor="middle" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-size="13.5px">3. Write data to OSS</text>
   <text x="965" y="72" text-anchor="middle" fill="#0f172a" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-size="13.5px">3. Write data to OSS</text>
 
   <!-- Arrow 2: OSS -> Source Site (pointing RIGHT) -->
   <line x1="750" y1="135" x2="1165" y2="135" stroke="#128ced" stroke-width="3"/>
   <polygon points="1180,135 1164,128 1164,142" fill="#128ced"/>
+  <text x="965" y="160" text-anchor="middle" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" fill="none" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-size="13.5px">2. Object doesn't exist, request resource from the source URL.</text>
   <text x="965" y="160" text-anchor="middle" fill="#0f172a" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif" font-size="13.5px">2. Object doesn't exist, request resource from the source URL.</text>
 </svg>
