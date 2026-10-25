@@ -1120,14 +1120,15 @@
       <h2>OSS Log Management</h2>
 
       <div class="grid-2" style="flex: 1; margin-top: 0.35rem; gap: 1rem; align-items: stretch; min-height: 0;">
+        <!-- Left Column: Bucket Access Logging -->
         <div class="content-card highlight-orange" style="display: flex; flex-direction: column; padding: 0.65rem 0.95rem;">
           <h3 style="font-size: calc(0.95rem + var(--font-delta)); margin-bottom: 0.35rem; color: #c2410c;">Bucket Access Logging (Access Log)</h3>
-          <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 0.35rem; min-height: 0;">
-            <img src="assets/images/oss-bucket-access-logging.png" alt="Bucket Access Logging Console Configuration" style="max-height: 225px; width: 100%; height: auto; object-fit: contain; border-radius: 6px;">
+          <div style="height: 185px; display: flex; justify-content: center; align-items: center; margin-bottom: 0.35rem; min-height: 0;">
+            <img src="assets/images/oss-bucket-access-logging.png" alt="Bucket Access Logging Console Configuration" style="max-height: 185px; max-width: 100%; height: auto; object-fit: contain; border-radius: 6px;">
           </div>
-          <div style="margin: 0 0 0.35rem; background: #0f172a; border-radius: 6px; padding: 0.35rem 0.55rem; border: 1px solid rgba(255,255,255,0.1); overflow-x: auto;">
+          <div style="margin: 0 0 0.35rem; background: #0f172a; border-radius: 6px; padding: 0.35rem 0.55rem; border: 1px solid rgba(255,255,255,0.1); overflow-x: auto; min-height: 52px; display: flex; flex-direction: column; justify-content: center;">
             <div style="font-size: 0.62rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.15rem;">Raw Access Log Record</div>
-            <pre style="margin: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.60rem; line-height: 1.3; color: #38bdf8; white-space: pre-wrap; word-break: break-all;"><code>100.68.13.141 - - [11/Feb/2017:22:44:06 +0800] "GET /?bucketInfo HTTP/1.1" 200 610 35 "-" "aliyun-sdk-java/2.4.0(Linux/2.6.32-220.23.2.ali927.el5.x86_64/amd64;1.6.0_24)" "ezybiztravel-id.oss-cn-hangzhou-cross.aliyuncs.com" "589F23366575C184D1EC9AA1" "true" "1066165288152053" "GetBucketInfo" "ezybiztravel-id" "-" - - "-" 497 "1066165288152053" - "-" "-"</code></pre>
+            <pre style="margin: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.58rem; line-height: 1.3; color: #38bdf8; white-space: pre-wrap; word-break: break-all;"><code>100.68.13.141 - - [11/Feb/2017:22:44:06 +0800] "GET /?bucketInfo HTTP/1.1" 200 610 35 "-" "aliyun-sdk-java/2.4.0(Linux/2.6.32-220.23.2.ali927.el5.x86_64/amd64;1.6.0_24)" "ezybiztravel-id.oss-cn-hangzhou-cross.aliyuncs.com" "589F23366575C184D1EC9AA1" "true" "1066165288152053" "GetBucketInfo" "ezybiztravel-id" "-" - - "-" 497 "1066165288152053" - "-" "-"</code></pre>
           </div>
           <ul style="font-size: calc(0.76rem + var(--font-delta)); line-height: 1.35; margin: 0; padding-left: 1.05rem; display: flex; flex-direction: column; gap: 0.2rem;">
             <li><strong>Target Bucket Storage:</strong> Automatically delivers hourly raw access logs to designated bucket.</li>
@@ -1136,15 +1137,20 @@
           </ul>
         </div>
 
+        <!-- Right Column: Real-Time Log Analysis (SLS) -->
         <div class="content-card highlight-blue" style="display: flex; flex-direction: column; padding: 0.65rem 0.95rem;">
           <h3 style="font-size: calc(0.95rem + var(--font-delta)); margin-bottom: 0.35rem; color: #1e40af;">Real-Time Log Analysis (SLS)</h3>
-          <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 0.45rem; min-height: 0; flex: 1;">
-            <img src="assets/images/oss-realtime-log-analysis.png" alt="Log Service (SLS) Real-Time Log Analysis Console" style="max-height: 275px; width: 100%; height: auto; object-fit: contain; border-radius: 6px;">
+          <div style="height: 185px; display: flex; justify-content: center; align-items: center; margin-bottom: 0.35rem; min-height: 0;">
+            <img src="assets/images/oss-realtime-log-analysis.png" alt="Log Service (SLS) Real-Time Log Analysis Console" style="max-height: 185px; max-width: 100%; height: auto; object-fit: contain; border-radius: 6px;">
           </div>
-          <ul style="font-size: calc(0.78rem + var(--font-delta)); line-height: 1.35; margin: 0; padding-left: 1.05rem; display: flex; flex-direction: column; gap: 0.2rem;">
+          <div style="margin: 0 0 0.35rem; background: #0f172a; border-radius: 6px; padding: 0.35rem 0.55rem; border: 1px solid rgba(255,255,255,0.1); overflow-x: auto; min-height: 52px; display: flex; flex-direction: column; justify-content: center;">
+            <div style="font-size: 0.62rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.15rem;">Real-Time SQL Analytics Query</div>
+            <pre style="margin: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.58rem; line-height: 1.3; color: #38bdf8; white-space: pre-wrap; word-break: break-all;"><code>* | SELECT status, count(1) AS pv, round(sum(body_bytes_sent)/1024/1024, 2) AS mb GROUP BY status ORDER BY pv DESC LIMIT 10</code></pre>
+          </div>
+          <ul style="font-size: calc(0.76rem + var(--font-delta)); line-height: 1.35; margin: 0; padding-left: 1.05rem; display: flex; flex-direction: column; gap: 0.2rem;">
             <li><strong>Sub-Second Ingestion:</strong> Streams access logs in real time directly into Log Service (<code>oss-log-store</code>).</li>
-            <li><strong>Instant SQL Analytics:</strong> Execute interactive SQL queries to isolate 4xx/5xx spikes or malicious IPs.</li>
-            <li><strong>Pre-Built Dashboards:</strong> Instant visualization of access trends, top downloads, and client geo.</li>
+            <li><strong>Instant SQL Analytics:</strong> Query billions of records using SQL-92 (e.g. latency percentiles, top client IPs).</li>
+            <li><strong>Built-in Dashboards:</strong> Pre-integrated Grafana-style charts for PV, UV, status codes, and traffic distribution.</li>
           </ul>
         </div>
       </div>
