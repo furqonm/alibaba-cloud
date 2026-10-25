@@ -1109,10 +1109,10 @@
           <span>An enterprise e-commerce platform experiences sudden 5x traffic surges during midnight flash sales. The application tier connects to an ApsaraDB RDS MySQL database and sits behind a Server Load Balancer (SLB). Which Auto Scaling architecture ensures immediate capacity expansion, zero in-flight request drops, and seamless database connectivity with zero manual operational intervention?</span>
         </div>
         <ul class="quiz-single-options">
-          <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Wait until the sale starts, then log in to the console and manually execute a scaling rule that adds 50 instances.</span></li>
-          <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Create only a CloudMonitor alarm task on CPU utilization, so new instances are added after the traffic surge has already started.</span></li>
-          <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Create a Scheduled Task that runs a scaling rule shortly before the midnight sale to add instances in advance, and a second scheduled task to remove them after the sale ends.</span></li>
-          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Keep a fixed number of instances and upgrade each instance to a larger specification when the sale starts.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Create a cron job on an external server to modify the scaling group's desired capacity at 23:50, combined with CloudMonitor alarms for dynamic scaling.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Configure CloudMonitor alarm tasks that monitor CPU utilization to dynamically trigger scale-out rules as traffic increases.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Configure a Scheduled Task to scale out capacity in advance before the midnight flash sale, combined with CloudMonitor alarm tasks to dynamically handle unexpected traffic fluctuations.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Use ECS Vertical Scaling to upgrade existing instance specifications before the flash sale to ensure adequate compute capacity.</span></li>
         </ul>
       </div>
     </section>
@@ -1123,7 +1123,7 @@
       <div class="analysis-main-card">
         <div>
           <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: C</span>
-          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Scheduled Scaling (Scheduled Tasks for Scale-Out and Scale-In)</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Scheduled Tasks Combined with CloudMonitor Dynamic Alarms</span>
         </div>
       </div>
 
@@ -1131,25 +1131,25 @@
         <!-- ALWAYS Option A first -->
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option A is Incorrect</span></div>
-          <div class="analysis-item-body">Manual execution is slow and error-prone. Capacity is added only after customers already face slow responses, and it is not automated.</div>
+          <div class="analysis-item-body">Using an external cron job introduces external point-of-failure dependencies and unnecessary operational overhead. Alibaba Cloud Auto Scaling provides native Scheduled Tasks that execute scaling rules directly without relying on external servers or scripts.</div>
         </div>
 
         <!-- ALWAYS Option B second -->
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option B is Incorrect</span></div>
-          <div class="analysis-item-body">An alarm task is reactive. It only triggers after the metric breaches the threshold, and new instances still need time to start, so the surge hits before capacity is ready. Alarm tasks are also rejected during cooldown.</div>
+          <div class="analysis-item-body">CloudMonitor alarm tasks are reactive—they only trigger after the metric breaches the threshold. Because new ECS instances require several minutes to initialize, boot, and register to SLB and RDS, relying on CPU metric alarms alone results in high latency and dropped requests during sudden midnight surges.</div>
         </div>
 
         <!-- ALWAYS Option C third -->
         <div class="analysis-item correct">
           <div class="analysis-item-header correct"><span>✔ Option C is Correct</span></div>
-          <div class="analysis-item-body">The midnight flash sale is a predictable event. A Scheduled Task adds capacity before the sale starts, and a second task scales in afterwards to save cost. The scaling group still registers new instances to SLB and RDS automatically.</div>
+          <div class="analysis-item-body">Combining a native Scheduled Task with CloudMonitor alarms provides the optimal architecture: the Scheduled Task proactively warms and scales out capacity before the predictable midnight flash sale starts, while CloudMonitor dynamic alarms handle unexpected traffic spikes or scale in when traffic subsides.</div>
         </div>
 
         <!-- ALWAYS Option D fourth -->
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option D is Incorrect</span></div>
-          <div class="analysis-item-body">Auto Scaling scales horizontally by adding or removing instances. Fixed capacity with bigger specs does not scale automatically and wastes cost outside the sale.</div>
+          <div class="analysis-item-body">ECS Vertical Scaling (upgrading instance specifications) requires stopping or rebooting instances, introducing downtime and service interruption during peak hours. Auto Scaling is designed for horizontal elasticity, adding instances seamlessly with zero downtime.</div>
         </div>
       </div>
     </section>
