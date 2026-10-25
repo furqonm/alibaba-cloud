@@ -1445,36 +1445,37 @@ ightarrow$ Client replies <code>ACK</code>.</li>
     <!-- ==================== SECTION 7: ARCHITECTURE SCENARIOS & ASSESSMENT ==================== -->
 
     <!-- SLIDE 41: SCENARIO 1 QUESTION -->
-    <section class="slide" data-category="Architecture Scenarios &amp; Assessment">
+    <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Practice Question 1</div>
       
-      <div class="content-card highlight-blue" style="margin-top: 0.75rem;">
-        <p style="font-size: 1.05rem; line-height: 1.5; color: #1e293b; margin-bottom: 0.75rem;">
-          <strong>Scenario Context:</strong> A global e-commerce retail platform running on Alibaba Cloud in Region Singapore is preparing for a major flash-sale event. During previous promotions, the platform suffered from distributed <strong>300 Gbps volumetric SYN floods</strong> that saturated upstream internet pipes, accompanied by sophisticated <strong>SQL injection attacks</strong> and automated botnets attempting to scrape checkout prices and hoard inventory.
-        </p>
-        <p style="font-size: 1rem; line-height: 1.5; color: #0f172a; margin-bottom: 0.75rem;">
-          <strong>Design Requirement:</strong> The enterprise architect must design an end-to-end security architecture that guarantees 100% web availability, mitigates volumetric network floods, blocks application-layer exploits, and ensures zero database downtime.
-        </p>
-      </div>
-
-      <div class="quiz-options-list" style="margin-top: 0.85rem; display: flex; flex-direction: column; gap: 0.5rem;">
-        <div class="quiz-option-card">
-          <strong>A.</strong> Deploy Anti-DDoS Premium with Anycast near-source mitigation at the edge, route traffic through WAF for SQLi and bot management, terminate TLS on SLB, and deploy Security Center Enterprise across private backend ECS fleets.
+      <div class="quiz-single-card">
+        <div class="quiz-single-question">
+          <span class="quiz-number">Question 1</span>
+          <span>A global e-commerce retail platform running on Alibaba Cloud in Region Singapore is preparing for a major flash-sale event. During previous promotions, the platform suffered from distributed <strong>300 Gbps volumetric SYN floods</strong> that saturated upstream internet pipes, accompanied by sophisticated <strong>SQL injection attacks</strong> and automated botnets attempting to scrape checkout prices and hoard inventory. The enterprise architect must design an end-to-end security architecture that guarantees 100% web availability, mitigates volumetric network floods, blocks application-layer exploits, and ensures zero database downtime. Which comprehensive architecture best meets these requirements?</span>
         </div>
-        <div class="quiz-option-card">
-          <strong>B.</strong> Scale up backend ECS instance CPU cores, configure host-level iptables firewall rules on each server, and rely exclusively on default Anti-DDoS Basic.
-        </div>
-        <div class="quiz-option-card">
-          <strong>C.</strong> Disable HTTPS encryption across all customer endpoints to reduce compute overhead, and place all ECS and RDS databases directly in public subnets with public EIPs.
-        </div>
-        <div class="quiz-option-card">
-          <strong>D.</strong> Install an open-source reverse proxy plugin on a single ECS instance and manually blacklist malicious source IP addresses during the flash sale.
-        </div>
+        <ul class="quiz-single-options">
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">A</span>
+            <span>Deploy Anti-DDoS Premium with Anycast near-source mitigation at the edge, route traffic through WAF for SQLi and bot management, terminate TLS on SLB, and deploy Security Center Enterprise across private backend ECS fleets.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">B</span>
+            <span>Scale up backend ECS instance CPU cores, configure host-level iptables firewall rules on each server, and rely exclusively on default Anti-DDoS Basic.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">C</span>
+            <span>Disable HTTPS encryption across all customer endpoints to reduce compute overhead, and place all ECS and RDS databases directly in public subnets with public EIPs.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">D</span>
+            <span>Install an open-source reverse proxy plugin on a single ECS instance and manually blacklist malicious source IP addresses during the flash sale.</span>
+          </li>
+        </ul>
       </div>
     </section>
 
     <!-- SLIDE 42: SCENARIO 1 SOLUTION -->
-    <section class="slide" data-category="Architecture Scenarios &amp; Assessment">
+    <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Practice Answer 1</div>
       
       <div class="analysis-main-card">
@@ -1524,36 +1525,37 @@ ightarrow$ Client replies <code>ACK</code>.</li>
     </section>
 
     <!-- SLIDE 43: SCENARIO 2 QUESTION -->
-    <section class="slide" data-category="Architecture Scenarios &amp; Assessment">
+    <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Practice Question 2</div>
       
-      <div class="content-card highlight-blue" style="margin-top: 0.75rem;">
-        <p style="font-size: 1.05rem; line-height: 1.5; color: #1e293b; margin-bottom: 0.75rem;">
-          <strong>Scenario Context:</strong> A major enterprise running 200 production Linux web servers hosting a corporate content management system receives an emergency notification: a critical <strong>Zero-Day Remote Code Execution (RCE)</strong> vulnerability in their web framework has been published online with active exploitation in the wild. Attackers are currently attempting to upload persistent <strong>webshell backdoors</strong> into web directories.
-        </p>
-        <p style="font-size: 1rem; line-height: 1.5; color: #0f172a; margin-bottom: 0.75rem;">
-          <strong>Design Requirement:</strong> The security team must immediately block incoming exploit attempts, detect and quarantine any existing webshell backdoors, and remediate the underlying OS/CMS software across all 200 servers with zero production downtime.
-        </p>
-      </div>
-
-      <div class="quiz-options-list" style="margin-top: 0.85rem; display: flex; flex-direction: column; gap: 0.5rem;">
-        <div class="quiz-option-card">
-          <strong>A.</strong> Enable WAF 0-Day Virtual Patching rules at the edge to block payload exploits, run Security Center to isolate active webshells, and use automated pre-snapshot hotfixing to patch all instances.
+      <div class="quiz-single-card">
+        <div class="quiz-single-question">
+          <span class="quiz-number">Question 2</span>
+          <span>A major enterprise running 200 production Linux web servers hosting a corporate content management system receives an emergency notification: a critical <strong>Zero-Day Remote Code Execution (RCE)</strong> vulnerability in their web framework has been published online with active exploitation in the wild. Attackers are currently attempting to upload persistent <strong>webshell backdoors</strong> into web directories. The security team must immediately block incoming exploit attempts, detect and quarantine any existing webshell backdoors, and remediate the underlying OS/CMS software across all 200 servers with zero production downtime. Which architecture and operational procedure best achieves this?</span>
         </div>
-        <div class="quiz-option-card">
-          <strong>B.</strong> Manually review and edit the PHP source code across all 200 production servers during live business hours.
-        </div>
-        <div class="quiz-option-card">
-          <strong>C.</strong> Immediately power off all 200 web instances for 72 hours until the open-source software vendor publishes an official security release.
-        </div>
-        <div class="quiz-option-card">
-          <strong>D.</strong> Change the root password on all servers and rely exclusively on VPC Network ACLs to block port 80.
-        </div>
+        <ul class="quiz-single-options">
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">A</span>
+            <span>Enable WAF 0-Day Virtual Patching rules at the edge to block payload exploits, run Security Center to isolate active webshells, and use automated pre-snapshot hotfixing to patch all instances.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">B</span>
+            <span>Manually review and edit the PHP source code across all 200 production servers during live business hours.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">C</span>
+            <span>Immediately power off all 200 web instances for 72 hours until the open-source software vendor publishes an official security release.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">D</span>
+            <span>Change the root password on all servers and rely exclusively on VPC Network ACLs to block port 80.</span>
+          </li>
+        </ul>
       </div>
     </section>
 
     <!-- SLIDE 44: SCENARIO 2 SOLUTION -->
-    <section class="slide" data-category="Architecture Scenarios &amp; Assessment">
+    <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Practice Answer 2</div>
       
       <div class="analysis-main-card">
@@ -1603,36 +1605,37 @@ ightarrow$ Client replies <code>ACK</code>.</li>
     </section>
 
     <!-- SLIDE 45: SCENARIO 3 QUESTION -->
-    <section class="slide" data-category="Architecture Scenarios &amp; Assessment">
+    <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Practice Question 3</div>
       
-      <div class="content-card highlight-blue" style="margin-top: 0.75rem;">
-        <p style="font-size: 1.05rem; line-height: 1.5; color: #1e293b; margin-bottom: 0.75rem;">
-          <strong>Scenario Context:</strong> A fintech digital banking application running on Alibaba Cloud must achieve strict regulatory compliance (PCI-DSS and ISO 27001). The compliance audit mandates: (1) All data in transit must enforce TLS 1.2+ encryption; (2) Core databases and backups must be encrypted at rest using customer-managed cryptographic keys with annual rotation; (3) Audit logs must be stored in immutable, tamper-proof storage for 5 years; (4) Databases must have zero public IP exposure.
-        </p>
-        <p style="font-size: 1rem; line-height: 1.5; color: #0f172a; margin-bottom: 0.75rem;">
-          <strong>Design Requirement:</strong> Select the architectural combination that completely satisfies all regulatory requirements with minimal operational overhead.
-        </p>
-      </div>
-
-      <div class="quiz-options-list" style="margin-top: 0.85rem; display: flex; flex-direction: column; gap: 0.5rem;">
-        <div class="quiz-option-card">
-          <strong>A.</strong> SSL Certificates Service on SLB/CDN with TLS 1.3, RDS in private subnets with KMS-managed TDE and SSL enabled, and OSS with SSE-KMS, Bucket Policy VPC restriction, and WORM Bucket Lock.
+      <div class="quiz-single-card">
+        <div class="quiz-single-question">
+          <span class="quiz-number">Question 3</span>
+          <span>A fintech digital banking application running on Alibaba Cloud must achieve strict regulatory compliance (PCI-DSS and ISO 27001). The compliance audit mandates: (1) All data in transit must enforce TLS 1.2+ encryption; (2) Core databases and backups must be encrypted at rest using customer-managed cryptographic keys with annual rotation; (3) Audit logs must be stored in immutable, tamper-proof storage for 5 years; (4) Databases must have zero public IP exposure. Which architectural combination completely satisfies all regulatory requirements with minimal operational overhead?</span>
         </div>
-        <div class="quiz-option-card">
-          <strong>B.</strong> Store all financial records in public OSS buckets with password-protected zip archives, and disable RDS database encryption to optimize CPU read throughput.
-        </div>
-        <div class="quiz-option-card">
-          <strong>C.</strong> Deploy self-signed digital certificates on individual ECS instances, allow open public 0.0.0.0/0 ingress on RDS port 3306, and delete audit logs every 30 days to reduce storage costs.
-        </div>
-        <div class="quiz-option-card">
-          <strong>D.</strong> Rely exclusively on client-side hardcoded AccessKeys embedded in mobile apps without enabling RAM roles or Key Management Service.
-        </div>
+        <ul class="quiz-single-options">
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">A</span>
+            <span>SSL Certificates Service on SLB/CDN with TLS 1.3, RDS in private subnets with KMS-managed TDE and SSL enabled, and OSS with SSE-KMS, Bucket Policy VPC restriction, and WORM Bucket Lock.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">B</span>
+            <span>Store all financial records in public OSS buckets with password-protected zip archives, and disable RDS database encryption to optimize CPU read throughput.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">C</span>
+            <span>Deploy self-signed digital certificates on individual ECS instances, allow open public 0.0.0.0/0 ingress on RDS port 3306, and delete audit logs every 30 days to reduce storage costs.</span>
+          </li>
+          <li class="quiz-single-option">
+            <span class="quiz-single-letter">D</span>
+            <span>Rely exclusively on client-side hardcoded AccessKeys embedded in mobile apps without enabling RAM roles or Key Management Service.</span>
+          </li>
+        </ul>
       </div>
     </section>
 
     <!-- SLIDE 46: SCENARIO 3 SOLUTION -->
-    <section class="slide" data-category="Architecture Scenarios &amp; Assessment">
+    <section class="slide" data-category="Practice Quiz">
       <div class="slide-category">Practice Answer 3</div>
       
       <div class="analysis-main-card">
