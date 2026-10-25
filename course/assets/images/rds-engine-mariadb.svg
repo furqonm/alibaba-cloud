@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 155 48" width="100%" height="100%">
+  <defs>
+    <style>
+      .maria-halo {
+        paint-order: stroke fill;
+        stroke: #ffffff;
+        stroke-width: 3.5px;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+      }
+      .maria-icon-halo {
+        paint-order: stroke fill;
+        stroke: #ffffff;
+        stroke-width: 2px;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+
+  <!-- Sea Lion Mascot (Maria) -->
+  <g transform="translate(6, 6) scale(0.75)">
+    <!-- Sea Lion Body -->
+    <path class="maria-icon-halo" d="M 38 4 C 34 2, 29 4, 27 8 C 25 12, 26 18, 25 24 C 23 30, 18 34, 12 36 C 8 37, 4 38, 2 41 C 0 43, 2 45, 6 44 C 12 42, 17 38, 22 34 C 25 36, 28 38, 30 40 C 32 42, 33 40, 32 38 C 30 34, 30 30, 31 26 C 34 20, 38 16, 40 10 C 41 7, 41 5, 38 4 Z" fill="#c78d46"/>
+    <!-- Flippers & Tail -->
+    <path class="maria-icon-halo" d="M 2 41 C -1 42, -1 45, 2 45 C 5 45, 7 43, 8 41 Z" fill="#a06828"/>
+    <path class="maria-icon-halo" d="M 24 28 C 21 29, 18 32, 18 35 C 20 35, 23 33, 25 30 Z" fill="#a06828"/>
+    <!-- Eye & Snout -->
+    <circle cx="34" cy="7" r="1.5" fill="#ffffff"/>
+    <circle cx="34.5" cy="7" r="0.8" fill="#0f172a"/>
+    <path d="M 38 6 C 39 7, 40 7, 41 6" stroke="#ffffff" stroke-width="0.8" fill="none"/>
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(48, 32)">
+    <text class="maria-halo" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800">
+      <tspan fill="#a06828">Maria</tspan><tspan fill="#c78d46">DB</tspan>
+    </text>
+  </g>
+</svg>

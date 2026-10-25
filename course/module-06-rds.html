@@ -136,48 +136,44 @@
         <div class="content-card highlight">
           <h3>
             <span>ApsaraDB RDS for MySQL</span>
-            <img src="assets/images/rds-engine-mysql.png" alt="MySQL" style="height: 32px; width: auto; object-fit: contain;">
+            <img src="assets/images/rds-engine-mysql.svg" alt="MySQL" style="height: 44px; width: auto; object-fit: contain;">
           </h3>
           <ul>
             <li><strong>Engine Versions:</strong> Full compatibility with official MySQL 5.6, 5.7, and 8.0 releases.</li>
             <li><strong>Core Capabilities:</strong> ACID-compliant InnoDB transactions, automated crash recovery, and multi-tenant security isolation.</li>
-            <li><strong>Target Use Cases:</strong> Web applications, e-commerce transaction processing, and cloud-native microservices.</li>
           </ul>
         </div>
 
         <div class="content-card highlight-blue">
           <h3>
             <span>ApsaraDB RDS for PostgreSQL</span>
-            <img src="assets/images/rds-engine-postgresql.png" alt="PostgreSQL" style="height: 32px; width: auto; object-fit: contain;">
+            <img src="assets/images/rds-engine-postgresql.svg" alt="PostgreSQL" style="height: 44px; width: auto; object-fit: contain;">
           </h3>
           <ul>
             <li><strong>Engine Versions:</strong> Comprehensive support for PostgreSQL major versions 10 through 16.</li>
             <li><strong>Core Capabilities:</strong> Rich SQL standard compliance, advanced indexing (B-Tree, Hash, GIN, GiST), and JSONB semi-structured data.</li>
-            <li><strong>Target Use Cases:</strong> Enterprise relational databases, complex analytics, geographic information systems, and ERPs.</li>
           </ul>
         </div>
 
         <div class="content-card highlight-green">
           <h3>
             <span>ApsaraDB RDS for SQL Server</span>
-            <img src="assets/images/rds-engine-sqlserver.png" alt="SQL Server" style="height: 28px; width: auto; max-width: 130px; object-fit: contain;">
+            <img src="assets/images/rds-engine-sqlserver.svg" alt="SQL Server" style="height: 44px; width: auto; object-fit: contain;">
           </h3>
           <ul>
             <li><strong>Engine Versions:</strong> Microsoft SQL Server 2008 R2, 2012, 2016, 2017, 2019, and 2022.</li>
             <li><strong>Enterprise Features:</strong> Microsoft AlwaysOn availability groups, Linked Servers, and SSAS / SSIS / SSRS.</li>
-            <li><strong>Target Use Cases:</strong> Legacy Windows enterprise applications, financial cores, and enterprise reporting.</li>
           </ul>
         </div>
 
         <div class="content-card highlight-purple">
           <h3>
             <span>ApsaraDB RDS for MariaDB</span>
-            <img src="assets/images/rds-engine-mariadb.png" alt="MariaDB" style="height: 32px; width: auto; object-fit: contain;">
+            <img src="assets/images/rds-engine-mariadb.svg" alt="MariaDB" style="height: 44px; width: auto; object-fit: contain;">
           </h3>
           <ul>
             <li><strong>Engine Versions:</strong> MariaDB TX community and enterprise branch versions.</li>
             <li><strong>Features:</strong> Thread pool connection scaling, Aria storage engine, and high transactional concurrency.</li>
-            <li><strong>Target Use Cases:</strong> Open-source community systems and high-throughput transactional apps.</li>
           </ul>
         </div>
       </div>
@@ -192,13 +188,13 @@
           <div class="content-card highlight">
             <h3>
               <span>AliSQL (MySQL Kernel Enhancement)</span>
-              <img src="assets/images/rds-engine-mysql.png" alt="AliSQL" style="height: 32px; width: auto; object-fit: contain;">
+              <img src="assets/images/rds-engine-mysql.svg" alt="AliSQL" style="height: 44px; width: auto; object-fit: contain;">
             </h3>
             <ul>
-              <li><strong>Enterprise Branch:</strong> Proprietary MySQL kernel developed by Alibaba Cloud, proven and battle-tested during the Double 11 Global Shopping Festival under massive transaction bursts.</li>
-              <li><strong>High-Concurrency Thread Pool:</strong> Replaces the traditional one-thread-per-connection architecture with an intelligent worker thread pool, sustaining tens of thousands of active connections without memory thrashing.</li>
-              <li><strong>Statement Concurrency Control (CCL):</strong> Built-in SQL queue management that dynamically throttles high-frequency queries matching specific syntax rules to protect the instance from CPU overload.</li>
-              <li><strong>Performance &amp; DDL Optimizations:</strong> Non-blocking fast DDL execution, optimized InnoDB buffer pool flushing, hot-spot inventory update hints (Commit-on-Success), and multi-threaded slave replication.</li>
+              <li><strong>Battle-Tested Kernel:</strong> Proprietary MySQL engine developed by Alibaba Cloud, proven under massive Double 11 transaction bursts.</li>
+              <li><strong>High-Concurrency Thread Pool:</strong> Sustains tens of thousands of active connections without thread thrashing.</li>
+              <li><strong>Concurrency Control (CCL):</strong> Built-in SQL queue dynamically throttles query bursts to prevent CPU overload.</li>
+              <li><strong>Performance &amp; DDL:</strong> Non-blocking online DDL, commit-on-success inventory hints, and parallel replication.</li>
             </ul>
           </div>
         </div>
@@ -207,13 +203,13 @@
           <div class="content-card highlight-blue">
             <h3>
               <span>AliPG (PostgreSQL Kernel Enhancement)</span>
-              <img src="assets/images/rds-engine-postgresql.png" alt="AliPG" style="height: 32px; width: auto; object-fit: contain;">
+              <img src="assets/images/rds-engine-postgresql.svg" alt="AliPG" style="height: 44px; width: auto; object-fit: contain;">
             </h3>
             <ul>
-              <li><strong>Enterprise PostgreSQL Engine:</strong> 100% compatible with open-source PostgreSQL while integrating enterprise-grade security, geospatial analytics, and native AI vector indexing.</li>
-              <li><strong>Ganos Spatio-Temporal Engine:</strong> Native spatial computing engine supporting spatial geometries, mobile trajectory tracking, 3D surface meshes, LiDAR point clouds, and remote sensing imagery.</li>
-              <li><strong>Native AI Vector Search:</strong> Built-in high-dimensional vector search algorithms (pgvector and PASE indexing) enabling real-time embedding similarity queries for RAG and GenAI applications.</li>
-              <li><strong>Scalability &amp; Enterprise Governance:</strong> Parallel query execution optimizations, partitioned table routing acceleration, Transparent Data Encryption (TDE), and optimized background MVCC autovacuuming.</li>
+              <li><strong>Enterprise PostgreSQL:</strong> 100% open-source compatibility with enterprise security and query acceleration.</li>
+              <li><strong>Ganos Spatio-Temporal:</strong> Native multi-dimensional engine for 3D meshes, LiDAR point clouds, and GIS trajectories.</li>
+              <li><strong>Native AI Vector Search:</strong> Built-in pgvector &amp; PASE indexing for real-time GenAI and RAG embedding similarity.</li>
+              <li><strong>Scalability &amp; Governance:</strong> Accelerated partition routing, parallel execution, TDE, and optimized autovacuum.</li>
             </ul>
           </div>
         </div>

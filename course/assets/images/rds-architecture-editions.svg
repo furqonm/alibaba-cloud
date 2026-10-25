@@ -47,10 +47,9 @@
     <text x="140" y="316" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#0284c7">99.9999999% Data Durability</text>
 
     <!-- Characteristics Pill List -->
-    <rect x="25" y="348" width="230" height="74" rx="6" fill="#f1f5f9"/>
-    <text x="38" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155">• Availability: 99.9% SLA</text>
-    <text x="38" y="390" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155">• Single point of failure (No standby)</text>
-    <text x="38" y="410" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#0284c7">• Dev / Test / Micro workloads</text>
+    <rect x="25" y="352" width="230" height="66" rx="6" fill="#f1f5f9"/>
+    <text x="38" y="378" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#334155">• Availability: 99.9% SLA</text>
+    <text x="38" y="402" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#0284c7">• Dev / Test / Micro workloads</text>
   </g>
 
   <!-- Card 2: High-Availability Edition -->
@@ -90,10 +89,9 @@
     <text x="140" y="312" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#047857">Zero Data Loss Target (RPO ~ 0)</text>
 
     <!-- Characteristics Pill List -->
-    <rect x="20" y="348" width="240" height="74" rx="6" fill="#f0fdf4"/>
-    <text x="32" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#166534">• Availability: 99.95% – 99.99%</text>
-    <text x="32" y="390" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#166534">• Automated HA failover detection</text>
-    <text x="32" y="410" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#15803d">• Enterprise Production Standard</text>
+    <rect x="20" y="352" width="240" height="66" rx="6" fill="#f0fdf4"/>
+    <text x="32" y="378" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#166534">• Availability: 99.95% – 99.99%</text>
+    <text x="32" y="402" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#15803d">• Enterprise Production Standard</text>
   </g>
 
   <!-- Card 3: Enterprise Edition -->
@@ -139,9 +137,8 @@
     <text x="140" y="312" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#7c3aed">Cross-Datacenter Disaster Tolerance</text>
 
     <!-- Characteristics Pill List -->
-    <rect x="18" y="348" width="244" height="74" rx="6" fill="#faf5ff"/>
-    <text x="30" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#5b21b6">• Availability: 99.99% Financial SLA</text>
-    <text x="30" y="390" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#5b21b6">• Multi-DC Paxos quorum commit</text>
-    <text x="30" y="410" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#6d28d9">• Banking, Securities &amp; Core Payments</text>
+    <rect x="18" y="352" width="244" height="66" rx="6" fill="#faf5ff"/>
+    <text x="30" y="378" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#5b21b6">• Availability: 99.99% Financial SLA</text>
+    <text x="30" y="402" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#6d28d9">• Banking, Securities &amp; Core Payments</text>
   </g>
 </svg>

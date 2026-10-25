@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 48" width="100%" height="100%">
+  <defs>
+    <style>
+      .mysql-halo {
+        paint-order: stroke fill;
+        stroke: #ffffff;
+        stroke-width: 3.5px;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+      }
+      .mysql-icon-halo {
+        paint-order: stroke fill;
+        stroke: #ffffff;
+        stroke-width: 2px;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+
+  <!-- Dolphin Mascot (Sakila) -->
+  <g transform="translate(6, 4) scale(0.72)">
+    <!-- Main Body Arc -->
+    <path class="mysql-icon-halo" d="M 38 6 C 26 5, 12 14, 8 26 C 6 32, 7 38, 11 44 C 13 46, 14 44, 13 41 C 12 37, 12 32, 16 26 C 21 18, 30 14, 40 14 C 44 14, 46 12, 43 10 C 41 8, 40 6, 38 6 Z" fill="#00758f"/>
+    <!-- Dorsal Fin & Snout -->
+    <path class="mysql-icon-halo" d="M 32 6 C 36 2, 42 1, 46 4 C 45 6, 41 8, 38 8 Z" fill="#00758f"/>
+    <!-- Head & Beak -->
+    <path class="mysql-icon-halo" d="M 40 14 C 46 14, 52 18, 54 22 C 55 24, 52 25, 48 23 C 44 21, 40 18, 38 16 Z" fill="#f29111"/>
+    <!-- Tail Fluke -->
+    <path class="mysql-icon-halo" d="M 11 44 C 7 46, 2 48, 0 45 C 4 43, 8 40, 10 37 C 9 40, 10 42, 11 44 Z" fill="#00758f"/>
+    <path class="mysql-icon-halo" d="M 11 44 C 14 47, 19 49, 21 47 C 17 45, 13 43, 11 40 Z" fill="#f29111"/>
+    <!-- Eye -->
+    <circle cx="45" cy="18" r="1.5" fill="#ffffff"/>
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(54, 32)">
+    <text class="mysql-halo" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800">
+      <tspan fill="#00758f">My</tspan><tspan fill="#f29111">SQL</tspan>
+    </text>
+  </g>
+</svg>

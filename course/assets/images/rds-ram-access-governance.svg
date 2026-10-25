@@ -17,12 +17,6 @@
     </linearGradient>
   </defs>
 
-  <!-- Top Note Callout: DMS Management -->
-  <g transform="translate(140, 10)">
-    <path d="M 0 25 C 0 8, 20 8, 30 8 L 270 8 C 280 8, 300 8, 300 25" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
-    <rect x="35" y="0" width="230" height="22" rx="11" fill="#ffffff" stroke="#fed7aa" stroke-width="1.2" filter="url(#ram-shadow)"/>
-    <text x="150" y="15" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#c2410c">You can now manage some of this with DMS</text>
-  </g>
 
   <!-- LEFT ZONE: In-Database SQL Access (Data Plane) -->
   <g transform="translate(40, 42)">
