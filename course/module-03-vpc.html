@@ -63,7 +63,7 @@
       
       <ol class="agenda-grid">
         <li class="agenda-item">VPC Concept &amp; Architecture</li>
-        <li class="agenda-item">Subnet Planning</li>
+        <li class="agenda-item">vSwitch Planning</li>
         <li class="agenda-item">Routing</li>
         <li class="agenda-item">Network Security</li>
         <li class="agenda-item">Enterprise Connectivity</li>
@@ -83,24 +83,24 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 4: PUBLIC VS PRIVATE SUBNETS ==================== -->
+    <!-- ==================== SLIDE 4: PUBLIC VS PRIVATE VSWITCHES ==================== -->
     <section class="slide" data-category="VPC Concept &amp; Architecture">
       <div class="slide-category">Section 1: VPC Concept &amp; Architecture</div>
-      <h2>Public vs. Private Subnets</h2>
+      <h2>Public vs. Private vSwitches</h2>
       
       <div class="grid-2" style="margin-top: 1rem; align-items: stretch;">
         <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 0.75rem;">
-          <img src="assets/images/basic-network-isolation-topology.svg" alt="Fundamental Architecture: Two-Tier Subnet Isolation Pattern" class="diagram-image" style="max-height: 400px; width: 100%; object-fit: contain;">
-          <div class="diagram-caption">Fundamental Architecture: Two-Tier Subnet Isolation Pattern</div>
+          <img src="assets/images/basic-network-isolation-topology.svg" alt="Fundamental Architecture: Two-Tier vSwitch Isolation Pattern" class="diagram-image" style="max-height: 400px; width: 100%; object-fit: contain;">
+          <div class="diagram-caption">Fundamental Architecture: Two-Tier vSwitch Isolation Pattern</div>
         </div>
 
         <div style="display: flex; flex-direction: column; gap: 0.85rem; justify-content: center;">
           <div class="content-card highlight-blue">
             <h3>Network Partitioning</h3>
             <ul>
-              <li><strong>Network Router:</strong> Directs traffic between the external internet and internal subnets based on defined routing tables.</li>
-              <li><strong>Public Subnet (The Cashier):</strong> Houses customer-facing services (Web Servers, API Gateways, Reverse Proxies) with public IP routing.</li>
-              <li><strong>Private Subnet (The Kitchen):</strong> Houses core databases and application business logic with <em>zero direct internet route</em>.</li>
+              <li><strong>Network Router:</strong> Directs traffic between the external internet and internal vSwitches based on defined routing tables.</li>
+              <li><strong>Public vSwitch (The Cashier):</strong> Houses customer-facing services (Web Servers, API Gateways, Reverse Proxies) with public IP routing.</li>
+              <li><strong>Private vSwitch (The Kitchen):</strong> Houses core databases and application business logic with <em>zero direct internet route</em>.</li>
             </ul>
           </div>
 
@@ -108,8 +108,8 @@
             <h3>Core Architectural Advantages</h3>
             <ul>
               <li><strong>Zero Direct Public Exposure:</strong> Backend databases cannot be scanned or targeted by external internet attackers.</li>
-              <li><strong>Controlled Inter-Subnet Flow:</strong> Only authorized application proxies in the public subnet can query the database over internal private routes.</li>
-              <li><strong>Defense-in-Depth:</strong> Even if a public-facing web server is compromised, the internal subnet firewall and boundary prevent lateral movement to core data stores.</li>
+              <li><strong>Controlled Inter-vSwitch Flow:</strong> Only authorized application proxies in the public vSwitch can query the database over internal private routes.</li>
+              <li><strong>Defense-in-Depth:</strong> Even if a public-facing web server is compromised, the internal vSwitch firewall and boundary prevent lateral movement to core data stores.</li>
             </ul>
           </div>
         </div>
@@ -130,7 +130,7 @@
             A <strong>Virtual Private Cloud (VPC)</strong> is an isolated private network built on Alibaba Cloud.
           </p>
           <p class="service-desc">
-            You can think of a VPC as your own customized private network environment in the cloud. It allows you to select your own private IP address ranges (CIDR blocks), subdivide networks into subnets across zones, and define custom security rules. Each VPC is logically independent and completely isolated from other tenants.
+            You can think of a VPC as your own customized private network environment in the cloud. It allows you to select your own private IP address ranges (CIDR blocks), subdivide networks into vSwitches across zones, and define custom security rules. Each VPC is logically independent and completely isolated from other tenants.
           </p>
         </div>
       </div>
@@ -169,8 +169,8 @@
           <div class="content-card highlight">
             <ul>
               <li><strong>VPC (Regional Scope):</strong> The top-level software-defined network boundary tied to a single Alibaba Cloud Region. Defines the master IP address block.</li>
-              <li><strong>vRouter (Virtual Router):</strong> The central routing hub connecting all subnets within the VPC and serving as the default gateway to external networks. Each VPC has exactly one logical vRouter.</li>
-              <li><strong>vSwitch (Virtual Switch):</strong> A subnet dividing the VPC CIDR block, physically anchored inside a <strong>single Availability Zone</strong>.</li>
+              <li><strong>vRouter (Virtual Router):</strong> The central routing hub connecting all vSwitches within the VPC and serving as the default gateway to external networks. Each VPC has exactly one logical vRouter.</li>
+              <li><strong>vSwitch (Virtual Switch):</strong> A virtual switch dividing the VPC CIDR block into zone-anchored segments, physically anchored inside a <strong>single Availability Zone</strong>.</li>
               <li><strong>Route Tables:</strong> Directs traffic forwarding based on destination CIDR blocks and designated next-hop targets.</li>
             </ul>
           </div>
@@ -224,8 +224,8 @@
 
 
     <!-- ==================== SLIDE 9: IP ADDRESS PLANNING ==================== -->
-    <section class="slide" data-category="Subnet Planning">
-      <div class="slide-category">Section 2: Subnet Planning</div>
+    <section class="slide" data-category="vSwitch Planning">
+      <div class="slide-category">Section 2: vSwitch Planning</div>
       <h2>IPv4 Address Planning</h2>
       
       <div class="table-wrapper">
@@ -263,19 +263,19 @@
 
       <div class="grid-2" style="margin-top: 1rem;">
         <div class="content-card highlight-green">
-          <h3>Non-Overlapping Subnets</h3>
+          <h3>Non-Overlapping vSwitches</h3>
           <p>When designing VPCs destined for hybrid interconnectivity (via CEN, Express Connect, or VPN), <strong>ensure that the VPC CIDR block never overlaps</strong> with your on-premises datacenters or peer VPCs. Route propagation fails on overlapping CIDRs!</p>
         </div>
         <div class="content-card highlight-blue">
-          <h3>Subnet Mask Constraints</h3>
+          <h3>CIDR Mask Constraints</h3>
           <p>Alibaba Cloud VPC primary IPv4 CIDR blocks must have a subnet mask between <strong>/8 and /24</strong>. Subnet masks wider than /8 (e.g. /7) or narrower than /24 (e.g. /25) are not supported as primary VPC CIDR blocks.</p>
         </div>
       </div>
     </section>
 
     <!-- ==================== SLIDE 10: SECONDARY CIDR & IPV6 ==================== -->
-    <section class="slide" data-category="Subnet Planning">
-      <div class="slide-category">Section 2: Subnet Planning</div>
+    <section class="slide" data-category="vSwitch Planning">
+      <div class="slide-category">Section 2: vSwitch Planning</div>
       <h2>Secondary CIDR Blocks & IPv6 Dual-Stack</h2>
       
       <div class="grid-2">
@@ -293,7 +293,7 @@
           <p>Native modern IPv6 addressing for global internet compliance and direct device addressability:</p>
           <ul>
             <li><strong>Automatic /56 Allocation:</strong> Alibaba Cloud automatically allocates a globally unique <code>/56</code> IPv6 CIDR block when IPv6 is enabled on a VPC.</li>
-            <li><strong>/64 Subnet Slicing:</strong> Subdivide the VPC IPv6 block into <code>/64</code> subnets assigned to individual vSwitches.</li>
+            <li><strong>/64 vSwitch Slicing:</strong> Subdivide the VPC IPv6 block into <code>/64</code> blocks assigned to individual vSwitches.</li>
             <li><strong>IPv6 Gateway:</strong> Provides granular internet egress and ingress control for IPv6 traffic with configurable bandwidth packages.</li>
           </ul>
         </div>
@@ -305,35 +305,35 @@
     </section>
 
     <!-- ==================== SLIDE 11: MULTI-ZONE VSWITCH ARCHITECTURE ==================== -->
-    <section class="slide" data-category="Subnet Planning">
-      <div class="slide-category">Section 2: Subnet Planning</div>
+    <section class="slide" data-category="vSwitch Planning">
+      <div class="slide-category">Section 2: vSwitch Planning</div>
       <h2>Multi-Zone vSwitch Architecture</h2>
       
       <div class="grid-2" style="grid-template-columns: 1fr 1.35fr; gap: 1.25rem; align-items: stretch;">
         <div class="content-card highlight">
           <ul>
             <li><strong>Strict Zonal Anchor:</strong> A vSwitch resides inside <strong>exactly one Availability Zone</strong>. A vSwitch can never span across multiple physical zones.</li>
-            <li><strong>Subnet Mask Range:</strong> A vSwitch mask must be between <strong>/16 and /29</strong>, and its CIDR block must be a strict subset of the VPC's primary or secondary CIDR blocks.</li>
+            <li><strong>vSwitch Mask Range:</strong> A vSwitch mask must be between <strong>/16 and /29</strong>, and its CIDR block must be a strict subset of the VPC's primary or secondary CIDR blocks.</li>
             <li><strong>Intra-VPC Routing:</strong> By default, all vSwitches inside the same VPC can communicate with each other over high-speed backbone private links with zero routing configuration required.</li>
             <li><strong>System Quotas:</strong> Each VPC supports up to 24 vSwitches by default (expandable via quota application).</li>
           </ul>
         </div>
         <div class="diagram-container clean" style="margin-top: 0; justify-content: center; height: 100%; padding: 0.75rem;">
-          <img src="assets/images/vswitch-multizone-topology.svg" alt="Multi-Zone vSwitch Subnet Architecture" class="diagram-image" style="max-height: 380px; width: 100%; object-fit: contain;">
+          <img src="assets/images/vswitch-multizone-topology.svg" alt="Multi-Zone vSwitch Architecture" class="diagram-image" style="max-height: 380px; width: 100%; object-fit: contain;">
           
         </div>
       </div>
 
       <div class="callout callout-amber" style="margin-top: 0.75rem;">
         <div>
-          <span class="badge badge-exam">Strict Architecture Constraint</span> Once a vSwitch is created, its <strong>Zone and CIDR block cannot be modified</strong>. Sizing your subnets appropriately during the architectural design phase is critical!
+          <span class="badge badge-exam">Strict Architecture Constraint</span> Once a vSwitch is created, its <strong>Zone and CIDR block cannot be modified</strong>. Sizing your vSwitches appropriately during the architectural design phase is critical!
         </div>
       </div>
     </section>
 
     <!-- ==================== SLIDE 12: RESERVED IP ADDRESSES ==================== -->
-    <section class="slide" data-category="Subnet Planning">
-      <div class="slide-category">Section 2: Subnet Planning</div>
+    <section class="slide" data-category="vSwitch Planning">
+      <div class="slide-category">Section 2: vSwitch Planning</div>
       <h2>System-Reserved IP Addresses</h2>
       
       <div class="content-card highlight" style="margin-bottom: 1rem;">
@@ -380,7 +380,7 @@
       <div class="content-card highlight-blue">
         <h3>Host Capacity Calculation Formula</h3>
         <p style="font-size: calc(1.05rem + var(--font-delta)); line-height: 1.6;">
-          For any vSwitch subnet with prefix length <em>P</em>, total usable host IP addresses are calculated as:
+          For any vSwitch with prefix length <em>P</em>, total usable host IP addresses are calculated as:
           <br>
           <strong style="font-size: calc(1.25rem + var(--font-delta)); color: #0284c7;">Usable Host IPs = 2<sup>(32 − P)</sup> − 5</strong>
         </p>
@@ -447,11 +447,11 @@
       
       <div class="grid-2" style="grid-template-columns: 1fr 1.35fr; gap: 1.25rem; align-items: stretch;">
         <div class="content-card highlight">
-          <p>By default, all vSwitches share the System Route Table. Associating a <strong>Custom Route Table</strong> with a specific vSwitch overrides system routing for that subnet:</p>
+          <p>By default, all vSwitches share the System Route Table. Associating a <strong>Custom Route Table</strong> with a specific vSwitch overrides system routing for that vSwitch:</p>
           <ul>
-            <li><strong>DMZ / Public Subnet:</strong> Associated with a Custom Route Table pointing <code>0.0.0.0/0</code> to an Internet NAT Gateway or secondary firewall ENI.</li>
-            <li><strong>Private Backend Subnet:</strong> Associated with a Route Table containing no internet route, isolating microservices from external exposure.</li>
-            <li><strong>Database Subnet:</strong> Locked down with only local intra-VPC routes, blocking direct outbound connections.</li>
+            <li><strong>DMZ / Public vSwitch:</strong> Associated with a Custom Route Table pointing <code>0.0.0.0/0</code> to an Internet NAT Gateway or secondary firewall ENI.</li>
+            <li><strong>Private Backend vSwitch:</strong> Associated with a Route Table containing no internet route, isolating microservices from external exposure.</li>
+            <li><strong>Database vSwitch:</strong> Locked down with only local intra-VPC routes, blocking direct outbound connections.</li>
             <li><strong>Binding Rule:</strong> A vSwitch can be associated with exactly one Route Table at any given time (either the System Route Table or a single Custom Route Table).</li>
           </ul>
         </div>
@@ -498,8 +498,8 @@
 
       <div class="grid-3" style="margin-top: 0.5rem;">
         <div class="content-card highlight">
-          <h3>1. Subnet Perimeter</h3>
-          <p><strong>Network ACLs:</strong> Stateless virtual firewalls at the vSwitch boundary controlling traffic entering and leaving entire subnets.</p>
+          <h3>1. vSwitch Perimeter</h3>
+          <p><strong>Network ACLs:</strong> Stateless virtual firewalls at the vSwitch boundary controlling traffic entering and leaving entire vSwitches.</p>
         </div>
         <div class="content-card highlight-blue">
           <h3>2. Interface Perimeter</h3>
@@ -521,7 +521,7 @@
         <div class="content-card highlight">
           <h3>Stateless Packet Filtering</h3>
           <ul>
-            <li><strong>vSwitch Boundary:</strong> Associated directly with one or more vSwitches, acting as the subnet-level shield.</li>
+            <li><strong>vSwitch Boundary:</strong> Associated directly with one or more vSwitches, acting as the vSwitch-level shield.</li>
             <li><strong>Strictly Stateless:</strong> Inbound and outbound traffic are evaluated completely independently! Each packet is filtered without session state tracking.</li>
             <li><strong>Ephemeral Port Requirement:</strong> If inbound port 443 is allowed, you <strong>must configure an explicit outbound rule</strong> for client ephemeral return ports (1024–65535).</li>
             <li><strong>Rule Priority:</strong> Evaluated sequentially from highest priority (1) to lowest (32,766). Once a packet matches a rule, evaluation halts immediately (first match wins).</li>
@@ -598,7 +598,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 20: NACL VS SG COMPARISON ==================== -->
+    <!-- ==================== SLIDE 20: NETWORK ACL VS SG COMPARISON ==================== -->
     <section class="slide" data-category="Network Security">
       <div class="slide-category">Section 4: Network Security</div>
       <h2>Network ACL vs Security Group</h2>
@@ -615,7 +615,7 @@
           <tbody>
             <tr>
               <td><strong>Operating Level</strong></td>
-              <td><strong>Subnet Level:</strong> Bound to entire vSwitches.</td>
+              <td><strong>vSwitch Level:</strong> Bound to entire vSwitches.</td>
               <td><strong>Interface Level:</strong> Bound to ENIs / compute instances.</td>
             </tr>
             <tr>
@@ -653,7 +653,7 @@
       </div>
 
       <div class="callout callout-blue" style="margin-top: 1rem;">
-        <strong>Complementary Defense:</strong> Network ACLs filter coarse, broad subnet-level threats (e.g. blocking known malicious botnet CIDRs), while Security Groups provide granular port and protocol controls tailored to specific application workloads.
+        <strong>Complementary Defense:</strong> Network ACLs filter coarse, broad vSwitch-level threats (e.g. blocking known malicious botnet CIDRs), while Security Groups provide granular port and protocol controls tailored to specific application workloads.
       </div>
     </section>
 
@@ -1194,7 +1194,7 @@
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">D</span>
-            <span>The vSwitch must be converted to an IPv6 dual-stack subnet to support Network ACL stateful return flows.</span>
+            <span>The vSwitch must be converted to an IPv6 dual-stack vSwitch to support Network ACL stateful return flows.</span>
           </li>
         </ul>
       </div>

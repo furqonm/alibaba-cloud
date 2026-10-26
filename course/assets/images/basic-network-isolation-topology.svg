@@ -45,12 +45,12 @@
     <!-- Link: Internet to Router -->
     <path d="M 120 190 L 157 190" stroke="#0284C7" stroke-width="2.5" marker-end="url(#t-blue)" />
 
-    <!-- Public Subnet Container -->
+    <!-- Public vSwitch Container -->
     <g filter="url(#shadow2)">
       <rect x="265" y="78" width="160" height="280" rx="8" fill="#F0F9FF" stroke="#0284C7" stroke-width="1.5" stroke-dasharray="4 3" />
       <rect x="265" y="78" width="160" height="30" rx="8" fill="#E0F2FE" />
       <rect x="265" y="96" width="160" height="12" fill="#E0F2FE" />
-      <text x="345" y="97" fill="#0369A1" font-size="11" font-weight="700" text-anchor="middle">Public Subnet (10.0.1.0/24)</text>
+      <text x="345" y="97" fill="#0369A1" font-size="11" font-weight="700" text-anchor="middle">Public vSwitch (10.0.1.0/24)</text>
       <text x="345" y="122" fill="#0284C7" font-size="10" font-weight="600" text-anchor="middle">[Front-Desk / Cashier]</text>
 
       <!-- Web Server Card -->
@@ -62,19 +62,19 @@
       <text x="345" y="244" fill="#059669" font-size="9" font-weight="700" text-anchor="middle">Public Routing Enabled</text>
     </g>
 
-    <!-- Subnet Barrier / Divider Line -->
+    <!-- vSwitch Barrier / Divider Line -->
     <line x1="442" y1="78" x2="442" y2="358" stroke="#EF4444" stroke-width="2" stroke-dasharray="6 4" />
     <g filter="url(#shadow2)">
       <rect x="430" y="105" width="24" height="34" rx="6" fill="#FEE2E2" stroke="#DC2626" stroke-width="1.2" />
       <text x="442" y="127" fill="#991B1B" font-size="13" font-weight="800" text-anchor="middle">&#128274;</text>
     </g>
 
-    <!-- Private Subnet Container -->
+    <!-- Private vSwitch Container -->
     <g filter="url(#shadow2)">
       <rect x="458" y="78" width="155" height="280" rx="8" fill="#ECFDF5" stroke="#059669" stroke-width="1.5" stroke-dasharray="4 3" />
       <rect x="458" y="78" width="155" height="30" rx="8" fill="#D1FAE5" />
       <rect x="458" y="96" width="155" height="12" fill="#D1FAE5" />
-      <text x="535" y="97" fill="#065F46" font-size="11" font-weight="700" text-anchor="middle">Private Subnet (10.0.2.0/24)</text>
+      <text x="535" y="97" fill="#065F46" font-size="11" font-weight="700" text-anchor="middle">Private vSwitch (10.0.2.0/24)</text>
       <text x="535" y="122" fill="#059669" font-size="10" font-weight="600" text-anchor="middle">[Kitchen / Chef]</text>
 
       <!-- Database Card -->
@@ -94,7 +94,7 @@
     <rect x="415" y="175" width="55" height="18" rx="3" fill="#D1FAE5" />
     <text x="442" y="188" fill="#065F46" font-size="9" font-weight="700" text-anchor="middle">Internal</text>
 
-    <!-- Blocked External Traffic Path to Private Subnet -->
+    <!-- Blocked External Traffic Path to Private vSwitch -->
     <path d="M 68 245 L 68 320 L 435 320" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#t-red)" />
     <g filter="url(#shadow2)">
       <rect x="155" y="308" width="220" height="24" rx="12" fill="#FEE2E2" stroke="#DC2626" stroke-width="1.2" />
