@@ -449,8 +449,8 @@
         <div class="content-card highlight">
           <p>By default, all vSwitches share the System Route Table. Associating a <strong>Custom Route Table</strong> with a specific vSwitch overrides system routing for that subnet:</p>
           <ul>
-            <li><strong>DMZ / Public Subnet:</strong> Associated with a custom route table pointing <code>0.0.0.0/0</code> to an Internet NAT Gateway or secondary firewall ENI.</li>
-            <li><strong>Private Backend Subnet:</strong> Associated with a route table containing no internet route, isolating microservices from external exposure.</li>
+            <li><strong>DMZ / Public Subnet:</strong> Associated with a Custom Route Table pointing <code>0.0.0.0/0</code> to an Internet NAT Gateway or secondary firewall ENI.</li>
+            <li><strong>Private Backend Subnet:</strong> Associated with a Route Table containing no internet route, isolating microservices from external exposure.</li>
             <li><strong>Database Subnet:</strong> Locked down with only local intra-VPC routes, blocking direct outbound connections.</li>
             <li><strong>Binding Rule:</strong> A vSwitch can be associated with exactly one Route Table at any given time (either the System Route Table or a single Custom Route Table).</li>
           </ul>
@@ -549,7 +549,7 @@
         <div class="content-card highlight">
           <h3>Stateful Packet Inspection</h3>
           <ul>
-            <li><strong>ENI Association:</strong> Attached directly to Elastic Network Interfaces (ENIs). Each instance/ENI can belong to up to 5 security groups.</li>
+            <li><strong>ENI Association:</strong> Attached directly to Elastic Network Interfaces (ENIs). Each instance/ENI can belong to up to 5 Security Groups.</li>
             <li><strong>Stateful Tracking:</strong> If an inbound connection is permitted by an ingress rule, the corresponding outbound response packet is <strong>automatically permitted</strong>, regardless of outbound rules.</li>
             <li><strong>Bidirectional Return Flow:</strong> Similarly, outbound requests initiated by the instance automatically permit inbound response packets.</li>
             <li><strong>Precedence Rule:</strong> Evaluated in priority order (1 = highest). If rules conflict at the same priority, <strong>Drop takes precedence over Accept</strong>.</li>
@@ -588,7 +588,7 @@
             <li><strong>Hyper-Scale Capacity:</strong> Supports up to <strong>65,536 private IP addresses per VPC</strong> (optimized for high-density container fabrics).</li>
             <li><strong>Zero-Trust Intra-Group Isolation:</strong> Instances within the same group are <strong>isolated by default</strong> (zero mutual intranet traffic unless explicitly allowed).</li>
             <li><strong>CIDR-Only Rules:</strong> Rules must specify IP CIDR blocks or prefix lists (Group ID referencing is not supported).</li>
-            <li><strong>Strict Type Mixing Constraint:</strong> All security groups associated with an instance or ENI must be of the exact same type (cannot mix Basic and Enterprise on one interface).</li>
+            <li><strong>Strict Type Mixing Constraint:</strong> All Security Groups associated with an instance or ENI must be of the exact same type (cannot mix Basic and Enterprise on one interface).</li>
           </ul>
         </div>
       </div>
@@ -737,11 +737,11 @@
       <div class="grid-3" style="margin-top: 0.5rem;">
         <div class="content-card highlight">
           <h3>Route Table Associations</h3>
-          <p>Every network attachment (VPC, VBR, VPN) binds to a specific Transit Router route table, defining the routing policy for inbound traffic from that attachment.</p>
+          <p>Every network attachment (VPC, VBR, VPN) binds to a specific Transit Router Route Table, defining the routing policy for inbound traffic from that attachment.</p>
         </div>
         <div class="content-card highlight-blue">
           <h3>Route Propagations</h3>
-          <p>Attachments automatically publish their CIDR blocks into designated TR route tables, eliminating the need to manually update static routing tables across VPCs.</p>
+          <p>Attachments automatically publish their CIDR blocks into designated TR Route Tables, eliminating the need to manually update static routing tables across VPCs.</p>
         </div>
         <div class="content-card highlight-green">
           <h3>Centralized DMZ Egress</h3>
@@ -763,7 +763,7 @@
       <div class="content-card highlight" style="margin-top: 0.5rem;">
         
         <ul>
-          <li><strong>Active-Active Dual Tunnels:</strong> Each VPN Gateway deploys two independent IPsec tunnels terminating on separate gateway instances across availability zones for 99.99% SLA.</li>
+          <li><strong>Active-Active Dual Tunnels:</strong> Each VPN Gateway deploys two independent IPsec tunnels terminating on separate gateway instances across Availability Zones for 99.99% SLA.</li>
           <li><strong>BGP Dynamic Routing:</strong> Supports dynamic Border Gateway Protocol (BGP) routing for automated sub-second route failover and health monitoring (DPD).</li>
           <li><strong>ECMP Load Balancing:</strong> Supports Equal-Cost Multi-Path (ECMP) routing to double effective throughput across both tunnels simultaneously.</li>
         </ul>
@@ -1097,7 +1097,7 @@
       <div class="quiz-single-card">
         <div class="quiz-single-question">
           <span class="quiz-number">Question 1</span>
-          <span>An enterprise has deployed 12 branch VPCs across two Alibaba Cloud regions (Singapore and Jakarta). All branch VPCs must communicate with a centralized Shared Services VPC hosting authentication and monitoring tools. Additionally, corporate policy dictates that adding a new branch VPC in the future must not require manual route table modifications in existing VPCs. Which architecture satisfies these requirements with minimum operational overhead?</span>
+          <span>An enterprise has deployed 12 branch VPCs across two Alibaba Cloud regions (Singapore and Jakarta). All branch VPCs must communicate with a centralized Shared Services VPC hosting authentication and monitoring tools. Additionally, corporate policy dictates that adding a new branch VPC in the future must not require manual Route Table modifications in existing VPCs. Which architecture satisfies these requirements with minimum operational overhead?</span>
         </div>
         <ul class="quiz-single-options">
           <li class="quiz-single-option">
@@ -1137,7 +1137,7 @@
             <span>✖ Option A is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            <strong>Operational overhead and lack of transitivity.</strong> VPC Peering requires point-to-point mesh links, does not support transitive routing between regions seamlessly, and requires updating route tables manually every time a new VPC is created.
+            <strong>Operational overhead and lack of transitivity.</strong> VPC Peering requires point-to-point mesh links, does not support transitive routing between regions seamlessly, and requires updating Route Tables manually every time a new VPC is created.
           </div>
         </div>
 

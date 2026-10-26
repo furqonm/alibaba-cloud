@@ -106,7 +106,7 @@
       <div class="service-pillars-grid">
         <div class="service-pillar-card">
           <h4>⚡ High Availability</h4>
-          <p>Multi-AZ active-standby replication with automated failover in under 30 seconds.</p>
+          <p>Multi-Zone active-standby replication with automated failover in under 30 seconds.</p>
         </div>
         <div class="service-pillar-card">
           <h4>🔒 Multi-Tier Security</h4>
@@ -830,7 +830,7 @@
             <img src="assets/images/rds-proxy-transaction-splitting.svg" alt="RDS Database Proxy Transaction Splitting Workflow" class="architecture-diagram" style="max-height: 270px; width: 100%; height: auto; object-fit: contain;">
           </div>
           <div class="callout callout-blue" style="margin-top: 0.85rem; width: 100%;">
-            <div>Transaction Splitting: Pre-write reads route to read replicas; post-write reads pin to Primary to guarantee read-your-own-writes consistency.</div>
+            <div>Transaction Splitting: Pre-write reads route to Read-Only Replicas; post-write reads pin to Primary to guarantee read-your-own-writes consistency.</div>
           </div>
         </div>
 
@@ -1048,7 +1048,7 @@
           <li><strong>50+ Operational Health Metrics:</strong> Continuously tracks CPU utilization, memory pressure, disk storage consumption, IOPS, active connections, and replication lag in real time.</li>
           <li><strong>Multi-Channel Proactive Alarms:</strong> Configures automated threshold alarms that dispatch notifications via DingTalk, Webhook, SMS, and Email upon metric anomalies.</li>
           <li><strong>High-Frequency Metric Sampling:</strong> Supports fine-grained monitoring down to 1-second intervals for high-frequency trading and mission-critical financial applications.</li>
-          <li><strong>Fleet-Wide Performance Visibility:</strong> Unified console visualizes health trends across multiple instances, availability zones, and multi-region database topologies.</li>
+          <li><strong>Fleet-Wide Performance Visibility:</strong> Unified console visualizes health trends across multiple instances, Availability Zones, and multi-region database topologies.</li>
         </ul>
       </div>
     </section>
@@ -1243,7 +1243,7 @@
         </div>
         <div class="service-pillar-card">
           <h4>🛡️ Active-Active HA &amp; Paxos</h4>
-          <p>Multi-AZ triplicate replication using Parallel Raft/Paxos protocol delivering RPO=0 and sub-30s failover.</p>
+          <p>Multi-Zone triplicate replication using Parallel Raft/Paxos protocol delivering RPO=0 and sub-30s failover.</p>
         </div>
       </div>
     </section>
@@ -1279,7 +1279,7 @@
             </h3>
             <ul style="margin: 0; padding-left: 1.1rem; font-size: 0.88rem; line-height: 1.45;">
               <li><strong>Intelligent Query Routing:</strong> Read/Write Splitter automatically directs write queries to the primary node and load-balances reads to replicas.</li>
-              <li><strong>Sub-30s Failover:</strong> Any read replica can be instantly promoted to primary with active failover and zero data loss (RPO=0).</li>
+              <li><strong>Sub-30s Failover:</strong> Any Read-Only Replica can be instantly promoted to primary with active failover and zero data loss (RPO=0).</li>
             </ul>
           </div>
 
@@ -1321,7 +1321,7 @@
             <ul>
               <li><strong>Massive Data Volumes (Up to 500 TB):</strong> Hyper-scale databases requiring elastic storage auto-scaling without sharding.</li>
               <li><strong>Extreme Read Concurrency:</strong> Applications requiring up to 15 Read-Only replicas sharing a single distributed storage pool with zero replication lag.</li>
-              <li><strong>Rapid Replica Provisioning:</strong> Spin up new read replicas in under 5 minutes without copying terabytes of underlying data.</li>
+              <li><strong>Rapid Replica Provisioning:</strong> Spin up new Read-Only Replicas in under 5 minutes without copying terabytes of underlying data.</li>
               <li><strong>Hyper-Scale E-Commerce &amp; Flash Sales:</strong> Engineered for extreme peak write TPS, high-concurrency gaming, and massive transactional bursts.</li>
             </ul>
           </div>
@@ -1389,7 +1389,7 @@
       </div>
 
       <div class="callout callout-green" style="margin-top: 0.65rem; padding: 0.5rem 1rem; font-size: calc(0.81rem + var(--font-delta));">
-        <strong>💡 Multi-Product Cost Optimization Rule:</strong> Stopping a Pay-As-You-Go instance halts compute billing, but <em>storage disk fees continue to accrue</em>. Combine <strong>Subscription compute</strong> with <strong>Storage Capacity Units (SCU)</strong> for predictable discounts; leverage <strong>Free DTS Migration</strong> for zero-license onboarding; and adopt <strong>PolarDB shared storage</strong> when scaling multiple read replicas to eliminate multiplied storage costs.
+        <strong>💡 Multi-Product Cost Optimization Rule:</strong> Stopping a Pay-As-You-Go instance halts compute billing, but <em>storage disk fees continue to accrue</em>. Combine <strong>Subscription compute</strong> with <strong>Storage Capacity Units (SCU)</strong> for predictable discounts; leverage <strong>Free DTS Migration</strong> for zero-license onboarding; and adopt <strong>PolarDB shared storage</strong> when scaling multiple Read-Only Replicas to eliminate multiplied storage costs.
       </div>
     </section>
 
@@ -1403,7 +1403,7 @@
           <span>An e-commerce retailer is architecting an ApsaraDB for RDS MySQL database to support an upcoming national flash sale. The application architecture enforces the following requirements:
           <br>1. The platform processes an extreme volume of read queries (90% read / 10% write) that exceeds the compute capacity of a single primary database instance.
           <br>2. Application microservices must connect through a single unified database endpoint that automatically routes transactional writes to the primary and balances reads across replicas.
-          <br>3. If a read replica experiences significant replication lag during peak write bursts, the routing tier must automatically isolate it to prevent serving stale inventory data.
+          <br>3. If a Read-Only Replica experiences significant replication lag during peak write bursts, the routing tier must automatically isolate it to prevent serving stale inventory data.
           <br>Which database architecture fulfills all requirements?</span>
         </div>
         <ul class="quiz-single-options">
@@ -1417,11 +1417,11 @@
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">C</span>
-            <span>Deploy RDS Enterprise Edition with three nodes across availability zones, configuring application queries to connect directly to the secondary standby node private IP.</span>
+            <span>Deploy RDS Enterprise Edition with three nodes across Availability Zones, configuring application queries to connect directly to the secondary standby node private IP.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">D</span>
-            <span>Deploy an independent ECS instance running self-managed Nginx reverse proxy with TCP stream load balancing mapped across RDS read replica IP addresses.</span>
+            <span>Deploy an independent ECS instance running self-managed Nginx reverse proxy with TCP stream load balancing mapped across RDS Read-Only Replica IP addresses.</span>
           </li>
         </ul>
       </div>
@@ -1497,11 +1497,11 @@
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">B</span>
-            <span>Deploy RDS High-Availability Edition in a Multi-AZ deployment; enable Transparent Data Encryption (TDE) integrated with KMS; configure continuous binlog archiving to OSS for Point-in-Time Recovery (PITR) to a clone instance.</span>
+            <span>Deploy RDS High-Availability Edition in a Multi-Zone deployment; enable Transparent Data Encryption (TDE) integrated with KMS; configure continuous binlog archiving to OSS for Point-in-Time Recovery (PITR) to a clone instance.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">C</span>
-            <span>Deploy an unmanaged MySQL database on ECS across two availability zones, configuring Linux LUKS full disk encryption on attached cloud disks.</span>
+            <span>Deploy an unmanaged MySQL database on ECS across two Availability Zones, configuring Linux LUKS full disk encryption on attached cloud disks.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">D</span>
@@ -1518,7 +1518,7 @@
       <div class="analysis-main-card">
         <div>
           <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: B</span>
-          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Multi-AZ RDS HA Edition with KMS-backed TDE encryption and second-level Point-in-Time Recovery (PITR) to a clone instance.</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Multi-Zone RDS HA Edition with KMS-backed TDE encryption and second-level Point-in-Time Recovery (PITR) to a clone instance.</span>
         </div>
       </div>
 
@@ -1537,7 +1537,7 @@
             <span>✔ Option B is Correct</span>
           </div>
           <div class="analysis-item-body">
-            <strong>Full compliance with enterprise financial security and resiliency standards.</strong> Multi-AZ HA deployment with semi-sync replication guarantees zero committed data loss (RPO = 0) and automated failover in under 30s. TDE with KMS CMK encrypts data at rest transparently, and continuous binlog streaming to OSS enables exact second PITR to a new clone instance.
+            <strong>Full compliance with enterprise financial security and resiliency standards.</strong> Multi-Zone HA deployment with semi-sync replication guarantees zero committed data loss (RPO = 0) and automated failover in under 30s. TDE with KMS CMK encrypts data at rest transparently, and continuous binlog streaming to OSS enables exact second PITR to a new clone instance.
           </div>
         </div>
 

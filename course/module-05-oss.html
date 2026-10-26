@@ -633,9 +633,9 @@
             RAM Policies are permission policies attached directly to RAM identities (Users, Groups, or Roles) to govern what actions they can perform on Alibaba Cloud resources:
           </p>
           <ul style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.45rem;">
-            <li><strong>Identity Attachment:</strong> Applied to RAM users or roles; defines the maximum permissions granted to the identity across all services.</li>
+            <li><strong>Identity Attachment:</strong> Applied to RAM Users or roles; defines the maximum permissions granted to the identity across all services.</li>
             <li><strong>No Principal Field:</strong> Does <em>not</em> define a <code>Principal</code> element because the identity to which it is attached is inherently the principal.</li>
-            <li><strong>Centralized IAM Governance:</strong> Ideal for enforcing least privilege for internal developers, applications, and ECS instance RAM roles.</li>
+            <li><strong>Centralized IAM Governance:</strong> Ideal for enforcing least privilege for internal developers, applications, and ECS instance RAM Roles.</li>
           </ul>
         </div>
 
@@ -676,8 +676,8 @@
             Bucket Policies are configured directly on an OSS bucket to control which principals can access the bucket and under what specific conditions:
           </p>
           <ul style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.45rem;">
-            <li><strong>Bucket-Level Attachment:</strong> Managed directly on the target bucket; grants access without modifying central RAM policies.</li>
-            <li><strong>Mandatory Principal Field:</strong> <em>Must</em> specify the <code>Principal</code> (e.g. another Alibaba Cloud account, RAM user ARN, or <code>*</code>).</li>
+            <li><strong>Bucket-Level Attachment:</strong> Managed directly on the target bucket; grants access without modifying central RAM Policies.</li>
+            <li><strong>Mandatory Principal Field:</strong> <em>Must</em> specify the <code>Principal</code> (e.g. another Alibaba Cloud account, RAM User ARN, or <code>*</code>).</li>
             <li><strong>Cross-Account &amp; Conditional Sharing:</strong> Enables secure cross-account data sharing and condition-based enforcement (IP whitelists, HTTPS, VPC).</li>
           </ul>
         </div>
@@ -815,7 +815,7 @@
               <tbody>
                 <tr>
                   <td style="padding: 0.3rem 0.6rem;"><code>OSSAccessKeyId</code></td>
-                  <td style="padding: 0.3rem 0.6rem;">Identifies the backend RAM user or STS temporary credential granting permission.</td>
+                  <td style="padding: 0.3rem 0.6rem;">Identifies the backend RAM User or STS temporary credential granting permission.</td>
                 </tr>
                 <tr>
                   <td style="padding: 0.3rem 0.6rem;"><code>Expires</code></td>
@@ -887,7 +887,7 @@
             <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem; color: #065f46;">PrivateLink Interface Endpoints</h3>
             <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.3rem;">
               <li>Allocate Elastic Network Interfaces (ENIs) with private IP addresses directly within your Consumer VPC in your region.</li>
-              <li><strong>Multi-Zone High Availability:</strong> Deployed across redundant availability zones (<strong>Zone G</strong> and <strong>Zone H</strong>) with automated cross-zone health checks and failover.</li>
+              <li><strong>Multi-Zone High Availability:</strong> Deployed across redundant Availability Zones (<strong>Zone G</strong> and <strong>Zone H</strong>) with automated cross-zone health checks and failover.</li>
               <li><strong>Direct Private Backbone Routing:</strong> An <strong>Endpoint Connection</strong> tunnels traffic privately to Alibaba Cloud managed services (OSS, PAI, Model Studio) without touching the public internet.</li>
             </ul>
           </div>
@@ -1241,7 +1241,7 @@
           <span>A multinational investment bank is required by financial regulators (SEC Rule 17a-4 compliance) to store transaction audit records for exactly 7 years. The compliance rule mandates that no user—including the corporate CIO and the cloud root account owner—can modify, tamper with, or delete any record during this 7-year period. Furthermore, data must be encrypted with keys owned and audited exclusively by the bank. Which solution meets these regulatory requirements?</span>
         </div>
         <ul class="quiz-single-options">
-          <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Enable Object Versioning on the bucket; configure a RAM Policy denying oss:DeleteObject for all RAM users except the Root account; apply SSE-OSS encryption.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Enable Object Versioning on the bucket; configure a RAM Policy denying oss:DeleteObject for all RAM Users except the Root account; apply SSE-OSS encryption.</span></li>
           <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Set bucket ACL to Private; configure Cross-Region Replication to duplicate records to another region; generate pre-signed URLs with a 7-year expiration timestamp.</span></li>
           <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Configure an OSS Bucket Lock (WORM) policy locked for a 7-year retention period; enable Server-Side Encryption with Customer Master Keys via KMS (SSE-KMS BYOK).</span></li>
           <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Deploy an ECS instance running an NFS server with ext4 write protection; mount the disk over VPC PrivateLink; configure hourly snapshots to OSS Standard.</span></li>
@@ -1263,7 +1263,7 @@
       <div class="analysis-options-grid">
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option A is Incorrect</span></div>
-          <div class="analysis-item-body">RAM policies can be overridden or modified by the Root account owner, violating the strict SEC regulatory mandate requiring tamper-proof immutability from all principals.</div>
+          <div class="analysis-item-body">RAM Policies can be overridden or modified by the Root account owner, violating the strict SEC regulatory mandate requiring tamper-proof immutability from all principals.</div>
         </div>
 
         <div class="analysis-item incorrect">
@@ -1296,7 +1296,7 @@
           <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Create an OSS Bucket with Zone-Redundant Storage (ZRS); configure an automated lifecycle rule to transition objects to Deep Cold Archive after 30 days; attach a Bucket Policy denying requests where acs:SourceVpc does not match the hospital VPC; access via VPC Endpoints.</span></li>
           <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Store all scans permanently in an OSS Standard LRS bucket; configure an IP Whitelist allowing only the hospital's public NAT gateway IP address; use manual cron jobs to archive scans to tape.</span></li>
           <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Upload scans directly to Deep Cold Archive; configure Transfer Acceleration to bypass the public internet; generate pre-signed URLs with 10-year validity.</span></li>
-          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Deploy a shared NAS Extreme file system inside the VPC; replicate files daily to OSS Archive via the public internet; attach a RAM user policy to all doctors.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Deploy a shared NAS Extreme file system inside the VPC; replicate files daily to OSS Archive via the public internet; attach a RAM User policy to all doctors.</span></li>
         </ul>
       </div>
     </section>

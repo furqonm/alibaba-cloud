@@ -256,7 +256,7 @@
         </div>
         <div class="content-card highlight-blue">
           <h3>Security IN the Cloud (Customer)</h3>
-          <p>Customers maintain full authority and accountability over IAM/RAM access, security group rules, OS security patching, and application vulnerability hardening.</p>
+          <p>Customers maintain full authority and accountability over IAM/RAM access, Security Group rules, OS security patching, and application vulnerability hardening.</p>
         </div>
       </div>
     </section>
@@ -287,7 +287,7 @@
           <div class="content-card highlight-green">
             <h3>Host, Identity &amp; Operations</h3>
             <ul>
-              <li><strong>Security Center (Server Guard):</strong> Endpoint detection and response (EDR), vulnerability patching, baseline checks, and webshell detection.</li>
+              <li><strong>Security Center (formerly Server Guard):</strong> Endpoint detection and response (EDR), vulnerability patching, baseline checks, and webshell detection.</li>
               <li><strong>Key Management Service (KMS):</strong> Cryptographic hardware security module (HSM) key lifecycle management and envelope encryption.</li>
               <li><strong>Bastionhost:</strong> Centralized privileged access management (PAM) with full session recording, MFA, and command auditing.</li>
             </ul>
@@ -541,7 +541,7 @@
             <ul>
               <li><strong>Edge Ingestion:</strong> Traffic enters through Anti-DDoS and WAF, stripping volumetric and application-layer attacks.</li>
               <li><strong>Compute Decoupling:</strong> Server Load Balancers distribute sanitized traffic across auto-scaling ECS clusters in private subnets.</li>
-              <li><strong>Data Core Hardening:</strong> Persistent state resides in encrypted RDS and OSS tiers accessible only through strict security group rules.</li>
+              <li><strong>Data Core Hardening:</strong> Persistent state resides in encrypted RDS and OSS tiers accessible only through strict Security Group rules.</li>
             </ul>
           </div>
 
@@ -549,7 +549,7 @@
             <h3>Resilience &amp; Data Recovery</h3>
             <ul>
               <li><strong>Automated Disk Snapshots:</strong> Crash-consistent snapshot policies for ECS system and data disks.</li>
-              <li><strong>Cross-Zone RDS Active-Standby:</strong> Synchronous replication between availability zones with 30-second automated failover.</li>
+              <li><strong>Cross-Zone RDS Active-Standby:</strong> Synchronous replication between Availability Zones with 30-second automated failover.</li>
             </ul>
           </div>
         </div>
@@ -794,7 +794,7 @@
           <h3>The Limitation of Traditional Firewalls</h3>
           <p>Traditional network firewalls and Security Groups operate exclusively at Layer 3 and Layer 4:</p>
           <ul>
-            <li><strong>Blind to HTTP Payloads:</strong> Security groups must allow inbound TCP port 80 (HTTP) and port 443 (HTTPS) for public web traffic to function.</li>
+            <li><strong>Blind to HTTP Payloads:</strong> Security Groups must allow inbound TCP port 80 (HTTP) and port 443 (HTTPS) for public web traffic to function.</li>
             <li><strong>Inability to Inspect Content:</strong> Once a TCP handshake is established, Layer 4 firewalls cannot inspect HTTP request headers, query parameters, cookies, or POST bodies.</li>
             <li><strong>Exploiting Valid Connections:</strong> Application vulnerabilities are executed entirely inside valid, perfectly formed HTTP packets.</li>
           </ul>
@@ -1141,7 +1141,7 @@ ightarrow$ Client replies <code>ACK</code>.</li>
           <ul>
             <li><strong>Base Protection Bandwidth:</strong> Fixed, cost-predictable monthly subscription covering standard expected attack volumes (e.g. 30 Gbps to 100 Gbps).</li>
             <li><strong>Elastic Burst Protection:</strong> Automatically scales mitigation limits on-demand to absorb sudden massive spikes without triggering blackholes.</li>
-            <li><strong>Pay-as-You-Go Burst Billing:</strong> You pay strictly for burst bandwidth on days when actual attack volumes exceed the base package; calm days incur zero extra fees.</li>
+            <li><strong>Pay-As-You-Go Burst Billing:</strong> You pay strictly for burst bandwidth on days when actual attack volumes exceed the base package; calm days incur zero extra fees.</li>
             <li><strong>99.95% Availability SLA:</strong> Contractually backed business continuity guarantee supported by dedicated 24/7 Alibaba Cloud security response teams.</li>
           </ul>
         </div>
@@ -1282,7 +1282,7 @@ ightarrow$ Client replies <code>ACK</code>.</li>
             <tr>
               <td><strong>Elastic Burst Defense</strong></td>
               <td>✖ (Triggers Blackhole)</td>
-              <td>✔ Pay-as-you-go Burst</td>
+              <td>✔ Pay-As-You-Go Burst</td>
               <td>✔ Unlimited Plan Option</td>
             </tr>
             <tr>
@@ -1424,8 +1424,8 @@ ightarrow$ Client replies <code>ACK</code>.</li>
           <h3>Identity &amp; Account Hardening</h3>
           <ul>
             <li><strong>Lock Down Account Root User:</strong> Enable hardware or virtual MFA on the primary Alibaba Cloud root account. <strong>Never</strong> create AccessKeys for the root user.</li>
-            <li><strong>Enforce Least Privilege (RAM):</strong> Create dedicated RAM users for each human administrator; grant strictly minimal permissions bound to specific resource ARNs.</li>
-            <li><strong>Leverage RAM Roles &amp; STS:</strong> Use instance RAM roles for applications running on ECS instead of embedding long-term AccessKeys in source code.</li>
+            <li><strong>Enforce Least Privilege (RAM):</strong> Create dedicated RAM Users for each human administrator; grant strictly minimal permissions bound to specific resource ARNs.</li>
+            <li><strong>Leverage RAM Roles &amp; STS:</strong> Use instance RAM Roles for applications running on ECS instead of embedding long-term AccessKeys in source code.</li>
             <li><strong>Mandatory Privileged Bastion Access:</strong> Require all SSH/RDP administrative traffic to traverse Alibaba Cloud Bastionhost with MFA and session recording.</li>
           </ul>
         </div>
@@ -1628,7 +1628,7 @@ ightarrow$ Client replies <code>ACK</code>.</li>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">D</span>
-            <span>Rely exclusively on client-side hardcoded AccessKeys embedded in mobile apps without enabling RAM roles or Key Management Service.</span>
+            <span>Rely exclusively on client-side hardcoded AccessKeys embedded in mobile apps without enabling RAM Roles or Key Management Service.</span>
           </li>
         </ul>
       </div>

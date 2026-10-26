@@ -169,7 +169,7 @@
         </div>
         <div class="service-pillar-card">
           <h4>🛡️ Enterprise Security</h4>
-          <p>Hardware-level multi-tenant isolation, built-in Anti-DDoS, and granular security group rules.</p>
+          <p>Hardware-level multi-tenant isolation, built-in Anti-DDoS, and granular Security Group rules.</p>
         </div>
         <div class="service-pillar-card">
           <h4>⚙️ Automation</h4>
@@ -561,8 +561,8 @@
         <div class="content-card highlight">
           <p>Instance metadata provides internal access to runtime configuration attributes from within the running ECS instance without calling external APIs:</p>
           <ul>
-            <li><strong>Instance Identity:</strong> Query instance ID, image ID, region, availability zone, private IP, and hostname.</li>
-            <li><strong>Network Topology:</strong> Query VPC ID, VSwitch ID, CIDR blocks, and gateway settings.</li>
+            <li><strong>Instance Identity:</strong> Query instance ID, image ID, region, Availability Zone, private IP, and hostname.</li>
+            <li><strong>Network Topology:</strong> Query VPC ID, vSwitch ID, CIDR blocks, and gateway settings.</li>
             <li><strong>Zero-Credential Access:</strong> Retrieve temporary STS security tokens attached to an ECS RAM Role, eliminating the hazard of hardcoding AccessKey secrets in application code!</li>
           </ul>
         </div>
@@ -971,8 +971,8 @@ systemctl enable --now nginx</pre>
             <h3>Virtual Private Cloud (VPC)</h3>
             <ul style="line-height: 1.6;">
               <li><strong>VPC (Regional Boundary):</strong> Logically isolated virtual network on Alibaba Cloud. Defines private IPv4 CIDR blocks (<code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, <code>192.168.0.0/16</code>) and IPv6 address ranges.</li>
-              <li><strong>VSwitch (Zone-Specific Subnet):</strong> Subdivides the VPC CIDR block and resides strictly inside a <strong>single Availability Zone</strong>. Each ECS instance connects to a specific VSwitch.</li>
-              <li><strong>VRouter &amp; Route Tables:</strong> Automatically manages traffic forwarding within the VPC, across VSwitches, and through gateways (Internet NAT, VPN, CEN).</li>
+              <li><strong>vSwitch (Zone-Specific Subnet):</strong> Subdivides the VPC CIDR block and resides strictly inside a <strong>single Availability Zone</strong>. Each ECS instance connects to a specific vSwitch.</li>
+              <li><strong>VRouter &amp; Route Tables:</strong> Automatically manages traffic forwarding within the VPC, across vSwitches, and through gateways (Internet NAT, VPN, CEN).</li>
               <li><strong>VPC Isolation:</strong> Provides enterprise tenant isolation with software-defined security, complete IP address autonomy, and high-performance SDN fabric.</li>
             </ul>
           </div>
@@ -989,7 +989,7 @@ systemctl enable --now nginx</pre>
         <div class="content-card highlight">
           <h3>Types of ENIs</h3>
           <ul style="line-height: 1.6;">
-            <li><strong>Primary ENI (<code class="inline-code">eth0</code>):</strong> Created automatically during instance launch. Bound to the primary private IP address in the instance's VSwitch and cannot be detached.</li>
+            <li><strong>Primary ENI (<code class="inline-code">eth0</code>):</strong> Created automatically during instance launch. Bound to the primary private IP address in the instance's vSwitch and cannot be detached.</li>
             <li><strong>Secondary ENI:</strong> Created independently and can be dynamically attached or detached from instances within the <strong>same Availability Zone</strong>.</li>
             <li><strong>Trunking ENI:</strong> High-density virtual interface architecture enabling container orchestration (ACK) to bind multiple pod interfaces to a single physical ENI.</li>
             <li><strong>Attachment Quotas:</strong> Maximum number of ENIs and private IPs is determined by the instance type specification.</li>
@@ -999,7 +999,7 @@ systemctl enable --now nginx</pre>
           <h3>Key Enterprise Use Cases</h3>
           <ul style="line-height: 1.6;">
             <li><strong>Low-Cost Active/Standby Failover:</strong> When a primary gateway fails, the secondary ENI carrying private service IPs detaches and attaches immediately to a standby host.</li>
-            <li><strong>Multi-Subnet Multi-Homing:</strong> An ECS instance connects simultaneously to different VSwitches (e.g. management traffic on VSwitch-Mgmt, application traffic on VSwitch-App).</li>
+            <li><strong>Multi-Subnet Multi-Homing:</strong> An ECS instance connects simultaneously to different vSwitches (e.g. management traffic on vSwitch-Mgmt, application traffic on vSwitch-App).</li>
             <li><strong>High-Density Kubernetes Networking:</strong> Terway CNI plugin utilizes secondary ENIs and secondary IP addresses for native pod-to-pod routing.</li>
             <li><strong>Same-Zone Boundary:</strong> All attached secondary ENIs must reside in the exact same Availability Zone as the host ECS instance.</li>
           </ul>
@@ -1106,8 +1106,8 @@ systemctl enable --now nginx</pre>
           <ul style="line-height: 1.6;">
             <li><strong>Stateful Inspection:</strong> If an inbound packet is allowed by an inbound rule, response traffic is <strong>automatically permitted outbound</strong> (and vice versa) regardless of outbound rules.</li>
             <li><strong>Regional Scope within VPC:</strong> Security Groups are regional constructs in a VPC and can protect ECS instances across multiple Availability Zones in the same VPC.</li>
-            <li><strong>ENI &amp; Multi-Group Association:</strong> Each ENI must belong to at least one security group and can join multiple security groups simultaneously.</li>
-            <li><strong>Default Isolation Boundary:</strong> Instances associated with different security groups are completely isolated by default with zero inter-group network communication.</li>
+            <li><strong>ENI &amp; Multi-Group Association:</strong> Each ENI must belong to at least one Security Group and can join multiple Security Groups simultaneously.</li>
+            <li><strong>Default Isolation Boundary:</strong> Instances associated with different Security Groups are completely isolated by default with zero inter-group network communication.</li>
           </ul>
         </div>
 
@@ -1124,7 +1124,7 @@ systemctl enable --now nginx</pre>
       
       <div class="grid-2" style="align-items: center; gap: 2rem;">
         <div class="content-card highlight" style="padding: 1.35rem;">
-          <p style="margin-bottom: 0.85rem; font-size: calc(0.92rem + var(--font-delta)); line-height: 1.5;">Security group rules define granular network packet filtering policies. Traffic is evaluated based on specific rule parameters and authorized target objects:</p>
+          <p style="margin-bottom: 0.85rem; font-size: calc(0.92rem + var(--font-delta)); line-height: 1.5;">Security Group rules define granular network packet filtering policies. Traffic is evaluated based on specific rule parameters and authorized target objects:</p>
           
           <ul style="line-height: 1.55;">
             <li><strong>Rule Parameters:</strong>
@@ -1138,7 +1138,7 @@ systemctl enable --now nginx</pre>
             <li><strong>Authorization Objects:</strong>
               <ul style="margin-top: 0.25rem;">
                 <li><strong>CIDR IP Blocks:</strong> Authorizes specific IP ranges (e.g., <code>100.100.0.0/16</code> or <code>0.0.0.0/0</code>).</li>
-                <li><strong>Security Group ID:</strong> Authorizes another security group (e.g., <code>sg-002</code>), granting mutual network trust to all member instances dynamically.</li>
+                <li><strong>Security Group ID:</strong> Authorizes another Security Group (e.g., <code>sg-002</code>), granting mutual network trust to all member instances dynamically.</li>
               </ul>
             </li>
           </ul>
@@ -1234,7 +1234,7 @@ systemctl enable --now nginx</pre>
             <ul>
               <li><strong>Customer Data:</strong> Data protection, backups, and encryption at-rest/in-transit.</li>
               <li><strong>OS & Applications:</strong> OS patching, software runtimes, and application security.</li>
-              <li><strong>Access & Network:</strong> RAM users, access credentials, and Security Group firewall rules.</li>
+              <li><strong>Access & Network:</strong> RAM Users, access credentials, and Security Group firewall rules.</li>
             </ul>
           </div>
           <div class="content-card highlight-blue">
@@ -1682,7 +1682,7 @@ systemctl enable --now nginx</pre>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">D</span>
-            <span>Reconfigure the Zone A VSwitch CIDR block to span into Zone B and rebind the existing private IP address.</span>
+            <span>Reconfigure the Zone A vSwitch CIDR block to span into Zone B and rebind the existing private IP address.</span>
           </li>
         </ul>
       </div>
@@ -1732,7 +1732,7 @@ systemctl enable --now nginx</pre>
             <span>✖ Option D is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            <strong>VSwitches are strictly zone-bound.</strong> A VSwitch cannot span across multiple Availability Zones; each VSwitch belongs to exactly one Availability Zone within the VPC.
+            <strong>vSwitches are strictly zone-bound.</strong> A vSwitch cannot span across multiple Availability Zones; each vSwitch belongs to exactly one Availability Zone within the VPC.
           </div>
         </div>
       </div>

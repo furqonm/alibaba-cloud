@@ -407,7 +407,7 @@
             <ul>
               <li><strong>Native Client IP Pass-Through:</strong> Preserves original client source IP directly in the Layer 3 IP packet header with zero encapsulation or NAT overhead.</li>
               <li><strong>Zero Application Changes:</strong> Backend applications read real client IPs seamlessly via standard socket APIs (<code>getpeername()</code>).</li>
-              <li><strong>Multi-Zone Active-Active:</strong> Deploys elastic VIPs across multiple availability zones with automated traffic distribution and local failover.</li>
+              <li><strong>Multi-Zone Active-Active:</strong> Deploys elastic VIPs across multiple Availability Zones with automated traffic distribution and local failover.</li>
               <li><strong>Proxy Protocol v2 Support:</strong> Provides native support for Proxy Protocol v2 header insertion when downstream proxy metadata is required.</li>
             </ul>
           </div>
@@ -894,7 +894,7 @@
             <h3>Pricing Models by Product Family</h3>
             <ul>
               <li><strong>Classic Load Balancer (CLB):</strong> Pay an instance rental fee (waived for private intranet instances) plus fixed specification tiers (e.g., <code>slb.s1.small</code> to <code>slb.s3.large</code>), plus outbound public internet traffic.</li>
-              <li><strong>ALB &amp; NLB (Elastic LCU):</strong> Hourly instance fee per Availability Zone + Pay-as-You-Go Load Balancer Capacity Units (LCU) + EIP/CBWP for public data transfer.</li>
+              <li><strong>ALB &amp; NLB (Elastic LCU):</strong> Hourly instance fee per Availability Zone + Pay-As-You-Go Load Balancer Capacity Units (LCU) + EIP/CBWP for public data transfer.</li>
               <li><strong>Gateway Load Balancer (GWLB):</strong> Billed for GWLB instance hours, GWLB Endpoint (GWLBe) hours, and GWLB LCU consumption. Backend third-party virtual firewalls (e.g., Palo Alto, Fortinet) are licensed separately via BYOL or Marketplace.</li>
               <li><strong>Private vs. Public Instances:</strong> Private CLB incurs zero instance fees; ALB, NLB, and GWLB charge instance/endpoint fees and LCU usage regardless of network deployment type.</li>
             </ul>
