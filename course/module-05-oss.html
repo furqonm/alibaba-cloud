@@ -635,7 +635,7 @@
           <ul style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.45rem;">
             <li><strong>Identity Attachment:</strong> Applied to RAM Users or roles; defines the maximum permissions granted to the identity across all services.</li>
             <li><strong>No Principal Field:</strong> Does <em>not</em> define a <code>Principal</code> element because the identity to which it is attached is inherently the principal.</li>
-            <li><strong>Centralized IAM Governance:</strong> Ideal for enforcing least privilege for internal developers, applications, and ECS instance RAM Roles.</li>
+            <li><strong>Centralized RAM Governance:</strong> Ideal for enforcing least privilege for internal developers, applications, and ECS instance RAM Roles.</li>
           </ul>
         </div>
 
@@ -684,7 +684,7 @@
 
         <div class="content-card highlight">
           <p style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.45; margin-bottom: 0.5rem; color: #475569;">
-            Allows an external account to read objects only from a specific IP subnet:
+            Allows an external account to read objects only from a specific IP CIDR block:
           </p>
           <pre style="background: #1e293b; color: #f8fafc; padding: 0.75rem 1rem; border-radius: 6px; font-size: 0.78rem; line-height: 1.4; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; margin: 0;">
 {
@@ -778,7 +778,7 @@
     <!-- ==================== SLIDE 25: DIRECT CLIENT UPLOAD WITH SIGNED URLS ==================== -->
     <section class="slide" data-category="Security &amp; Data Protection">
       <div class="slide-category">Section 4: Security &amp; Data Protection</div>
-      <h2>Direct Client Upload with "Signed URLs"</h2>
+      <h2>Direct Client Upload with Signed URLs</h2>
       
       <div class="grid-2">
         <div class="content-card highlight-blue">
@@ -896,8 +896,8 @@
             <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem; color: #1e40af;">Security &amp; Network Isolation Advantages</h3>
             <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.3rem;">
               <li><strong>Layer 4 Security Groups:</strong> Unlike classic gateway endpoints, Interface Endpoints allow binding <strong>VPC Security Groups</strong> directly to ENIs to enforce strict IP and port firewalls.</li>
-              <li><strong>No IP Address Conflicts:</strong> Uses private IPs from your own VPC subnet CIDR blocks, preventing routing collisions in enterprise hybrid cloud environments.</li>
-              <li><strong>Zero NAT / Internet Exposure:</strong> Confidential workloads remain strictly inside private subnets without requiring Elastic IPs or NAT Gateways.</li>
+              <li><strong>No IP Address Conflicts:</strong> Uses private IPs from your own VPC vSwitch CIDR blocks, preventing routing collisions in enterprise hybrid cloud environments.</li>
+              <li><strong>Zero NAT / Internet Exposure:</strong> Confidential workloads remain strictly inside private vSwitches without requiring Elastic IPs or NAT Gateways.</li>
             </ul>
           </div>
         </div>
@@ -927,7 +927,7 @@
 
         <div class="content-card highlight">
           <h3>Enforcing Network Boundaries via Bucket Policy</h3>
-          <p style="font-size: calc(0.82rem + var(--font-delta)); margin-bottom: 0.4rem;">Attach a resource-based Bucket Policy that explicitly <strong>DENIES</strong> all requests originating outside your designated VPC perimeter, regardless of IAM permissions:</p>
+          <p style="font-size: calc(0.82rem + var(--font-delta)); margin-bottom: 0.4rem;">Attach a resource-based Bucket Policy that explicitly <strong>DENIES</strong> all requests originating outside your designated VPC perimeter, regardless of RAM permissions:</p>
           <pre style="background: #1e293b; color: #f8fafc; padding: 0.75rem; border-radius: 6px; font-size: 0.78rem; line-height: 1.4; overflow-x: auto;">
 {
   "Effect": "Deny",
@@ -1192,7 +1192,7 @@
           <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Upload videos via Simple PutObject to an Infrequent Access bucket; distribute videos directly through public OSS endpoints; use manual scripts to delete videos after 60 days.</span></li>
           <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Ingest videos using Multipart Upload via Transfer Acceleration; front the Standard bucket with Alibaba Cloud CDN; configure lifecycle rules to transition to Infrequent Access at 14 days and Archive at 60 days.</span></li>
           <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Ingest videos via AppendObject directly to Deep Cold Archive; attach public Elastic IP addresses to the bucket; utilize Server-Side Encryption with Customer Master Keys (SSE-KMS).</span></li>
-          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Store all raw footage in an EBS ESSD disk array mounted to an ECS cluster; replicate footage to OSS Standard ZRS using Cross-Region Replication; disable CDN to prevent cache misses.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Store all raw footage in an ESSD Cloud Disk array mounted to an ECS cluster; replicate footage to OSS Standard ZRS using Cross-Region Replication; disable CDN to prevent cache misses.</span></li>
         </ul>
       </div>
     </section>
@@ -1226,7 +1226,7 @@
 
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option D is Incorrect</span></div>
-          <div class="analysis-item-body">EBS block storage cannot scale elastically to handle 20 TB daily ingests and lacks global web accessibility. Disabling CDN drastically increases public bandwidth costs and increases viewer latency.</div>
+          <div class="analysis-item-body">Cloud Disk block storage cannot scale elastically to handle 20 TB daily ingests and lacks global web accessibility. Disabling CDN drastically increases public bandwidth costs and increases viewer latency.</div>
         </div>
       </div>
     </section>
