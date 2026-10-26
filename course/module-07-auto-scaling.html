@@ -41,7 +41,7 @@
         </select>
       </div>
       <div class="nav-buttons">
-        <span class="slide-counter" id="slideCounter">1/43</span>
+        <span class="slide-counter" id="slideCounter">1/42</span>
         <button class="btn-nav" id="prevBtn" title="Previous Slide (Left Arrow)">
           <span>⬅️</span> Previous
         </button>
@@ -984,13 +984,13 @@
         </div>
       </div>
     </section>
-    <!-- ==================== SLIDE 32: LIFECYCLE HOOKS ARCHITECTURE ==================== -->
+    <!-- ==================== SLIDE 33: LIFECYCLE HOOKS ==================== -->
     <section class="slide" data-category="Lifecycle Hooks &amp; Event Notifications">
       <div class="slide-category">Section 6: Lifecycle Hooks &amp; Event Notifications</div>
-      <h2>Lifecycle Hooks</h2>
+      <h2>Lifecycle Hook</h2>
       
       <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
-        <img src="assets/images/auto-scaling-lifecycle-hooks.png" alt="Auto Scaling Lifecycle Hooks" style="max-height: 340px; width: auto; max-width: 100%; object-fit: contain;">
+        <img src="assets/images/auto-scaling-lifecycle-hook-flow.png" alt="Lifecycle Hook State Machine" style="max-height: 280px; width: auto; max-width: 100%; object-fit: contain;">
       </div>
 
       <div class="grid-2">
@@ -1012,32 +1012,6 @@
             <li>Hook suspends the instance in <code>PENDING:WAIT</code> state before deletion.</li>
             <li>Allows uploading local log files to OSS, saving memory states, and finishing background queue tasks with zero loss.</li>
           </ul>
-        </div>
-      </div>
-    </section>
-    <!-- ==================== SLIDE 33: HOOK EXECUTION FLOW & HEARTBEATS ==================== -->
-    <section class="slide" data-category="Lifecycle Hooks &amp; Event Notifications">
-      <div class="slide-category">Section 6: Lifecycle Hooks &amp; Event Notifications</div>
-      <h2>Lifecycle Hook Pipeline</h2>
-      
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-bottom: 0.5rem;">
-        <img src="assets/images/auto-scaling-lifecycle-hook-flow.png" alt="Lifecycle Hook State Machine" style="max-height: 400px; width: auto; max-width: 100%; object-fit: contain;">
-      </div>
-
-      <div class="grid-3">
-        <div class="content-card highlight">
-          <h4>1. Timeout Window</h4>
-          <p>Configurable timeout (30 to 21,600s, default 600s). If script finishes early, it sends <code>CompleteLifecycleAction</code> immediately.</p>
-        </div>
-
-        <div class="content-card highlight-blue">
-          <h4>2. Heartbeat Extension</h4>
-          <p>Long operations can invoke <code>RecordLifecycleAction</code> to extend the timeout, resetting the countdown clock.</p>
-        </div>
-
-        <div class="content-card highlight-green">
-          <h4>3. Hook Outcomes</h4>
-          <p><code>CONTINUE</code> proceeds to IN_SERVICE or termination. <code>ABANDON</code> aborts scale-out, releasing the instance cleanly.</p>
         </div>
       </div>
     </section>
@@ -1112,7 +1086,7 @@
           <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Create a cron job on an external server to modify the scaling group's desired capacity at 23:50, combined with CloudMonitor alarms for dynamic scaling.</span></li>
           <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Configure CloudMonitor alarm tasks that monitor CPU utilization to dynamically trigger scale-out rules as traffic increases.</span></li>
           <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Configure a Scheduled Task to scale out capacity in advance before the midnight flash sale, combined with CloudMonitor alarm tasks to dynamically handle unexpected traffic fluctuations.</span></li>
-          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Use ECS Vertical Scaling to upgrade existing instance specifications before the flash sale to ensure adequate compute capacity.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Use ECS Vertical Scaling to upgrade instance specifications to ensure adequate compute capacity.</span></li>
         </ul>
       </div>
     </section>
