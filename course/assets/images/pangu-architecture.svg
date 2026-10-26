@@ -20,7 +20,7 @@
       <g transform="translate(0, 0)" filter="url(#pangu-shadow)">
         <rect width="225" height="74" rx="8" fill="#1e3a8a"/>
         <text x="112" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#ffffff">Storage Services</text>
-        <text x="112" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#93c5fd">EBS • NAS • OSS • Hybrid</text>
+        <text x="112" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#93c5fd">Block Storage • NAS • OSS • Hybrid</text>
       </g>
 
       <!-- Databases -->

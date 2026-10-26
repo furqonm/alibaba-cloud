@@ -715,7 +715,7 @@ systemctl enable --now nginx</pre>
             <li><strong>Rack & Switch Isolation:</strong> Replicas are distributed across separate physical server racks and network switches within the same Availability Zone.</li>
             <li><strong>Data Reliability:</strong> Delivers an industry-leading <strong>99.9999999% (9 nines)</strong> data durability guarantee.</li>
             <li><strong>Zero Local RAID Dependency:</strong> Eliminates the operational hazard and rebuilding overhead of physical RAID arrays.</li>
-            <li><strong>Multi-Service Foundation:</strong> Powers BlockFS (EBS Cloud Disks), LogFile (Databases & TableStore), and HDFS (Big Data computing).</li>
+            <li><strong>Multi-Service Foundation:</strong> Powers BlockFS (Block Storage Cloud Disks), LogFile (Databases & TableStore), and HDFS (Big Data computing).</li>
           </ul>
         </div>
 
@@ -763,7 +763,7 @@ systemctl enable --now nginx</pre>
             <li><strong>Physical Host Failure (NC1 Down):</strong> Hardware malfunction, power disruption, or CPU/motherboard failure causes NC1 to stop operating.</li>
             <li><strong>Autonomic Detection:</strong> The cloud hypervisor cluster management plane monitors continuous node heartbeats and promptly detects host unavailability.</li>
             <li><strong>Automated Re-Instantiation:</strong> The instance (<code>i-001</code>) automatically migrates and boots on a healthy physical host (<strong>NC2</strong>) within the <strong>same Availability Zone</strong>.</li>
-            <li><strong>Data Preservation via Decoupled Storage:</strong> Because system and data volumes reside on network-attached <strong>Cloud Disks (Pangu)</strong>, no data is lost—NC2 immediately reconnects to the existing storage volumes.</li>
+            <li><strong>Data Preservation via Decoupled Storage:</strong> Because system and data disks reside on network-attached <strong>Cloud Disks (Pangu)</strong>, no data is lost—NC2 immediately reconnects to the existing storage disks.</li>
           </ul>
         </div>
 
@@ -840,7 +840,7 @@ systemctl enable --now nginx</pre>
           <p>When migrating an existing cloud disk from Instance A to Instance B within the <strong>same Availability Zone</strong>:</p>
           <ol style="margin-top: 0.5rem; padding-left: 1.25rem; line-height: 1.6; color: var(--text-secondary);">
             <li><strong>Unmount in OS:</strong> Flush file buffers and unmount the filesystem inside Instance A (e.g. <code>umount /mnt/data</code>).</li>
-            <li><strong>Detach Volume:</strong> Detach the disk from Instance A via the ECS Console, CLI, or OpenAPI.</li>
+            <li><strong>Detach Disk:</strong> Detach the disk from Instance A via the ECS Console, CLI, or OpenAPI.</li>
             <li><strong>Attach to Target:</strong> Attach the decoupled cloud disk to Instance B.</li>
             <li><strong>Mount in Target OS:</strong> Mount the block device inside Instance B (e.g. <code>mount /dev/vdb1 /mnt/data</code>).</li>
           </ol>
@@ -849,7 +849,7 @@ systemctl enable --now nginx</pre>
           <h3>2. Cross-Zone Migration (Snapshot-Based Replication)</h3>
           <p>Since cloud disks cannot be attached across different Availability Zones directly:</p>
           <ol style="margin-top: 0.5rem; padding-left: 1.25rem; line-height: 1.6; color: var(--text-secondary);">
-            <li><strong>Create Snapshot:</strong> Take a disk snapshot of the volume in Zone A. (Snapshots are regional assets stored in OSS).</li>
+            <li><strong>Create Snapshot:</strong> Take a snapshot of the cloud disk in Zone A. (Snapshots are regional assets stored in OSS).</li>
             <li><strong>Create Disk in Zone B:</strong> Provision a brand-new cloud disk directly in Zone B using the snapshot as the source.</li>
             <li><strong>Attach to Target Instance:</strong> Attach and mount the newly created disk to Instance B in Zone B.</li>
             <li><strong>Verify & Rebind:</strong> Verify data consistency and update application connection endpoints.</li>
@@ -971,7 +971,7 @@ systemctl enable --now nginx</pre>
             <h3>Virtual Private Cloud (VPC)</h3>
             <ul style="line-height: 1.6;">
               <li><strong>VPC (Regional Boundary):</strong> Logically isolated virtual network on Alibaba Cloud. Defines private IPv4 CIDR blocks (<code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, <code>192.168.0.0/16</code>) and IPv6 address ranges.</li>
-              <li><strong>vSwitch (Zone-Specific Subnet):</strong> Subdivides the VPC CIDR block and resides strictly inside a <strong>single Availability Zone</strong>. Each ECS instance connects to a specific vSwitch.</li>
+              <li><strong>vSwitch (Virtual Switch):</strong> Subdivides the VPC CIDR block into a zone-anchored virtual switch, residing strictly inside a <strong>single Availability Zone</strong>. Each ECS instance connects to a specific vSwitch.</li>
               <li><strong>VRouter &amp; Route Tables:</strong> Automatically manages traffic forwarding within the VPC, across vSwitches, and through gateways (Internet NAT, VPN, CEN).</li>
               <li><strong>VPC Isolation:</strong> Provides enterprise tenant isolation with software-defined security, complete IP address autonomy, and high-performance SDN fabric.</li>
             </ul>
@@ -999,7 +999,7 @@ systemctl enable --now nginx</pre>
           <h3>Key Enterprise Use Cases</h3>
           <ul style="line-height: 1.6;">
             <li><strong>Low-Cost Active/Standby Failover:</strong> When a primary gateway fails, the secondary ENI carrying private service IPs detaches and attaches immediately to a standby host.</li>
-            <li><strong>Multi-Subnet Multi-Homing:</strong> An ECS instance connects simultaneously to different vSwitches (e.g. management traffic on vSwitch-Mgmt, application traffic on vSwitch-App).</li>
+            <li><strong>Multi-vSwitch Multi-Homing:</strong> An ECS instance connects simultaneously to different vSwitches (e.g. management traffic on vSwitch-Mgmt, application traffic on vSwitch-App).</li>
             <li><strong>High-Density Kubernetes Networking:</strong> Terway CNI plugin utilizes secondary ENIs and secondary IP addresses for native pod-to-pod routing.</li>
             <li><strong>Same-Zone Boundary:</strong> All attached secondary ENIs must reside in the exact same Availability Zone as the host ECS instance.</li>
           </ul>
@@ -1565,16 +1565,16 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 42: SPOT INSTANCES ==================== -->
+    <!-- ==================== SLIDE 42: PREEMPTIBLE INSTANCES (SPOT) ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
-      <h2>Spot Instances</h2>
+      <h2>Preemptible Instances (Spot Instances)</h2>
       
       <div class="grid-2">
         <div class="content-card highlight">
           <h3>Core Mechanics</h3>
           <ul>
-            <li><strong>Steep Discounts (Up to 90% Off):</strong> Utilize spare datacenter capacity at bid-based pricing significantly below standard PAYG.</li>
+            <li><strong>Steep Discounts (Up to 90% Off):</strong> Utilize spare datacenter capacity at bid-based pricing significantly below standard Pay-As-You-Go rates.</li>
             <li><strong>Dynamic Bidding:</strong> Market price fluctuates based on real-time regional supply and demand. Set a maximum hourly bid threshold or accept the spot market rate.</li>
             <li><strong>1-Hour Protection Period:</strong> Newly created spot instances are guaranteed not to be reclaimed during their first hour of operation.</li>
             <li><strong>5-Minute Reclaim Notice:</strong> If market price exceeds your bid or capacity is reclaimed, Alibaba Cloud issues a 5-minute advance notification before termination.</li>

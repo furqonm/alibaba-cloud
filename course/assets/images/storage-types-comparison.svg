@@ -10,7 +10,7 @@
       <rect x="20" y="20" width="255" height="340" rx="10" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5" />
       <rect x="20" y="20" width="255" height="42" rx="10" fill="#E0F2FE" />
       <rect x="20" y="50" width="255" height="12" fill="#E0F2FE" />
-      <text x="147.5" y="46" fill="#0369A1" font-size="14" font-weight="700" text-anchor="middle">Block Storage (EBS / Disks)</text>
+      <text x="147.5" y="46" fill="#0369A1" font-size="14" font-weight="700" text-anchor="middle">Block Storage (Cloud Disks)</text>
       
       <!-- Visual Illustration: Raw Sectors / Disk Blocks -->
       <g transform="translate(48, 78)">
@@ -30,7 +30,7 @@
         <text x="0" y="46">✔ Formatted with OS filesystem (ext4/NTFS)</text>
         <text x="0" y="68">✔ Bound to a single ECS instance in same AZ</text>
         <text x="0" y="90">✖ Not directly accessible over HTTP/Web</text>
-        <text x="0" y="112">✖ Fixed volume sizing (expandable with risk)</text>
+        <text x="0" y="112">✖ Fixed disk capacity (expandable online)</text>
         <text x="0" y="134" font-weight="700" fill="#0F172A">Primary Use: OS Disks, OLTP Databases</text>
       </g>
     </g>
