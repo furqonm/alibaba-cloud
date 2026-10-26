@@ -61,27 +61,27 @@
     </g>
   </g>
 
-  <!-- Right: Destination Target Groups -->
+  <!-- Right: Destination Server Groups -->
   <g transform="translate(595, 10)">
     <rect width="250" height="325" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
     <rect x="12" y="12" width="226" height="32" rx="6" fill="#1e293b"/>
-    <text x="125" y="33" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Routed Backend Targets</text>
+    <text x="125" y="33" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Routed Server Groups</text>
 
     <g transform="translate(15, 60)">
       <rect width="220" height="50" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
-      <text x="10" y="22" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e293b">Target A: Prod Order Cluster</text>
+      <text x="10" y="22" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e293b">Server Group A: Prod Order Cluster</text>
       <text x="10" y="38" font-family="system-ui, sans-serif" font-size="10" fill="#059669">ECS Fleet • Weight: 90</text>
 
       <rect y="60" width="220" height="50" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
-      <text x="10" y="82" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e293b">Target B: Canary Cluster</text>
+      <text x="10" y="82" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e293b">Server Group B: Canary Cluster</text>
       <text x="10" y="98" font-family="system-ui, sans-serif" font-size="10" fill="#d97706">ECI Serverless Pods • Weight: 10</text>
 
       <rect y="120" width="220" height="50" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
-      <text x="10" y="142" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e293b">Target C: Media Service</text>
+      <text x="10" y="142" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e293b">Server Group C: Media Service</text>
       <text x="10" y="158" font-family="system-ui, sans-serif" font-size="10" fill="#0284c7">Function Compute (FC) Triggers</text>
 
       <rect y="180" width="220" height="50" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
-      <text x="10" y="202" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e293b">Traffic Mirror: Audit Cluster</text>
+      <text x="10" y="202" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e293b">Traffic Mirror: Audit Group</text>
       <text x="10" y="218" font-family="system-ui, sans-serif" font-size="10" fill="#7c3aed">Shadow testing without client impact</text>
     </g>
   </g>
