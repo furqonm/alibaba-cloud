@@ -382,7 +382,7 @@
             </h3>
             <ul style="margin: 0; padding-left: 1.1rem; font-size: 0.86rem; line-height: 1.48;">
               <li><strong>Complete Noise Immunity:</strong> Eliminates noisy-neighbor syndrome entirely, providing deterministic microsecond transactional latency curves.</li>
-              <li><strong>Highest SLA Commitment:</strong> Backed by Alibaba Cloud's highest financial SLA (99.995% multi-AZ) for mission-critical relational databases.</li>
+              <li><strong>Highest SLA Commitment:</strong> Backed by Alibaba Cloud's highest financial SLA (99.995% Multi-Zone) for mission-critical relational databases.</li>
               <li><strong>Target Workloads:</strong> High-volume OLTP core banking systems, e-commerce checkout spikes, payment gateways, and real-time ledger engines.</li>
               <li><strong>Representative Series:</strong> <code>mysql.x4.large.2c</code>, <code>mysql.x8.2xlarge.2c</code>, <code>rds.mysql.t1.large</code>, <code>pg.x8.large.2c</code>.</li>
             </ul>
@@ -915,9 +915,9 @@
       <div class="two-column-layout" style="align-items: stretch; gap: 1.5rem;">
         <div class="column-left">
           <div class="content-card highlight" style="height: 100%; padding: 1.25rem;">
-            <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.95rem + var(--font-delta));">VPC Subnet &amp; Network Isolation</h3>
+            <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.5rem 0; font-size: calc(0.95rem + var(--font-delta));">VPC vSwitch &amp; Network Isolation</h3>
             <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.5;">
-              <li><strong>Zero Public IP Exposure:</strong> RDS instances are provisioned within private VPC subnets with strictly no public IP address assigned by default.</li>
+              <li><strong>Zero Public IP Exposure:</strong> RDS instances are provisioned within private VPC vSwitches with strictly no public IP address assigned by default.</li>
               <li><strong>VPC ENI Architecture:</strong> Direct attachment to private vSwitch interfaces ensures all database traffic flows over internal Alibaba Cloud SDN fabrics.</li>
               <li><strong>Security Group Binding:</strong> Stateful VPC Security Group rules attached to ENIs act as a virtual firewall, filtering authorized TCP ports (e.g., 3306, 5432).</li>
               <li><strong>Private Cloud Interconnect:</strong> Cross-VPC or hybrid on-premises workloads connect privately via Cloud Enterprise Network (CEN) without traversing the public internet.</li>

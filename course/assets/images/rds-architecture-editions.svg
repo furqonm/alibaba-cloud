@@ -132,7 +132,7 @@
 
     <!-- Financial Storage Box -->
     <rect x="18" y="246" width="244" height="84" rx="8" fill="#ffffff" stroke="#c4b5fd" stroke-width="1.5"/>
-    <text x="140" y="272" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#6d28d9">Multi-AZ Strong Consistency</text>
+    <text x="140" y="272" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#6d28d9">Multi-Zone Strong Consistency</text>
     <text x="140" y="292" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#64748b">Zero Data Loss Guaranteed (RPO = 0)</text>
     <text x="140" y="312" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#7c3aed">Cross-Datacenter Disaster Tolerance</text>
 
