@@ -620,9 +620,13 @@
       <h2>Automated Backup Scheduling</h2>
       
       <div class="two-column-layout" style="align-items: stretch; gap: 1.5rem;">
-        <div class="column-left" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+        <div class="column-left" style="flex: 1.1; display: flex; flex-direction: column; justify-content: center;">
           <div class="content-card highlight" style="height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 1.5rem;">
-            <ul style="margin: 0; padding-left: 1.25rem; font-size: 0.95rem; line-height: 1.65;">
+            <h3 style="margin-bottom: 0.85rem;">
+              <span>Backup Policy &amp; Retention Rules</span>
+              <span class="badge badge-blue">Automated</span>
+            </h3>
+            <ul style="margin: 0; padding-left: 1.25rem; font-size: calc(1.02rem + var(--font-delta)); line-height: 1.7; display: flex; flex-direction: column; gap: 0.75rem;">
               <li><strong>Backup Cycle:</strong> Automated full backups execute on scheduled days (e.g., Mon, Wed, Fri, Sun; mandatory minimum 2 days/week).</li>
               <li><strong>Preferred Maintenance Window:</strong> 1-hour configurable off-peak window (e.g., <code>17:00–18:00</code>) to eliminate production I/O impact.</li>
               <li><strong>Continuous Log Backup:</strong> Transaction logs (Binlog) automatically compressed and shipped to OSS every 5–30 minutes for PITR.</li>
@@ -656,39 +660,7 @@
       <h2>PITR Execution Workflow</h2>
       
       <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 0;">
-        <img src="assets/images/rds-backup-pitr-concept.svg" alt="Backup and Point-in-Time Recovery (PITR) Concept &amp; Timeline" class="architecture-diagram" style="max-height: 290px; width: 100%; height: auto; object-fit: contain;">
-      </div>
-
-      <div class="grid-3" style="margin-top: 0.75rem;">
-        <div class="content-card highlight-blue">
-          <h3>
-            <span>Snapshot + Binlog Synergy</span>
-            <span class="badge badge-blue">Foundation</span>
-          </h3>
-          <p style="margin: 0; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5;">
-            Scheduled physical snapshots establish coarse baseline state in OSS; continuous transaction logs capture sub-minute transactional deltas.
-          </p>
-        </div>
-
-        <div class="content-card highlight-amber" style="border-left: 3px solid #d97706;">
-          <h3>
-            <span>T - 1s Pinpointing (DAS / Audit)</span>
-            <span class="badge badge-exam">Exact Target</span>
-          </h3>
-          <p style="margin: 0; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5;">
-            Using SQL Audit or DAS, identify the exact second of the destructive query (e.g. <code>14:22:16</code>) and set the recovery point to <code>14:22:15</code>.
-          </p>
-        </div>
-
-        <div class="content-card highlight-green">
-          <h3>
-            <span>Automated Engine Replay</span>
-            <span class="badge badge-updated">RPO &asymp; 0s</span>
-          </h3>
-          <p style="margin: 0; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5;">
-            Alibaba Cloud mounts the base snapshot and sequentially fast-forwards binlogs, stopping right before the error with zero data loss.
-          </p>
-        </div>
+        <img src="assets/images/rds-backup-pitr-concept.svg" alt="Backup and Point-in-Time Recovery (PITR) Concept &amp; Timeline" class="architecture-diagram" style="max-height: 480px; width: 100%; height: auto; object-fit: contain;">
       </div>
     </section>
 
@@ -701,14 +673,14 @@
         <div class="content-card highlight-blue" style="display: flex; flex-direction: column; justify-content: space-between;">
           <div>
             <h3>
-              <span>Native RDS Console</span>
-              <span class="badge badge-blue">Native</span>
+              <span>Restore in RDS Console</span>
+              <span class="badge badge-blue">RDS Console</span>
             </h3>
-            <ul style="margin: 0; padding-left: 1.15rem; font-size: 0.88rem; line-height: 1.45;">
-              <li><strong>Scope:</strong> Complete instance-level database restoration.</li>
-              <li><strong>Restore to New Instance (Recommended):</strong> Clones snapshot/PITR data into an isolated new instance with zero production risk.</li>
-              <li><strong>In-Place Overwrite:</strong> Direct data overwrite on running instance; requires downtime window, preserves IP endpoints.</li>
-              <li><strong>Automation:</strong> Cloud platform automatically mounts storage and replays binlogs in the background.</li>
+            <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.88rem + var(--font-delta)); line-height: 1.52;">
+              <li><strong>Restore Scope:</strong> Full instance-level restoration via Backup and Restoration in the ApsaraDB RDS Console or API.</li>
+              <li><strong>Restore to New Instance (Recommended):</strong> Restores data By Backup Set or By Time (PITR) into a brand-new RDS instance with zero production risk.</li>
+              <li><strong>Restore to Existing Instance:</strong> Restores backup data directly to the source instance or another existing instance in the same region (overwrites destination database).</li>
+              <li><strong>Cross-Region Backup Restoration:</strong> Reconstructs a new instance in a secondary region using replicated cross-region backups for disaster recovery.</li>
             </ul>
           </div>
         </div>
@@ -716,14 +688,14 @@
         <div class="content-card highlight-green" style="display: flex; flex-direction: column; justify-content: space-between;">
           <div>
             <h3>
-              <span>Surgical Object Restore</span>
+              <span>DMS Data Tracking &amp; Restore</span>
               <span class="badge badge-updated">DMS</span>
             </h3>
-            <ul style="margin: 0; padding-left: 1.15rem; font-size: 0.88rem; line-height: 1.45;">
-              <li><strong>Scope:</strong> Corrupted individual tables or deleted rows via Data Management Service (DMS).</li>
-              <li><strong>Binlog Data Tracking:</strong> DMS tracks row-level mutations and generates inverse compensating SQL (undo <code>DELETE</code> / <code>UPDATE</code>).</li>
-              <li><strong>Cross-Instance Table Sync:</strong> Surgically copies restored tables from clone instance directly back into production.</li>
-              <li><strong>Production Continuity:</strong> Eliminates instance-level rollbacks; production stays online with minimal RTO.</li>
+            <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.88rem + var(--font-delta)); line-height: 1.52;">
+              <li><strong>Restore Scope:</strong> Fine-grained table-level and row-level data recovery via Alibaba Cloud Data Management (DMS).</li>
+              <li><strong>Data Tracking:</strong> Parses binary logs to track data modification records and generates reverse rollback SQL (undo accidental <code>DELETE</code>, <code>UPDATE</code>, or <code>INSERT</code>).</li>
+              <li><strong>Databases &amp; Tables Restoration:</strong> Restores designated individual databases or tables from backup files without rolling back the entire instance.</li>
+              <li><strong>Cross-Instance Data Sync:</strong> Clones data to a temporary instance and syncs verified restored tables back to the production instance via DMS data transmission.</li>
             </ul>
           </div>
         </div>
@@ -731,14 +703,14 @@
         <div class="content-card highlight-purple" style="display: flex; flex-direction: column; justify-content: space-between;">
           <div>
             <h3>
-              <span>Local / On-Premises</span>
-              <span class="badge badge-purple">Open-Source</span>
+              <span>Restore to Self-Managed DB</span>
+              <span class="badge badge-purple">Self-Managed DB</span>
             </h3>
-            <ul style="margin: 0; padding-left: 1.15rem; font-size: 0.88rem; line-height: 1.45;">
-              <li><strong>Scope:</strong> Offline recovery to local servers or dev labs via Percona XtraBackup or mysqldump.</li>
-              <li><strong>Physical Backups:</strong> Download raw packages from OSS; restore InnoDB tablespaces via <code>xtrabackup --prepare</code>.</li>
-              <li><strong>Logical Backups:</strong> Download text SQL dumps; import using standard <code>mysql -u root &lt; dump.sql</code>.</li>
-              <li><strong>Use Case:</strong> Ideal for air-gapped staging, local test hydration, and offline regulatory compliance audits.</li>
+            <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.88rem + var(--font-delta)); line-height: 1.52;">
+              <li><strong>Restore Scope:</strong> Restores RDS backup sets to self-managed databases running on ECS instances or on-premises servers.</li>
+              <li><strong>Physical Backup Restoration:</strong> Downloads physical backup sets (.tar.gz / xbstream) from OSS and restores using Percona XtraBackup (<code>xtrabackup --prepare</code>).</li>
+              <li><strong>Logical Backup Restoration:</strong> Downloads logical backup files (SQL scripts) from OSS and imports using standard client tools (<code>mysql &lt; dump.sql</code>).</li>
+              <li><strong>Use Cases:</strong> Local testing reproduction, compliance offline archival, disaster recovery drills, and cross-platform database migration.</li>
             </ul>
           </div>
         </div>

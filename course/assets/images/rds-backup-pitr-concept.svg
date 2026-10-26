@@ -65,19 +65,9 @@
       Continuous Transaction Logs (Binlog Stream archived to OSS every 5-30 mins) ➔➔
     </text>
 
-    <!-- Target PITR Marker (14:22:15) -->
-    <g transform="translate(685, 52)">
-      <rect x="-55" y="-12" width="110" height="26" rx="5" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
-      <text x="0" y="5" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="800" fill="#b45309">
-        🎯 Target: 14:22:15
-      </text>
-      <line x1="44" y1="14" x2="44" y2="34" stroke="#d97706" stroke-width="2"/>
-      <circle cx="44" cy="40" r="4.5" fill="#d97706"/>
-    </g>
-
     <!-- Disaster Event Marker (14:22:16) -->
-    <g transform="translate(815, 52)">
-      <rect x="-55" y="-12" width="110" height="26" rx="5" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+    <g transform="translate(790, 52)">
+      <rect x="-55" y="-12" width="110" height="26" rx="5" fill="#fee2e2" stroke="#dc2626" stroke-width="1.2"/>
       <text x="0" y="5" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="800" fill="#dc2626">
         ⚠️ 14:22:16 DROP
       </text>
@@ -85,7 +75,17 @@
       <circle cx="0" cy="40" r="4.5" fill="#dc2626"/>
     </g>
 
-    <text x="729" y="138" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="700" fill="#b45309">
+    <!-- Target PITR Marker (14:22:15) -->
+    <g transform="translate(744, 52)">
+      <rect x="-62" y="-12" width="124" height="26" rx="5" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+      <text x="0" y="5" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="800" fill="#b45309">
+        🎯 Target: 14:22:15
+      </text>
+      <line x1="0" y1="14" x2="0" y2="34" stroke="#d97706" stroke-width="2"/>
+      <circle cx="0" cy="40" r="4.5" fill="#d97706"/>
+    </g>
+
+    <text x="744" y="138" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="700" fill="#b45309">
       Recovery Target (T - 1s)
     </text>
   </g>
