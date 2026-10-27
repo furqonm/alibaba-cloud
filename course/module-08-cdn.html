@@ -215,7 +215,7 @@
             <h3>Central Configuration &amp; Control Plane</h3>
             <ul>
               <li><strong>Sub-Second Config Distribution:</strong> Pushes domain settings, SSL certificates, cache TTL rules, and WAF policies to 3,200+ nodes globally.</li>
-              <li><strong>Content Management System:</strong> Coordinates instant cache purges (URL and directory invalidation) and proactive cache warmup tasks.</li>
+              <li><strong>Content Management System:</strong> Coordinates instant cache refresh (URL and directory refresh) and proactive cache warm-up (prefetch) tasks.</li>
               <li><strong>OpenAPI &amp; SDK Automation:</strong> Fully programmable via Terraform, Alibaba Cloud CLI, and RESTful APIs.</li>
             </ul>
           </div>
@@ -350,7 +350,7 @@
           </div>
 
           <div class="content-card highlight">
-            <h3>Scenario B: Cache Miss &amp; Invalidation</h3>
+            <h3>Scenario B: Cache Miss &amp; Back-to-Origin</h3>
             <ul>
               <li><strong>Hierarchical Query:</strong> L1 queries regional L2 node; if L2 misses, query passes through Origin Shield to the backend origin.</li>
               <li><strong>Asynchronous Caching:</strong> Origin returns 200 OK. Edge streams data to client while writing a local copy to NVMe SSD for subsequent requests.</li>
@@ -495,16 +495,16 @@
       </div>
     </section>
 
-    <!-- SLIDE 16: CACHE REFRESH (PURGE) MECHANISMS -->
+    <!-- SLIDE 16: CACHE REFRESH MECHANISMS -->
     <section class="slide" data-category="Caching Hierarchy &amp; Cache Management">
       <div class="slide-category">Section 3: Caching Hierarchy &amp; Cache Management</div>
-      <h2>Cache Refresh (Purge) Mechanisms</h2>
+      <h2>Cache Refresh Mechanisms</h2>
 
       <div class="grid-3" style="margin-top: 1rem;">
         <div class="content-card highlight-blue">
-          <h3>URL (File) Purge</h3>
+          <h3>URL Refresh</h3>
           <ul>
-            <li><strong>Targeted Invalidation:</strong> Purges specific file URLs (e.g., <code>https://example.com/bundle.js</code>) across all 3,200+ edge nodes globally.</li>
+            <li><strong>Targeted Refresh:</strong> Refreshes specific file URLs (e.g., <code>https://example.com/bundle.js</code>) across all 3,200+ edge nodes globally.</li>
             <li><strong>Rapid Execution:</strong> Propagates within seconds, ensuring users immediately receive updated content on their next request.</li>
             <li><strong>Ideal Use Case:</strong> Hotfix deployments, CSS/JS stylesheet updates, and critical image replacements.</li>
             <li><strong>Daily Quota:</strong> Generous daily allowance (typically 10,000+ URLs/day via OpenAPI or Console).</li>
@@ -512,10 +512,10 @@
         </div>
 
         <div class="content-card highlight-green">
-          <h3>Directory Purge</h3>
+          <h3>Directory Refresh</h3>
           <ul>
-            <li><strong>Folder Invalidation:</strong> Purges entire directory paths (e.g., <code>https://example.com/v2.0/*</code>).</li>
-            <li><strong>Two Invalidation Modes:</strong>
+            <li><strong>Directory Invalidation:</strong> Refreshes entire directory paths (e.g., <code>https://example.com/v2.0/*</code>).</li>
+            <li><strong>Two Refresh Modes:</strong>
               <ul>
                 <li><strong>Expire (Recommended):</strong> Marks objects as expired; if origin is momentarily down, edge can still serve stale cache.</li>
                 <li><strong>Delete:</strong> Hard-deletes files from edge storage immediately.</li>
@@ -526,12 +526,12 @@
         </div>
 
         <div class="content-card highlight">
-          <h3>Regex Purge &amp; CI/CD Pipeline</h3>
+          <h3>Regex Refresh &amp; CI/CD Pipeline</h3>
           <ul>
-            <li><strong>Regular Expression Purge:</strong> Invalidates assets matching complex patterns (e.g., <code>.*\.json$</code>).</li>
-            <li><strong>Automated Deployment Hooks:</strong> Integrate cache purge API calls into GitHub Actions, GitLab CI, or Jenkins pipelines.</li>
-            <li><strong>Task Tracking:</strong> Query real-time purge progress and completion status via OpenAPI.</li>
-            <li><strong>Strict Architecture Constraint:</strong> Avoid unnecessary bulk directory purges; excessive invalidations cause origin traffic spikes.</li>
+            <li><strong>Regular Expression Refresh:</strong> Refreshes assets matching complex patterns (e.g., <code>.*\.json$</code>).</li>
+            <li><strong>Automated Deployment Hooks:</strong> Integrate cache refresh API calls (<code>RefreshObjectCaches</code>) into GitHub Actions, GitLab CI, or Jenkins pipelines.</li>
+            <li><strong>Task Tracking:</strong> Query real-time refresh task progress and completion status via OpenAPI.</li>
+            <li><strong>Strict Architecture Constraint:</strong> Avoid unnecessary bulk directory refreshes; excessive refreshes cause origin traffic spikes.</li>
           </ul>
         </div>
       </div>
@@ -549,14 +549,14 @@
             <li><strong>The Cold Start Dilemma:</strong> When a major software update (e.g., 2 GB game patch) or new video episode is released, edge caches are completely empty.</li>
             <li><strong>Instant Origin Collapse:</strong> Millions of concurrent users hitting the site simultaneously trigger millions of simultaneous cache misses.</li>
             <li><strong>Bandwidth &amp; IOPS Saturation:</strong> Origin web servers and storage connections are overwhelmed within seconds, causing catastrophic 502/504 outages.</li>
-            <li><strong>Traditional Purge Failure:</strong> Purging alone leaves the cache cold, making thundering herd scenarios worse during peak traffic.</li>
+            <li><strong>Traditional Refresh Limitation:</strong> Refreshing alone leaves the cache cold, making thundering herd scenarios worse during peak traffic.</li>
           </ul>
         </div>
 
         <div class="content-card highlight-green">
           <h3>Proactive Edge Pre-Loading</h3>
           <ul>
-            <li><strong>Proactive Ingestion:</strong> Trainer or automated script submits target URLs to the CDN Warmup API prior to public release.</li>
+            <li><strong>Proactive Ingestion:</strong> Automated deployment pipeline or admin submits target URLs to the CDN Pre-warm API (<code>PushObjectCache</code>) prior to public release.</li>
             <li><strong>Backbone Pull:</strong> Alibaba Cloud CDN pulls objects from origin to L2 regional aggregation nodes over dedicated high-speed links.</li>
             <li><strong>Instant 100% Cache Hit:</strong> When public users begin requesting the file, it is already cached at regional nodes, achieving immediate hits and zero origin load.</li>
             <li><strong>Operational Best Practice:</strong> Execute warmup 30–60 minutes before scheduled marketing campaigns, ticket sales, or game releases.</li>
@@ -1194,7 +1194,7 @@
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">D</span>
-            <span>Deploy a second VPC peering connection and replicate all static assets across three separate ECS Availability Zones without using a Content Delivery Network.</span>
+            <span>Deploy a second VPC peering connection and replicate all static assets across three separate ECS Zones without using a Content Delivery Network.</span>
           </li>
         </ul>
       </div>
