@@ -256,7 +256,7 @@
         </div>
         <div class="content-card highlight-blue">
           <h3>Security IN the Cloud (Customer)</h3>
-          <p>Customers maintain full authority and accountability over IAM/RAM access, Security Group rules, OS security patching, and application vulnerability hardening.</p>
+          <p>Customers maintain full authority and accountability over Resource Access Management (RAM) access, Security Group rules, OS security patching, and application vulnerability hardening.</p>
         </div>
       </div>
     </section>
@@ -540,7 +540,7 @@
             <h3>Defense-in-Depth Layering</h3>
             <ul>
               <li><strong>Edge Ingestion:</strong> Traffic enters through Anti-DDoS and WAF, stripping volumetric and application-layer attacks.</li>
-              <li><strong>Compute Decoupling:</strong> Server Load Balancers distribute sanitized traffic across auto-scaling ECS clusters in private subnets.</li>
+              <li><strong>Compute Decoupling:</strong> Server Load Balancers distribute sanitized traffic across auto-scaling ECS clusters in private vSwitches.</li>
               <li><strong>Data Core Hardening:</strong> Persistent state resides in encrypted RDS and OSS tiers accessible only through strict Security Group rules.</li>
             </ul>
           </div>
@@ -549,7 +549,7 @@
             <h3>Resilience &amp; Data Recovery</h3>
             <ul>
               <li><strong>Automated Disk Snapshots:</strong> Crash-consistent snapshot policies for ECS system and data disks.</li>
-              <li><strong>Cross-Zone RDS Active-Standby:</strong> Synchronous replication between Availability Zones with 30-second automated failover.</li>
+              <li><strong>Cross-Zone RDS Active-Standby:</strong> Synchronous replication between Zones with 30-second automated failover.</li>
             </ul>
           </div>
         </div>
@@ -1231,7 +1231,7 @@ ightarrow$ Client replies <code>ACK</code>.</li>
           <p>Architectural strategies to prevent blackhole triggering and achieve zero-downtime resilience:</p>
           <ul>
             <li><strong>Pre-Attach High-Defense IP:</strong> Route public DNS domains through Anti-DDoS Pro or Premium, absorbing volumetric attacks before they ever reach origin IPs.</li>
-            <li><strong>Zero Public Origin Exposure:</strong> Place all backend application servers and databases in private subnets with no public EIPs attached.</li>
+            <li><strong>Zero Public Origin Exposure:</strong> Place all backend application servers and databases in private vSwitches with no public EIPs attached.</li>
             <li><strong>One-Click Emergency De-escalation:</strong> Anti-DDoS Pro and Premium subscribers can invoke emergency un-blackhole operations through the console.</li>
             <li><strong>Automated DNS Failover:</strong> Pair Alibaba Cloud DNS with CloudMonitor health checks to instantly redirect traffic away from impacted IP addresses.</li>
           </ul>
@@ -1361,7 +1361,7 @@ ightarrow$ Client replies <code>ACK</code>.</li>
           <ul>
             <li><strong>Layer 1: Global Edge (Anti-DDoS):</strong> Absorb multi-gigabit volumetric floods at regional Anycast scrubbing centers before packets reach origin datacenters.</li>
             <li><strong>Layer 2: Web Application (WAF):</strong> Inspect HTTP/HTTPS traffic in memory, blocking OWASP Top 10 exploits, SQLi, XSS, and automated crawler botnets.</li>
-            <li><strong>Layer 3: Network Perimeter (SLB &amp; VPC):</strong> Terminate TLS handshakes, balance traffic, and confine compute workloads to private, non-routable subnets.</li>
+            <li><strong>Layer 3: Network Perimeter (SLB &amp; VPC):</strong> Terminate TLS handshakes, balance traffic, and confine compute workloads to private, non-routable vSwitches.</li>
             <li><strong>Layer 4: Micro-Segmentation (Security Groups):</strong> Stateful firewall rules strictly limiting ingress ports (e.g. port 80/443 from SLB only, port 3306 from ECS only).</li>
           </ul>
         </div>
@@ -1433,7 +1433,7 @@ ightarrow$ Client replies <code>ACK</code>.</li>
         <div class="content-card highlight-green">
           <h3>Infrastructure &amp; Cryptographic Hygiene</h3>
           <ul>
-            <li><strong>Zero Public IP on Databases:</strong> RDS and PolarDB instances must reside strictly in private subnets with no public internet endpoints.</li>
+            <li><strong>Zero Public IP on Databases:</strong> RDS and PolarDB instances must reside strictly in private vSwitches with no public internet endpoints.</li>
             <li><strong>Encrypt All Sensitive Data:</strong> Enable KMS Transparent Data Encryption (TDE) on databases and Server-Side Encryption (SSE) on OSS storage buckets.</li>
             <li><strong>Continuous Multi-Region Audit:</strong> Enable <strong>ActionTrail</strong> across all cloud regions, forwarding management event logs to an immutable OSS archive bucket.</li>
             <li><strong>Automated Vulnerability Rhythm:</strong> Configure Security Center automated weekly vulnerability scanning and auto-remediation policies.</li>
@@ -1464,7 +1464,7 @@ ightarrow$ Client replies <code>ACK</code>.</li>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">C</span>
-            <span>Disable HTTPS encryption across all customer endpoints to reduce compute overhead, and place all ECS and RDS databases directly in public subnets with public EIPs.</span>
+            <span>Disable HTTPS encryption across all customer endpoints to reduce compute overhead, and place all ECS and RDS databases directly in public vSwitches with public EIPs.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">D</span>
@@ -1509,7 +1509,7 @@ ightarrow$ Client replies <code>ACK</code>.</li>
             <span>✖ Option C is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            <strong>Catastrophic security failure.</strong> Disabling HTTPS exposes credit card transactions and passwords in plaintext across public Wi-Fi networks, violating PCI-DSS compliance. Placing databases in public subnets exposes them directly to internet port scans and brute-force attacks.
+            <strong>Catastrophic security failure.</strong> Disabling HTTPS exposes credit card transactions and passwords in plaintext across public Wi-Fi networks, violating PCI-DSS compliance. Placing databases in public vSwitches exposes them directly to internet port scans and brute-force attacks.
           </div>
         </div>
 
@@ -1616,7 +1616,7 @@ ightarrow$ Client replies <code>ACK</code>.</li>
         <ul class="quiz-single-options">
           <li class="quiz-single-option">
             <span class="quiz-single-letter">A</span>
-            <span>SSL Certificates Service on SLB/CDN with TLS 1.3, RDS in private subnets with KMS-managed TDE and SSL enabled, and OSS with SSE-KMS, Bucket Policy VPC restriction, and WORM Bucket Lock.</span>
+            <span>SSL Certificates Service on SLB/CDN with TLS 1.3, RDS in private vSwitches with KMS-managed TDE and SSL enabled, and OSS with SSE-KMS, Bucket Policy VPC restriction, and WORM Bucket Lock.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">B</span>
@@ -1651,7 +1651,7 @@ ightarrow$ Client replies <code>ACK</code>.</li>
             <span>✔ Option A is Correct</span>
           </div>
           <div class="analysis-item-body">
-            <strong>Full compliance adherence.</strong> SLB/CDN enforces modern TLS 1.3 in transit. RDS resides securely in private VPC subnets with Transparent Data Encryption (TDE) utilizing KMS Customer Master Keys with annual auto-rotation. OSS utilizes SSE-KMS for encryption-at-rest and WORM retention locks guaranteeing 5-year tamper-proof immutability against deletion.
+            <strong>Full compliance adherence.</strong> SLB/CDN enforces modern TLS 1.3 in transit. RDS resides securely in private vSwitches with Transparent Data Encryption (TDE) utilizing KMS Customer Master Keys with annual auto-rotation. OSS utilizes SSE-KMS for encryption-at-rest and WORM retention locks guaranteeing 5-year tamper-proof immutability against deletion.
           </div>
         </div>
 
