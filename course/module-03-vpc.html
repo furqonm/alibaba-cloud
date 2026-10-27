@@ -245,40 +245,37 @@
           <p>When designing VPCs, ensure the VPC CIDR block <strong>never overlaps</strong> with on-premises datacenters, peer VPCs, or remote offices connected via CEN, Express Connect, or VPN. Route propagation and traffic routing fail on conflicting CIDRs!</p>
         </div>
         <div class="content-card highlight-blue">
-          <h3>Subnet Allocation &amp; Capacity Reservation</h3>
-          <p>Divide the VPC address space strategically across tiers (web, application, database). <strong>Always reserve unallocated contiguous CIDR subnets</strong> within the VPC to allow seamless future capacity expansion without re-architecting your network.</p>
+          <h3>Secondary CIDR Blocks</h3>
+          <p>If private IP capacity runs low due to rapid business growth or high container pod density, attach up to <strong>3 secondary IPv4 CIDR blocks</strong> (standard RFC 1918 blocks such as <code>192.168.0.0/16</code> or custom user CIDRs) without stopping instances or rebuilding routing.</p>
         </div>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 10: SECONDARY CIDR & IPV6 ==================== -->
+    <!-- ==================== SLIDE 10: IPV6 ARCHITECTURE ==================== -->
     <section class="slide" data-category="vSwitch Planning">
       <div class="slide-category">Section 2: vSwitch Planning</div>
-      <h2>Secondary CIDR Blocks & IPv6 Dual-Stack</h2>
+      <h2>IPv6 Dual-Stack &amp; IPv6 Gateway Architecture</h2>
       
-      <div class="grid-2">
-        <div class="content-card highlight">
-          <h3>Secondary IPv4 CIDR Blocks</h3>
-          <p>If an existing VPC runs out of private IP capacity due to rapid business growth or container pod density:</p>
-          <ul>
-            <li><strong>Zero Workload Disruption:</strong> Attach up to <strong>3 secondary IPv4 CIDR blocks</strong> to an existing VPC without stopping instances or rebuilding routing.</li>
-            <li><strong>Flexible Allocation:</strong> Supports standard RFC 1918 CIDR blocks (such as adding secondary blocks like <code>192.168.0.0/16</code> or <code>172.16.0.0/12</code> to a primary <code>10.0.0.0/8</code> VPC) as well as custom user CIDRs.</li>
-            <li><strong>Dedicated vSwitches:</strong> Create new vSwitches bound to the secondary CIDR to host high-density container fleets.</li>
-          </ul>
+      <div class="grid-2" style="grid-template-columns: 1.15fr 1fr; gap: 1.25rem; align-items: stretch;">
+        <div class="content-card highlight-blue" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3>IPv6 Dual-Stack Addressing</h3>
+            <p style="margin-bottom: 0.75rem;">Enable global IPv6 connectivity with native dual-stack addressing:</p>
+            <ul>
+              <li><strong>Automatic /56 Allocation:</strong> Alibaba Cloud automatically allocates a globally unique <code>/56</code> IPv6 CIDR block when IPv6 is enabled on a VPC.</li>
+              <li><strong>/64 vSwitch Slicing:</strong> Subdivide the VPC IPv6 block into <code>/64</code> blocks assigned to individual vSwitches across distinct Zones (e.g. Zone A and Zone B).</li>
+              <li><strong>IPv6 Gateway Control:</strong> All IPv6 egress and ingress traffic routes through the VPC IPv6 Gateway, providing granular bandwidth control and automated routing.</li>
+              <li><strong>Flexible Egress Modes:</strong> Supports both public IPv6 Internet bandwidth packages and free IPv6 egress-only communication rules.</li>
+            </ul>
+          </div>
+          <div class="callout callout-green" style="margin-top: 0.75rem; margin-bottom: 0;">
+            <strong>Cloud-Native Architecture:</strong> Dual-stack IPv6 enables direct end-to-end device communication and global compliance without NAT translation complexities.
+          </div>
         </div>
-        <div class="content-card highlight-blue">
-          <h3>IPv6 Dual-Stack Architecture</h3>
-          <p>Native modern IPv6 addressing for global internet compliance and direct device addressability:</p>
-          <ul>
-            <li><strong>Automatic /56 Allocation:</strong> Alibaba Cloud automatically allocates a globally unique <code>/56</code> IPv6 CIDR block when IPv6 is enabled on a VPC.</li>
-            <li><strong>/64 vSwitch Slicing:</strong> Subdivide the VPC IPv6 block into <code>/64</code> blocks assigned to individual vSwitches.</li>
-            <li><strong>IPv6 Gateway:</strong> Provides granular internet egress and ingress control for IPv6 traffic with configurable bandwidth packages.</li>
-          </ul>
+        <div class="diagram-container clean" style="margin-top: 0; justify-content: center; height: 100%; padding: 0.5rem; display: flex; flex-direction: column; align-items: center;">
+          <img src="assets/images/vpc-ipv6-architecture.png" alt="VPC IPv6 Gateway Architecture" class="diagram-image" style="max-height: 420px; width: auto; max-width: 100%; object-fit: contain;">
+          <div class="diagram-caption" style="margin-top: 0.5rem;">VPC IPv6 Dual-Stack &amp; IPv6 Gateway Architecture Topology</div>
         </div>
-      </div>
-
-      <div class="callout callout-green" style="margin-top: 1rem;">
-        <strong>Cloud-Native Use Case:</strong> Alibaba Cloud Container Service for Kubernetes (ACK) utilizes Secondary CIDRs to dedicate distinct address pools for cluster nodes and Kubernetes pods via the Terway CNI plugin.
       </div>
     </section>
 
