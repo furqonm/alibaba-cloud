@@ -303,7 +303,7 @@
       
       <div class="grid-2">
         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0;">
-          <img src="assets/images/auto-scaling-group-bounds.svg" alt="Auto Scaling Group Capacity Bounds" style="max-height: 420px; width: auto; max-width: 100%; object-fit: contain;">
+          <img src="assets/images/auto-scaling-group-bounds.svg" alt="Scaling Group Capacity Bounds" style="max-height: 420px; width: auto; max-width: 100%; object-fit: contain;">
         </div>
 
         <div class="content-card highlight" style="padding: 1.25rem 1.5rem; display: flex; flex-direction: column; justify-content: center;">
@@ -1068,7 +1068,7 @@
           <ol class="step-list">
             <li><strong>Baseline Capacity (Savings Plans):</strong> Cover minimum predictable baseline instances with Savings Plans or Reserved Instances (up to 50–70% savings).</li>
             <li><strong>Dynamic Daytime Surges (Pay-As-You-Go):</strong> Scale variable daytime demand using standard Pay-As-You-Go compute, paying per-second only when running.</li>
-            <li><strong>Fault-Tolerant Batch Bursts (Spot Instances):</strong> Use Spot instances for non-critical, queue-based, or container workloads (up to 80–90% savings).</li>
+            <li><strong>Fault-Tolerant Batch Bursts (Preemptible Instances):</strong> Use Preemptible instances (Spot) for non-critical, queue-based, or container workloads (up to 80–90% savings).</li>
           </ol>
         </div>
       </div>
@@ -1188,7 +1188,7 @@
       <div class="quiz-single-card">
         <div class="quiz-single-question">
           <span class="quiz-number">Question 3</span>
-          <span>A payment processing application running on an Auto Scaling group must scale in during low-volume night hours. However, each ECS instance holds active in-flight checkout transactions and transaction audit logs stored on local disks that must be preserved to maintain financial regulatory compliance. Which mechanism guarantees zero transaction failures and prevents log loss during scale-in events?</span>
+          <span>A payment processing application running on a Scaling Group must scale in during low-volume night hours. However, each ECS instance holds active in-flight checkout transactions and transaction audit logs stored on local disks that must be preserved to maintain financial regulatory compliance. Which mechanism guarantees zero transaction failures and prevents log loss during scale-in events?</span>
         </div>
         <ul class="quiz-single-options">
           <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Configure a Lifecycle Hook for PENDING_REMOVE with a sufficient timeout, invoke Cloud Assistant to flush transactions and upload logs to OSS, and call CompleteLifecycleAction to proceed.</span></li>

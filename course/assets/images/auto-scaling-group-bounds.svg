@@ -47,7 +47,7 @@
   <line x1="385" y1="80" x2="462" y2="148" stroke="#f97316" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arr-slb-dash)"/>
   <line x1="400" y1="75" x2="625" y2="148" stroke="#f97316" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arr-slb-dash)"/>
 
-  <!-- ==================== AUTO SCALING GROUP CONTAINER ==================== -->
+  <!-- ==================== SCALING GROUP CONTAINER ==================== -->
   <g transform="translate(40, 150)">
     <!-- Outer Group Container -->
     <rect width="680" height="175" rx="12" fill="#f8fafc" stroke="#334155" stroke-width="1.8"/>
