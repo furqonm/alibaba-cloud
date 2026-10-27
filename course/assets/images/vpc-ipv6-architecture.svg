@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 516 597" width="516" height="597">
+  <defs>
+    <style>
+      .label-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 13.5px; font-weight: 600; fill: #1e293b; }
+      .label-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 11.5px; font-weight: 500; fill: #334155; }
+      .label-zone { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 13px; font-weight: 500; fill: #334155; }
+    </style>
+    <!-- Arrow Marker for Traffic Flows -->
+    <marker id="arr-gray" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1 2 L 8 5 L 1 8 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- Transparent Background -->
+  <rect width="516" height="597" fill="none"/>
+
+  <!-- ==================== TOP: INTERNET ==================== -->
+  <g transform="translate(260, 40)">
+    <!-- Globe Icon -->
+    <circle cx="0" cy="0" r="23" fill="#ffffff" stroke="#1e293b" stroke-width="2.6"/>
+    <!-- Equator -->
+    <line x1="-23" y1="0" x2="23" y2="0" stroke="#1e293b" stroke-width="2.2"/>
+    <!-- Longitude Curves -->
+    <ellipse cx="0" cy="0" rx="10.5" ry="23" fill="none" stroke="#1e293b" stroke-width="2.2"/>
+    <!-- Node / connection dots -->
+    <circle cx="7" cy="4" r="1.5" fill="#1e293b"/>
+    <circle cx="-3" cy="11" r="1.5" fill="#1e293b"/>
+  </g>
+  <text x="260" y="77" class="label-title" text-anchor="middle">Internet</text>
+
+  <!-- Arrows: Internet <-> IPv6 Gateway -->
+  <!-- Arrow UP (Left) -->
+  <line x1="250" y1="138" x2="250" y2="92" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-gray)"/>
+  <!-- Arrow DOWN (Right) -->
+  <line x1="270" y1="92" x2="270" y2="138" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-gray)"/>
+
+  <!-- ==================== VPC CONTAINER ==================== -->
+  <rect x="23" y="173" width="478" height="408" fill="#f0f0f0" rx="2"/>
+
+  <!-- Official Alibaba Cloud VPC Icon (Orange #FF6A00) -->
+  <g transform="translate(8, 156)">
+    <!-- VPC Cloud Vector (Scaled down to 48x48) -->
+    <g transform="scale(0.047)">
+      <path d="M418.816 339.456l29.696-11.776c6.144 17.92 11.776 29.696 17.92 41.472h11.776c35.328 0 58.88 29.696 58.88 58.88v6.144c47.104 17.92 144.896 50.176 153.6 53.248 11.776-23.552 35.328-41.472 65.024-41.472h6.144c5.12-25.6 11.264-51.2 17.92-76.8H737.28c0-6.144-47.104-177.152-229.888-177.152H465.92C371.2 209.92 318.464 250.88 294.912 292.352 342.016 327.68 389.12 363.008 436.224 386.56c-5.632-17.408-11.776-29.184-17.408-47.104z m-6.144-105.984c6.144 17.92 11.776 29.696 17.92 47.104l-29.696 11.776-17.92-53.248 29.696-5.632z m247.808 424.448h11.776c17.92-29.696 29.696-53.248 41.472-82.432-17.92-11.776-29.696-35.328-29.696-58.88-10.24-2.56-112.128-35.328-165.376-53.248-6.144 17.92-23.552 23.552-41.472 23.552-35.328 0-58.88-29.696-58.88-58.88v-11.776c-47.104-29.696-88.576-58.88-135.68-94.208C265.216 374.784 271.36 416.256 271.36 421.888c0 0-194.56 11.776-224.256 153.6-35.328 177.152 153.6 241.664 218.112 241.664h283.136c29.696-23.552 53.248-53.248 70.656-82.432 0-6.144-6.144-17.92-6.144-29.696 0.512-29.184 24.064-47.104 47.616-47.104z m-118.272-88.576c-11.776-11.776-23.552-29.696-29.696-41.472l23.552-17.92c6.144 11.776 17.92 29.696 29.696 41.472l-23.552 17.92z m29.696 41.472l23.552-17.92c11.776 11.776 17.92 29.696 29.696 41.472l-23.552 17.92c-11.776-12.288-23.552-24.064-29.696-41.472z m407.04-53.248c-41.472 0-100.352-6.144-159.232-11.776-11.776 23.552-35.328 41.472-65.024 41.472h-6.144c-11.776 29.696-29.696 58.88-41.472 88.576 6.144 6.144 11.776 17.92 11.776 29.696 0 29.696-23.552 47.104-47.104 47.104H660.48c-17.92 23.552-35.328 41.472-53.248 65.024h141.312c6.144 0 153.088 0 224.256-135.68 6.144-41.984 11.776-82.944 6.144-124.416zM737.28 811.008l-35.328-35.328 23.552-23.552 35.328 35.328-23.552 23.552z m235.52-282.624c-17.92-76.8-76.8-135.68-165.376-153.088-6.144 23.552-11.776 53.248-17.92 82.432 17.92 11.776 29.696 29.696 35.328 58.88 59.392 5.632 107.008 11.776 147.968 11.776z" fill="#FF6A00"/>
+    </g>
+  </g>
+  <text x="38" y="212" class="label-title" text-anchor="middle">VPC</text>
+
+  <!-- ==================== IPv6 GATEWAY ==================== -->
+  <g transform="translate(260, 174)">
+    <!-- Official Alibaba Cloud IPv6 Gateway Hexagon & Globe Symbol (#FF6A00) -->
+    <!-- Hexagonal outer segmented frame -->
+    <path d="M 0 -24 L 20 -12 L 20 12 L 0 24 L -20 12 L -20 -12 Z" fill="#ffffff" stroke="#FF6A00" stroke-width="3" stroke-linejoin="round"/>
+    <!-- Outer corner accents / gateway ports -->
+    <path d="M -16 -18 L -22 -14 M 16 -18 L 22 -14 M -16 18 L -22 14 M 16 18 L 22 14 M 0 -26 L 0 -29 M 0 26 L 0 29" stroke="#FF6A00" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Globe core inside gateway -->
+    <circle cx="0" cy="0" r="11" fill="none" stroke="#FF6A00" stroke-width="1.8"/>
+    <line x1="-11" y1="0" x2="11" y2="0" stroke="#FF6A00" stroke-width="1.5"/>
+    <ellipse cx="0" cy="0" rx="5" ry="11" fill="none" stroke="#FF6A00" stroke-width="1.5"/>
+    <circle cx="3" cy="2" r="1" fill="#FF6A00"/>
+    <circle cx="-2" cy="5" r="1" fill="#FF6A00"/>
+  </g>
+  <text x="260" y="213" class="label-title" text-anchor="middle">IPv6</text>
+  <text x="260" y="228" class="label-title" text-anchor="middle">Gateway</text>
+
+  <!-- Label: With IPv6 Internet Bandwidth Enabled -->
+  <g transform="translate(315, 218)">
+    <text x="0" y="0" class="label-desc">With IPv6 Internet</text>
+    <text x="0" y="16" class="label-desc">Bandwidth Enabled</text>
+  </g>
+
+  <!-- Arrows: IPv6 Gateway <-> vRouter -->
+  <!-- Arrow UP (Left) -->
+  <line x1="250" y1="288" x2="250" y2="242" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-gray)"/>
+  <!-- Arrow DOWN (Right) -->
+  <line x1="270" y1="242" x2="270" y2="288" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-gray)"/>
+
+  <!-- ==================== vROUTER ==================== -->
+  <g transform="translate(260, 314)">
+    <!-- Official Alibaba Cloud vRouter Icon (#FF6A00 Circle with 4 Diagonal Arrows) -->
+    <circle cx="0" cy="0" r="23" fill="#FF6A00"/>
+    <!-- 4 Diagonal Arrows pointing outward -->
+    <!-- Top-Right -->
+    <path d="M 4 -4 L 14 -14 M 8 -14 L 14 -14 L 14 -8" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <!-- Top-Left -->
+    <path d="M -4 -4 L -14 -14 M -8 -14 L -14 -14 L -14 -8" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <!-- Bottom-Right -->
+    <path d="M 4 4 L 14 14 M 8 14 L 14 14 L 14 8" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <!-- Bottom-Left -->
+    <path d="M -4 4 L -14 14 M -8 14 L -14 14 L -14 8" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  <text x="260" y="356" class="label-title" text-anchor="middle">vRouter</text>
+
+  <!-- Diagonal Arrows: vRouter <-> vSwitch 1 (Zone A) -->
+  <!-- Upper diagonal arrow (vSwitch 1 -> vRouter) -->
+  <line x1="184" y1="363" x2="216" y2="337" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-gray)"/>
+  <!-- Lower diagonal arrow (vRouter -> vSwitch 1) -->
+  <line x1="230" y1="352" x2="198" y2="378" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-gray)"/>
+
+  <!-- Diagonal Arrows: vRouter <-> vSwitch 2 (Zone B) -->
+  <!-- Upper diagonal arrow (vSwitch 2 -> vRouter) -->
+  <line x1="336" y1="363" x2="304" y2="337" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-gray)"/>
+  <!-- Lower diagonal arrow (vRouter -> vSwitch 2) -->
+  <line x1="290" y1="352" x2="322" y2="378" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-gray)"/>
+
+  <!-- ==================== ZONE A CONTAINER (LEFT) ==================== -->
+  <rect x="59" y="394" width="169" height="178" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4,4"/>
+
+  <!-- Official Orange vSwitch 1 Icon -->
+  <g transform="translate(143, 394)">
+    <!-- White background card to mask dashed line -->
+    <rect x="-26" y="-14" width="52" height="28" fill="#ffffff"/>
+    <!-- vSwitch crossed arrows in #FF6A00 -->
+    <g transform="scale(0.95)">
+      <!-- Top curved arrow: left to right -->
+      <path d="M -18 6 C -12 6, -6 -6, 12 -6" fill="none" stroke="#FF6A00" stroke-width="4.5" stroke-linecap="round"/>
+      <polygon points="12,-11 20,-6 12,-1" fill="#FF6A00"/>
+      <polygon points="-12,1 -20,6 -12,11" fill="#FF6A00"/>
+      <!-- Bottom curved arrow: right to left -->
+      <path d="M 18 6 C 12 6, 6 -6, -12 -6" fill="none" stroke="#FF6A00" stroke-width="4.5" stroke-linecap="round"/>
+      <polygon points="-12,-11 -20,-6 -12,-1" fill="#FF6A00"/>
+      <polygon points="12,1 20,6 12,11" fill="#FF6A00"/>
+    </g>
+  </g>
+  <text x="143" y="430" class="label-title" text-anchor="middle">vSwitch 1</text>
+
+  <!-- Official Alibaba Cloud ECS 1 Icon (Orange #FF6A00 3-blade server) -->
+  <g transform="translate(122, 461)">
+    <g transform="scale(0.042)">
+      <path d="M864.768 903.68H180.736c-40.96 0-73.728-29.696-73.728-70.656v-81.92c0-40.96 33.28-70.656 73.728-70.656h684.032c40.96 0 74.24 29.696 74.24 70.656v81.92c-0.512 40.96-33.28 70.656-74.24 70.656z m-82.944-165.376c-29.696 0-53.76 24.064-53.76 53.248 0 29.696 24.064 53.76 53.76 53.76 29.696-1.024 52.736-25.6 52.224-54.784-1.024-28.16-23.552-51.2-52.224-52.224z m82.944-111.104H180.736c-40.96 0-73.728-29.696-73.728-70.656v-81.92c0-40.96 33.28-70.656 73.728-70.656h684.032c40.96 0 74.24 29.696 74.24 70.656v81.92c-0.512 40.96-33.28 70.656-74.24 70.656z m-82.944-164.864c-29.696 0-53.76 24.064-53.76 53.76s24.064 53.248 53.76 53.76c29.696 0 53.76-23.552 53.76-53.248 0.512-30.208-23.552-54.272-53.76-54.272 0.512 0 0.512 0 0 0z m82.944-111.104H180.736c-40.96 0-73.728-29.696-73.728-70.656v-81.92c0-40.96 33.28-70.656 73.728-70.656h684.032c40.96 0 74.24 29.696 74.24 70.656v81.92c-0.512 40.96-33.28 70.656-74.24 70.656z m-82.944-165.376c-29.696 0-53.76 24.064-53.76 53.76s24.064 53.248 53.76 53.248c29.184 0 53.248-24.064 53.248-53.248 0.512-29.696-23.552-53.76-53.248-53.76z" fill="#FF6A00"/>
+    </g>
+  </g>
+  <text x="143" y="525" class="label-title" text-anchor="middle">ECS1</text>
+  <text x="143" y="555" class="label-zone" text-anchor="middle">Zone A</text>
+
+  <!-- ==================== ZONE B CONTAINER (RIGHT) ==================== -->
+  <rect x="309" y="394" width="158" height="178" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4,4"/>
+
+  <!-- Official Orange vSwitch 2 Icon -->
+  <g transform="translate(388, 394)">
+    <rect x="-26" y="-14" width="52" height="28" fill="#ffffff"/>
+    <g transform="scale(0.95)">
+      <path d="M -18 6 C -12 6, -6 -6, 12 -6" fill="none" stroke="#FF6A00" stroke-width="4.5" stroke-linecap="round"/>
+      <polygon points="12,-11 20,-6 12,-1" fill="#FF6A00"/>
+      <polygon points="-12,1 -20,6 -12,11" fill="#FF6A00"/>
+      <path d="M 18 6 C 12 6, 6 -6, -12 -6" fill="none" stroke="#FF6A00" stroke-width="4.5" stroke-linecap="round"/>
+      <polygon points="-12,-11 -20,-6 -12,-1" fill="#FF6A00"/>
+      <polygon points="12,1 20,6 12,11" fill="#FF6A00"/>
+    </g>
+  </g>
+  <text x="388" y="430" class="label-title" text-anchor="middle">vSwitch 2</text>
+
+  <!-- Official Alibaba Cloud ECS 2 Icon (Orange #FF6A00 3-blade server) -->
+  <g transform="translate(367, 461)">
+    <g transform="scale(0.042)">
+      <path d="M864.768 903.68H180.736c-40.96 0-73.728-29.696-73.728-70.656v-81.92c0-40.96 33.28-70.656 73.728-70.656h684.032c40.96 0 74.24 29.696 74.24 70.656v81.92c-0.512 40.96-33.28 70.656-74.24 70.656z m-82.944-165.376c-29.696 0-53.76 24.064-53.76 53.248 0 29.696 24.064 53.76 53.76 53.76 29.696-1.024 52.736-25.6 52.224-54.784-1.024-28.16-23.552-51.2-52.224-52.224z m82.944-111.104H180.736c-40.96 0-73.728-29.696-73.728-70.656v-81.92c0-40.96 33.28-70.656 73.728-70.656h684.032c40.96 0 74.24 29.696 74.24 70.656v81.92c-0.512 40.96-33.28 70.656-74.24 70.656z m-82.944-164.864c-29.696 0-53.76 24.064-53.76 53.76s24.064 53.248 53.76 53.76c29.696 0 53.76-23.552 53.76-53.248 0.512-30.208-23.552-54.272-53.76-54.272 0.512 0 0.512 0 0 0z m82.944-111.104H180.736c-40.96 0-73.728-29.696-73.728-70.656v-81.92c0-40.96 33.28-70.656 73.728-70.656h684.032c40.96 0 74.24 29.696 74.24 70.656v81.92c-0.512 40.96-33.28 70.656-74.24 70.656z m-82.944-165.376c-29.696 0-53.76 24.064-53.76 53.76s24.064 53.248 53.76 53.248c29.184 0 53.248-24.064 53.248-53.248 0.512-29.696-23.552-53.76-53.248-53.76z" fill="#FF6A00"/>
+    </g>
+  </g>
+  <text x="388" y="525" class="label-title" text-anchor="middle">ECS2</text>
+  <text x="388" y="555" class="label-zone" text-anchor="middle">Zone B</text>
+</svg>
