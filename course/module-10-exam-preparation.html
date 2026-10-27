@@ -77,7 +77,7 @@
       
       <div class="quiz-single-card">
         <div class="quiz-single-question">
-          <span>1. You can choose Alibaba Cloud ECS instances in multiple different Regions based on the geographic distribution of your users to improve access speed and disaster tolerance. Which of the following descriptions is INCORRECT regarding ECS Regions and Availability Zones?</span>
+          <span>1. You can choose Alibaba Cloud ECS instances in multiple different Regions based on the geographic distribution of your users to improve access speed and disaster tolerance. Which of the following descriptions is INCORRECT regarding ECS Regions and Zones?</span>
         </div>
         <ul class="quiz-single-options">
           <li class="quiz-single-option">
@@ -90,11 +90,11 @@
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">C</span>
-            <span>ECS instances in different Availability Zones within the same Region and VPC under the same account are NOT interconnected via the internal network (intranet).</span>
+            <span>ECS instances in different Zones within the same Region and VPC under the same account are NOT interconnected via the internal network (intranet).</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">D</span>
-            <span>Each Alibaba Cloud Region can contain multiple physically isolated Availability Zones.</span>
+            <span>Each Alibaba Cloud Region can contain multiple physically isolated Zones.</span>
           </li>
         </ul>
       </div>
@@ -134,7 +134,7 @@
             <span>✔ Option C is Correct</span>
           </div>
           <div class="analysis-item-body">
-            This statement is incorrect (and therefore the right answer). ECS instances in different Availability Zones within the same Region and VPC communicate seamlessly over Alibaba Cloud's internal network by default.
+            This statement is incorrect (and therefore the right answer). ECS instances in different Zones within the same Region and VPC communicate seamlessly over Alibaba Cloud's internal network by default.
           </div>
         </div>
 
@@ -143,7 +143,7 @@
             <span>✖ Option D is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            Every Region consists of multiple Availability Zones with independent power grids and cooling systems connected by low-latency fiber rings.
+            Every Region consists of multiple Zones with independent power grids and cooling systems connected by low-latency fiber rings.
           </div>
         </div>
       </div>
@@ -159,11 +159,11 @@
         <ul class="quiz-single-options">
           <li class="quiz-single-option">
             <span class="quiz-single-letter">A</span>
-            <span>Deploy all ECS instances and RDS nodes inside a single Availability Zone using multiple vSwitches.</span>
+            <span>Deploy all ECS instances and RDS nodes inside a single Zone using multiple vSwitches.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">B</span>
-            <span>Deploy ECS instances and Multi-Zone ApsaraDB RDS across two different Availability Zones within the same Region.</span>
+            <span>Deploy ECS instances and Multi-Zone ApsaraDB RDS across two different Zones within the same Region.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">C</span>
@@ -183,7 +183,7 @@
       <div class="analysis-main-card">
         <div>
           <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: B</span>
-          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Deploy across multiple Availability Zones within the same Region for fault isolation with sub-2 ms latency.</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Deploy across multiple Zones within the same Region for fault isolation with sub-2 ms latency.</span>
         </div>
       </div>
 
@@ -193,7 +193,7 @@
             <span>✖ Option A is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            Multiple vSwitches within the same Availability Zone share the same physical facility power and cooling infrastructure, creating a single point of failure during a zone-wide outage.
+            Multiple vSwitches within the same Zone share the same physical facility power and cooling infrastructure, creating a single point of failure during a zone-wide outage.
           </div>
         </div>
 
@@ -202,7 +202,7 @@
             <span>✔ Option B is Correct</span>
           </div>
           <div class="analysis-item-body">
-            Availability Zones within the same Region have independent power, cooling, and network fault domains while remaining connected via ultra-low-latency (< 2 ms) metropolitan fiber links.
+            Zones within the same Region have independent power, cooling, and network fault domains while remaining connected via ultra-low-latency (< 2 ms) metropolitan fiber links.
           </div>
         </div>
 
@@ -231,7 +231,7 @@
       
       <div class="quiz-single-card">
         <div class="quiz-single-question">
-          <span>3. Under the same Alibaba Cloud account, how do Elastic Compute Service (ECS) instances deployed in different Availability Zones within the same Region and Virtual Private Cloud (VPC) communicate with each other?</span>
+          <span>3. Under the same Alibaba Cloud account, how do Elastic Compute Service (ECS) instances deployed in different Zones within the same Region and Virtual Private Cloud (VPC) communicate with each other?</span>
         </div>
         <ul class="quiz-single-options">
           <li class="quiz-single-option">
@@ -270,7 +270,7 @@
             <span>✔ Option A is Correct</span>
           </div>
           <div class="analysis-item-body">
-            Within a single VPC, the vRouter automatically routes traffic across all vSwitches in different Availability Zones of the same Region over the private intranet for free.
+            Within a single VPC, the vRouter automatically routes traffic across all vSwitches in different Zones of the same Region over the private intranet for free.
           </div>
         </div>
 
@@ -629,7 +629,7 @@
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">C</span>
-            <span>Provision ECS Spot Instances and attach an ECS Instance RAM Role that issues temporary STS tokens.</span>
+            <span>Provision ECS Preemptible Instances (Spot) and attach an ECS Instance RAM Role that issues temporary STS tokens.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">D</span>
@@ -645,7 +645,7 @@
       <div class="analysis-main-card">
         <div>
           <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: C</span>
-          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Combine ECS Spot Instances for up to 80–90% compute savings with Instance RAM Roles for keyless STS access.</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Combine ECS Preemptible Instances (Spot) for up to 80–90% compute savings with Instance RAM Roles for keyless STS access.</span>
         </div>
       </div>
 
@@ -673,7 +673,7 @@
             <span>✔ Option C is Correct</span>
           </div>
           <div class="analysis-item-body">
-            Spot Instances offer up to 90% discount over Pay-As-You-Go for stateless workloads, while Instance RAM Roles provide auto-rotating STS credentials via the metadata service.
+            Preemptible Instances (Spot) offer up to 90% discount over Pay-As-You-Go for stateless workloads, while Instance RAM Roles provide auto-rotating STS credentials via the metadata service.
           </div>
         </div>
 
@@ -775,11 +775,11 @@
         <ul class="quiz-single-options">
           <li class="quiz-single-option">
             <span class="quiz-single-letter">A</span>
-            <span>251 usable IP addresses (5 addresses reserved by Alibaba Cloud), and a vSwitch is strictly scoped to a single Availability Zone.</span>
+            <span>251 usable IP addresses (5 addresses reserved by Alibaba Cloud), and a vSwitch is strictly scoped to a single Zone.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">B</span>
-            <span>254 usable IP addresses, and a single vSwitch can span up to three Availability Zones simultaneously.</span>
+            <span>254 usable IP addresses, and a single vSwitch can span up to three Zones simultaneously.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">C</span>
@@ -799,7 +799,7 @@
       <div class="analysis-main-card">
         <div>
           <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: A</span>
-          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">A /24 vSwitch provides 251 usable IPs (5 reserved) and is strictly bound to a single Availability Zone.</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">A /24 vSwitch provides 251 usable IPs (5 reserved) and is strictly bound to a single Zone.</span>
         </div>
       </div>
 
@@ -818,7 +818,7 @@
             <span>✖ Option B is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            Alibaba Cloud reserves more than 2 addresses per vSwitch, and a vSwitch cannot span across multiple Availability Zones.
+            Alibaba Cloud reserves more than 2 addresses per vSwitch, and a vSwitch cannot span across multiple Zones.
           </div>
         </div>
 
@@ -836,7 +836,7 @@
             <span>✖ Option D is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            NAT Gateways consume only individual elastic/private IPs, not half of a subnet's address space.
+            NAT Gateways consume only individual elastic/private IPs, not half of a vSwitch's address space.
           </div>
         </div>
       </div>
@@ -1395,7 +1395,7 @@
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">B</span>
-            <span>They must all be deployed in the exact same Availability Zone.</span>
+            <span>They must all be deployed in the exact same Zone.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">C</span>
@@ -1434,7 +1434,7 @@
             <span>✖ Option B is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            SLB supports cross-zone load balancing across multiple Availability Zones within the same Region for high availability.
+            SLB supports cross-zone load balancing across multiple Zones within the same Region for high availability.
           </div>
         </div>
 
@@ -2521,7 +2521,7 @@
             <span>✖ Option C is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            RDS instances are best deployed in private VPC subnets without public exposure; Alibaba Cloud does not bundle 20 Gbps of free Anti-DDoS bandwidth for RDS.
+            RDS instances are best deployed in private vSwitches without public exposure; Alibaba Cloud does not bundle 20 Gbps of free Anti-DDoS bandwidth for RDS.
           </div>
         </div>
 
@@ -2580,7 +2580,7 @@
             <span>✖ Option A is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            RDS read-only instances must reside within the same Region as the primary instance (though they can be placed in different Availability Zones).
+            RDS read-only instances must reside within the same Region as the primary instance (though they can be placed in different Zones).
           </div>
         </div>
 
@@ -2926,7 +2926,7 @@
       
       <div class="quiz-single-card">
         <div class="quiz-single-question">
-          <span>38. A customer creates an Auto Scaling group with Minimum Size (MinSize) = 6 and Maximum Size (MaxSize) = 8, and verifies that the group currently contains 6 healthy ECS instances. The customer configures a scaling rule 'Adjust to 10 ECS instances' and triggers it via a scheduled task. How many ECS instances will be in the scaling group after the task executes once?</span>
+          <span>38. A customer creates a Scaling Group with Minimum Size (MinSize) = 6 and Maximum Size (MaxSize) = 8, and verifies that the group currently contains 6 healthy ECS instances. The customer configures a scaling rule 'Adjust to 10 ECS instances' and triggers it via a scheduled task. How many ECS instances will be in the scaling group after the task executes once?</span>
         </div>
         <ul class="quiz-single-options">
           <li class="quiz-single-option">
@@ -3162,7 +3162,7 @@
         <ul class="quiz-single-options">
           <li class="quiz-single-option">
             <span class="quiz-single-letter">A</span>
-            <span>A manually attached ECS instance and the Scaling Group must be in the exact same Region AND the exact same Availability Zone.</span>
+            <span>A manually attached ECS instance and the Scaling Group must be in the exact same Region AND the exact same Zone.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">B</span>
@@ -3174,7 +3174,7 @@
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">D</span>
-            <span>All ECS instances inside a Scaling Group are strictly required to use the Pay-As-You-Go billing method; Spot or Subscription instances cannot exist in the group.</span>
+            <span>All ECS instances inside a Scaling Group are strictly required to use the Pay-As-You-Go billing method; Preemptible or Subscription instances cannot exist in the group.</span>
           </li>
         </ul>
       </div>
@@ -3196,7 +3196,7 @@
             <span>✖ Option A is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            The instance and the Scaling Group must be in the same Region and VPC, but can be in different Availability Zones as long as the Scaling Group has vSwitches in those Zones.
+            The instance and the Scaling Group must be in the same Region and VPC, but can be in different Zones as long as the Scaling Group has vSwitches in those Zones.
           </div>
         </div>
 
@@ -3223,7 +3223,7 @@
             <span>✖ Option D is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            Scaling groups can contain Pay-As-You-Go instances, Spot Instances, and manually attached Subscription instances.
+            Scaling groups can contain Pay-As-You-Go instances, Preemptible Instances (Spot), and manually attached Subscription instances.
           </div>
         </div>
       </div>

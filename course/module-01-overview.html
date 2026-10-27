@@ -134,7 +134,7 @@
         <div class="content-card highlight-green" style="padding: 0.75rem 1rem;">
           <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Three Local Zones</h4>
           <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
-            Region <code>ap-southeast-5</code> operates 3 distinct Availability Zones (Zone A, Zone B, Zone C) in Jakarta.
+            Region <code>ap-southeast-5</code> operates 3 distinct Zones (Zone A, Zone B, Zone C) in Jakarta.
           </p>
         </div>
         <div class="content-card highlight-green" style="padding: 0.75rem 1rem;">
@@ -332,7 +332,7 @@
 
           <div class="content-card highlight-blue">
             <p class="service-lead">
-              <strong>Server Load Balancer (SLB)</strong> distributes incoming application traffic across multiple backend ECS instances across Availability Zones.
+              <strong>Server Load Balancer (SLB)</strong> distributes incoming application traffic across multiple backend ECS instances across multiple Zones.
             </p>
             <p class="service-desc">
               By spreading inbound requests across server pools, SLB expands service throughput, eliminates single points of failure, and masks backend maintenance or unexpected hardware faults from users.
@@ -505,7 +505,7 @@
           <div class="content-card highlight-blue">
             <h3>Declarative Infrastructure Blueprint</h3>
             <p style="font-size: calc(0.9rem + var(--font-delta)); margin: 0; line-height: 1.5;">
-              A single ROS template declares the entire production architecture: 1 Server Load Balancer, 2 ECS instances (2vCPU / 4GB RAM), private VPC subnets, and database connections.
+              A single ROS template declares the entire production architecture: 1 Server Load Balancer, 2 ECS instances (2vCPU / 4GB RAM), private vSwitches, and database connections.
             </p>
           </div>
 
@@ -1054,7 +1054,7 @@
               <strong>Virtual Private Cloud (VPC)</strong> allows you to create isolated private networks on top of Alibaba Cloud.
             </p>
             <p class="service-desc">
-              VPC gives you full control over your virtual network environment, including selecting your own IP address range, dividing subnets across Availability Zones, configuring Route Tables, and establishing hybrid enterprise connectivity.
+              VPC gives you full control over your virtual network environment, including selecting your own IP address range, dividing vSwitches across Zones, configuring Route Tables, and establishing hybrid enterprise connectivity.
             </p>
           </div>
         </div>
@@ -1072,7 +1072,7 @@
             <h4>Custom Address Space</h4>
             <ul>
               <li>Full support for RFC 1918 CIDR blocks (<code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, <code>192.168.0.0/16</code>).</li>
-              <li>Granular subnet allocation without address overlaps.</li>
+              <li>Granular vSwitch CIDR allocation without address overlaps.</li>
             </ul>
           </div>
 
@@ -1244,7 +1244,7 @@
               <strong>NAT Gateway</strong> is an enterprise-class public network gateway providing managed SNAT and DNAT proxy services.
             </p>
             <p class="service-desc">
-              Built with native cross-zone disaster recovery and capable of handling up to 100 Gbps forwarding throughput, NAT Gateway connects private VPC subnets to the public Internet without assigning public IPs directly to backend servers.
+              Built with native cross-zone disaster recovery and capable of handling up to 100 Gbps forwarding throughput, NAT Gateway connects private vSwitches to the public Internet without assigning public IPs directly to backend servers.
             </p>
           </div>
 
@@ -1561,7 +1561,7 @@
       <div class="quiz-single-card">
         <div class="quiz-single-question">
           <span class="quiz-number">Question 2</span>
-          <span>A financial enterprise has deployed multiple production VPCs across Jakarta (ap-southeast-5) and Singapore (ap-southeast-1), alongside an on-premises enterprise data center connected via a physical Express Connect dedicated line. The enterprise network team requires a unified private transit architecture that guarantees: (1) secure, any-to-any private interconnectivity between all cloud VPCs and on-premises subnets, (2) enterprise-grade network quality with ultra-low jitter and packet loss rate below 0.2%, and (3) automated dynamic route propagation without maintaining dozens of static routing tables. Which solution should the architect implement?</span>
+          <span>A financial enterprise has deployed multiple production VPCs across Jakarta (ap-southeast-5) and Singapore (ap-southeast-1), alongside an on-premises enterprise data center connected via a physical Express Connect dedicated line. The enterprise network team requires a unified private transit architecture that guarantees: (1) secure, any-to-any private interconnectivity between all cloud VPCs and on-premises networks, (2) enterprise-grade network quality with ultra-low jitter and packet loss rate below 0.2%, and (3) automated dynamic route propagation without maintaining dozens of static routing tables. Which solution should the architect implement?</span>
         </div>
         <ul class="quiz-single-options">
           <li class="quiz-single-option">
