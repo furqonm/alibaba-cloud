@@ -780,6 +780,7 @@
             <li><strong>Deterministic Performance:</strong> Zero internet jitter, zero packet loss, and stable sub-millisecond network latency.</li>
             <li><strong>High Bandwidth Quotas:</strong> Port speeds ranging from 1 Gbps to 100 Gbps to handle massive database replication and big data transfers.</li>
             <li><strong>Enterprise Compliance:</strong> Complies with strict financial and healthcare regulations prohibiting transmission of sensitive data over the public Internet.</li>
+            <li><strong>Access Points in Jakarta:</strong> Alibaba Cloud provides redundant physical access points in Region Jakarta (<code>ap-southeast-5</code>) at <strong>DCI</strong> and <strong>NTT</strong> data centers for dedicated leased-line cross-connections.</li>
           </ul>
         </div>
         <div class="diagram-container clean" style="margin-top: 0; justify-content: center; height: 100%; padding: 0.75rem;">
@@ -915,16 +916,13 @@
             <li><strong>Comprehensive 5-Tuple Data:</strong> Captures Source IP, Destination IP, Source Port, Destination Port, Protocol, Action (ACCEPT / REJECT), byte count, and packet count.</li>
             <li><strong>Simple Log Service (SLS) Integration:</strong> Real-time streaming into SLS for indexation, querying, automated alerting, and long-term compliance archiving.</li>
             <li><strong>Troubleshooting & Security Auditing:</strong> Instantly identify whether dropped packets were blocked by a stateless Network ACL or stateful Security Group.</li>
+            <li><strong>Operational Standard:</strong> Enable VPC Flow Logs across all production VPCs with a filter set to capture <code>REJECT</code> traffic, instantly alerting security operations to potential port scans and unauthorized connection attempts.</li>
           </ul>
         </div>
         <div class="diagram-container clean" style="margin-top: 0; justify-content: center; height: 100%; padding: 0.75rem;">
           <img src="assets/images/vpc-flow-logs-architecture.svg" alt="VPC Flow Logs Telemetry Collection and SLS Ingestion Architecture" class="diagram-image" style="max-height: 380px; width: 100%; object-fit: contain;">
           <div class="diagram-caption">VPC Flow Logs: Packet Telemetry Collection across VPC/vSwitch ENIs and Streaming to SLS</div>
         </div>
-      </div>
-
-      <div class="callout callout-green" style="margin-top: 0.75rem;">
-        <strong>Operational Standard:</strong> Enable VPC Flow Logs across all production VPCs with a filter set to capture <code>REJECT</code> traffic, instantly alerting security operations to potential port scans and unauthorized connection attempts.
       </div>
     </section>
 

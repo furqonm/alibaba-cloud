@@ -25,7 +25,7 @@
     <text x="375" y="105" text-anchor="middle" font-size="11.5" font-weight="600" fill="#0f172a">DNS Lookup</text>
 
     <!-- Flow Split Paths from DNS to Regions (with white halo for Night Mode) -->
-    <!-- Left path to SZ Region -->
+    <!-- Left path to China -->
     <path d="M 326 168 L 152 168 L 152 246" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M 326 168 L 152 168 L 152 246" fill="none" stroke="#0f172a" stroke-width="1.6"/>
     <path d="M 152 266 L 152 382" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -33,7 +33,7 @@
     <text x="152" y="260" text-anchor="middle" font-size="11.5" font-weight="600" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" fill="none">China visitors</text>
     <text x="152" y="260" text-anchor="middle" font-size="11.5" font-weight="600" fill="#0f172a">China visitors</text>
 
-    <!-- Right path to HK Region -->
+    <!-- Right path to Jakarta -->
     <path d="M 424 168 L 585 168 L 585 252" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M 424 168 L 585 168 L 585 252" fill="none" stroke="#0f172a" stroke-width="1.6"/>
     <path d="M 585 272 L 585 382" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -62,7 +62,7 @@
       <text x="0" y="61" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">Alibaba Cloud DNS</text>
     </g>
 
-    <!-- ==================== SZ REGION (LEFT) ==================== -->
+    <!-- ==================== CHINA REGION (LEFT) ==================== -->
     <g transform="translate(12, 338)">
       <!-- Region Outer Boundary (Valid SVG 1.1 fill="#f1f5f9") -->
       <polygon points="0,0 256,0 284,28 284,202 0,202" fill="#f1f5f9" stroke="#ffffff" stroke-width="4"/>
@@ -90,12 +90,12 @@
         <text x="0" y="61" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">ECS (Proxy)</text>
       </g>
 
-      <!-- SZ Region Badge -->
+      <!-- China Badge -->
       <rect x="144" y="172" width="140" height="30" fill="#262626"/>
-      <text x="214" y="193" text-anchor="middle" font-size="16" font-weight="600" fill="#ffffff">SZ Region</text>
+      <text x="214" y="193" text-anchor="middle" font-size="16" font-weight="600" fill="#ffffff">China</text>
     </g>
 
-    <!-- ==================== HK REGION (RIGHT) ==================== -->
+    <!-- ==================== JAKARTA REGION (RIGHT) ==================== -->
     <g transform="translate(445, 338)">
       <!-- Region Outer Boundary -->
       <polygon points="0,0 256,0 284,28 284,202 0,202" fill="#f1f5f9" stroke="#ffffff" stroke-width="4"/>
@@ -123,12 +123,12 @@
         <text x="0" y="61" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">ECS</text>
       </g>
 
-      <!-- HK Region Badge -->
+      <!-- Jakarta Badge -->
       <rect x="144" y="172" width="140" height="30" fill="#262626"/>
-      <text x="214" y="193" text-anchor="middle" font-size="16" font-weight="600" fill="#ffffff">HK Region</text>
+      <text x="214" y="193" text-anchor="middle" font-size="16" font-weight="600" fill="#ffffff">Jakarta</text>
     </g>
 
-    <!-- Cross-Region Connection (SZ Proxy -> HK ECS) -->
+    <!-- Cross-Region Connection (China Proxy -> Jakarta ECS) -->
     <line x1="201" y1="426" x2="532" y2="426" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"/>
     <line x1="201" y1="426" x2="532" y2="426" stroke="#0f172a" stroke-width="1.6" marker-end="url(#dns-arr)"/>
 
