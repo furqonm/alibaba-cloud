@@ -467,7 +467,51 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 23: TRAFFIC SCHEDULING ALGORITHMS ==================== -->
+    <!-- ==================== SLIDE 23: BACKEND SERVER GROUPS ==================== -->
+    <section class="slide" data-category="Backend Server Groups">
+      <div class="slide-category">Section 6: Backend Server Groups</div>
+      <h2>Backend Server Groups</h2>
+      
+      <div class="card-grid-3">
+        <div class="content-card highlight">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="margin: 0;">Server / Instance Type</h3>
+            <span class="badge badge-updated" style="font-size: 0.7rem;">CLB • ALB • NLB • GWLB</span>
+          </div>
+          <ul>
+            <li><strong>Target Types:</strong> Standard ECS instances, Elastic Container Instances (ECI), and Elastic Network Interfaces (ENIs).</li>
+            <li><strong>Multi-Port Binding:</strong> Attach the same compute instance multiple times across different listening ports (e.g., 8080 and 8081).</li>
+            <li><strong>Dynamic Weights &amp; Elasticity:</strong> Configurable weights (0–100); integrates natively with Auto Scaling for automatic fleet elasticity.</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-blue">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="margin: 0;">IP Type (Private IPs)</h3>
+            <span class="badge badge-blue" style="font-size: 0.7rem;">ALB • NLB • GWLB</span>
+          </div>
+          <ul>
+            <li><strong>Private Addressing:</strong> Target backend endpoints directly by private IPv4 / IPv6 addresses without requiring cloud instance IDs.</li>
+            <li><strong>Hybrid &amp; Cross-VPC:</strong> Route traffic to on-premises servers via Express Connect/VPN or cross-VPC resources via CEN Transit Router.</li>
+            <li><strong>Virtual Appliance Tunnels:</strong> GWLB routes traffic to third-party firewall/NVA IP targets encapsulated via GENEVE (UDP port 6081).</li>
+          </ul>
+        </div>
+
+        <div class="content-card highlight-purple">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="margin: 0;">Function Compute Type</h3>
+            <span class="badge badge-purple" style="font-size: 0.7rem;">ALB Only</span>
+          </div>
+          <ul>
+            <li><strong>Serverless Event Ingress:</strong> Routes incoming HTTP/HTTPS requests directly to Alibaba Cloud Function Compute (FC) routines.</li>
+            <li><strong>Zero Server Administration:</strong> Pure event-driven execution with zero server instances to provision, patch, or maintain.</li>
+            <li><strong>Unified API Entry Point:</strong> Combines microservices, static assets, container pods, and serverless functions under a single unified domain and port.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 24: TRAFFIC SCHEDULING ALGORITHMS ==================== -->
     <section class="slide" data-category="Backend Server Groups">
       <div class="slide-category">Section 6: Backend Server Groups</div>
       <h2>Traffic Scheduling Algorithms</h2>
@@ -519,51 +563,33 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 24: BACKEND SERVER GROUPS ==================== -->
+    <!-- ==================== SLIDE 25: SESSION PERSISTENCE ==================== -->
     <section class="slide" data-category="Backend Server Groups">
       <div class="slide-category">Section 6: Backend Server Groups</div>
-      <h2>Backend Server Groups</h2>
+      <h2>Session Persistence (Sticky Sessions)</h2>
       
-      <div class="card-grid-3">
-        <div class="content-card highlight">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-            <h3 style="margin: 0;">Server / Instance Type</h3>
-            <span class="badge badge-updated" style="font-size: 0.7rem;">CLB • ALB • NLB • GWLB</span>
+      <div class="two-column-layout">
+        <div class="column-left">
+          <div class="architecture-diagram-wrapper">
+            <img src="assets/images/slb-session-persistence.svg" alt="Session Persistence Mechanics" class="architecture-diagram">
           </div>
-          <ul>
-            <li><strong>Target Types:</strong> Standard ECS instances, Elastic Container Instances (ECI), and Elastic Network Interfaces (ENIs).</li>
-            <li><strong>Multi-Port Binding:</strong> Attach the same compute instance multiple times across different listening ports (e.g., 8080 and 8081).</li>
-            <li><strong>Dynamic Weights &amp; Elasticity:</strong> Configurable weights (0–100); integrates natively with Auto Scaling for automatic fleet elasticity.</li>
-          </ul>
         </div>
-
-        <div class="content-card highlight-blue">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-            <h3 style="margin: 0;">IP Type (Private IPs)</h3>
-            <span class="badge badge-blue" style="font-size: 0.7rem;">ALB • NLB • GWLB</span>
+        <div class="column-right">
+          <div class="content-card highlight">
+            <h3>Sticky Session Principles</h3>
+            <ul>
+              <li><strong>Session Affinity:</strong> Binds consecutive requests from the same client to the same backend server instance.</li>
+              <li><strong>Cookie Insertion (ALB):</strong> Injects an encrypted tracking cookie (<code>ALBSID</code>) with configurable duration (1s–7 days).</li>
+              <li><strong>Cookie Rewriting (ALB):</strong> Tracks existing application session cookies (e.g., <code>JSESSIONID</code>).</li>
+              <li><strong>Source IP Hash (NLB/CLB):</strong> Routes based on client IP address with a persistence timeout.</li>
+              <li><strong>Note for Enterprise NAT:</strong> Cookie insertion avoids NAT load imbalance by tracking individual browser sessions instead of shared egress IPs.</li>
+            </ul>
           </div>
-          <ul>
-            <li><strong>Private Addressing:</strong> Target backend endpoints directly by private IPv4 / IPv6 addresses without requiring cloud instance IDs.</li>
-            <li><strong>Hybrid &amp; Cross-VPC:</strong> Route traffic to on-premises servers via Express Connect/VPN or cross-VPC resources via CEN Transit Router.</li>
-            <li><strong>Virtual Appliance Tunnels:</strong> GWLB routes traffic to third-party firewall/NVA IP targets encapsulated via GENEVE (UDP port 6081).</li>
-          </ul>
-        </div>
-
-        <div class="content-card highlight-purple">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-            <h3 style="margin: 0;">Function Compute Type</h3>
-            <span class="badge badge-purple" style="font-size: 0.7rem;">ALB Only</span>
-          </div>
-          <ul>
-            <li><strong>Serverless Event Ingress:</strong> Routes incoming HTTP/HTTPS requests directly to Alibaba Cloud Function Compute (FC) routines.</li>
-            <li><strong>Zero Server Administration:</strong> Pure event-driven execution with zero server instances to provision, patch, or maintain.</li>
-            <li><strong>Unified API Entry Point:</strong> Combines microservices, static assets, container pods, and serverless functions under a single unified domain and port.</li>
-          </ul>
         </div>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 25: HTTP & TCP HEALTH CHECKS ==================== -->
+    <!-- ==================== SLIDE 26: HTTP & TCP HEALTH CHECKS ==================== -->
     <section class="slide" data-category="Backend Server Groups">
       <div class="slide-category">Section 6: Backend Server Groups</div>
       <h2>Health Check: HTTP/HTTPS &amp; TCP Detection</h2>
@@ -596,7 +622,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 26: UDP HEALTH CHECKS ==================== -->
+    <!-- ==================== SLIDE 27: UDP HEALTH CHECKS ==================== -->
     <section class="slide" data-category="Backend Server Groups">
       <div class="slide-category">Section 6: Backend Server Groups</div>
       <h2>Health Check: Layer 4 UDP Probing &amp; ICMP Detection</h2>
@@ -620,32 +646,6 @@
                 </ul>
               </li>
               <li><strong>OS Rate Limiting Requirement:</strong> Backend Linux kernel must allow ICMP errors; ensure <code>icmp_ratelimit = 0</code> to avoid false positives.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== SLIDE 27: SESSION PERSISTENCE ==================== -->
-    <section class="slide" data-category="Backend Server Groups">
-      <div class="slide-category">Section 6: Backend Server Groups</div>
-      <h2>Session Persistence (Sticky Sessions)</h2>
-      
-      <div class="two-column-layout">
-        <div class="column-left">
-          <div class="architecture-diagram-wrapper">
-            <img src="assets/images/slb-session-persistence.svg" alt="Session Persistence Mechanics" class="architecture-diagram">
-          </div>
-        </div>
-        <div class="column-right">
-          <div class="content-card highlight">
-            <h3>Sticky Session Principles</h3>
-            <ul>
-              <li><strong>Session Affinity:</strong> Binds consecutive requests from the same client to the same backend server instance.</li>
-              <li><strong>Cookie Insertion (ALB):</strong> Injects an encrypted tracking cookie (<code>ALBSID</code>) with configurable duration (1s–7 days).</li>
-              <li><strong>Cookie Rewriting (ALB):</strong> Tracks existing application session cookies (e.g., <code>JSESSIONID</code>).</li>
-              <li><strong>Source IP Hash (NLB/CLB):</strong> Routes based on client IP address with a persistence timeout.</li>
-              <li><strong>Note for Enterprise NAT:</strong> Cookie insertion avoids NAT load imbalance by tracking individual browser sessions instead of shared egress IPs.</li>
             </ul>
           </div>
         </div>
