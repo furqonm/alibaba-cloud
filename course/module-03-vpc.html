@@ -88,31 +88,9 @@
       <div class="slide-category">Section 1: VPC Concept &amp; Architecture</div>
       <h2>Public vs. Private vSwitches</h2>
       
-      <div class="grid-2" style="margin-top: 1rem; align-items: stretch;">
-        <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 0.75rem;">
-          <img src="assets/images/basic-network-isolation-topology.svg" alt="Fundamental Architecture: Two-Tier vSwitch Isolation Pattern" class="diagram-image" style="max-height: 400px; width: 100%; object-fit: contain;">
-          <div class="diagram-caption">Fundamental Architecture: Two-Tier vSwitch Isolation Pattern</div>
-        </div>
-
-        <div style="display: flex; flex-direction: column; gap: 0.85rem; justify-content: center;">
-          <div class="content-card highlight-blue">
-            <h3>Network Partitioning</h3>
-            <ul>
-              <li><strong>Network Router:</strong> Directs traffic between the external internet and internal vSwitches based on defined routing tables.</li>
-              <li><strong>Public vSwitch (The Cashier):</strong> Houses customer-facing services (Web Servers, API Gateways, Reverse Proxies) with public IP routing.</li>
-              <li><strong>Private vSwitch (The Kitchen):</strong> Houses core databases and application business logic with <em>zero direct internet route</em>.</li>
-            </ul>
-          </div>
-
-          <div class="content-card highlight-green">
-            <h3>Core Architectural Advantages</h3>
-            <ul>
-              <li><strong>Zero Direct Public Exposure:</strong> Backend databases cannot be scanned or targeted by external internet attackers.</li>
-              <li><strong>Controlled Inter-vSwitch Flow:</strong> Only authorized application proxies in the public vSwitch can query the database over internal private routes.</li>
-              <li><strong>Defense-in-Depth:</strong> Even if a public-facing web server is compromised, the internal vSwitch firewall and boundary prevent lateral movement to core data stores.</li>
-            </ul>
-          </div>
-        </div>
+      <div class="architecture-diagram-wrapper" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 0; margin-top: 0.5rem;">
+        <img src="assets/images/basic-network-isolation-topology.svg" alt="Fundamental Architecture: Two-Tier vSwitch Isolation Pattern" class="architecture-diagram" style="max-height: 520px; width: 100%; height: auto; object-fit: contain;">
+        <div class="diagram-caption" style="margin-top: 0.75rem;">Fundamental Architecture: Two-Tier vSwitch Isolation Pattern</div>
       </div>
     </section>
 
@@ -170,7 +148,7 @@
             <ul>
               <li><strong>VPC (Regional Scope):</strong> The top-level software-defined network boundary tied to a single Alibaba Cloud Region. Defines the master IP address block.</li>
               <li><strong>vRouter (Virtual Router):</strong> The central routing hub connecting all vSwitches within the VPC and serving as the default gateway to external networks. Each VPC has exactly one logical vRouter.</li>
-              <li><strong>vSwitch (Virtual Switch):</strong> A virtual switch dividing the VPC CIDR block into zone-anchored segments, physically anchored inside a <strong>single Availability Zone</strong>.</li>
+              <li><strong>vSwitch (Virtual Switch):</strong> A virtual switch dividing the VPC CIDR block into zone-anchored segments, physically anchored inside a <strong>single Zone</strong>.</li>
               <li><strong>Route Tables:</strong> Directs traffic forwarding based on destination CIDR blocks and designated next-hop targets.</li>
             </ul>
           </div>
@@ -263,12 +241,12 @@
 
       <div class="grid-2" style="margin-top: 1rem;">
         <div class="content-card highlight-green">
-          <h3>Non-Overlapping vSwitches</h3>
-          <p>When designing VPCs destined for hybrid interconnectivity (via CEN, Express Connect, or VPN), <strong>ensure that the VPC CIDR block never overlaps</strong> with your on-premises datacenters or peer VPCs. Route propagation fails on overlapping CIDRs!</p>
+          <h3>Avoid Overlapping CIDR Blocks</h3>
+          <p>When designing VPCs, ensure the VPC CIDR block <strong>never overlaps</strong> with on-premises datacenters, peer VPCs, or remote offices connected via CEN, Express Connect, or VPN. Route propagation and traffic routing fail on conflicting CIDRs!</p>
         </div>
         <div class="content-card highlight-blue">
-          <h3>CIDR Mask Constraints</h3>
-          <p>Alibaba Cloud VPC primary IPv4 CIDR blocks must have a subnet mask between <strong>/8 and /24</strong>. Subnet masks wider than /8 (e.g. /7) or narrower than /24 (e.g. /25) are not supported as primary VPC CIDR blocks.</p>
+          <h3>Subnet Allocation &amp; Capacity Reservation</h3>
+          <p>Divide the VPC address space strategically across tiers (web, application, database). <strong>Always reserve unallocated contiguous CIDR subnets</strong> within the VPC to allow seamless future capacity expansion without re-architecting your network.</p>
         </div>
       </div>
     </section>
@@ -312,10 +290,10 @@
       <div class="grid-2" style="grid-template-columns: 1fr 1.35fr; gap: 1.25rem; align-items: stretch;">
         <div class="content-card highlight">
           <ul>
-            <li><strong>Strict Zonal Anchor:</strong> A vSwitch resides inside <strong>exactly one Availability Zone</strong>. A vSwitch can never span across multiple physical zones.</li>
-            <li><strong>vSwitch Mask Range:</strong> A vSwitch mask must be between <strong>/16 and /29</strong>, and its CIDR block must be a strict subset of the VPC's primary or secondary CIDR blocks.</li>
-            <li><strong>Intra-VPC Routing:</strong> By default, all vSwitches inside the same VPC can communicate with each other over high-speed backbone private links with zero routing configuration required.</li>
-            <li><strong>System Quotas:</strong> Each VPC supports up to 24 vSwitches by default (expandable via quota application).</li>
+            <li><strong>Multi-Zone Disaster Recovery:</strong> Deploy at least two vSwitches across distinct <strong>Zones</strong> (e.g., Jakarta Zone A and Zone B) to achieve high availability and eliminate single-zone points of failure.</li>
+            <li><strong>vSwitch Mask Constraints:</strong> A vSwitch netmask must be between <strong>/16 and /29</strong>, and its CIDR block must be a strict non-overlapping subset of the VPC's CIDR blocks.</li>
+            <li><strong>High-Speed Inter-Zone Fabric:</strong> Traffic between vSwitches across different Zones travels over Alibaba Cloud's dedicated ultra-low latency physical backbone network at zero internal data transfer cost within the same region.</li>
+            <li><strong>vSwitch Quotas:</strong> Each VPC supports up to <strong>24 vSwitches</strong> by default (expandable via quota application in Quota Center).</li>
           </ul>
         </div>
         <div class="diagram-container clean" style="margin-top: 0; justify-content: center; height: 100%; padding: 0.75rem;">

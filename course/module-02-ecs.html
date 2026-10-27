@@ -959,7 +959,7 @@ systemctl enable --now nginx</pre>
     <!-- ==================== SLIDE 25: BASIC NETWORK ==================== -->
     <section class="slide" data-category="Network & Security">
       <div class="slide-category">Section 4: Network & Security</div>
-      <h2>Basic Network</h2>
+      <h2>Virtual Private Cloud (VPC)</h2>
       
       <div class="grid-2" style="margin-top: 0.75rem; align-items: center;">
         <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
@@ -968,10 +968,9 @@ systemctl enable --now nginx</pre>
 
         <div>
           <div class="content-card highlight">
-            <h3>Virtual Private Cloud (VPC)</h3>
             <ul style="line-height: 1.6;">
               <li><strong>VPC (Regional Boundary):</strong> Logically isolated virtual network on Alibaba Cloud. Defines private IPv4 CIDR blocks (<code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, <code>192.168.0.0/16</code>) and IPv6 address ranges.</li>
-              <li><strong>vSwitch (Virtual Switch):</strong> Subdivides the VPC CIDR block into a zone-anchored virtual switch, residing strictly inside a <strong>single Availability Zone</strong>. Each ECS instance connects to a specific vSwitch.</li>
+              <li><strong>vSwitch (Virtual Switch):</strong> Subdivides the VPC CIDR block into a zone-anchored virtual switch, residing strictly inside a <strong>single Zone</strong>. Each ECS instance connects to a specific vSwitch.</li>
               <li><strong>VRouter &amp; Route Tables:</strong> Automatically manages traffic forwarding within the VPC, across vSwitches, and through gateways (Internet NAT, VPN, CEN).</li>
               <li><strong>VPC Isolation:</strong> Provides enterprise tenant isolation with software-defined security, complete IP address autonomy, and high-performance SDN fabric.</li>
             </ul>
@@ -1714,7 +1713,7 @@ systemctl enable --now nginx</pre>
             <span>✔ Option B is Correct</span>
           </div>
           <div class="analysis-item-body">
-            <strong>Snapshots are regional resources.</strong> Although cloud disks are physically restricted to a single Availability Zone, their snapshots are stored in OSS and accessible across the entire region. You can instantly create a brand-new cloud disk in Zone B using a snapshot taken in Zone A.
+            <strong>Snapshots are regional resources.</strong> Although cloud disks are physically restricted to a single Zone, their snapshots are stored in OSS and accessible across the entire region. You can instantly create a brand-new cloud disk in Zone B using a snapshot taken in Zone A.
           </div>
         </div>
 

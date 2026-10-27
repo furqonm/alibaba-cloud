@@ -63,6 +63,6 @@
     </g>
 
     <!-- Bottom Left Region Name -->
-    <text x="44" y="394" font-size="30" font-weight="600" fill="#0f172a">Singapore</text>
+    <text x="44" y="394" font-size="26" font-weight="600" fill="#0f172a">Jakarta (ap-southeast-5)</text>
   </g>
 </svg>
