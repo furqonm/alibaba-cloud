@@ -262,7 +262,7 @@
           <p>If an existing VPC runs out of private IP capacity due to rapid business growth or container pod density:</p>
           <ul>
             <li><strong>Zero Workload Disruption:</strong> Attach up to <strong>3 secondary IPv4 CIDR blocks</strong> to an existing VPC without stopping instances or rebuilding routing.</li>
-            <li><strong>Flexible Allocation:</strong> Can be standard RFC 1918 blocks (e.g. adding <code>172.16.0.0/12</code> to a <code>10.0.0.0/8</code> VPC) or custom user CIDRs.</li>
+            <li><strong>Flexible Allocation:</strong> Supports standard RFC 1918 CIDR blocks (such as adding secondary blocks like <code>192.168.0.0/16</code> or <code>172.16.0.0/12</code> to a primary <code>10.0.0.0/8</code> VPC) as well as custom user CIDRs.</li>
             <li><strong>Dedicated vSwitches:</strong> Create new vSwitches bound to the secondary CIDR to host high-density container fleets.</li>
           </ul>
         </div>
@@ -282,34 +282,7 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 11: MULTI-ZONE VSWITCH ARCHITECTURE ==================== -->
-    <section class="slide" data-category="vSwitch Planning">
-      <div class="slide-category">Section 2: vSwitch Planning</div>
-      <h2>Multi-Zone vSwitch Architecture</h2>
-      
-      <div class="grid-2" style="grid-template-columns: 1fr 1.35fr; gap: 1.25rem; align-items: stretch;">
-        <div class="content-card highlight">
-          <ul>
-            <li><strong>Multi-Zone Disaster Recovery:</strong> Deploy at least two vSwitches across distinct <strong>Zones</strong> (e.g., Jakarta Zone A and Zone B) to achieve high availability and eliminate single-zone points of failure.</li>
-            <li><strong>vSwitch Mask Constraints:</strong> A vSwitch netmask must be between <strong>/16 and /29</strong>, and its CIDR block must be a strict non-overlapping subset of the VPC's CIDR blocks.</li>
-            <li><strong>High-Speed Inter-Zone Fabric:</strong> Traffic between vSwitches across different Zones travels over Alibaba Cloud's dedicated ultra-low latency physical backbone network at zero internal data transfer cost within the same region.</li>
-            <li><strong>vSwitch Quotas:</strong> Each VPC supports up to <strong>24 vSwitches</strong> by default (expandable via quota application in Quota Center).</li>
-          </ul>
-        </div>
-        <div class="diagram-container clean" style="margin-top: 0; justify-content: center; height: 100%; padding: 0.75rem;">
-          <img src="assets/images/vswitch-multizone-topology.svg" alt="Multi-Zone vSwitch Architecture" class="diagram-image" style="max-height: 380px; width: 100%; object-fit: contain;">
-          
-        </div>
-      </div>
-
-      <div class="callout callout-amber" style="margin-top: 0.75rem;">
-        <div>
-          <span class="badge badge-exam">Strict Architecture Constraint</span> Once a vSwitch is created, its <strong>Zone and CIDR block cannot be modified</strong>. Sizing your vSwitches appropriately during the architectural design phase is critical!
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== SLIDE 12: RESERVED IP ADDRESSES ==================== -->
+    <!-- ==================== SLIDE 11: RESERVED IP ADDRESSES ==================== -->
     <section class="slide" data-category="vSwitch Planning">
       <div class="slide-category">Section 2: vSwitch Planning</div>
       <h2>System-Reserved IP Addresses</h2>
@@ -365,6 +338,33 @@
         <p style="margin-top: 0.5rem; color: var(--text-secondary);">
           <em>Example:</em> A <code>/24</code> vSwitch has 256 total IP addresses. Subtracting the 5 system-reserved IPs leaves exactly <strong>251 usable IP addresses</strong> for ECS instances, RDS databases, and Server Load Balancers.
         </p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 12: MULTI-ZONE VSWITCH ARCHITECTURE ==================== -->
+    <section class="slide" data-category="vSwitch Planning">
+      <div class="slide-category">Section 2: vSwitch Planning</div>
+      <h2>Multi-Zone vSwitch Architecture</h2>
+      
+      <div class="grid-2" style="grid-template-columns: 1fr 1.35fr; gap: 1.25rem; align-items: stretch;">
+        <div class="content-card highlight">
+          <ul>
+            <li><strong>Multi-Zone Disaster Recovery:</strong> Deploy at least two vSwitches across distinct <strong>Zones</strong> (e.g., Jakarta Zone A and Zone B) to achieve high availability and eliminate single-zone points of failure.</li>
+            <li><strong>vSwitch Mask Constraints:</strong> A vSwitch netmask must be between <strong>/16 and /29</strong>, and its CIDR block must be a strict non-overlapping subset of the VPC's CIDR blocks.</li>
+            <li><strong>High-Speed Inter-Zone Fabric:</strong> Traffic between vSwitches across different Zones travels over Alibaba Cloud's dedicated ultra-low latency physical backbone network at zero internal data transfer cost within the same region.</li>
+            <li><strong>vSwitch Quotas:</strong> Each VPC supports up to <strong>24 vSwitches</strong> by default (expandable via quota application in Quota Center).</li>
+          </ul>
+        </div>
+        <div class="diagram-container clean" style="margin-top: 0; justify-content: center; height: 100%; padding: 0.75rem;">
+          <img src="assets/images/vswitch-multizone-topology.svg" alt="Multi-Zone vSwitch Architecture" class="diagram-image" style="max-height: 380px; width: 100%; object-fit: contain;">
+          
+        </div>
+      </div>
+
+      <div class="callout callout-amber" style="margin-top: 0.75rem;">
+        <div>
+          <span class="badge badge-exam">Strict Architecture Constraint</span> Once a vSwitch is created, its <strong>Zone and CIDR block cannot be modified</strong>. Sizing your vSwitches appropriately during the architectural design phase is critical!
+        </div>
       </div>
     </section>
 
