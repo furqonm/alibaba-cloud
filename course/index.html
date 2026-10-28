@@ -86,7 +86,7 @@
         <div class="overview-category-card" style="padding: 1.25rem 1rem;">
           <img src="assets/images/overview-icon-ecs.png" alt="Compute" class="category-icon" style="width: 58px; height: 58px;">
           <h3>Compute &amp; Containers</h3>
-          <p>Elastic compute instances (ECS), serverless containers (ECI), managed Kubernetes (ACK), and elastic scaling pools.</p>
+          <p>Elastic compute instances (ECS), serverless containers (ECI), Container Service for Kubernetes (ACK), and Auto Scaling groups.</p>
         </div>
 
         <div class="overview-category-card" style="padding: 1.25rem 1rem;">
@@ -134,7 +134,7 @@
         <div class="content-card highlight-green" style="padding: 0.75rem 1rem;">
           <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Three Local Zones</h4>
           <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
-            Region <code>ap-southeast-5</code> operates 3 distinct Availability Zones (Zone A, Zone B, Zone C) in Jakarta.
+            Region <code>ap-southeast-5</code> operates 3 distinct Zones (Zone A, Zone B, Zone C) in Jakarta.
           </p>
         </div>
         <div class="content-card highlight-green" style="padding: 0.75rem 1rem;">
@@ -163,7 +163,7 @@
 
       <div class="grid-4" style="margin-top: 0.75rem; gap: 0.75rem;">
         <div class="content-card" style="padding: 0.75rem 0.85rem; border-top: 3px solid var(--primary);">
-          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Dragonfly &amp; CIPU</h4>
+          <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">X-Dragon &amp; CIPU</h4>
           <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Hardware-accelerated hypervisor &amp; zero-CPU-tax virtualization offload.</p>
         </div>
         <div class="content-card" style="padding: 0.75rem 0.85rem; border-top: 3px solid #0284c7;">
@@ -247,10 +247,10 @@
 
           <div class="content-card highlight" style="flex: 1;">
             <p class="service-lead">
-              <strong>Elastic Compute Service (ECS)</strong> is an elastic computing service providing virtual servers with resizable compute capacity.
+              <strong>Elastic Compute Service (ECS)</strong> is an elastic computing service providing virtual cloud servers (ECS instances) with resizable compute capacity.
             </p>
             <p class="service-desc">
-              ECS eliminates the complexity of procuring, cabling, and maintaining physical servers. With instant image deployment, organizations launch production-ready virtual machines in seconds and pay only for actual utilized capacity.
+              ECS eliminates the complexity of procuring, cabling, and maintaining physical servers. With instant image deployment, organizations launch production-ready ECS instances in seconds and pay only for actual utilized capacity.
             </p>
           </div>
         </div>
@@ -310,7 +310,7 @@
 
           <div class="content-card highlight-blue">
             <p class="service-lead">
-              <strong>Server Load Balancer (SLB)</strong> distributes incoming application traffic across multiple backend ECS instances across availability zones.
+              <strong>Server Load Balancer (SLB)</strong> distributes incoming application traffic across multiple backend ECS instances across multiple Zones.
             </p>
             <p class="service-desc">
               By spreading inbound requests across server pools, SLB expands service throughput, eliminates single points of failure, and masks backend maintenance or unexpected hardware faults from users.
@@ -397,8 +397,8 @@
           <div class="content-card highlight-green">
             <h3>Seamless Ecosystem Integration</h3>
             <ul class="feature-list">
-              <li><strong>SLB Auto-Configuration:</strong> Automatically adds newly provisioned ECS instances to Server Load Balancer backend server pools.</li>
-              <li><strong>RDS Whitelist Auto-Configuration:</strong> Automatically registers private IP addresses of scaled instances to ApsaraDB RDS security whitelists.</li>
+              <li><strong>SLB Auto-Configuration:</strong> Automatically adds newly provisioned ECS instances to Server Load Balancer backend server groups.</li>
+              <li><strong>RDS Whitelist Auto-Configuration:</strong> Automatically registers private IP addresses of scaled instances to ApsaraDB RDS IP address whitelists.</li>
             </ul>
           </div>
         </div>
@@ -483,7 +483,7 @@
           <div class="content-card highlight-blue">
             <h3>Declarative Infrastructure Blueprint</h3>
             <p style="font-size: calc(0.9rem + var(--font-delta)); margin: 0; line-height: 1.5;">
-              A single ROS template declares the entire production architecture: 1 Server Load Balancer, 2 ECS instances (2vCPU / 4GB RAM), private VPC subnets, and database connections.
+              A single ROS template declares the entire production architecture: 1 Server Load Balancer, 2 ECS instances (2vCPU / 4GB RAM), private vSwitches, and database connections.
             </p>
           </div>
 
@@ -499,7 +499,7 @@
           <div class="content-card">
             <h3>Zero Environmental Drift</h3>
             <p style="font-size: calc(0.85rem + var(--font-delta)); color: var(--text-secondary); margin: 0;">
-              By eliminating manual configuration steps, ROS ensures that security group rules, network CIDRs, and operating system images remain 100% synchronized across all operating regions.
+              By eliminating manual configuration steps, ROS ensures that Security Group rules, network CIDRs, and operating system images remain 100% synchronized across all operating regions.
             </p>
           </div>
         </div>
@@ -521,7 +521,7 @@
         <div class="overview-category-card">
           <img src="assets/images/overview-icon-rds.png" alt="RDS Icon" class="category-icon">
           <h3>ApsaraDB RDS</h3>
-          <p><strong>Managed Relational Database</strong><br>Automated provisioning, multi-zone failover, read replicas, and backups for MySQL, PG, and SQL Server.</p>
+          <p><strong>Managed Relational Database</strong><br>Automated provisioning, multi-zone failover, Read-Only Instances, and backups for MySQL, PG, and SQL Server.</p>
         </div>
 
         <div class="overview-category-card">
@@ -630,7 +630,7 @@
             <h3>Independent Specifications &amp; Scaling</h3>
             <ul class="feature-list">
               <li><strong>Flexible Sizing:</strong> Read-only instances can use different compute and memory specifications from the primary instance, scaling independently.</li>
-              <li><strong>Zero Maintenance Overhead:</strong> Read-only replicas automatically synchronize account credentials and database tables directly from the primary.</li>
+              <li><strong>Zero Maintenance Overhead:</strong> Read-only instances automatically synchronize account credentials and database tables directly from the primary.</li>
             </ul>
           </div>
 
@@ -754,7 +754,7 @@
           <div class="overview-feature-card green">
             <h4>High Availability</h4>
             <ul>
-              <li>Primary-Secondary master replication with auto-failover.</li>
+              <li>Master-replica replication with automated failover.</li>
               <li>Multi-zone disaster recovery deployments supported.</li>
             </ul>
           </div>
@@ -896,10 +896,10 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 20: MESSAGE SERVICE TWO MODELS ==================== -->
+    <!-- ==================== SLIDE 20: SIMPLE MESSAGE QUEUE TWO MODELS ==================== -->
     <section class="slide" data-category="Messaging &amp; Integration">
       <div class="slide-category">Section 4: Messaging &amp; Integration</div>
-      <h2>Message Service: Queue Model vs. Topic Model</h2>
+      <h2>Simple Message Queue (SMQ): Queue Model vs. Topic Model</h2>
       
       <div class="grid-2" style="align-items: center; gap: 1.5rem; margin-top: 1rem;">
         <div class="diagram-container clean" style="display: flex; flex-direction: column; align-items: center;">
@@ -937,30 +937,30 @@
     <!-- ==================== SLIDE 21: OTHER MESSAGE SERVICES ==================== -->
     <section class="slide" data-category="Messaging &amp; Integration">
       <div class="slide-category">Section 4: Messaging &amp; Integration</div>
-      <h2>Managed Open-Source Message Services</h2>
+      <h2>ApsaraMQ: Managed Enterprise Message Services</h2>
       
       <div class="content-card highlight" style="margin-bottom: 1.25rem;">
         <p style="font-size: calc(0.95rem + var(--font-delta)); margin: 0; line-height: 1.5;">
-          In addition to serverless SMQ, Alibaba Cloud provides fully managed enterprise implementations of leading open-source messaging and event-streaming engines with zero cluster maintenance overhead.
+          In addition to serverless SMQ, Alibaba Cloud provides the ApsaraMQ portfolio—fully managed enterprise implementations of leading open-source messaging and event-streaming engines with zero cluster maintenance overhead.
         </p>
       </div>
 
       <div class="overview-category-grid" style="grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
         <div class="overview-category-card">
           <img src="assets/images/overview-icon-kafka.png" alt="Kafka Icon" class="category-icon" style="width: 68px; height: 68px;">
-          <h3>Managed Apache Kafka</h3>
+          <h3>ApsaraMQ for Kafka</h3>
           <p><strong>High-Throughput Log Streaming</strong><br>Optimized for real-time big data pipelines, distributed log aggregation, clickstream tracking, and stream analytics.</p>
         </div>
 
         <div class="overview-category-card">
           <img src="assets/images/overview-icon-rocketmq.png" alt="RocketMQ Icon" class="category-icon" style="width: 68px; height: 68px;">
-          <h3>Managed Apache RocketMQ</h3>
+          <h3>ApsaraMQ for RocketMQ</h3>
           <p><strong>Financial-Grade Distributed Messaging</strong><br>Developed by Alibaba Group; delivers ultra-low latency, strictly ordered FIFO messaging, and distributed transaction consistency.</p>
         </div>
 
         <div class="overview-category-card">
           <img src="assets/images/overview-icon-mqtt.png" alt="MQTT Icon" class="category-icon" style="width: 68px; height: 68px;">
-          <h3>Managed MQTT</h3>
+          <h3>ApsaraMQ for MQTT</h3>
           <p><strong>Massive IoT Device Connectivity</strong><br>Lightweight pub/sub protocol connecting millions of concurrent smart devices, connected vehicles, and mobile clients.</p>
         </div>
       </div>
@@ -1032,7 +1032,7 @@
               <strong>Virtual Private Cloud (VPC)</strong> allows you to create isolated private networks on top of Alibaba Cloud.
             </p>
             <p class="service-desc">
-              VPC gives you full control over your virtual network environment, including selecting your own IP address range, dividing subnets across availability zones, configuring route tables, and establishing hybrid enterprise connectivity.
+              VPC gives you full control over your virtual network environment, including selecting your own IP address range, dividing vSwitches across Zones, configuring Route Tables, and establishing hybrid enterprise connectivity.
             </p>
           </div>
         </div>
@@ -1042,7 +1042,7 @@
             <h4>Security Isolation</h4>
             <ul>
               <li>Hardware-level isolation via VXLAN tunneling encapsulation.</li>
-              <li>Broadcast domain completely isolated at instance virtual NIC.</li>
+              <li>Broadcast domain completely isolated at instance Elastic Network Interface (ENI).</li>
             </ul>
           </div>
 
@@ -1050,14 +1050,14 @@
             <h4>Custom Address Space</h4>
             <ul>
               <li>Full support for RFC 1918 CIDR blocks (<code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, <code>192.168.0.0/16</code>).</li>
-              <li>Granular subnet allocation without address overlaps.</li>
+              <li>Granular vSwitch CIDR allocation without address overlaps.</li>
             </ul>
           </div>
 
           <div class="overview-feature-card green">
             <h4>Immediate Management</h4>
             <ul>
-              <li>Full control over route tables and virtual switches.</li>
+              <li>Full control over Route Tables and vSwitches.</li>
               <li>Network management changes take effect instantaneously.</li>
             </ul>
           </div>
@@ -1131,7 +1131,7 @@
     <!-- ==================== SLIDE 25: ELASTIC IP (EIP) ==================== -->
     <section class="slide" data-category="Network Services">
       <div class="slide-category">Section 5: Network Services</div>
-      <h2>Alibaba Cloud – Elastic IP (EIP)</h2>
+      <h2>Alibaba Cloud – Elastic IP Address (EIP)</h2>
       
       <div class="overview-service-layout">
         <div class="overview-service-spotlight">
@@ -1183,7 +1183,7 @@
                   <td>Standard IP routing only</td>
                 </tr>
                 <tr>
-                  <td><strong>Shared Bandwidth Packages</strong></td>
+                  <td><strong>Internet Shared Bandwidth</strong></td>
                   <td><span class="badge badge-updated">Supported</span> (Share quota across IPs)</td>
                   <td>Dedicated bandwidth only</td>
                 </tr>
@@ -1222,7 +1222,7 @@
               <strong>NAT Gateway</strong> is an enterprise-class public network gateway providing managed SNAT and DNAT proxy services.
             </p>
             <p class="service-desc">
-              Built with native cross-zone disaster recovery and capable of handling up to 100 Gbps forwarding throughput, NAT Gateway connects private VPC subnets to the public Internet without assigning public IPs directly to backend servers.
+              Built with native cross-zone disaster recovery and capable of handling up to 100 Gbps forwarding throughput, NAT Gateway connects private vSwitches to the public Internet without assigning public IPs directly to backend servers.
             </p>
           </div>
 
@@ -1288,7 +1288,7 @@
             </div>
 
             <div class="overview-feature-card green">
-              <h4>Dynamic Acceleration (DCDN)</h4>
+              <h4>Dynamic Route for CDN (DCDN)</h4>
               <ul>
                 <li>Dynamic route optimization for APIs.</li>
                 <li>WebSocket &amp; QUIC protocol acceleration.</li>
@@ -1440,7 +1440,7 @@
           </div>
 
           <div class="content-card highlight-green">
-            <h3>Architectural Best Practices (from Courseware)</h3>
+            <h3>RAM Architectural Best Practices</h3>
             <ul class="feature-list">
               <li><strong>Manage Permissions via Groups:</strong> Assign policies to User Groups rather than individual users for clean administrative lifecycle management.</li>
               <li><strong>Enforce Least Privilege:</strong> Grant only the minimum permissions necessary for users to complete assigned business duties.</li>
@@ -1454,8 +1454,7 @@
 
     <!-- ==================== SLIDE 31: PRACTICE SCENARIO 1 (QUESTION) ==================== -->
     <section class="slide" data-category="Practice Quiz">
-      <div class="slide-category">Interactive Quiz • Scenario 1</div>
-      <h2>Practice Scenario 1: Decoupled Multi-Tier Web Architecture</h2>
+      <div class="slide-category">Practice Question 1</div>
       
       <div class="quiz-single-card">
         <div class="quiz-single-question">
@@ -1465,7 +1464,7 @@
         <ul class="quiz-single-options">
           <li class="quiz-single-option">
             <span class="quiz-single-letter">A</span>
-            <span>Elastic Container Instance (ECI) + Tablestore + Managed Apache Kafka</span>
+            <span>Elastic Container Instance (ECI) + Tablestore + ApsaraMQ for Kafka</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">B</span>
@@ -1485,15 +1484,13 @@
 
     <!-- ==================== SLIDE 32: SCENARIO 1: SOLUTION ==================== -->
     <section class="slide" data-category="Practice Quiz">
-      <div class="slide-category">Quiz Solution • Scenario 1</div>
-      <h2>Scenario 1: Solution &amp; Architectural Analysis</h2>
+      <div class="slide-category">Practice Answer 1</div>
       
       <div class="analysis-main-card">
         <div>
           <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: B</span>
           <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">ECS with Auto Scaling + ApsaraDB RDS with Read-Only Instances + Simple Message Queue (SMQ).</span>
         </div>
-        <span class="badge badge-updated">Validated Architecture</span>
       </div>
 
       <div class="analysis-options-grid">
@@ -1502,7 +1499,7 @@
             <span>✖ Option A is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            <strong>Wrong database model &amp; queue scope.</strong> Tablestore is a NoSQL wide-column database rather than a relational database with read replicas, and Apache Kafka is designed for high-throughput stream ingestion rather than standard asynchronous job queue buffering.
+            <strong>Wrong database model &amp; queue scope.</strong> Tablestore is a NoSQL wide-column database rather than a relational database with Read-Only Instances, and ApsaraMQ for Kafka is designed for high-throughput stream ingestion rather than standard asynchronous job queue buffering.
           </div>
         </div>
 
@@ -1511,7 +1508,7 @@
             <span>✔ Option B is Correct</span>
           </div>
           <div class="analysis-item-body">
-            <strong>Validated multi-tier design.</strong> ECS with Auto Scaling dynamically scales compute instances based on CPU metrics, ApsaraDB RDS with Read-Only instances offloads read queries from the primary database, and SMQ provides point-to-point queue buffering to decouple downstream order fulfillment.
+            <strong>Validated multi-tier design.</strong> ECS with Auto Scaling dynamically scales compute instances based on CPU metrics, ApsaraDB RDS with Read-Only Instances offloads read queries from the primary database, and SMQ provides point-to-point queue buffering to decouple downstream order fulfillment.
           </div>
         </div>
 
@@ -1537,13 +1534,12 @@
 
     <!-- ==================== SLIDE 33: PRACTICE SCENARIO 2 (QUESTION) ==================== -->
     <section class="slide" data-category="Practice Quiz">
-      <div class="slide-category">Interactive Quiz • Scenario 2</div>
-      <h2>Practice Scenario 2: Enterprise Hybrid &amp; Multi-VPC Transit Networking</h2>
+      <div class="slide-category">Practice Question 2</div>
       
       <div class="quiz-single-card">
         <div class="quiz-single-question">
           <span class="quiz-number">Question 2</span>
-          <span>A financial enterprise has deployed multiple production VPCs across Jakarta (ap-southeast-5) and Singapore (ap-southeast-1), alongside an on-premises enterprise data center connected via a physical Express Connect dedicated line. The enterprise network team requires a unified private transit architecture that guarantees: (1) secure, any-to-any private interconnectivity between all cloud VPCs and on-premises subnets, (2) enterprise-grade network quality with ultra-low jitter and packet loss rate below 0.2%, and (3) automated dynamic route propagation without maintaining dozens of static routing tables. Which solution should the architect implement?</span>
+          <span>A financial enterprise has deployed multiple production VPCs across Jakarta (ap-southeast-5) and Singapore (ap-southeast-1), alongside an on-premises enterprise data center connected via a physical Express Connect dedicated line. The enterprise network team requires a unified private transit architecture that guarantees: (1) secure, any-to-any private interconnectivity between all cloud VPCs and on-premises networks, (2) enterprise-grade network quality with ultra-low jitter and packet loss rate below 0.2%, and (3) automated dynamic route propagation without maintaining dozens of static routing tables. Which solution should the architect implement?</span>
         </div>
         <ul class="quiz-single-options">
           <li class="quiz-single-option">
@@ -1556,7 +1552,7 @@
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">C</span>
-            <span>Deploy Cloud Enterprise Network (CEN) with Transit Routers (TR) attaching all regional VPCs and the on-premises Express Connect virtual border router.</span>
+            <span>Deploy Cloud Enterprise Network (CEN) with Transit Routers (TR) attaching all regional VPCs and the on-premises Express Connect Virtual Border Router (VBR).</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">D</span>
@@ -1568,15 +1564,13 @@
 
     <!-- ==================== SLIDE 34: SCENARIO 2: SOLUTION ==================== -->
     <section class="slide" data-category="Practice Quiz">
-      <div class="slide-category">Quiz Solution • Scenario 2</div>
-      <h2>Scenario 2: Solution &amp; Architectural Analysis</h2>
+      <div class="slide-category">Practice Answer 2</div>
       
       <div class="analysis-main-card">
         <div>
           <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: C</span>
           <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Cloud Enterprise Network (CEN) with Transit Routers (TR).</span>
         </div>
-        <span class="badge badge-updated">Validated Architecture</span>
       </div>
 
       <div class="analysis-options-grid">
@@ -1603,7 +1597,7 @@
             <span>✔ Option C is Correct</span>
           </div>
           <div class="analysis-item-body">
-            <strong>Enterprise transit hub.</strong> Cloud Enterprise Network (CEN) with Transit Routers (TR) interconnects multi-region VPCs and Express Connect border routers over Alibaba Cloud's private global fiber network, delivering automated route propagation, &lt;0.2% packet loss, and &ge;99.95% availability.
+            <strong>Enterprise transit hub.</strong> Cloud Enterprise Network (CEN) with Transit Routers (TR) interconnects multi-region VPCs and Express Connect Virtual Border Routers (VBRs) over Alibaba Cloud's private global fiber network, delivering automated route propagation, &lt;0.2% packet loss, and &ge;99.95% availability.
           </div>
         </div>
 
@@ -1620,13 +1614,12 @@
 
     <!-- ==================== SLIDE 35: PRACTICE SCENARIO 3 (QUESTION) ==================== -->
     <section class="slide" data-category="Practice Quiz">
-      <div class="slide-category">Interactive Quiz • Scenario 3</div>
-      <h2>Practice Scenario 3: Secure Least-Privilege Application Access</h2>
+      <div class="slide-category">Practice Question 3</div>
       
       <div class="quiz-single-card">
         <div class="quiz-single-question">
           <span class="quiz-number">Question 3</span>
-          <span>A software development team is deploying a containerized microservice on private ECS instances in a VPC. The application must read configuration assets and upload transaction archives to an Object Storage Service (OSS) bucket. Corporate cybersecurity compliance strictly mandates: (1) permanent AccessKey pairs (AccessKey ID and AccessKey Secret) must NEVER be hardcoded into application source files or stored on virtual machine disks, and (2) all permissions must adhere to least-privilege access principles. How should the architect design this access architecture?</span>
+          <span>A software development team is deploying a containerized microservice on private ECS instances in a VPC. The application must read configuration assets and upload transaction archives to an Object Storage Service (OSS) bucket. Corporate cybersecurity compliance strictly mandates: (1) permanent AccessKey pairs (AccessKey ID and AccessKey Secret) must NEVER be hardcoded into application source files or stored on ECS instance disks, and (2) all permissions must adhere to least-privilege access principles. How should the architect design this access architecture?</span>
         </div>
         <ul class="quiz-single-options">
           <li class="quiz-single-option">
@@ -1635,7 +1628,7 @@
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">B</span>
-            <span>Configure the OSS bucket Access Control List (ACL) to public-read and public-write so instances can access files without authentication.</span>
+            <span>Configure the OSS bucket Access Control List (ACL) to public-read-write so instances can access files without authentication.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">C</span>
@@ -1651,15 +1644,13 @@
 
     <!-- ==================== SLIDE 36: SCENARIO 3: SOLUTION ==================== -->
     <section class="slide" data-category="Practice Quiz">
-      <div class="slide-category">Quiz Solution • Scenario 3</div>
-      <h2>Scenario 3: Solution &amp; Architectural Analysis</h2>
+      <div class="slide-category">Practice Answer 3</div>
       
       <div class="analysis-main-card">
         <div>
           <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: D</span>
           <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Attach an instance RAM Role and retrieve short-lived STS tokens via Instance Metadata Service (IMDS).</span>
         </div>
-        <span class="badge badge-updated">Validated Architecture</span>
       </div>
 
       <div class="analysis-options-grid">
@@ -1677,7 +1668,7 @@
             <span>✖ Option B is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            <strong>Severe data exposure risk.</strong> Setting an OSS bucket to public-read and public-write allows anyone on the Internet to view, modify, or delete proprietary corporate data without authentication.
+            <strong>Severe data exposure risk.</strong> Setting an OSS bucket to public-read-write allows anyone on the Internet to view, modify, or delete proprietary corporate data without authentication.
           </div>
         </div>
 
