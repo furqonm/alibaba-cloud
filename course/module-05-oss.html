@@ -131,7 +131,7 @@
         </div>
         <div class="service-pillar-card">
           <h4>⚡ High Availability</h4>
-          <p>Up to 99.995% SLA with Multi-Zone redundant storage (ZRS) and cross-region automated replication.</p>
+          <p>Up to 99.995% SLA with Zone-redundant storage (ZRS) and cross-region automated replication.</p>
         </div>
         <div class="service-pillar-card">
           <h4>🔗 Cloud Ecosystem</h4>
@@ -299,7 +299,7 @@
     <!-- ==================== SLIDE 10: LIFECYCLE MANAGEMENT ==================== -->
     <section class="slide" data-category="Storage Classes &amp; Lifecycle">
       <div class="slide-category">Section 2: Storage Classes &amp; Lifecycle</div>
-      <h2>Automated Lifecycle Policies</h2>
+      <h2>Automated Lifecycle Rules</h2>
       
       <!-- Streamlined Lifecycle Timeline Diagram -->
       <div class="architecture-diagram-wrapper" style="display: flex; justify-content: center; align-items: center; margin: 0.1rem 0 0.65rem; min-height: 0;">
@@ -339,7 +339,7 @@
         <div class="content-card highlight-blue">
           <h3>Locally Redundant Storage (LRS)</h3>
           <ul>
-            <li><strong>Single Availability Zone Scope:</strong> Stores object replicas across multiple independent storage devices and racks within a <strong>single Availability Zone (AZ)</strong>.</li>
+            <li><strong>Single-Zone Scope:</strong> Stores object replicas across multiple independent storage devices and racks within a <strong>single Zone</strong>.</li>
             <li><strong>Durability Rating:</strong> Provides <strong>99.999999999% (11 nines)</strong> data durability against hardware faults, disk corruptions, and single-rack failures.</li>
             <li><strong>Service Availability SLA:</strong> 99.99% operational availability.</li>
             <li><strong>Cost Efficiency:</strong> Lowest baseline price per gigabyte; optimal for general-purpose workloads, non-critical data, or when application-layer replication already exists.</li>
@@ -349,10 +349,10 @@
         <div class="content-card highlight-green">
           <h3>Zone-Redundant Storage (ZRS)</h3>
           <ul>
-            <li><strong>Multi-Zone Active Redundancy:</strong> Replicates data across <strong>three distinct Availability Zones</strong> within the same region.</li>
+            <li><strong>Multi-Zone Active Redundancy:</strong> Replicates data across <strong>three distinct Zones</strong> within the same region.</li>
             <li><strong>Extreme Durability Rating:</strong> Delivers <strong>99.9999999999% (12 nines)</strong> data durability.</li>
             <li><strong>Enterprise Availability SLA:</strong> <strong>99.995%</strong> service availability.</li>
-            <li><strong>Datacenter-Level Disaster Resilience:</strong> Guarantees business continuity and uninterrupted reads/writes even during a complete catastrophic power outage or failure of an entire Availability Zone.</li>
+            <li><strong>Datacenter-Level Disaster Resilience:</strong> Guarantees business continuity and uninterrupted reads/writes even during a complete catastrophic power outage or failure of an entire Zone.</li>
           </ul>
         </div>
       </div>
@@ -529,7 +529,7 @@
           <div class="content-card highlight-green" style="padding: 1rem 1.25rem;">
             <h3 style="font-size: calc(1rem + var(--font-delta)); margin-bottom: 0.45rem;">Replication Time Control (RTC)</h3>
             <ul style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.4rem;">
-              <li><strong>SLA-Backed Speed Guarantee:</strong> Enterprise performance guarantee replicating <strong>99.99%</strong> of uploaded data within seconds, satisfying mission-critical RPO and RTO demands.</li>
+              <li><strong>SLA-Backed Speed Guarantee:</strong> Enterprise performance guarantee replicating <strong>99.99%</strong> of uploaded data within 10 minutes, satisfying mission-critical RPO and RTO demands.</li>
               <li><strong>Real-Time Telemetry:</strong> Integrates with CloudMonitor to track replication latency, backlog tasks, and cross-region outbound bandwidth with live alerts.</li>
             </ul>
           </div>
@@ -568,7 +568,7 @@
         <div class="content-card highlight-green">
           <h3>Architectural Benefits &amp; Use Cases</h3>
           <ul>
-            <li><strong>Zero-Downtime Data Migration:</strong> Migrate active enterprise services from on-premises NAS/SAN or AWS S3 without pre-copying petabytes or scheduling maintenance windows.</li>
+            <li><strong>Zero-Downtime Data Migration:</strong> Migrate active enterprise services from on-premises storage systems or third-party cloud storage without pre-copying petabytes or scheduling maintenance windows.</li>
             <li><strong>On-Demand "Hot Data" Ingestion:</strong> Only files actively requested by end-users are ingested and stored in OSS, eliminating migration costs for cold/stale historical data.</li>
             <li><strong>Origin Offloading:</strong> Once mirrored, high-concurrency read traffic is absorbed by Alibaba Cloud OSS's global distributed network instead of the origin server.</li>
             <li><strong>Granular Rule Matching:</strong> Supports scoping mirror rules by <strong>object prefix</strong> (e.g. <code>/images/</code>) and configuring custom HTTP header pass-through.</li>
@@ -784,11 +784,11 @@
         <div class="content-card highlight-blue">
           <h3 style="font-size: calc(1rem + var(--font-delta)); margin-bottom: 0.45rem;">Resolving the Upload Dilemma</h3>
           <p style="font-size: calc(0.85rem + var(--font-delta)); line-height: 1.45; margin-bottom: 0.65rem; color: #475569;">
-            Building directly on the Direct Client Upload architecture, Pre-Signed URLs provide secure, time-limited delegated authorization without exposing long-term credentials:
+            Building directly on the Direct Client Upload architecture, signed URLs provide secure, time-limited delegated authorization without exposing long-term credentials:
           </p>
           <ul style="font-size: calc(0.83rem + var(--font-delta)); line-height: 1.5; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.45rem;">
             <li><strong>Step 1: Obtain Authorization:</strong> The client authenticates with the application server (e.g. JWT/session) and requests an upload permit for a designated object key.</li>
-            <li><strong>Step 2: Signature Generation:</strong> The application backend uses its internal RAM credentials to generate a pre-signed URL embedding an HMAC-SHA1 signature and expiry window.</li>
+            <li><strong>Step 2: Signature Generation:</strong> The application backend uses its internal RAM credentials to generate a signed URL embedding an HMAC-SHA1 signature and expiry window.</li>
             <li><strong>Step 3: Direct Streaming to OSS:</strong> The client issues an HTTP <code>PUT</code> or <code>POST</code> request directly to the OSS endpoint using the signed URL, completely bypassing the app server.</li>
             <li><strong>Strict Expiry Enforcement:</strong> The URL terminates automatically after its duration (e.g. 15 mins). Subsequent requests receive <code>HTTP 403 Forbidden</code>.</li>
           </ul>
@@ -797,7 +797,7 @@
         <div class="content-card highlight" style="padding: 1rem 1.25rem;">
           <h3 style="font-size: calc(1rem + var(--font-delta)); margin-bottom: 0.35rem;">Example Signed URL (Direct HTTP PUT / GET)</h3>
           
-          <!-- Concrete Pre-Signed URL Example -->
+          <!-- Concrete Signed URL Example -->
           <div style="background: #1e293b; border-radius: 6px; padding: 0.45rem 0.65rem; margin-bottom: 0.55rem; border: 1px solid #334155;">
             <code style="font-size: calc(0.72rem + var(--font-delta)); line-height: 1.35; color: #38bdf8; word-break: break-all; display: block; font-family: 'Consolas', 'Courier New', monospace;">
               https://my-bucket.oss-ap-southeast-5.aliyuncs.com/uploads/contract.pdf?<span style="color: #f59e0b;">OSSAccessKeyId</span>=LTAI5t7example99&amp;<span style="color: #10b981;">Expires</span>=1776412800&amp;<span style="color: #ec4899;">Signature</span>=vR3q9fN5%2BexampleWv7%3D
@@ -887,7 +887,7 @@
             <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem; color: #065f46;">PrivateLink Interface Endpoints</h3>
             <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.3rem;">
               <li>Allocate Elastic Network Interfaces (ENIs) with private IP addresses directly within your Consumer VPC in your region.</li>
-              <li><strong>Multi-Zone High Availability:</strong> Deployed across redundant Availability Zones (<strong>Zone G</strong> and <strong>Zone H</strong>) with automated cross-zone health checks and failover.</li>
+              <li><strong>Multi-Zone High Availability:</strong> Deployed across redundant Zones (<strong>Zone G</strong> and <strong>Zone H</strong>) with automated cross-zone health checks and failover.</li>
               <li><strong>Direct Private Backbone Routing:</strong> An <strong>Endpoint Connection</strong> tunnels traffic privately to Alibaba Cloud managed services (OSS, PAI, Model Studio) without touching the public internet.</li>
             </ul>
           </div>
@@ -1065,7 +1065,7 @@
           <h3 style="font-size: calc(0.98rem + var(--font-delta)); margin-bottom: 0.35rem; color: #1e40af;">Event-Driven Execution Mechanism</h3>
           <ul style="font-size: calc(0.82rem + var(--font-delta)); line-height: 1.45; margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: 0.35rem;">
             <li><strong>Automated Triggering:</strong> Uploading an object (PUT/POST, e.g. a <code>.zip</code> archive) instantly dispatches an asynchronous event notification to <strong>Function Compute (FC)</strong>.</li>
-            <li><strong>Zero Server Management:</strong> Compute instances spin up on-demand in milliseconds to execute processing logic without maintaining 24/7 dedicated worker VMs.</li>
+            <li><strong>Zero Server Management:</strong> Compute instances spin up on-demand in milliseconds to execute processing logic without maintaining 24/7 dedicated worker ECS instances.</li>
             <li><strong>Granular Event Filters:</strong> Target specific storage events (e.g. <code>oss:ObjectCreated:*</code>) with customizable folder prefix and file extension suffix filters.</li>
           </ul>
         </div>
@@ -1144,7 +1144,7 @@
             <img src="assets/images/oss-realtime-log-analysis.png" alt="Log Service (SLS) Real-Time Log Analysis Console" style="max-height: 252px; max-width: 100%; height: auto; object-fit: contain; border-radius: 6px;">
           </div>
           <ul style="font-size: calc(0.76rem + var(--font-delta)); line-height: 1.35; margin: 0; padding-left: 1.05rem; display: flex; flex-direction: column; gap: 0.2rem;">
-            <li><strong>Sub-Second Ingestion:</strong> Streams access logs in real time directly into Log Service (<code>oss-log-store</code>).</li>
+            <li><strong>Sub-Second Ingestion:</strong> Streams access logs in real time directly into Simple Log Service (<code>oss-log-store</code>).</li>
             <li><strong>Instant SQL Analytics:</strong> Query billions of records using SQL-92 (e.g. latency percentiles, top client IPs).</li>
             <li><strong>Built-in Dashboards:</strong> Pre-integrated Grafana-style charts for PV, UV, status codes, and traffic distribution.</li>
           </ul>
@@ -1170,8 +1170,8 @@
       
       <div class="content-card highlight-blue" style="margin-top: 1.25rem; padding: 2rem 2.5rem;">
         <ol style="margin: 0; padding-left: 1.75rem; font-size: calc(1.05rem + var(--font-delta)); line-height: 1.7; color: var(--text-main);">
-          <li style="margin-bottom: 1.15rem;"><strong>Move objects lifecycle rules</strong> that older than 30 days to IA, 90 days to Archive, and 365 days to Cold Archive.</li>
-          <li style="margin-bottom: 1.15rem;"><strong>Pre-purchased capacity packages</strong> offering up to 50%+ discounts with 1-year or 3-year commitments.</li>
+          <li style="margin-bottom: 1.15rem;"><strong>Configure lifecycle rules to transition objects</strong> older than 30 days to IA, 90 days to Archive, and 365 days to Cold Archive.</li>
+          <li style="margin-bottom: 1.15rem;"><strong>Pre-purchase OSS storage capacity resource plans</strong> offering up to 50%+ discounts with 1-year or 3-year commitments.</li>
           <li style="margin-bottom: 1.15rem;"><strong>Clean orphaned multipart uploads</strong> with lifecycle rules that abort uncompleted multipart uploads after 7 days to eliminate hidden chunk charges.</li>
           <li style="margin-bottom: 1.15rem;"><strong>Reduce public internet egress fees</strong> and offload repeated GET API request charges with <strong>Alibaba Cloud CDN</strong>.</li>
           <li><strong>Keep all intra-cloud analytics and data pipelines</strong> strictly on internal endpoints for zero network cost with <strong>Internal VPC Endpoints</strong>.</li>
@@ -1242,7 +1242,7 @@
         </div>
         <ul class="quiz-single-options">
           <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Enable Object Versioning on the bucket; configure a RAM Policy denying oss:DeleteObject for all RAM Users except the Root account; apply SSE-OSS encryption.</span></li>
-          <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Set bucket ACL to Private; configure Cross-Region Replication to duplicate records to another region; generate pre-signed URLs with a 7-year expiration timestamp.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Set bucket ACL to Private; configure Cross-Region Replication to duplicate records to another region; generate signed URLs with a 7-year expiration timestamp.</span></li>
           <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Configure an OSS Bucket Lock (WORM) policy locked for a 7-year retention period; enable Server-Side Encryption with Customer Master Keys via KMS (SSE-KMS BYOK).</span></li>
           <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Deploy an ECS instance running an NFS server with ext4 write protection; mount the disk over VPC PrivateLink; configure hourly snapshots to OSS Standard.</span></li>
         </ul>
@@ -1295,8 +1295,8 @@
         <ul class="quiz-single-options">
           <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Create an OSS Bucket with Zone-Redundant Storage (ZRS); configure an automated lifecycle rule to transition objects to Deep Cold Archive after 30 days; attach a Bucket Policy denying requests where acs:SourceVpc does not match the hospital VPC; access via VPC Endpoints.</span></li>
           <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Store all scans permanently in an OSS Standard LRS bucket; configure an IP Whitelist allowing only the hospital's public NAT gateway IP address; use manual cron jobs to archive scans to tape.</span></li>
-          <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Upload scans directly to Deep Cold Archive; configure Transfer Acceleration to bypass the public internet; generate pre-signed URLs with 10-year validity.</span></li>
-          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Deploy a shared NAS Extreme file system inside the VPC; replicate files daily to OSS Archive via the public internet; attach a RAM User policy to all doctors.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Upload scans directly to Deep Cold Archive; configure Transfer Acceleration to bypass the public internet; generate signed URLs with 10-year validity.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Deploy a shared NAS Extreme file system inside the VPC; replicate files daily to OSS Archive via the public internet; attach a RAM policy to all doctors.</span></li>
         </ul>
       </div>
     </section>
