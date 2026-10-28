@@ -98,7 +98,7 @@
             <strong>ApsaraDB for RDS</strong> is a fully managed relational database service that provides automated provisioning, high availability, backup, and elastic scaling.
           </p>
           <p class="service-desc">
-            Compared to traditional on-premises database deployments or self-managed databases on virtual machines that introduce complex high-availability setups, manual operating system patching, and tedious disaster recovery management, RDS automates operational overhead, guaranteeing up to 99.99% availability so organizations can focus on application data logic.
+            Compared to traditional on-premises database deployments or self-managed databases on ECS instances that introduce complex high-availability setups, manual operating system patching, and tedious disaster recovery management, RDS automates operational overhead, guaranteeing up to 99.99% availability so organizations can focus on application data logic.
           </p>
         </div>
       </div>
@@ -118,7 +118,7 @@
         </div>
         <div class="service-pillar-card">
           <h4>📈 Elastic Read Scaling</h4>
-          <p>Attach up to 10 Read-Only replicas with transparent Read/Write splitting proxy.</p>
+          <p>Attach up to 10 Read-Only instances with transparent Read/Write splitting proxy.</p>
         </div>
         <div class="service-pillar-card">
           <h4>🛠️ Comprehensive Management</h4>
@@ -787,9 +787,9 @@
           <div class="content-card highlight-blue">
             <h3>Native RDS Cross-Region Features</h3>
             <ul>
-              <li><strong>Native DR Replicas (RDS Console):</strong> 1-click provisioning directly from the RDS console; replicates asynchronously over Alibaba Cloud private CEN backbone without internet exposure.</li>
+              <li><strong>Native Disaster Recovery (DR) Instances (RDS Console):</strong> 1-click provisioning directly from the RDS console; replicates asynchronously over Alibaba Cloud private CEN backbone without internet exposure.</li>
               <li><strong>Native Cross-Region Backup (OSS):</strong> Automated policy-based snapshot and binlog replication directly to remote region OSS buckets for cost-effective offline recovery.</li>
-              <li><strong>Native 1-Click Master Promotion:</strong> Instantly promote the remote DR replica into a standalone read/write primary if the primary region suffers a total outage.</li>
+              <li><strong>Native 1-Click Primary Promotion:</strong> Instantly promote the remote DR instance into a standalone read/write primary if the primary region suffers a total outage.</li>
               <li><strong>Local Read Offloading:</strong> The remote DR instance serves local reporting and read queries in the secondary region without impacting the primary node.</li>
             </ul>
           </div>
@@ -830,7 +830,7 @@
             <img src="assets/images/rds-proxy-transaction-splitting.svg" alt="RDS Database Proxy Transaction Splitting Workflow" class="architecture-diagram" style="max-height: 270px; width: 100%; height: auto; object-fit: contain;">
           </div>
           <div class="callout callout-blue" style="margin-top: 0.85rem; width: 100%;">
-            <div>Transaction Splitting: Pre-write reads route to Read-Only Replicas; post-write reads pin to Primary to guarantee read-your-own-writes consistency.</div>
+            <div>Transaction Splitting: Pre-write reads route to Read-Only Instances; post-write reads pin to Primary to guarantee read-your-own-writes consistency.</div>
           </div>
         </div>
 
@@ -840,7 +840,7 @@
               <li><strong>Unified Cluster Endpoint:</strong> Applications connect to a single endpoint (<code>*.rwlb.rds.aliyuncs.com</code>); the proxy parses incoming SQL statements in real time.</li>
               <li><strong>Intelligent Transaction Splitting:</strong>
                 <ul>
-                  <li><em>Pre-Write Reads:</em> <code>READ</code> queries before data modification route to read-only replicas to maximize throughput.</li>
+                  <li><em>Pre-Write Reads:</em> <code>READ</code> queries before data modification route to read-only instances to maximize throughput.</li>
                   <li><em>Post-Write Pinning:</em> After the first <code>UPDATE</code>/<code>INSERT</code>, all subsequent reads in the transaction pin strictly to the Primary.</li>
                 </ul>
               </li>
@@ -855,7 +855,7 @@
     <!-- ==================== SLIDE 27: READ-ONLY REPLICAS FLEET ==================== -->
     <section class="slide" data-category="Scaling &amp; Performance">
       <div class="slide-category">Section 5: Scaling &amp; Performance</div>
-      <h2>Read-Only Replicas vs. HA Secondary Instance</h2>
+      <h2>Read-Only Instances vs. HA Secondary Instance</h2>
       
       <div class="two-column-layout" style="align-items: stretch; gap: 1.5rem;">
         <div class="column-left" style="flex: 1.1; display: flex; flex-direction: column; justify-content: center;">
@@ -863,7 +863,7 @@
             <img src="assets/images/rds-read-replica-topology.svg" alt="Primary/Secondary HA with Read-Only Replicas Topology" class="architecture-diagram" style="max-height: 290px; width: 100%; height: auto; object-fit: contain;">
           </div>
           <div class="callout callout-blue" style="margin-top: 0.85rem; width: 100%;">
-            <div>Architectural Distinction: The HA pair (Primary/Secondary) guarantees uptime and failover, while independent Read-Only Replicas scale query throughput horizontally.</div>
+            <div>Architectural Distinction: The HA pair (Primary/Secondary) guarantees uptime and failover, while independent Read-Only Instances scale query throughput horizontally.</div>
           </div>
         </div>
 
@@ -880,12 +880,12 @@
             </div>
 
             <div style="border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
-              <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.35rem 0; font-size: calc(0.95rem + var(--font-delta));">Read-Only Replicas (Throughput Scaling)</h3>
+              <h3 style="color: #000000; font-weight: 700; margin: 0 0 0.35rem 0; font-size: calc(0.95rem + var(--font-delta));">Read-Only Instances (Throughput Scaling)</h3>
               <ul style="margin: 0; padding-left: 1.15rem; font-size: calc(0.85rem + var(--font-delta)); line-height: 1.45;">
                 <li><strong>Core Objective:</strong> Offload intense <code>SELECT</code> traffic and scale read concurrency horizontally.</li>
                 <li><strong>Traffic Role:</strong> Active query workers; process reads directly or via Dedicated Database Proxy.</li>
                 <li><strong>Replication Mode:</strong> Asynchronous replication via MTS; completely decoupled from Primary commit path.</li>
-                <li><strong>Fleet Scale:</strong> Scale out elastically up to 10 independent replicas with custom CPU/RAM sizing.</li>
+                <li><strong>Fleet Scale:</strong> Scale out elastically up to 10 independent read-only instances with custom CPU/RAM sizing.</li>
               </ul>
             </div>
           </div>
@@ -1048,7 +1048,7 @@
           <li><strong>50+ Operational Health Metrics:</strong> Continuously tracks CPU utilization, memory pressure, disk storage consumption, IOPS, active connections, and replication lag in real time.</li>
           <li><strong>Multi-Channel Proactive Alarms:</strong> Configures automated threshold alarms that dispatch notifications via DingTalk, Webhook, SMS, and Email upon metric anomalies.</li>
           <li><strong>High-Frequency Metric Sampling:</strong> Supports fine-grained monitoring down to 1-second intervals for high-frequency trading and mission-critical financial applications.</li>
-          <li><strong>Fleet-Wide Performance Visibility:</strong> Unified console visualizes health trends across multiple instances, Availability Zones, and multi-region database topologies.</li>
+          <li><strong>Fleet-Wide Performance Visibility:</strong> Unified console visualizes health trends across multiple instances, Zones, and multi-region database topologies.</li>
         </ul>
       </div>
     </section>
@@ -1219,7 +1219,7 @@
             <strong>ApsaraDB for PolarDB</strong> is Alibaba Cloud's flagship cloud-native relational database service engineered with decoupled compute and distributed storage architecture.
           </p>
           <p class="service-desc">
-            Purpose-built for hyper-scale enterprise applications and high-concurrency transactional spikes, PolarDB separates compute nodes from shared distributed storage (PolarStore over RDMA). It delivers up to 6× the performance of standard MySQL, instant read scaling with up to 15 read-only replicas without data copying, and automated elastic storage expansion up to 500 TB.
+            Purpose-built for hyper-scale enterprise applications and high-concurrency transactional spikes, PolarDB separates compute nodes from shared distributed storage (PolarStore over RDMA). It delivers up to 6× the performance of standard MySQL, instant read scaling with up to 15 read-only nodes without data copying, and automated elastic storage expansion up to 500 TB.
           </p>
         </div>
       </div>
@@ -1235,7 +1235,7 @@
         </div>
         <div class="service-pillar-card">
           <h4>👥 Sub-5-Min Read Scaling</h4>
-          <p>Attach up to 15 Read-Only replicas in minutes sharing a single data copy with zero data duplication lag.</p>
+          <p>Attach up to 15 Read-Only nodes in minutes sharing a single data copy with zero data duplication lag.</p>
         </div>
         <div class="service-pillar-card">
           <h4>⚡ Serverless Auto-Scaling</h4>
@@ -1279,7 +1279,7 @@
             </h3>
             <ul style="margin: 0; padding-left: 1.1rem; font-size: 0.88rem; line-height: 1.45;">
               <li><strong>Intelligent Query Routing:</strong> Read/Write Splitter automatically directs write queries to the primary node and load-balances reads to replicas.</li>
-              <li><strong>Sub-30s Failover:</strong> Any Read-Only Replica can be instantly promoted to primary with active failover and zero data loss (RPO=0).</li>
+              <li><strong>Sub-30s Failover:</strong> Any Read-Only Node can be instantly promoted to primary with active failover and zero data loss (RPO=0).</li>
             </ul>
           </div>
 
@@ -1289,7 +1289,7 @@
               <span class="badge badge-exam">Parallel-Raft</span>
             </h3>
             <ul style="margin: 0; padding-left: 1.1rem; font-size: 0.88rem; line-height: 1.45;">
-              <li><strong>Zero-Copy Read Replicas:</strong> Up to 15 read nodes mount the same underlying storage chunks without duplicate storage costs or lag.</li>
+              <li><strong>Zero-Copy Read Nodes:</strong> Up to 15 read nodes mount the same underlying storage chunks without duplicate storage costs or lag.</li>
               <li><strong>Elastic Storage Pool:</strong> Automatically grows up to 500 TB with multi-chunk replication managed via Parallel-Raft consensus.</li>
             </ul>
           </div>
@@ -1320,8 +1320,8 @@
             <h3>When to Choose PolarDB Cloud-Native</h3>
             <ul>
               <li><strong>Massive Data Volumes (Up to 500 TB):</strong> Hyper-scale databases requiring elastic storage auto-scaling without sharding.</li>
-              <li><strong>Extreme Read Concurrency:</strong> Applications requiring up to 15 Read-Only replicas sharing a single distributed storage pool with zero replication lag.</li>
-              <li><strong>Rapid Replica Provisioning:</strong> Spin up new Read-Only Replicas in under 5 minutes without copying terabytes of underlying data.</li>
+              <li><strong>Extreme Read Concurrency:</strong> Applications requiring up to 15 Read-Only nodes sharing a single distributed storage pool with zero replication lag.</li>
+              <li><strong>Rapid Node Provisioning:</strong> Spin up new Read-Only Nodes in under 5 minutes without copying terabytes of underlying data.</li>
               <li><strong>Hyper-Scale E-Commerce &amp; Flash Sales:</strong> Engineered for extreme peak write TPS, high-concurrency gaming, and massive transactional bursts.</li>
             </ul>
           </div>
@@ -1344,7 +1344,7 @@
             <li><strong>Procurement Modes:</strong> Subscription (Prepaid 1-mo to 5-yr, 30%–50% savings), Pay-As-You-Go (hourly/second-level), and RDS Serverless (RCU dynamic compute units).</li>
             <li><strong>Architecture Editions:</strong> Cost scales by edition: Basic (single-node, lowest TCO), High-Availability (dual-node active-standby), and Enterprise (3-node Paxos).</li>
             <li><strong>Storage Provisioning:</strong> Local SSD, Cloud Disk, and ESSD (PL0–PL3 / AutoPL) billed per allocated GB/month; storage fees persist even if instance compute is stopped.</li>
-            <li><strong>Read Replicas &amp; Proxy:</strong> Each Read-Only replica is billed as an independent compute instance; Dedicated DB Proxy is billed per proxy capacity unit.</li>
+            <li><strong>Read-Only Instances &amp; Proxy:</strong> Each Read-Only instance is billed as an independent compute instance; Dedicated DB Proxy is billed per proxy capacity unit.</li>
           </ul>
         </div>
 
@@ -1389,7 +1389,7 @@
       </div>
 
       <div class="callout callout-green" style="margin-top: 0.65rem; padding: 0.5rem 1rem; font-size: calc(0.81rem + var(--font-delta));">
-        <strong>💡 Multi-Product Cost Optimization Rule:</strong> Stopping a Pay-As-You-Go instance halts compute billing, but <em>storage disk fees continue to accrue</em>. Combine <strong>Subscription compute</strong> with <strong>Storage Capacity Units (SCU)</strong> for predictable discounts; leverage <strong>Free DTS Migration</strong> for zero-license onboarding; and adopt <strong>PolarDB shared storage</strong> when scaling multiple Read-Only Replicas to eliminate multiplied storage costs.
+        <strong>💡 Multi-Product Cost Optimization Rule:</strong> Stopping a Pay-As-You-Go instance halts compute billing, but <em>storage disk fees continue to accrue</em>. Combine <strong>Subscription compute</strong> with <strong>Storage Capacity Units (SCU)</strong> for predictable discounts; leverage <strong>Free DTS Migration</strong> for zero-license onboarding; and adopt <strong>PolarDB shared storage</strong> when scaling multiple Read-Only Nodes to eliminate multiplied storage costs.
       </div>
     </section>
 
@@ -1403,7 +1403,7 @@
           <span>An e-commerce retailer is architecting an ApsaraDB for RDS MySQL database to support an upcoming national flash sale. The application architecture enforces the following requirements:
           <br>1. The platform processes an extreme volume of read queries (90% read / 10% write) that exceeds the compute capacity of a single primary database instance.
           <br>2. Application microservices must connect through a single unified database endpoint that automatically routes transactional writes to the primary and balances reads across replicas.
-          <br>3. If a Read-Only Replica experiences significant replication lag during peak write bursts, the routing tier must automatically isolate it to prevent serving stale inventory data.
+          <br>3. If a Read-Only Instance experiences significant replication lag during peak write bursts, the routing tier must automatically isolate it to prevent serving stale inventory data.
           <br>Which database architecture fulfills all requirements?</span>
         </div>
         <ul class="quiz-single-options">
@@ -1413,15 +1413,15 @@
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">B</span>
-            <span>Deploy RDS High-Availability Edition; attach multiple Read-Only replicas; enable the Dedicated Database Proxy with Read/Write Splitting, and configure a maximum replication latency threshold.</span>
+            <span>Deploy RDS High-Availability Edition; attach multiple Read-Only instances; enable the Dedicated Database Proxy with Read/Write Splitting, and configure a maximum replication latency threshold.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">C</span>
-            <span>Deploy RDS Enterprise Edition with three nodes across Availability Zones, configuring application queries to connect directly to the secondary standby node private IP.</span>
+            <span>Deploy RDS Enterprise Edition with three nodes across multiple Zones, configuring application queries to connect directly to the secondary standby node private IP.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">D</span>
-            <span>Deploy an independent ECS instance running self-managed Nginx reverse proxy with TCP stream load balancing mapped across RDS Read-Only Replica IP addresses.</span>
+            <span>Deploy an independent ECS instance running self-managed Nginx reverse proxy with TCP stream load balancing mapped across RDS Read-Only Instance IP addresses.</span>
           </li>
         </ul>
       </div>
@@ -1434,7 +1434,7 @@
       <div class="analysis-main-card">
         <div>
           <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: B</span>
-          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">RDS High-Availability Edition with Dedicated Database Proxy, Read-Only Replicas, and replication lag threshold isolation.</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">RDS High-Availability Edition with Dedicated Database Proxy, Read-Only Instances, and replication lag threshold isolation.</span>
         </div>
       </div>
 
@@ -1444,7 +1444,7 @@
             <span>✖ Option A is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            <strong>Fails high availability and read scaling requirements.</strong> RDS Basic Edition contains only a single node without standby failover or native read-only replica scaling. Managing dual connection pools in client application code creates high operational complexity.
+            <strong>Fails high availability and read scaling requirements.</strong> RDS Basic Edition contains only a single node without standby failover or native read-only instance scaling. Managing dual connection pools in client application code creates high operational complexity.
           </div>
         </div>
 
@@ -1453,7 +1453,7 @@
             <span>✔ Option B is Correct</span>
           </div>
           <div class="analysis-item-body">
-            <strong>Optimal cloud-native database scaling architecture.</strong> RDS Dedicated Database Proxy provides a single cluster endpoint that transparently routes writes to Primary and load-balances reads across Read-Only replicas. Its replication lag protection automatically isolates delayed replicas to prevent stale data.
+            <strong>Optimal cloud-native database scaling architecture.</strong> RDS Dedicated Database Proxy provides a single cluster endpoint that transparently routes writes to Primary and load-balances reads across Read-Only instances. Its replication lag protection automatically isolates delayed instances to prevent stale data.
           </div>
         </div>
 
@@ -1501,7 +1501,7 @@
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">C</span>
-            <span>Deploy an unmanaged MySQL database on ECS across two Availability Zones, configuring Linux LUKS full disk encryption on attached cloud disks.</span>
+            <span>Deploy an unmanaged MySQL database on ECS across two Zones, configuring Linux LUKS full disk encryption on attached cloud disks.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">D</span>
