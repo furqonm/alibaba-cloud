@@ -1905,7 +1905,7 @@
             <span>✖ Option C is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            ECS block disks are significantly more expensive per GB than OSS Archive/Cold Archive and require active VM management.
+            ECS block disks are significantly more expensive per GB than OSS Archive/Cold Archive and require active ECS instance management.
           </div>
         </div>
 
@@ -2512,7 +2512,7 @@
             <span>✔ Option B is Correct</span>
           </div>
           <div class="analysis-item-body">
-            As a managed PaaS offering, Alibaba Cloud handles infrastructure maintenance, automated master-replica failover, and backup orchestration.
+            As a managed PaaS offering, Alibaba Cloud handles infrastructure maintenance, automated primary-secondary failover, and backup orchestration.
           </div>
         </div>
 
@@ -2541,12 +2541,12 @@
       
       <div class="quiz-single-card">
         <div class="quiz-single-question">
-          <span>33. Which of the following statements is TRUE regarding ApsaraDB RDS Read-Only Instances (Read Replicas) and internal network (intranet) connectivity with ECS?</span>
+          <span>33. Which of the following statements is TRUE regarding ApsaraDB RDS Read-Only Instances and internal network (intranet) connectivity with ECS?</span>
         </div>
         <ul class="quiz-single-options">
           <li class="quiz-single-option">
             <span class="quiz-single-letter">A</span>
-            <span>An RDS primary (master) instance and its read-only instances can be deployed in two different Regions.</span>
+            <span>An RDS primary instance and its read-only instances can be deployed in two different Regions.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">B</span>
@@ -2570,7 +2570,7 @@
       <div class="analysis-main-card">
         <div>
           <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: B</span>
-          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">RDS Read Replicas must be in the same Region as the primary instance, and intranet access requires same-Region/VPC placement.</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">RDS read-only instances must be in the same Region as the primary instance, and intranet access requires same-Region/VPC placement.</span>
         </div>
       </div>
 
@@ -2589,7 +2589,7 @@
             <span>✔ Option B is Correct</span>
           </div>
           <div class="analysis-item-body">
-            Read-Only Replicas are strictly region-bound, and free intranet connectivity between ECS and RDS requires same-Region/VPC placement plus RDS IP whitelist authorization.
+            Read-only instances are strictly region-bound, and free intranet connectivity between ECS and RDS requires same-Region/VPC placement plus RDS IP whitelist authorization.
           </div>
         </div>
 
@@ -2618,7 +2618,7 @@
       
       <div class="quiz-single-card">
         <div class="quiz-single-question">
-          <span>34. ApsaraDB RDS for MySQL uses native replication to synchronize data changes from the primary (master) instance to read-only instances. Which of the following factors can cause replication latency (lag) on a read-only instance? (Select 3 correct answers)</span>
+          <span>34. ApsaraDB RDS for MySQL uses native replication to synchronize data changes from the primary instance to read-only instances. Which of the following factors can cause replication latency (lag) on a read-only instance? (Select 3 correct answers)</span>
         </div>
         <ul class="quiz-single-options">
           <li class="quiz-single-option">
@@ -2647,7 +2647,7 @@
       <div class="analysis-main-card">
         <div>
           <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: A, C, D</span>
-          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Read-Only Replica lag is caused by high replica load, undersized replica specs, or massive batch updates on the primary node.</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Read-only instance lag is caused by high query load, undersized instance specs, or massive batch updates on the primary instance.</span>
         </div>
       </div>
 
@@ -2657,7 +2657,7 @@
             <span>✔ Option A is Correct</span>
           </div>
           <div class="analysis-item-body">
-            Heavy concurrent read queries or long-running analytical queries on the Read-Only Replica can contend for CPU and I/O, slowing down SQL relay log replay.
+            Heavy concurrent read queries or long-running analytical queries on the read-only instance can contend for CPU and I/O, slowing down SQL relay log replay.
           </div>
         </div>
 
@@ -2675,7 +2675,7 @@
             <span>✔ Option C is Correct</span>
           </div>
           <div class="analysis-item-body">
-            If a Read-Only Replica has smaller compute or IOPS capacity than the primary node, it cannot replay write transactions as fast as the primary generates them.
+            If a read-only instance has smaller compute or IOPS capacity than the primary instance, it cannot replay write transactions as fast as the primary generates them.
           </div>
         </div>
 
@@ -2684,7 +2684,7 @@
             <span>✔ Option D is Correct</span>
           </div>
           <div class="analysis-item-body">
-            Large bulk updates or DDL changes on the primary instance generate massive binlog bursts that take time to transmit and replay on Read-Only Replicas.
+            Large bulk updates or DDL changes on the primary instance generate massive binlog bursts that take time to transmit and replay on read-only instances.
           </div>
         </div>
       </div>
@@ -3146,7 +3146,7 @@
             <span>✖ Option D is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            Auto Scaling performs horizontal scaling (adding/removing instances), not in-place vertical hardware upgrades of a single VM.
+            Auto Scaling performs horizontal scaling (adding/removing instances), not in-place vertical hardware upgrades of a single ECS instance.
           </div>
         </div>
       </div>
