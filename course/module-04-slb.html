@@ -159,7 +159,7 @@
             <strong>SLB</strong> is a fully managed traffic distribution control service that automatically distributes incoming network and application traffic across multiple backend compute instances.
           </p>
           <p class="service-desc">
-            Compared to managing individual public IP addresses per server or deploying DIY software load balancers on virtual machines that introduce single points of failure and manual failover delays, SLB provides automated health detection, seamless elastic scaling, multi-zone disaster recovery, and integrated security inspection, ensuring uninterrupted application availability at cloud scale.
+            Compared to managing individual public IP addresses per server or deploying DIY software load balancers on ECS instances that introduce single points of failure and manual failover delays, SLB provides automated health detection, seamless elastic scaling, multi-zone disaster recovery, and integrated security inspection, ensuring uninterrupted application availability at cloud scale.
           </p>
         </div>
       </div>
@@ -284,7 +284,7 @@
               <li><strong>Official Ingress Controller:</strong> Seamlessly acts as the enterprise Ingress controller for Container Service for Kubernetes (ACK) and Serverless Kubernetes (ASK).</li>
               <li><strong>Pod-Level Direct Routing:</strong> Bypasses NodePort and kube-proxy overhead by routing traffic directly to Kubernetes Pod IPs using Terway CNI.</li>
               <li><strong>Zero Downtime Deployments:</strong> Integrates natively with rolling updates, blue-green deployments, and canary traffic shifting.</li>
-              <li><strong>Zone-Independent Addressing:</strong> Allocates an elastic VIP in each selected Availability Zone for multi-zone fault resilience.</li>
+              <li><strong>Zone-Independent Addressing:</strong> Allocates an elastic VIP in each selected Zone for multi-zone fault resilience.</li>
             </ul>
           </div>
         </div>
@@ -407,7 +407,7 @@
             <ul>
               <li><strong>Native Client IP Pass-Through:</strong> Preserves original client source IP directly in the Layer 3 IP packet header with zero encapsulation or NAT overhead.</li>
               <li><strong>Zero Application Changes:</strong> Backend applications read real client IPs seamlessly via standard socket APIs (<code>getpeername()</code>).</li>
-              <li><strong>Multi-Zone Active-Active:</strong> Deploys elastic VIPs across multiple Availability Zones with automated traffic distribution and local failover.</li>
+              <li><strong>Multi-Zone Active-Active:</strong> Deploys elastic VIPs across multiple Zones with automated traffic distribution and local failover.</li>
               <li><strong>Proxy Protocol v2 Support:</strong> Provides native support for Proxy Protocol v2 header insertion when downstream proxy metadata is required.</li>
             </ul>
           </div>
@@ -894,7 +894,7 @@
             <h3>Pricing Models by Product Family</h3>
             <ul>
               <li><strong>Classic Load Balancer (CLB):</strong> Pay an instance rental fee (waived for private intranet instances) plus fixed specification tiers (e.g., <code>slb.s1.small</code> to <code>slb.s3.large</code>), plus outbound public internet traffic.</li>
-              <li><strong>ALB &amp; NLB (Elastic LCU):</strong> Hourly instance fee per Availability Zone + Pay-As-You-Go Load Balancer Capacity Units (LCU) + EIP/CBWP for public data transfer.</li>
+              <li><strong>ALB &amp; NLB (Elastic LCU):</strong> Hourly instance fee per Zone + Pay-As-You-Go Load Balancer Capacity Units (LCU) + EIP / Internet Shared Bandwidth for public data transfer.</li>
               <li><strong>Gateway Load Balancer (GWLB):</strong> Billed for GWLB instance hours, GWLB Endpoint (GWLBe) hours, and GWLB LCU consumption. Backend third-party virtual firewalls (e.g., Palo Alto, Fortinet) are licensed separately via BYOL or Marketplace.</li>
               <li><strong>Private vs. Public Instances:</strong> Private CLB incurs zero instance fees; ALB, NLB, and GWLB charge instance/endpoint fees and LCU usage regardless of network deployment type.</li>
             </ul>
@@ -1026,7 +1026,7 @@
           <span>A global gaming studio is launching a massive real-time multiplayer mobile game expected to host 30 million concurrent players worldwide. Architectural requirements stipulate:
           <br>1. The load balancer must handle rapid traffic bursts and tens of millions of concurrent TCP and UDP sessions with sub-millisecond network processing latency.
           <br>2. Backend game servers must receive the genuine client source IP address natively in packet IP headers without decoding Proxy Protocol headers or HTTP headers.
-          <br>3. Traffic must be balanced across multiple Availability Zones with active-active resilience.
+          <br>3. Traffic must be balanced across multiple Zones with active-active resilience.
           <br>Which load balancing solution fulfills all criteria?</span>
         </div>
         <ul class="quiz-single-options">
@@ -1040,7 +1040,7 @@
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">C</span>
-            <span>Deploy Network Load Balancer (NLB) across multiple Availability Zones with native client source IP pass-through enabled.</span>
+            <span>Deploy Network Load Balancer (NLB) across multiple Zones with native client source IP pass-through enabled.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">D</span>
@@ -1057,7 +1057,7 @@
       <div class="analysis-main-card">
         <div>
           <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: C</span>
-          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Network Load Balancer (NLB) deployed across multi-AZs with native client source IP pass-through.</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Network Load Balancer (NLB) deployed across multiple Zones with native client source IP pass-through.</span>
         </div>
       </div>
 
@@ -1108,7 +1108,7 @@
         <div class="quiz-single-question">
           <span class="quiz-number">Question 3</span>
           <span>A financial payment processing platform processes mission-critical online credit card checkouts. The compliance and security team enforces the following mandates:
-          <br>1. The platform must maintain high availability across three Availability Zones with automated cross-zone load balancing.
+          <br>1. The platform must maintain high availability across three Zones with automated cross-zone load balancing.
           <br>2. Shoppers completing multi-step checkouts from corporate networks behind shared NAT proxies must remain bound to the same backend application server throughout their session.
           <br>3. The entry point must enforce mutual TLS (mTLS) with client certificate verification for registered merchant terminals, while inspecting all inbound traffic against OWASP Top 10 vulnerabilities.
           <br>Which architecture fulfills this banking-grade mandate?</span>
@@ -1120,7 +1120,7 @@
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">B</span>
-            <span>Deploy Application Load Balancer (ALB) across 3 AZs; configure cookie-based session persistence; enable mTLS with merchant CA certificate verification; integrate with WAF 3.0.</span>
+            <span>Deploy Application Load Balancer (ALB) across 3 Zones; configure cookie-based session persistence; enable mTLS with merchant CA certificate verification; integrate with WAF 3.0.</span>
           </li>
           <li class="quiz-single-option">
             <span class="quiz-single-letter">C</span>
@@ -1141,7 +1141,7 @@
       <div class="analysis-main-card">
         <div>
           <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: B</span>
-          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">ALB across 3 AZs with cookie session stickiness, mTLS client authentication, and WAF 3.0 inspection.</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">ALB across 3 Zones with cookie-based session persistence, mTLS client authentication, and WAF 3.0 inspection.</span>
         </div>
       </div>
 
@@ -1160,7 +1160,7 @@
             <span>✔ Option B is Correct</span>
           </div>
           <div class="analysis-item-body">
-            <strong>Comprehensive financial security &amp; resiliency.</strong> ALB operates across 3 AZs with active-active cross-zone balancing. Cookie-based session persistence guarantees session stickiness even behind shared NATs. Native mTLS verifies merchant client certificates, and cloud-native WAF 3.0 inspects payload vulnerabilities.
+            <strong>Comprehensive financial security &amp; resiliency.</strong> ALB operates across 3 Zones with active-active cross-zone balancing. Cookie-based session persistence guarantees persistent sessions even behind shared NATs. Native mTLS verifies merchant client certificates, and cloud-native WAF 3.0 inspects payload vulnerabilities.
           </div>
         </div>
 
@@ -1178,7 +1178,7 @@
             <span>✖ Option D is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            <strong>High operational risk and single points of failure.</strong> Unmanaged standalone VM proxies lack automated health-driven failover, elastic auto-scaling, and banking compliance certification.
+            <strong>High operational risk and single points of failure.</strong> Unmanaged standalone ECS instance proxies lack automated health-driven failover, elastic auto-scaling, and banking compliance certification.
           </div>
         </div>
       </div>
