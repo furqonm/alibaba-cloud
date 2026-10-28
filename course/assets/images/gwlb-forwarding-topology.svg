@@ -19,27 +19,33 @@
   <g filter="url(#shadow-gwlb)">
     <rect x="30" y="80" width="350" height="305" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
   </g>
-  <!-- Business VPC Header Badge -->
+  <!-- Business VPC Header Badge (Official Orange Alibaba Cloud Theme) -->
   <g transform="translate(44, 94)">
-    <rect width="135" height="28" rx="6" fill="#e0f2fe" stroke="#38bdf8" stroke-width="1"/>
-    <path d="M 16 19 C 14.5 19 13 17.5 13 16 C 13 14.5 14.5 13 16 13 C 16.5 11.5 18 10.5 20 10.5 C 22.5 10.5 24.5 12 25 14 C 26 14 27 15 27 16 C 27 17.5 26 19 24.5 19 Z" fill="#0284c7"/>
-    <text x="34" y="19" font-family="system-ui, sans-serif" font-size="11.5" font-weight="800" fill="#0369a1">Business VPC</text>
+    <rect width="138" height="28" rx="6" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
+    <!-- Official Alibaba Cloud VPC Cloud Icon (#FF6A00) -->
+    <g transform="translate(7, 3.5) scale(0.0205)">
+      <path d="M418.816 339.456l29.696-11.776c6.144 17.92 11.776 29.696 17.92 41.472h11.776c35.328 0 58.88 29.696 58.88 58.88v6.144c47.104 17.92 144.896 50.176 153.6 53.248 11.776-23.552 35.328-41.472 65.024-41.472h6.144c5.12-25.6 11.264-51.2 17.92-76.8H737.28c0-6.144-47.104-177.152-229.888-177.152H465.92C371.2 209.92 318.464 250.88 294.912 292.352 342.016 327.68 389.12 363.008 436.224 386.56c-5.632-17.408-11.776-29.184-17.408-47.104z m-6.144-105.984c6.144 17.92 11.776 29.696 17.92 47.104l-29.696 11.776-17.92-53.248 29.696-5.632z m247.808 424.448h11.776c17.92-29.696 29.696-53.248 41.472-82.432-17.92-11.776-29.696-35.328-29.696-58.88-10.24-2.56-112.128-35.328-165.376-53.248-6.144 17.92-23.552 23.552-41.472 23.552-35.328 0-58.88-29.696-58.88-58.88v-11.776c-47.104-29.696-88.576-58.88-135.68-94.208C265.216 374.784 271.36 416.256 271.36 421.888c0 0-194.56 11.776-224.256 153.6-35.328 177.152 153.6 241.664 218.112 241.664h283.136c29.696-23.552 53.248-53.248 70.656-82.432 0-6.144-6.144-17.92-6.144-29.696 0.512-29.184 24.064-47.104 47.616-47.104z m-118.272-88.576c-11.776-11.776-23.552-29.696-29.696-41.472l23.552-17.92c6.144 11.776 17.92 29.696 29.696 41.472l-23.552 17.92z m29.696 41.472l23.552-17.92c11.776 11.776 17.92 29.696 29.696 41.472l-23.552 17.92c-11.776-12.288-23.552-24.064-29.696-41.472z m407.04-53.248c-41.472 0-100.352-6.144-159.232-11.776-11.776 23.552-35.328 41.472-65.024 41.472h-6.144c-11.776 29.696-29.696 58.88-41.472 88.576 6.144 6.144 11.776 17.92 11.776 29.696 0 29.696-23.552 47.104-47.104 47.104H660.48c-17.92 23.552-35.328 41.472-53.248 65.024h141.312c6.144 0 153.088 0 224.256-135.68 6.144-41.984 11.776-82.944 6.144-124.416zM737.28 811.008l-35.328-35.328 23.552-23.552 35.328 35.328-23.552 23.552z m235.52-282.624c-17.92-76.8-76.8-135.68-165.376-153.088-6.144 23.552-11.776 53.248-17.92 82.432 17.92 11.776 29.696 29.696 35.328 58.88 59.392 5.632 107.008 11.776 147.968 11.776z" fill="#FF6A00"/>
+    </g>
+    <text x="36" y="19" font-family="system-ui, sans-serif" font-size="11.5" font-weight="800" fill="#9a3412">Business VPC</text>
   </g>
 
   <!-- Security VPC (Right Box) -->
   <g filter="url(#shadow-gwlb)">
     <rect x="520" y="80" width="370" height="305" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
   </g>
-  <!-- Security VPC Header Badge -->
+  <!-- Security VPC Header Badge (Official Orange Alibaba Cloud Theme) -->
   <g transform="translate(534, 94)">
-    <rect width="130" height="28" rx="6" fill="#f5f3ff" stroke="#c084fc" stroke-width="1"/>
-    <path d="M 16 19 C 14.5 19 13 17.5 13 16 C 13 14.5 14.5 13 16 13 C 16.5 11.5 18 10.5 20 10.5 C 22.5 10.5 24.5 12 25 14 C 26 14 27 15 27 16 C 27 17.5 26 19 24.5 19 Z" fill="#7c3aed"/>
-    <text x="34" y="19" font-family="system-ui, sans-serif" font-size="11.5" font-weight="800" fill="#6d28d9">Security VPC</text>
+    <rect width="138" height="28" rx="6" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
+    <!-- Official Alibaba Cloud VPC Cloud Icon (#FF6A00) -->
+    <g transform="translate(7, 3.5) scale(0.0205)">
+      <path d="M418.816 339.456l29.696-11.776c6.144 17.92 11.776 29.696 17.92 41.472h11.776c35.328 0 58.88 29.696 58.88 58.88v6.144c47.104 17.92 144.896 50.176 153.6 53.248 11.776-23.552 35.328-41.472 65.024-41.472h6.144c5.12-25.6 11.264-51.2 17.92-76.8H737.28c0-6.144-47.104-177.152-229.888-177.152H465.92C371.2 209.92 318.464 250.88 294.912 292.352 342.016 327.68 389.12 363.008 436.224 386.56c-5.632-17.408-11.776-29.184-17.408-47.104z m-6.144-105.984c6.144 17.92 11.776 29.696 17.92 47.104l-29.696 11.776-17.92-53.248 29.696-5.632z m247.808 424.448h11.776c17.92-29.696 29.696-53.248 41.472-82.432-17.92-11.776-29.696-35.328-29.696-58.88-10.24-2.56-112.128-35.328-165.376-53.248-6.144 17.92-23.552 23.552-41.472 23.552-35.328 0-58.88-29.696-58.88-58.88v-11.776c-47.104-29.696-88.576-58.88-135.68-94.208C265.216 374.784 271.36 416.256 271.36 421.888c0 0-194.56 11.776-224.256 153.6-35.328 177.152 153.6 241.664 218.112 241.664h283.136c29.696-23.552 53.248-53.248 70.656-82.432 0-6.144-6.144-17.92-6.144-29.696 0.512-29.184 24.064-47.104 47.616-47.104z m-118.272-88.576c-11.776-11.776-23.552-29.696-29.696-41.472l23.552-17.92c6.144 11.776 17.92 29.696 29.696 41.472l-23.552 17.92z m29.696 41.472l23.552-17.92c11.776 11.776 17.92 29.696 29.696 41.472l-23.552 17.92c-11.776-12.288-23.552-24.064-29.696-41.472z m407.04-53.248c-41.472 0-100.352-6.144-159.232-11.776-11.776 23.552-35.328 41.472-65.024 41.472h-6.144c-11.776 29.696-29.696 58.88-41.472 88.576 6.144 6.144 11.776 17.92 11.776 29.696 0 29.696-23.552 47.104-47.104 47.104H660.48c-17.92 23.552-35.328 41.472-53.248 65.024h141.312c6.144 0 153.088 0 224.256-135.68 6.144-41.984 11.776-82.944 6.144-124.416zM737.28 811.008l-35.328-35.328 23.552-23.552 35.328 35.328-23.552 23.552z m235.52-282.624c-17.92-76.8-76.8-135.68-165.376-153.088-6.144 23.552-11.776 53.248-17.92 82.432 17.92 11.776 29.696 29.696 35.328 58.88 59.392 5.632 107.008 11.776 147.968 11.776z" fill="#FF6A00"/>
+    </g>
+    <text x="36" y="19" font-family="system-ui, sans-serif" font-size="11.5" font-weight="800" fill="#9a3412">Security VPC</text>
   </g>
 
   <!-- PrivateLink Center Zone -->
   <g transform="translate(395, 165)">
-    <rect width="110" height="135" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+    <rect width="110" height="135" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="3 3"/>
     <text x="55" y="24" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11.5" font-weight="700" fill="#475569">PrivateLink</text>
   </g>
 
@@ -52,89 +58,92 @@
     <text x="44" y="25" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b">Client</text>
   </g>
 
-  <!-- Application (ECS in Business VPC) -->
+  <!-- Application (Official ECS in Business VPC) -->
   <g transform="translate(65, 195)" filter="url(#shadow-gwlb)">
     <rect width="115" height="80" rx="8" fill="#ffffff" stroke="#fdba74" stroke-width="1.5"/>
-    <!-- Server Icon (3 stacked drives) -->
-    <g transform="translate(37, 12)">
-      <rect width="40" height="10" rx="2" fill="#ff6a00"/>
-      <circle cx="34" cy="5" r="1.8" fill="#ffffff"/>
-      <rect y="13" width="40" height="10" rx="2" fill="#ff6a00"/>
-      <circle cx="34" cy="18" r="1.8" fill="#ffffff"/>
-      <rect y="26" width="40" height="10" rx="2" fill="#ff6a00"/>
-      <circle cx="34" cy="31" r="1.8" fill="#ffffff"/>
+    <!-- Official Alibaba Cloud ECS 3-Blade Server Icon (#FF6A00) -->
+    <g transform="translate(38, 12) scale(0.038)">
+      <path d="M864.768 903.68H180.736c-40.96 0-73.728-29.696-73.728-70.656v-81.92c0-40.96 33.28-70.656 73.728-70.656h684.032c40.96 0 74.24 29.696 74.24 70.656v81.92c-0.512 40.96-33.28 70.656-74.24 70.656z m-82.944-165.376c-29.696 0-53.76 24.064-53.76 53.248 0 29.696 24.064 53.76 53.76 53.76 29.696-1.024 52.736-25.6 52.224-54.784-1.024-28.16-23.552-51.2-52.224-52.224z m82.944-111.104H180.736c-40.96 0-73.728-29.696-73.728-70.656v-81.92c0-40.96 33.28-70.656 73.728-70.656h684.032c40.96 0 74.24 29.696 74.24 70.656v81.92c-0.512 40.96-33.28 70.656-74.24 70.656z m-82.944-164.864c-29.696 0-53.76 24.064-53.76 53.76s24.064 53.248 53.76 53.76c29.696 0 53.76-23.552 53.76-53.248 0.512-30.208-23.552-54.272-53.76-54.272 0.512 0 0.512 0 0 0z m82.944-111.104H180.736c-40.96 0-73.728-29.696-73.728-70.656v-81.92c0-40.96 33.28-70.656 73.728-70.656h684.032c40.96 0 74.24 29.696 74.24 70.656v81.92c-0.512 40.96-33.28 70.656-74.24 70.656z m-82.944-165.376c-29.696 0-53.76 24.064-53.76 53.76s24.064 53.248 53.76 53.248c29.184 0 53.248-24.064 53.248-53.248 0.512-29.696-23.552-53.76-53.248-53.76z" fill="#FF6A00"/>
     </g>
-    <text x="57" y="65" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11.5" font-weight="700" fill="#9a3412">Application</text>
+    <text x="57" y="65" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11.5" font-weight="700" fill="#9a3412">Application (ECS)</text>
   </g>
 
   <!-- GWLBe (Endpoint in Business VPC) -->
   <g transform="translate(265, 195)" filter="url(#shadow-gwlb)">
-    <rect width="95" height="80" rx="8" fill="#ffffff" stroke="#38bdf8" stroke-width="1.5"/>
-    <!-- Shield / Interface Icon -->
+    <rect width="95" height="80" rx="8" fill="#fff7ed" stroke="#FF6A00" stroke-width="1.5"/>
+    <!-- Official Orange Gateway Endpoint Interface Icon -->
     <g transform="translate(27, 10)">
-      <path d="M 20 4 L 35 9 L 35 22 C 35 31 20 37 20 37 C 20 37 5 31 5 22 L 5 9 Z" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/>
-      <circle cx="14" cy="20" r="3" fill="#0284c7"/>
-      <circle cx="26" cy="20" r="3" fill="#0284c7"/>
-      <line x1="14" y1="20" x2="26" y2="20" stroke="#0284c7" stroke-width="1.5"/>
+      <path d="M 20 4 L 35 9 L 35 22 C 35 31 20 37 20 37 C 20 37 5 31 5 22 L 5 9 Z" fill="#ffffff" stroke="#FF6A00" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="13" cy="20" r="3" fill="#FF6A00"/>
+      <circle cx="27" cy="20" r="3" fill="#FF6A00"/>
+      <line x1="13" y1="20" x2="27" y2="20" stroke="#FF6A00" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="20" cy="13" r="2.5" fill="#FF6A00"/>
+      <line x1="20" y1="13" x2="20" y2="20" stroke="#FF6A00" stroke-width="1.8"/>
     </g>
-    <text x="47" y="65" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#0369a1">GWLBe</text>
+    <text x="47" y="65" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#9a3412">GWLBe</text>
   </g>
 
-  <!-- GWLB (In Security VPC) -->
+  <!-- GWLB (In Security VPC - Official Orange Alibaba Cloud Load Balancer Icon) -->
   <g transform="translate(545, 195)" filter="url(#shadow-gwlb)">
-    <rect width="85" height="80" rx="8" fill="#ffffff" stroke="#818cf8" stroke-width="1.5"/>
-    <!-- GWLB Load Balancer Triangle Node Icon -->
-    <g transform="translate(17, 10)">
-      <circle cx="25" cy="10" r="5.5" fill="#4f46e5"/>
-      <circle cx="10" cy="34" r="5.5" fill="#4f46e5"/>
-      <circle cx="40" cy="34" r="5.5" fill="#4f46e5"/>
-      <line x1="25" y1="10" x2="10" y2="34" stroke="#4f46e5" stroke-width="2"/>
-      <line x1="25" y1="10" x2="40" y2="34" stroke="#4f46e5" stroke-width="2"/>
-      <line x1="10" y1="34" x2="40" y2="34" stroke="#4f46e5" stroke-width="2"/>
+    <rect width="85" height="80" rx="8" fill="#fff7ed" stroke="#FF6A00" stroke-width="2"/>
+    <!-- Official Alibaba Cloud Load Balancer Network Triangle Icon (#FF6A00) -->
+    <g transform="translate(24, 11)">
+      <line x1="18.0" y1="7.5" x2="7.5" y2="24.5" stroke="#FF6A00" stroke-width="2.6" stroke-linecap="round"/>
+      <line x1="18.0" y1="7.5" x2="28.5" y2="24.5" stroke="#FF6A00" stroke-width="2.6" stroke-linecap="round"/>
+      <line x1="7.5" y1="24.5" x2="28.5" y2="24.5" stroke="#FF6A00" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="18.0" cy="7.5" r="5.5" fill="#FF6A00"/>
+      <circle cx="7.5" cy="24.5" r="5.5" fill="#FF6A00"/>
+      <circle cx="28.5" cy="24.5" r="5.5" fill="#FF6A00"/>
     </g>
-    <text x="42" y="65" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#3730a3">GWLB</text>
+    <text x="42" y="65" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#9a3412">GWLB</text>
   </g>
 
   <!-- Server Group (Security VPC) -->
   <g transform="translate(685, 125)">
     <rect width="185" height="245" rx="8" fill="#ffffff" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4 4"/>
-    <rect x="12" y="8" width="100" height="20" rx="4" fill="#f1f5f9"/>
-    <text x="62" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#334155">Server group</text>
+    <rect x="12" y="8" width="100" height="20" rx="4" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
+    <text x="62" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#9a3412">Server group</text>
 
-    <!-- NVA 1 -->
+    <!-- NVA 1 (Official Security Defense Shield in #FF6A00) -->
     <g transform="translate(90, 36)">
-      <rect width="75" height="52" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-      <g transform="translate(12, 14)">
-        <rect width="9" height="9" rx="1.5" fill="#334155"/>
-        <rect x="12" width="9" height="9" rx="1.5" fill="#334155"/>
-        <rect y="12" width="9" height="9" rx="1.5" fill="#334155"/>
-        <rect x="12" y="12" width="9" height="9" rx="1.5" fill="#334155"/>
+      <rect width="75" height="52" rx="6" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.2"/>
+      <g transform="translate(9, 12) scale(0.027)">
+        <path d="M512 85 L840 220 C840 560 690 810 512 935 C334 810 184 560 184 220 Z" fill="none" stroke="#FF6A00" stroke-width="64" stroke-linejoin="round"/>
+        <path d="M512 210 L740 305 C740 560 635 745 512 830 C389 745 284 560 284 305 Z" fill="#FFF7ED" stroke="#FF6A00" stroke-width="32" stroke-linejoin="round"/>
+        <rect x="424" y="470" width="176" height="150" rx="28" fill="#FF6A00"/>
+        <path d="M454 470 L454 395 C454 363 480 337 512 337 C544 337 570 363 570 395 L570 470" fill="none" stroke="#FF6A00" stroke-width="40" stroke-linecap="round"/>
+        <circle cx="512" cy="530" r="22" fill="#FFFFFF"/>
+        <polygon points="504,535 520,535 516,575 508,575" fill="#FFFFFF"/>
       </g>
-      <text x="46" y="29" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e293b">NVA</text>
+      <text x="44" y="30" font-family="system-ui, sans-serif" font-size="11.5" font-weight="800" fill="#9a3412">NVA</text>
     </g>
 
     <!-- NVA 2 -->
     <g transform="translate(90, 102)">
-      <rect width="75" height="52" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-      <g transform="translate(12, 14)">
-        <rect width="9" height="9" rx="1.5" fill="#334155"/>
-        <rect x="12" width="9" height="9" rx="1.5" fill="#334155"/>
-        <rect y="12" width="9" height="9" rx="1.5" fill="#334155"/>
-        <rect x="12" y="12" width="9" height="9" rx="1.5" fill="#334155"/>
+      <rect width="75" height="52" rx="6" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.2"/>
+      <g transform="translate(9, 12) scale(0.027)">
+        <path d="M512 85 L840 220 C840 560 690 810 512 935 C334 810 184 560 184 220 Z" fill="none" stroke="#FF6A00" stroke-width="64" stroke-linejoin="round"/>
+        <path d="M512 210 L740 305 C740 560 635 745 512 830 C389 745 284 560 284 305 Z" fill="#FFF7ED" stroke="#FF6A00" stroke-width="32" stroke-linejoin="round"/>
+        <rect x="424" y="470" width="176" height="150" rx="28" fill="#FF6A00"/>
+        <path d="M454 470 L454 395 C454 363 480 337 512 337 C544 337 570 363 570 395 L570 470" fill="none" stroke="#FF6A00" stroke-width="40" stroke-linecap="round"/>
+        <circle cx="512" cy="530" r="22" fill="#FFFFFF"/>
+        <polygon points="504,535 520,535 516,575 508,575" fill="#FFFFFF"/>
       </g>
-      <text x="46" y="29" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e293b">NVA</text>
+      <text x="44" y="30" font-family="system-ui, sans-serif" font-size="11.5" font-weight="800" fill="#9a3412">NVA</text>
     </g>
 
     <!-- NVA 3 -->
     <g transform="translate(90, 168)">
-      <rect width="75" height="52" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-      <g transform="translate(12, 14)">
-        <rect width="9" height="9" rx="1.5" fill="#334155"/>
-        <rect x="12" width="9" height="9" rx="1.5" fill="#334155"/>
-        <rect y="12" width="9" height="9" rx="1.5" fill="#334155"/>
-        <rect x="12" y="12" width="9" height="9" rx="1.5" fill="#334155"/>
+      <rect width="75" height="52" rx="6" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.2"/>
+      <g transform="translate(9, 12) scale(0.027)">
+        <path d="M512 85 L840 220 C840 560 690 810 512 935 C334 810 184 560 184 220 Z" fill="none" stroke="#FF6A00" stroke-width="64" stroke-linejoin="round"/>
+        <path d="M512 210 L740 305 C740 560 635 745 512 830 C389 745 284 560 284 305 Z" fill="#FFF7ED" stroke="#FF6A00" stroke-width="32" stroke-linejoin="round"/>
+        <rect x="424" y="470" width="176" height="150" rx="28" fill="#FF6A00"/>
+        <path d="M454 470 L454 395 C454 363 480 337 512 337 C544 337 570 363 570 395 L570 470" fill="none" stroke="#FF6A00" stroke-width="40" stroke-linecap="round"/>
+        <circle cx="512" cy="530" r="22" fill="#FFFFFF"/>
+        <polygon points="504,535 520,535 516,575 508,575" fill="#FFFFFF"/>
       </g>
-      <text x="46" y="29" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e293b">NVA</text>
+      <text x="44" y="30" font-family="system-ui, sans-serif" font-size="11.5" font-weight="800" fill="#9a3412">NVA</text>
     </g>
   </g>
 

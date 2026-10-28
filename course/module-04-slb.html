@@ -545,7 +545,7 @@
             <span class="badge badge-blue" style="font-size: 0.7rem;">ALB • NLB • GWLB</span>
           </div>
           <ul>
-            <li><strong>Sticky Affinity:</strong> Hashes client Source IP or 5-tuple to backend servers with minimal disruption during scaling.</li>
+            <li><strong>Session Persistence:</strong> Hashes client Source IP or 5-tuple to backend servers with minimal disruption during scaling.</li>
             <li><strong>Best For:</strong> Stateful Layer 4 services, gaming servers, and cached web workloads.</li>
           </ul>
         </div>
@@ -566,7 +566,7 @@
     <!-- ==================== SLIDE 25: SESSION PERSISTENCE ==================== -->
     <section class="slide" data-category="Backend Server Groups">
       <div class="slide-category">Section 6: Backend Server Groups</div>
-      <h2>Session Persistence (Sticky Sessions)</h2>
+      <h2>Session Persistence</h2>
       
       <div class="two-column-layout">
         <div class="column-left">
@@ -576,9 +576,9 @@
         </div>
         <div class="column-right">
           <div class="content-card highlight">
-            <h3>Sticky Session Principles</h3>
+            <h3>Session Persistence Principles</h3>
             <ul>
-              <li><strong>Session Affinity:</strong> Binds consecutive requests from the same client to the same backend server instance.</li>
+              <li><strong>Session Persistence:</strong> Binds consecutive requests from the same client to the same backend server instance.</li>
               <li><strong>Cookie Insertion (ALB):</strong> Injects an encrypted tracking cookie (<code>ALBSID</code>) with configurable duration (1s–7 days).</li>
               <li><strong>Cookie Rewriting (ALB):</strong> Tracks existing application session cookies (e.g., <code>JSESSIONID</code>).</li>
               <li><strong>Source IP Hash (NLB/CLB):</strong> Routes based on client IP address with a persistence timeout.</li>
