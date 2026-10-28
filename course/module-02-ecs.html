@@ -184,7 +184,7 @@
       <h2>Global Infrastructure</h2>
       
       <div class="diagram-container clean" style="padding: 0.65rem; margin: 0.5rem 0; width: 100%; display: flex; justify-content: center;">
-        <img src="assets/images/regions-and-zones.svg" alt="Regions and Availability Zones Relationship" class="diagram-image" style="max-height: 285px; width: auto; object-fit: contain;">
+        <img src="assets/images/regions-and-zones.svg" alt="Regions and Zones Relationship" class="diagram-image" style="max-height: 285px; width: auto; object-fit: contain;">
       </div>
 
       <div class="grid-2" style="margin-top: 0.5rem;">
@@ -193,14 +193,14 @@
           <p>A physical geographic location worldwide containing multiple datacenters. Selected based on user proximity, data sovereignty, and cost.</p>
         </div>
         <div class="content-card highlight-blue">
-          <h3>Availability Zone (Fault Domain)</h3>
+          <h3>Zone (Fault Domain)</h3>
           <p>An independent datacenter domain with dedicated power, cooling, and network within a region (< 2ms intra-region latency).</p>
         </div>
       </div>
 
       <div class="callout callout-green" style="margin-top: 0.75rem; width: 100%;">
         <div>
-          <span class="badge badge-updated">Global Footprint</span> Alibaba Cloud operates <strong>30+ Regions and 89+ Availability Zones</strong> globally, supporting multi-active disaster recovery and ultra-low latency edge access.
+          <span class="badge badge-updated">Global Footprint</span> Alibaba Cloud operates <strong>30+ Regions and 89+ Zones</strong> globally, supporting multi-active disaster recovery and ultra-low latency edge access.
         </div>
       </div>
     </section>
@@ -561,7 +561,7 @@
         <div class="content-card highlight">
           <p>Instance metadata provides internal access to runtime configuration attributes from within the running ECS instance without calling external APIs:</p>
           <ul>
-            <li><strong>Instance Identity:</strong> Query instance ID, image ID, region, Availability Zone, private IP, and hostname.</li>
+            <li><strong>Instance Identity:</strong> Query instance ID, image ID, region, Zone, private IP, and hostname.</li>
             <li><strong>Network Topology:</strong> Query VPC ID, vSwitch ID, CIDR blocks, and gateway settings.</li>
             <li><strong>Zero-Credential Access:</strong> Retrieve temporary STS security tokens attached to an ECS RAM Role, eliminating the hazard of hardcoding AccessKey secrets in application code!</li>
           </ul>
@@ -712,7 +712,7 @@ systemctl enable --now nginx</pre>
           <p>ECS Cloud Disks do not reside on physical server drives inside compute hosts. They are powered by <strong>Pangu</strong>, Alibaba Cloud's distributed storage architecture:</p>
           <ul>
             <li><strong>Triplicate Data Replication:</strong> Every chunk of data written to a cloud disk is synchronously committed across <strong>3 independent copies</strong>.</li>
-            <li><strong>Rack & Switch Isolation:</strong> Replicas are distributed across separate physical server racks and network switches within the same Availability Zone.</li>
+            <li><strong>Rack & Switch Isolation:</strong> Replicas are distributed across separate physical server racks and network switches within the same Zone.</li>
             <li><strong>Data Reliability:</strong> Delivers an industry-leading <strong>99.9999999% (9 nines)</strong> data durability guarantee.</li>
             <li><strong>Zero Local RAID Dependency:</strong> Eliminates the operational hazard and rebuilding overhead of physical RAID arrays.</li>
             <li><strong>Multi-Service Foundation:</strong> Powers BlockFS (Block Storage Cloud Disks), LogFile (Databases & TableStore), and HDFS (Big Data computing).</li>
@@ -738,7 +738,7 @@ systemctl enable --now nginx</pre>
       <div class="grid-3" style="gap: 1rem;">
         <div class="content-card highlight">
           <h4 style="margin-bottom: 0.4rem; color: var(--primary);">Same-Zone Scope</h4>
-          <p style="font-size: 0.88rem; line-height: 1.45; margin: 0;">Cloud disks can only attach to ECS instances within the <strong>same Availability Zone</strong>. Cross-zone attachment is not supported.</p>
+          <p style="font-size: 0.88rem; line-height: 1.45; margin: 0;">Cloud disks can only attach to ECS instances within the <strong>same Zone</strong>. Cross-zone attachment is not supported.</p>
         </div>
         <div class="content-card highlight">
           <h4 style="margin-bottom: 0.4rem; color: var(--primary);">Attachment Quota & Multi-Mount</h4>
@@ -762,7 +762,7 @@ systemctl enable --now nginx</pre>
           <ul style="line-height: 1.6;">
             <li><strong>Physical Host Failure (NC1 Down):</strong> Hardware malfunction, power disruption, or CPU/motherboard failure causes NC1 to stop operating.</li>
             <li><strong>Autonomic Detection:</strong> The cloud hypervisor cluster management plane monitors continuous node heartbeats and promptly detects host unavailability.</li>
-            <li><strong>Automated Re-Instantiation:</strong> The instance (<code>i-001</code>) automatically migrates and boots on a healthy physical host (<strong>NC2</strong>) within the <strong>same Availability Zone</strong>.</li>
+            <li><strong>Automated Re-Instantiation:</strong> The instance (<code>i-001</code>) automatically migrates and boots on a healthy physical host (<strong>NC2</strong>) within the <strong>same Zone</strong>.</li>
             <li><strong>Data Preservation via Decoupled Storage:</strong> Because system and data disks reside on network-attached <strong>Cloud Disks (Pangu)</strong>, no data is lost—NC2 immediately reconnects to the existing storage disks.</li>
           </ul>
         </div>
@@ -837,7 +837,7 @@ systemctl enable --now nginx</pre>
       <div class="grid-2">
         <div class="content-card highlight">
           <h3>1. Same-Zone Migration (Direct Detach & Attach)</h3>
-          <p>When migrating an existing cloud disk from Instance A to Instance B within the <strong>same Availability Zone</strong>:</p>
+          <p>When migrating an existing cloud disk from Instance A to Instance B within the <strong>same Zone</strong>:</p>
           <ol style="margin-top: 0.5rem; padding-left: 1.25rem; line-height: 1.6; color: var(--text-secondary);">
             <li><strong>Unmount in OS:</strong> Flush file buffers and unmount the filesystem inside Instance A (e.g. <code>umount /mnt/data</code>).</li>
             <li><strong>Detach Disk:</strong> Detach the disk from Instance A via the ECS Console, CLI, or OpenAPI.</li>
@@ -847,7 +847,7 @@ systemctl enable --now nginx</pre>
         </div>
         <div class="content-card highlight-blue">
           <h3>2. Cross-Zone Migration (Snapshot-Based Replication)</h3>
-          <p>Since cloud disks cannot be attached across different Availability Zones directly:</p>
+          <p>Since cloud disks cannot be attached across different Zones directly:</p>
           <ol style="margin-top: 0.5rem; padding-left: 1.25rem; line-height: 1.6; color: var(--text-secondary);">
             <li><strong>Create Snapshot:</strong> Take a snapshot of the cloud disk in Zone A. (Snapshots are regional assets stored in OSS).</li>
             <li><strong>Create Disk in Zone B:</strong> Provision a brand-new cloud disk directly in Zone B using the snapshot as the source.</li>
@@ -882,7 +882,7 @@ systemctl enable --now nginx</pre>
           <p>Created by users from system disk snapshots of configured instances:</p>
           <ul>
             <li>Pre-install runtimes, security agents, and proprietary code.</li>
-            <li>Essential foundation for <strong>Auto Scaling Groups</strong> to launch identical instances.</li>
+            <li>Essential foundation for <strong>Scaling Groups</strong> to launch identical instances.</li>
           </ul>
         </div>
         <div class="content-card highlight-green">
@@ -970,7 +970,7 @@ systemctl enable --now nginx</pre>
           <div class="content-card highlight">
             <ul style="line-height: 1.6;">
               <li><strong>VPC (Regional Boundary):</strong> Logically isolated virtual network on Alibaba Cloud. Defines private IPv4 CIDR blocks (<code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, <code>192.168.0.0/16</code>) and IPv6 address ranges.</li>
-              <li><strong>vSwitch (Virtual Switch):</strong> Subdivides the VPC CIDR block into a zone-anchored virtual switch, residing strictly inside a <strong>single Zone</strong>. Each ECS instance connects to a specific vSwitch.</li>
+              <li><strong>vSwitch:</strong> Subdivides the VPC CIDR block into a zone-anchored network switch, residing strictly inside a <strong>single Zone</strong>. Each ECS instance connects to a specific vSwitch.</li>
               <li><strong>VRouter &amp; Route Tables:</strong> Automatically manages traffic forwarding within the VPC, across vSwitches, and through gateways (Internet NAT, VPN, CEN).</li>
               <li><strong>VPC Isolation:</strong> Provides enterprise tenant isolation with software-defined security, complete IP address autonomy, and high-performance SDN fabric.</li>
             </ul>
@@ -989,7 +989,7 @@ systemctl enable --now nginx</pre>
           <h3>Types of ENIs</h3>
           <ul style="line-height: 1.6;">
             <li><strong>Primary ENI (<code class="inline-code">eth0</code>):</strong> Created automatically during instance launch. Bound to the primary private IP address in the instance's vSwitch and cannot be detached.</li>
-            <li><strong>Secondary ENI:</strong> Created independently and can be dynamically attached or detached from instances within the <strong>same Availability Zone</strong>.</li>
+            <li><strong>Secondary ENI:</strong> Created independently and can be dynamically attached or detached from instances within the <strong>same Zone</strong>.</li>
             <li><strong>Trunking ENI:</strong> High-density virtual interface architecture enabling container orchestration (ACK) to bind multiple pod interfaces to a single physical ENI.</li>
             <li><strong>Attachment Quotas:</strong> Maximum number of ENIs and private IPs is determined by the instance type specification.</li>
           </ul>
@@ -1000,7 +1000,7 @@ systemctl enable --now nginx</pre>
             <li><strong>Low-Cost Active/Standby Failover:</strong> When a primary gateway fails, the secondary ENI carrying private service IPs detaches and attaches immediately to a standby host.</li>
             <li><strong>Multi-vSwitch Multi-Homing:</strong> An ECS instance connects simultaneously to different vSwitches (e.g. management traffic on vSwitch-Mgmt, application traffic on vSwitch-App).</li>
             <li><strong>High-Density Kubernetes Networking:</strong> Terway CNI plugin utilizes secondary ENIs and secondary IP addresses for native pod-to-pod routing.</li>
-            <li><strong>Same-Zone Boundary:</strong> All attached secondary ENIs must reside in the exact same Availability Zone as the host ECS instance.</li>
+            <li><strong>Same-Zone Boundary:</strong> All attached secondary ENIs must reside in the exact same Zone as the host ECS instance.</li>
           </ul>
         </div>
       </div>
@@ -1085,7 +1085,7 @@ systemctl enable --now nginx</pre>
             </tr>
             <tr>
               <td><strong>Bandwidth Management</strong></td>
-              <td>Supports Internet Shared Bandwidth packages across multiple EIPs.</td>
+              <td>Supports Internet Shared Bandwidth across multiple EIPs.</td>
               <td>Dedicated instance bandwidth only.</td>
             </tr>
           </tbody>
@@ -1104,7 +1104,7 @@ systemctl enable --now nginx</pre>
           
           <ul style="line-height: 1.6;">
             <li><strong>Stateful Inspection:</strong> If an inbound packet is allowed by an inbound rule, response traffic is <strong>automatically permitted outbound</strong> (and vice versa) regardless of outbound rules.</li>
-            <li><strong>Regional Scope within VPC:</strong> Security Groups are regional constructs in a VPC and can protect ECS instances across multiple Availability Zones in the same VPC.</li>
+            <li><strong>Regional Scope within VPC:</strong> Security Groups are regional constructs in a VPC and can protect ECS instances across multiple Zones in the same VPC.</li>
             <li><strong>ENI &amp; Multi-Group Association:</strong> Each ENI must belong to at least one Security Group and can join multiple Security Groups simultaneously.</li>
             <li><strong>Default Isolation Boundary:</strong> Instances associated with different Security Groups are completely isolated by default with zero inter-group network communication.</li>
           </ul>
@@ -1175,7 +1175,7 @@ systemctl enable --now nginx</pre>
                 <tr>
                   <td><strong>Multi-Zone Deployment</strong></td>
                   <td><strong>99.995%</strong></td>
-                  <td>Across multiple Availability Zones in the same region with SLB.</td>
+                  <td>Across multiple Zones in the same region with SLB.</td>
                 </tr>
               </tbody>
             </table>
@@ -1241,7 +1241,7 @@ systemctl enable --now nginx</pre>
             <ul>
               <li><strong>Physical Facilities:</strong> Datacenter security, power, and environmental cooling.</li>
               <li><strong>Hardware Infrastructure:</strong> Physical servers, storage arrays, switches, and CIPU hypervisors.</li>
-              <li><strong>Global Network:</strong> Regions, Availability Zones, and global fiber backbone.</li>
+              <li><strong>Global Network:</strong> Regions, Zones, and global fiber backbone.</li>
             </ul>
           </div>
         </div>
@@ -1261,7 +1261,7 @@ systemctl enable --now nginx</pre>
             <li><strong>Windows (RDP - Port 3389):</strong> Connect via Remote Desktop Protocol (MSTSC) using Administrator credentials with encrypted TLS sessions.</li>
             <li><strong>Network Prerequisites:</strong>
               <ul>
-                <li>Instance must possess a <strong>Public IP / Elastic IP (EIP)</strong>, or private reachability via VPN Gateway / CEN / Bastion host.</li>
+                <li>Instance must possess a <strong>Public IP / Elastic IP (EIP)</strong>, or private reachability via VPN Gateway / CEN / Bastionhost.</li>
                 <li>Security Group must permit inbound traffic on port <code>22</code> (Linux) or <code>3389</code> (Windows).</li>
               </ul>
             </li>
@@ -1270,7 +1270,7 @@ systemctl enable --now nginx</pre>
 
         <div class="diagram-container clean" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
           <img src="assets/images/ecs-ssh-terminal.png" alt="Connecting to Linux ECS via SSH" class="diagram-image" style="max-height: 240px; width: auto; object-fit: contain;">
-          <div class="diagram-caption" style="margin-top: 0.75rem; font-weight: 500; color: #475569;">Direct SSH Connection to ECS Instance via Internet / Bastion Host</div>
+          <div class="diagram-caption" style="margin-top: 0.75rem; font-weight: 500; color: #475569;">Direct SSH Connection to ECS Instance via Internet / Bastionhost</div>
         </div>
       </div>
 
@@ -1446,7 +1446,7 @@ systemctl enable --now nginx</pre>
             </div>
           </div>
           <p style="font-size: calc(0.88rem + var(--font-delta)); color: var(--text-secondary); margin-bottom: 0.65rem;">
-            Run containers directly in seconds without provisioning, configuring, or managing underlying ECS virtual servers.
+            Run containers directly in seconds without provisioning, configuring, or managing underlying ECS instances.
           </p>
           <ul>
             <li><strong>Zero Server Management:</strong> No OS maintenance, patching, or node capacity planning.</li>
@@ -1564,18 +1564,18 @@ systemctl enable --now nginx</pre>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 42: PREEMPTIBLE INSTANCES (SPOT) ==================== -->
+    <!-- ==================== SLIDE 42: PREEMPTIBLE INSTANCES ==================== -->
     <section class="slide" data-category="Pricing Model">
       <div class="slide-category">Section 7: Pricing Model</div>
-      <h2>Preemptible Instances (Spot Instances)</h2>
+      <h2>Preemptible Instances</h2>
       
       <div class="grid-2">
         <div class="content-card highlight">
           <h3>Core Mechanics</h3>
           <ul>
             <li><strong>Steep Discounts (Up to 90% Off):</strong> Utilize spare datacenter capacity at bid-based pricing significantly below standard Pay-As-You-Go rates.</li>
-            <li><strong>Dynamic Bidding:</strong> Market price fluctuates based on real-time regional supply and demand. Set a maximum hourly bid threshold or accept the spot market rate.</li>
-            <li><strong>1-Hour Protection Period:</strong> Newly created spot instances are guaranteed not to be reclaimed during their first hour of operation.</li>
+            <li><strong>Dynamic Bidding:</strong> Market price fluctuates based on real-time regional supply and demand. Set a maximum hourly bid threshold or accept the market price.</li>
+            <li><strong>1-Hour Protection Period:</strong> Newly created Preemptible Instances are guaranteed not to be reclaimed during their first hour of operation.</li>
             <li><strong>5-Minute Reclaim Notice:</strong> If market price exceeds your bid or capacity is reclaimed, Alibaba Cloud issues a 5-minute advance notification before termination.</li>
           </ul>
         </div>
@@ -1590,7 +1590,7 @@ systemctl enable --now nginx</pre>
       </div>
 
       <div class="callout callout-amber" style="margin-top: 1rem;">
-        <strong>Strict Architectural Constraint:</strong> Spot instances are strictly unsuitable for stateful applications, single-point-of-failure services, or transactional databases where unexpected terminations could compromise data consistency.
+        <strong>Strict Architectural Constraint:</strong> Preemptible Instances are strictly unsuitable for stateful applications, single-point-of-failure services, or transactional databases where unexpected terminations could compromise data consistency.
       </div>
     </section>
 
@@ -1603,11 +1603,11 @@ systemctl enable --now nginx</pre>
         <div class="content-card highlight">
           <h3>Core Mechanics</h3>
           <ul>
-            <li><strong>Billing Coupon:</strong> Reserved Instances do not launch a physical virtual machine. Instead, they act as an accounting discount coupon that automatically matches eligible PAYG instances.</li>
+            <li><strong>Billing Coupon:</strong> Reserved Instances do not launch a new ECS instance. Instead, they act as an accounting discount coupon that automatically matches eligible PAYG instances.</li>
             <li><strong>Term & Payment Options:</strong> Available in 1-year or 3-year commitments with <em>All Upfront</em>, <em>Partial Upfront</em>, or <em>No Upfront</em> payment models.</li>
             <li><strong>Zonal vs Regional Scope:</strong>
               <ul>
-                <li><strong>Regional RI:</strong> Applies discount to matched instance types across <em>any</em> Availability Zone in that region.</li>
+                <li><strong>Regional RI:</strong> Applies discount to matched instance types across <em>any</em> Zone in that region.</li>
                 <li><strong>Zonal RI:</strong> Applies discount to a <em>specific</em> Zone and guarantees <strong>physical compute capacity reservation</strong> in that datacenter.</li>
               </ul>
             </li>
@@ -1636,7 +1636,7 @@ systemctl enable --now nginx</pre>
           <ul>
             <li><strong>Cross-Family Flexibility:</strong> Automatically applies across different instance families (e.g., <code>g8i</code>, <code>c8i</code>, <code>r8i</code>, <code>g8y</code>) and generations.</li>
             <li><strong>Cross-Region Flexibility:</strong> Applies discounts across different geographic regions worldwide within the same account.</li>
-            <li><strong>Serverless Container Support:</strong> Automatically covers both ECS virtual machines and Elastic Container Instance (ECI) pods.</li>
+            <li><strong>Serverless Container Support:</strong> Automatically covers both ECS instances and Elastic Container Instance (ECI) pods.</li>
             <li><strong>Operating System Agnostic:</strong> Seamlessly applies to both Linux and Windows workloads.</li>
           </ul>
         </div>
@@ -1722,7 +1722,7 @@ systemctl enable --now nginx</pre>
             <span>✖ Option C is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            <strong>NC failover is strictly intra-zone.</strong> Automatic Node Controller (NC) failover and hardware migrations only operate between physical hosts within the exact same Availability Zone.
+            <strong>NC failover is strictly intra-zone.</strong> Automatic Node Controller (NC) failover and hardware migrations only operate between physical hosts within the exact same Zone.
           </div>
         </div>
 
@@ -1731,7 +1731,7 @@ systemctl enable --now nginx</pre>
             <span>✖ Option D is Incorrect</span>
           </div>
           <div class="analysis-item-body">
-            <strong>vSwitches are strictly zone-bound.</strong> A vSwitch cannot span across multiple Availability Zones; each vSwitch belongs to exactly one Availability Zone within the VPC.
+            <strong>vSwitches are strictly zone-bound.</strong> A vSwitch cannot span across multiple Zones; each vSwitch belongs to exactly one Zone within the VPC.
           </div>
         </div>
       </div>
