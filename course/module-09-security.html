@@ -171,7 +171,7 @@
             <ul>
               <li><strong>Physical Security:</strong> Biometric mantrap access, 24/7 video surveillance, redundant power, and environmental controls across all hyperscale datacenters.</li>
               <li><strong>Hardware Security:</strong> Custom-engineered server chassis, hardware root-of-trust (RoT), TPM cryptoprocessors, and secure firmware verification.</li>
-              <li><strong>Virtualization Security:</strong> Proprietary hardware-accelerated hypervisor isolating tenant memory spaces and preventing cross-VM side-channel leaks.</li>
+              <li><strong>Virtualization Security:</strong> Proprietary hardware-accelerated hypervisor isolating tenant memory spaces and preventing cross-instance side-channel leaks.</li>
             </ul>
           </div>
 
@@ -481,7 +481,7 @@
           <ul>
             <li><strong>VPC Boundary Bucket Policies:</strong> Explicitly deny all bucket access requests originating from outside designated VPC perimeters, neutralizing leaked AccessKey threats.</li>
             <li><strong>Write Once, Read Many (WORM):</strong> Bucket retention policies lock objects into an immutable state (up to 70 years). Even root account administrators cannot delete locked records.</li>
-            <li><strong>Pre-Signed URLs:</strong> Generate temporary, cryptographically signed URLs for direct client uploads/downloads with strict time-to-live (TTL) expiration.</li>
+            <li><strong>Signed URLs:</strong> Generate temporary, cryptographically signed URLs for direct client uploads/downloads with strict time-to-live (TTL) expiration.</li>
             <li><strong>Object Versioning:</strong> Protects against accidental overwrites and ransomware by preserving historical object iterations.</li>
           </ul>
         </div>
