@@ -252,7 +252,7 @@
           <ul>
             <li><strong>Layer 7 &amp; Layer 4 Clusters:</strong> Back-to-origin requests terminate on an ALB or NLB public VIP.</li>
             <li><strong>High-Availability Backend:</strong> Load balancers distribute missed requests across auto-scaling ECS fleets or ACK Kubernetes pods.</li>
-            <li><strong>Session Stickiness:</strong> Supports cookie-based routing when back-to-origin sessions require persistent application context.</li>
+            <li><strong>Session Persistence:</strong> Supports cookie-based routing when back-to-origin sessions require persistent application context.</li>
           </ul>
         </div>
 
@@ -514,7 +514,7 @@
         <div class="content-card highlight-green">
           <h3>Directory Refresh</h3>
           <ul>
-            <li><strong>Directory Invalidation:</strong> Refreshes entire directory paths (e.g., <code>https://example.com/v2.0/*</code>).</li>
+            <li><strong>Directory Path Refresh:</strong> Refreshes entire directory paths (e.g., <code>https://example.com/v2.0/*</code>).</li>
             <li><strong>Two Refresh Modes:</strong>
               <ul>
                 <li><strong>Expire (Recommended):</strong> Marks objects as expired; if origin is momentarily down, edge can still serve stale cache.</li>
