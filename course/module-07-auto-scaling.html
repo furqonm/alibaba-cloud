@@ -258,15 +258,15 @@
         </div>
         <div class="content-card highlight" style="padding: 0.75rem 0.85rem;">
           <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">2. Flag Unhealthy</h4>
-          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Identifies VM crashes, hardware faults, or health probe failures.</p>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Identifies ECS instance crashes, hardware faults, or health probe failures.</p>
         </div>
         <div class="content-card highlight-purple" style="padding: 0.75rem 0.85rem;">
           <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">3. Detach &amp; Release</h4>
-          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Detaches from SLB, removes RDS whitelist, and terminates VM.</p>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Detaches from SLB, removes RDS whitelist, and releases instance.</p>
         </div>
         <div class="content-card highlight-blue" style="padding: 0.75rem 0.85rem;">
           <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">4. Restore Capacity</h4>
-          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Provisions healthy replacement VM from active configuration.</p>
+          <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">Provisions healthy replacement ECS instance from active configuration.</p>
         </div>
       </div>
     </section>
@@ -332,7 +332,7 @@
 
         <div class="content-card highlight-blue" style="padding: 1.25rem 1.5rem; display: flex; flex-direction: column; justify-content: center;">
           <p style="font-size: calc(1.05rem + var(--font-delta)); margin-bottom: 0.75rem;">
-            Scaling groups span multiple vSwitches across Availability Zones (AZs) to eliminate single points of failure:
+            Scaling groups span multiple vSwitches across multiple Zones to eliminate single points of failure:
           </p>
           <ol class="step-list" style="margin: 0; line-height: 1.5;">
             <li><strong>Priority Strategy:</strong> Provisions in primary Zone A first. If inventory or IP addresses exhaust, automatically fails over to Zone B.</li>
@@ -340,7 +340,7 @@
             <li><strong>Cost-Optimized Strategy:</strong> Prioritizes zones and instance families that offer lowest compute costs or deepest spot discounts.</li>
           </ol>
           <ul style="margin-top: 0.75rem; margin-bottom: 0;">
-            <li><strong>Production Standard:</strong> Always bind at least 2 or 3 vSwitches across distinct Availability Zones.</li>
+            <li><strong>Production Standard:</strong> Always bind at least 2 or 3 vSwitches across distinct Zones.</li>
           </ul>
         </div>
       </div>
@@ -456,7 +456,7 @@
         <div class="content-card highlight-green" style="padding: 0.75rem 1rem;">
           <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Graceful Deregistration</h4>
           <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
-            Deregisters selected VM from SLB with connection draining and removes private IP from RDS whitelists.
+            Deregisters selected ECS instance from SLB with connection draining and removes private IP from RDS whitelists.
           </p>
         </div>
       </div>
@@ -612,7 +612,7 @@
         <div class="content-card highlight-green" style="padding: 0.75rem 1rem;">
           <h4 style="margin: 0 0 0.25rem 0; font-size: calc(0.85rem + var(--font-delta)); color: var(--text-main);">Multi-Zone Provisioning</h4>
           <p style="margin: 0; font-size: calc(0.75rem + var(--font-delta)); color: var(--text-secondary); line-height: 1.35;">
-            Auto Scaling deploys instances across Availability Zone 1 and Availability Zone 2 within the VPC using the template blueprint.
+            Auto Scaling deploys instances across Zone 1 and Zone 2 within the VPC using the template blueprint.
           </p>
         </div>
       </div>
@@ -977,9 +977,9 @@
           <h4>The 4-Step Graceful Evacuation Architecture</h4>
           <ol class="step-list">
             <li><strong>SLB Connection Draining:</strong> Instance weight is set to 0. SLB stops routing new connections while allowing existing requests up to 300 seconds to complete cleanly.</li>
-            <li><strong>Trigger PENDING_REMOVE Hook:</strong> Auto Scaling suspends VM deletion and triggers a Cloud Assistant notification.</li>
+            <li><strong>Trigger PENDING_REMOVE Hook:</strong> Auto Scaling suspends instance deletion and triggers a Cloud Assistant notification.</li>
             <li><strong>Automated Log &amp; Queue Flushing:</strong> Local shell scripts upload application logs to Object Storage Service (OSS) and finish pending jobs.</li>
-            <li><strong>Signal CompleteLifecycleAction:</strong> Cloud Assistant signals Auto Scaling to release the VM with zero customer impact.</li>
+            <li><strong>Signal CompleteLifecycleAction:</strong> Cloud Assistant signals Auto Scaling to release the instance with zero customer impact.</li>
           </ol>
         </div>
       </div>
@@ -1006,7 +1006,7 @@
 
         <div class="content-card highlight-blue">
           <h4>PENDING_REMOVE (Scale-In Hook)</h4>
-          <p>Suspends instances during scale-in before VM destruction:</p>
+          <p>Suspends instances during scale-in before instance destruction:</p>
           <ul>
             <li>Instance is removed from SLB backends; traffic drains safely.</li>
             <li>Hook suspends the instance in <code>PENDING:WAIT</code> state before deletion.</li>
@@ -1040,7 +1040,7 @@
           <h4>Downstream Delivery Channels</h4>
           <p>Automating modern DevOps workflows:</p>
           <ul>
-            <li><strong>Message Service (MNS):</strong> Delivers JSON payloads to MNS topics and queues for asynchronous event-driven consumption.</li>
+            <li><strong>Simple Message Queue (SMQ / formerly MNS):</strong> Delivers JSON payloads to SMQ topics and queues for asynchronous event-driven consumption.</li>
             <li><strong>Function Compute (FC):</strong> Directly triggers serverless functions to perform automated infrastructure tasks upon scaling events.</li>
             <li><strong>Webhooks &amp; ChatOps:</strong> Dispatches real-time alerts to DingTalk, Slack, or enterprise PagerDuty webhooks.</li>
           </ul>
@@ -1134,12 +1134,12 @@
       <div class="quiz-single-card">
         <div class="quiz-single-question">
           <span class="quiz-number">Question 2</span>
-          <span>A financial research company runs nightly containerized quantitative modeling tasks. The workload can tolerate interruptions if interrupted jobs can be retried automatically. Management mandates slashing compute costs by at least 70% while guaranteeing that tasks finish before morning business hours even if spot instance capacity becomes unavailable. Which Auto Scaling design best satisfies these requirements?</span>
+          <span>A financial research company runs nightly containerized quantitative modeling tasks. The workload can tolerate interruptions if interrupted jobs can be retried automatically. Management mandates slashing compute costs by at least 70% while guaranteeing that tasks finish before morning business hours even if preemptible instance capacity becomes unavailable. Which Auto Scaling design best satisfies these requirements?</span>
         </div>
         <ul class="quiz-single-options">
           <li class="quiz-single-option"><span class="quiz-single-letter">A</span><span>Buy Subscription ECS instances and keep them running 24/7.</span></li>
-          <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Use Spot instances of one instance type in one zone only.</span></li>
-          <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Use Spot instances with several instance types in the Launch Template, and let Auto Scaling switch to Pay-As-You-Go if Spot is unavailable.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">B</span><span>Use Preemptible (Spot) instances of one instance type in one zone only.</span></li>
+          <li class="quiz-single-option"><span class="quiz-single-letter">C</span><span>Use Preemptible (Spot) instances with several instance types in the Launch Template, and let Auto Scaling switch to Pay-As-You-Go if Preemptible capacity is unavailable.</span></li>
           <li class="quiz-single-option"><span class="quiz-single-letter">D</span><span>Use only Pay-As-You-Go instances and turn them off by hand every morning.</span></li>
         </ul>
       </div>
@@ -1151,7 +1151,7 @@
       <div class="analysis-main-card">
         <div>
           <span style="font-weight: 800; font-size: 1.1rem; color: #065f46;">Correct Answer: C</span>
-          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Multiple Spot Instance Types with Pay-As-You-Go Fallback</span>
+          <span style="margin-left: 0.75rem; color: #047857; font-size: 0.95rem;">Multiple Preemptible (Spot) Instance Types with Pay-As-You-Go Fallback</span>
         </div>
       </div>
 
@@ -1165,19 +1165,19 @@
         <!-- ALWAYS Option B second -->
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option B is Incorrect</span></div>
-          <div class="analysis-item-body">One instance type in one zone is risky. If Spot capacity runs out or is reclaimed, the job may not finish before morning.</div>
+          <div class="analysis-item-body">One instance type in one zone is risky. If Preemptible capacity runs out or is reclaimed, the job may not finish before morning.</div>
         </div>
 
         <!-- ALWAYS Option C third -->
         <div class="analysis-item correct">
           <div class="analysis-item-header correct"><span>✔ Option C is Correct</span></div>
-          <div class="analysis-item-body">Spot instances are much cheaper, and using several instance types lowers the chance of running out. If Spot is unavailable, Pay-As-You-Go keeps the job on schedule.</div>
+          <div class="analysis-item-body">Preemptible instances are much cheaper, and using several instance types lowers the chance of running out. If Preemptible capacity is unavailable, Pay-As-You-Go keeps the job on schedule.</div>
         </div>
 
         <!-- ALWAYS Option D fourth -->
         <div class="analysis-item incorrect">
           <div class="analysis-item-header incorrect"><span>✖ Option D is Incorrect</span></div>
-          <div class="analysis-item-body">Pay-As-You-Go is more expensive than Spot, and turning instances off by hand is slow and easy to forget. It does not meet the 70% cost saving.</div>
+          <div class="analysis-item-body">Pay-As-You-Go is more expensive than Preemptible instances, and turning instances off by hand is slow and easy to forget. It does not meet the 70% cost saving.</div>
         </div>
       </div>
     </section>
